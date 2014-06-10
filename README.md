@@ -1,7 +1,7 @@
 reactivex.github.io
 ===================
 
-ReactiveX Website - [Jekyll](http://jekyllrb.com/) experiment
+ReactiveX Website - [Jekyll](http://jekyllrb.com/) + [Bootstrap](http://getbootstrap.com/) experiment
 
 Install Jekyll
 --------------

@@ -1,1 +1,23 @@
-Hello World
+---
+layout: default
+title: ReactiveX - Intro
+---
+
+<div id="home">
+  <div class="jumbotron">
+    <h1 class="title"><img src="{{ site.url }}/assets/Rx_Logo_S.png" /> {{ site.name }}</h1>
+    <p class="lead"><strong>Reactive Extensions</strong>: a polyglot library for composing asynchronous and event-based programs by using observable sequences.</p>
+    <a href="#" class="btn btn-primary btn-lg" role="button">Learn more »</a>
+  </div>
+
+  <p class="lead">Rx extends the observer pattern to support sequences of data/events and adds operators that allow you 
+     to compose sequences together declaratively while abstracting away concerns about things like low-level 
+     threading, synchronization, thread-safety, concurrent data structures, and non-blocking I/O.</p>
+
+  <h1>Recent Updates</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

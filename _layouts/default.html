@@ -38,19 +38,19 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Intro</a></li>
-                        <li><a href="{{ site.url }}/documentation.html">Documentation</a></li>
-                        <li><a href="{{ site.url }}/languages.html">Languages</a></li>
-                        <li><a href="{{ site.url }}/projects.html">Related Projects</a></li>
-                        <li><a href="{{ site.url }}/media.html">Media</a></li>
-                        <li><a href="{{ site.url }}/community.html">Community</a></li>
-                        <li><a href="{{ site.url }}/github.html">GitHub</a></li>
-                        <li><a href="{{ site.url }}/releases.html">Releases and Binaries</a></li>
+                        <li id="menu-intro"><a href="/">Intro</a></li>
+                        <li id="menu-documentation"><a href="{{ site.url }}/documentation.html">Documentation</a></li>
+                        <li id="menu-languages"><a href="{{ site.url }}/languages.html">Languages</a></li>
+                        <li id="menu-projects"><a href="{{ site.url }}/projects.html">Related Projects</a></li>
+                        <li id="menu-media"><a href="{{ site.url }}/media.html">Media</a></li>
+                        <li id="menu-community"><a href="{{ site.url }}/community.html">Community</a></li>
+                        <li id="menu-github"><a href="{{ site.url }}/github.html">GitHub</a></li>
+                        <li id="menu-releases"><a href="{{ site.url }}/releases.html">Releases and Binaries</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </div>
- 
+
         <div class="container">
             <div>
 
@@ -72,5 +72,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="/js/bootstrap.min.js"></script>
+        <!-- Activate current page menu button -->
+        <script>$("#menu-{{ page.id }}").addClass("active");</script>
+
     </body>
 </html>

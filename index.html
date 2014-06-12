@@ -26,6 +26,55 @@ id: intro
     </p>
   </div>
 
+  <div id="hello-world">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+      <li class="active"><a href="#java" data-toggle="tab">Java</a></li>
+      <li><a href="#ruby" data-toggle="tab">Ruby</a></li>
+      <li><a href="#scala" data-toggle="tab">Scala</a></li>
+      <li><a href="#cpp" data-toggle="tab">C++</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="java">
+{% highlight java %}
+// says hello
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("hello, world");
+    }
+}
+{% endhighlight %}
+      </div>
+      <div class="tab-pane" id="ruby">
+ {% highlight ruby %}
+ def print_hi(name)
+   puts "Hi, #{name}"
+ end
+ print_hi('Tom')
+ #=> prints 'Hi, Tom' to STDOUT.
+ {% endhighlight %}
+      </div>
+      <div class="tab-pane" id="scala">
+ {% highlight scala %}
+ object HelloWorld {
+   def main(args: Array[String]) {
+     println("hello, world")
+   }
+ }
+ {% endhighlight %}
+      </div>
+      <div class="tab-pane" id="cpp">
+ {% highlight cpp %}
+ // hello, world
+ int main(void)
+ {
+     printf("hello, world\n");
+     return 0;
+ }
+ {% endhighlight %}
+      </div>
+    </div>
+  </div>
+ 
   <h1>Recent Updates</h1>
   <ul class="posts">
     {% for post in site.posts %}

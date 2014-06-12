@@ -12,7 +12,7 @@ It extends the [observer pattern](http://en.wikipedia.org/wiki/Observer_pattern)
 
 It supports Java 5 or higher and JVM-based languages such as [Groovy](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-groovy), [Clojure](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-clojure), [JRuby](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-jruby), [Kotlin](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-kotlin) and [Scala](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-scala).
 
-<center><table>
+<center><table class="table table-striped">
  <thead>
   <tr><th colspan="3">Observables fill the gap by being the ideal way to access asynchronous sequences of multiple items</th></tr>
   <tr><th></th><th>single items</th><th>multiple items</th></tr>
@@ -37,7 +37,7 @@ RxJava Observables on the other hand are intended for [composing flows and seque
 
 RxJava’s Observables support not just the emission of single scalar values (as Futures do), but also of sequences of values or even infinite streams. ``Observable`` is a single abstraction that can be used for any of these use cases. An Observable has all of the flexibility and elegance associated with its mirror-image cousin the Iterable.
 
-<center><table>
+<center><table class="table table-striped">
  <thead>
   <tr><th colspan="3">An Observable is the asynchronous/push <a href="http://en.wikipedia.org/wiki/Dual_(category_theory)">"dual"</a> to the synchronous/pull Iterable</th></tr>
   <tr><th>event</th><th>Iterable (pull)</th><th>Observable (push)</th></tr>
@@ -55,7 +55,7 @@ The RxJava implementation is not biased toward some particular source of concurr
 
 RxJava also tries to be very lightweight. It is implemented as a single JAR that is focused on just the Observable abstraction and related higher-order functions. You could implement a composable Future that is similarly unbiased, but <a href="http://doc.akka.io/docs/akka/2.2.0/java.html">Akka Futures</a> for example come tied in with an Actor library and a lot of other stuff.)
 
-<center><table>
+<center><table class="table table-striped">
  <thead>
   <tr><th>How is this Observable implemented?</th></tr>
   <tr><th><code>public Observable<data> getData();</code></th></tr>
@@ -65,12 +65,12 @@ RxJava also tries to be very lightweight. It is implemented as a single JAR that
  </tfoot>
  <tbody>
   <tr><td><ul>
-<li>does it work synchronously on the same thread as the caller?</li>
-<li>does it work asynchronously on a distinct thread?</li>
-<li>does it divide its work over multiple threads that may return data to the caller in any order?</li>
-<li>does it use an Actor (or multiple Actors) instead of a thread pool?</li>
-<li>does it use NIO with an event-loop to do asynchronous network access?</li>
-<li>does it use an event-loop to separate the work thread from the callback thread?</li>
+    <li>does it work synchronously on the same thread as the caller?</li>
+    <li>does it work asynchronously on a distinct thread?</li>
+    <li>does it divide its work over multiple threads that may return data to the caller in any order?</li>
+    <li>does it use an Actor (or multiple Actors) instead of a thread pool?</li>
+    <li>does it use NIO with an event-loop to do asynchronous network access?</li>
+    <li>does it use an event-loop to separate the work thread from the callback thread?</li>
 </ul></td></tr>
  </tbody>
 </table></center>
@@ -93,10 +93,10 @@ RxJava provides a collection of operators with which you can filter, select, tra
 
 You can think of the Observable class as a “push” equivalent to <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html">Iterable</a>, which is a “pull.” With an Iterable, the consumer pulls values from the producer and the thread blocks until those values arrive. By contrast, with an Observable the producer pushes values to the consumer whenever values are available. This approach is more flexible, because values can arrive synchronously or asynchronously.
 
-<center><table>
+<center><table class="table table-striped">
  <thead>
   <tr><th colspan="2">Example code showing how similar high-order functions can be applied to an Iterable and an Observable</th></tr>
-  <tr><th>Iterable</th><th>Observable</th></tr>
+  <tr><th>``Iterable``</th><th>``Observable``</th></tr>
  </thead>
  <tbody>
   <tr><td><pre><code>getDataFromLocalMemory()

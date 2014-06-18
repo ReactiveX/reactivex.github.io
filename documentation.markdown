@@ -6,119 +6,426 @@ id: documentation
 
 #Documentation
 
-RxJava is a Java VM implementation of [Reactive Extensions](https://rx.codeplex.com): a library for composing asynchronous and event-based programs by using observable sequences.
+## Hello World!
 
-It extends the [observer pattern](http://en.wikipedia.org/wiki/Observer_pattern) to support sequences of data/events and adds operators that allow you to compose sequences together declaratively while abstracting away concerns about things like low-level threading, synchronization, thread-safety, concurrent data structures, and non-blocking I/O.
+The following sample implementations of “Hello World” in Java, Groovy, Clojure, and Scala create an Observable from a list of Strings, and then subscribe to this Observable with a method that prints “Hello _String_!” for each string emitted by the Observable.
 
-It supports Java 5 or higher and JVM-based languages such as [Groovy](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-groovy), [Clojure](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-clojure), [JRuby](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-jruby), [Kotlin](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-kotlin) and [Scala](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-scala).
+You can find additional code examples in the `/src/examples` folders of each [language adaptor](https://github.com/Netflix/RxJava/tree/master/language-adaptors):
 
-<center><table class="table table-striped">
- <thead>
-  <tr><th colspan="3">Observables fill the gap by being the ideal way to access asynchronous sequences of multiple items</th></tr>
-  <tr><th></th><th>single items</th><th>multiple items</th></tr>
- </thead>
- <tbody>
-  <tr><th>synchronous</th><td><code>T getData()</code></td><td><code>Iterable&lt;T&gt; getData()</code></td></tr>
-  <tr><th>asynchronous</th><td><code>Future&lt;T&gt; getData()</code></td><td><code>Observable&lt;T&gt; getData()</code></td></tr>
- </tbody>
-</table></center>
+* [Groovy examples](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-groovy/src/examples)
+* [Clojure examples](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-clojure/src/examples)
+* [Scala examples](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-scala/src/examples)
 
-# Why?
+<div id="hello-world">
+  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a href="#java" data-toggle="tab">Java</a></li>
+    <li><a href="#groovy" data-toggle="tab">Groovy</a></li>
+    <li><a href="#clojure" data-toggle="tab">Clojure</a></li>
+    <li><a href="#scala" data-toggle="tab">Scala</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="java">
+{% highlight java %}
+public static void hello(String... names) {
+    Observable.from(names).subscribe(new Action1<String>() {
 
-### Observables are Composable
+        @Override
+        public void call(String s) {
+            System.out.println("Hello " + s + "!");
+        }
 
-<a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html">Java Futures</a> are straightforward to use for a <a href="https://gist.github.com/4670979">single level of asynchronous execution</a> but they start to add <a href="https://gist.github.com/4671081">non-trivial complexity</a> when they’re nested.
+    });
+}
+{% endhighlight %}
 
-It is <a href="https://gist.github.com/4671081#file-futuresb-java-L163">difficult to use Futures to optimally compose conditional asynchronous execution flows</a> (or impossible, since latencies of each request vary at runtime). This <a href="http://www.amazon.com/gp/product/0321349601?ie=UTF8&tag=none0b69&linkCode=as2&camp=1789&creative=9325&creativeASIN=0321349601">can be done</a>, of course, but it quickly becomes complicated (and thus error-prone) or it prematurely blocks on `Future.get()`, which eliminates the benefit of asynchronous execution.
+{% highlight java %}
+hello("Ben", "George");
+Hello Ben!
+Hello George!
+{% endhighlight %}
+    </div>
+    <div class="tab-pane" id="groovy">
+{% highlight groovy %}
+def hello(String[] names) {
+    Observable.from(names)
+        .subscribe({ println "Hello " + it + "!" })
+}
+{% endhighlight %}
 
-RxJava Observables on the other hand are intended for [composing flows and sequences of asynchronous data](https://github.com/Netflix/RxJava/wiki/How-To-Use#composition).
+{% highlight groovy %}
+hello("Ben", "George")
+Hello Ben!
+Hello George!
+{% endhighlight %}
+    </div>
+    <div class="tab-pane" id="clojure">
+{% highlight clojure %}
+(defn hello
+  [&rest]
+  (-> (Observable/from &rest)
+    (.subscribe #(println (str "Hello " % "!")))))
+{% endhighlight %}
 
-### Observables are Flexible
+{% highlight clojure %}
+(hello ["Ben" "George"])
+Hello Ben!
+Hello George!
+{% endhighlight %}
+    </div>
+    <div class="tab-pane" id="scala">
 
-RxJava’s Observables support not just the emission of single scalar values (as Futures do), but also of sequences of values or even infinite streams. ``Observable`` is a single abstraction that can be used for any of these use cases. An Observable has all of the flexibility and elegance associated with its mirror-image cousin the Iterable.
+{% highlight scala %}
+import rx.lang.scala.Observable
 
-<center><table class="table table-striped">
- <thead>
-  <tr><th colspan="3">An Observable is the asynchronous/push <a href="http://en.wikipedia.org/wiki/Dual_(category_theory)">"dual"</a> to the synchronous/pull Iterable</th></tr>
-  <tr><th>event</th><th>Iterable (pull)</th><th>Observable (push)</th></tr>
- </thead>
- <tbody>
-  <tr><td>retrieve data</td><td><code>T next()</code></td><td><code>onNext(T)</code></td></tr>
-  <tr><td>discover error</td><td>throws <code>Exception</code></td><td><code>onError(Exception)</code></td></tr>
-  <tr><td>complete</td><td>returns</td><td><code>onCompleted()</code></td></tr>
- <tbody>
-</table></center>
+def hello(names: String*) {
+  Observable.from(names) subscribe { n =>
+    println(s"Hello $n!")
+  }
+}
+{% endhighlight %}
 
-### Observables are Less Opinionated
+{% highlight scala %}
+hello("Ben", "George")
+Hello Ben!
+Hello George!
+{% endhighlight %}
+    </div>
+  </div>
+</div>
 
-The RxJava implementation is not biased toward some particular source of concurrency or asynchronicity. Observables in RxJava can be implemented using thread-pools, event loops, non-blocking I/O, actors (such as from Akka), or whatever implementation suits your needs, your style, or your expertise. Client code treats all of its interactions with Observables as asynchronous, whether your underlying implementation is blocking or non-blocking and however you choose to implement it.
 
-RxJava also tries to be very lightweight. It is implemented as a single JAR that is focused on just the Observable abstraction and related higher-order functions. You could implement a composable Future that is similarly unbiased, but <a href="http://doc.akka.io/docs/akka/2.2.0/java.html">Akka Futures</a> for example come tied in with an Actor library and a lot of other stuff.)
+# How to Design Using RxJava
 
-<center><table class="table table-striped">
- <thead>
-  <tr><th>How is this Observable implemented?</th></tr>
-  <tr><th><code>public Observable<data> getData();</code></th></tr>
- </thead>
- <tfoot>
-  <tr><th>From the Observer's point of view, it doesn't matter!</Th.></tr>
- </tfoot>
- <tbody>
-  <tr><td><ul>
-    <li>does it work synchronously on the same thread as the caller?</li>
-    <li>does it work asynchronously on a distinct thread?</li>
-    <li>does it divide its work over multiple threads that may return data to the caller in any order?</li>
-    <li>does it use an Actor (or multiple Actors) instead of a thread pool?</li>
-    <li>does it use NIO with an event-loop to do asynchronous network access?</li>
-    <li>does it use an event-loop to separate the work thread from the callback thread?</li>
-</ul></td></tr>
- </tbody>
-</table></center>
+To use RxJava you create Observables (which emit data items), transform those Observables in various ways to get the precise data items that interest you (by using Observable operators), and then observe and react to these sequences of interesting items (by implementing Observers or Subscribers and then subscribing them to the resulting transformed Observables).
 
-And importantly: with RxJava you can later change your mind, and radically change the underlying nature of your Observable implementation, without breaking the consumers of your Observable.
+## Creating Observables
 
-### Callbacks Have Their Own Problems
+To create an Observable, you can either implement the Observable's behavior manually by passing a function to [`create( )`](Creating-Observables#create) that exhibits Observable behavior, or you can convert an existing data structure into an Observable by using [some of the Observable operators that are designed for this purpose](Creating-Observables).
 
-Callbacks solve the problem of premature blocking on ``Future.get()`` by not allowing anything to block. They are naturally efficient because they execute when the response is ready.
+### Creating an Observable from an Existing Data Structures
 
-But as with Futures, while callbacks are easy to use with a single level of asynchronous execution, <a href="https://gist.github.com/4677544">with nested composition they become unwieldy</a>.
+You use the Observable [`just( )`](Creating-Observables#just) and [`from( )`](Creating-Observables#from) methods to convert objects, lists, or arrays of objects into Observables that emit those objects:
 
-### RxJava is a Polyglot Implementation
+```groovy
+Observable<String> o = Observable.from("a", "b", "c");
 
-RxJava is meant for a more polyglot environment than just Java/Scala, and it is being designed to respect the idioms of each JVM-based language. (<a href="https://github.com/Netflix/RxJava/pull/304">This is something we’re still working on.</a>)
+def list = [5, 6, 7, 8]
+Observable<Integer> o = Observable.from(list);
 
-# Reactive Programming
+Observable<String> o = Observable.just("one object");
+```
 
-RxJava provides a collection of operators with which you can filter, select, transform, combine, and compose Observables. This allows for efficient execution and composition.
+These converted Observables will synchronously invoke the [`onNext( )`](Observable#onnext-oncompleted-and-onerror) method of any subscriber that subscribes to them, for each item to be emitted by the Observable, and will then invoke the subscriber’s [`onCompleted( )`](Observable#onnext-oncompleted-and-onerror) method.
 
-You can think of the Observable class as a “push” equivalent to <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html">Iterable</a>, which is a “pull.” With an Iterable, the consumer pulls values from the producer and the thread blocks until those values arrive. By contrast, with an Observable the producer pushes values to the consumer whenever values are available. This approach is more flexible, because values can arrive synchronously or asynchronously.
+### Creating an Observable via the `create( )` method
 
-<center><table class="table table-striped">
- <thead>
-  <tr><th colspan="2">Example code showing how similar high-order functions can be applied to an Iterable and an Observable</th></tr>
-  <tr><th>``Iterable``</th><th>``Observable``</th></tr>
- </thead>
- <tbody>
-  <tr><td><pre><code>getDataFromLocalMemory()
-  .skip(10)
-  .take(5)
-  .map({ s -> return s + " transformed" })
-  .forEach({ println "next => " + it })</code></pre></td>
-  <td><pre><code>getDataFromNetwork()
-  .skip(10)
-  .take(5)
-  .map({ s -> return s + " transformed" })
-  .subscribe({ println "onNext => " + it })</code></pre></td></tr>
- </tbody>
-</table></center>
+You can implement asynchronous i/o, computational operations, or even “infinite” streams of data by designing your own Observable and implementing it with the [`create( )`](Creating-Observables#create) method.
 
-The Observable type adds two missing semantics to the Gang of Four’s <a href="http://en.wikipedia.org/wiki/Observer_pattern">Observer pattern</a>, to match those that are available in the Iterable type:  
+#### Synchronous Observable Example
 
-1. the ability for the producer to signal to the consumer that there is no more data available (a foreach loop on an Iterable completes and returns normally in such a case; an Observable calls its observer's ``onCompleted()`` method)
-1. the ability for the producer to signal to the consumer that an error has occurred (an Iterable throws an exception if an error takes place during iteration; an Observable calls its observer's ``onError()`` method)
+```groovy
+/**
+ * This example shows a custom Observable that blocks 
+ * when subscribed to (does not spawn an extra thread).
+ */
+def customObservableBlocking() {
+    return Observable.create({ aSubscriber ->
+        for (int i=0; i<50; i++) {
+            if (false == aSubscriber.isUnsubscribed()) {
+                aSubscriber.onNext("value_" + i);
+            };
+        }
+        // after sending all values we complete the sequence
+        if (false == aSubscriber.isUnsubscribed()) {
+            aSubscriber.onCompleted();
+        }
+    });
+}
 
-With these additions, RxJava harmonizes the Iterable and Observable types. The only difference between them is the direction in which the data flows. This is very important because now any operation you can perform on an Iterable, you can also perform on an Observable.
+// To see output:
+customObservableBlocking().subscribe({ it -> println(it); });
+```
 
-We sometimes call this approach Functional Reactive Programming because it applies functions (lambdas/closures) in a reactive (asynchronous/push) manner to asynchronous sequences of data. (This is not meant to be an implementation of the similar but more restrictive “functional reactive programming” model used in languages like <a href="http://conal.net/fran/">Fran</a>.)
+#### Asynchronous Observable Example
 
+The following example uses Groovy to create an Observable that emits 75 strings.
+
+It is written verbosely, with static typing and implementation of the `Func1` anonymous inner class, to make the example more clear:
+
+```groovy
+/**
+ * This example shows a custom Observable that does not block
+ * when subscribed to as it spawns a separate thread.
+ */
+def customObservableNonBlocking() {
+    return Observable.create(
+        /*
+         * This 'call' method will be invoked with the Observable is subscribed to.
+         * 
+         * It spawns a thread to do it asynchronously.
+         */
+         { subscriber ->
+            // For simplicity this example uses a Thread instead of an ExecutorService/ThreadPool
+            final Thread t = new Thread(new Runnable() {
+                void run() {
+                    for (int i=0; i<75; i++) {
+                        if (true == subscriber.isUnsubscribed()) {
+                            return;
+                        }
+                        subscriber.onNext("value_" + i);
+                    }
+                    // after sending all values we complete the sequence
+                    if (false == subscriber.isUnsubscribed()) {
+                        subscriber.onCompleted();
+                    }
+                };
+            });
+            t.start();
+        }
+    );
+}
+
+// To see output:
+customObservableNonBlocking().subscribe({ println(it) });
+```
+
+Here is the same code in Clojure that uses a Future (instead of raw thread) and is implemented more consisely:
+
+```clojure
+(defn customObservableNonBlocking []
+  "This example shows a custom Observable that does not block 
+   when subscribed to as it spawns a separate thread.
+   
+  returns Observable<String>"
+  (Observable/create 
+    (fn [subscriber]
+      (let [f (future 
+                (doseq [x (range 50)] (-> subscriber (.onNext (str "value_" x))))
+                ; after sending all values we complete the sequence
+                (-> subscriber .onCompleted))
+        ))
+      ))
+```
+
+```clojure
+; To see output
+(.subscribe (customObservableNonBlocking) #(println %))
+```
+
+Here is an example that fetches articles from Wikipedia and invokes onNext with each one:
+
+```clojure
+(defn fetchWikipediaArticleAsynchronously [wikipediaArticleNames]
+  "Fetch a list of Wikipedia articles asynchronously.
+  
+   return Observable<String> of HTML"
+  (Observable/create 
+    (fn [subscriber]
+      (let [f (future
+                (doseq [articleName wikipediaArticleNames]
+                  (-> subscriber (.onNext (http/get (str "http://en.wikipedia.org/wiki/" articleName)))))
+                ; after sending response to onnext we complete the sequence
+                (-> subscriber .onCompleted))
+        ))))
+```
+
+```clojure
+(-> (fetchWikipediaArticleAsynchronously ["Tiger" "Elephant"]) 
+  (.subscribe #(println "--- Article ---\n" (subs (:body %) 0 125) "...")))
+```
+
+Back to Groovy, the same Wikipedia functionality but using closures instead of anonymous inner classes:
+
+```groovy
+/*
+ * Fetch a list of Wikipedia articles asynchronously.
+ */
+def fetchWikipediaArticleAsynchronously(String... wikipediaArticleNames) {
+    return Observable.create({ subscriber ->
+        Thread.start( {
+            for (articleName in wikipediaArticleNames) {
+                if (true == subscriber.isUnsubscribed()) {
+                    return;
+                }
+                subscriber.onNext(new URL("http://en.wikipedia.org/wiki/"+articleName).getText());
+            }
+            if (false == subscriber.isUnsubscribed()) {
+                subscriber.onCompleted();
+            }
+        } );
+        return( subscriber );
+    });
+}
+
+fetchWikipediaArticleAsynchronously("Tiger", "Elephant")
+    .subscribe({ println "--- Article ---\n" + it.substring(0, 125); });
+```
+
+Results:
+
+```text
+--- Article ---
+ <!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<title>Tiger - Wikipedia, the free encyclopedia</title> ...
+--- Article ---
+ <!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<title>Elephant - Wikipedia, the free encyclopedia</tit ...
+```
+
+Note that all of the above examples ignore error handling, for brevity. See below for examples that include error handling.
+
+More information can be found on the [[Observable]] and [[Creating Observables|Creating-Observables]] pages.
+
+## Transforming Observables with Operators
+
+RxJava allows you to chain _operators_ together to transform and compose Observables.
+
+The following example, in Groovy, uses a previously defined, asynchronous Observable that emits 75 items, skips over the first 10 of these ([`skip(10)`](Filtering-Observables#wiki-skip)), then takes the next 5 ([`take(5)`](Filtering-Observables#wiki-take)), and transforms them ([`map(...)`](Transforming-Observables#wiki-map)) before subscribing and printing the items:
+
+```groovy
+/**
+ * Asynchronously calls 'customObservableNonBlocking' and defines
+ * a chain of operators to apply to the callback sequence.
+ */
+def simpleComposition() {
+    customObservableNonBlocking().skip(10).take(5)
+        .map({ stringValue -> return stringValue + "_xform"})
+        .subscribe({ println "onNext => " + it})
+}
+```
+
+This results in:
+
+```text
+onNext => value_10_xform
+onNext => value_11_xform
+onNext => value_12_xform
+onNext => value_13_xform
+onNext => value_14_xform
+```
+
+Here is a marble diagram that illustrates this transformation:
+
+<img src="{{ site.url }}/assets/operators/Composition.1.png" width="640" height="536" />
+
+This next example, in Clojure, consumes three asynchronous Observables, including a dependency from one to another, and emits a single response item by combining the items emitted by each of the three Observables with the [`zip`](Combining-Observables#zip) operator and then transforming the result with [`map`](Transforming-Observables#wiki-map):
+
+```clojure
+(defn getVideoForUser [userId videoId]
+  "Get video metadata for a given userId
+   - video metadata
+   - video bookmark position
+   - user data
+  return Observable<Map>"
+    (let [user-observable (-> (getUser userId)
+              (.map (fn [user] {:user-name (:name user) :language (:preferred-language user)})))
+          bookmark-observable (-> (getVideoBookmark userId videoId)
+              (.map (fn [bookmark] {:viewed-position (:position bookmark)})))
+          ; getVideoMetadata requires :language from user-observable so nest inside map function
+          video-metadata-observable (-> user-observable 
+              (.mapMany
+                ; fetch metadata after a response from user-observable is received
+                (fn [user-map] 
+                  (getVideoMetadata videoId (:language user-map)))))]
+          ; now combine 3 observables using zip
+          (-> (Observable/zip bookmark-observable video-metadata-observable user-observable 
+                (fn [bookmark-map metadata-map user-map]
+                  {:bookmark-map bookmark-map 
+                  :metadata-map metadata-map
+                  :user-map user-map}))
+            ; and transform into a single response object
+            (.map (fn [data]
+                  {:video-id videoId
+                   :video-metadata (:metadata-map data)
+                   :user-id userId
+                   :language (:language (:user-map data))
+                   :bookmark (:viewed-position (:bookmark-map data))
+                  })))))
+```
+
+The response looks like this:
+
+```clojure
+{:video-id 78965, 
+ :video-metadata {:video-id 78965, :title House of Cards: Episode 1, 
+                  :director David Fincher, :duration 3365}, 
+ :user-id 12345, :language es-us, :bookmark 0}
+```
+
+And here is a marble diagram that illustrates how that code produces that response:
+
+<img src="{{ site.url }}/assets/operators/Composition.2.png" width="640" height="742" />
+
+The following example, in Groovy, comes from [Ben Christensen’s QCon presentation on the evolution of the Netflix API](https://speakerdeck.com/benjchristensen/evolution-of-the-netflix-api-qcon-sf-2013). It combines two Observables with the [`merge`](Combining-Observables#wiki-merge) operator, then uses the [`reduce`](Mathematical-and-Aggregate-Operators#wiki-reduce) operator to construct a single item out of the resulting sequence, then transforms that item with [`map`](Transforming-Observables#wiki-map) before emitting it:
+
+```groovy
+public Observable getVideoSummary(APIVideo video) {
+   def seed = [id:video.id, title:video.getTitle()];
+   def bookmarkObservable = getBookmark(video);
+   def artworkObservable = getArtworkImageUrl(video);
+   return( Observable.merge(bookmarkObservable, artworkObservable)
+      .reduce(seed, { aggregate, current -> aggregate << current })
+      .map({ [(video.id.toString() : it] }))
+}
+```
+
+And here is a marble diagram that illustrates how that code uses the [`reduce`](Mathematical-and-Aggregate-Operators#wiki-reduce) operator to bring the results from multiple Observables together in one structure:
+
+<img src="{{ site.url }}/assets/operators/Composition.3.png" width="640" height="640" />
+
+## Error Handling
+
+Here is a version of the Wikipedia example from above revised to include error handling:
+
+```groovy
+/*
+ * Fetch a list of Wikipedia articles asynchronously, with error handling.
+ */
+def fetchWikipediaArticleAsynchronouslyWithErrorHandling(String... wikipediaArticleNames) {
+    return Observable.create({ subscriber ->
+        Thread.start {
+            try {
+                for (articleName in wikipediaArticleNames) {
+                    if (true == subscriber.isUnsubscribed()) {
+                        return;
+                    }
+                    subscriber.onNext(new URL("http://en.wikipedia.org/wiki/"+articleName).getText());
+                }
+                if (false == subscriber.isUnsubscribed()) {
+                    subscriber.onCompleted();
+                }
+            } catch(Throwable t) {
+                if (false == subscriber.isUnsubscribed()) {
+                    subscriber.onError(t);
+                }
+            }
+            return (subscriber);
+        }
+    });
+}
+```
+
+Notice how it now invokes [`onError(Throwable t)`](Observable#onnext-oncompleted-and-onerror) if an error occurs and note that the following code passes `subscribe()` a second method that handles `onError`:
+
+```groovy
+fetchWikipediaArticleAsynchronouslyWithErrorHandling("Tiger", "NonExistentTitle", "Elephant")
+    .subscribe(
+        { println "--- Article ---\n" + it.substring(0, 125) }, 
+        { println "--- Error ---\n" + it.getMessage() })
+```
+
+See the [Observable Utility Operators](Observable-Utility-Operators) page for more information on specialized error handling techniques in RxJava, including methods like [`onErrorResumeNext()`](Observable-Utility-Operators#onerrorresumenext) and [`onErrorReturn()`]](Observable-Utility-Operators#onerrorreturn) that allow Observables to continue with fallbacks in the event that they encounter errors.
+
+Here is an example of how you can use such a method to pass along custom information about any exceptions you encounter. Imagine you have an Observable or cascade of Observables — `myObservable` — and you want to intercept any exceptions that would normally pass through to an Subscriber’s `onError` method, replacing these with a customized Throwable of your own design. You could do this by modifying `myObservable` with the [`onErrorResumeNext()`](Observable-Utility-Operators#onerrorresumenext) method, and passing into that method an Observable that calls `onError` with your customized Throwable (a utility method called [`error()`](Creating-Observables#wiki-empty-error-and-never) will generate such an Observable for you):
+
+```groovy
+myModifiedObservable = myObservable.onErrorResumeNext({ t ->
+   Throwable myThrowable = myCustomizedThrowableCreator(t);
+   return (Observable.error(myThrowable));
+});
+```
 

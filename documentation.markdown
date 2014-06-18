@@ -428,4 +428,3 @@ myModifiedObservable = myObservable.onErrorResumeNext({ t ->
    return (Observable.error(myThrowable));
 });
 ```
-

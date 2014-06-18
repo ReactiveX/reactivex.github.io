@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: documentation
 title: ReactiveX - Documentation
 id: documentation
 ---

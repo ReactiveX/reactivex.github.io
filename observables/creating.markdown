@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: documentation
 title: ReactiveX - Creating Observables
 id: creating-observables
 ---

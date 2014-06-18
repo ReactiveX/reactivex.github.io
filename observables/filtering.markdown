@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: documentation
 title: ReactiveX - Filtering Observables
 id: filtering-observables
 ---

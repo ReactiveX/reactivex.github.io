@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: documentation
 title: ReactiveX - Conditional and Boolean Operators
 id: conditionals
 ---

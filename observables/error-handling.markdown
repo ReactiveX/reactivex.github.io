@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: documentation
 title: ReactiveX - Error Handling Operators
 id: error-handling
 ---

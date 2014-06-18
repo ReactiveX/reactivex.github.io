@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: documentation
 title: ReactiveX - Mathematical and Aggregate Operators
 id: mathematical
 ---

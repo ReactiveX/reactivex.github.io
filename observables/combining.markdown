@@ -24,7 +24,7 @@ This section explains operators you can use to combine multiple Observables.
 
 ## startWith( )
 #### emit a specified sequence of items before beginning to emit the items from the Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/startWith.png" width="640" height="315" />​
+<img src="{{ site.url }}/assets/operators/startWith.png" width="640" height="315" />​
 
 If you want an Observable to immediately begin emitting a specific sequence of items before it begins emitting the items normally expected from it, pass that specific sequence of items into that Observable's `startWith( )` method, as in the following example:
 ```groovy
@@ -61,7 +61,7 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
 
 ## merge( )
 #### combine multiple Observables into one
-<img src="/Netflix/RxJava/wiki/images/rx-operators/merge.png" width="640" height="380" />​
+<img src="{{ site.url }}/assets/operators/merge.png" width="640" height="380" />​
 
 You can combine the output of multiple Observables so that they act like a single Observable, by using the `merge( )` method:
 
@@ -116,7 +116,7 @@ The instance version of `merge( )` is `mergeWith( )`, so, for example, in th
 
 ## mergeDelayError( )
 #### combine multiple Observables into one but delay errors until completion
-<img src="/Netflix/RxJava/wiki/images/rx-operators/mergeDelayError.png" width="640" height="380" />​
+<img src="{{ site.url }}/assets/operators/mergeDelayError.png" width="640" height="380" />​
 
 `mergeDelayError( )` behaves much like `merge( )`. The exception is when one of the Observables being merged throws an error. If this happens with `merge( )`, the merged Observable will immediately throw an error itself (that is, it will invoke the `onError` method of its Subscriber). `mergeDelayError( )`, on the other hand, will hold off on reporting the error until it has given any other non-error-producing Observables that it is merging a chance to finish emitting their items, and it will emit those itself, and will only invoke `onError` when all of the other merged Observables have finished.
 
@@ -132,7 +132,7 @@ Because it is possible that more than one of the merged Observables encountered 
 
 ## parallelMerge( )
 #### combine multiple Observables into a smaller number of Observables, to facilitate parallelism
-<img src="/Netflix/RxJava/wiki/images/rx-operators/parallelMerge.png" width="640" height="535" />​
+<img src="{{ site.url }}/assets/operators/parallelMerge.png" width="640" height="535" />​
 
 Use the `parallelMerge( )` method to take an Observable that emits a large number of Observables and to reduce it to an Observable that emits a particular, smaller number of Observables that emit the same set of items as the original larger set of Observables: for instance a number of Observables that matches the number of parallel processes that you want to use when processing the emissions from the complete set of Observables.
 
@@ -143,7 +143,7 @@ Use the `parallelMerge( )` method to take an Observable that emits a large num
 
 ## zip( )
 #### combine Observables together via a specified function and emit items based on the results of this function
-<img src="/Netflix/RxJava/wiki/images/rx-operators/zip.png" width="640" height="380" />​
+<img src="{{ site.url }}/assets/operators/zip.png" width="640" height="380" />​
 
 The `zip( )` method returns an Observable that applies a function of your choosing to the combination of items emitted, in sequence, by two (or more) other Observables, with the results of this function becoming the items emitted by the returned Observable. It applies this function in strict sequence, so the first item emitted by the new zip-Observable will be the result of the function applied to the first item emitted by Observable #1 and the first item emitted by Observable #2; the second item emitted by the new zip-Observable will be the result of the function applied to the second item emitted by Observable #1 and the second item emitted by Observable #2; and so forth.
 
@@ -174,7 +174,7 @@ Sequence complete
 
 There are also versions of `zip( )` that accept three or more Observables, as well as a version that accepts an Observable that _emits_ Observables and zips together the emissions of these emitted Observables:
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/zip.o.png" width="640" height="370" />​
+<img src="{{ site.url }}/assets/operators/zip.o.png" width="640" height="370" />​
 
 #### see also:
 * javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable, rx.functions.FuncN)">`zip(iterableOfObservables, zipFunction)`</a>
@@ -190,7 +190,7 @@ There are also versions of `zip( )` that accept three or more Observables, as 
 #### combine sets of items emitted by two or more Observables by means of `Pattern` and `Plan` intermediaries
 > **Note:** these methods are part of the `rxjava-joins` module in `rxjava-contrib`.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/and_then_when.png" width="640" height="520" />​
+<img src="{{ site.url }}/assets/operators/and_then_when.png" width="640" height="520" />​
 
 The combination of `and( )`, `then( )`, and `when( )` methods operate much like `zip( )` but they do so by means of intermediary data structures.  `and( )` accepts two or more Observables and combines the emissions from each, one set at a time, into `Pattern` objects. `then( )` operates on such `Pattern` objects, transforming them in a `Plan`. `when( )` then transforms these various `Plan` objects into emissions from an Observable.
 
@@ -202,7 +202,7 @@ The combination of `and( )`, `then( )`, and `when( )` methods operate much
 
 ## combineLatest( )
 #### when an item is emitted by either of two Observables, combine the latest item emitted by each Observable via a specified function and emit items based on the results of this function
-<img src="/Netflix/RxJava/wiki/images/rx-operators/combineLatest.png" width="640" height="380" />​
+<img src="{{ site.url }}/assets/operators/combineLatest.png" width="640" height="380" />​
 
 `combineLatest( )` behaves in a similar way to `zip( )`, but while `zip( )` emits items only when all of the zipped source Observables have emitted a previously unzipped item, `combineLatest( )` emits an item whenever _any_ of the source Observables emits an item (so long as each of the source Observables has emitted at least one item). When any of the source Observables emits an item, `combineLatest( )` combines the most recently emitted items from each of the other source Observables, using the function you provide, and emits the return value from that function.
 
@@ -217,11 +217,11 @@ The combination of `and( )`, `then( )`, and `when( )` methods operate much
 
 ## join( ) and groupJoin( )
 #### combine the items emitted by two Observables whenever one item from one Observable falls within a window of duration specified by an item emitted by the other Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/join_.png" width="640" height="380" />​
+<img src="{{ site.url }}/assets/operators/join_.png" width="640" height="380" />​
 
 The `join( )` method combines the items emitted by two Observables, and selects which items to combine based on duration-windows that you define on a per-item basis. You implement these windows as Observables whose lifespans begin with each item emitted by either Observable. When such a window-defining Observable either emits an item or completes, the window for the item it is associated with closes. So long as an item's window is open, it will combine with any item emitted by the other Observable. You define the function by which the items combine.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/groupJoin.png" width="640" height="380" />​
+<img src="{{ site.url }}/assets/operators/groupJoin.png" width="640" height="380" />​
 
 The `groupJoin( )` method is similar, except that the function you define to combine items emitted by the two Observables pairs individual items emitted by the source Observable with an Observable that emits items from the second Observable that fall in the same window as that item.
 
@@ -239,7 +239,7 @@ The `groupJoin( )` method is similar, except that the function you define to c
 
 ## switchOnNext( )
 #### convert an Observable that emits Observables into a single Observable that emits the items emitted by the most-recently emitted of those Observables
-<img src="/Netflix/RxJava/wiki/images/rx-operators/switchDo.png" width="640" height="370" />​
+<img src="{{ site.url }}/assets/operators/switchDo.png" width="640" height="370" />​
 
 `switchOnNext( )` subscribes to an Observable that emits Observables. Each time it observes one of these emitted Observables, the Observable returned by `switchOnNext( )` unsubscribes from the previously-emitted Observable begins emitting items from the latest Observable. Note that it will unsubscribe from the previously-emitted Observable when a new Observable is *emitted* from the source Observable, not when the new Observable emits an item. This means that items emitted by the previous Observable between the time the subsequent Observable is emitted and the time that subsequent Observable itself begins emitting items will be dropped (as with the yellow circle in the diagram above).
 

@@ -16,7 +16,7 @@ This section explains the [`ConnectableObservable`](http://netflix.github.io/RxJ
 
 A Connectable Observable resembles an ordinary Observable, except that it does not begin emitting items when it is subscribed to, but only when its `connect()` method is called. In this way you can wait for all intended Subscribers to subscribe to the Observable before the Observable begins emitting items.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/publishConnect.png" width="640" height="510" />
+<img src="{{ site.url }}/assets/operators/publishConnect.png" width="640" height="510" />
 
 The following example code shows two Subscribers subscribing to the same Observable. In the first case, they subscribe to an ordinary Observable; in the second case, they subscribe to a Connectable Observable that only connects after both Subscribers subscribe. Note the difference in the output:
 
@@ -120,7 +120,7 @@ To represent an Observable as a Connectable Observable, use the `publish( )` o
 
 ## Observable.publishLast( )
 #### represent an Observable as a Connectable Observable that emits only the last item emitted by the source Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/publishLast.png" width="640" height="310" />
+<img src="{{ site.url }}/assets/operators/publishLast.png" width="640" height="310" />
 
 #### see also:
 * javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#publishLast()">`publishLast()`</a>
@@ -134,11 +134,11 @@ To represent an Observable as a Connectable Observable, use the `publish( )` o
 #### ensures that all Subscribers see the same sequence of emitted items, even if they subscribe after the Observable begins emitting items
 There are varieties of `replay( )` that return a ConnectableObservable that you then must use the `publish( )` operator on so that Subscribers may connect to it:
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/replay.png" width="640" height="515" />
+<img src="{{ site.url }}/assets/operators/replay.png" width="640" height="515" />
 
 And there are also varieties of `replay( )` that accept a selector argument and return a simple Observable:
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/replay.f.png" width="640" height="450" />
+<img src="{{ site.url }}/assets/operators/replay.f.png" width="640" height="450" />
 
 In each variety there are versions with which you can limit the number of replayable items either by quantity or by whether or not they were emitted within a particular timespan.
 
@@ -152,7 +152,7 @@ In each variety there are versions with which you can limit the number of replay
 
 ## ConnectableObservable.refCount( )
 #### makes a Connectable Observable behave like an ordinary Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/publishRefCount.png" width="640" height="510" />
+<img src="{{ site.url }}/assets/operators/publishRefCount.png" width="640" height="510" />
 
 You can represent a Connectable Observable so that it behaves much like an ordinary Observable by using the `refCount( )` operator. This operator keeps track of how many Subscribers are subscribed to the resulting Observable and refrains from disconnecting from the source ConnectableObservable until all such Observables unsubscribe.
 

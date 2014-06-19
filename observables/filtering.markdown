@@ -33,7 +33,7 @@ This section explains operators you can use to filter and select items emitted b
 
 ## filter( )
 #### filter items emitted by an Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/filter.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/filter.png" width="640" height="310" />​
 
 You can filter an Observable, discarding any items that do not meet some test, by passing a filtering function into the `filter( )` method. For example, the following code filters a list of integers, emitting only those that are even (that is, where the remainder from dividing the number by two is zero):
 
@@ -64,7 +64,7 @@ Sequence complete
 
 ## takeLast( )
 #### only emit the last _n_ items emitted by an Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/takeLast.n.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/takeLast.n.png" width="640" height="310" />​
 
 To convert an Observable that emits several items into one that only emits the last _n_ of these items before completing, use the `takeLast( )` method. For instance, in the following code, `takeLast( )` emits only the last integer in the list of integers represented by `numbers`:
 
@@ -96,7 +96,7 @@ There are also versions of `takeLast( )` that emit the items that were emitted
 
 ## last( )
 #### only emit the last item emitted by an Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/last.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/last.png" width="640" height="305" />​
 
 The `last( )` operator is equivalent to `takeLast(1)` except that it will throw an `NoSuchElementException` if the source Observable does not emit at least one item. Note that there is also [a `BlockingObservable` implementation of `last( )`](Blocking-Observable-Operators#wiki-last-and-lastordefault).
 
@@ -112,7 +112,7 @@ The `last( )` operator is equivalent to `takeLast(1)` except that it will thro
 
 ## lastOrDefault( )
 #### emit only the last item emitted by an Observable, or a default value if the source Observable is empty
-<img src="/Netflix/RxJava/wiki/images/rx-operators/lastOrDefault.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/lastOrDefault.png" width="640" height="305" />​
 
 The `lastOrDefault( )` operator returns an Observable that emits the last item emitted by the source Observable, or a default item if the source Observable does not emit at least one item. Note that there is also [a `BlockingObservable` implementation of `lastOrDefault( )`](Blocking-Observable-Operators#wiki-last-and-lastordefault).
 
@@ -126,7 +126,7 @@ The `lastOrDefault( )` operator returns an Observable that emits the last item
 
 ## takeLastBuffer( )
 #### emit the last _n_ items emitted by an Observable, as a single list item
-<img src="/Netflix/RxJava/wiki/images/rx-operators/takeLastBuffer.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/takeLastBuffer.png" width="640" height="310" />​
 
 To convert an Observable that emits several items into one that emits the last _n_ of these items as a single list before completing, use the `takeLastBuffer( )` method. There are also versions of `takeLastBuffer( )` that emit a list containing the items that were emitted by the source Observable during a specified window of time before the Observable completed, or a maximum of _n_ items from such a window.
 
@@ -154,7 +154,7 @@ Sequence complete
 
 ## skip()
 #### ignore the first _n_ items emitted by an Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/skip.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/skip.png" width="640" height="305" />​
 
 You can ignore the first _n_ items emitted by an Observable and attend only to those items that come after, by modifying the Observable with the `skip(n)` method.
 
@@ -192,7 +192,7 @@ There are also versions of `skip()` that ignore the items emitted by an Observab
 
 ## skipLast()
 #### ignore the last _n_ items emitted by an Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/skipLast.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/skipLast.png" width="640" height="305" />​
 
 You can ignore the last _n_ items emitted by an Observable and attend only to those items that preced them, by modifying the Observable with the `skipLast(n)` method. Note that the mechanism by which this is implemented will delay the emission of any item from the source Observable until _n_ additional items have been emitted by that Observable.
 
@@ -211,7 +211,7 @@ There are also versions of `skipLast()` that ignore the items emitted by an Obse
 
 ## take( )
 #### emit only the first _n_ items emitted by an Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/take.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/take.png" width="640" height="305" />​
 
 You can choose to pay attention only to the first _n_ items emitted by an Observable by calling its `take(n)` method. That method returns an Observable that will invoke an Subscriber’s `onNext` method a maximum of _n_ times before invoking `onCompleted`. For example,
 
@@ -245,17 +245,17 @@ If you call `take(n)` on an Observable, and that Observable emits _fewer_ than _
 ## first( ) and takeFirst( )
 #### emit only the first item emitted by an Observable, or the first item that meets some condition
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/first.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/first.png" width="640" height="310" />​
 
 To create an Observable that emits only the first item emitted by a source Observable (if any), use the `first( )` method.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/firstN.png" width="640" height="320" />​
+<img src="{{ site.url }}/assets/operators/firstN.png" width="640" height="320" />​
 
 You can also pass a function to this method that evaluates items as they are emitted by the source Observable, in which case `first( )` will create an Observable that emits the first such item for which your function returns `true` (if any).
 
 `takeFirst( )` behaves very similarly to `first( )` with the exception of how they behave when the source Observable emits no items (or no items that match the predicate). In such a case, `first( )` will throw an `NoSuchElementException` while `takeFirst( )` will return an empty Observable (one that calls `onCompleted( )` but never calls `onNext( )`).
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/first.takeFirst.png" width="640" height="455" />​
+<img src="{{ site.url }}/assets/operators/first.takeFirst.png" width="640" height="455" />​
 
 #### see also:
 * [Table of similar blocking and non-blocking operators](Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators)
@@ -271,11 +271,11 @@ You can also pass a function to this method that evaluates items as they are emi
 ## firstOrDefault( )
 #### emit only the first item emitted by an Observable, or the first item that meets some condition, or a default value if the source Observable is empty
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/firstOrDefault.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/firstOrDefault.png" width="640" height="305" />​
 
 To create an Observable that emits only the first item emitted by a source Observable (or a default value if the source Observable is empty), use the `firstOrDefault( )` method.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/firstOrDefaultN.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/firstOrDefaultN.png" width="640" height="310" />​
 
 You can also pass a function to this method that evaluates items as they are emitted by the source Observable, in which case `firstOrDefault( )` will create an Observable that emits the first such item for which your function returns `true` (or the supplied default value if no such item is emitted).
 
@@ -293,7 +293,7 @@ You can also pass a function to this method that evaluates items as they are emi
 
 ## elementAt( )
 #### emit item _n_ emitted by the source Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/elementAt.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/elementAt.png" width="640" height="310" />​
 
 Pass `elementAt( )` a zero-based index value and it will emit the solitary item from the source Observable's sequence that matches that index value (for example, if you pass the index value 5, `elementAt( )` will emit the sixth item emitted by the source Observable).  If you pass in a negative index value, or if the source Observable emits fewer than _index value_ + 1 items, `elementAt( )` will throw an <code>IndexOutOfBoundsException</code>.
 
@@ -307,7 +307,7 @@ Pass `elementAt( )` a zero-based index value and it will emit the solitary ite
 
 ## elementAtOrDefault( )
 #### emit item _n_ emitted by the source Observable, or a default item if the source Observable emits fewer than _n_ items
-<img src="/Netflix/RxJava/wiki/images/rx-operators/elementAtOrDefault.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/elementAtOrDefault.png" width="640" height="310" />​
 
 Pass `elementAtOrDefault( )` a zero-based index value and it will emit the solitary item from the source Observable's sequence that matches that index value (for example, if you pass the index value 5, `elementAtOrDefault( )` will emit the sixth item emitted by the source Observable).  If you pass in a negative index value, `elementAtOrDefault( )` will throw an <code>IndexOutOfBoundsException</code>. If the source Observable emits fewer than _index value_ + 1 items, `elementAtOrDefault( )` will emit the default value you pass in (you must also pass in a type for this value that is appropriate to what type your Subscribers expect to observe).
 
@@ -320,7 +320,7 @@ Pass `elementAtOrDefault( )` a zero-based index value and it will emit the sol
 
 ## sample( ) or throttleLast( )
 #### emit the most recent items emitted by an Observable within periodic time intervals
-<img src="/Netflix/RxJava/wiki/images/rx-operators/sample.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/sample.png" width="640" height="305" />​
 
 Use the `sample( )` method to periodically look at an Observable to see what item it has most recently emitted since the previous sampling.  Note that if the source Observable has emitted no items since the last time it was sampled, the Observable that results from the `sample( )` operator will emit no item for that sampling period.
 
@@ -353,7 +353,7 @@ Sequence complete
 
 ## throttleFirst( )
 #### emit the first items emitted by an Observable within periodic time intervals
-<img src="/Netflix/RxJava/wiki/images/rx-operators/throttleFirst.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/throttleFirst.png" width="640" height="305" />​
 
 Use the `throttleFirst( )` method to periodically look at an Observable to see what item it emitted first during a particular time span. The following code shows how an Observable can be modified by `throttleFirst( )`:
 
@@ -395,7 +395,7 @@ Sequence complete
 
 ## throttleWithTimeout( ) or debounce( )
 #### only emit an item from the source Observable after a particular timespan has passed without the Observable emitting any other items
-<img src="/Netflix/RxJava/wiki/images/rx-operators/throttleWithTimeout.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/throttleWithTimeout.png" width="640" height="305" />​
 
 Use the `throttleWithTimeout( )` method to select only those items emitted by a source Observable that are not quickly superceded by other items.
 
@@ -413,13 +413,13 @@ Note that the last item emitted by the source Observable will be emitted in turn
 
 ## timeout( )
 #### emit items from a source Observable, but issue an exception if no item is emitted in a specified timespan
-<img src="/Netflix/RxJava/wiki/images/rx-operators/timeout.1.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/timeout.1.png" width="640" height="305" />​
 
 The `timeout( )` operator emits the items emitted by a source Observable unless the source Observable fails to emit an item within a specified period of time since the previous item it emitted, in which case `timeout( )` will call `onError( )` with a `TimeoutException`.
 
 Another version of `timeout( )` does not call `onError( )` but instead switches to emitting items from an alternative Observable if the original Observable fails to emit an item within the specified timeout period:
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/timeout.2.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/timeout.2.png" width="640" height="305" />​
 
 #### see also:
 * javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timeout(long, java.util.concurrent.TimeUnit)">`timeout(time,unit)`</a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timeout(long, java.util.concurrent.TimeUnit, rx.Scheduler)">`timeout(time,unit,scheduler)`</a>
@@ -432,11 +432,11 @@ Another version of `timeout( )` does not call `onError( )` but instead switc
 
 ## distinct( )
 #### suppress duplicate items emitted by the source Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/distinct.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/distinct.png" width="640" height="310" />​
 
 Use the `distinct( )` method to remove duplicate items from a source Observable and only emit single examples of those items.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/distinct.key.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/distinct.key.png" width="640" height="310" />​
 
 You can also pass a function or a comparator into `distinct( )` that customizes how it distinguishes between distinct and non-distinct items.
 
@@ -451,11 +451,11 @@ You can also pass a function or a comparator into `distinct( )` that customize
 
 ## distinctUntilChanged( )
 #### suppress duplicate consecutive items emitted by the source Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/distinctUntilChanged.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/distinctUntilChanged.png" width="640" height="310" />​
 
 Use the `distinctUntilChanged( )` method to remove duplicate consecutive items from a source Observable and only emit single examples of such items.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/distinctUntilChanged.key.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/distinctUntilChanged.key.png" width="640" height="310" />​
 
 You can also pass a function or a comparator into `distinctUntilChanged( )` that customizes how it distinguishes between distinct and non-distinct items.
 
@@ -470,7 +470,7 @@ You can also pass a function or a comparator into `distinctUntilChanged( )` th
 
 ## ofType( )
 #### emit only those items from the source Observable that are of a particular class
-<img src="/Netflix/RxJava/wiki/images/rx-operators/ofClass.png" width="640" height="310" />​
+<img src="{{ site.url }}/assets/operators/ofClass.png" width="640" height="310" />​
 
 #### see also:
 * javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#ofType(java.lang.Class)">`ofType(class)`</a>
@@ -481,7 +481,7 @@ You can also pass a function or a comparator into `distinctUntilChanged( )` th
 
 ## ignoreElements( )
 #### discard the items emitted by the source Observable and only pass through the error or completed notification
-<img src="/Netflix/RxJava/wiki/images/rx-operators/ignoreElements.png" width="640" height="305" />​
+<img src="{{ site.url }}/assets/operators/ignoreElements.png" width="640" height="305" />​
 
 #### see also:
 * javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#ignoreElements()">`ignoreElements()`</a>

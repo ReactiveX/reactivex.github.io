@@ -26,7 +26,7 @@ To transform an `Observable` into a `BlockingObservable`, use the [`Observable.t
 
 > This documentation accompanies its explanations with a modified form of "marble diagrams." Here is how these marble diagrams represent Blocking Observables:
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.legend.png" width="640" height="301" />
+<img src="{{ site.url }}/assets/operators/B.legend.png" width="640" height="301" />
 
 #### see also:
 * javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/observables/BlockingObservable.html">`BlockingObservable`</a>
@@ -37,7 +37,7 @@ To transform an `Observable` into a `BlockingObservable`, use the [`Observable.t
 
 ## forEach( )
 #### invoke a function on each item emitted by the Observable; block until the Observable completes
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.forEach.png" width="640" height="330" />
+<img src="{{ site.url }}/assets/operators/B.forEach.png" width="640" height="330" />
 
 The `forEach(someFunction)` method is the blocking equivalent of `subscribe(someFunction)`. When you pass a function to this method, `forEach( )` will invoke your function for each item emitted by the Observable, but will only return control to you once the Observable completes (it will not otherwise indicate that the Observable has completed; there is no `forEach( )` equivalent of the `onError` or `onCompleted` methods).
 
@@ -50,19 +50,19 @@ The `forEach(someFunction)` method is the blocking equivalent of `subscribe(some
 
 ## first( ) and firstOrDefault( )
 #### block until the Observable emits an item, then return the first item emitted by the Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.first.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.first.png" width="640" height="315" />
 
 Use the `first( )` method to retrieve the first item emitted by an Observable, at the time the Observable emits it (it will throw an `IllegalArgumentException` if the source Observable completes without emitting any items).
 
 You can also use this method to retrieve the first item emitted by an Observable that meets some particular condition. To do this, pass a function to `first( )` that returns `true` if the item meets the condition.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.first.p.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.first.p.png" width="640" height="315" />
 
 The `firstOrDefault( )` method is similar to `first( )`, except that instead of throwing an exception when there is no first item (or no first item that meets the specified condition), in such a case it will instead return a default item that you specify. Specify that default item by passing it as the first parameter to `firstOrDefault( )`.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.firstOrDefault.png" width="640" height="305" />
+<img src="{{ site.url }}/assets/operators/B.firstOrDefault.png" width="640" height="305" />
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.firstOrDefault.p.png" width="640" height="310" />
+<img src="{{ site.url }}/assets/operators/B.firstOrDefault.p.png" width="640" height="310" />
 
 #### see also:
 * [Table of similar blocking and non-blocking operators](Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators)
@@ -78,19 +78,19 @@ The `firstOrDefault( )` method is similar to `first( )`, except that instead
 
 ## last( ) and lastOrDefault( )
 #### block until the Observable completes, then return the last item emitted by the Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.last.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.last.png" width="640" height="315" />
 
 Use the `last( )` method to retrieve the last item emitted by an Observable, at the time the Observable completes (it will throw an `IllegalArgumentException` if the source Observable completes without emitting any items).
 
 You can also use this method to retrieve the last item emitted by an Observable that meets some particular condition. To do this, pass a function to `last( )` that returns `true` if the item meets the condition.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.last.p.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.last.p.png" width="640" height="315" />
 
 The `lastOrDefault( )` method is similar to `last( )`, except that instead of throwing an exception when there is no last item (or no last item that meets the specified condition), in such a case it will instead return a default item that you specify. Specify that default item by passing it as the first parameter to `lastOrDefault( )`.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.lastOrDefault.png" width="640" height="310" />
+<img src="{{ site.url }}/assets/operators/B.lastOrDefault.png" width="640" height="310" />
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.lastOrDefault.p.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.lastOrDefault.p.png" width="640" height="315" />
 
 #### see also:
 * [Table of similar blocking and non-blocking operators](Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators)
@@ -106,7 +106,7 @@ The `lastOrDefault( )` method is similar to `last( )`, except that instead o
 
 ## mostRecent( )
 #### returns an iterable that always returns the item most recently emitted by the Observable
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.mostRecent.png" width="640" height="490" />
+<img src="{{ site.url }}/assets/operators/B.mostRecent.png" width="640" height="490" />
 
 The `mostRecent()` method returns an iterable that on each iteration returns the item that was most recently emitted by the underlying Observable (or `null` if the Observable has not yet emitted an item or has completed without emitting any).
 
@@ -118,7 +118,7 @@ The `mostRecent()` method returns an iterable that on each iteration returns the
 
 ## next( )
 #### returns an iterable that blocks until the Observable emits another item, then returns that item
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.next.png" width="640" height="490" />
+<img src="{{ site.url }}/assets/operators/B.next.png" width="640" height="490" />
 
 The `next( )` method returns an iterable that on each iteration blocks in `Iterator.hasNext( )` or `Iterator.next( )` until the underlying Observable emits another item; `Iterator.next( )` then returns that item.
 
@@ -138,7 +138,7 @@ If the Iterator reaches the final item emitted by the source Observable, a subse
 
 ## latest( )
 #### returns an iterable that blocks until or unless the Observable emits an item that has not been returned by the iterable, then returns that item
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.latest.png" width="640" height="490" />
+<img src="{{ site.url }}/assets/operators/B.latest.png" width="640" height="490" />
 
 The `latest( )` operator is very similar to `Observable.next( )` except that when you call `Iterator.next( )` on the resulting Iterator, it will not block if a item has been emitted by the source Observable since the item returned by the previous `Iterator.next( )` -- instead, it will return the most recent such item.
 
@@ -150,19 +150,19 @@ The `latest( )` operator is very similar to `Observable.next( )` except that
 
 ## single( ) and singleOrDefault( )
 #### if the Observable completes after emitting a single item, return that item, otherwise throw an exception (or return a default item)
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.single.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.single.png" width="640" height="315" />
 
 Use the `single( )` method to retrieve the only item emitted by an Observable. `single( )` will throw an exception if the Observable does not emit exactly one item.
 
 You can also use this method to retrieve the only item emitted by an Observable that meets some particular condition (or `null` if the Observable method emits no such item). To do this, pass a function to `single( )` that returns `true` if the item meets the condition. In such a case, `single( )` will again throw an exception unless the Observable emits exactly one item that meets the condition.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.single.p.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.single.p.png" width="640" height="315" />
 
 The `singleOrDefault( )` method is similar, except that while it will still throw an exception if the underlying Observable emits _more than_ one item, if the underlying Observable does not emit any items at all, rather than throwing an exception `singleOrDefault( )` will return a default item that you specify. Specify that default item by passing it as the first parameter to `singleOrDefault( )`.
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.singleOrDefault.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.singleOrDefault.png" width="640" height="315" />
 
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.singleOrDefault.p.png" width="640" height="315" />
+<img src="{{ site.url }}/assets/operators/B.singleOrDefault.p.png" width="640" height="315" />
 
 #### see also:
 * [Table of similar blocking and non-blocking operators](Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators)
@@ -178,9 +178,9 @@ The `singleOrDefault( )` method is similar, except that while it will still th
 
 ## transformations: toFuture( ), toIterable( ), and toIterator( )/getIterator( )
 #### transform an Observable into a Future, an Iterable, or an Iterator
-<img src="/Netflix/RxJava/wiki/images/rx-operators/B.toIterator.png" width="640" height="315" />
-<br /><img src="/Netflix/RxJava/wiki/images/rx-operators/B.toIterable.png" width="640" height="315" />
-<br /><img src="/Netflix/RxJava/wiki/images/rx-operators/B.toFuture.png" width="640" height="395" />
+<img src="{{ site.url }}/assets/operators/B.toIterator.png" width="640" height="315" />
+<br /><img src="{{ site.url }}/assets/operators/B.toIterable.png" width="640" height="315" />
+<br /><img src="{{ site.url }}/assets/operators/B.toFuture.png" width="640" height="395" />
 
 Use these methods to transform a Blocking Observable into a `Future`, an `Iterable`, or an `Iterator`. Note that `toFuture( )` will only work on Blocking Observables that emit one or fewer items. To convert Blocking Observables that emit two or more items into Futures, instead use `.toList( ).toFuture( )` to reduce the items emitted by the Observable to a single (list) item.
 

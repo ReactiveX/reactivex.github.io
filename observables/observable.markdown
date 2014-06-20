@@ -23,13 +23,13 @@ In many software programming tasks, you more or less expect that the instruction
 
 An advantage of this approach is that when you have a bunch of tasks to do that are not dependent on each other, you can start them all at the same time rather than waiting for each one to finish before starting the next one --- that way, your entire bundle of tasks only takes as long to complete as the longest task in the bundle.
 
-> There are many terms used to describe this model of asynchronous programming and design. This document will use the following terms: A _Subscriber_ (or sometimes _Observer_) _subscribes_ to an object of the _Observable_ class; that is, you _subscribe_ a _Subscriber_ to an _Observable_. An Observable _emits_ _items_ or sends _notifications_ to its Subscribers by invoking the Subscribers’ methods.
+There are many terms used to describe this model of asynchronous programming and design. This document will use the following terms: A _Subscriber_ (or sometimes _Observer_) _subscribes_ to an object of the _Observable_ class; that is, you _subscribe_ a _Subscriber_ to an _Observable_. An Observable _emits_ _items_ or sends _notifications_ to its Subscribers by invoking the Subscribers’ methods.
 
-> In other documents and other contexts, what we are calling a “Subscriber” (or sometimes “Observer”) is sometimes called a “watcher” or “reactor.” This model in general is often referred to as the [“reactor pattern”](http://en.wikipedia.org/wiki/Reactor_pattern).
+In other documents and other contexts, what we are calling a “Subscriber” (or sometimes “Observer”) is sometimes called a “watcher” or “reactor.” This model in general is often referred to as the [“reactor pattern”](http://en.wikipedia.org/wiki/Reactor_pattern).
 
 # Establishing Subscribers
 
-> This document usually uses Groovy for code examples, but you can use RxJava in any JVM language — such as Clojure, Scala, or JRuby, or in Java itself.  
+This document usually uses Groovy for code examples, but you can use RxJava in any JVM language — such as Clojure, Scala, or JRuby, or in Java itself.  
 
 In an ordinary method call — that is, _not_ the sort of asynchronous, parallel calls typical in reactive programming — the flow is something like this:
 

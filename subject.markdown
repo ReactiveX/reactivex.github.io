@@ -1,6 +1,6 @@
 ---
 layout: documentation
-title: ReactiveX - Community
+title: ReactiveX - Subject
 id: subject
 ---
 

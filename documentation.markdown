@@ -4,36 +4,31 @@ title: ReactiveX - Documentation
 id: documentation
 ---
 
-#Documentation
+#Getting Started
 
 ## Getting Binaries
 
-You can find binaries and dependency information for Maven, Ivy, Gradle, SBT, and others at [http://search.maven.org](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.netflix.rxjava%22%20AND%20a%3A%22rxjava-core%22).
+You can find binaries and dependency information for Maven, Ivy, Gradle, SBT, and others at [http://search.maven.org](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.netflix.rxjava%22%20AND%20a%3A%22rxjava-core%22). You need Java 6 or later.
 
-Example for Maven:
-
-```xml
+<div id="getting-binaries">
+  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a href="#maven" data-toggle="tab">Maven</a></li>
+    <li><a href="#ivy" data-toggle="tab">Ivy</a></li>
+    <li><a href="#sbt" data-toggle="tab">SBT</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="maven">
+{% highlight xml %}
 <dependency>
     <groupId>com.netflix.rxjava</groupId>
     <artifactId>rxjava-core</artifactId>
     <version>0.19.0</version>
 </dependency>
-```
-and for Ivy:
-
-```xml
-<dependency org="com.netflix.rxjava" name="rxjava-core" rev="0.17.0" />
-```
-
-and for SBT:
-
-```scala
-libraryDependencies += "com.netflix.rxjava" % "rxjava-scala" % "0.17.0"
-```
+{% endhighlight %}
 
 If you need to download the jars instead of using a build system, create a Maven `pom` file like this with the desired version:
 
-```xml
+{% highlight xml %}
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -51,19 +46,31 @@ If you need to download the jars instead of using a build system, create a Maven
     </dependency>
   </dependencies>
 </project>
-```
+{% endhighlight %}
 
 Then execute:
 
-```
+{% highlight bash %}
 $ mvn -f download-rxjava-pom.xml dependency:copy-dependencies
-```
+{% endhighlight %}
 
 That command downloads `rxjava-core-*.jar` and its dependencies into `./target/dependency/`.
 
-You need Java 6 or later.
+    </div>
+    <div class="tab-pane" id="ivy">
+{% highlight xml %}
+<dependency org="com.netflix.rxjava" name="rxjava-core" rev="0.17.0" />
+{% endhighlight %}
+    </div>
+    <div class="tab-pane" id="sbt">
+{% highlight scala %}
+libraryDependencies += "com.netflix.rxjava" % "rxjava-scala" % "0.17.0"
+{% endhighlight %}
+    </div>
+  </div>
+</div>
 
-## Building
+## Building from source
 
 To check out and build the RxJava source, issue the following commands:
 
@@ -110,15 +117,7 @@ On a clean build you will see the unit tests run. They will look something like 
 > Building > :rxjava-core:test > 91 tests completed
 ```
 
-#### Troubleshooting
-
-One developer reported getting the following error:
-
-> Could not resolve all dependencies for configuration ':language-adaptors:rxjava-scala:provided'
-
-He was able to resolve the problem by removing old versions of `scala-library` from `.gradle/caches` and `.m2/repository/org/scala-lang/` and then doing a clean build. [(See this page for details.)](https://gist.github.com/jaceklaskowski/9496058)</a>
-
-## Hello World!
+# Hello World!
 
 The following sample implementations of “Hello World” in Java, Groovy, Clojure, and Scala create an Observable from a list of Strings, and then subscribe to this Observable with a method that prints “Hello _String_!” for each string emitted by the Observable.
 
@@ -131,9 +130,11 @@ You can find additional code examples in the `/src/examples` folders of each [la
 <div id="hello-world">
   <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#java" data-toggle="tab">Java</a></li>
+    <li><a href="#scala" data-toggle="tab">Scala</a></li>
     <li><a href="#groovy" data-toggle="tab">Groovy</a></li>
     <li><a href="#clojure" data-toggle="tab">Clojure</a></li>
-    <li><a href="#scala" data-toggle="tab">Scala</a></li>
+    <li><a href="#kotlin" data-toggle="tab">Kotlin</a></li>
+    <li><a href="#jruby" data-toggle="tab">JRuby</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="java">
@@ -152,6 +153,24 @@ public static void hello(String... names) {
 
 {% highlight java %}
 hello("Ben", "George");
+Hello Ben!
+Hello George!
+{% endhighlight %}
+    </div>
+    <div class="tab-pane" id="scala">
+
+{% highlight scala %}
+import rx.lang.scala.Observable
+
+def hello(names: String*) {
+  Observable.from(names) subscribe { n =>
+    println(s"Hello $n!")
+  }
+}
+{% endhighlight %}
+
+{% highlight scala %}
+hello("Ben", "George")
 Hello Ben!
 Hello George!
 {% endhighlight %}
@@ -184,29 +203,21 @@ Hello Ben!
 Hello George!
 {% endhighlight %}
     </div>
-    <div class="tab-pane" id="scala">
-
-{% highlight scala %}
-import rx.lang.scala.Observable
-
-def hello(names: String*) {
-  Observable.from(names) subscribe { n =>
-    println(s"Hello $n!")
-  }
-}
+    <div class="tab-pane" id="kotlin">
+{% highlight kotlin %}
+      TBD
 {% endhighlight %}
-
-{% highlight scala %}
-hello("Ben", "George")
-Hello Ben!
-Hello George!
+    </div>
+    <div class="tab-pane" id="jruby">
+{% highlight ruby %}
+      TBD
 {% endhighlight %}
     </div>
   </div>
 </div>
 
 
-# How to Design Using RxJava
+# Larger example
 
 To use RxJava you create Observables (which emit data items), transform those Observables in various ways to get the precise data items that interest you (by using Observable operators), and then observe and react to these sequences of interesting items (by implementing Observers or Subscribers and then subscribing them to the resulting transformed Observables).
 
@@ -394,7 +405,7 @@ More information can be found on the [[Observable]] and [[Creating Observables|C
 
 ## Transforming Observables with Operators
 
-RxJava allows you to chain _operators_ together to transform and compose Observables.
+Rx allows you to chain _operators_ together to transform and compose Observables.
 
 The following example, in Groovy, uses a previously defined, asynchronous Observable that emits 75 items, skips over the first 10 of these ([`skip(10)`](Filtering-Observables#wiki-skip)), then takes the next 5 ([`take(5)`](Filtering-Observables#wiki-take)), and transforms them ([`map(...)`](Transforming-Observables#wiki-map)) before subscribing and printing the items:
 

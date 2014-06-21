@@ -7,28 +7,17 @@ id: embedding
 #Embedding Code
 
 <script>
-
-    function escapeHtml(unsafe) {
-	    return unsafe
-	        .replace(/&/g, "&amp;")
-	        .replace(/</g, "&lt;")
-	        .replace(/>/g, "&gt;")
-	        .replace(/"/g, "&quot;")
-	        .replace(/'/g, "&#039;");
-	}
 	
-	function foo1(id) { 
+	function github_callback(id, language) { 
 		return function(response) {
-			console.log(response.data);
-			console.log(id);
-			$("#foobar").html("<pre class='language-javascript'><code id='" + id + "'>" + escapeHtml(response.data) + "</code></pre>");
-			Prism.highlightElement($("#" + id)[0]);
-			Prism.highlightAll();
-		}
+			var safeCode = goog.html.SafeHtml.unwrap(goog.html.SafeHtml.from(new String(response.data)));
+			$("#" + id).html("<pre class='language-" + language + "'><code id='" + id + "-CodeElem'>" + safeCode + "</code></pre>");
+			Prism.highlightElement($("#" + id + "-CodeElem")[0]);
+		};
 	}
 
-	function foo2(response) { 
-		return foo1("foobar")(response);
+	function show_code(response) {
+		return github_callback("foobar", "java")(response);
 	}
 
 	function get_snippet(url) {
@@ -39,13 +28,12 @@ id: embedding
 		    	"Content-Type": "application/vnd.github.3.raw; charset=utf-8"
 			},
 		    context: document.body,
-		    success: function() {
-		      //alert("done");
-		    }
+		    success: function() {}
 		});
 	}
 
-	get_snippet("https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Flatmap.java?callback=foo2");
+	get_snippet("https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Flatmap.java?callback=show_code");
+	
 </script>
 
 <div id="foobar"></div>

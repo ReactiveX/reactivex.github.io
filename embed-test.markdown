@@ -17,7 +17,7 @@ id: embedding
 	}
 
 	function show_code(response) {
-		return github_callback("foobar", "java")(response);
+		return github_callback("codeSample", "java")(response);
 	}
 
 	function get_snippet(url) {
@@ -36,4 +36,4 @@ id: embedding
 	
 </script>
 
-<div id="foobar"></div>
+<div id="codeSample"></div>

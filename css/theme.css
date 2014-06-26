@@ -12,3 +12,10 @@ body {
 .theme-showcase > p > .btn {
   margin: 5px 0;
 }
+
+code {
+	padding: 2px;
+	color: #000;
+	background-color: #ededed;
+	border-radius: 3px;
+}

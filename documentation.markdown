@@ -159,21 +159,10 @@ Hello George!
     </div>
     <div class="tab-pane" id="scala">
 
-{% highlight scala %}
-import rx.lang.scala.Observable
+      {% snippet https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.scala, scala %}
 
-def hello(names: String*) {
-  Observable.from(names) subscribe { n =>
-    println(s"Hello $n!")
-  }
-}
-{% endhighlight %}
-
-{% highlight scala %}
-hello("Ben", "George")
-Hello Ben!
-Hello George!
-{% endhighlight %}
+      {% snippet https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.output, scala %}
+    
     </div>
     <div class="tab-pane" id="groovy">
 {% highlight groovy %}

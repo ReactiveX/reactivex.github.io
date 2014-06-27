@@ -159,9 +159,9 @@ Hello George!
     </div>
     <div class="tab-pane" id="scala">
 
-      {% snippet https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.scala, scala %}
+      <code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.scala" lang="scala"></code-snippet>
 
-      {% snippet https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.output, scala %}
+      <code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.output" lang="scala"></code-snippet>
     
     </div>
     <div class="tab-pane" id="groovy">

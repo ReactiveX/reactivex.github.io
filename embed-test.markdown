@@ -6,6 +6,23 @@ id: embedding
 
 #Embedding Code
 
+<hr/>
+
+<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java" lang="java"></code-snippet>
+blabalbla
+<hr/>
+<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java" lang="java"></code-snippet>
+
+<hr/>
+
+
+<!--script id="test123">
+	snippet("test123", "https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java",
+		"scala");
+</script>
+
+<hr/>
+
 <div id="codeSample">
 	<script>
 
@@ -32,4 +49,4 @@ hello world
 		get_snippet("https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Flatmap.java?callback=codeSample2");
 		
 	</script>
-</div>
+</div-->

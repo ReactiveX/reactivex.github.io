@@ -1,0 +1,57 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="tabs-panel" attributes="selectedTab">
+	<template>
+	<link href="/css/tabs.css" rel="stylesheet">
+	<polymer-layout vertical></polymer-layout>
+
+	<paper-tabs id="tabs" selected="{{selectedTab}}" class="transparent-teal" noink>
+		<paper-tab>Java</paper-tab>
+		<paper-tab>Scala</paper-tab>
+		<paper-tab>Groovy</paper-tab>
+		<paper-tab>Clojure</paper-tab>
+		<paper-tab>Kotlin</paper-tab>
+		<paper-tab>JRuby</paper-tab>
+	</paper-tabs>
+
+	<div id="pages">
+		<div id="c0" style="display:block;">
+			<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java" language="java"></code-snippet>
+		</div>
+		<div id="c1" style="display:none;">
+			<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Gui.java" language="java"></code-snippet>
+		</div>
+		<div id="c2" style="display:none;">
+			<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Flatmap.java" language="java"></code-snippet>
+		</div>
+		<div id="c3" style="display:none;">
+			<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Game.java" language="java"></code-snippet>
+		</div>
+	</div>
+
+	</template>
+
+	<script>
+
+	  Polymer('tabs-panel', {
+	    ready: function() {
+			this.selectedTab = 0;
+			var tabs = this.$.tabs;
+			var divs = this.$.pages.childNodes;
+			var polymer = this;
+			//alert(document.querySelector("#c3"))
+
+			tabs.addEventListener('core-select', function() {
+				for (var i = 0; i < divs.length; i++) {
+					if (divs[i].style) {
+						divs[i].style['display'] = 'none';
+					}
+				}
+
+				polymer.$['c' + tabs.selected].style['display'] = 'block';
+			});
+	    }
+	  });
+
+	</script>
+</polymer-element>

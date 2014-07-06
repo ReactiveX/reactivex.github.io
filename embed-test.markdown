@@ -6,7 +6,24 @@ id: embedding
 
 #Embedding Code
 
-<tabs-panel flex></tabs-panel>
+<script>
+var data = {"snippets":[
+{"Java":"https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java"},
+{"Scala":"https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Gui.java"},
+{"Groovy":"https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Flatmap.java"},
+{"Clojure":"https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Game.java"},
+{"Kotlin":""},
+{"JRuby":""}
+]};
+</script>
+
+<tabs-panel data='{{ data }}' flex></tabs-panel>
+
+<!--tabs-panel data='{"employees":[
+    {"firstName":"John", "lastName":"Doe"}, 
+    {"firstName":"Anna", "lastName":"Smith"},
+    {"firstName":"Peter", "lastName":"Jones"}
+]}' flex></tabs-panel-->
 
 <!--paper-tabs selected="0" class="transparent-teal" noink>
 	<paper-tab>Java</paper-tab>

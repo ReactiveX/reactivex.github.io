@@ -1,6 +1,6 @@
 <link rel="import" href="../components/polymer/polymer.html">
 
-<polymer-element name="tabs-panel" attributes="selectedTab">
+<polymer-element name="tabs-panel" attributes="selectedTab data">
 	<template>
 	<link href="/css/tabs.css" rel="stylesheet">
 	<polymer-layout vertical></polymer-layout>
@@ -14,17 +14,17 @@
 		<paper-tab>JRuby</paper-tab>
 	</paper-tabs>
 
-	<div id="pages">
-		<div id="c0" style="display:block;">
+	<div id="divs">
+		<div id="d0" style="display: block;">
 			<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java" language="java"></code-snippet>
 		</div>
-		<div id="c1" style="display:none;">
+		<div id="d1" style="display: none;">
 			<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Gui.java" language="java"></code-snippet>
 		</div>
-		<div id="c2" style="display:none;">
+		<div id="d2" style="display: none;">
 			<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Flatmap.java" language="java"></code-snippet>
 		</div>
-		<div id="c3" style="display:none;">
+		<div id="d3" style="display: none;">
 			<code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Game.java" language="java"></code-snippet>
 		</div>
 	</div>
@@ -34,12 +34,36 @@
 	<script>
 
 	  Polymer('tabs-panel', {
+	  	data: [],
 	    ready: function() {
 			this.selectedTab = 0;
-			var tabs = this.$.tabs;
-			var divs = this.$.pages.childNodes;
 			var polymer = this;
-			//alert(document.querySelector("#c3"))
+			var tabs = this.$.tabs;
+			var snippets = data.snippets;
+
+			for (var i = 0; i < snippets.length; i++) {
+				var snippet = snippets[i];
+				for (var language in snippet) {
+			        var url = snippet[language];
+			        
+
+			        var elem = document.createElement('div');
+			        elem.id = "d" + i;
+			        elem.language = language;
+			        elem.url = url;
+			        console.log(elem);
+			        //this.$.divs.appendChild(elem);
+			        
+
+			        //this.$.divs.innerHTML += '<div id="d' + i + '"><h1>BLABALBLABLA</h1></div>';
+			        // this.$.divs.children.add(new Element().tag('code-snippet'))
+			        console.log(language + " - " + url);
+
+
+			    }
+			}
+
+			var divs = this.$.divs.childNodes;
 
 			tabs.addEventListener('core-select', function() {
 				for (var i = 0; i < divs.length; i++) {
@@ -48,7 +72,11 @@
 					}
 				}
 
-				polymer.$['c' + tabs.selected].style['display'] = 'block';
+				var selectedDiv = polymer.$['d' + tabs.selected];
+				console.log(selectedDiv);
+				if (selectedDiv) {
+					selectedDiv.style['display'] = 'block';
+				}
 			});
 	    }
 	  });

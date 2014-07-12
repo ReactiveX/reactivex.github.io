@@ -2,20 +2,13 @@
 
 <polymer-element name="tabs-panel" attributes="selectedTab data">
 	<template>
-	<link href="/css/tabs.css" rel="stylesheet">
-	<polymer-layout vertical></polymer-layout>
+		<link href="/css/tabs.css" rel="stylesheet">
+		<polymer-layout vertical></polymer-layout>
 
-	<paper-tabs id="tabs" selected="{{selectedTab}}" class="transparent-teal" noink>
-		<!--paper-tab>Java</paper-tab>
-		<paper-tab>Scala</paper-tab>
-		<paper-tab>Groovy</paper-tab>
-		<paper-tab>Clojure</paper-tab>
-		<paper-tab>Kotlin</paper-tab>
-		<paper-tab>JRuby</paper-tab-->
-	</paper-tabs>
+		<paper-tabs id="tabs" selected="{{selectedTab}}" class="transparent-teal" noink></paper-tabs>
+		<div id="divs"></div>
 
-	<div id="divs"></div>
-	<content></content>
+		<content></content>
 	</template>
 
 	<script>
@@ -32,45 +25,10 @@
 			tabs.addEventListener('core-select', function() {
 				for (var i = 0; i < divs.length; i++) {
 					if (divs[i].style) {
-						if (i == tabs.selected) {
-							divs[i].style['display'] = 'block';
-						} else {
-							divs[i].style['display'] = 'none';
-						}
+						divs[i].style['display'] = i == tabs.selected ? 'block' : 'none';
 					}
 				}
-
-				// var selectedDiv = polymer.$['div' + tabs.selected];
-				// console.log(selectedDiv);
-				// if (selectedDiv) {
-				// 	selectedDiv.style['display'] = 'block';
-				// }
 			});
-
-			//var tabs = this.$.tabs;
-			//var snippets = data.snippets;
-
-			/*for (var i = 0; i < snippets.length; i++) {
-				var snippet = snippets[i];
-				for (var language in snippet) {
-			        var url = snippet[language];
-			        
-
-			        var elem = document.createElement('div');
-			        elem.id = "d" + i;
-			        elem.language = language;
-			        elem.url = url;
-			        console.log(elem);
-			        //this.$.divs.appendChild(elem);
-			        
-
-			        //this.$.divs.innerHTML += '<div id="d' + i + '"><h1>BLABALBLABLA</h1></div>';
-			        // this.$.divs.children.add(new Element().tag('code-snippet'))
-			        console.log(language + " - " + url);
-
-
-			    }
-			}*/
 	    }
 	  });
 

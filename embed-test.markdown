@@ -6,7 +6,7 @@ id: embedding
 
 #Embedding Code
 
-<script>
+<!--script>
 var data = {"snippets":[
 {"Java":"https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java"},
 {"Scala":"https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Gui.java"},
@@ -16,14 +16,16 @@ var data = {"snippets":[
 {"JRuby":""}
 ]};
 </script>
+<tabs-panel data='{{ data }}' flex></tabs-panel-->
 
-<tabs-panel data='{{ data }}' flex></tabs-panel>
+<!--tab-panel><code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java" language="java"></code-snippet></tab-panel>
+	<tab-panel><code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java" language="java"></code-snippet></tab-panel-->
 
-<!--tabs-panel data='{"employees":[
-    {"firstName":"John", "lastName":"Doe"}, 
-    {"firstName":"Anna", "lastName":"Smith"},
-    {"firstName":"Peter", "lastName":"Jones"}
-]}' flex></tabs-panel-->
+<tabs-panel flex>
+<tab-code label="Java" language="java" url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/HeadTail.java"></tab-code>
+<tab-code label="Scala" language="scala" url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Gui.java"></tab-code>
+<tab-code label="Groovy" language="groovy" url="https://api.github.com/repos/GeorgiKhomeriki/RxCourse/contents/Flatmap.java"></tab-code>
+</tabs-panel>
 
 <!--paper-tabs selected="0" class="transparent-teal" noink>
 	<paper-tab>Java</paper-tab>

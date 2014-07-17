@@ -19,7 +19,7 @@
         var divs = this.parentNode.$["divs"]
         var divNode = document.createElement("div");
         divNode.id = "div" + tabId++;
-        if (this.language) {
+        if (this.url) {
           divNode.innerHTML = "<code-snippet url='" + this.url + "' language='" + this.language + "'></code-snippet>";
         } else {
           divNode.innerHTML = "<div><h2>TODO: " + this.label + "</h2></div>";

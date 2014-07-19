@@ -127,6 +127,15 @@ You can find additional code examples in the `/src/examples` folders of each [la
 * [Clojure examples](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-clojure/src/examples)
 * [Scala examples](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-scala/src/examples)
 
+<tabs-panel flex>
+  <tab-code label="Java" language="java" url=""></tab-code>
+  <tab-code label="Scala" language="scala" url="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.scala" url2="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.output"></tab-code>
+  <tab-code label="Groovy" language="groovy" url=""></tab-code>
+  <tab-code label="Clojure" language="scala" url=""></tab-code>
+  <tab-code label="Kotlin" language="" url=""></tab-code>
+  <tab-code label="JRuby" language="" url=""></tab-code>
+</tabs-panel>
+
 <div id="hello-world">
   <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#java" data-toggle="tab">Java</a></li>
@@ -136,6 +145,7 @@ You can find additional code examples in the `/src/examples` folders of each [la
     <li><a href="#kotlin" data-toggle="tab">Kotlin</a></li>
     <li><a href="#jruby" data-toggle="tab">JRuby</a></li>
   </ul>
+
   <div class="tab-content">
     <div class="tab-pane active" id="java">
 {% highlight java %}

@@ -128,93 +128,21 @@ You can find additional code examples in the `/src/examples` folders of each [la
 * [Scala examples](https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-scala/src/examples)
 
 <tabs-panel flex>
-  <tab-code label="Java" language="java" url=""></tab-code>
-  <tab-code label="Scala" language="scala" url="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.scala" url2="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.output"></tab-code>
-  <tab-code label="Groovy" language="groovy" url=""></tab-code>
-  <tab-code label="Clojure" language="scala" url=""></tab-code>
+  <tab-code label="Java" language="java" 
+    url="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/java/hello.java" 
+    url2="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/java/hello.output"></tab-code>
+  <tab-code label="Scala" language="scala" 
+    url="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.scala" 
+    url2="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.output"></tab-code>
+  <tab-code label="Groovy" language="groovy" 
+    url="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/groovy/hello.groovy" 
+    url2="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/groovy/hello.output"></tab-code>
+  <tab-code label="Clojure" language="clojure" 
+    url="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/clojure/hello.clj" 
+    url2="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/clojure/hello.output"></tab-code>
   <tab-code label="Kotlin" language="" url=""></tab-code>
   <tab-code label="JRuby" language="" url=""></tab-code>
 </tabs-panel>
-
-<div id="hello-world">
-  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-    <li class="active"><a href="#java" data-toggle="tab">Java</a></li>
-    <li><a href="#scala" data-toggle="tab">Scala</a></li>
-    <li><a href="#groovy" data-toggle="tab">Groovy</a></li>
-    <li><a href="#clojure" data-toggle="tab">Clojure</a></li>
-    <li><a href="#kotlin" data-toggle="tab">Kotlin</a></li>
-    <li><a href="#jruby" data-toggle="tab">JRuby</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div class="tab-pane active" id="java">
-{% highlight java %}
-public static void hello(String... names) {
-    Observable.from(names).subscribe(new Action1<String>() {
-
-        @Override
-        public void call(String s) {
-            System.out.println("Hello " + s + "!");
-        }
-
-    });
-}
-{% endhighlight %}
-
-{% highlight java %}
-hello("Ben", "George");
-Hello Ben!
-Hello George!
-{% endhighlight %}
-    </div>
-    <div class="tab-pane" id="scala">
-
-      <code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.scala" language="scala"></code-snippet>
-
-      <code-snippet url="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.output" language="scala"></code-snippet>
-    
-    </div>
-    <div class="tab-pane" id="groovy">
-{% highlight groovy %}
-def hello(String[] names) {
-    Observable.from(names)
-        .subscribe({ println "Hello " + it + "!" })
-}
-{% endhighlight %}
-
-{% highlight groovy %}
-hello("Ben", "George")
-Hello Ben!
-Hello George!
-{% endhighlight %}
-    </div>
-    <div class="tab-pane" id="clojure">
-{% highlight clojure %}
-(defn hello
-  [&rest]
-  (-> (Observable/from &rest)
-    (.subscribe #(println (str "Hello " % "!")))))
-{% endhighlight %}
-
-{% highlight clojure %}
-(hello ["Ben" "George"])
-Hello Ben!
-Hello George!
-{% endhighlight %}
-    </div>
-    <div class="tab-pane" id="kotlin">
-{% highlight kotlin %}
-      TBD
-{% endhighlight %}
-    </div>
-    <div class="tab-pane" id="jruby">
-{% highlight ruby %}
-      TBD
-{% endhighlight %}
-    </div>
-  </div>
-</div>
-
 
 # Larger example
 

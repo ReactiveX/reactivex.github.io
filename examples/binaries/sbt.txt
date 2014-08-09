@@ -1,0 +1,1 @@
+libraryDependencies += "com.netflix.rxjava" % "rxjava-scala" % "0.17.0"

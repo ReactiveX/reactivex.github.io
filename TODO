@@ -1,0 +1,11 @@
+- TODO Include Bootstrap source, compile the LESS into CSS
+- TODO Make layout frontpage and limit line width
+  - Use .content-column to limit line width
+- TODO Increase base font size
+  - Double check whether all font sizes scale according to it
+- TODO Define Rx color palette
+- TODO Use better font for title
+  - Signika from Google Web Fonts?
+- TODO Add favicon
+- TODO Improve looks of nav-bar items
+  - Inspired by dartlang page?

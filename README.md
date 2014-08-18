@@ -3,17 +3,21 @@ reactivex.github.io
 
 ReactiveX Website - [Jekyll](http://jekyllrb.com/) + [Bootstrap](http://getbootstrap.com/) experiment
 
-Install Jekyll
+Install tools
 --------------
 
 ```
-$ gem install jekyll
+$ gem install jekyll uglifier rake
+```
+
+```
+$ npm install -g less
 ```
 
 Run
 ---
 
 ```
-$ jekyll serve
+$ rake
 ```
 

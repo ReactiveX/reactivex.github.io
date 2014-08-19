@@ -1,15 +1,15 @@
 ---
-layout: default
+layout: frontpage
 title: ReactiveX - Intro
 id: intro
 ---
 
 <div class="jumbotron">
-  <h1 class="title"><img src="{{ site.url }}/assets/Rx_Logo_S.png" /> {{ site.name }} </h1> 
-  <p><strong>Reactive Extensions (Rx)</strong> a polyglot library for composing asynchronous and event-based programs by using observable sequences.</p> 
+  <h1 class="title"><img src="{{ site.url }}/assets/Rx_Logo_S.png" /> {{ site.name }} </h1>
+  <p><strong>Reactive Extensions (Rx)</strong> a polyglot library for composing asynchronous and event-based programs by using observable sequences.</p>
 
   <p><strong>Rx</strong> extends the observer pattern to support sequences of data/events and adds operators that allow you to compose sequences together declaratively while abstracting away concerns about things like low-level threading, synchronization, thread-safety, concurrent data structures, and non-blocking I/O.</p>
-  
+
   <!--a href="#" class="btn btn-primary btn-lg" role="button">Learn more »</a-->
 </div>
 

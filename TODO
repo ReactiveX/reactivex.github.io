@@ -1,11 +1,13 @@
 DONE Include Bootstrap source, compile the LESS into CSS
-TODO Make layout frontpage and limit line width
-  - Use .content-column to limit line width
+DONE Make layout frontpage and limit line width
+TODO Separate index and intro pages
 TODO Increase base font size
   - Double check whether all font sizes scale according to it
 TODO Define Rx color palette
 TODO Use better font for title
   - Signika from Google Web Fonts?
+TODO Value proposition
+    A framework for asynchronous programming with observable streams
 TODO Add favicon
 TODO Improve looks of nav-bar items
   - Inspired by dartlang page?

@@ -11,8 +11,6 @@
 
         <!-- Bootstrap -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/bootstrap-theme.css" rel="stylesheet">
-        <link href="/css/theme.css" rel="stylesheet">
 
         <!-- Prism -->
         <link href="/css/prism.css" rel="stylesheet">
@@ -27,11 +25,7 @@
         <!-- syntax highlighting CSS -->
         <link rel="stylesheet" href="/css/syntax.css">
 
-        <!-- Custom CSS -->
-        <!--link rel="stylesheet" href="/css/main.css"-->
-
         <style shim-shadowdom>
-  
             body {
               font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
               color: #333;
@@ -75,7 +69,6 @@
               font-size: 16px;
               font-weight: 400;
             }
-            
           </style>
     </head>
     <body>
@@ -109,18 +102,15 @@
         <script src="/js/jquery/1.11.0/jquery.min.js"></script>
 
         <div class="container">
-            <div>
+            {{ content }}
 
-                {{ content }}
-
-                <hr/>
-                <div style="text-align:center">
-                    <span><a href="{{ site.url }}"><img src="{{ site.url }}/assets/Rx_Icon.png"/> ReactiveX</a></span> 
-                    <strong style="padding-left:10px; padding-right:10px;">&middot;</strong>
-                    <span><a href="https://github.com/ReactiveX"><img src="{{ site.url }}/assets/GitHub_Icon.png"/> github.com/ReactiveX</a></span> 
-                    <strong style="padding-left:10px; padding-right:10px;">&middot;</strong> 
-                    <span><a href="https://twitter.com/ReactiveX"><img src="{{ site.url }}/assets/Twitter.png"/> twitter.com/ReactiveX</a></span>
-                </div>
+            <hr/>
+            <div style="text-align:center">
+                <span><a href="{{ site.url }}"><img src="{{ site.url }}/assets/Rx_Icon.png"/> ReactiveX</a></span> 
+                <strong style="padding-left:10px; padding-right:10px;">&middot;</strong>
+                <span><a href="https://github.com/ReactiveX"><img src="{{ site.url }}/assets/GitHub_Icon.png"/> github.com/ReactiveX</a></span> 
+                <strong style="padding-left:10px; padding-right:10px;">&middot;</strong> 
+                <span><a href="https://twitter.com/ReactiveX"><img src="{{ site.url }}/assets/Twitter.png"/> twitter.com/ReactiveX</a></span>
             </div>
         </div><!-- /.container -->
 

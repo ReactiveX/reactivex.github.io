@@ -4,8 +4,7 @@ DONE General facelift: fonts, frontpage title, typography
   Separate index and intro pages
 DONE Increase base font size
 DONE Define ReactiveX color palette
-TODO Relayout documentation layout with col-sm-8
-TODO Replace .content-column with Bootstrap's own col-sm-8
+DONE Replace .content-column with Bootstrap's own col-sm-8
 TODO Add favicon
 TODO Improve looks of nav-bar items
   - Reduce amount of items

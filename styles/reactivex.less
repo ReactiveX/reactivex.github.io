@@ -8,11 +8,60 @@
 // Custom stuff goes here.
 // -----------------------
 
+@import url(http://fonts.googleapis.com/css?family=Signika);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+@reactivex-font-special: "Signika", Helvetica, sans-serif;
+@reactivex-font-basic: "Source Sans Pro", Helvetica, sans-serif;
+
+@reactivex-white: #efefef;
+
 // @font-size-base: 16px; // Example. This can override bootstrap's variables.
+
+body {
+  padding-top: @navbar-height;
+  font-family: @reactivex-font-basic;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.jumbotron {
+  background: url("/assets/diagmonds.png");
+  min-height: 400px;
+  color: @reactivex-white;
+  h1.title {
+    font-family: @reactivex-font-special;
+    img {
+      width: 80px;
+      height: 80px;
+      margin-top: -10px;
+      margin-right: 15px;
+    }
+    margin-bottom: 40px;
+  }
+  h2.value-proposition {
+    line-height: 1.3em;
+  }
+}
+
+.navbar-brand {
+  img {
+    display: inline-block;
+  }
+  font-family: @reactivex-font-special;
+}
+.navbar-inverse {
+  .navbar-brand {
+    color: @reactivex-white;
+  }
+}
 
 @media (min-width: @screen-lg-min) {
   .content-column {
-    width: 46em;
+    width: 55em;
     margin: 0 auto;
   }
 }

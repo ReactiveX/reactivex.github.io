@@ -2,6 +2,17 @@
 layout: default
 ---
 
-<div class="content-column">
-  {{ content }}
+<div class="container-full">
+  <div class="jumbotron">
+    <div class="content-column">
+      <h1 class="title"><img src="{{ site.url }}/assets/Rx_Logo_S.png" />{{ site.name }}</h1>
+      <h2 class="value-proposition">A framework for asynchronous programming<br />with observable streams</h3>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="content-column">
+    {{ content }}
+  </div>
 </div>

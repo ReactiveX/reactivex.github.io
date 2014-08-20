@@ -1,13 +1,15 @@
 DONE Include Bootstrap source, compile the LESS into CSS
 DONE Make layout frontpage and limit line width
-TODO Separate index and intro pages
+DONE General facelift: fonts, frontpage title, typography
+  Separate index and intro pages
 TODO Increase base font size
   - Double check whether all font sizes scale according to it
+TODO Relayout documentation layout with col-sm-8
+TODO Replace .content-column with Bootstrap's own col-sm-8
 TODO Define Rx color palette
-TODO Use better font for title
-  - Signika from Google Web Fonts?
-TODO Value proposition
-    A framework for asynchronous programming with observable streams
 TODO Add favicon
 TODO Improve looks of nav-bar items
-  - Inspired by dartlang page?
+  - Reduce amount of items
+  - Inspired by dartlang page
+TODO Improve footer style
+  - Also inspired by dartlang page

@@ -46,7 +46,7 @@ end
 task :default => :jekyll
 
 task :jekyll => :bootstrap do
-  sh 'jekyll serve'
+  sh 'jekyll serve --watch'
 end
 
 def different?(path1, path2)

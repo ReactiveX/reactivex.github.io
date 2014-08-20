@@ -5,7 +5,7 @@ DONE General facelift: fonts, frontpage title, typography
 DONE Increase base font size
 DONE Define ReactiveX color palette
 DONE Replace .content-column with Bootstrap's own col-sm-8
-TODO Add favicon
+DONE Add favicon
 TODO Improve looks of nav-bar items
   - Reduce amount of items
   - Inspired by dartlang page

@@ -3,9 +3,9 @@ DONE Make layout frontpage and limit line width
 DONE General facelift: fonts, frontpage title, typography
   Separate index and intro pages
 DONE Increase base font size
+DONE Define ReactiveX color palette
 TODO Relayout documentation layout with col-sm-8
 TODO Replace .content-column with Bootstrap's own col-sm-8
-TODO Define Rx color palette
 TODO Add favicon
 TODO Improve looks of nav-bar items
   - Reduce amount of items

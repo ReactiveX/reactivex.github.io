@@ -8,15 +8,11 @@
 // Custom stuff goes here.
 // -----------------------
 
-@import url(http://fonts.googleapis.com/css?family=Signika);
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@import "variables.less";
 
-@reactivex-font-special: "Signika", Helvetica, sans-serif;
-@reactivex-font-basic: "Source Sans Pro", Helvetica, sans-serif;
-
-@reactivex-white: #efefef;
-
-// @font-size-base: 16px; // Example. This can override bootstrap's variables.
+html {
+  font-size: @font-size-base; // defines rem
+}
 
 body {
   padding-top: @navbar-height;
@@ -26,6 +22,18 @@ body {
 .container-full {
   margin: 0 auto;
   width: 100%;
+}
+
+.navbar-brand {
+  img {
+    display: inline-block;
+  }
+  font-family: @reactivex-font-special;
+}
+.navbar-inverse {
+  .navbar-brand {
+    color: @reactivex-white;
+  }
 }
 
 .jumbotron {
@@ -47,21 +55,9 @@ body {
   }
 }
 
-.navbar-brand {
-  img {
-    display: inline-block;
-  }
-  font-family: @reactivex-font-special;
-}
-.navbar-inverse {
-  .navbar-brand {
-    color: @reactivex-white;
-  }
-}
-
 @media (min-width: @screen-lg-min) {
   .content-column {
-    width: 55em;
+    width: @readable-line-width;
     margin: 0 auto;
   }
 }

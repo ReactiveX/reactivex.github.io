@@ -1,6 +1,7 @@
 ---
-layout: frontpage
+layout: simple
 title: ReactiveX - Intro
+id: intro
 ---
 
 # Why?
@@ -92,7 +93,7 @@ You can think of the Observable class as a “push” equivalent to [Iterable](h
  </tbody>
 </table></center>
 
-The Observable type adds two missing semantics to the Gang of Four’s [Observer pattern](http://en.wikipedia.org/wiki/Observer_pattern), to match those that are available in the Iterable type:  
+The Observable type adds two missing semantics to the Gang of Four’s [Observer pattern](http://en.wikipedia.org/wiki/Observer_pattern), to match those that are available in the Iterable type:
 
 1. the ability for the producer to signal to the consumer that there is no more data available (a foreach loop on an Iterable completes and returns normally in such a case; an Observable calls its observer's ``onCompleted()`` method)
 1. the ability for the producer to signal to the consumer that an error has occurred (an Iterable throws an exception if an error takes place during iteration; an Observable calls its observer's ``onError()`` method)

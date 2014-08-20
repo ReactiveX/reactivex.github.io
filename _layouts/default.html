@@ -11,8 +11,6 @@
 
         <!-- Bootstrap -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/bootstrap-theme.css" rel="stylesheet">
-        <link href="/css/theme.css" rel="stylesheet">
 
         <!-- Prism -->
         <link href="/css/prism.css" rel="stylesheet">
@@ -27,11 +25,8 @@
         <!-- syntax highlighting CSS -->
         <link rel="stylesheet" href="/css/syntax.css">
 
-        <!-- Custom CSS -->
-        <!--link rel="stylesheet" href="/css/main.css"-->
-
         <style shim-shadowdom>
-  
+            /* This is overriding our styles for body, and it shouldn't.
             body {
               font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
               color: #333;
@@ -42,6 +37,7 @@
               -webkit-tap-highlight-color: rgba(0,0,0,0);
               -webkit-touch-callout: none;
             }
+            */
             
             paper-tabs, core-toolbar {
               background-color: #00bcd4;
@@ -71,11 +67,12 @@
               color: #00bcd4;
             }
             
+            /* This is overriding our custom styles, and it shouldn't.
             h3 {
               font-size: 16px;
               font-weight: 400;
             }
-            
+            */
           </style>
     </head>
     <body>
@@ -92,7 +89,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li id="menu-intro"><a href="/">Intro</a></li>
+                        <li id="menu-intro"><a href="{{ site.url }}/intro.html">Intro</a></li>
                         <li id="menu-documentation"><a href="{{ site.url }}/documentation.html">Documentation</a></li>
                         <li id="menu-languages"><a href="{{ site.url }}/languages.html">Languages</a></li>
                         <li id="menu-projects"><a href="{{ site.url }}/projects.html">Related Projects</a></li>
@@ -108,21 +105,23 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="/js/jquery/1.11.0/jquery.min.js"></script>
 
-        <div class="container">
-            <div>
+        {{ content }}
 
-                {{ content }}
+        <hr/>
+        <div class="footer">
+            <a href="{{ site.url }}"><img src="{{ site.url }}/assets/Rx_Icon.png"/>ReactiveX</a>
+            <span class="dot">&middot;</span>
+            <a href="https://github.com/ReactiveX"><img src="{{ site.url }}/assets/GitHub_Icon.png"/>github.com/ReactiveX</a>
+            <span class="dot">&middot;</span>
+            <a href="https://twitter.com/ReactiveX"><img src="{{ site.url }}/assets/Twitter.png"/>twitter.com/ReactiveX</a>
+        </div>
 
-                <hr/>
-                <div style="text-align:center">
-                    <span><a href="{{ site.url }}"><img src="{{ site.url }}/assets/Rx_Icon.png"/> ReactiveX</a></span> 
-                    <strong style="padding-left:10px; padding-right:10px;">&middot;</strong>
-                    <span><a href="https://github.com/ReactiveX"><img src="{{ site.url }}/assets/GitHub_Icon.png"/> github.com/ReactiveX</a></span> 
-                    <strong style="padding-left:10px; padding-right:10px;">&middot;</strong> 
-                    <span><a href="https://twitter.com/ReactiveX"><img src="{{ site.url }}/assets/Twitter.png"/> twitter.com/ReactiveX</a></span>
-                </div>
-            </div>
-        </div><!-- /.container -->
+        <!-- back to top link -->
+        <span id="top-link-block" class="hidden">
+            <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                <i class="glyphicon glyphicon-chevron-up"></i>
+            </a>
+        </span>
 
         <!-- Activate current page menu button -->
         <script>$("#menu-{{ page.id }}").addClass("active");</script>
@@ -141,9 +140,18 @@
         <script src="/js/prism.clojure.js"></script>
         <!-- Google Closure -->
         <script src="/js/goog/base.js"></script>
-        
+
         <script>
             goog.require('goog.html.SafeHtml');
+        </script>
+
+        <script>
+            /* Dynamic "Back to top" link */
+            if ( ($(window).height() + 100) < $(document).height() ) {
+                $('#top-link-block').removeClass('hidden').affix({
+                    offset: {top:100}
+                });
+            }
         </script>
 
     </body>

@@ -1,0 +1,76 @@
+// ---------------
+// Stock Bootstrap
+// ---------------
+
+@import "../bootstrap/less/bootstrap.less";
+
+// ----------------------
+// Custom stuff goes here
+// ----------------------
+
+@import "variables.less";
+
+html {
+  font-size: @font-size-base; // defines rem
+}
+
+body {
+  padding-top: @navbar-height;
+  font-family: @reactivex-font-basic;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.navbar-brand {
+  img {
+    display: inline-block;
+  }
+  font-family: @reactivex-font-special;
+}
+.navbar-inverse {
+  background-color: @gray-dark;
+  .navbar-brand {
+    color: @gray-lighter;
+  }
+}
+
+.jumbotron {
+  background: url("/assets/diagmonds.png");
+  min-height: 400px;
+  color: @gray-lighter;
+  h1.title {
+    font-family: @reactivex-font-special;
+    img {
+      width: 80px;
+      height: 80px;
+      margin-top: -10px;
+      margin-right: 15px;
+    }
+    margin-bottom: 40px;
+  }
+  h2.value-proposition {
+    line-height: 1.3em;
+  }
+}
+
+.full-page-container {
+  .container;
+  margin-top: 1rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0 40px;
+  a {
+    img {
+      width: 1.4rem;
+      margin-right: 0.4rem;
+    }
+  }
+}
+span.dot {
+  margin: 0 10px;
+}

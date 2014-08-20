@@ -19,3 +19,9 @@ code {
 	background-color: #ededed;
 	border-radius: 3px;
 }
+
+#top-link-block.affix {
+  position: fixed;
+  bottom: 18px;
+  left: 10px;
+}

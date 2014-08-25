@@ -35,6 +35,16 @@ body {
   .navbar-brand {
     color: @gray-lighter;
   }
+  ul.dropdown-menu {
+    background: @gray-dark;
+    li > a {
+      color: @gray-light;
+      &:hover {
+        color: white;
+        background: @gray-dark;
+      }
+    }
+  }
 }
 
 .jumbotron {
@@ -47,9 +57,9 @@ body {
       width: 80px;
       height: 80px;
       margin-top: -10px;
-      margin-right: 15px;
+      margin-right: @margin-base;
     }
-    margin-bottom: 40px;
+    margin-bottom: @margin-extra-large;
   }
   h2.value-proposition {
     line-height: 1.3em;
@@ -58,19 +68,50 @@ body {
 
 .full-page-container {
   .container;
-  margin-top: 1rem;
+  margin-top: @margin-large;
+}
+
+.link-indicator {
+  .glyphicon;
+  .glyphicon-new-window;
+  vertical-align: super;
+  font-size: 8px;
+  margin-left: @margin-extra-small;
 }
 
 .footer {
-  text-align: center;
-  padding: 20px 0 40px;
-  a {
-    img {
-      width: 1.4rem;
-      margin-right: 0.4rem;
-    }
+  background: @gray-dark;
+  padding-bottom: @margin-extra-large;
+  margin-top: @margin-extra-large;
+  color: @gray-light;
+  box-shadow: inset 0 27px 27px -27px @gray-base;
+  .row {
+    margin-top: @margin-large;
   }
-}
-span.dot {
-  margin: 0 10px;
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  h4 {
+    color: @gray-lighter;
+    font-family: @reactivex-font-special;
+    text-transform: uppercase;
+    display: inline-block;
+    padding-bottom: @margin-small;
+    border-bottom: 1px solid @reactivex-pinkle;
+  }
+  a {
+    color: @gray-light;
+  }
+  ul.footer-section > li {
+    line-height: 1.5rem;
+  }
+  .footer-logo {
+    width: 50px;
+    float: left;
+    margin-right: @margin-base;
+  }
+  .disclaimer {
+    font-size: @font-size-small;
+  }
 }

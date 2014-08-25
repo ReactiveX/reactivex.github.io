@@ -1,158 +1,223 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ page.title }}</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
 
-        <!-- Polymer -->
-        <script src="/polymer/components/platform/platform.js"></script>
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
 
-        <!-- Bootstrap -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Prism -->
-        <link href="/css/prism.css" rel="stylesheet">
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-        <!-- syntax highlighting CSS -->
-        <link rel="stylesheet" href="/css/syntax.css">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
 
-        <style shim-shadowdom>
-            /* This is overriding our styles for body, and it shouldn't.
-            body {
-              font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-              color: #333;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-              -webkit-tap-highlight-color: rgba(0,0,0,0);
-              -webkit-touch-callout: none;
-            }
-            */
-            
-            paper-tabs, core-toolbar {
-              background-color: #00bcd4;
-              color: #fff;
-              box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
-            }
-            
-            core-toolbar paper-tabs {
-              box-shadow: none;
-            }
-            
-            paper-tabs[noink][nobar] paper-tab.core-selected {
-              color: #ffff8d;
-            }
-            
-            paper-tabs.transparent-teal {
-              background-color: transparent;
-              color: #00bcd4;
-              box-shadow: none;
-            }
-            
-            paper-tabs.transparent-teal::shadow #selectionBar {
-              background-color: #00bcd4;
-            }
-            
-            paper-tabs.transparent-teal paper-tab::shadow #ink {
-              color: #00bcd4;
-            }
-            
-            /* This is overriding our custom styles, and it shouldn't.
-            h3 {
-              font-size: 16px;
-              font-weight: 400;
-            }
-            */
-          </style>
-    </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/"><img src="{{ site.url }}/assets/Rx_Icon.png" style="height:90%;"/> {{ site.name }}</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li id="menu-intro"><a href="{{ site.url }}/intro.html">Intro</a></li>
-                        <li id="menu-documentation"><a href="{{ site.url }}/documentation.html">Documentation</a></li>
-                        <li id="menu-languages"><a href="{{ site.url }}/languages.html">Languages</a></li>
-                        <li id="menu-projects"><a href="{{ site.url }}/projects.html">Related Projects</a></li>
-                        <li id="menu-media"><a href="{{ site.url }}/media.html">Media</a></li>
-                        <li id="menu-community"><a href="{{ site.url }}/community.html">Community</a></li>
-                        <li id="menu-github"><a href="{{ site.url }}/github.html">GitHub</a></li>
-                        <li id="menu-releases"><a href="{{ site.url }}/releases.html">Releases and Binaries</a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="{{ site.url }}/assets/Rx_Icon.png" style="height:90%;"/> {{ site.name }}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ site.url }}/intro.html">Getting started</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {% include docs-section-ul.html %}
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {% include languages-section-ul.html %}
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {% include resources-section-ul.html %}
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {% include community-section-ul.html %}
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    {{ content }}
+
+    <div class="footer">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              {% include docs-section-ul.html %}
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul>
+              <li><h4>Languages</h4></li>
+              {% include languages-section-ul.html %}
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul>
+              <li><h4>Resources</h4></li>
+              {% include resources-section-ul.html %}
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul>
+              <li><h4>Community</h4></li>
+              {% include community-section-ul.html %}
+            </ul>
+          </div>
         </div>
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="/js/jquery/1.11.0/jquery.min.js"></script>
-
-        {{ content }}
-
-        <hr/>
-        <div class="footer">
-            <a href="{{ site.url }}"><img src="{{ site.url }}/assets/Rx_Icon.png"/>ReactiveX</a>
-            <span class="dot">&middot;</span>
-            <a href="https://github.com/ReactiveX"><img src="{{ site.url }}/assets/GitHub_Icon.png"/>github.com/ReactiveX</a>
-            <span class="dot">&middot;</span>
-            <a href="https://twitter.com/ReactiveX"><img src="{{ site.url }}/assets/Twitter.png"/>twitter.com/ReactiveX</a>
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="{{ site.url }}/assets/Rx_Logo_BW_S.png" />
+            <a href="{{ site.url }}">ReactiveX<span class="link-indicator"></span></a> is an open source project
+            with contributors from Netflix and others. The content of this
+            page is licensed under _____, and code samples are licensed
+            under _____.
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- back to top link -->
-        <span id="top-link-block" class="hidden">
-            <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
-                <i class="glyphicon glyphicon-chevron-up"></i>
-            </a>
-        </span>
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
 
-        <!-- Activate current page menu button -->
-        <script>$("#menu-{{ page.id }}").addClass("active");</script>
+    <!-- Activate current page menu button -->
+    <script>$("#menu-{{ page.id }}").addClass("active");</script>
 
-        <!-- Polymer Paper Tabs -->
-        <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
-        <!-- Polymer Code Snippet Element-->
-        <link rel="import" href="/polymer/elements/code-snippet.html">
-        <link rel="import" href="/polymer/elements/tabs-panel.html">
-        <link rel="import" href="/polymer/elements/tab-code.html">
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
 
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="/js/bootstrap.min.js"></script>
-        <!-- Prism -->
-        <script src="/js/prism.js"></script>
-        <script src="/js/prism.clojure.js"></script>
-        <!-- Google Closure -->
-        <script src="/js/goog/base.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
 
-        <script>
-            goog.require('goog.html.SafeHtml');
-        </script>
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
 
-        <script>
-            /* Dynamic "Back to top" link */
-            if ( ($(window).height() + 100) < $(document).height() ) {
-                $('#top-link-block').removeClass('hidden').affix({
-                    offset: {top:100}
-                });
-            }
-        </script>
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
 
-    </body>
+  </body>
 </html>

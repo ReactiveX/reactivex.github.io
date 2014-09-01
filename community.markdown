@@ -4,7 +4,7 @@ title: ReactiveX - Community
 id: community
 ---
 
-# Community
+## Community
 
 - [Rxteam blog on MSDN](http://blogs.msdn.com/b/rxteam)
 - [#reactivex on IRC](http://webchat.freenode.net/#reactivex)

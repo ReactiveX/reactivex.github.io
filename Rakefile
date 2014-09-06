@@ -6,7 +6,9 @@ task :bootstrap => [:bootstrap_js, :bootstrap_css]
 task :bootstrap_js do
   require 'uglifier'
 
-  File.delete("js/bootstrap.min.js")
+  if File.exists?("js/bootstrap.min.js")
+    File.delete("js/bootstrap.min.js")
+  end
 
   # Minifies each javascript subscript
   paths = []

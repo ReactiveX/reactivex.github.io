@@ -4,16 +4,86 @@ layout: default
 
 <div class="container-full">
   <div class="jumbotron">
-  <div class="container">
-    <div class="col-md-8 col-md-offset-2">
-      <h1 class="title"><img src="{{ site.url }}/assets/Rx_Logo_S.png" />{{ site.name }}</h1>
-      <h2 class="value-proposition">A framework for asynchronous programming<br />with observable streams</h3>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+        <h1 class="title"><img src="{{ site.url }}/assets/Rx_Logo_S.png" />{{ site.name }}</h1>
+        <h2 class="value-proposition">A framework for asynchronous programming<br />with observable streams</h2>
+        <a class="btn btn-special btn-lg" href="{{ site.url }}/languages.html">Choose your platform</a>
+      </div>
     </div>
   </div>
+  <span class="scroll-down-indicator glyphicon glyphicon-chevron-down"></span>
 </div>
 
-<div class="container">
-  <div class="col-md-8 col-md-offset-2">
-    {{ content }}
+<div class="container frontpage-content">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h1>The Observer pattern done right</h1>
+      <h4>ReactiveX is a combination of the best ideas from<br /> the <span class="em-color1">Observer</span> pattern, the <span class="em-color2">Iterator</span> pattern, and <span class="em-color3">functional programming</span></h4>
+      <div class="diagram">
+        <div class="stream">
+          <div class="stream-arrow"></div>
+          <div class="diagram-stream-item input-stream-item1"></div>
+          <div class="diagram-stream-blip input-stream-blip1 js-input-blip1"></div>
+          <div class="diagram-stream-item input-stream-item2"></div>
+          <div class="diagram-stream-blip input-stream-blip2 js-input-blip2"></div>
+          <div class="diagram-stream-item input-stream-item3"></div>
+          <div class="diagram-stream-blip input-stream-blip3 js-input-blip3"></div>
+          <div class="diagram-stream-item input-stream-item4"></div>
+          <div class="diagram-stream-blip input-stream-blip4 js-input-blip4"></div>
+          <div class="diagram-scheduler js-input-scheduler"></div>
+          <div class="stream-arrow-head1"></div>
+          <div class="stream-arrow-head2"></div>
+          <div class="stream-end"></div>
+        </div>
+        <div class="operator">throttle
+          <div class="input-stream-mapper input-mapper1"></div>
+          <div class="input-stream-mapper-head1 input-mapper1"></div>
+          <div class="input-stream-mapper-head2 input-mapper1"></div>
+          <div class="input-stream-mapper input-mapper2"></div>
+          <div class="input-stream-mapper-head1 input-mapper2"></div>
+          <div class="input-stream-mapper-head2 input-mapper2"></div>
+          <div class="input-stream-mapper input-mapper3"></div>
+          <div class="input-stream-mapper-head1 input-mapper3"></div>
+          <div class="input-stream-mapper-head2 input-mapper3"></div>
+          <div class="input-stream-mapper input-mapper4"></div>
+          <div class="input-stream-mapper-head1 input-mapper4"></div>
+          <div class="input-stream-mapper-head2 input-mapper4"></div>
+          <div class="output-stream-mapper output-mapper1"></div>
+          <div class="output-stream-mapper-head1 output-mapper1"></div>
+          <div class="output-stream-mapper-head2 output-mapper1"></div>
+          <div class="output-stream-mapper output-mapper4"></div>
+          <div class="output-stream-mapper-head1 output-mapper4"></div>
+          <div class="output-stream-mapper-head2 output-mapper4"></div>
+        </div>
+        <div class="stream">
+          <div class="stream-arrow"></div>
+          <div class="diagram-stream-item output-stream-item1"></div>
+          <div class="diagram-stream-blip output-stream-blip1 js-output-blip1"></div>
+          <div class="diagram-stream-item output-stream-item4"></div>
+          <div class="diagram-stream-blip output-stream-blip4 js-output-blip4"></div>
+          <div class="diagram-scheduler js-output-scheduler"></div>
+          <div class="stream-arrow-head1"></div>
+          <div class="stream-arrow-head2"></div>
+          <div class="stream-end"></div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      CREATE: Easily create event streams or data streams
+    </div>
+    <div class="col-md-4">
+      COMBINE: Compose and transform streams with query-like operators
+    </div>
+    <div class="col-md-3">
+      LISTEN: Subscribe to any Observable stream to perform side effects
+    </div>
+  </div>
+
+    {{ content }}
 </div>
+
+<script src="/js/frontpage.js"></script>

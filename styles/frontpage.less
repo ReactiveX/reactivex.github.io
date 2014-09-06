@@ -225,13 +225,14 @@
       height: @diagram-mapper-height;
       border-left: 1px dashed @gray-light;
       top: -@diagram-mapper-height;
+      margin-left: -0.5px;
     }
     .input-stream-mapper-head1 {
       width: @stream-item-size;
       height: 1px;
       top: 0;
       margin-top: round(-0.57*@stream-item-size);
-      margin-left: round(-0.28*@stream-item-size);
+      margin-left: round(-0.28*@stream-item-size) - 0.5px;
       background-color: @gray-light;
       transform: rotate(-0.2turn);
     }
@@ -240,7 +241,7 @@
       height: 1px;
       top: 0;
       margin-top: round(-0.57*@stream-item-size);
-      margin-left: round(-0.57*@stream-item-size) - 1px;
+      margin-left: round(-0.57*@stream-item-size) - 1.5px;
       background-color: @gray-light;
       transform: rotate(0.2turn);
     }
@@ -255,7 +256,7 @@
       height: 1px;
       top: @diagram-mapper-height + @diagram-operator-height;
       margin-top: round(-0.57*@stream-item-size);
-      margin-left: round(-0.28*@stream-item-size);
+      margin-left: round(-0.28*@stream-item-size) - 0.5px;
       background-color: @gray-light;
       transform: rotate(-0.2turn);
     }
@@ -264,7 +265,7 @@
       height: 1px;
       top: @diagram-mapper-height + @diagram-operator-height;
       margin-top: round(-0.57*@stream-item-size);
-      margin-left: round(-0.57*@stream-item-size) - 1px;
+      margin-left: round(-0.57*@stream-item-size) - 1.5px;
       background-color: @gray-light;
       transform: rotate(0.2turn);
     }

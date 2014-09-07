@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="227px" height="307px" viewBox="0 0 227 307" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.4 (8053) - http://www.bohemiancoding.com/sketch -->
+    <title>Ear</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Ear" sketch:type="MSLayerGroup" transform="translate(10.000000, 10.000000)" stroke="#333333" stroke-width="20">
+            <ellipse id="Oval-18" sketch:type="MSShapeGroup" cx="143.307692" cy="153.592593" rx="23.8846154" ry="23.8333333"></ellipse>
+            <path d="M183.269202,38.5463816 C159.769608,13.4380694 143.50313,3.85113343 113.273129,0.701151325 C83.0431284,-2.44883079 56.4312115,7.5801121 39.9811444,20.9719553 C23.5310774,34.3637984 6.48811525,55.475326 1.79725257,85.1800862 C-2.89361011,114.884846 2.79935409,126.424163 10.1880101,146.225612 C17.576666,166.02706 76.3079214,248.676187 92.8376503,263.533767 C109.367379,278.391347 122.650104,286.08296 141.735417,286.082956 C160.820731,286.082952 178.472201,276.876145 189.236099,265.264308 C199.999997,253.652471 204.277712,239.846474 205.956877,226.160927 C207.636041,212.47538 205.956877,192.44191 205.956877,181.177543" id="Path-40" sketch:type="MSShapeGroup"></path>
+            <path d="M156.868186,67.7570739 C148.004501,55.7446389 136.938744,45.6126705 118.38602,40.955543 C102.73991,37.0280373 86.3931296,40.3604713 74.571331,46.3973785 C62.7495323,52.4342856 52.5706405,61.6088908 45.7183821,77.3486658 C38.8661237,93.0884408 39.2878245,106.588686 43.2647378,120.820048" id="Path-41" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

@@ -74,7 +74,7 @@
 }
 
 .diagram {
-  margin: @margin-extra-large auto;
+  margin: @margin-huge auto;
   width: 80%;
   .stream {
     position: relative;
@@ -368,3 +368,46 @@
   }
 }
 
+.frontpage-feature {
+  padding: @margin-base;
+  text-align: center;
+  margin-bottom: @margin-base;
+  h2 {
+    font-family: @reactivex-font-special;
+    margin-top: 0;
+    margin-bottom: @margin-base;
+    img {
+      width: 32px;
+      height: 32px;
+      margin-top: -7px;
+      margin-right: @margin-small;
+    }
+  }
+}
+
+.ps-top-to-bottom {
+  position: relative;
+  border-top: 1px solid @gray-light;
+}
+
+.ps-top-to-bottom:before,
+.ps-top-to-bottom:after {
+  content: "";
+  position: absolute;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@gray-light), to(transparent));
+  background-image: -webkit-linear-gradient(@gray-light, transparent);
+  background-image: -moz-linear-gradient(@gray-light, transparent);
+  background-image: -o-linear-gradient(@gray-light, transparent);
+  background-image: linear-gradient(@gray-light, transparent);
+  top: -1px;
+  bottom: -1px;
+  width: 1px;
+}
+
+.ps-top-to-bottom:before {
+  left: -1px;
+}
+
+.ps-top-to-bottom:after {
+  right: -1px;
+}

@@ -3,10 +3,6 @@ layout: frontpage
 title: ReactiveX - Intro
 ---
 
-
-# Ubiquitous
- (Frontend, backend, API, all platforms)
-
 # Better code
 
 - Functional style

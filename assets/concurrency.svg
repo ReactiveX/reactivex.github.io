@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="330px" height="232px" viewBox="0 0 330 232" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.4 (8053) - http://www.bohemiancoding.com/sketch -->
+    <title>concurrency</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="concurrency" sketch:type="MSLayerGroup" transform="translate(1.000000, 9.000000)">
+            <path d="M-0.145016339,17.6442917 C98.3580984,17.6442917 189.918065,198.054261 275.433984,198.054262" id="Path-12" stroke="#333333" stroke-width="25" sketch:type="MSShapeGroup" transform="translate(137.540206, 107.775228) scale(1, -1) translate(-137.540206, -107.775228) "></path>
+            <ellipse id="Oval-8" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="142.932456" cy="102.572726" rx="40.0213301" ry="40.0738692"></ellipse>
+            <path d="M-0.144605731,17.3622319 C99.1874253,17.3622319 191.517881,196.324288 277.753428,196.324289" id="Path-11" stroke="#333333" stroke-width="25" sketch:type="MSShapeGroup"></path>
+            <ellipse id="Oval-9" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="142.824492" cy="102.437305" rx="15.322149" ry="15.3422636"></ellipse>
+            <path d="M142.805175,132.56093 C159.433547,132.56093 172.913505,119.063275 172.913505,102.413075 C172.913505,85.7628743 159.433547,72.2652199 142.805175,72.2652199 C126.176804,72.2652199 112.696846,85.7628743 112.696846,102.413075 C112.696846,119.063275 126.176804,132.56093 142.805175,132.56093 Z M142.805175,113.330331 C148.826705,113.330331 153.708119,108.442509 153.708119,102.413075 C153.708119,96.3836405 148.826705,91.4958182 142.805175,91.4958182 C136.783646,91.4958182 131.902232,96.3836405 131.902232,102.413075 C131.902232,108.442509 136.783646,113.330331 142.805175,113.330331 Z" id="Oval-2" fill="#333333" sketch:type="MSShapeGroup"></path>
+            <path d="M275.274223,35.3766938 L275.274223,0 L310.625229,17.6883469 L275.274223,35.3766938 Z" id="Triangle-1" stroke="#333333" stroke-width="10" sketch:type="MSShapeGroup"></path>
+            <path d="M280.648995,214 L280.648995,178.623306 L316,196.311653 L280.648995,214 Z" id="Triangle-2" stroke="#333333" stroke-width="11" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

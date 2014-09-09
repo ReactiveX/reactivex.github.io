@@ -9,6 +9,8 @@
 // ----------------------
 
 @import "variables.less";
+@import "frontpage.less";
+@import "frontpage-diagram.less";
 
 html {
   font-size: @font-size-base; // defines rem
@@ -49,25 +51,6 @@ body {
       padding: 3px 20px;
       color: @gray-light;
     }
-  }
-}
-
-.jumbotron {
-  background: url("/assets/diagmonds.png");
-  min-height: 400px;
-  color: @gray-lighter;
-  h1.title {
-    font-family: @reactivex-font-special;
-    img {
-      width: 80px;
-      height: 80px;
-      margin-top: -10px;
-      margin-right: @margin-base;
-    }
-    margin-bottom: @margin-extra-large;
-  }
-  h2.value-proposition {
-    line-height: 1.3em;
   }
 }
 

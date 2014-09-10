@@ -4,16 +4,175 @@ layout: default
 
 <div class="container-full">
   <div class="jumbotron">
-  <div class="container">
-    <div class="col-md-8 col-md-offset-2">
-      <h1 class="title"><img src="{{ site.url }}/assets/Rx_Logo_S.png" />{{ site.name }}</h1>
-      <h2 class="value-proposition">A framework for asynchronous programming<br />with observable streams</h3>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+        <h1 class="title"><img src="{{ site.url }}/assets/Rx_Logo_S.png" />{{ site.name }}</h1>
+        <h2 class="value-proposition">A framework for asynchronous programming<br />with observable streams</h2>
+        <a class="btn btn-special btn-lg" href="{{ site.url }}/languages.html">Choose your platform</a>
+      </div>
     </div>
   </div>
+  <span class="scroll-down-indicator glyphicon glyphicon-chevron-down"></span>
 </div>
 
-<div class="container">
-  <div class="col-md-8 col-md-offset-2">
-    {{ content }}
+<div class="container frontpage-content">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h1>The Observer pattern done right</h1>
+      <h4>ReactiveX is a combination of the best ideas from<br /> the <span class="em-color1">Observer</span> pattern, the <span class="em-color2">Iterator</span> pattern, and <span class="em-color3">functional programming</span></h4>
+      <div class="diagram">
+        <div class="stream">
+          <div class="stream-arrow"></div>
+          <div class="diagram-stream-item input-stream-item1"></div>
+          <div class="diagram-stream-blip input-stream-blip1 js-input-blip1"></div>
+          <div class="diagram-stream-item input-stream-item2"></div>
+          <div class="diagram-stream-blip input-stream-blip2 js-input-blip2"></div>
+          <div class="diagram-stream-item input-stream-item3"></div>
+          <div class="diagram-stream-blip input-stream-blip3 js-input-blip3"></div>
+          <div class="diagram-stream-item input-stream-item4"></div>
+          <div class="diagram-stream-blip input-stream-blip4 js-input-blip4"></div>
+          <div class="diagram-scheduler js-input-scheduler"></div>
+          <div class="stream-arrow-head1"></div>
+          <div class="stream-arrow-head2"></div>
+          <div class="stream-end"></div>
+        </div>
+        <div class="operator">throttle
+          <div class="input-stream-mapper input-mapper1"></div>
+          <div class="input-stream-mapper-head1 input-mapper1"></div>
+          <div class="input-stream-mapper-head2 input-mapper1"></div>
+          <div class="input-stream-mapper input-mapper2"></div>
+          <div class="input-stream-mapper-head1 input-mapper2"></div>
+          <div class="input-stream-mapper-head2 input-mapper2"></div>
+          <div class="input-stream-mapper input-mapper3"></div>
+          <div class="input-stream-mapper-head1 input-mapper3"></div>
+          <div class="input-stream-mapper-head2 input-mapper3"></div>
+          <div class="input-stream-mapper input-mapper4"></div>
+          <div class="input-stream-mapper-head1 input-mapper4"></div>
+          <div class="input-stream-mapper-head2 input-mapper4"></div>
+          <div class="output-stream-mapper output-mapper1"></div>
+          <div class="output-stream-mapper-head1 output-mapper1"></div>
+          <div class="output-stream-mapper-head2 output-mapper1"></div>
+          <div class="output-stream-mapper output-mapper4"></div>
+          <div class="output-stream-mapper-head1 output-mapper4"></div>
+          <div class="output-stream-mapper-head2 output-mapper4"></div>
+        </div>
+        <div class="stream">
+          <div class="stream-arrow"></div>
+          <div class="diagram-stream-item output-stream-item1"></div>
+          <div class="diagram-stream-blip output-stream-blip1 js-output-blip1"></div>
+          <div class="diagram-stream-item output-stream-item4"></div>
+          <div class="diagram-stream-blip output-stream-blip4 js-output-blip4"></div>
+          <div class="diagram-scheduler js-output-scheduler"></div>
+          <div class="stream-arrow-head1"></div>
+          <div class="stream-arrow-head2"></div>
+          <div class="stream-end"></div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <div class="frontpage-feature ps-top-to-bottom">
+        <h2><img src="{{ site.url }}/assets/wand.svg" />CREATE</h2>
+        <p>Easily create event streams or data streams.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="frontpage-feature ps-top-to-bottom">
+        <h2><img src="{{ site.url }}/assets/join.svg" />COMBINE</h2>
+        <p>Compose and transform streams with query-like operators.</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="frontpage-feature ps-top-to-bottom">
+        <h2><img src="{{ site.url }}/assets/ear.svg" />LISTEN</h2>
+        <p>Subscribe to any observable stream to perform side effects.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="horizontal-line"></div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h1>Ubiquitous</h1>
+      <h4>ReactiveX is everywhere, and it's meant for everything.</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <div class="frontpage-feature">
+        <h2 class="em-color1">FRONTEND</h2>
+        <p>Manipulate UI events and API responses, on the Web with RxJS, or on mobile with Rx.NET and RxJava</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="frontpage-feature">
+        <h2 class="em-color2">CROSS-PLATFORM</h2>
+        <p>Available for idiomatic Java, Scala, C#, Clojure, JavaScript, Python, Groovy, JRuby, and others</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="frontpage-feature">
+        <h2 class="em-color3">BACKEND</h2>
+        <p>Embrace ReactiveX's asynchronicity, enabling concurrency and implementation independence</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="horizontal-line"></div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Better codebases</h1>
+      <div class="frontpage-left-feature frontpage-lambda">
+        <h3>Functional</h3>
+        <p>Avoid intricate stateful programs, using clean input/output functions
+        over observable streams.</p>
+      </div>
+      <div class="frontpage-left-feature frontpage-less">
+        <h3>Less is more</h3>
+        <p>ReactiveX's operators often reduce what was once a elaborate challenge
+        into a few lines of code.</p>
+      </div>
+      <div class="frontpage-left-feature frontpage-lightning">
+        <h3>Async error handling</h3>
+        <p>Traditional try/catch is powerless for errors in asynchronous computations,
+        but ReactiveX is equiped with proper mechanisms for handling errors.</p>
+      </div>
+      <div class="frontpage-left-feature frontpage-concurrency">
+        <h3>Concurrency made easy</h3>
+        <p>Observables and Schedulers in ReactiveX allow the programmer to
+        abstract away low-level threading, synchronization, and concurrency issues.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="horizontal-line"></div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1><em>Reactive Revolution</em></h1>
+      <h3>ReactiveX is more than a framework, it's an idea and a breakthrough in programming. It has inspired several other frameworks, and even programming languages.</h3>
+    </div>
+  </div>
+
+  <div class="horizontal-line"></div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 frontpage-logos">
+      <h1>We use ReactiveX</h1>
+      <a href="http://netflix.github.io" class="frontpage-logo netflix-logo"></a>
+      <a href="http://github.com/" class="frontpage-logo github-logo"></a>
+      <a href="http://www.couchbase.com/" class="frontpage-logo couchbase-logo"></a>
+      <a href="http://soundcloud.com/" class="frontpage-logo soundcloud-logo"></a>
+      <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx" class="frontpage-logo microsoft-logo"></a>
+      <a href="http://www.futurice.com" class="frontpage-logo futurice-logo"></a>
+    </div>
+  </div>
+
+  {{ content }}
 </div>
+
+<script src="/js/frontpage.js"></script>

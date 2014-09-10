@@ -1,4 +1,4 @@
 ---
 layout: frontpage
-title: ReactiveX - Intro
+title: ReactiveX
 ---

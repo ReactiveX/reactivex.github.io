@@ -1,0 +1,218 @@
+
+.jumbotron {
+  background-image: url("/assets/reactivex_bg.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top center;
+  perspective: 1rem;
+  min-height: ~"calc(100vh - 50px)"; // 50px is @navbar-height
+  color: @gray-lighter;
+  position: relative;
+  h1.title {
+    font-family: @reactivex-font-special;
+    img {
+      width: 80px;
+      height: 80px;
+      margin-top: -10px;
+      margin-right: @margin-base;
+    }
+    margin-bottom: @margin-extra-large;
+  }
+  h2.value-proposition {
+    line-height: 1.3em;
+    margin-bottom: @margin-extra-large;
+  }
+}
+.scroll-down-indicator {
+  position: absolute;
+  font-size: 2rem;
+  top: 90vh;
+  left: calc(50vw - 1rem);
+  color: rgba(255,255,255,0.5);
+}
+
+.btn-special {
+  // border: 2px solid white;
+  background-color: @reactivex-pinkle;
+  color: white;
+  &:hover {
+    background-color: darken(@reactivex-pinkle, 5%);
+    color: white;
+  }
+}
+
+.frontpage-content {
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-align: center;
+  }
+  h4 {
+    line-height: 1.6rem;
+  }
+}
+
+.em-color1 {
+  color: @reactivex-pink;
+}
+
+.em-color2 {
+  color: @reactivex-pinkle;
+}
+
+.em-color3 {
+  color: @reactivex-purple;
+}
+
+.horizontal-line {
+  position: relative;
+  margin: @margin-huge 0;
+  width: 100%;
+  height: 1px;
+  &:before {
+    content: "";
+    position: absolute;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@gray-light), to(transparent));
+    background-image: -webkit-linear-gradient(to left, @gray-light, transparent);
+    background-image: -moz-linear-gradient(to left, @gray-light, transparent);
+    background-image: -o-linear-gradient(to left, @gray-light, transparent);
+    background-image: linear-gradient(to left, @gray-light, transparent);
+    left: 10%;
+    right: 50%;
+    height: 1px;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@gray-light), to(transparent));
+    background-image: -webkit-linear-gradient(to right, @gray-light, transparent);
+    background-image: -moz-linear-gradient(to right, @gray-light, transparent);
+    background-image: -o-linear-gradient(to right, @gray-light, transparent);
+    background-image: linear-gradient(to right, @gray-light, transparent);
+    left: 50%;
+    right: 10%;
+    height: 1px;
+  }
+}
+
+.frontpage-feature {
+  padding: @margin-base;
+  text-align: center;
+  margin-bottom: @margin-base;
+  h2 {
+    font-family: @reactivex-font-special;
+    margin-top: 0;
+    margin-bottom: @margin-base;
+    img {
+      width: 32px;
+      height: 32px;
+      margin-top: -7px;
+      margin-right: @margin-small;
+    }
+  }
+}
+
+.frontpage-left-feature {
+  text-align: left;
+  margin-top: @margin-large;
+  margin-left: 6rem;
+  position: relative;
+  h3 {
+    text-align: left;
+  }
+  &:before {
+    content: '';
+    color: @gray;
+    display: block;
+    position: absolute;
+    font-size: 4rem;
+    top: -1px;
+    left: -5.5rem;
+    width: 3rem;
+    height: 5rem;
+    margin-top: @margin-small;
+    background-repeat: no-repeat;
+    background-size: 3rem;
+  }
+  &.frontpage-lambda:before {
+    background-image: url("/assets/lambda.svg");
+    background-size: 2.5rem;
+  }
+  &.frontpage-less:before {
+    background-image: url("/assets/less.svg");
+  }
+  &.frontpage-lightning:before {
+    background-image: url("/assets/lightning.svg");
+    background-size: 2.5rem;
+  }
+  &.frontpage-concurrency:before {
+    background-image: url("/assets/concurrency.svg");
+    top: 0.5rem;
+  }
+}
+
+
+.frontpage-logos {
+  text-align: center;
+}
+.frontpage-logo {
+  padding: @margin-small @margin-base;
+  box-sizing: border;
+  display: inline-block;
+  width: 11rem;
+  height: 4rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.netflix-logo {
+  background-image: url("/assets/netflix-logo.png");
+  background-size: auto 60%;
+}
+.github-logo {
+  background-image: url("/assets/github-logo.png");
+  background-size: auto 58%;
+}
+.couchbase-logo {
+  background-image: url("/assets/couchbase-logo.png");
+  background-size: auto 84%;
+}
+.soundcloud-logo {
+  background-image: url("/assets/soundcloud-logo.png");
+  background-size: auto 82%;
+}
+.microsoft-logo {
+  background-image: url("/assets/microsoft-logo.png");
+  background-size: auto 55%;
+}
+.futurice-logo {
+  background-image: url("/assets/futurice-logo.jpg");
+  background-size: auto 60%;
+}
+
+.ps-top-to-bottom {
+  position: relative;
+  border-top: 1px solid @gray-light;
+}
+
+.ps-top-to-bottom:before,
+.ps-top-to-bottom:after {
+  content: "";
+  position: absolute;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@gray-light), to(transparent));
+  background-image: -webkit-linear-gradient(@gray-light, transparent);
+  background-image: -moz-linear-gradient(@gray-light, transparent);
+  background-image: -o-linear-gradient(@gray-light, transparent);
+  background-image: linear-gradient(@gray-light, transparent);
+  top: -1px;
+  bottom: -1px;
+  width: 1px;
+}
+
+.ps-top-to-bottom:before {
+  left: -1px;
+}
+
+.ps-top-to-bottom:after {
+  right: -1px;
+}

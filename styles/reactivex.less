@@ -9,6 +9,8 @@
 // ----------------------
 
 @import "variables.less";
+@import "frontpage.less";
+@import "frontpage-diagram.less";
 
 html {
   font-size: @font-size-base; // defines rem
@@ -35,42 +37,69 @@ body {
   .navbar-brand {
     color: @gray-lighter;
   }
-}
-
-.jumbotron {
-  background: url("/assets/diagmonds.png");
-  min-height: 400px;
-  color: @gray-lighter;
-  h1.title {
-    font-family: @reactivex-font-special;
-    img {
-      width: 80px;
-      height: 80px;
-      margin-top: -10px;
-      margin-right: 15px;
+  ul.dropdown-menu {
+    background: @gray-dark;
+    li > a {
+      color: @gray-light;
+      &:hover {
+        color: white;
+        background: @gray-dark;
+      }
     }
-    margin-bottom: 40px;
-  }
-  h2.value-proposition {
-    line-height: 1.3em;
+    li > em {
+      display: block;
+      padding: 3px 20px;
+      color: @gray-light;
+    }
   }
 }
 
 .full-page-container {
   .container;
-  margin-top: 1rem;
+  margin-top: @margin-large;
+}
+
+.external-link {
+  .glyphicon;
+  .glyphicon-new-window;
+  vertical-align: super;
+  font-size: 8px;
+  margin-left: @margin-extra-small;
 }
 
 .footer {
-  text-align: center;
-  padding: 20px 0 40px;
-  a {
-    img {
-      width: 1.4rem;
-      margin-right: 0.4rem;
-    }
+  background: @gray-dark;
+  padding-bottom: @margin-extra-large;
+  margin-top: @margin-extra-large;
+  color: @gray-light;
+  box-shadow: inset 0 27px 27px -27px @gray-base;
+  .row {
+    margin-top: @margin-large;
   }
-}
-span.dot {
-  margin: 0 10px;
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  h4 {
+    color: @gray-lighter;
+    font-family: @reactivex-font-special;
+    text-transform: uppercase;
+    display: inline-block;
+    padding-bottom: @margin-small;
+    border-bottom: 1px solid @reactivex-pinkle;
+  }
+  a {
+    color: @gray-light;
+  }
+  ul.footer-section > li {
+    line-height: 1.5rem;
+  }
+  .footer-logo {
+    width: 50px;
+    float: left;
+    margin-right: @margin-base;
+  }
+  .disclaimer {
+    font-size: @font-size-small;
+  }
 }

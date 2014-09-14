@@ -23,11 +23,16 @@
     margin-bottom: @margin-extra-large;
   }
 }
+@media (max-width: @screen-xs-max) {
+  .jumbotron {
+    background-attachment: scroll;
+  }
+}
 .scroll-down-indicator {
   position: absolute;
   font-size: 2rem;
-  top: 90vh;
-  left: calc(50vw - 1rem);
+  top: ~"calc(90vh - 3rem)";
+  left: ~"calc(50vw - 1rem)";
   color: rgba(255,255,255,0.5);
 }
 

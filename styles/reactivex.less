@@ -19,6 +19,13 @@ html {
 body {
   padding-top: @navbar-height;
   font-family: @reactivex-font-basic;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
 }
 
 .container-full {
@@ -67,7 +74,7 @@ body {
   margin-left: @margin-extra-small;
 }
 
-.footer {
+footer {
   background: @gray-dark;
   padding-bottom: @margin-extra-large;
   margin-top: @margin-extra-large;

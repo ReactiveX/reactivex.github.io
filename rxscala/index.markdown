@@ -8,9 +8,9 @@ id: rxscala
 
 RxScala brings *Reactive Extensions* to Scala. Rx was first implemented for [.NET](https://rx.codeplex.com), and is now being implemented in [Java](https://github.com/ReactiveX/RxJava). The RxScala project is an adaptor for RxJava. Its code is in a seperate [repository](https://github.com/ReactiveX/RxScala) and it's also distributed on [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rxjava-scala%22).
 
-Get started by looking at [RxScalaDemo.scala](https://github.com/ReactiveX/RxScala/blob/0.x/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala), the [RxScala examples](https://github.com/ReactiveX/RxScala/tree/0.x/src/examples), or the [Scaladoc](http://rxscala.github.io/scaladoc/index.html#rx.lang.scala.Observable).
+Get started by looking at [RxScalaDemo.scala](https://github.com/ReactiveX/RxScala/blob/0.x/src/examples/scala/rx/lang/scala/examples/RxScalaDemo.scala), the [RxScala examples](https://github.com/ReactiveX/RxScala/tree/0.x/src/examples), or the [Scaladoc]({{ site.url }}/rxscala/scaladoc/index.html#rx.lang.scala.Observable).
 
-There's also a [comparison table](http://rxscala.github.io/comparison.html) between Java Observable and Scala Observable.
+There's also a [comparison table]({{ site.url }}/rxscala/comparison.html) between Java Observable and Scala Observable.
 
 ## Warning
 

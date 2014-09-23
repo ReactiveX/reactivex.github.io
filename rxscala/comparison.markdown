@@ -1,9 +1,11 @@
 ---
-layout: simple
+layout: comparison
 title: Comparison of Scala Observable and Java Observable
 ---
 
-Note:
+#Comparison of Scala Observable and Java Observable
+
+###Note:
 
 *    This table contains both static methods and instance methods.
 *    If a signature is too long, move your mouse over it to get the full signature.
@@ -286,5 +288,8 @@ Note:
 | <span title="zipWith(Iterable&lt;? extends T2&gt;, Func2&lt;? super T, ? super T2, ? extends R&gt;)"><code>zipWith(...)</code></span> | `zipWith(Iterable[U])((T, U) => R)` |
 | <span title="zipWith(Observable&lt;? extends T2&gt;, Func2&lt;? super T, ? super T2, ? extends R&gt;)"><code>zipWith(...)</code></span> | `zipWith(Observable[U])((T, U) => R)` |
 
+
 This table was generated on Fri Sep 19 12:57:13 CEST 2014.
+
 **Do not edit**. Instead, edit `rx.lang.scala.CompletenessTest`.
+

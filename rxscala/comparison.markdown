@@ -1,5 +1,5 @@
 ---
-layout: comparison
+layout: simple
 title: Comparison of Scala Observable and Java Observable
 ---
 

@@ -39,6 +39,7 @@ id: tutorials
 
 ## RxScala
 * [RxJava: Reactive Extensions in Scala](http://www.youtube.com/watch?v=tOMK_FYJREw&feature=youtu.be): video of Ben Christensen and Matt Jacobs presenting at SF Scala
+* [RxScala + Swing GUIs](https://github.com/samuelgruetter/rx-playground): Some motivating RxScala examples with Swing GUIs by Samuel Gruetter
 
 ## Rx.NET
 * [rx.codeplex.com](https://rx.codeplex.com)

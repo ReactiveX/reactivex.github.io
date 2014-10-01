@@ -9,6 +9,7 @@ id: languages
 * Java: [RxJava](https://github.com/ReactiveX/RxJava)
 * JavaScript: [RxJS](https://github.com/Reactive-Extensions/RxJS)
 * C#: [Rx.NET](https://github.com/Reactive-Extensions/Rx.NET)
+* C#(Unity): [UniRx](https://github.com/neuecc/UniRx)
 * Scala: [RxScala](https://github.com/ReactiveX/RxScala)
 * Clojure: [RxClojure](https://github.com/ReactiveX/RxClojure)
 * C++: [RxCpp](https://github.com/Reactive-Extensions/RxCpp)

@@ -1,0 +1,46 @@
+body { font-family: Verdana,Arial,sans-serif;
+       background: #003; }
+div#operator { background: #ffc;
+               margin: 2em;
+               padding: 25px;
+               min-width: 640px;
+               border-radius: 10px;
+               border-style: solid;
+               border-width: 5px;
+               border-color: #ca0; }
+h1#canonical { border-radius: 10px;
+               border-style: solid;
+               border-color: #ca0;
+               border-width: 5px;
+               background: #fff;
+               font-size: 2em;
+               margin: -30px;
+               margin-bottom: 1em;
+               padding-left: 1em; }
+h2#summary { font-style: italic;
+             font-size: 1.5em; }
+figure { text-align: center;
+         margin: 0; }
+span.operator { font-family: monospace; background: #ffc; }
+#accordion { font-size: 1.0em; }
+
+div.code { border-style: solid;
+           border-width: 2px;
+           border-color: #000;
+           background: #ddf;
+           font-family: monospace;
+           padding-left: 0.5em; padding-right: 0.5em; }
+div.output { border-style: solid;
+             border-width: 2px;
+             border-color: #000;
+             background: #000;
+             color: #ccf;
+             font-family: monospace;
+             padding-left: 0.5em; padding-right: 0.5em; }
+
+figure.variant { border-radius: 10px;
+                 border-style: solid;
+                 border-color: #888;
+                 border-width: 2px; }
+figcaption { text-align: left;
+             margin-left: 2em; margin-right: 2em; }

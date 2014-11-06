@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <title>Count</title>
   <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="CSS/operators.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
  </head>
  <body>
-  <div id="operator">
-   <h1 id="canonical">Count</h1>
-   <h2 id="summary">count the number of items emitted by the source Observable and emit only this
-    value</h2>
+  <div class="container"><div class="col-md-8 col-md-offset-2">
+   <h1>Count</h1>
+   <h3>count the number of items emitted by the source Observable and emit only this
+    value</h3>
    <figure>
-    <img src="IMAGES/Count.png" width="640" height="310" alt="Count" />
+    <img src="IMAGES/Count.png" width="640" alt="Count" />
    </figure>
    <p>
     The <span class="operator">Count</span> operator transforms an Observable that emits items into
@@ -27,7 +27,7 @@
    <div id="accordion">
 
 <!-- RxClojure ================================================================================ -->
-    <h3>RxClojure</h3><div id="RxClojure">
+    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
      <p>
       RxClojure has both <code>count</code> and <code>longCount</code> variants of this operator,
       but both of these in fact return long values.
@@ -35,14 +35,14 @@
     </div>
 
 <!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp</h3><div id="RxCpp">
+    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
      <p>
       RxCpp implements this operator as <code>count</code>.
      </p>
     </div>
 
 <!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy</h3><div id="RxGroovy">
+    <h3>RxGroovy</h3><div id="RxGroovy" class="operator-language-description">
      <p>
       In RxGroovy the operator is called <code>count</code> and the Observable it creates emits an
       Integer value. There is also a <code>countLong</code> whose Observable emits a Long value.
@@ -67,7 +67,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- RxJava =================================================================================== -->
-    <h3>RxJava</h3><div id="RxJava">
+    <h3>RxJava</h3><div id="RxJava" class="operator-language-description">
      <p>
       In RxJava the operator is called <code>count</code> and the Observable it creates emits an
       Integer value. There is also a <code>countLong</code> whose Observable emits a Long value.
@@ -78,7 +78,7 @@ assertEquals( new Integer(3), Observable.from(items).count().toBlocking().single
     </div>
 
 <!-- RxJS ===================================================================================== -->
-    <h3>RxJS</h3><div id="RxJS">
+    <h3>RxJS</h3><div id="RxJS" class="operator-language-description">
      <p>
       In RxJS the operator <code>count</code> counts the number of items in the source Observable
       that satisfy a specified predicate. That predicate takes the form of a function that takes
@@ -117,7 +117,7 @@ numberOfItems = someObservable.count(function() { return true; });</pre></div>
     </div>
 
 <!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin</h3><div id="RxKotlin">
+    <h3>RxKotlin</h3><div id="RxKotlin" class="operator-language-description">
      <p>
       RxKotlin implements this operator as <code>count</code>.
      </p>
@@ -127,7 +127,7 @@ assertEquals( 5, Observable.from(list)!!.count()!!.toBlocking()!!.single() )</pr
     </div>
 
 <!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET</h3><div id="RxNET">
+    <h3>Rx.NET</h3><div id="RxNET" class="operator-language-description">
      <p>
       In Rx.NET the Observable this operator creates emits an Integer value, but there is also a
       <code>LongCount</code> whose Observable emits a Long value. With both variants, you can either
@@ -137,7 +137,7 @@ assertEquals( 5, Observable.from(list)!!.count()!!.toBlocking()!!.single() )</pr
     </div>
 
 <!-- RxPY ===================================================================================== -->
-    <h3>RxPY</h3><div id="RxPY">
+    <h3>RxPY</h3><div id="RxPY" class="operator-language-description">
      <p>
       In RxPY you have the option to pass <code>count</code> a predicate that takes an item emitted
       by the source Observable as a parameter. If you do so, <code>count</code> will emit a count
@@ -151,7 +151,7 @@ numberOfNegativeItems = someObservable.count(lambda x: x &lt; 0)</pre></div>
     </div>
 
 <!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb</h3><div id="Rxrb">
+    <h3>Rx.rb</h3><div id="Rxrb" class="operator-language-description">
      <p>
       In Rx.rb you have the option to pass <code>count</code> a predicate that takes an item emitted
       by the source Observable as a parameter. If you do so, <code>count</code> will emit a count
@@ -162,7 +162,7 @@ numberOfNegativeItems = someObservable.count(lambda x: x &lt; 0)</pre></div>
     </div>
 
 <!-- RxScala ================================================================================== -->
-    <h3>RxScala</h3><div id="RxScala">
+    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
      <p>
       In RxScala the operator <code>count</code> counts the number of items in the source Observable
       that satisfy a specified predicate. That predicate accepts an emitted item as a parameter and
@@ -176,7 +176,7 @@ numberOfNegativeItems = someObservable.count(lambda x: x &lt; 0)</pre></div>
     </div>
 
    </div>
-  </div>
+  </div></div>
 
  <script src="JS/jquery-1.11.1.min.js"></script>
  <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>

@@ -5,7 +5,8 @@
   background-size: cover;
   background-position: top center;
   perspective: 1rem;
-  min-height: ~"calc(100vh - 50px)"; // 50px is @navbar-height
+  height: ~"calc(100vh - 50px)"; // 50px is @navbar-height
+  max-height: 700px;
   color: @gray-lighter;
   position: relative;
   h1.title {
@@ -31,8 +32,9 @@
 .scroll-down-indicator {
   position: absolute;
   font-size: 2rem;
-  top: ~"calc(90vh - 3rem)";
   left: ~"calc(50vw - 1rem)";
+  bottom: 3rem;
+  top: inherit;
   color: rgba(255,255,255,0.5);
 }
 

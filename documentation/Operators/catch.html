@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset="utf-8" />
+  <title>Catch</title>
+  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+ </head>
+ <body>
+  <div class="container"><div class="col-md-8 col-md-offset-2">
+   <h1>Catch</h1>
+   <h3>recover from an onError notification by continuing the sequence without error</h3>
+   <figure>
+    <img src="IMAGES/Catch.png" width="640" alt="Catch" />
+   </figure>
+   <p>
+    The <span class="operator">Catch</span> operator intercepts an <code>onError</code>
+    notification from the source Observable and, instead of passing it through to any
+    observers, replaces it with some other item or sequence of items, potentially allowing
+    the resulting Observable to terminate normally or not to terminate at all.
+   </p><p>
+    There are several variants of the <span class="operator">Catch</span> operator, and a
+    variety of names used by different ReactiveX implementations to describe this operation,
+    as you can see in the sections below.
+   </p><p>
+    In some ReactiveX implementations, there is an operator called something like
+    &ldquo;OnErrorResumeNext&rdquo; that behaves like a <span class="operator">Catch</span>
+    variant: specifically reacting to an <code>onError</code> notification from the source
+    Observable. In others, there is an operator with that name that behaves more like a
+    <span class="operator">Concat</span> variant: performing the concatination operation
+    regardless of whether the source Observable terminates normally or with an error. This is
+    unfortunate and confusing, but something we have to live with.
+   </p>
+   <h4>See Also:</h4>
+   <ul>
+    <li><a href="concat.html"><span class="operator">Concat</span></a></li>
+    <li><a href="retry.html"><span class="operator">Retry</span></a></li>
+   </ul>
+   <h2>Language-Specific Information:</h2>
+   <div id="accordion">
+
+<!-- RxClojure ================================================================================ -->
+    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
+     <p>
+      RxClojure implements this operator as <code>catch*</code>. This operator takes two arguments,
+      both of which are functions of your choosing that take the exception raised by
+      <code>onError</code> as their single parameters. The first function is a predicate. If it
+      returns <code>false</code>, <code>catch*</code> passes the <code>onError</code> notification
+      unchanged to its observers. If it returns <code>true</code>, however, <code>catch*</code>
+      swallows the error, calls the second function (which returns an Observable), and passes along
+      the emissions and notifications from this new Observable to its observers.
+     </p>
+     <figure>
+      <img src="IMAGES/catchX.png" width="640" alt="catch*" />
+     </figure>
+     <p>
+      You may replace the first function parameter (the predicate that evaluates the exception)
+      with a class object representing a variety of exception. If you do this, <code>catch*</code>
+      will treat it as equivalent to predicate that performs an <code>instance?</code> check to see
+      if the exception from the <code>onError</code> notification is an instance of the class
+      object. In other words:
+     </p>
+     <div class="code clojure"><pre>
+(->> my-observable
+  (catch* IllegalArgumentException
+          (fn [e] (rx/return 1)))
+)</pre></div>
+     <p>
+      is equivalent to:
+     </p>
+     <div class="code clojure"><pre>
+(->> my-observable
+  (catch* (fn [e] (-> instance? IllegalArgumentException e))
+          (fn [e] (rx/return 1)))
+)</pre></div>
+     
+    </div>
+
+<!-- RxCpp ==================================================================================== -->
+    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+     <p>
+      RxCpp does not implement the <span class="operator">Catch</span> operator.
+     </p>
+    </div>
+
+<!-- RxGroovy ================================================================================= -->
+    <h3>RxGroovy</h3><div id="RxGroovy" class="operator-language-description">
+     <p>
+      RxGroovy implements the <span class="operator">Catch</span> operator in the same way as
+      does RxJava. There are three distinct operators that provide this functionality:
+     </p>
+     <dl>
+      <dt><code>onErrorReturn</code></dt>
+       <dd>instructs an Observable to emit a particular item when it encounters an error, and then terminate normally</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onExceptionResumeNext</code></dt>
+       <dd>instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)</dd>
+     </dl>
+     <figure>
+      <img src="IMAGES/onErrorReturn.png" width="640" alt="onErrorReturn" />
+     </figure>
+     <figure>
+      <img src="IMAGES/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+     </figure>
+     <figure>
+      <img src="IMAGES/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+     </figure>
+     <h4>Sample code:</h4>
+     <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber ->
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Three');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Two');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('One');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onError();
+});
+def myFallback = Observable.create({ aSubscriber ->
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('0');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('1');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('2');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onCompleted();
+});
+
+myObservable.onErrorResumeNext(myFallback).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+Three
+Two
+One
+0
+1
+2
+Sequence complete</pre></div>
+    </div>
+
+<!-- RxJava =================================================================================== -->
+    <h3>RxJava</h3><div id="RxJava" class="operator-language-description">
+     <p>
+      RxJava implements the <span class="operator">Catch</span> operator with three distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>onErrorReturn</code></dt>
+       <dd>instructs an Observable to emit a particular item when it encounters an error, and then terminate normally</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onExceptionResumeNext</code></dt>
+       <dd>instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)</dd>
+     </dl>
+     <figure>
+      <img src="IMAGES/onErrorReturn.png" width="640" alt="onErrorReturn" />
+     </figure>
+     <figure>
+      <img src="IMAGES/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+     </figure>
+     <figure>
+      <img src="IMAGES/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+     </figure>
+    </div>
+
+<!-- RxJS ===================================================================================== -->
+    <h3>RxJS</h3><div id="RxJS" class="operator-language-description">
+     <p>
+      RxJS implements the <span class="operator">Catch</span> operator with two distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>catch</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error or if the source Observable terminates normally</dd>
+     </dl>
+     <p>
+      For those browsers (e.g. Internet Explorer before IE9) for which the name &ldquo;catch&rdquo;
+      creates a conflict, there is an alias called <code>catchException</code>
+     </p><p>
+      This implementation borrows the confusing nomenclature from Rx.NET, in which
+      <code>onErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
+      on a normal, error-free termination of the source Observable.
+     </p>
+    </div>
+
+<!-- RxKotlin ================================================================================= -->
+    <h3>RxKotlin</h3><div id="RxKotlin" class="operator-language-description">
+     <p>
+      RxKotlin implements the <span class="operator">Catch</span> operator in the same way as
+      does RxJava. There are three distinct operators that provide this functionality:
+     </p>
+     <dl>
+      <dt><code>onErrorReturn</code></dt>
+       <dd>instructs an Observable to emit a particular item when it encounters an error, and then terminate normally</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onExceptionResumeNext</code></dt>
+       <dd>instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)</dd>
+     </dl>
+     <figure>
+      <img src="IMAGES/onErrorReturn.png" width="640" alt="onErrorReturn" />
+     </figure>
+     <figure>
+      <img src="IMAGES/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+     </figure>
+     <figure>
+      <img src="IMAGES/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+     </figure>
+    </div>
+
+<!-- Rx.NET =================================================================================== -->
+    <h3>Rx.NET</h3><div id="RxNET" class="operator-language-description">
+     <p>
+      Rx.NET implements the <span class="operator">Catch</span> operator with two distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>Catch</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>OnErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error or if the source Observable terminates normally</dd>
+     </dl>
+     <p>
+      This implementation introduces a confusing nomenclature, in which in spite of its name
+      <code>onErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
+      on a normal, error-free termination of the source Observable. It is therefore more like a
+      concatination operator.
+     </p><p>
+      The <code>Catch</code> operator has a variant that allows you to specify which sort of
+      Exception you want to catch. If you use that variant of the operator, any other Exceptions
+      will be passed through to the observer as if the <code>Catch</code> operator had not been
+      applied.
+     </p>
+    </div>
+
+<!-- RxPY ===================================================================================== -->
+    <h3>RxPY</h3><div id="RxPY" class="operator-language-description">
+     <p>
+      RxPY implements the <span class="operator">Catch</span> operator with two distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>catch_exception</code></dt>
+       <dd>instructs an Observable to begin emitting items from a set of other Observables, one Observable at a time, until one of those Observables terminates successfully, if it encounters an error</dd>
+      <dt><code>on_error_resume_next</code></dt>
+       <dd>instructs an Observable to concatinate items emitted by a set of other Observables, one Observable at a time, regardless of whether the source Observable or any subsequent Observable terminates with an error</dd>
+     </dl>
+     <p>
+      You may pass <code>catch_exception</code> a set of back-up Observables either as individual
+      function parameters or as a single array of Observables. If it encounters an
+      <code>onError</code> notification from the source Observable, it will subscribe to and begin
+      mirroring the first of these back-up Observables. If this back-up Observable itself
+      issues an <code>onError</code> notification, <code>catch_exception</code> will swallow it
+      and switch over to the next back-up Observable. If any of these Observables issues an
+      <code>onCompleted</code> notification, <code>catch_exception</code> will pass this along
+      and will stop.
+     </p><p>
+      You may pass <code>on_error_resume_next</code> a set of back-up Observables either as
+      individual function parameters, as a single array of Observables, or as a factory function
+      that generates Observables. When the source Observable terminates, whether normally or with
+      an error, <code>on_error_resume_next</code> will subscribe to and begin mirroring the first
+      of these back-up Observables, and then will recursively continue this concatination process
+      for each additional Observable until there are no more Observables to mirror, at which time
+      it will pass on the <code>onError</code> or <code>onCompleted</code> notification from the
+      last of these Observables.
+     </p>
+    </div>
+
+<!-- Rx.rb ==================================================================================== -->
+    <h3>Rx.rb</h3><div id="Rxrb" class="operator-language-description">
+     <p>
+<!-- rescue_error, on_error_resume_next -->
+     </p>
+    </div>
+
+<!-- RxScala ================================================================================== -->
+    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
+     <p>
+<!-- onErrorResumeNext, onErrorReturn, onExceptionResumeNext -->
+     </p>
+    </div>
+
+   </div>
+  </div></div>
+
+ <script src="JS/jquery-1.11.1.min.js"></script>
+ <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+ <script>
+  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
+ </script>
+ </body>
+</html>

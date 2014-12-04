@@ -100,12 +100,45 @@
      <figure>
       <img src="IMAGES/onErrorReturn.png" width="640" alt="onErrorReturn" />
      </figure>
+     <p>
+      The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
+      source Observable, unless that Observable invokes <code>onError</code> in which case, rather
+      than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
+      specified item and invoke the observer&#8217;s <code>onCompleted</code> method, as shown in
+      the following sample code:
+     </p>
+     <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber ->
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Four');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Three');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Two');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('One');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onError();
+});
+
+myObservable.onErrorReturn({ return('Blastoff!'); }).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);
+</pre></div>
+     <div class="output"><pre>
+Four
+Three
+Two
+One
+Blastoff!
+Sequence complete
+</pre></div>
      <figure>
       <img src="IMAGES/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
      </figure>
-     <figure>
-      <img src="IMAGES/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
-     </figure>
+     <p>
+      The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
+      the source Observable, unless that Observable invokes <code>onError</code> in which case,
+      rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
+      instead begin mirroring a second, backup Observable, as shown in the following sample code:
+     </p>
      <h4>Sample code:</h4>
      <div class="code groovy"><pre>
 def myObservable = Observable.create({ aSubscriber ->
@@ -134,6 +167,18 @@ One
 1
 2
 Sequence complete</pre></div>
+     <figure>
+      <img src="IMAGES/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+     </figure>
+     <p>
+      Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
+      behavior of the source Observable, unless that Observable invokes <code>onError</code> in
+      which case, if the Throwable passed to <code>onError</code> is an Exception, rather than
+      propagating that Exception to the observer, <code>onExceptionResumeNext</code> will instead
+      begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
+      Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
+      observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
+     </p>
     </div>
 
 <!-- RxJava =================================================================================== -->
@@ -153,12 +198,33 @@ Sequence complete</pre></div>
      <figure>
       <img src="IMAGES/onErrorReturn.png" width="640" alt="onErrorReturn" />
      </figure>
+     <p>
+      The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
+      source Observable, unless that Observable invokes <code>onError</code> in which case, rather
+      than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
+      specified item and invoke the observer&#8217;s <code>onCompleted</code> method.
+     </p>
      <figure>
       <img src="IMAGES/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
      </figure>
+     <p>
+      The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
+      the source Observable, unless that Observable invokes <code>onError</code> in which case,
+      rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
+      instead begin mirroring a second, backup Observable.
+     </p>
      <figure>
       <img src="IMAGES/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
      </figure>
+     <p>
+      Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
+      behavior of the source Observable, unless that Observable invokes <code>onError</code> in
+      which case, if the Throwable passed to <code>onError</code> is an Exception, rather than
+      propagating that Exception to the observer, <code>onExceptionResumeNext</code> will instead
+      begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
+      Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
+      observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
+     </p>
     </div>
 
 <!-- RxJS ===================================================================================== -->
@@ -173,10 +239,17 @@ Sequence complete</pre></div>
       <dt><code>onErrorResumeNext</code></dt>
        <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error or if the source Observable terminates normally</dd>
      </dl>
+     <figure>
+      <img src="IMAGES/catch.js.png" width="640" alt="catch" />
+     </figure>
      <p>
       For those browsers (e.g. Internet Explorer before IE9) for which the name &ldquo;catch&rdquo;
       creates a conflict, there is an alias called <code>catchException</code>
-     </p><p>
+     </p>
+     <figure>
+      <img src="IMAGES/onErrorResumeNext.js.png" width="640" alt="onErrorResumeNext" />
+     </figure>
+     <p>
       This implementation borrows the confusing nomenclature from Rx.NET, in which
       <code>onErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
       on a normal, error-free termination of the source Observable.
@@ -200,12 +273,33 @@ Sequence complete</pre></div>
      <figure>
       <img src="IMAGES/onErrorReturn.png" width="640" alt="onErrorReturn" />
      </figure>
+     <p>
+      The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
+      source Observable, unless that Observable invokes <code>onError</code> in which case, rather
+      than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
+      specified item and invoke the observer&#8217;s <code>onCompleted</code> method.
+     </p>
      <figure>
       <img src="IMAGES/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
      </figure>
+     <p>
+      The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
+      the source Observable, unless that Observable invokes <code>onError</code> in which case,
+      rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
+      instead begin mirroring a second, backup Observable.
+     </p>
      <figure>
       <img src="IMAGES/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
      </figure>
+     <p>
+      Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
+      behavior of the source Observable, unless that Observable invokes <code>onError</code> in
+      which case, if the Throwable passed to <code>onError</code> is an Exception, rather than
+      propagating that Exception to the observer, <code>onExceptionResumeNext</code> will instead
+      begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
+      Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
+      observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
+     </p>
     </div>
 
 <!-- Rx.NET =================================================================================== -->
@@ -220,16 +314,23 @@ Sequence complete</pre></div>
       <dt><code>OnErrorResumeNext</code></dt>
        <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error or if the source Observable terminates normally</dd>
      </dl>
+     <figure>
+      <img src="IMAGES/Catch.png" width="640" alt="Catch" />
+     </figure>
      <p>
-      This implementation introduces a confusing nomenclature, in which in spite of its name
-      <code>onErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
-      on a normal, error-free termination of the source Observable. It is therefore more like a
-      concatination operator.
-     </p><p>
       The <code>Catch</code> operator has a variant that allows you to specify which sort of
       Exception you want to catch. If you use that variant of the operator, any other Exceptions
       will be passed through to the observer as if the <code>Catch</code> operator had not been
       applied.
+     </p>
+     <figure>
+      <img src="IMAGES/OnErrorResumeNext.net.png" width="640" alt="OnErrorResumeNext" />
+     </figure>
+     <p>
+      This implementation introduces a confusing nomenclature, in which in spite of its name
+      <code>OnErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
+      on a normal, error-free termination of the source Observable. It is therefore more like a
+      concatination operator.
      </p>
     </div>
 
@@ -241,10 +342,13 @@ Sequence complete</pre></div>
      </p>
      <dl>
       <dt><code>catch_exception</code></dt>
-       <dd>instructs an Observable to begin emitting items from a set of other Observables, one Observable at a time, until one of those Observables terminates successfully, if it encounters an error</dd>
+       <dd>instructs an Observable, if it encounters an error, to begin emitting items from a set of other Observables, one Observable at a time, until one of those Observables terminates successfully</dd>
       <dt><code>on_error_resume_next</code></dt>
        <dd>instructs an Observable to concatinate items emitted by a set of other Observables, one Observable at a time, regardless of whether the source Observable or any subsequent Observable terminates with an error</dd>
      </dl>
+     <figure>
+      <img src="IMAGES/catch_exception.png" width="640" alt="catch_exception" />
+     </figure>
      <p>
       You may pass <code>catch_exception</code> a set of back-up Observables either as individual
       function parameters or as a single array of Observables. If it encounters an
@@ -254,7 +358,11 @@ Sequence complete</pre></div>
       and switch over to the next back-up Observable. If any of these Observables issues an
       <code>onCompleted</code> notification, <code>catch_exception</code> will pass this along
       and will stop.
-     </p><p>
+     </p>
+     <figure>
+      <img src="IMAGES/on_error_resume_next.png" width="640" alt="on_error_resume_next" />
+     </figure>
+     <p>
       You may pass <code>on_error_resume_next</code> a set of back-up Observables either as
       individual function parameters, as a single array of Observables, or as a factory function
       that generates Observables. When the source Observable terminates, whether normally or with
@@ -269,14 +377,107 @@ Sequence complete</pre></div>
 <!-- Rx.rb ==================================================================================== -->
     <h3>Rx.rb</h3><div id="Rxrb" class="operator-language-description">
      <p>
-<!-- rescue_error, on_error_resume_next -->
+      Rx.rb implements the <span class="operator">Catch</span> operator with two distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>rescue_error</code></dt>
+       <dd>instructs an Observable to begin emitting items from another Observable, or from an Observable returned from an action, if it encounters an error</dd>
+      <dt><code>on_error_resume_next</code></dt>
+       <dd>instructs an Observable to concatinate items emitted by another Observable to the sequence emitted by the source Observable, regardless of whether the source Observable terminates normally or with an error</dd>
+     </dl>
+     <figure>
+      <img src="IMAGES/rescue_error.png" width="640" alt="rescue_error" />
+     </figure>
+     <p>
+      You may pass <code>rescue_error</code> either an Observable or a factory action that
+      generates an Observable.
+     </p>
+     <figure>
+      <img src="IMAGES/on_error_resume_next.png" width="640" alt="on_error_resume_next" />
+     </figure>
+     <p>
+      In Rx.rb, <code>on_error_resume_next</code> inherits the misleading nomenclature from Rx.NET
+      in that it concatinates the second Observable sequence to the source sequence whether that
+      source sequence terminates normally or with an error.
      </p>
     </div>
 
 <!-- RxScala ================================================================================== -->
     <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
      <p>
-<!-- onErrorResumeNext, onErrorReturn, onExceptionResumeNext -->
+      Rx.rb implements the <span class="operator">Catch</span> operator with four distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>onErrorFlatMap</code></dt>
+       <dd>replaces all <code>onError</code> notifications from a misbehaving Observable into the emissions from a secondary Observable</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onErrorReturn</code></dt>
+       <dd>instructs an Observable to emit a particular item when it encounters an error, and then terminate normally</dd>
+      <dt><code>onExceptionResumeNext</code></dt>
+       <dd>instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)</dd>
+     </dl>
+     <figure>
+      <img src="IMAGES/onErrorFlatMap.png" width="640" alt="onErrorFlatMap" />
+     </figure>
+     <p>
+      <code>onErrorFlatMap</code> handles a special case: a source Observable that is noncompliant
+      with the Observable contract in such a way that it may interleave <code>onError</code>
+      notifications with its emissions without terminating. This operator allows you to replace
+      those <code>onError</code> notifications with the emissions of an Observable of your choosing
+      without unsubscribing from the source, so that any future items emitted from the source will
+      be passed along to observers as though the sequence had not been interrupted with an
+      <code>onError</code> notification.
+     </p><p>
+      Because <code>onErrorFlatMap</code> is designed to work with pathological source Observables
+      that do not terminate after issuing an error, it is mostly useful in debugging/testing
+      scenarios.
+     </p><p>
+      Note that you should apply <code>onErrorFlatMap</code> directly to the pathological source
+      Observable, and not to that Observable after it has been modified by additional operators,
+      as such operators may effectively renormalize the source Observable by unsubscribing from it
+      immediately after it issues an error. Below, for example, is an illustration showing how
+      <code>onErrorFlatMap</code> will respond to two error-generating Observables that have been
+      merged by the <a href="merge.html"><span class="operator">Merge</span></a> operator:
+     </p>
+     <figure>
+      <img src="IMAGES/onErrorFlatMap.withMerge.png" width="640" alt="unintuitive onErrorFlatMap and Merge interaction" />
+     </figure>
+     <p>
+      Note that <code>onErrorFlatMap</code> will not react to both errors generated by both
+      Observables, but only to the single error passed along by <code>merge</code>.
+     </p>
+     <figure>
+      <img src="IMAGES/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+     </figure>
+     <p>
+      The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
+      the source Observable, unless that Observable invokes <code>onError</code> in which case,
+      rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
+      instead begin mirroring a second, backup Observable.
+     </p>
+     <figure>
+      <img src="IMAGES/onErrorReturn.png" width="640" alt="onErrorReturn" />
+     </figure>
+     <p>
+      The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
+      source Observable, unless that Observable invokes <code>onError</code> in which case, rather
+      than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
+      specified item and invoke the observer&#8217;s <code>onCompleted</code> method.
+     </p>
+     <figure>
+      <img src="IMAGES/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+     </figure>
+     <p>
+      Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
+      behavior of the source Observable, unless that Observable invokes <code>onError</code> in
+      which case, if the Throwable passed to <code>onError</code> is an Exception, rather than
+      propagating that Exception to the observer, <code>onExceptionResumeNext</code> will instead
+      begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
+      Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
+      observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
      </p>
     </div>
 

@@ -24,7 +24,7 @@
     <code>concatMapObserver</code>, <code>for</code>, <code>forIn</code>/<code>for_in</code>
     <code>mapcat</code>, <code>selectConcat</code>, or <code>selectConcatObserver</code>) that
     transforms the items emitted by a source Observable into corresponding Observables and then
-    concatinates the items emitted by each of these Observables in the order in which they are
+    concatenates the items emitted by each of these Observables in the order in which they are
     observed and transformed.
    </p><p>
     The <a href="startwith.html"><span class="operator">StartWith</span></a> operator is similar to
@@ -51,14 +51,14 @@
       <img src="IMAGES/concat.png" width="640" alt="concat" />
      </figure>
      <p>
-      In RxClojure <code>concat</code> concatinates some number of individual Observables together
+      In RxClojure <code>concat</code> concatenates some number of individual Observables together
       in the order in which they are given.
      </p>
      <figure>
       <img src="IMAGES/concatX.png" width="640" alt="concat*" />
      </figure>
      <p>
-      The <code>concat*</code> operator concatinates the Observables emitted by an Observable
+      The <code>concat*</code> operator concatenates the Observables emitted by an Observable
       together, in the order in which they are emitted.
      </p>
     </div>
@@ -77,9 +77,9 @@
     <h3>RxGroovy</h3><div id="RxGroovy" class="operator-language-description">
      <p>
       RxGroovy implements this operator as <code>concat</code>. There are variants of this operator
-      that take between two and nine Observables as parameters, and that concatinate them in the
+      that take between two and nine Observables as parameters, and that concatenate them in the
       order they appear in the parameter list. There is also a variant that takes as a parameter an
-      Observable of Observables, and concatinates each of these Observables in the order that they
+      Observable of Observables, and concatenates each of these Observables in the order that they
       are emitted.
      </p>
      <figure>
@@ -113,9 +113,9 @@ Sequence complete</pre></div>
     <h3>RxJava</h3><div id="RxJava" class="operator-language-description">
      <p>
       RxJava implements this operator as <code>concat</code>. There are variants of this operator
-      that take between two and nine Observables as parameters, and that concatinate them in the
+      that take between two and nine Observables as parameters, and that concatenate them in the
       order they appear in the parameter list. There is also a variant that takes as a parameter an
-      Observable of Observables, and concatinates each of these Observables in the order that they
+      Observable of Observables, and concatenates each of these Observables in the order that they
       are emitted.
      </p>
      <figure>
@@ -137,7 +137,7 @@ Sequence complete</pre></div>
      </figure>
      <p>
       <code>concat</code> takes a variable number of Observables (or Promises) as parameters (or a
-      single array of Observables or Promises), and concatinates them in the order they appear in
+      single array of Observables or Promises), and concatenates them in the order they appear in
       the parameter list (or array). It exists as both an Observable prototype method and as an
       instance method.
      </p>
@@ -165,9 +165,9 @@ Sequence complete</pre></div>
     <h3>RxKotlin</h3><div id="RxKotlin" class="operator-language-description">
      <p>
       RxKotlin implements this operator as <code>concat</code>. There are variants of this operator
-      that take between two and nine Observables as parameters, and that concatinate them in the
+      that take between two and nine Observables as parameters, and that concatenate them in the
       order they appear in the parameter list. There is also a variant that takes as a parameter an
-      Observable of Observables, and concatinates each of these Observables in the order that they
+      Observable of Observables, and concatenates each of these Observables in the order that they
       are emitted.
      </p>
      <figure>
@@ -198,7 +198,7 @@ Sequence complete</pre></div>
      </figure>
      <p>
       In RxPY <code>concat</code> takes a variable number of Observables as parameters (or an
-      array of Observables), and concatinates them in the order they appear in the parameter list
+      array of Observables), and concatenates them in the order they appear in the parameter list
       (or array).
      </p>
      <figure>
@@ -225,9 +225,9 @@ Sequence complete</pre></div>
     <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
      <p>
       RxScala implements this operator in two ways. There is a <code>concat</code> operator that
-      accepts an Observable of Observables as its parameter, and then concatinates each of these
+      accepts an Observable of Observables as its parameter, and then concatenates each of these
       Observables in the order they are emitted. There is also a <code>++</code> operator that
-      concatinates one Observable to another.
+      concatenates one Observable to another.
      </p>
      <figure>
       <img src="IMAGES/plusplus.png" width="640" alt="plus-plus" />

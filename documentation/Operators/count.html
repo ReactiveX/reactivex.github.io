@@ -28,7 +28,7 @@
    <div id="accordion">
 
 <!-- RxClojure ================================================================================ -->
-    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
+    <h3>RxClojure: <code>count</code> and <code>longCount</code></h3><div id="RxClojure" class="operator-language-description">
      <p>
       RxClojure has both <code>count</code> and <code>longCount</code> variants of this operator,
       but both of these in fact return long values.
@@ -36,14 +36,14 @@
     </div>
 
 <!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+    <h3>RxCpp: <code>count</code></h3><div id="RxCpp" class="operator-language-description">
      <p>
       RxCpp implements this operator as <code>count</code>.
      </p>
     </div>
 
 <!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy</h3><div id="RxGroovy" class="operator-language-description">
+    <h3>RxGroovy: <code>count</code> and <code>countLong</code></h3><div id="RxGroovy" class="operator-language-description">
      <p>
       In RxGroovy the operator is called <code>count</code> and the Observable it creates emits an
       Integer value. There is also a <code>countLong</code> whose Observable emits a Long value.
@@ -68,7 +68,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- RxJava =================================================================================== -->
-    <h3>RxJava</h3><div id="RxJava" class="operator-language-description">
+    <h3>RxJava: <code>count</code> and <code>countLong</code></h3><div id="RxJava" class="operator-language-description">
      <p>
       In RxJava the operator is called <code>count</code> and the Observable it creates emits an
       Integer value. There is also a <code>countLong</code> whose Observable emits a Long value.
@@ -79,7 +79,7 @@ assertEquals( new Integer(3), Observable.from(items).count().toBlocking().single
     </div>
 
 <!-- RxJS ===================================================================================== -->
-    <h3>RxJS</h3><div id="RxJS" class="operator-language-description">
+    <h3>RxJS: <code>count</code></h3><div id="RxJS" class="operator-language-description">
      <p>
       In RxJS the operator <code>count</code> counts the number of items in the source Observable
       that satisfy a specified predicate. That predicate takes the form of a function that takes
@@ -118,7 +118,7 @@ numberOfItems = someObservable.count(function() { return true; });</pre></div>
     </div>
 
 <!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin</h3><div id="RxKotlin" class="operator-language-description">
+    <h3>RxKotlin: <code>count</code></h3><div id="RxKotlin" class="operator-language-description">
      <p>
       RxKotlin implements this operator as <code>count</code>.
      </p>
@@ -128,7 +128,7 @@ assertEquals( 5, Observable.from(list)!!.count()!!.toBlocking()!!.single() )</pr
     </div>
 
 <!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET</h3><div id="RxNET" class="operator-language-description">
+    <h3>Rx.NET: <code>Count</code> and <code>LongCount</code></h3><div id="RxNET" class="operator-language-description">
      <p>
       In Rx.NET the Observable this operator creates emits an Integer value, but there is also a
       <code>LongCount</code> whose Observable emits a Long value. With both variants, you can either
@@ -138,13 +138,13 @@ assertEquals( 5, Observable.from(list)!!.count()!!.toBlocking()!!.single() )</pr
     </div>
 
 <!-- RxPY ===================================================================================== -->
-    <h3>RxPY</h3><div id="RxPY" class="operator-language-description">
+    <h3>RxPY: <code>count</code></h3><div id="RxPY" class="operator-language-description">
      <p>
       In RxPY you have the option to pass <code>count</code> a predicate that takes an item emitted
       by the source Observable as a parameter. If you do so, <code>count</code> will emit a count
-      only of those items from the source
-      Observable that the predicate evaluates as <code>true</code>. Otherwise, it will emit a count
-      of all items emitted by the source Observable.
+      only of those items from the source Observable that the predicate evaluates as
+      <code>true</code>. Otherwise, it will emit a count of all items emitted by the source
+      Observable.
      </p>
      <div class="code python"><pre>
 numberOfItems = someObservable.count()
@@ -152,7 +152,7 @@ numberOfNegativeItems = someObservable.count(lambda x: x &lt; 0)</pre></div>
     </div>
 
 <!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb</h3><div id="Rxrb" class="operator-language-description">
+    <h3>Rx.rb: <code>count</code></h3><div id="Rxrb" class="operator-language-description">
      <p>
       In Rx.rb you have the option to pass <code>count</code> a predicate that takes an item emitted
       by the source Observable as a parameter. If you do so, <code>count</code> will emit a count
@@ -163,7 +163,7 @@ numberOfNegativeItems = someObservable.count(lambda x: x &lt; 0)</pre></div>
     </div>
 
 <!-- RxScala ================================================================================== -->
-    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
+    <h3>RxScala: <code>count</code>, <code>length</code>, <code>longCount</code>, and <code>size</code></h3><div id="RxScala" class="operator-language-description">
      <p>
       In RxScala the operator <code>count</code> counts the number of items in the source Observable
       that satisfy a specified predicate. That predicate accepts an emitted item as a parameter and

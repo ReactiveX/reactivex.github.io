@@ -41,7 +41,7 @@
    <div id="accordion">
 
 <!-- RxClojure ================================================================================ -->
-    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
+    <h3>RxClojure: <code>interleave</code>, <code>interleave*</code>, <code>merge</code>, <code>merge*</code>, <code>merge-delay_error</code>, and <code>merge-delay-error*</code></h3><div id="RxClojure" class="operator-language-description">
      <p>
       In RxClojure there are six operators of concern here:
      </p>
@@ -78,7 +78,7 @@
     </div>
 
 <!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+    <h3>RxCpp: <code>merge</code></h3><div id="RxCpp" class="operator-language-description">
      <p>
       RxCpp implements this operator as <code>merge</code>.
      </p>
@@ -89,7 +89,7 @@
     </div>
 
 <!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy</h3><div id="RxGroovy" class="operator-language-description">
+    <h3>RxGroovy: <code>merge</code>, <code>mergeDelayError</code>, and <code>mergeWith</code></h3><div id="RxGroovy" class="operator-language-description">
      <p>
       RxGroovy implements this operator as <code>merge</code>, <code>mergeWith</code>, and
       <code>mergeDelayError</code>.
@@ -178,7 +178,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- RxJava =================================================================================== -->
-    <h3>RxJava</h3><div id="RxJava" class="operator-language-description">
+    <h3>RxJava: <code>merge</code>, <code>mergeDelayError</code>, and <code>mergeWith</code></h3><div id="RxJava" class="operator-language-description">
      <p>
       RxJava implements this operator as <code>merge</code>, <code>mergeWith</code>, and
       <code>mergeDelayError</code>.
@@ -203,9 +203,9 @@ Sequence complete</pre></div>
       time as one of the already-subscribed-to Observables issues an <code>onCompleted</code>
       notification.
      </p><p>
-      The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example, in the
-      code sample above, instead of writing <code>Observable.merge(odds,evens)</code> you could also
-      write <code>odds.mergeWith(evens)</code>.
+      The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example, 
+      instead of writing <code>Observable.merge(odds,evens)</code> you could also write
+      <code>odds.mergeWith(evens)</code>.
      </p><p>
       If any of the individual Observables passed into <code>merge</code> terminates with an
       <code>onError</code> notification, the Observable produced by <code>merge</code> itself will
@@ -241,7 +241,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- RxJS ===================================================================================== -->
-    <h3>RxJS</h3><div id="RxJS" class="operator-language-description">
+    <h3>RxJS: <code>merge</code> and <code>mergeAll</code></h3><div id="RxJS" class="operator-language-description">
      <p>
       RxJS implements this operator as <code>merge</code> (two variants) and <code>mergeAll</code>.
      </p>
@@ -301,7 +301,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin</h3><div id="RxKotlin" class="operator-language-description">
+    <h3>RxKotlin: <code>merge</code>, <code>mergeDelayError</code>, and <code>mergeWith</code></h3><div id="RxKotlin" class="operator-language-description">
      <p>
       RxKotlin implements this operator as <code>merge</code>, <code>mergeWith</code>, and
       <code>mergeDelayError</code>.
@@ -326,9 +326,9 @@ Sequence complete</pre></div>
       time as one of the already-subscribed-to Observables issues an <code>onCompleted</code>
       notification.
      </p><p>
-      The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example, in the
-      code sample above, instead of writing <code>Observable.merge(odds,evens)</code> you could also
-      write <code>odds.mergeWith(evens)</code>.
+      The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example,
+      instead of writing <code>Observable.merge(odds,evens)</code> you could also write
+      <code>odds.mergeWith(evens)</code>.
      </p><p>
       If any of the individual Observables passed into <code>merge</code> terminates with an
       <code>onError</code> notification, the Observable produced by <code>merge</code> itself will
@@ -364,7 +364,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET</h3><div id="RxNET" class="operator-language-description">
+    <h3>Rx.NET: <code>Merge</code></h3><div id="RxNET" class="operator-language-description">
      <p>
       Rx.NET implements this operator as <code>Merge</code>.
      </p>
@@ -384,7 +384,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- RxPY ===================================================================================== -->
-    <h3>RxPY</h3><div id="RxPY" class="operator-language-description">
+    <h3>RxPY: <code>merge</code>, <code>merge_all</code>, and <code>merge_observable</code></h3><div id="RxPY" class="operator-language-description">
      <p>
       RxPY implements this operator as <code>merge</code> and 
       <code>merge_all</code>/<code>merge_observable</code>.
@@ -407,7 +407,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb</h3><div id="Rxrb" class="operator-language-description">
+    <h3>Rx.rb: <code>merge</code>, <code>merge_all</code>, and <code>merge_concurrent</code></h3><div id="Rxrb" class="operator-language-description">
      <p>
       Rx.rb implements this operator as <code>merge</code>, <code>merge_concurrent</code>, and
       <code>merge_all</code>.
@@ -418,11 +418,7 @@ Sequence complete</pre></div>
      <p>
       <code>merge</code> merges a second Observable into the one it is operating on to create a
       new merged Observable.
-     </p>
-     <figure>
-      <img src="IMAGES/merge_concurrent.png" width="640" alt="merge_concurrent" />
-     </figure>
-     <p>
+     </p><p>
       <code>merge_concurrent</code> operates on an Observable that emits Observables, merging the
       emissions from each of these Observables into its own emissions. You can optionally pass it
       an integer parameter indicating how many of these emitted Observables
@@ -444,7 +440,7 @@ Sequence complete</pre></div>
     </div>
 
 <!-- RxScala ================================================================================== -->
-    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
+    <h3>RxScala: <code>flatten</code>, <code>flattenDelayError</code>, <code>merge</code>, and <code>mergeDelayError</code></h3><div id="RxScala" class="operator-language-description">
      <p>
       RxScala implements this operator as <code>flatten</code>, <code>flattenDelayError</code>,
       <code>merge</code>, and <code>mergeDelayError</code>.

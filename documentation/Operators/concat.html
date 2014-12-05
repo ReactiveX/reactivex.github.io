@@ -219,6 +219,14 @@ Sequence complete</pre></div>
      <figure>
       <img src="IMAGES/concat.png" width="640" alt="concat" />
      </figure>
+     <p>
+      The <code>merge_all</code> operator, despite its name, really behaves like a
+      <span class="operator">Concat</span> variant in Rx.rb. It accepts an Observable of Observables
+      as its parameter, and concatenates the emissions from these Observables.
+     </p>
+     <figure>
+      <img src="IMAGES/merge_all.png" width="640" alt="merge_all" />
+     </figure>
     </div>
 
 <!-- RxScala ================================================================================== -->

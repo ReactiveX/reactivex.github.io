@@ -32,25 +32,25 @@
 
 <!-- RxClojure ================================================================================ -->
     <h3>RxClojure: <code>cons</code></h3><div id="RxClojure" class="operator-language-description">
-     <p>
-      RxClojure implements this operator as <code>cons</code>. It takes an item and an Observable
-      as parameters, and prepends the item to the items emitted by the Observable as its own
-      Observable sequence.
-     </p>
      <figure>
       <img src="IMAGES/cons.png" width="640" alt="cons" />
+      <figcaption><p>
+       RxClojure implements this operator as <code>cons</code>. It takes an item and an Observable
+       as parameters, and prepends the item to the items emitted by the Observable as its own
+       Observable sequence.
+      </p></figcaption>
      </figure>
     </div>
 
 <!-- RxCpp ==================================================================================== -->
     <h3>RxCpp: <code>start_with</code></h3><div id="RxCpp" class="operator-language-description">
-     <p>
-      RxCpp implements this operator as <code>start_with</code>. It takes an Observable and one
-      or more items as parameters, and prepends these items, in the order they are given in the
-      parameter list, to the items emitted by the Observable as its own Observable sequence.
-     </p>
      <figure>
       <img src="IMAGES/start_with.png" width="640" alt="start_with" />
+      <figcaption><p>
+       RxCpp implements this operator as <code>start_with</code>. It takes an Observable and one
+       or more items as parameters, and prepends these items, in the order they are given in the
+       parameter list, to the items emitted by the Observable as its own Observable sequence.
+      </p></figcaption>
      </figure>
     </div>
 
@@ -61,14 +61,13 @@
      </p>
      <figure>
       <img src="IMAGES/startWith.png" width="640" alt="startWith" />
-     </figure>
-     <p>
-      You can pass the values you want to prepend to the Observable sequence to
-      <code>startWith</code> either in a single Iterable or as a series of one to nine function
-      parameters.
-     </p>
-     <h4>Sample code:</h4>
-     <div class="code groovy"><pre>
+      <figcaption><p>
+       You can pass the values you want to prepend to the Observable sequence to
+       <code>startWith</code> either in a single Iterable or as a series of one to nine function
+       parameters.
+      </p>
+      <h4>Sample code:</h4>
+      <div class="code groovy"><pre>
 def myObservable = Observable.from([1, 2, 3]);
 
 myObservable.startWith(-3, -2, -1, 0).subscribe(
@@ -76,21 +75,22 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
   { println("Error: " + it.getMessage()); }, // onError
   { println("Sequence complete"); }          // onCompleted
 );</pre></div>
-     <div class="output"><pre>
+      <div class="output"><pre>
 -3
 -2
 -1
 0
 1
 2
-3</pre></div>
-     <p>
-      You can also pass <code>startWith</code> an Observable, and it will prepend the emissions from
-      that Observable to those of the source Observable to make its own set of emissions. This is a
-      sort of inverted <span class="operator">Concat</span> operation.
-     </p>
+3</pre></div></figcaption>
+     </figure>
      <figure>
       <img src="IMAGES/startWith.o.png" width="640" alt="startWith" />
+      <figcaption><p>
+       You can also pass <code>startWith</code> an Observable, and it will prepend the emissions
+       from that Observable to those of the source Observable to make its own set of emissions. This
+       is a sort of inverted <span class="operator">Concat</span> operation.
+      </p></figcaption>
      </figure>
     </div>
 
@@ -101,30 +101,31 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
      </p>
      <figure>
       <img src="IMAGES/startWith.png" width="640" alt="startWith" />
+      <figcaption><p>
+       You can pass the values you want to prepend to the Observable sequence to
+       <code>startWith</code> either in a single Iterable or as a series of one to nine function
+       parameters.
+      </p></figcaption>
      </figure>
-     <p>
-      You can pass the values you want to prepend to the Observable sequence to
-      <code>startWith</code> either in a single Iterable or as a series of one to nine function
-      parameters.
-     </p><p>
-      You can also pass <code>startWith</code> an Observable, and it will prepend the emissions from
-      that Observable to those of the source Observable to make its own set of emissions. This is a
-      sort of inverted <span class="operator">Concat</span> operation.
-     </p>
      <figure>
       <img src="IMAGES/startWith.o.png" width="640" alt="startWith" />
+      <figcaption><p>
+       You can also pass <code>startWith</code> an Observable, and it will prepend the emissions
+       from that Observable to those of the source Observable to make its own set of emissions.
+       This is a sort of inverted <span class="operator">Concat</span> operation.
+      </p></figcaption>
      </figure>
     </div>
 
 <!-- RxJS ===================================================================================== -->
     <h3>RxJS: <code>startWith</code></h3><div id="RxJS" class="operator-language-description">
-     <p>
-      RxJS implements this operator as <code>startWith</code>. It accepts a variable number of
-      function parameters and treats each one as an item that it will prepend to the resulting
-      Observable sequence in the order they are given in the parameter list.
-     </p>
      <figure>
       <img src="IMAGES/startWith.png" width="640" alt="startWith" />
+      <figcaption><p>
+       RxJS implements this operator as <code>startWith</code>. It accepts a variable number of
+       function parameters and treats each one as an item that it will prepend to the resulting
+       Observable sequence in the order they are given in the parameter list.
+      </p></figcaption>
      </figure>
      <p>
       <code>startWith</code> is found in the following distributions:
@@ -146,66 +147,67 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
      </p>
      <figure>
       <img src="IMAGES/startWith.png" width="640" alt="startWith" />
+      <figcaption><p>
+       You can pass the values you want to prepend to the Observable sequence to
+       <code>startWith</code> either in a single Iterable or as a series of one to nine function
+       parameters.
+      </p></figcaption>
      </figure>
-     <p>
-      You can pass the values you want to prepend to the Observable sequence to
-      <code>startWith</code> either in a single Iterable or as a series of one to nine function
-      parameters.
-     </p><p>
-      You can also pass <code>startWith</code> an Observable, and it will prepend the emissions from
-      that Observable to those of the source Observable to make its own set of emissions. This is a
-      sort of inverted <span class="operator">Concat</span> operation.
-     </p>
      <figure>
       <img src="IMAGES/startWith.o.png" width="640" alt="startWith" />
+      <figcaption><p>
+       You can also pass <code>startWith</code> an Observable, and it will prepend the emissions
+       from that Observable to those of the source Observable to make its own set of emissions. This
+       is a sort of inverted <span class="operator">Concat</span> operation.
+      </p></figcaption>
      </figure>
     </div>
 
 <!-- Rx.NET =================================================================================== -->
     <h3>Rx.NET: <code>StartWith</code></h3><div id="RxNET" class="operator-language-description">
-     <p>
-      Rx.NET implements this operator as <code>StartWith</code>. It accepts an array of items
-      which it prepends to the resulting Observable sequence in the order they appear in the array
-      before it emits the items from the source Observable.
-     </p>
      <figure>
       <img src="IMAGES/startWith.C.png" width="640" alt="StartWith" />
+      <figcaption><p>
+       Rx.NET implements this operator as <code>StartWith</code>. It accepts an array of items
+       which it prepends to the resulting Observable sequence in the order they appear in the array
+       before it emits the items from the source Observable.
+      </p></figcaption>
      </figure>
     </div>
 
 <!-- RxPY ===================================================================================== -->
     <h3>RxPY: <code>start_with</code></h3><div id="RxPY" class="operator-language-description">
-     <p>
-      RxPY implements this operator as <code>start_with</code>. It accepts an array of items which
-      it prepends to the resulting Observable sequence in the order they appear in the array before
-      it emits the items from the source Observable.
-     </p>
      <figure>
       <img src="IMAGES/start_with.png" width="640" alt="start_with" />
+      <figcaption><p>
+       RxPY implements this operator as <code>start_with</code>. It accepts an array of items which
+       it prepends to the resulting Observable sequence in the order they appear in the array before
+       it emits the items from the source Observable.
+      </p></figcaption>
      </figure>
     </div>
 
 <!-- Rx.rb ==================================================================================== -->
     <h3>Rx.rb: <code>start_with</code></h3><div id="Rxrb" class="operator-language-description">
-     <p>
-      Rx.rb implements this operator as <code>start_with</code>. It accepts an array of items which
-      it prepends to the resulting Observable sequence in the order they appear in the array before
-      it emits the items from the source Observable.
-     </p>
      <figure>
       <img src="IMAGES/start_with.png" width="640" alt="start_with" />
+      <figcaption><p>
+       Rx.rb implements this operator as <code>start_with</code>. It accepts an array of items which
+       it prepends to the resulting Observable sequence in the order they appear in the array before
+       it emits the items from the source Observable.
+      </p></figcaption>
      </figure>
     </div>
 
 <!-- RxScala ================================================================================== -->
     <h3>RxScala: <code>+:</code></h3><div id="RxScala" class="operator-language-description">
-     <p>
-      RxScala implements this operator with <code>+:</code> It takes an item and an Observable
-      as parameters, and prepends the item to the items emitted by the Observable as its own
-      Observable sequence.
-     </p>
      <figure>
       <img src="IMAGES/pluscolon.png" width="640" alt="plus colon" />
+      <figcaption><p>
+       RxScala implements this operator with <code>+:</code> It takes an item and an Observable
+       as parameters, and prepends the item to the items emitted by the Observable as its own
+       Observable sequence.
+      </p></figcaption>
      </figure>
     </div>
 

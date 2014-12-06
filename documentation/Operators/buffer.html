@@ -24,12 +24,14 @@
     <span class="operator">Buffer</span> will pass on this notification immediately without first
     emitting the buffer it is in the process of assembling, even if that buffer contains items that
     were emitted by the source Observable before it issued the error notification.
+   </p><p>
+    The <a href="window.html"><span class="operator">Window</span></a> operator is similar to
+    <span class="operator">Buffer</span> but collects items into separate Observables rather than
+    into data structures before reemitting them.
    </p>
    <h4>See also:</h4>
    <ul>
-    <li><span class="operator">Window</span> &mdash; similar to <span class="operator">Buffer</span>
-        but collects items into Observables rather than into data structures before reemitting
-        them</li>
+    <li><a href="window.html"><span class="operator">Window</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -38,8 +40,9 @@
 <!-- RxCpp ==================================================================================== -->
     <h3>RxCpp: <code>buffer</code></h3><div id="RxCpp" class="operator-language-description">
      <p>
-      RxCpp implements two variants of <span class="operator">buffer</span>:
+      RxCpp implements two variants of <span class="operator">Buffer</span>:
      </p>
+     <h4><code>buffer(count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer3.png" width="640" alt="buffer(count)" />
       <figcaption>
@@ -49,6 +52,7 @@
           <code>count</code> items).</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(count, skip)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer4.png" width="640" alt="buffer(count,skip)" />
       <figcaption>
@@ -66,15 +70,9 @@
 <!-- RxGroovy ================================================================================= -->
     <h3>RxGroovy: <code>buffer</code></h3><div id="RxGroovy" class="operator-language-description">
      <p>
-      The RxGroovy implementation of <span class="operator">buffer</span> mirrors that of RxJava.
+      In RxGroovy there are several variants of <span class="operator">Buffer</span>:
      </p>
-    </div>
-
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>buffer</code></h3><div id="RxJava" class="operator-language-description">
-     <p>
-      In RxJava there are several variants of <span class="operator">buffer</span>:
-     </p>
+     <h4><code>buffer(count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer3.png" width="640" alt="buffer(count)" />
       <figcaption>
@@ -84,6 +82,7 @@
           <code>count</code> items).</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(count, skip)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer4.png" width="640" alt="buffer(count,skip)" />
       <figcaption>
@@ -96,6 +95,7 @@
           Observable are not represented in any buffer).</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(bufferClosingSelector)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer1.png" width="640" alt="buffer(bufferClosingSelector)" />
       <figcaption>
@@ -108,6 +108,7 @@
           until the source Observable terminates.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(boundary)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer8.png" width="640" alt="buffer(boundary)" />
       <figcaption>
@@ -116,6 +117,7 @@
           items emitted by the source Observable and emits the previous <code>List</code>.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(bufferOpenings, bufferClosingSelector)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer2.png" width="640" alt="buffer(bufferOpenings,bufferClosingSelector)" />
       <figcaption>
@@ -128,6 +130,7 @@
           item from it, it closes the <code>List</code> and emits it as its own emission.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer5.png" width="640" alt="buffer(timespan,unit)" />
       <figcaption>
@@ -140,6 +143,7 @@
           scheduler.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer6.png" width="640" alt="buffer(timespan,unit,count)" />
       <figcaption>
@@ -152,6 +156,113 @@
           default this variant uses the <code>computation</code> scheduler.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer7.png" width="640" alt="buffer(timespan,timeshift,unit)" />
+      <figcaption>
+       <p><code>buffer(timespan,&#8239;timeshift,&#8239;unit)</code> creates a new <code>List</code>
+          of items every <code>timeshift</code> period of time, and fills this bundle with every
+          item emitted by the source Observable from that time until <code>timespan</code> time has
+          passed since the bundle&#8217;s creation, before emitting this <code>List</code> as its
+          own emission. If <code>timespan</code> is longer than <code>timeshift</code>, the emitted
+          bundles will represent time periods that overlap and so they may contain duplicate items.
+          There is also a version of this variant of the operator that takes a
+          <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
+          variant uses the <code>computation</code> scheduler.</p>
+      </figcaption>
+     </figure>
+    </div>
+
+<!-- RxJava =================================================================================== -->
+    <h3>RxJava: <code>buffer</code></h3><div id="RxJava" class="operator-language-description">
+     <p>
+      In RxJava there are several variants of <span class="operator">Buffer</span>:
+     </p>
+     <h4><code>buffer(count)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer3.png" width="640" alt="buffer(count)" />
+      <figcaption>
+       <p><code>buffer(count)</code> emits non-overlapping buffers in the form of
+          <code>List</code>s, each of which contains at most <code>count</code> items from the
+          source Observable (the final emitted <code>List</code> may have fewer than
+          <code>count</code> items).</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(count, skip)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer4.png" width="640" alt="buffer(count,skip)" />
+      <figcaption>
+       <p><code>buffer(count,&#8239;skip)</code> creates a new buffer starting with the first
+          emitted item from the source Observable, and every <code>skip</code> items thereafter, and
+          fills each buffer with <code>count</code> items: the initial item and <code>count-1</code>
+          subsequent ones. It emits these buffers as <code>List</code>s. Depending on the values of
+          <code>count</code> and <code>skip</code> these buffers may overlap (multiple buffers may
+          contain the same item), or they may have gaps (where items emitted by the source
+          Observable are not represented in any buffer).</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(bufferClosingSelector)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer1.png" width="640" alt="buffer(bufferClosingSelector)" />
+      <figcaption>
+       <p>When it subscribes to the source Observable, <code>buffer(bufferClosingSelector)</code>
+          begins to collect its emissions into a <code>List</code>, and it also calls
+          <code>bufferClosingSelector</code> to generate a second Observable. When this second
+          Observable emits an <code>TClosing</code> object, <code>buffer</code> emits the current
+          <code>List</code> and repeats this process: beginning a new <code>List</code> and calling
+          <code>bufferClosingSelector</code> to create a new Observable to monitor. It will do this
+          until the source Observable terminates.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(boundary)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer8.png" width="640" alt="buffer(boundary)" />
+      <figcaption>
+       <p><code>buffer(boundary)</code> monitors an Observable, <code>boundary</code>. Each time
+          that Observable emits an item, it creates a new <code>List</code> to begin collecting
+          items emitted by the source Observable and emits the previous <code>List</code>.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(bufferOpenings, bufferClosingSelector)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer2.png" width="640" alt="buffer(bufferOpenings,bufferClosingSelector)" />
+      <figcaption>
+       <p><code>buffer(bufferOpenings,&#8239;bufferClosingSelector)</code> monitors an Observable,
+          <code>bufferOpenings</code>, that emits <code>BufferOpening</code> objects. Each time it
+          observes such an emitted item, it creates a new <code>List</code> to begin collecting
+          items emitted by the source Observable and it passes the <code>bufferOpenings</code>
+          Observable into the <code>closingSelector</code> function. That function returns an
+          Observable. <code>buffer</code> monitors that Observable and when it detects an emitted
+          item from it, it closes the <code>List</code> and emits it as its own emission.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer5.png" width="640" alt="buffer(timespan,unit)" />
+      <figcaption>
+       <p><code>buffer(timespan,&#8239;unit)</code> emits a new <code>List</code> of items
+          periodically, every <code>timespan</code> amount of time, containing all items emitted by
+          the source Observable since the previous bundle emission or, in the case of the first
+          bundle, since the subscription to the source Observable. There is also a version of this
+          variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
+          govern the timespan; by default this variant uses the <code>computation</code>
+          scheduler.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer6.png" width="640" alt="buffer(timespan,unit,count)" />
+      <figcaption>
+       <p><code>buffer(timespan,&#8239;unit,&#8239;count)</code> emits a new <code>List</code> of
+          items for every <code>count</code> items emitted by the source Observable, or, if
+          <code>timespan</code> has elapsed since its last bundle emission, it emits a bundle of
+          however many items the source Observable has emitted in that span, even if this is fewer
+          than <code>count</code>. There is also a version of this variant of the operator that
+          takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
+          default this variant uses the <code>computation</code> scheduler.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer7.png" width="640" alt="buffer(timespan,timeshift,unit)" />
       <figcaption>
@@ -176,6 +287,7 @@
       <code>bufferWithTimeOrCount</code> &mdash; each of which has variants that have different
       ways of governing which source Observable items are emitted as part of which buffers.
      </p>
+     <h4><code>buffer(bufferBoundaries)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer8.png" width="640" alt="buffer(bufferBoundaries)" />
       <figcaption>
@@ -185,6 +297,7 @@
           previous collection.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(bufferClosingSelector)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer1.png" width="640" alt="buffer(bufferClosingSelector)" />
       <figcaption>
@@ -197,6 +310,7 @@
           terminates.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(bufferOpenings,bufferClosingSelector)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer2.png" width="640" alt="buffer(bufferOpenings,bufferClosingSelector)" />
       <figcaption>
@@ -226,6 +340,7 @@
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
+     <h4><code>bufferWithCount(count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/bufferWithCount3.png" width="640" alt="bufferWithCount(count)" />
       <figcaption>
@@ -234,6 +349,7 @@
           contain fewer than <code>count</code> items).</p>
       </figcaption>
      </figure>
+     <h4><code>bufferWithCount(count, skip)</code></h4>
      <figure class="variant">
       <img src="IMAGES/bufferWithCount4.png" width="640" alt="bufferWithCount(count,skip)" />
       <figcaption>
@@ -256,6 +372,7 @@
       <li><code>rx.all.compat.js</code></li>
       <li><code>rx.lite.extras.js</code></li>
      </ul>
+     <h4><code>bufferWithTime(timeSpan)</code></h4>
      <figure class="variant">
       <img src="IMAGES/bufferWithTime5.png" width="640" alt="bufferWithTime(timeSpan)" />
       <figcaption>
@@ -267,6 +384,7 @@
           timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
       </figcaption>
      </figure>
+     <h4><code>bufferWithTime(timeSpan, timeShift)</code></h4>
      <figure class="variant">
       <img src="IMAGES/bufferWithTime7.png" width="640" alt="bufferWithTime(timeSpan,timeShift)" />
       <figcaption>
@@ -281,6 +399,7 @@
           variant uses the <code>computation</code> scheduler.</p>
       </figcaption>
      </figure>
+     <h4><code>bufferWithTimeOrCount(timeSpan, count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/bufferWithTimeOrCount6.png" width="640" alt="bufferWithTimeOrCount(timeSpan,count)" />
       <figcaption>
@@ -315,8 +434,107 @@
 <!-- RxKotlin ================================================================================= -->
     <h3>RxKotlin: <code>buffer</code></h3><div id="RxKotlin" class="operator-language-description">
      <p>
-      The RxKotlin implementation of <span class="operator">buffer</span> mirrors that of RxJava.
+      In RxKotlin there are several variants of <span class="operator">Buffer</span>:
      </p>
+     <h4><code>buffer(count)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer3.png" width="640" alt="buffer(count)" />
+      <figcaption>
+       <p><code>buffer(count)</code> emits non-overlapping buffers in the form of
+          <code>List</code>s, each of which contains at most <code>count</code> items from the
+          source Observable (the final emitted <code>List</code> may have fewer than
+          <code>count</code> items).</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(count, skip)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer4.png" width="640" alt="buffer(count,skip)" />
+      <figcaption>
+       <p><code>buffer(count,&#8239;skip)</code> creates a new buffer starting with the first
+          emitted item from the source Observable, and every <code>skip</code> items thereafter, and
+          fills each buffer with <code>count</code> items: the initial item and <code>count-1</code>
+          subsequent ones. It emits these buffers as <code>List</code>s. Depending on the values of
+          <code>count</code> and <code>skip</code> these buffers may overlap (multiple buffers may
+          contain the same item), or they may have gaps (where items emitted by the source
+          Observable are not represented in any buffer).</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(bufferClosingSelector)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer1.png" width="640" alt="buffer(bufferClosingSelector)" />
+      <figcaption>
+       <p>When it subscribes to the source Observable, <code>buffer(bufferClosingSelector)</code>
+          begins to collect its emissions into a <code>List</code>, and it also calls
+          <code>bufferClosingSelector</code> to generate a second Observable. When this second
+          Observable emits an <code>TClosing</code> object, <code>buffer</code> emits the current
+          <code>List</code> and repeats this process: beginning a new <code>List</code> and calling
+          <code>bufferClosingSelector</code> to create a new Observable to monitor. It will do this
+          until the source Observable terminates.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(boundary)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer8.png" width="640" alt="buffer(boundary)" />
+      <figcaption>
+       <p><code>buffer(boundary)</code> monitors an Observable, <code>boundary</code>. Each time
+          that Observable emits an item, it creates a new <code>List</code> to begin collecting
+          items emitted by the source Observable and emits the previous <code>List</code>.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(bufferOpenings, bufferClosingSelector)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer2.png" width="640" alt="buffer(bufferOpenings,bufferClosingSelector)" />
+      <figcaption>
+       <p><code>buffer(bufferOpenings,&#8239;bufferClosingSelector)</code> monitors an Observable,
+          <code>bufferOpenings</code>, that emits <code>BufferOpening</code> objects. Each time it
+          observes such an emitted item, it creates a new <code>List</code> to begin collecting
+          items emitted by the source Observable and it passes the <code>bufferOpenings</code>
+          Observable into the <code>closingSelector</code> function. That function returns an
+          Observable. <code>buffer</code> monitors that Observable and when it detects an emitted
+          item from it, it closes the <code>List</code> and emits it as its own emission.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer5.png" width="640" alt="buffer(timespan,unit)" />
+      <figcaption>
+       <p><code>buffer(timespan,&#8239;unit)</code> emits a new <code>List</code> of items
+          periodically, every <code>timespan</code> amount of time, containing all items emitted by
+          the source Observable since the previous bundle emission or, in the case of the first
+          bundle, since the subscription to the source Observable. There is also a version of this
+          variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
+          govern the timespan; by default this variant uses the <code>computation</code>
+          scheduler.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer6.png" width="640" alt="buffer(timespan,unit,count)" />
+      <figcaption>
+       <p><code>buffer(timespan,&#8239;unit,&#8239;count)</code> emits a new <code>List</code> of
+          items for every <code>count</code> items emitted by the source Observable, or, if
+          <code>timespan</code> has elapsed since its last bundle emission, it emits a bundle of
+          however many items the source Observable has emitted in that span, even if this is fewer
+          than <code>count</code>. There is also a version of this variant of the operator that
+          takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
+          default this variant uses the <code>computation</code> scheduler.</p>
+      </figcaption>
+     </figure>
+     <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
+     <figure class="variant">
+      <img src="IMAGES/buffer7.png" width="640" alt="buffer(timespan,timeshift,unit)" />
+      <figcaption>
+       <p><code>buffer(timespan,&#8239;timeshift,&#8239;unit)</code> creates a new <code>List</code>
+          of items every <code>timeshift</code> period of time, and fills this bundle with every
+          item emitted by the source Observable from that time until <code>timespan</code> time has
+          passed since the bundle&#8217;s creation, before emitting this <code>List</code> as its
+          own emission. If <code>timespan</code> is longer than <code>timeshift</code>, the emitted
+          bundles will represent time periods that overlap and so they may contain duplicate items.
+          There is also a version of this variant of the operator that takes a
+          <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
+          variant uses the <code>computation</code> scheduler.</p>
+      </figcaption>
+     </figure>
     </div>
 
 <!-- Rx.NET =================================================================================== -->
@@ -326,6 +544,7 @@
       you can either pass in the source Observable as the first parameter, or you can call it as
       an instance method of the source Observable (in which case you can omit that parameter):
      </p>
+     <h4><code>Buffer(count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/Buffer3.net.png" width="640" alt="Buffer(count)" />
       <figcaption>
@@ -335,6 +554,7 @@
           <code>count</code> items).</p>
       </figcaption>
      </figure>
+     <h4><code>Buffer(count, skip)</code></h4>
      <figure class="variant">
       <img src="IMAGES/Buffer4.net.png" width="640" alt="Buffer(count,skip)" />
       <figcaption>
@@ -347,6 +567,7 @@
           Observable are not represented in any buffer).</p>
       </figcaption>
      </figure>
+     <h4><code>Buffer(bufferClosingSelector)</code></h4>
      <figure class="variant">
       <img src="IMAGES/Buffer1.net.png" width="640" alt="Buffer(bufferClosingSelector)" />
       <figcaption>
@@ -359,6 +580,7 @@
           will do this until the source Observable terminates.</p>
       </figcaption>
      </figure>
+     <h4><code>Buffer(bufferOpenings,bufferClosingSelector)</code></h4>
      <figure class="variant">
       <img src="IMAGES/Buffer2.net.png" width="640" alt="Buffer(bufferOpenings,bufferClosingSelector)" />
       <figcaption>
@@ -371,6 +593,7 @@
           item from it, it closes the <code>IList</code> and emits it as its own emission.</p>
       </figcaption>
      </figure>
+     <h4><code>Buffer(timeSpan)</code></h4>
      <figure class="variant">
       <img src="IMAGES/Buffer5.net.png" width="640" alt="Buffer(timeSpan)" />
       <figcaption>
@@ -382,6 +605,7 @@
           govern the timespan.</p>
       </figcaption>
      </figure>
+     <h4><code>Buffer(timeSpan, count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/Buffer6.net.png" width="640" alt="Buffer(timeSpan,count)" />
       <figcaption>
@@ -393,6 +617,7 @@
           takes an <code>IScheduler</code> as a parameter and uses it to govern the timespan.</p>
       </figcaption>
      </figure>
+     <h4><code>Buffer(timeSpan, timeShift)</code></h4>
      <figure class="variant">
       <img src="IMAGES/Buffer7.net.png" width="640" alt="Buffer(timeSpan,timeShift)" />
       <figcaption>
@@ -418,6 +643,7 @@
       take more than one optional parameter, be sure to name the parameter in the parameter list
       when you call the operator so as to avoid ambiguity.
      </p>
+     <h4><code>buffer(buffer_openings)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer8.py.png" width="640" alt="buffer(buffer_openings)" />
       <figcaption>
@@ -427,6 +653,7 @@
           previous array.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer(closing_selector)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer1.py.png" width="640" alt="buffer(closing_selector)" />
       <figcaption>
@@ -452,6 +679,7 @@
        emits the array that the Observable governs.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer_with_count(count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer_with_count3.py.png" width="640" alt="buffer_with_count(count)" />
       <figcaption>
@@ -460,6 +688,7 @@
           (the final emitted array may have fewer than <code>count</code> items).</p>
       </figcaption>
      </figure>
+     <h4><code>buffer_with_count(count, skip)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer_with_count4.py.png" width="640" alt="buffer_with_count(count,skip)" />
       <figcaption>
@@ -472,6 +701,7 @@
           source Observable are not represented in any buffer).</p>
       </figcaption>
      </figure>
+     <h4><code>buffer_with_time(timespan)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer_with_time5.py.png" width="640" alt="buffer_with_time(timespan)" />
       <figcaption>
@@ -483,6 +713,7 @@
           by default this variant uses the <code>timeout</code> scheduler.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer_with_time(timespan, timeshift)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer_with_time7.py.png" width="640" alt="buffer_with_time(timespan,timeshift)" />
       <figcaption>
@@ -497,6 +728,7 @@
           scheduler.</p>
       </figcaption>
      </figure>
+     <h4><code>buffer_with_time_or_count(timespan, count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer_with_time_or_count6.py.png" width="640" alt="buffer_with_time_or_count(timespan,count)" />
       <figcaption>
@@ -516,6 +748,7 @@
      <p>
       Rx.rb has three variants of the <span class="operator">Buffer</span> operator:
      </p>
+     <h4><code>buffer_with_count(count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer_with_count3.py.png" width="640" alt="buffer_with_count(count)" />
       <figcaption>
@@ -524,6 +757,7 @@
           (the final emitted array may have fewer than <code>count</code> items).</p>
       </figcaption>
      </figure>
+     <h4><code>buffer_with_count(count,skip)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer_with_count4.rb.png" width="640" alt="buffer_with_count(count,skip)" />
       <figcaption>
@@ -536,6 +770,7 @@
           source Observable are not represented in any buffer).</p>
       </figcaption>
      </figure>
+     <h4><code>buffer_with_time(timespan)</code></h4>
      <figure class="variant">
       <img src="IMAGES/buffer_with_time5.py.png" width="640" alt="buffer_with_time(timespan)" />
       <figcaption>
@@ -554,6 +789,7 @@
       <code>slidingBuffer</code> and <code>tumblingBuffer</code> &mdash; each of which has variants
       with different ways of assembling the buffers they emit:
      </p>
+     <h4><code>slidingBuffer(count, skip)</code></h4>
      <figure class="variant">
       <img src="IMAGES/slidingBuffer4.png" width="640" alt="slidingBuffer(count,skip)" />
       <figcaption>
@@ -566,6 +802,7 @@
           Observable are not represented in any buffer).</p>
       </figcaption>
      </figure>
+     <h4><code>slidingBuffer(timespan, timeshift)</code></h4>
      <figure class="variant">
       <img src="IMAGES/slidingBuffer7.png" width="640" alt="slidingBuffer(timespan,timeshift)" />
       <figcaption>
@@ -580,6 +817,7 @@
           parameter and uses it to govern the timespan.</p>
       </figcaption>
      </figure>
+     <h4><code>slidingBuffer(openings, closings)</code></h4>
      <figure class="variant">
       <img src="IMAGES/slidingBuffer2.png" width="640" alt="slidingBuffer(openings,closings)" />
       <figcaption>
@@ -592,6 +830,7 @@
        governs.</p>
       </figcaption>
      </figure>
+     <h4><code>tumblingBuffer(count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/tumblingBuffer3.png" width="640" alt="tumblingBuffer(count)" />
       <figcaption>
@@ -600,6 +839,7 @@
           Observable (the final emitted buffer may have fewer than <code>count</code> items).</p>
       </figcaption>
      </figure>
+     <h4><code>tumblingBuffer(boundary)</code></h4>
      <figure class="variant">
       <img src="IMAGES/tumblingBuffer8.png" width="640" alt="tumblingBuffer(boundary)" />
       <figcaption>
@@ -611,6 +851,7 @@
           allocation more efficient.</p>
       </figcaption>
      </figure>
+     <h4><code>tumblingBuffer(timespan)</code></h4>
      <figure class="variant">
       <img src="IMAGES/tumblingBuffer5.png" width="640" alt="tumblingBuffer(timespan)" />
       <figcaption>
@@ -622,6 +863,7 @@
           <code>Scheduler</code> that you want to govern the timespan calculation.</p>
       </figcaption>
      </figure>
+     <h4><code>tumblingBuffer(timespan, count)</code></h4>
      <figure class="variant">
       <img src="IMAGES/tumblingBuffer6.png" width="640" alt="tumblingBuffer(timespan,count)" />
       <figcaption>
@@ -634,9 +876,6 @@
           the <code>Scheduler</code> that you want to govern the timespan calculation.</p>
       </figcaption>
      </figure>
-<!--
-     tumblingBuffer(timespan, count[, scheduler])      buffer6
--->
     </div>
 
    </div>

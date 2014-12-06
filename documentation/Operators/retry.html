@@ -44,13 +44,13 @@
      </p>
      <figure>
       <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <figcaption><p>
+       <code>retry</code> takes a single argument, a count of the number of times it should try
+       resubscribing to the source Observable when it encounters errors. If this count is exceeded,
+       <code>retry</code> will not attempt to resubscribe and will instead pass the
+       <code>onError</code> notification to its observers.
+      </p></figcaption>
      </figure>
-     <p>
-      <code>retry</code> takes a single argument, a count of the number of times it should try
-      resubscribing to the source Observable when it encounters errors. If this count is exceeded,
-      <code>retry</code> will not attempt to resubscribe and will instead pass the
-      <code>onError</code> notification to its observers.
-     </p>
     </div>
 
 <!-- RxGroovy ================================================================================= -->
@@ -60,41 +60,41 @@
      </p>
      <figure>
       <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       times it should try to resubscribe to the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe again and will
+       instead pass the latest <code>onError</code> notification to its observers.
+      </p><p>
+       A third variant of <code>retry</code> takes a predicate function as a parameter. You write
+       this function to accept two arguments: an Integer count of how many retries have taken place
+       thusfar, and a Throwable indicating the error that caused the <code>onError</code>
+       notification. This function returns a Boolean to indicate whether or not <code>retry</code>
+       should resubscribe to and mirror the source Observable. If it does not, then
+       <code>retry</code> passes the latest <code>onError</code> notification to its observers.
+      </p><p>
+       <code>retry</code> by default operates on the <code>trampoline</code> Scheduler.
+      </p></figcaption>
      </figure>
-     <p>
-      One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
-      mirror the source Observable no matter how many <code>onError</code> notifications it
-      receives.
-     </p><p>
-      Another variant of <code>retry</code> takes a single parameter: a count of the number of times
-      it should try to resubscribe to the source Observable when it encounters errors. If this count
-      is exceeded, <code>retry</code> will not attempt to resubscribe again and will instead pass
-      the latest <code>onError</code> notification to its observers.
-     </p><p>
-      A third variant of <code>retry</code> takes a predicate function as a parameter. You write
-      this function to accept two arguments: an Integer count of how many retries have taken place
-      thusfar, and a Throwable indicating the error that caused the <code>onError</code>
-      notification. This function returns a Boolean to indicate whether or not <code>retry</code>
-      should resubscribe to and mirror the source Observable. If it does not, then
-      <code>retry</code> passes the latest <code>onError</code> notification to its observers.
-     </p><p>
-      <code>retry</code> by default operates on the <code>trampoline</code> Scheduler.
-     </p>
      <figure>
       <img src="IMAGES/retryWhen.f.png" width="640" alt="retryWhen" />
+      <figcaption><p>
+       The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
+       not to resubscribe to and mirror the source Observable by passing the Throwable from the
+       <code>onError</code> notification to a function that generates a second Observable, and
+       observes its result to determine what to do. If that result is an emitted item,
+       <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if
+       that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
+       notification on to its observers and terminates.
+      </p><p>
+       <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and
+       there is also a version that accepts a Scheduler as a parameter.
+      </p></figcaption>
      </figure>
-     <p>
-      The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
-      not to resubscribe to and mirror the source Observable by passing the Throwable from the
-      <code>onError</code> notification to a function that generates a second Observable, and
-      observes its result to determine what to do. If that result is an emitted item,
-      <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if that
-      result is an <code>onError</code> notification, <code>retryWhen</code> passes this
-      notification on to its observers and terminates.
-     </p><p>
-      <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and there
-      is also a version that accepts a Scheduler as a parameter.
-     </p>
     </div>
 
 <!-- RxJava =================================================================================== -->
@@ -104,43 +104,42 @@
      </p>
      <figure>
       <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       times it should try to resubscribe to the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe again and will
+       instead pass the latest <code>onError</code> notification to its observers.
+      </p><p>
+       A third variant of <code>retry</code> takes a predicate function as a parameter. You write
+       this function to accept two arguments: an Integer count of how many retries have taken place
+       thusfar, and a Throwable indicating the error that caused the <code>onError</code>
+       notification. This function returns a Boolean to indicate whether or not <code>retry</code>
+       should resubscribe to and mirror the source Observable. If it does not, then
+       <code>retry</code> passes the latest <code>onError</code> notification to its observers.
+      </p><p>
+       <code>retry</code> by default operates on the <code>trampoline</code> Scheduler.
+      </p></figcaption>
      </figure>
-     <p>
-      One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
-      mirror the source Observable no matter how many <code>onError</code> notifications it
-      receives.
-     </p><p>
-      Another variant of <code>retry</code> takes a single parameter: a count of the number of times
-      it should try to resubscribe to the source Observable when it encounters errors. If this count
-      is exceeded, <code>retry</code> will not attempt to resubscribe again and will instead pass
-      the latest <code>onError</code> notification to its observers.
-     </p><p>
-      A third variant of <code>retry</code> takes a predicate function as a parameter. You write
-      this function to accept two arguments: an Integer count of how many retries have taken place
-      thusfar, and a Throwable indicating the error that caused the <code>onError</code>
-      notification. This function returns a Boolean to indicate whether or not <code>retry</code>
-      should resubscribe to and mirror the source Observable. If it does not, then
-      <code>retry</code> passes the latest <code>onError</code> notification to its observers.
-     </p><p>
-      <code>retry</code> by default operates on the <code>trampoline</code> Scheduler.
-     </p>
      <figure>
       <img src="IMAGES/retryWhen.f.png" width="640" alt="retryWhen" />
-     </figure>
-     <p>
-      The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
-      not to resubscribe to and mirror the source Observable by passing the Throwable from the
-      <code>onError</code> notification to a function that generates a second Observable, and
-      observes its result to determine what to do. If that result is an emitted item,
-      <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if that
-      result is an <code>onError</code> notification, <code>retryWhen</code> passes this
-      notification on to its observers and terminates.
-     </p><p>
-      <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and there
-      is also a version that accepts a Scheduler as a parameter.
-     </p>
-     <h4>Sample code:</h4>
-     <div class="code java"><pre>
+      <figcaption><p>
+       The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
+       not to resubscribe to and mirror the source Observable by passing the Throwable from the
+       <code>onError</code> notification to a function that generates a second Observable, and
+       observes its result to determine what to do. If that result is an emitted item,
+       <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if that
+       result is an <code>onError</code> notification, <code>retryWhen</code> passes this
+       notification on to its observers and terminates.
+      </p><p>
+       <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and there
+       is also a version that accepts a Scheduler as a parameter.
+      </p>
+      <h4>Sample code:</h4>
+      <div class="code java"><pre>
 Observable.create((Subscriber<? super String> s) -> {
       System.out.println("subscribing");
       s.onError(new RuntimeException("always fails"));
@@ -150,14 +149,15 @@ Observable.create((Subscriber<? super String> s) -> {
           return Observable.timer(i, TimeUnit.SECONDS);
       });
   }).toBlocking().forEach(System.out::println);</pre></div>
-     <div class="output"><pre>
+      <div class="output"><pre>
 subscribing
 delay retry by 1 second(s)
 subscribing
 delay retry by 2 second(s)
 subscribing
 delay retry by 3 second(s)
-subscribing</pre></div>
+subscribing</pre></div></figcaption>
+     </figure>
     </div>
 
 <!-- RxJS ===================================================================================== -->
@@ -167,19 +167,20 @@ subscribing</pre></div>
      </p>
      <figure>
       <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       <code>onError</code> notification it should be willing to accept before it too fails and
+       passes the <code>onError</code> to its observers. For example, <code>retry(2)</code> means
+       that <code>retry</code> will resubscribe to and mirror the source Observable the first time
+       it receives an <code>onError</code> notification, but will terminate with an error the second
+       time this happens.
+      </p></figcaption>
      </figure>
      <p>
-      One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
-      mirror the source Observable no matter how many <code>onError</code> notifications it
-      receives.
-     </p><p>
-      Another variant of <code>retry</code> takes a single parameter: a count of the number of
-      <code>onError</code> notification it should be willing to accept before it too fails and
-      passes the <code>onError</code> to its observers. For example, <code>retry(2)</code> means
-      that <code>retry</code> will resubscribe to and mirror the source Observable the first time
-      it receives an <code>onError</code> notification, but will terminate with an error the second
-      time this happens.
-     </p><p>
       <code>retry</code> is found in the following distributions:
      </p>
      <ul>
@@ -199,36 +200,36 @@ subscribing</pre></div>
      </p>
      <figure>
       <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       times it should try to resubscribe to the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe again and will
+       instead pass the latest <code>onError</code> notification to its observers.
+      </p><p>
+       A third variant of <code>retry</code> takes a predicate function as a parameter. You write
+       this function to accept two arguments: an Integer count of how many retries have taken place
+       thusfar, and a Throwable indicating the error that caused the <code>onError</code>
+       notification. This function returns a Boolean to indicate whether or not <code>retry</code>
+       should resubscribe to and mirror the source Observable. If it does not, then
+       <code>retry</code> passes the latest <code>onError</code> notification to its observers.
+      </p></figcaption>
      </figure>
-     <p>
-      One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
-      mirror the source Observable no matter how many <code>onError</code> notifications it
-      receives.
-     </p><p>
-      Another variant of <code>retry</code> takes a single parameter: a count of the number of times
-      it should try to resubscribe to the source Observable when it encounters errors. If this count
-      is exceeded, <code>retry</code> will not attempt to resubscribe again and will instead pass
-      the latest <code>onError</code> notification to its observers.
-     </p><p>
-      A third variant of <code>retry</code> takes a predicate function as a parameter. You write
-      this function to accept two arguments: an Integer count of how many retries have taken place
-      thusfar, and a Throwable indicating the error that caused the <code>onError</code>
-      notification. This function returns a Boolean to indicate whether or not <code>retry</code>
-      should resubscribe to and mirror the source Observable. If it does not, then
-      <code>retry</code> passes the latest <code>onError</code> notification to its observers.
-     </p>
      <figure>
       <img src="IMAGES/retryWhen.f.png" width="640" alt="retryWhen" />
+      <figcaption><p>
+       The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
+       not to resubscribe to and mirror the source Observable by passing the Throwable from the
+       <code>onError</code> notification to a function that generates a second Observable, and
+       observes its result to determine what to do. If that result is an emitted item,
+       <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if
+       that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
+       notification on to its observers and terminates.
+      </p>
      </figure>
-     <p>
-      The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
-      not to resubscribe to and mirror the source Observable by passing the Throwable from the
-      <code>onError</code> notification to a function that generates a second Observable, and
-      observes its result to determine what to do. If that result is an emitted item,
-      <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if that
-      result is an <code>onError</code> notification, <code>retryWhen</code> passes this
-      notification on to its observers and terminates.
-     </p>
     </div>
 
 <!-- Rx.NET =================================================================================== -->
@@ -238,19 +239,19 @@ subscribing</pre></div>
      </p>
      <figure>
       <img src="IMAGES/retry.C.png" width="640" alt="Retry" />
+      <figcaption><p>
+       One variant of <code>Retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>Retry</code> takes a single parameter: a count of the number of
+       <code>onError</code> notification it should be willing to accept before it too fails and
+       passes the <code>onError</code> to its observers. For example, <code>Retry(2)</code> means
+       that <code>Retry</code> will resubscribe to and mirror the source Observable the first time
+       it receives an <code>onError</code> notification, but will terminate with an error the second
+       time this happens.
+      </p></figcaption>
      </figure>
-     <p>
-      One variant of <code>Retry</code> takes no parameters. It will continue to resubscribe to and
-      mirror the source Observable no matter how many <code>onError</code> notifications it
-      receives.
-     </p><p>
-      Another variant of <code>Retry</code> takes a single parameter: a count of the number of
-      <code>onError</code> notification it should be willing to accept before it too fails and
-      passes the <code>onError</code> to its observers. For example, <code>Retry(2)</code> means
-      that <code>Retry</code> will resubscribe to and mirror the source Observable the first time
-      it receives an <code>onError</code> notification, but will terminate with an error the second
-      time this happens.
-     </p>
     </div>
 
 <!-- RxPY ===================================================================================== -->
@@ -260,15 +261,15 @@ subscribing</pre></div>
      </p>
      <figure>
       <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <figcaption><p>
+       <code>retry</code> takes a single optional parameter, a count of the number of times it
+       should try resubscribing to and mirroring the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe and will instead
+       pass the <code>onError</code> notification to its observers. If you omit this parameter,
+       <code>retry</code> will attempt to resubscribe and mirror indefinitely, no matter how many
+       <code>onError</code> notifications it receives.
+      </p></figcaption>
      </figure>
-     <p>
-      <code>retry</code> takes a single optional parameter, a count of the number of times it should
-      try resubscribing to and mirroring the source Observable when it encounters errors. If this
-      count is exceeded, <code>retry</code> will not attempt to resubscribe and will instead pass
-      the <code>onError</code> notification to its observers. If you omit this parameter,
-      <code>retry</code> will attempt to resubscribe and mirror indefinitely, no matter how many
-      <code>onError</code> notifications it receives.
-     </p>
     </div>
 
 <!-- Rx.rb ==================================================================================== -->
@@ -278,13 +279,14 @@ subscribing</pre></div>
      </p>
      <figure>
       <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <figcaption><p>
+       <code>retry</code> takes a single optional parameter, a count of the number of times it
+       should try resubscribing to and mirroring the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe and will instead
+       pass the <code>onError</code> notification to its observers.
+      </p></figcaption>
      </figure>
      <p>
-      <code>retry</code> takes a single optional parameter, a count of the number of times it should
-      try resubscribing to and mirroring the source Observable when it encounters errors. If this
-      count is exceeded, <code>retry</code> will not attempt to resubscribe and will instead pass
-      the <code>onError</code> notification to its observers.
-     </p><p>
       <code>retryInfinitely</code>, on the other hand, will attempt to resubscribe to and mirror the
       source Observable indefinitely, no matter how many <code>onError</code> notifications it
       receives.
@@ -298,36 +300,36 @@ subscribing</pre></div>
      </p>
      <figure>
       <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       times it should try to resubscribe to the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe again and will
+       instead pass the latest <code>onError</code> notification to its observers.
+      </p><p>
+       A third variant of <code>retry</code> takes a predicate function as a parameter. You write
+       this function to accept two arguments: an Int count of how many retries have taken place
+       thusfar, and a Throwable indicating the error that caused the <code>onError</code>
+       notification. This function returns a Boolean to indicate whether or not <code>retry</code>
+       should resubscribe to and mirror the source Observable. If it does not, then
+       <code>retry</code> passes the latest <code>onError</code> notification to its observers.
+      </p></figcaption>
      </figure>
-     <p>
-      One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
-      mirror the source Observable no matter how many <code>onError</code> notifications it
-      receives.
-     </p><p>
-      Another variant of <code>retry</code> takes a single parameter: a count of the number of times
-      it should try to resubscribe to the source Observable when it encounters errors. If this count
-      is exceeded, <code>retry</code> will not attempt to resubscribe again and will instead pass
-      the latest <code>onError</code> notification to its observers.
-     </p><p>
-      A third variant of <code>retry</code> takes a predicate function as a parameter. You write
-      this function to accept two arguments: an Int count of how many retries have taken place
-      thusfar, and a Throwable indicating the error that caused the <code>onError</code>
-      notification. This function returns a Boolean to indicate whether or not <code>retry</code>
-      should resubscribe to and mirror the source Observable. If it does not, then
-      <code>retry</code> passes the latest <code>onError</code> notification to its observers.
-     </p>
      <figure>
       <img src="IMAGES/retryWhen.f.png" width="640" alt="retryWhen" />
+      <figcaption><p>
+       The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
+       not to resubscribe to and mirror the source Observable by passing the Throwable from the
+       <code>onError</code> notification to a function that generates a second Observable, and
+       observes its result to determine what to do. If that result is an emitted item,
+       <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if
+       that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
+       notification on to its observers and terminates.
+      </p></figcaption>
      </figure>
-     <p>
-      The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
-      not to resubscribe to and mirror the source Observable by passing the Throwable from the
-      <code>onError</code> notification to a function that generates a second Observable, and
-      observes its result to determine what to do. If that result is an emitted item,
-      <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if that
-      result is an <code>onError</code> notification, <code>retryWhen</code> passes this
-      notification on to its observers and terminates.
-     </p>
     </div>
 
    </div>

@@ -365,10 +365,120 @@
 
 <!-- RxJS ===================================================================================== -->
     <h3>RxJS: <code>window</code>, <code>windowWithCount</code>, <code>windowWithTime</code>, and <code>windowWithTimeOrCount</code></h3><div id="RxJS" class="operator-language-description">
-     <p>
-     </p>
+     <h4><code>window(windowClosingSelector)</code></h4>
      <figure>
+      <img src="IMAGES/window1.cs.png" width="640" alt="window(windowClosingSelector)" />
+      <figcaption>
+       <p>
+<!-- https://github.com/Reactive-Extensions/RxJS/issues/427
+     windowClosingSelector is currently poorly documented & I can't figure it out from the
+     examples given -->
+       </p>
+      </figcaption>
+     </figure>
+     <h4><code>window(windowOpenings, windowClosingSelector)</code></h4>
+     <figure>
+      <img src="IMAGES/window2.ocs.png" width="640" alt="window(windowOpenings,windowClosingSelector)" />
+      <figcaption>
+       <p>
+<!-- https://github.com/Reactive-Extensions/RxJS/issues/427
+     windowClosingSelector is currently poorly documented & I can't figure it out from the
+     examples given -->
+       </p>
+      </figcaption>
+     </figure>
+     <h4><code>window(windowBoundaries)</code></h4>
+     <figure>
+      <img src="IMAGES/window8.b.png" width="640" alt="window(windowBoundaries)" />
+      <figcaption>
+       <p>
+        This variant of <code>window</code> takes a second Observable as a parameter. Whenever this
+        second Observable emits an item, <code>window</code> closes the current Observable window
+        (if any) and opens a new one.
+       </p>
+      </figcaption>
+     </figure>
+     <h4><code>windowWithCount(count)</code></h4>
+     <figure>
+      <img src="IMAGES/windowWithCount3.png" width="640" alt="windowWithCount(count)" />
+      <figcaption>
+       <p>
+        This variant of <code>windowWithCount</code> opens its first window immediately. It closes
+        the currently open window and immediately opens a new one whenever the current window has
+        emitted <code>count</code> items. It will also close the currently open window if it
+        receives an <code>onCompleted</code> or <code>onError</code> notification from the source
+        Observable. This variant of <code>windowWithCount</code> emits a series of non-overlapping
+        windows whose collective emissions correspond one-to-one with those of the source
+        Observable.
+       </p>
+      </figcaption>
+     </figure>
+     <h4><code>windowWithCount(count, skip)</code></h4>
+     <figure>
+      <img src="IMAGES/windowWithCount4.png" width="640" alt="windowWithCount(count,skip)" />
+      <figcaption>
+       <p>
+        This variant of <code>windowWithCount</code> opens its first window immediately. It opens a
+        new window beginning with every <code>skip</code> item from the source Observable (so, for
+        example, if <code>skip</code> is 3, then it opens a new window starting with every third
+        item). It closes each window when that window has emitted <code>count</code> items or if it
+        receives an <code>onCompleted</code> or <code>onError</code> notification from the source
+        Observable. If <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
+        <code>windowWithCount(count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
+        emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
+        <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
+        window.
+       </p>
+      </figcaption>
+     </figure>
+     <h4><code>windowWithTime(timeSpan</code>[<code>,scheduler</code>]<code>)</code></h4>
+     <figure>
+      <img src="IMAGES/windowWithTime5.png" width="640" alt="windowWithTime(timeSpan)" />
       <figcaption><p>
+       This variant of <code>windowWithTime</code> opens its first window immediately. It closes the
+       currently open window and opens another one every <code>timespan</code> period of time (in
+       milliseconds, optionally measured on a particular Scheduler). It will also close the
+       currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
+       notification from the source Observable. This variant of <code>windowWithTime</code> emits a
+       series of non-overlapping windows whose collective emissions correspond one-to-one with those
+       of the source Observable.
+      </p><p>
+       If you do not specify a scheduler, this variant of <code>windowWithTime</code> uses the 
+       <code>timeout</code> scheduler for its timer by default.
+      </p></figcaption>
+     </figure>
+     <h4><code>windowWithTime(timeSpan,timeShift</code>[<code>,scheduler</code>]<code>)</code></h4>
+     <figure>
+      <img src="IMAGES/windowWithTime7.png" width="640" alt="windowWithTime(timeSpan,timeShift)" />
+      <figcaption><p>
+       This variant of <code>windowWithTime</code> opens its first window immediately, and
+       thereafter opens a new window every <code>timeshift</code> milliseconds (optionally measured
+       on a particular Scheduler). It closes a currently open window after <code>timespan</code>
+       milliseconds have passed since that window was opened. It will also close any currently open
+       window if it receives an <code>onCompleted</code> or <code>onError</code> notification from
+       the source Observable. Depending on how you set <code>timespan</code> and
+       <code>timeshift</code> the windows that result from this operation may overlap or may have
+       gaps.
+      </p><p>
+       If you do not specify a scheduler, this variant of <code>windowWithTime</code> uses the 
+       <code>timeout</code> scheduler for its timer by default.
+      </p></figcaption>
+     </figure>
+     <h4><code>windowWithTimeOrCount(timeSpan,count</code>[<code>,scheduler</code>]<code>)</code></h4>
+     <figure>
+      <img src="IMAGES/windowWithTimeOrCount6.png" width="640" alt="windowWithTimeOrCount(timeSpan,count)" />
+      <figcaption><p>
+       <code>windowWithTimeOrCount</code> opens its first window immediately. It closes the
+       currently open window and opens another one every <code>timespan</code> milliseconds
+       (optionally measured on a particular Scheduler) or whenever the currently open window has
+       emitted <code>count</code> items. It will also close the currently open window if it receives
+       an <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+       <code>windowWithTimeOrCount</code> emits a series of non-overlapping windows whose collective
+       emissions correspond one-to-one with those of the source Observable.
+      </p><p>
+       If you do not specify a scheduler, this variant of <code>windowWithTimeOrCount</code> uses
+       the <code>timeout</code> scheduler for its timer by default.
       </p></figcaption>
      </figure>
     </div>
@@ -487,9 +597,105 @@
 <!-- Rx.NET =================================================================================== -->
     <h3>Rx.NET: <code>Window</code></h3><div id="RxNET" class="operator-language-description">
      <p>
+      There are several variants of the <span class="operator">Window</span> operator in Rx.NET.
      </p>
+     <h4><code>Window(windowClosingSelector)</code></h4>
      <figure>
+      <img src="IMAGES/window1.net.png" width="640" alt="window(windowClosingSelector)" />
       <figcaption><p>
+       This variant of <code>Window</code> opens its first window immediately and calls the
+       <code>windowClosingSelector</code> function to obtain a second Observable. When this second
+       Observable emits a <code>TWindowClosing</code> object, <code>Window</code> closes the
+       currently open window, immediately opens a new one, and again calls the
+       <code>windowClosingSelector</code> function to obtain a fresh Observable. It repeats this
+       process until the source Observable terminates. In this way, this variant of
+       <code>Window</code> emits a series of non-overlapping windows whose collective emissions
+       correspond one-to-one with those of the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>Window(count)</code></h4>
+     <figure>
+      <img src="IMAGES/window3.net.png" width="640" alt="window(count)" />
+      <figcaption><p>
+       This variant of <code>Window</code> opens its first window immediately. It closes the
+       currently open window and immediately opens a new one whenever the current window has emitted
+       <code>count</code> items. It will also close the currently open window if it receives an
+       <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+       This variant of <code>Window</code> emits a series of non-overlapping windows whose
+       collective emissions correspond one-to-one with those of the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>Window(timeSpan</code>[<code>,scheduler</code>]</code>)</code></h4>
+     <figure>
+      <img src="IMAGES/window5.net.png" width="640" alt="window(timeSpan)" />
+      <figcaption><p>
+       This variant of <code>Window</code> opens its first window immediately. It closes the
+       currently open window and opens another one every <code>timespan</code> period of time
+       (in the form of a <code>TimeSpan</code> object, and optionally on a particular
+       <code>IScheduler</code>). It will also close the currently open window if it receives an
+       <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+       This variant of <code>Window</code> emits a series of non-overlapping windows whose
+       collective emissions correspond one-to-one with those of the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>Window(count,skip)</code></h4>
+     <figure>
+      <img src="IMAGES/window4.net.png" width="640" alt="window(count,skip)" />
+      <figcaption><p>
+       This variant of <code>Window</code> opens its first window immediately. It opens a new window
+       beginning with every <code>skip</code> item from the source Observable (so, for example, if
+       <code>skip</code> is 3, then it opens a new window starting with every third item). It closes
+       each window when that window has emitted <code>count</code> items or if it receives an
+       <code>onCompleted</code> or <code>onError</code> notification from the source Observable. If
+       <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
+       <code>Window(source,&nbsp;count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
+       emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
+       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
+       window.
+      </p></figcaption>
+     </figure>
+     <h4><code>Window(windowOpenings,windowClosingSelector)</code></h4>
+     <figure>
+      <img src="IMAGES/window2.net.png" width="640" alt="window(windowOpenings,windowClosingSelector)" />
+      <figcaption><p>
+       This variant of <code>Window</code> opens a window whenever it observes the
+       <code>windowOpenings</code> Observable emit an <code>TWindowOpening</code> object and at the
+       same time calls the <code>windowClosingSelector</code>, passing it that
+       <code>TWindowOpening</code> object, to generate a closing Observable associated with that
+       window. When that closing Observable emits a <code>TWindowClosing</code> object,
+       <code>Window</code> closes the associated window. Since the closing of currently open windows
+       and the opening of new windows are activities that are regulated by independent Observables,
+       this variant of <code>Window</code> may create windows that overlap (duplicating items from
+       the source Observable) or that leave gaps (discarding items from the source Observable).
+      </p></figcaption>
+     </figure>
+     <h4><code>Window(timeSpan,count</code>[<code>,scheduler</code>]<code>)</code></h4>
+     <figure>
+      <img src="IMAGES/window6.net.png" width="640" alt="window(timeSpan,count)" />
+      <figcaption><p>
+       This variant of <code>Window</code> opens its first window immediately. It closes the
+       currently open window and opens another one every <code>timeSpan</code> period of time
+       (in the form of a <code>TimeSpan</code> object, and optionally on a particular
+       <code>IScheduler</code>) or whenever the currently open window has emitted <code>count</code>
+       items. It will also close the currently open window if it receives an
+       <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+       This variant of <code>window</code> emits a series of non-overlapping windows whose
+       collective emissions correspond one-to-one with those of the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>Window(timeSpan,timeShift</code>[<code>,scheduler</code>]<code>)</code></h4>
+     <figure>
+      <img src="IMAGES/window7.net.png" width="640" alt="window(timeSpan,timeShift)" />
+      <figcaption><p>
+       This variant of <code>Window</code> opens its first window immediately, and thereafter opens
+       a new window every <code>timeShift</code> period of time (in the form of a
+       <code>TimeSpan</code> object, and optionally on a particular <code>IScheduler</code>). It
+       closes a currently open window after <code>timeSpan</code> period of time has passed since
+       that window was opened. It will also close any currently open window if it receives an
+       <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+       Depending on how you set <code>timeSpan</code> and <code>timeShift</code> the windows that
+       result from this operation may overlap or may have gaps.
       </p></figcaption>
      </figure>
     </div>
@@ -497,19 +703,132 @@
 <!-- RxPY ===================================================================================== -->
     <h3>RxPY: <code>window</code>, <code>window_with_count</code>, <code>window_with_time</code>, <code>window_with_time_or_count</code></h3><div id="RxPY" class="operator-language-description">
      <p>
+      RxPY implements this operator with several variants of four different functions.
      </p>
+     <h4><code>window(window_closing_selector)</code></h4>
      <figure>
+      <img src="IMAGES/window1.net.png" width="640" alt="window(window_closing_selector)" />
+      <figcaption><p>
+       This variant of <code>window</code> opens its first window immediately and calls the
+       <code>closing_selector</code> function to obtain a second Observable. When this second
+       Observable emits an item, <code>window</code> closes the currently open window, immediately
+       opens a new one, and again calls the <code>closing_selector</code> function to obtain a fresh
+       Observable. It repeats this process until the source Observable terminates. In this way, this
+       variant of <code>window</code> emits a series of non-overlapping windows whose collective
+       emissions correspond one-to-one with those of the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>window(window_openings,window_closing_selector)</code></h4>
+     <figure>
+      <img src="IMAGES/window2.png" width="640" alt="window(window_openings,window_closing_selector)" />
+      <figcaption><p>
+       This variant of <code>window</code> opens a window whenever it observes the
+       <code>window_openings</code> Observable emit an item, and at the same time calls
+       <code>closing_selector</code> to generate a closing Observable associated with that window.
+       When that closing Observable emits an object, <code>window</code> closes that window.
+       Since the closing of currently open windows and the opening of new windows are activities
+       that are regulated by independent Observables, this variant of <code>window</code> may create
+       windows that overlap (duplicating items from the source Observable) or that leave gaps
+       (discarding items from the source Observable).
+      </p></figcaption>
+     </figure>
+     <h4><code>window(window_openings)</code></h4>
+     <figure>
+      <img src="IMAGES/window8.png" width="640" alt="window(window_openings)" />
+      <figcaption><p>
+       This variant of <code>window</code> takes a second Observable as a parameter. Whenever this
+       second Observable emits an item, <code>window</code> closes the current Observable window
+       (if any) and opens a new one.
+      </p></figcaption>
+     </figure>
+     <h4><code>window_with_count(count)</code></h4>
+     <figure>
+      <img src="IMAGES/window_with_count3.png" width="640" alt="window_with_count(count)" />
+      <figcaption><p>
+       This variant of <code>window_with_count</code> opens its first window immediately. It closes
+       the currently open window and immediately opens a new one whenever the current window has
+       emitted <code>count</code> items. It will also close the currently open window if it receives
+       an <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+       This variant of <code>window_with_count</code> emits a series of non-overlapping windows
+       whose collective emissions correspond one-to-one with those of the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>window_with_count(count,skip)</code></h4>
+     <figure>
+      <img src="IMAGES/window_with_count4.png" width="640" alt="window_with_count(count,skip)" />
+      <figcaption><p>
+       This variant of <code>window_with_count</code> opens its first window immediately. It opens
+       a new window beginning with every <code>skip</code> item from the source Observable (so, for
+       example, if <code>skip</code> is 3, then it opens a new window starting with every third
+       item). It closes each window when that window has emitted <code>count</code> items or if it
+       receives an <code>onCompleted</code> or <code>onError</code> notification from the source
+       Observable. If <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
+       <code>window_with_count(count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
+       emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
+       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
+       window.
+      </p></figcaption>
+     </figure>
+     <h4><code>window_with_time(timespan</code>[<code>,scheduler</code>]</code>)</code></h4>
+     <figure>
+      <img src="IMAGES/window_with_time5.py.png" width="640" alt="window_with_time(timespan)" />
       <figcaption><p>
       </p></figcaption>
      </figure>
+     <h4><code>window_with_time(timespan,timeshift</code>[<code>,scheduler</code>]</code>)</code></h4>
+     <figure>
+      <img src="IMAGES/window_with_time7.py.png" width="640" alt="window_with_time(timespan,timeshift)" />
+      <figcaption><p>
+       This variant of <code>window_with_time</code> opens its first window immediately. It closes
+       the currently open window and opens another one every <code>timespan</code> milliseconds
+       (optionally measured on a particular <code>scheduler</code>). It will also close the
+       currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
+       notification from the source Observable. This variant of <code>window_with_time</code> emits
+       a series of non-overlapping windows whose collective emissions correspond one-to-one with
+       those of the source Observable.
+      </p><p>
+       If you do not specify a scheduler, this variant of <code>window_with_time</code> uses the 
+       <code>timeout</code> scheduler for its timer by default.
+      </p></figcaption>
+     </figure>
+     <h4><code>window_with_time_or_count(timespan,count</code>[<code>,scheduler</code>]</code>)</code></h4>
+     <figure>
+      <img src="IMAGES/window_with_time_or_count.py.png" width="640" alt="window_with_time_or_count(timespan,count)" />
+      <figcaption><p>
+       <code>window_with_time_or_count</code> opens its first window immediately. It closes the
+       currently open window and opens another one every <code>timespan</code> milliseconds
+       (optionally measured on a particular scheduler) or whenever the currently open window has
+       emitted <code>count</code> items. It will also close the currently open window if it receives
+       an <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+       <code>window_with_time_or_count</code> emits a series of non-overlapping windows whose
+       collective emissions correspond one-to-one with those of the source Observable.
+      </p><p>
+       If you do not specify a scheduler, this variant of <code>window_with_time_or_count</code>
+       uses the <code>timeout</code> scheduler for its timer by default.
+      </p></figcaption>
+     </figure>
+
     </div>
 
 <!-- Rx.rb ==================================================================================== -->
     <h3>Rx.rb: <code>window_with_count</code></h3><div id="Rxrb" class="operator-language-description">
-     <p>
-     </p>
+     <h4><code>window_with_count(count,skip)</code></h4>
      <figure>
+      <img src="IMAGES/window_with_count4.png" width="640" alt="window_with_count(count,skip)" />
       <figcaption><p>
+       Rx.rb implements this operator as <code>window_with_count</code>. It opens its first window
+       immediately. It then opens a new window beginning with every <code>skip</code> item from the
+       source Observable (so, for example, if <code>skip</code> is 3, then it opens a new window
+       starting with every third item). It closes each window when that window has emitted
+       <code>count</code> items or if it receives an <code>onCompleted</code> or
+       <code>onError</code> notification from the source Observable. If
+       <code>skip&nbsp;=&nbsp;count</code> then there is a one-to-one correspondence between the
+       items emitted by the source Observable and those emitted by the window Observables; if
+       <code>skip&nbsp;&lt;&nbsp;count</code> the windows will overlap by
+       <code>count&nbsp;&minus;&nbsp;skip</code> items; if <code>skip&nbsp&gt;&nbsp;count</code> the
+       windows will drop <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable
+       between every window.
       </p></figcaption>
      </figure>
     </div>
@@ -517,9 +836,102 @@
 <!-- RxScala ================================================================================== -->
     <h3>RxScala: <code>sliding</code> and <code>tumbling</code></h3><div id="RxScala" class="operator-language-description">
      <p>
+      RxScala implements this operator as <code>sliding</code> (creates windows that may overlap or
+      have gaps) and <code>tumbling</code> (creates windows whose collective emissions match those
+      of the source Observable one-to-one).
      </p>
+     <h4><code>sliding(timespan,timeshift,count</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
+      <img src="IMAGES/sliding9.png" width="640" alt="sliding(timespan,timeshift,count)" />
       <figcaption><p>
+       This variant of <code>sliding</code> opens its first window immediately, and thereafter opens
+       a new window every <code>timeshift</code> period of time (in the form of a
+       <code>Duration</code> object, and optionally on a particular <code>scheduler</code>). It
+       closes a currently open window after <code>timespan</code> period of time has passed since
+       that window was opened or once <code>count</code> items have been emitted on that window. It
+       will also close any currently open window if it receives an <code>onCompleted</code> or
+       <code>onError</code> notification from the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>sliding(timespan,timeshift</code>[<code>,scheduler</code>]<code>)</code></h4>
+     <figure>
+      <img src="IMAGES/sliding7.png" width="640" alt="sliding(timespan,timeshift)" />
+      <figcaption><p>
+       This variant of <code>sliding</code> opens its first window immediately, and thereafter opens
+       a new window every <code>timeshift</code> period of time (in the form of a
+       <code>Duration</code> object, and optionally on a particular <code>scheduler</code>). It
+       closes a currently open window after <code>timespan</code> period of time has passed since
+       that window was opened. It will also close any currently open window if it receives an
+       <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>sliding(count,skip)</code></h4>
+     <figure>
+      <img src="IMAGES/sliding4.png" width="640" alt="sliding(count,skip)" />
+      <figcaption><p>
+       This variant of <code>sliding</code> opens its first window immediately. It opens a new
+       window beginning with every <code>skip</code> item from the source Observable (so, for
+       example, if <code>skip</code> is 3, then it opens a new window starting with every third
+       item). It closes each window when that window has emitted <code>count</code> items or if it
+       receives an <code>onCompleted</code> or <code>onError</code> notification from the source
+       Observable. If <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
+       <code>tumbling(count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
+       emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
+       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
+       window.
+      </p></figcaption>
+     </figure>
+     <h4><code>sliding(openings,closings)</code></h4>
+     <figure>
+      <img src="IMAGES/sliding2.png" width="640" alt="sliding(openings,closings)" />
+      <figcaption><p>
+       This variant of <code>sliding</code> opens a window whenever it observes the
+       <code>openings</code> Observable emit an <code>Opening</code> object and at the same
+       time calls <code>closings</code> to generate a closing Observable associated with that
+       window. When that closing Observable emits an item, <code>sliding</code> closes that window.
+      </p></figcaption>
+     </figure>
+     <h4><code>tumbling(timespan,count</code>[<code>,scheduler</code>]<code>)</code></h4>
+     <figure>
+      <img src="IMAGES/tumbling6.png" width="640" alt="tumbling(timespan,count)" />
+      <figcaption><p>
+       This variant of <code>tumbling</code> opens its first window immediately. It closes the
+       currently open window and opens another one every <code>timespan</code> period of time (a
+       <code>Duration</code>, optionally measured on a particular <code>scheduler</code>) or
+       whenever the currently open window has emitted <code>count</code> items. It will also close
+       the currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
+       notification from the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>tumbling(timespan</code>[<code>,scheduler</code>]<code>)</code></h4>
+     <figure>
+      <img src="IMAGES/tumbling5.png" width="640" alt="tumbling(timespan)" />
+      <figcaption><p>
+       This variant of <code>tumbling</code> opens its first window immediately. It closes the
+       currently open window and opens another one every <code>timespan</code> period of time (a
+       <code>Duration</code>, optionally measured on a particular <code>scheduler</code>). It
+       will also close the currently open window if it receives an <code>onCompleted</code> or
+       <code>onError</code> notification from the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>tumbling(count)</code></h4>
+     <figure>
+      <img src="IMAGES/tumbling3.png" width="640" alt="tumbling(count)" />
+      <figcaption><p>
+       This variant of <code>tumbling</code> opens its first window immediately. It closes the
+       currently open window and immediately opens a new one whenever the current window has emitted
+       <code>count</code> items. It will also close the currently open window if it receives an
+       <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>tumbling(boundary)</code></h4>
+     <figure>
+      <img src="IMAGES/tumbling8.png" width="640" alt="tumbling(boundary)" />
+      <figcaption><p>
+       This variant of <code>tumbling</code> takes a second Observable as a parameter. Whenever this
+       second Observable emits an item, <code>tumbling</code> closes the current Observable window
+       (if any) and opens a new one.
       </p></figcaption>
      </figure>
     </div>

@@ -2,25 +2,25 @@
 <html lang="en-us">
  <head>
   <meta charset="utf-8" />
-  <title>Average</title>
+  <title>Sum</title>
   <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
   <link href="../../css/bootstrap.min.css" rel="stylesheet" />
  </head>
  <body>
   <div class="container"><div class="col-md-8 col-md-offset-2">
-   <h1>Average</h1>
-   <h3>calculates the average of numbers emitted by an Observable and emits this average</h3>
+   <h1>Sum</h1>
+   <h3>calculates the sum of numbers emitted by an Observable and emits this sum</h3>
    <figure>
-    <img src="IMAGES/average.c.png" width="640" alt="Average" />
+    <img src="IMAGES/sum.c.png" width="640" alt="Sum" />
    </figure>
    <p>
-    The <span class="operator">Average</span> operator operates on an Observable that emits numbers
-    (or items that can be evaluated as numbers), and emits a single value: the average of all of
-    the numbers emitted by the source Observable.
+    The <span class="operator">Sum</span> operator operates on an Observable that emits numbers
+    (or items that can be evaluated as numbers), and emits a single value: the sum of all of the
+    numbers emitted by the source Observable.
    </p>
    <h4>See Also:</h4>
    <ul>
-    <li><a href="sum.html"><span class="operator">Sum</span></a></li>
+    <li><a href="average.html"><span class="operator">Average</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -34,19 +34,19 @@
     </div>
 
 <!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: <code>average</code></h3><div id="RxCpp" class="operator-language-description">
+    <h3>RxCpp: <code>sum</code></h3><div id="RxCpp" class="operator-language-description">
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
     </div>
 
 <!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code></h3><div id="RxGroovy" class="operator-language-description">
+    <h3>RxGroovy: <code>sumDouble</code>, <code>sumFloat</code>, <code>sumInteger</code>, and <code>sumLong</code></h3><div id="RxGroovy" class="operator-language-description">
      <p>
       In RxGroovy, this operator is not in the ReactiveX core, but is part of the distinct
       <code>rxjava-math</code> module, where it is implemented with four type-specific operators:
-      <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and
-      <code>averageLong</code>. The following example shows how these operators work:
+      <code>sumDouble</code>, <code>sumFloat</code>, <code>sumInteger</code>, and
+      <code>sumLong</code>. The following example shows how these operators work:
      </p>
      <h4>Sample code:</h4>
      <div class="code groovy"><pre>
@@ -58,60 +58,52 @@ def myObservable = Observable.create({ aSubscriber ->
   if(false == aSubscriber.isUnsubscribed()) aSubscriber.onCompleted();
 });
 
-Observable.averageInteger(myObservable).subscribe(
+Observable.sumInteger(myObservable).subscribe(
   { println(it); },                  // onNext
   { println("Error encountered"); }, // onError
   { println("Sequence complete"); }  // onCompleted
 );</pre></div>
      <div class="output"><pre>
-2
+10
 Sequence complete</pre></div>
      <figure>
-      <img src="IMAGES/average.f.png" width="640" alt="average" />
+      <img src="IMAGES/sum.f.png" width="640" alt="sum" />
       <figcaption><p>
-       You can also average not the items themselves but the results of a function applied to each
-       item, as in the illustration above, which emits the average number of sides on the figures
+       You can also sum not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the sum of the number of sides on the figures
        emitted by the source Observable.
       </p></figcaption>
      </figure>
-     <p>
-      This operator will fail with an <code>IllegalArgumentException</code> if the source Observable
-      does not emit any items.
-     </p>
     </div>
 
 <!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code></h3><div id="RxJava" class="operator-language-description">
+    <h3>RxJava: <code>sumDouble</code>, <code>sumFloat</code>, <code>sumInteger</code>, and <code>sumLong</code></h3><div id="RxJava" class="operator-language-description">
      <p>
       This operator is not in the RxJava core, but is part of the distinct <code>rxjava-math</code>
-      module, where it is implemented with four type-specific operators: <code>averageDouble</code>,
-      <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code>.
+      module, where it is implemented with four type-specific operators: <code>sumDouble</code>,
+      <code>sumFloat</code>, <code>sumInteger</code>, and <code>sumLong</code>.
      </p>
      <figure>
-      <img src="IMAGES/average.f.png" width="640" alt="average" />
+      <img src="IMAGES/sum.f.png" width="640" alt="sum" />
       <figcaption><p>
-       You can also average not the items themselves but the results of a function applied to each
-       item, as in the illustration above, which emits the average number of sides on the figures
+       You can also sum not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the sum of the number of sides on the figures
        emitted by the source Observable.
       </p></figcaption>
      </figure>
-     <p>
-      This operator will fail with an <code>IllegalArgumentException</code> if the source Observable
-      does not emit any items.
-     </p>
     </div>
 
 <!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>average</code></h3><div id="RxJS" class="operator-language-description">
+    <h3>RxJS: <code>sum</code></h3><div id="RxJS" class="operator-language-description">
      <figure>
-      <img src="IMAGES/average.png" width="640" alt="average" />
+      <img src="IMAGES/sum.png" width="640" alt="sum" />
       <figcaption><p>
-       RxJS implements this operator as <code>average</code>. The following code sample shows how
+       RxJS implements this operator as <code>sum</code>. The following code sample shows how
        to use it:
       </p>
       <h4>Sample code:</h4>
       <div class="code javascript"><pre>
-var source = Rx.Observable.range(0, 9).average();
+var source = Rx.Observable.range(0, 9).sum();
 
 var subscription = source.subscribe(
     function (x) {
@@ -124,14 +116,14 @@ var subscription = source.subscribe(
         console.log('Completed');
     });</pre></div>
       <div class="output"><pre>
-Next: 4
+Next: 45
 Completed</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/average.f.png" width="640" alt="average" />
+      <img src="IMAGES/sum.f.png" width="640" alt="sum" />
       <figcaption><p>
-       You can also average not the items themselves but the results of a function applied to each
-       item, as in the illustration above, which emits the average number of sides on the figures
+       You can also sum not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the sum number of sides on the figures
        emitted by the source Observable.
       </p>
       <h4>Sample code:</h4>
@@ -142,7 +134,7 @@ var arr = [
     { value: 3 }
 ];
 
-var source = Rx.Observable.fromArray(arr).average(function (x) {
+var source = Rx.Observable.fromArray(arr).sum(function (x) {
     return x.value;
 });
 
@@ -157,11 +149,11 @@ var subscription = source.subscribe(
         console.log('Completed');
     });</pre></div>
       <div class="output"><pre>
-Next: 2
+Next: 6
 Completed</pre></div></figcaption>
      </figure>
      <p>
-      <code>average</code> is found in the following distributions:
+      <code>sum</code> is found in the following distributions:
      </p>
      <ul>
       <li><code>rx.all.js</code></li>
@@ -180,28 +172,28 @@ Completed</pre></div></figcaption>
     </div>
 
 <!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code></h3><div id="RxKotlin" class="operator-language-description">
+    <h3>RxKotlin: <code>sumDouble</code>, <code>sumFloat</code>, <code>sumInteger</code>, and <code>sumLong</code></h3><div id="RxKotlin" class="operator-language-description">
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
     </div>
 
 <!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Average</code></h3><div id="RxNET" class="operator-language-description">
+    <h3>Rx.NET: <code>Sum</code></h3><div id="RxNET" class="operator-language-description">
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
     </div>
 
 <!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>average</code></h3><div id="RxPY" class="operator-language-description">
+    <h3>RxPY: <code>sum</code></h3><div id="RxPY" class="operator-language-description">
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
     </div>
 
 <!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>average</code></h3><div id="Rxrb" class="operator-language-description">
+    <h3>Rx.rb: <code>sum</code></h3><div id="Rxrb" class="operator-language-description">
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>

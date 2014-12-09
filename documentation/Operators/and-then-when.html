@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset="utf-8" />
+  <title>And/Then/When</title>
+  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+ </head>
+ <body>
+  <div class="container"><div class="col-md-8 col-md-offset-2">
+   <h1>And/Then/When</h1>
+   <h3>combine sets of items emitted by two or more Observables by means of Pattern and Plan intermediaries</h3>
+   <figure>
+    <img src="IMAGES/and_then_when.C.png" width="640" alt="And/Then/When" />
+   </figure>
+   <p>
+    The combination of the <span class="operator">And</span>, <span class="operator">Then</span>,
+    and <span class="operator">When</span> operators behave much like the
+    <span class="operaotr">Zip</span> operator, but they do so by means of intermediate data
+    structures. <span class="operator">And</span> accepts two or more Observables and combines the
+    emissions from each, one set at a time, into <code>Pattern</code> objects.
+    <span class="operator">Then</span> operates on such <code>Pattern</code> objects, transforming
+    them in a <code>Plan</code>. <span class="operator">When</span> in turn transforms these various
+    <code>Plan</code> objects into emissions from an Observable.
+   </p>
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="zip.html"><span class="operator">Zip</span></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+   <div id="accordion">
+
+<!-- RxClojure ================================================================================ -->
+    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxCpp ==================================================================================== -->
+    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxGroovy ================================================================================= -->
+    <h3>RxGroovy: <code>and</code>/<code>then</code>/<code>when</code></h3><div id="RxGroovy" class="operator-language-description">
+     <figure>
+      <img src="IMAGES/and_then_when.png" width="640" alt="and/then/when" />
+      <figcpation><p>
+       In RxGroovy, these are not part of the core ReactiveX implementation, but are found as
+       <code>and</code>, <code>then</code>, and <code>when</code> in the
+       <code>rxjava-joins</code> module.
+      </p></figcaption>
+     </figure>
+    </div>
+
+<!-- RxJava =================================================================================== -->
+    <h3>RxJava: <code>and</code>/<code>then</code>/<code>when</code></h3><div id="RxJava" class="operator-language-description">
+     <figure>
+      <img src="IMAGES/and_then_when.png" width="640" alt="and/then/when" />
+      <figcpation><p>
+       These are not part of the core RxJava implementation, but are found as <code>and</code>,
+       <code>then</code>, and <code>when</code> in the <code>rxjava-joins</code> module.
+      </p></figcaption>
+     </figure>
+    </div>
+
+<!-- RxJS ===================================================================================== -->
+    <h3>RxJS: <code>and</code>/<code>thenDo</code>/<code>when</code></h3><div id="RxJS" class="operator-language-description">
+     <figure>
+      <img src="IMAGES/and_thenDo_when.png" width="640" alt="and/thenDo/when" />
+      <figcpation><p>
+       RxJS implements these operators as <code>and</code>, <code>thenDo</code>, and
+       <code>when</code>.
+      </p><p>
+       These are found in the following packages:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.joinpatterns.js</code></li>
+      </ul>
+      <p>
+       They require one of the following packages:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+    </div>
+
+<!-- RxKotlin ================================================================================= -->
+    <h3>RxKotlin: <code>and</code>/<code>then</code>/<code>when</code></h3><div id="RxKotlin" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.NET =================================================================================== -->
+    <h3>Rx.NET: <code>And</code>/<code>Then</code>/<code>When</code></h3><div id="RxNET" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxPY ===================================================================================== -->
+    <h3>RxPY</h3><div id="RxPY" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.rb ==================================================================================== -->
+    <h3>Rx.rb</h3><div id="Rxrb" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxScala ================================================================================== -->
+    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+   </div>
+  </div></div>
+
+ <script src="JS/jquery-1.11.1.min.js"></script>
+ <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+ <script>
+  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
+ </script>
+ </body>
+</html>

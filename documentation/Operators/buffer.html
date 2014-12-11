@@ -175,6 +175,41 @@ bundles rather than emitting the items one at a time
         variant uses the <code>computation</code> scheduler.</p>
     </figcaption>
     </figure>
+    <p>
+     You can use the <span class="operator">Buffer</span> operator to implement backpressure (that
+     is, to cope with an Observable that may produce items too quickly for its observer to consume).
+    </p>
+    <figure class="variant">
+     <img src="IMAGES/bp.buffer2.png" width="640" alt="Buffer as a backpressure strategy" />
+     <figcaption><p>
+      Buffer can reduce a sequence of many items to a sequence of fewer buffers-of-items, making
+      them more manageable. You could, for example, close and emit a buffer of items from a bursty
+      Observable periodically, at a regular interval of time.
+     </p>
+     <h4>Sample code</h4>
+     <div class="code groovy"><pre>
+Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = bursty.buffer(500, TimeUnit.MILLISECONDS);</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="IMAGES/bp.buffer1.png" width="640" alt="Buffer as a backpressure strategy" />
+     <figcaption><p>
+      Or you could get fancy, and collect items in buffers during the bursty periods and emit them
+      at the end of each burst, by using the
+      <a href="throttle.html"><span class="operator">Throttle</span></a> operator
+      (<code>debounce</code> in RxGroovy) to emit a buffer closing indicator to the buffer operator.
+     </p>
+     <h4>Sample code</h4>
+     <div class="code groovy"><pre>
+// we have to multicast the original bursty Observable so we can use it
+// both as our source and as the source for our buffer closing selector:
+Observable&lt;Integer&gt; burstyMulticast = bursty.publish().refCount();
+// burstyDebounced will be our buffer closing selector:
+Observable&lt;Integer&gt; burstyDebounced = burstyMulticast.debounce(10, TimeUnit.MILLISECONDS);
+// and this, finally, is the Observable of buffers we're interested in:
+Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(burstyDebounced);</pre></div>
+     </figcaption>
+    </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJava %}
@@ -279,6 +314,41 @@ bundles rather than emitting the items one at a time
         <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
         variant uses the <code>computation</code> scheduler.</p>
     </figcaption>
+    </figure>
+    <p>
+     You can use the <span class="operator">Buffer</span> operator to implement backpressure (that
+     is, to cope with an Observable that may produce items too quickly for its observer to consume).
+    </p>
+    <figure class="variant">
+     <img src="IMAGES/bp.buffer2.png" width="640" alt="Buffer as a backpressure strategy" />
+     <figcaption><p>
+      Buffer can reduce a sequence of many items to a sequence of fewer buffers-of-items, making
+      them more manageable. You could, for example, close and emit a buffer of items from a bursty
+      Observable periodically, at a regular interval of time.
+     </p>
+     <h4>Sample code</h4>
+     <div class="code java"><pre>
+Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = bursty.buffer(500, TimeUnit.MILLISECONDS);</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="IMAGES/bp.buffer1.png" width="640" alt="Buffer as a backpressure strategy" />
+     <figcaption><p>
+      Or you could get fancy, and collect items in buffers during the bursty periods and emit them
+      at the end of each burst, by using the
+      <a href="throttle.html"><span class="operator">Throttle</span></a> operator
+      (<code>debounce</code> in RxJava) to emit a buffer closing indicator to the buffer operator.
+     </p>
+     <h4>Sample code</h4>
+     <div class="code java"><pre>
+// we have to multicast the original bursty Observable so we can use it
+// both as our source and as the source for our buffer closing selector:
+Observable&lt;Integer&gt; burstyMulticast = bursty.publish().refCount();
+// burstyDebounced will be our buffer closing selector:
+Observable&lt;Integer&gt; burstyDebounced = burstyMulticast.debounce(10, TimeUnit.MILLISECONDS);
+// and this, finally, is the Observable of buffers we're interested in:
+Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(burstyDebounced);</pre></div>
+     </figcaption>
     </figure>
   {% endlang_operator %}
 

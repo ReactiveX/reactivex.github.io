@@ -250,6 +250,32 @@
        <code>computation</code> scheduler for its timer by default.
       </p></figcaption>
      </figure>
+    <p>
+     You can use the <span class="operator">Window</span> operator to implement backpressure (that
+     is, to cope with an Observable that may produce items too quickly for its observer to consume).
+    </p>
+    <figure class="variant">
+     <img src="IMAGES/bp.window1.png" width="640" alt="Window as a backpressure strategy" />
+     <figcaption><p>
+      Window can reduce a sequence of many items to a sequence of fewer windows-of-items, making
+      them more manageable. You could, for example, emit a window of items from a bursty Observable
+      periodically, at a regular interval of time.
+     </p>
+     <h4>Sample code</h4>
+     <div class="code groovy"><pre>
+Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, TimeUnit.MILLISECONDS);</pre></div></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="IMAGES/bp.window2.png" width="640" alt="Window as a backpressure strategy" />
+     <figcaption><p>
+      Or you could choose to emit a new window of items for every <i>n</i> items emitted by the
+      bursty Observable.
+     </p>
+     <h4>Sample code</h4>
+     <div class="code groovy"><pre>
+Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</pre></div>
+     </figcaption>
+    </figure>
     </div>
 
 <!-- RxJava =================================================================================== -->
@@ -361,6 +387,32 @@
        <code>computation</code> scheduler for its timer by default.
       </p></figcaption>
      </figure>
+    <p>
+     You can use the <span class="operator">Window</span> operator to implement backpressure (that
+     is, to cope with an Observable that may produce items too quickly for its observer to consume).
+    </p>
+    <figure class="variant">
+     <img src="IMAGES/bp.window1.png" width="640" alt="Window as a backpressure strategy" />
+     <figcaption><p>
+      Window can reduce a sequence of many items to a sequence of fewer windows-of-items, making
+      them more manageable. You could, for example, emit a window of items from a bursty Observable
+      periodically, at a regular interval of time.
+     </p>
+     <h4>Sample code</h4>
+     <div class="code java"><pre>
+Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, TimeUnit.MILLISECONDS);</pre></div></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="IMAGES/bp.window2.png" width="640" alt="Window as a backpressure strategy" />
+     <figcaption><p>
+      Or you could choose to emit a new window of items for every <i>n</i> items emitted by the
+      bursty Observable.
+     </p>
+     <h4>Sample code</h4>
+     <div class="code java"><pre>
+Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</pre></div>
+     </figcaption>
+    </figure>
     </div>
 
 <!-- RxJS ===================================================================================== -->

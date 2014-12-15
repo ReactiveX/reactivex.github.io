@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset="utf-8" />
+  <title>Average</title>
+  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+ </head>
+ <body>
+  <div class="container"><div class="col-md-8 col-md-offset-2">
+   <h1>Average</h1>
+   <h3>calculates the average of numbers emitted by an Observable and emits this average</h3>
+   <figure>
+    <img src="images/average.c.png" width="640" alt="Average" />
+   </figure>
+   <p>
+    The <span class="operator">Average</span> operator operates on an Observable that emits numbers
+    (or items that can be evaluated as numbers), and emits a single value: the average of all of
+    the numbers emitted by the source Observable.
+   </p>
+   <h4>See Also:</h4>
+   <ul>
+    <li><a href="sum.html"><span class="operator">Sum</span></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+   <div id="accordion">
+
+<!-- RxClojure ================================================================================ -->
+    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxCpp ==================================================================================== -->
+    <h3>RxCpp: <code>average</code></h3><div id="RxCpp" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxGroovy ================================================================================= -->
+    <h3>RxGroovy: <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code></h3><div id="RxGroovy" class="operator-language-description">
+     <p>
+      In RxGroovy, this operator is not in the ReactiveX core, but is part of the distinct
+      <code>rxjava-math</code> module, where it is implemented with four type-specific operators:
+      <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and
+      <code>averageLong</code>. The following example shows how these operators work:
+     </p>
+     <h4>Sample code:</h4>
+     <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber ->
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext(4);
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext(3);
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext(2);
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext(1);
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onCompleted();
+});
+
+Observable.averageInteger(myObservable).subscribe(
+  { println(it); },                  // onNext
+  { println("Error encountered"); }, // onError
+  { println("Sequence complete"); }  // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+2
+Sequence complete</pre></div>
+     <figure>
+      <img src="images/average.f.png" width="640" alt="average" />
+      <figcaption><p>
+       You can also average not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the average number of sides on the figures
+       emitted by the source Observable.
+      </p></figcaption>
+     </figure>
+     <p>
+      This operator will fail with an <code>IllegalArgumentException</code> if the source Observable
+      does not emit any items.
+     </p>
+    </div>
+
+<!-- RxJava =================================================================================== -->
+    <h3>RxJava: <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code></h3><div id="RxJava" class="operator-language-description">
+     <p>
+      This operator is not in the RxJava core, but is part of the distinct <code>rxjava-math</code>
+      module, where it is implemented with four type-specific operators: <code>averageDouble</code>,
+      <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code>.
+     </p>
+     <figure>
+      <img src="images/average.f.png" width="640" alt="average" />
+      <figcaption><p>
+       You can also average not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the average number of sides on the figures
+       emitted by the source Observable.
+      </p></figcaption>
+     </figure>
+     <p>
+      This operator will fail with an <code>IllegalArgumentException</code> if the source Observable
+      does not emit any items.
+     </p>
+    </div>
+
+<!-- RxJS ===================================================================================== -->
+    <h3>RxJS: <code>average</code></h3><div id="RxJS" class="operator-language-description">
+     <figure>
+      <img src="images/average.png" width="640" alt="average" />
+      <figcaption><p>
+       RxJS implements this operator as <code>average</code>. The following code sample shows how
+       to use it:
+      </p>
+      <h4>Sample code:</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 9).average();
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: 4
+Completed</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/average.f.png" width="640" alt="average" />
+      <figcaption><p>
+       You can also average not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the average number of sides on the figures
+       emitted by the source Observable.
+      </p>
+      <h4>Sample code:</h4>
+      <div class="code javascript"><pre>
+var arr = [
+    { value: 1 },
+    { value: 2 },
+    { value: 3 }
+];
+
+var source = Rx.Observable.fromArray(arr).average(function (x) {
+    return x.value;
+});
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: 2
+Completed</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>average</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      It requires one of the following:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+    </div>
+
+<!-- RxKotlin ================================================================================= -->
+    <h3>RxKotlin: <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code></h3><div id="RxKotlin" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.NET =================================================================================== -->
+    <h3>Rx.NET: <code>Average</code></h3><div id="RxNET" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxPY ===================================================================================== -->
+    <h3>RxPY: <code>average</code></h3><div id="RxPY" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.rb ==================================================================================== -->
+    <h3>Rx.rb: <code>average</code></h3><div id="Rxrb" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxScala ================================================================================== -->
+    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+   </div>
+  </div></div>
+
+ <script src="JS/jquery-1.11.1.min.js"></script>
+ <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+ <script>
+  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
+ </script>
+ </body>
+</html>

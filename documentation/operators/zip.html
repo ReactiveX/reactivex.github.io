@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset="utf-8" />
+  <title>Zip</title>
+  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+ </head>
+ <body>
+  <div class="container"><div class="col-md-8 col-md-offset-2">
+   <h1>Zip</h1>
+   <h3>combine the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function</h3>
+   <figure>
+    <img src="images/zip.c.png" width="640" alt="Zip" />
+   </figure>
+   <p>
+    The <code>Zip</code> method returns an Observable that applies a function of your choosing to
+    the combination of items emitted, in sequence, by two (or more) other Observables, with the
+    results of this function becoming the items emitted by the returned Observable. It applies this
+    function in strict sequence, so the first item emitted by the new Observable will be the result
+    of the function applied to the first item emitted by Observable #1 and the first item emitted by
+    Observable #2; the second item emitted by the new zip-Observable will be the result of the
+    function applied to the second item emitted by Observable #1 and the second item emitted by
+    Observable #2; and so forth. It will only emit as many items as the number of items emitted by
+    the source Observable that emits the fewest items.
+   </p>
+   <h4>See Also:</h4>
+   <ul>
+    <li><a href="and-then-when.html"><span class="operator">And</span>/<span class="operator">Then</span>/<span class="operator">When</span></a></li>
+    <li><a href="combinelatest.html"><span class="operator">CombineLatest</span></a></li>
+   </ul>
+ 
+   <h2>Language-Specific Information:</h2>
+   <div id="accordion">
+
+<!-- RxClojure ================================================================================ -->
+    <h3>RxClojure: <code>map</code> and <code>mapCat</code></h3><div id="RxClojure" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxCpp ==================================================================================== -->
+    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxGroovy ================================================================================= -->
+    <h3>RxGroovy: <code>zip</code> and <code>zipWith</code></h3><div id="RxGroovy" class="operator-language-description">
+     <p>
+      RxGroovy implements this operator as several variants of <code>zip</code> and also as
+      <code>zipWith</code>, an instance function version of the operator.
+     </p>
+     <figure>
+      <img src="images/zip.o.png" width="640" alt="zip" />
+      <figcaption><p>
+       The last argument to <code>zip</code> is a function that accepts an item from each of the
+       Observables being zipped and emits an item to be emitted in response by the Observable
+       returned from <code>zip</code>. You can provide the Observables to be zipped together to
+       <code>zip</code> either as between two and nine individual parameters, or as a single
+       parameter: either an Iterable of Observables or an Observable that emits Observables (as
+       in the illustration above).
+      </p>
+      <h4>Sample code:</h4>
+      <div class="code groovy"><pre>
+odds  = Observable.from([1, 3, 5, 7, 9]);
+evens = Observable.from([2, 4, 6]);
+
+Observable.zip(odds, evens, {o, e -> [o, e]}).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+[1, 2]
+[3, 4]
+[5, 6]
+Sequence complete</pre></div>
+      <p>
+       Note that in this example, the resulting Observable completes normally after emitting three
+       items, which is the number of items emitted by the shorter of the two component Observbles
+       (<code>evens</code>, which emits three items).
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/zip.i.png" width="640" alt="zipWith" />
+      <figcaption><p>
+       The <code>zipWith</code> instance version of this operator always takes two parameters.
+       The first parameter may be either a simple Observable, or an iterable (as in the illustration
+       above).
+      </p></figcaption>
+     </figure>
+     <p>
+      <code>zip</code> and <code>zipWith</code> do not by default operate on any particular
+      scheduler.
+     </p>
+    </div>
+
+<!-- RxJava =================================================================================== -->
+    <h3>RxJava: <code>zip</code> and <code>zipWith</code></h3><div id="RxJava" class="operator-language-description">
+     <p>
+      RxJava implements this operator as several variants of <code>zip</code> and also as
+      <code>zipWith</code>, an instance function version of the operator.
+     </p>
+     <figure>
+      <img src="images/zip.o.png" width="640" alt="zip" />
+      <figcaption><p>
+       The last argument to <code>zip</code> is a function that accepts an item from each of the
+       Observables being zipped and emits an item to be emitted in response by the Observable
+       returned from <code>zip</code>. You can provide the Observables to be zipped together to
+       <code>zip</code> either as between two and nine individual parameters, or as a single
+       parameter: either an Iterable of Observables or an Observable that emits Observables (as
+       in the illustration above).
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/zip.i.png" width="640" alt="zipWith" />
+      <figcaption><p>
+       The <code>zipWith</code> instance version of this operator always takes two parameters.
+       The first parameter may be either a simple Observable, or an iterable (as in the illustration
+       above).
+      </p></figcaption>
+     </figure>
+     <p>
+      <code>zip</code> and <code>zipWith</code> do not by default operate on any particular
+      scheduler.
+     </p>
+    </div>
+
+<!-- RxJS ===================================================================================== -->
+    <h3>RxJS: <code>zip</code> and <code>zipArray</code></h3><div id="RxJS" class="operator-language-description">
+     <p>
+      RxJS implements this operator as <code>zip</code> and <code>zipArray</code>.
+     </p>
+     <figure>
+      <img src="images/zip.png" width="640" alt="zip" />
+      <figcaption><p>
+       <code>zip</code> accepts a variable number of Observables or Promises as parameters, followed
+       by a function that accepts one item emitted by each of those Observables or resolved by those
+       Promises as input and produces a single item to be emitted by the resulting Observable.
+      </p>
+      <h4>Sample code</h4>
+       <div class="code javascript"><pre>
+/* Using arguments */
+var range = Rx.Observable.range(0, 5);
+
+var source = Observable.zip(
+    range,
+    range.skip(1),
+    range.skip(2),
+    function (s1, s2, s3) {
+        return s1 + ':' + s2 + ':' + s3;
+    }
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+       <div class="output"><pre>
+Next: 0:1:2
+Next: 1:2:3
+Next: 2:3:4
+Completed</pre></div>
+       <div class="code javascript"><pre>
+/* Using promises and Observables */
+var range = Rx.Observable.range(0, 5);
+
+var source = Observable.zip(
+    RSVP.Promise.resolve(0),
+    RSVP.Promise.resolve(1),
+    Rx.Observable.return(2)
+    function (s1, s2, s3) {
+        return s1 + ':' + s2 + ':' + s3;
+    }
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+       <div class="output"><pre>
+Next: 0:1:2
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/zipArray.png" width="640" alt="zipArray" />
+      <figcaption><p>
+       <code>zipArray</code> accepts a variable number of Observables as parameters and returns an
+       Observable that emits arrays, each one containing the <i>n</i><sup>th</sup> item from each
+       source Observable.
+      </p>
+       <div class="code javascript"><pre>
+var range = Rx.Observable.range(0, 5);
+
+var source = Rx.Observable.zipArray(
+    range,
+    range.skip(1), 
+    range.skip(2)
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);   
+    },
+    function () {
+        console.log('Completed');   
+    });</pre></div>
+       <div class="output"><pre>
+Next: [0,1,2]
+Next: [1,2,3]
+Next: [2,3,4]
+Completed</pre></div>
+      </figcaption>
+     </figure>
+    </div>
+
+<!-- RxKotlin ================================================================================= -->
+    <h3>RxKotlin: <code>zip</code> and <code>zipWith</code></h3><div id="RxKotlin" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.NET =================================================================================== -->
+    <h3>Rx.NET: <code>Zip</code></h3><div id="RxNET" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxPY ===================================================================================== -->
+    <h3>RxPY: <code>zip</code> and <code>zip_array</code></h3><div id="RxPY" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.rb ==================================================================================== -->
+    <h3>Rx.rb: <code>zip</code></h3><div id="Rxrb" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxScala ================================================================================== -->
+    <h3>RxScala: <code>zip</code>, <code>zipWith</code>, and <code>zipWithIndex</code></h3><div id="RxScala" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+   </div>
+  </div></div>
+
+ <script src="JS/jquery-1.11.1.min.js"></script>
+ <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+ <script>
+  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
+ </script>
+ </body>
+</html>

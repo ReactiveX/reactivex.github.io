@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset="utf-8" />
+  <title>All</title>
+  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+ </head>
+ <body>
+  <div class="container"><div class="col-md-8 col-md-offset-2">
+   <h1>All</h1>
+   <h3>determine whether all items emitted by an Observable meet some criteria</h3>
+   <figure>
+    <img src="images/all.C.png" width="640" alt="All" />
+   </figure>
+   <p>
+    Pass a predicate function to the <span class="operator">All</span> operator that accepts an item
+    emitted by the source Observable and returns a boolean value based on an evaluation of that
+    item. <span class="operator">All</span> returns an Observable that emits a single boolean value:
+    <code>true</code> if and only if the source Observable terminates normally and every item
+    emitted by the source Observable evaluated as <code>true</code> according to this predicate;
+    <code>false</code> if any item emitted by the source Observable evaluates as <code>false</code>
+    according to this predicate.
+   </p>
+   <h2>Language-Specific Information:</h2>
+   <div id="accordion">
+
+<!-- RxClojure ================================================================================ -->
+    <h3>RxClojure: <code>every</code></h3><div id="RxClojure" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxCpp ==================================================================================== -->
+    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxGroovy ================================================================================= -->
+    <h3>RxGroovy: <code>all</code></h3><div id="RxGroovy" class="operator-language-description">
+     <figure>
+      <img src="images/all.png" width="640" alt="all" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>all</code>. It does not by default operate on any
+       particular scheduler. The following example shows how to use this operator:
+      </p>
+      <h4>Sample code:</h4>
+      <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5]);
+
+println("all even?" )
+numbers.all({ 0 == (it % 2) }).subscribe({ println(it); });
+
+println("all positive?");
+numbers.all({ 0 < it }).subscribe({ println(it); });</pre></div>
+      <div class="output"><pre>
+all even? 
+false
+all positive? 
+true</pre></div></figcaption>
+     </figure>
+    </div>
+
+<!-- RxJava =================================================================================== -->
+    <h3>RxJava: <code>all</code></h3><div id="RxJava" class="operator-language-description">
+     <figure>
+      <img src="images/all.png" width="640" alt="all" />
+      <figcaption><p>
+       RxJava implements this operator as <code>all</code>. It does not by default operate on any
+       particular scheduler.
+      </p></figcaption>
+     </figure>
+    </div>
+
+<!-- RxJS ===================================================================================== -->
+    <h3>RxJS: <code>every</code></h3><div id="RxJS" class="operator-language-description">
+     <figure>
+      <img src="images/every.png" width="640" alt="every" />
+      <figcaption><p>
+       RxJS implements this operator as <code>every</code>. The following example shows how to use
+       this operator:
+      </p>
+      <h4>Sample code:</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.of(1,2,3,4,5)
+  .every(function (x) {
+    return x < 6;
+  });
+
+var subscription = source.subscribe(
+  function (x) {
+    console.log('Next: %s', x);
+  },
+  function (err) {
+    console.log('Error: %s', err);
+  },
+  function () {
+    console.log('Completed');
+  });</pre></div>
+      <div class="output"><pre>
+Next: true
+Completed</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>every</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      It requires one of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+    </div>
+
+<!-- RxKotlin ================================================================================= -->
+    <h3>RxKotlin: <code>all</code></h3><div id="RxKotlin" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.NET =================================================================================== -->
+    <h3>Rx.NET: <code>All</code></h3><div id="RxNET" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxPY ===================================================================================== -->
+    <h3>RxPY: <code>all</code> and <code>every</code></h3><div id="RxPY" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.rb ==================================================================================== -->
+    <h3>Rx.rb: <code>all?</code></h3><div id="Rxrb" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxScala ================================================================================== -->
+    <h3>RxScala: <code>forall</code></h3><div id="RxScala" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+   </div>
+  </div></div>
+
+ <script src="JS/jquery-1.11.1.min.js"></script>
+ <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+ <script>
+  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
+ </script>
+ </body>
+</html>

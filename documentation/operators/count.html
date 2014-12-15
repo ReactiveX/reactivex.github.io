@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset="utf-8" />
+  <title>Count</title>
+  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+ </head>
+ <body>
+  <div class="container"><div class="col-md-8 col-md-offset-2">
+   <h1>Count</h1>
+   <h3>count the number of items emitted by the source Observable and emit only this
+    value</h3>
+   <figure>
+    <img src="images/Count.png" width="640" alt="Count" />
+   </figure>
+   <p>
+    The <span class="operator">Count</span> operator transforms an Observable that emits items into
+    an Observable that emits a single value that represents the number of items emitted by the
+    source Observable.
+   </p><p>
+    If the source Observable terminates with an error, <span class="operator">Count</span> will pass
+    this error notification along without emitting an item first. If the source Observable does not
+    terminate at all, <span class="operator">Count</span> will neither emit an item nor terminate.
+   </p>
+
+   <h2>Language-Specific Information:</h2>
+   <div id="accordion">
+
+<!-- RxClojure ================================================================================ -->
+    <h3>RxClojure: <code>count</code> and <code>longCount</code></h3><div id="RxClojure" class="operator-language-description">
+     <p>
+      RxClojure has both <code>count</code> and <code>longCount</code> variants of this operator,
+      but both of these in fact return long values.
+     </p>
+    </div>
+
+<!-- RxCpp ==================================================================================== -->
+    <h3>RxCpp: <code>count</code></h3><div id="RxCpp" class="operator-language-description">
+     <p>
+      RxCpp implements this operator as <code>count</code>.
+     </p>
+    </div>
+
+<!-- RxGroovy ================================================================================= -->
+    <h3>RxGroovy: <code>count</code> and <code>countLong</code></h3><div id="RxGroovy" class="operator-language-description">
+     <p>
+      In RxGroovy the operator is called <code>count</code> and the Observable it creates emits an
+      Integer value. There is also a <code>countLong</code> whose Observable emits a Long value.
+     </p>
+     <h4>Sample code:</h4>
+     <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber -&gt;
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Three');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Two');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('One');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onCompleted();
+});
+
+myObservable.count().subscribe(
+   { println(it); },                          // onNext
+   { println("Error: " + it.getMessage()); }, // onError
+   { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+3
+Sequence complete</pre></div>
+    </div>
+
+<!-- RxJava =================================================================================== -->
+    <h3>RxJava: <code>count</code> and <code>countLong</code></h3><div id="RxJava" class="operator-language-description">
+     <p>
+      In RxJava the operator is called <code>count</code> and the Observable it creates emits an
+      Integer value. There is also a <code>countLong</code> whose Observable emits a Long value.
+     </p>
+     <div class="code java"><pre>
+String[] items = new String[] { "one", "two", "three" };
+assertEquals( new Integer(3), Observable.from(items).count().toBlocking().single() );</pre></div>
+    </div>
+
+<!-- RxJS ===================================================================================== -->
+    <h3>RxJS: <code>count</code></h3><div id="RxJS" class="operator-language-description">
+     <p>
+      In RxJS the operator <code>count</code> counts the number of items in the source Observable
+      that satisfy a specified predicate. That predicate takes the form of a function that takes
+      three parameters:
+     </p>
+     <ol>
+      <li>the emitted item</li>
+      <li>the index of that item in the sequence of emitted items</li>
+      <li>the source Observable</li>
+     </ol>
+     <p>
+      If the predicate function returns <code>true</code>, <code>count</code> will increment the
+      tally of items that it will report when the source Observable completes. If you want to count
+      <em>all</em> of the items emitted by the source Observable, simply pass <code>count</code> a
+      predicate that always returns <code>true</code>:
+     </p>
+     <div class="code javascript"><pre>
+numberOfItems = someObservable.count(function() { return true; });</pre></div>
+     <p>
+      <code>count</code> is part of the following packages:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      <code>count</code> requires one of any of the following packages:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+    </div>
+
+<!-- RxKotlin ================================================================================= -->
+    <h3>RxKotlin: <code>count</code></h3><div id="RxKotlin" class="operator-language-description">
+     <p>
+      RxKotlin implements this operator as <code>count</code>.
+     </p>
+     <div class="code kotlin"><pre>
+val list = listOf(1, 2, 3, 4, 5)
+assertEquals( 5, Observable.from(list)!!.count()!!.toBlocking()!!.single() )</pre></div>
+    </div>
+
+<!-- Rx.NET =================================================================================== -->
+    <h3>Rx.NET: <code>Count</code> and <code>LongCount</code></h3><div id="RxNET" class="operator-language-description">
+     <p>
+      In Rx.NET the Observable this operator creates emits an Integer value, but there is also a
+      <code>LongCount</code> whose Observable emits a Long value. With both variants, you can either
+      pass the source Observable in to the operator as a parameter or you can call the operator as
+      an instance method of the source Observable (in which case you omit the parameter).
+     </p>
+    </div>
+
+<!-- RxPY ===================================================================================== -->
+    <h3>RxPY: <code>count</code></h3><div id="RxPY" class="operator-language-description">
+     <p>
+      In RxPY you have the option to pass <code>count</code> a predicate that takes an item emitted
+      by the source Observable as a parameter. If you do so, <code>count</code> will emit a count
+      only of those items from the source Observable that the predicate evaluates as
+      <code>true</code>. Otherwise, it will emit a count of all items emitted by the source
+      Observable.
+     </p>
+     <div class="code python"><pre>
+numberOfItems = someObservable.count()
+numberOfNegativeItems = someObservable.count(lambda x: x &lt; 0)</pre></div>
+    </div>
+
+<!-- Rx.rb ==================================================================================== -->
+    <h3>Rx.rb: <code>count</code></h3><div id="Rxrb" class="operator-language-description">
+     <p>
+      In Rx.rb you have the option to pass <code>count</code> a predicate that takes an item emitted
+      by the source Observable as a parameter. If you do so, <code>count</code> will emit a count
+      only of those items from the source Observable that the predicate evaluates as
+      <code>true</code>. Otherwise it will emit a count of all items emitted by the source
+      Observable.
+     </p>
+    </div>
+
+<!-- RxScala ================================================================================== -->
+    <h3>RxScala: <code>count</code>, <code>length</code>, <code>longCount</code>, and <code>size</code></h3><div id="RxScala" class="operator-language-description">
+     <p>
+      In RxScala the operator <code>count</code> counts the number of items in the source Observable
+      that satisfy a specified predicate. That predicate accepts an emitted item as a parameter and
+      returns a Boolean. <code>count</code> will emit a count of all items for which this predicate
+      returned <code>true</code>.
+     </p><p>
+      Use <code>length</code> or <code>size</code> instead if you want to count <em>all</em> of the
+      items emitted by the source Observable and emit this count as an Integer, or use
+      <code>longCount</code> to emit it as a Long.
+     </p>
+    </div>
+
+   </div>
+  </div></div>
+
+ <script src="JS/jquery-1.11.1.min.js"></script>
+ <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+ <script>
+  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
+ </script>
+ </body>
+</html>

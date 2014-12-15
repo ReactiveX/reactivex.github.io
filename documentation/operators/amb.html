@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ <head>
+  <meta charset="utf-8" />
+  <title>Amb</title>
+  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+ </head>
+ <body>
+  <div class="container"><div class="col-md-8 col-md-offset-2">
+   <h1>Amb</h1>
+   <h3>given two or more source Observables, emit all of the items from only the first of these Observables to emit an item</h3>
+   <figure>
+    <img src="images/amb.C.png" width="640" alt="Amb" />
+   </figure>
+   <p>
+    When you pass a number of source Observables to <span class="operator">Amb</span>, it will pass
+    through the emissions and notifications of exactly one of these Observables: the first one that
+    emits an item to <span class="operator">Amb</span>. It will ignore and discard the emissions of
+    all of the other source Observables.
+   </p>
+   <h2>Language-Specific Information:</h2>
+   <div id="accordion">
+
+<!-- RxClojure ================================================================================ -->
+    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxCpp ==================================================================================== -->
+    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxGroovy ================================================================================= -->
+    <h3>RxGroovy: <code>amb</code> and <code>ambWith</code></h3><div id="RxGroovy" class="operator-language-description">
+     <figure>
+      <img src="images/amb.png" width="640" alt="amb" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>amb</code>. It takes up to nine Observables
+       as individual parameters, or a single Iterable of Observables. There is also an instance
+       version of the operator, <code>ambWith</code>, so that, for example, instead of writing
+       <code>Observable.amb(o1,o2)</code> you could also write <code>o1.ambWith(o2)</code> for the
+       same effect.
+      </p><p>
+       This operator does not by default operate on any particular scheduler
+      </p></figcaption>
+     </figure>
+    </div>
+
+<!-- RxJava =================================================================================== -->
+    <h3>RxJava: <code>amb</code> and <code>ambWith</code></h3><div id="RxJava" class="operator-language-description">
+     <figure>
+      <img src="images/amb.png" width="640" alt="amb" />
+      <figcaption><p>
+       RxJava implements this operator as <code>amb</code>. It takes up to nine Observables as
+       individual parameters, or a single Iterable of Observables. There is also an instance
+       version of the operator, <code>ambWith</code>, so that, for example, instead of writing
+       <code>Observable.amb(o1,o2)</code> you could also write <code>o1.ambWith(o2)</code> for the
+       same effect.
+      </p><p>
+       This operator does not by default operate on any particular scheduler
+      </p></figcaption>
+     </figure>
+    </div>
+
+<!-- RxJS ===================================================================================== -->
+    <h3>RxJS: <code>amb</code></h3><div id="RxJS" class="operator-language-description">
+     <figure>
+      <img src="images/amb.png" width="640" alt="amb" />
+      <figcaption><p>
+       RxJS implements this operator as <code>amb</code>. It takes a variable number of parameters,
+       which may be either Observables or Promises (or combinations of the two).
+      </p>
+      <h4>Sample Code:</h4>
+      <div class="code javascript"><pre>
+/* Using Observable sequences */
+var source = Rx.Observable.amb(
+    Rx.Observable.timer(500).select(function () { return 'foo'; }),
+    Rx.Observable.timer(200).select(function () { return 'bar'; })
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: bar
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* Using Promises and Observables */
+var source = Rx.Observable.amb(
+    RSVP.Promise.resolve('foo')
+    Rx.Observable.timer(200).select(function () { return 'bar'; })
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: foo
+Completed</pre></div></figcaption>
+     </figure>
+    </div>
+
+<!-- RxKotlin ================================================================================= -->
+    <h3>RxKotlin: <code>amb</code> and <code>ambWith</code></h3><div id="RxKotlin" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.NET =================================================================================== -->
+    <h3>Rx.NET: <code>Amb</code></h3><div id="RxNET" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxPY ===================================================================================== -->
+    <h3>RxPY: <code>amb</code></h3><div id="RxPY" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- Rx.rb ==================================================================================== -->
+    <h3>Rx.rb: <code>amb</code></h3><div id="Rxrb" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+<!-- RxScala ================================================================================== -->
+    <h3>RxScala: <code>amb</code></h3><div id="RxScala" class="operator-language-description">
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+    </div>
+
+   </div>
+  </div></div>
+
+ <script src="JS/jquery-1.11.1.min.js"></script>
+ <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+ <script>
+  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
+ </script>
+ </body>
+</html>

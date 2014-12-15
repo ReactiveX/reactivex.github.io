@@ -12,7 +12,7 @@
    <h3>if a source Observable emits an error, resubscribe to it in the hopes that it will complete
        without error</h3>
    <figure>
-    <img src="IMAGES/retry.C.png" width="640" alt="Retry" />
+    <img src="images/retry.C.png" width="640" alt="Retry" />
    </figure>
    <p>
     The <span class="operator">Retry</span> operator responds to an <code>onError</code>
@@ -43,7 +43,7 @@
       RxCpp implements this operator as <code>retry</code>:
      </p>
      <figure>
-      <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="640" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single argument, a count of the number of times it should try
        resubscribing to the source Observable when it encounters errors. If this count is exceeded,
@@ -59,7 +59,7 @@
       RxGroovy has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="640" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -81,7 +81,7 @@
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/retryWhen.f.png" width="640" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" width="640" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -103,7 +103,7 @@
       RxJava has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="640" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -125,7 +125,7 @@
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/retryWhen.f.png" width="640" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" width="640" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -166,7 +166,7 @@ subscribing</pre></div></figcaption>
       RxJS implements this operator as <code>retry</code>.
      </p>
      <figure>
-      <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="640" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -199,7 +199,7 @@ subscribing</pre></div></figcaption>
       RxKotlin has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="640" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -219,7 +219,7 @@ subscribing</pre></div></figcaption>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/retryWhen.f.png" width="640" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" width="640" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -238,7 +238,7 @@ subscribing</pre></div></figcaption>
       Rx.NET implements this operator as <code>Retry</code>.
      </p>
      <figure>
-      <img src="IMAGES/retry.C.png" width="640" alt="Retry" />
+      <img src="images/retry.C.png" width="640" alt="Retry" />
       <figcaption><p>
        One variant of <code>Retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -260,7 +260,7 @@ subscribing</pre></div></figcaption>
       RxPY implements this operator as <code>retry</code>:
      </p>
      <figure>
-      <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="640" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single optional parameter, a count of the number of times it
        should try resubscribing to and mirroring the source Observable when it encounters errors. If
@@ -278,7 +278,7 @@ subscribing</pre></div></figcaption>
       Rx.rb has two versions of this operator: <code>retry</code> and <code>retry_infinitely</code>.
      </p>
      <figure>
-      <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="640" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single optional parameter, a count of the number of times it
        should try resubscribing to and mirroring the source Observable when it encounters errors. If
@@ -299,7 +299,7 @@ subscribing</pre></div></figcaption>
       RxScala has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="IMAGES/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="640" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -319,7 +319,7 @@ subscribing</pre></div></figcaption>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/retryWhen.f.png" width="640" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" width="640" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the

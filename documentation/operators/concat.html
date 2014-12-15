@@ -11,7 +11,7 @@
    <h1>Concat</h1>
    <h3>emit the emissions from two or more Observables without interleaving them</h3>
    <figure>
-    <img src="IMAGES/concat.C.png" width="640" alt="Concat" />
+    <img src="images/concat.C.png" width="640" alt="Concat" />
    </figure>
    <p>
     The <span class="operator">Concat</span> operator concatenates the output of multiple
@@ -48,14 +48,14 @@
 <!-- RxClojure ================================================================================ -->
     <h3>RxClojure: <code>concat</code> and <code>concat*</code></h3><div id="RxClojure" class="operator-language-description">
      <figure>
-      <img src="IMAGES/concat.png" width="640" alt="concat" />
+      <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
        In RxClojure <code>concat</code> concatenates some number of individual Observables together
        in the order in which they are given.
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/concatX.png" width="640" alt="concat*" />
+      <img src="images/concatX.png" width="640" alt="concat*" />
       <figcaption><p>
        The <code>concat*</code> operator concatenates the Observables emitted by an Observable
        together, in the order in which they are emitted.
@@ -69,14 +69,14 @@
       RxCpp implements this operator as <code>concat</code>:
      </p>
      <figure>
-      <img src="IMAGES/concat.png" width="640" alt="concat" />
+      <img src="images/concat.png" width="640" alt="concat" />
      </figure>
     </div>
 
 <!-- RxGroovy ================================================================================= -->
     <h3>RxGroovy: <code>concat</code> and <code>concatWith</code></h3><div id="RxGroovy" class="operator-language-description">
      <figure>
-      <img src="IMAGES/concat.png" width="640" alt="concat" />
+      <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
        RxGroovy implements this operator as <code>concat</code>. There are variants of this operator
        that take between two and nine Observables as parameters, and that concatenate them in the
@@ -112,7 +112,7 @@ Sequence complete</pre></div></figcaption>
 <!-- RxJava =================================================================================== -->
     <h3>RxJava: <code>concat</code> and <code>concatWith</code></h3><div id="RxJava" class="operator-language-description">
      <figure>
-      <img src="IMAGES/concat.png" width="640" alt="concat" />
+      <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
        RxJava implements this operator as <code>concat</code>. There are variants of this operator
        that take between two and nine Observables as parameters, and that concatenate them in the
@@ -133,7 +133,7 @@ Sequence complete</pre></div></figcaption>
       RxJS implements this operator as <code>concat</code> and <code>concatAll</code>.
      </p>
      <figure>
-      <img src="IMAGES/concat.png" width="640" alt="concat" />
+      <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
        <code>concat</code> takes a variable number of Observables (or Promises) as parameters (or a
        single array of Observables or Promises), and concatenates them in the order they appear in
@@ -142,7 +142,7 @@ Sequence complete</pre></div></figcaption>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/concatAll.png" width="640" alt="concatAll" />
+      <img src="images/concatAll.png" width="640" alt="concatAll" />
       <figcaption><p>
        <code>concatAll</code> is an instance method that operates on an Observable of Observables,
        concatinating each of these Observables in the order they are emitted.
@@ -165,7 +165,7 @@ Sequence complete</pre></div></figcaption>
 <!-- RxKotlin ================================================================================= -->
     <h3>RxKotlin: <code>concat</code> and <code>concatWith</code></h3><div id="RxKotlin" class="operator-language-description">
      <figure>
-      <img src="IMAGES/concat.png" width="640" alt="concat" />
+      <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
        RxKotlin implements this operator as <code>concat</code>. There are variants of this operator
        that take between two and nine Observables as parameters, and that concatenate them in the
@@ -183,7 +183,7 @@ Sequence complete</pre></div></figcaption>
 <!-- Rx.NET =================================================================================== -->
     <h3>Rx.NET: <code>Concat</code></h3><div id="RxNET" class="operator-language-description">
      <figure>
-      <img src="IMAGES/concat.C.png" width="640" alt="Concat" />
+      <img src="images/concat.C.png" width="640" alt="Concat" />
       <figcaption><p>
        Rx.NET implements this operator as <code>Concat</code>. It accepts either an enumerable of
        Observables, an Observable of Observables, or two Observables as parameters, and concatenates
@@ -195,7 +195,7 @@ Sequence complete</pre></div></figcaption>
 <!-- RxPY ===================================================================================== -->
     <h3>RxPY: <code>concat</code> and <code>concatAll</code></h3><div id="RxPY" class="operator-language-description">
      <figure>
-      <img src="IMAGES/concat.png" width="640" alt="concat" />
+      <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
        In RxPY <code>concat</code> takes a variable number of Observables as parameters (or an
        array of Observables), and concatenates them in the order they appear in the parameter list
@@ -203,7 +203,7 @@ Sequence complete</pre></div></figcaption>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/concat_all.png" width="640" alt="concat_all" />
+      <img src="images/concat_all.png" width="640" alt="concat_all" />
       <figcaption><p>
        <code>concatAll</code> operates on an Observable of Observables, concatinating each of these
        Observables in the order they are emitted.
@@ -214,14 +214,14 @@ Sequence complete</pre></div></figcaption>
 <!-- Rx.rb ==================================================================================== -->
     <h3>Rx.rb: <code>concat</code> and <code>merge_all</code></h3><div id="Rxrb" class="operator-language-description">
      <figure>
-      <img src="IMAGES/concat.png" width="640" alt="concat" />
+      <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
        In Rx.rb, the <code>concat</code> operator operates on two Observables as an instance
        operator, or on an array of Observables as a class method.
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/merge_all.png" width="640" alt="merge_all" />
+      <img src="images/merge_all.png" width="640" alt="merge_all" />
       <figcaption><p>
        The <code>merge_all</code> operator, despite its name, really behaves like a
        <span class="operator">Concat</span> variant in Rx.rb. It accepts an Observable of
@@ -239,7 +239,7 @@ Sequence complete</pre></div></figcaption>
       concatenates one Observable to another.
      </p>
      <figure>
-      <img src="IMAGES/plusplus.png" width="640" alt="plus-plus" />
+      <img src="images/plusplus.png" width="640" alt="plus-plus" />
      </figure>
     </div>
 

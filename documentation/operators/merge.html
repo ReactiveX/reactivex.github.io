@@ -11,7 +11,7 @@
    <h1>Merge</h1>
    <h3>combine multiple Observables into one by merging their emissions</h3>
    <figure>
-    <img src="IMAGES/merge.C.png" width="640" alt="Merge" />
+    <img src="images/merge.C.png" width="640" alt="Merge" />
    </figure>
    <p>
     You can combine the output of multiple Observables so that they act like a single Observable, by
@@ -30,7 +30,7 @@
     passing it along to the observers:
    </p>
    <figure>
-    <img src="IMAGES/mergeDelayError.C.png" width="640" alt="MergeDelayError" />
+    <img src="images/mergeDelayError.C.png" width="640" alt="MergeDelayError" />
    </figure>
    <h4>See Also</h4>
    <ul>
@@ -46,21 +46,21 @@
       In RxClojure there are six operators of concern here:
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
       <figcaption><p>
        <code>merge</code> converts two or more Observables into a single Observable that emits all
        of the items emitted by all of those Observables.
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/mergeX.png" width="640" alt="merge*" />
+      <img src="images/mergeX.png" width="640" alt="merge*" />
       <figcaption><p>
        <code>merge*</code> converts an Observable that emits Observables into a single Observable
        that emits all of the items emitted by all of the emitted Observables.
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/merge-delay-error.png" width="640" alt="merge-delay-error" />
+      <img src="images/merge-delay-error.png" width="640" alt="merge-delay-error" />
       <figcaption><p>
        <code>merge-delay-error</code> is like <code>merge</code>, but will emit all items from all
        of the merged Observables even if one or more of those Observables terminates with an
@@ -70,7 +70,7 @@
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/interleaveX.png" width="640" alt="interleave*" />
+      <img src="images/interleaveX.png" width="640" alt="interleave*" />
       <figcaption><p>
        <code>interleave</code> is like <code>merge</code>, but more deliberate about how it
        interleaves the items from the source Observables: the resulting Observable emits the first
@@ -90,7 +90,7 @@
       RxCpp implements this operator as <code>merge</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
      </figure>
 <!-- I think we need more here, but it's too cryptic/undocumented for me to figure out easily -->
     </div>
@@ -102,7 +102,7 @@
       <code>mergeDelayError</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
       <figcaption><p>
        For example, the following code merges the <code>odds</code> and <code>evens</code> into a
        single Observable. (The <code>subscribeOn</code> operator makes <code>odds</code> operate
@@ -137,7 +137,7 @@ Sequence complete</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/merge.io.png" width="640" alt="merge(List)" />
+      <img src="images/merge.io.png" width="640" alt="merge(List)" />
       <figcaption><p>
        If you pass in an Observable of Observables, you have the option of also passing in a value
        indicating to <code>merge</code> the maximum number of those Observables it should attempt to
@@ -159,7 +159,7 @@ Sequence complete</pre></div>
       the error, use <code>mergeDelayError</code> instead.
      </p>
      <figure>
-      <img src="IMAGES/mergeDelayError.png" width="640" alt="mergeDelayError" />
+      <img src="images/mergeDelayError.png" width="640" alt="mergeDelayError" />
       <figcaption><p>
        <code>mergeDelayError</code> behaves much like <code>merge</code>. The exception is when one
        of the Observables being merged terminates with an <code>onError</code> notification. If this
@@ -192,7 +192,7 @@ Sequence complete</pre></div>
       <code>mergeDelayError</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
      </figure>
      <p>
       Instead of passing multiple Observables (up to nine) into <code>merge</code>, you could also
@@ -201,7 +201,7 @@ Sequence complete</pre></div>
       their output into the output of a single Observable:
      </p>
      <figure>
-      <img src="IMAGES/merge.io.png" width="640" alt="merge(List)" />
+      <img src="images/merge.io.png" width="640" alt="merge(List)" />
       <figcaption><p>
        If you pass in an Observable of Observables, you have the option of also passing in a value
        indicating to <code>merge</code> the maximum number of those Observables it should attempt to
@@ -223,7 +223,7 @@ Sequence complete</pre></div>
       the error, use <code>mergeDelayError</code> instead.
      </p>
      <figure>
-      <img src="IMAGES/mergeDelayError.png" width="640" alt="mergeDelayError" />
+      <img src="images/mergeDelayError.png" width="640" alt="mergeDelayError" />
       <figcaption><p>
        <code>mergeDelayError</code> behaves much like <code>merge</code>. The exception is when one
        of the Observables being merged terminates with an <code>onError</code> notification. If this
@@ -255,7 +255,7 @@ Sequence complete</pre></div>
       RxJS implements this operator as <code>merge</code> (two variants) and <code>mergeAll</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
       <figcaption><p>
        The first variant of <code>merge</code> is an instance operator that takes a variable number
        of Observables as parameters, merging each of these Observables with the source (instance)
@@ -291,7 +291,7 @@ Sequence complete</pre></div>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <figure>
-      <img src="IMAGES/mergeAll.png" width="640" alt="mergeAll" />
+      <img src="images/mergeAll.png" width="640" alt="mergeAll" />
       <figcaption><p>
        <code>mergeAll</code> is like this second variant of <code>merge</code> except that it does
        not allow you to set this maximum subscription count. It only takes the single parameter of
@@ -318,7 +318,7 @@ Sequence complete</pre></div>
       <code>mergeDelayError</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
      </figure>
      <p>
       Instead of passing multiple Observables (up to nine) into <code>merge</code>, you could also
@@ -327,7 +327,7 @@ Sequence complete</pre></div>
       their output into the output of a single Observable:
      </p>
      <figure>
-      <img src="IMAGES/merge.io.png" width="640" alt="merge(List)" />
+      <img src="images/merge.io.png" width="640" alt="merge(List)" />
       <figcaption><p>
        If you pass in an Observable of Observables, you have the option of also passing in a value
        indicating to <code>merge</code> the maximum number of those Observables it should attempt to
@@ -349,7 +349,7 @@ Sequence complete</pre></div>
       the error, use <code>mergeDelayError</code> instead.
      </p>
      <figure>
-      <img src="IMAGES/mergeDelayError.png" width="640" alt="mergeDelayError" />
+      <img src="images/mergeDelayError.png" width="640" alt="mergeDelayError" />
       <figcaption><p>
        <code>mergeDelayError</code> behaves much like <code>merge</code>. The exception is when one
        of the Observables being merged terminates with an <code>onError</code> notification. If this
@@ -381,7 +381,7 @@ Sequence complete</pre></div>
       Rx.NET implements this operator as <code>Merge</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.C.png" width="640" alt="Merge" />
+      <img src="images/merge.C.png" width="640" alt="Merge" />
       <figcaption><p>
        You can pass <code>Merge</code> an Array of Observables, an Enumerable of Observables, an
        Observable of Observables, or two individual Observables.
@@ -403,14 +403,14 @@ Sequence complete</pre></div>
       <code>merge_all</code>/<code>merge_observable</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
       <figcaption><p>
        You can either pass <code>merge</code> a set of Observables as individual parameters, or as
        a single parameter containing an array of those Observables.
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/merge_all.png" width="640" alt="merge_all" />
+      <img src="images/merge_all.png" width="640" alt="merge_all" />
       <figcaption><p>
        <code>merge_all</code> and its alias <code>merge_observable</code> take as their single
        parameter an Observable that emits Observables. They merge the emissions of all of these
@@ -426,7 +426,7 @@ Sequence complete</pre></div>
       <code>merge_all</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
       <figcaption><p>
        <code>merge</code> merges a second Observable into the one it is operating on to create a
        new merged Observable.
@@ -443,7 +443,7 @@ Sequence complete</pre></div>
       to <code>merge_all</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge_all.png" width="640" alt="merge_all" />
+      <img src="images/merge_all.png" width="640" alt="merge_all" />
       <figcaption><p>
        <code>merge_all</code> is like <code>merge_concurrent(1)</code>. It subscribes to each
        emitted Observable one at a time, mirroring its emissions as its own, and waiting to
@@ -461,7 +461,7 @@ Sequence complete</pre></div>
       <code>merge</code>, and <code>mergeDelayError</code>.
      </p>
      <figure>
-      <img src="IMAGES/merge.png" width="640" alt="merge" />
+      <img src="images/merge.png" width="640" alt="merge" />
       <figcaption><p>
        <code>merge</code> takes a second Observable as a parameter and merges that Observable with
        the one the <code>merge</code> operator is applied to in order to create a new output
@@ -469,7 +469,7 @@ Sequence complete</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/mergeDelayError.png" width="640" alt="mergeDelayError" />
+      <img src="images/mergeDelayError.png" width="640" alt="mergeDelayError" />
       <figcaption><p>
        <code>mergeDelayError</code> is similar to <code>merge</code> except that it will always
        emit all items from both Observables even if one of the Observables terminates with an
@@ -477,7 +477,7 @@ Sequence complete</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="IMAGES/flatten.png" width="640" alt="flatten" />
+      <img src="images/flatten.png" width="640" alt="flatten" />
       <figcaption><p>
        <code>flatten</code> takes as its parameter an Observable that emits Observables. It merges
        the items emitted by each of these Observables to create its own single Observable sequence.

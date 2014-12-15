@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Filtering Observables</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;"/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 id="filtering-observables">Filtering Observables</h1>
+
+<p>This section explains operators you can use to filter and select items emitted by Observables.</p>
+
+<ul>
+<li><a href="Filtering-Observables#wiki-filter"><strong><code>filter( )</code></strong></a> — filter items emitted by an Observable</li>
+<li><a href="Filtering-Observables#wiki-takelast"><strong><code>takeLast( )</code></strong></a> — only emit the last <em>n</em> items emitted by an Observable</li>
+<li><a href="Filtering-Observables#wiki-last"><strong><code>last( )</code></strong></a> — emit only the last item emitted by an Observable</li>
+<li><a href="Filtering-Observables#wiki-lastOrDefault"><strong><code>lastOrDefault( )</code></strong></a> — emit only the last item emitted by an Observable, or a default value if the source Observable is empty</li>
+<li><a href="Filtering-Observables#wiki-takelastbuffer"><strong><code>takeLastBuffer( )</code></strong></a> — emit the last <em>n</em> items emitted by an Observable, as a single list item</li>
+<li><a href="Filtering-Observables#wiki-skip"><strong><code>skip( )</code></strong></a> — ignore the first <em>n</em> items emitted by an Observable</li>
+<li><a href="Filtering-Observables#wiki-skiplast"><strong><code>skipLast( )</code></strong></a> — ignore the last <em>n</em> items emitted by an Observable</li>
+<li><a href="Filtering-Observables#wiki-take"><strong><code>take( )</code></strong></a> — emit only the first <em>n</em> items emitted by an Observable</li>
+<li><a href="Filtering-Observables#wiki-first-and-takefirst"><strong><code>first( )</code> and <code>takeFirst( )</code></strong></a> — emit only the first item emitted by an Observable, or the first item that meets some condition</li>
+<li><a href="Filtering-Observables#wiki-firstordefault"><strong><code>firstOrDefault( )</code></strong></a> — emit only the first item emitted by an Observable, or the first item that meets some condition, or a default value if the source Observable is empty</li>
+<li><a href="Filtering-Observables#wiki-elementat"><strong><code>elementAt( )</code></strong></a> — emit item <em>n</em> emitted by the source Observable</li>
+<li><a href="Filtering-Observables#wiki-elementatordefault"><strong><code>elementAtOrDefault( )</code></strong></a> — emit item <em>n</em> emitted by the source Observable, or a default item if the source Observable emits fewer than <em>n</em> items</li>
+<li><a href="Filtering-Observables#wiki-sample-or-throttlelast"><strong><code>sample( )</code> or <code>throttleLast( )</code></strong></a> — emit the most recent items emitted by an Observable within periodic time intervals</li>
+<li><a href="Filtering-Observables#wiki-throttlefirst"><strong><code>throttleFirst( )</code></strong></a> — emit the first items emitted by an Observable within periodic time intervals</li>
+<li><a href="Filtering-Observables#wiki-throttlewithtimeout-or-debounce"><strong><code>throttleWithTimeout( )</code> or <code>debounce( )</code></strong></a> — only emit an item from the source Observable after a particular timespan has passed without the Observable emitting any other items</li>
+<li><a href="Filtering-Observables#wiki-timeout"><strong><code>timeout( )</code></strong></a> — emit items from a source Observable, but issue an exception if no item is emitted in a specified timespan</li>
+<li><a href="Filtering-Observables#wiki-distinct"><strong><code>distinct( )</code></strong></a> — suppress duplicate items emitted by the source Observable</li>
+<li><a href="Filtering-Observables#wiki-distinctuntilchanged"><strong><code>distinctUntilChanged( )</code></strong></a> — suppress duplicate consecutive items emitted by the source Observable</li>
+<li><a href="Filtering-Observables#wiki-oftype"><strong><code>ofType( )</code></strong></a> — emit only those items from the source Observable that are of a particular class</li>
+<li><a href="Filtering-Observables#wiki-ignoreelements"><strong><code>ignoreElements( )</code></strong></a> — discard the items emitted by the source Observable and only pass through the error or completed notification</li>
+</ul>
+
+<hr>
+
+<h2 id="filter( )">filter( )</h2>
+
+<h4 id="filter-items-emitted-by-an-observable">filter items emitted by an Observable</h4>
+
+<p><img src="/assets/operators/filter.png" width="640" height="310" />​</p>
+
+<p>You can filter an Observable, discarding any items that do not meet some test, by passing a filtering function into the <code>filter( )</code> method. For example, the following code filters a list of integers, emitting only those that are even (that is, where the remainder from dividing the number by two is zero):</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">]);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">filter</span><span class="o">({</span> <span class="mi">0</span> <span class="o">==</span> <span class="o">(</span><span class="n">it</span> <span class="o">%</span> <span class="mi">2</span><span class="o">)</span> <span class="o">}).</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">2
+4
+6
+8
+Sequence complete
+</code></pre></div>
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#filter(rx.functions.Func1)"><code>filter(predicate)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.where.aspx"><code>Where</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypefilterpredicate-thisarg"><code>filter</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Where">Introduction to Rx: Where</a></li>
+</ul>
+
+<hr>
+
+<h2 id="takelast( )">takeLast( )</h2>
+
+<h4 id="only-emit-the-last-n-items-emitted-by-an-observable">only emit the last <em>n</em> items emitted by an Observable</h4>
+
+<p><img src="/assets/operators/takeLast.n.png" width="640" height="310" />​</p>
+
+<p>To convert an Observable that emits several items into one that only emits the last <em>n</em> of these items before completing, use the <code>takeLast( )</code> method. For instance, in the following code, <code>takeLast( )</code> emits only the last integer in the list of integers represented by <code>numbers</code>:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">]);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">takeLast</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">9
+Sequence complete
+</code></pre></div>
+<p>There are also versions of <code>takeLast( )</code> that emit the items that were emitted by the source Observable during a specified window of time before the Observable completed, or that emit a maximum of <em>n</em> items from such a window.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLast(int)"><code>takeLast(count)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLast(long, java.util.concurrent.TimeUnit)"><code>takeLast(time, unit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLast(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>takeLast(time, unit, scheduler)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLast(int, long, java.util.concurrent.TimeUnit)"><code>takeLast(count, time, unit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLast(int, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>takeLast(count, time, unit, scheduler)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh212114.aspx"><code>TakeLast</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetakelastcount"><code>takeLast</code></a> and <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetakelastwithtimeduration-timescheduler-loopscheduler"><code>takeLastWithTime</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Last">Introduction to Rx: Last</a></li>
+</ul>
+
+<hr>
+
+<h2 id="last( )">last( )</h2>
+
+<h4 id="only-emit-the-last-item-emitted-by-an-observable">only emit the last item emitted by an Observable</h4>
+
+<p><img src="/assets/operators/last.png" width="640" height="305" />​</p>
+
+<p>The <code>last( )</code> operator is equivalent to <code>takeLast(1)</code> except that it will throw an <code>NoSuchElementException</code> if the source Observable does not emit at least one item. Note that there is also <a href="Blocking-Observable-Operators#wiki-last-and-lastordefault">a <code>BlockingObservable</code> implementation of <code>last( )</code></a>.</p>
+
+<blockquote>
+<p><strong>Note:</strong> in the scala language adaptor for RxJava, this method is called <code>takeRight( )</code>.</p>
+</blockquote>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li><a href="Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators">Table of similar blocking and non-blocking operators</a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#last()"><code>last( )</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#last(rx.functions.Func1)"><code>last(predicate)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypelastpredicate-thisarg"><code>last</code></a></li>
+<li>Linq: <code>lastAsync</code></li>
+</ul>
+
+<hr>
+
+<h2 id="lastordefault( )">lastOrDefault( )</h2>
+
+<h4 id="emit-only-the-last-item-emitted-by-an-observable,-or-a-default-value-if-the-source-observable-is-empty">emit only the last item emitted by an Observable, or a default value if the source Observable is empty</h4>
+
+<p><img src="/assets/operators/lastOrDefault.png" width="640" height="305" />​</p>
+
+<p>The <code>lastOrDefault( )</code> operator returns an Observable that emits the last item emitted by the source Observable, or a default item if the source Observable does not emit at least one item. Note that there is also <a href="Blocking-Observable-Operators#wiki-last-and-lastordefault">a <code>BlockingObservable</code> implementation of <code>lastOrDefault( )</code></a>.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li><a href="Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators">Table of similar blocking and non-blocking operators</a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(default)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T, rx.functions.Func1)"><code>lastOrDefault(default, predicate)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypelastordefaultpredicate-defaultvalue-thisarg"><code>lastOrDefault</code></a></li>
+<li>Linq: <code>lastOrDefaultAsync</code></li>
+</ul>
+
+<hr>
+
+<h2 id="takelastbuffer( )">takeLastBuffer( )</h2>
+
+<h4 id="emit-the-last-n-items-emitted-by-an-observable,-as-a-single-list-item">emit the last <em>n</em> items emitted by an Observable, as a single list item</h4>
+
+<p><img src="/assets/operators/takeLastBuffer.png" width="640" height="310" />​</p>
+
+<p>To convert an Observable that emits several items into one that emits the last <em>n</em> of these items as a single list before completing, use the <code>takeLastBuffer( )</code> method. There are also versions of <code>takeLastBuffer( )</code> that emit a list containing the items that were emitted by the source Observable during a specified window of time before the Observable completed, or a maximum of <em>n</em> items from such a window.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="kt">def</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">]);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">takeLastBuffer</span><span class="o">(</span><span class="mi">3</span><span class="o">).</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">[6, 7, 8]
+Sequence complete
+</code></pre></div>
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int)"><code>takeLastBuffer(count)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(long, java.util.concurrent.TimeUnit)"><code>takeLastBuffer(time, timeunit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>takeLastBuffer(time, timeunit, scheduler)</code></a></li>
+<li>javadoc: <a hrtef="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int, long, java.util.concurrent.TimeUnit)"><code>takeLastBuffer(count, time, timeunit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>takeLastBuffer(count, time, timeunit, scheduler)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetakelastbuffercount"><code>takeLastBuffer</code></a> and <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetakelastbufferwithtimeduration-scheduler"><code>takeLastBufferWithTime</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="skip()">skip()</h2>
+
+<h4 id="ignore-the-first-n-items-emitted-by-an-observable">ignore the first <em>n</em> items emitted by an Observable</h4>
+
+<p><img src="/assets/operators/skip.png" width="640" height="305" />​</p>
+
+<p>You can ignore the first <em>n</em> items emitted by an Observable and attend only to those items that come after, by modifying the Observable with the <code>skip(n)</code> method.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">]);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">skip</span><span class="o">(</span><span class="mi">3</span><span class="o">).</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">4
+5
+6
+7
+8
+9
+Sequence complete
+</code></pre></div>
+<p>There are also versions of <code>skip()</code> that ignore the items emitted by an Observable during a specified period of time after the Observable is subscribed to.</p>
+
+<blockquote>
+<p><strong>Note:</strong> in the scala language adaptor for RxJava, this method is called <code>drop( )</code>.</p>
+</blockquote>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skip(int)"><code>skip(num)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skip(long, java.util.concurrent.TimeUnit)"><code>skip(time, timeunit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skip(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>skip(time, timeunit, scheduler)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229847.aspx"><code>Skip</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeskipcount"><code>skip</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipAndTake">Introduction to Rx: Skip and Take</a></li>
+</ul>
+
+<hr>
+
+<h2 id="skiplast()">skipLast()</h2>
+
+<h4 id="ignore-the-last-n-items-emitted-by-an-observable">ignore the last <em>n</em> items emitted by an Observable</h4>
+
+<p><img src="/assets/operators/skipLast.png" width="640" height="305" />​</p>
+
+<p>You can ignore the last <em>n</em> items emitted by an Observable and attend only to those items that preced them, by modifying the Observable with the <code>skipLast(n)</code> method. Note that the mechanism by which this is implemented will delay the emission of any item from the source Observable until <em>n</em> additional items have been emitted by that Observable.</p>
+
+<p>There are also versions of <code>skipLast()</code> that ignore the items emitted by an Observable during a specified period of time before the Observable completes.</p>
+
+<blockquote>
+<p><strong>Note:</strong> in the scala language adaptor for RxJava, this method is called <code>dropRight( )</code>.</p>
+</blockquote>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skipLast(int)"><code>skipLast(count)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skipLast(long, java.util.concurrent.TimeUnit)"><code>skipLast(time, timeunit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skipLast(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>skipLast(time, timeunit, scheduler)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh211750.aspx"><code>SkipLast</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeskiplastcount"><code>skipLast</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipLastTakeLast">Introduction to Rx: SkipLast and TakeLast</a></li>
+</ul>
+
+<hr>
+
+<h2 id="take( )">take( )</h2>
+
+<h4 id="emit-only-the-first-n-items-emitted-by-an-observable">emit only the first <em>n</em> items emitted by an Observable</h4>
+
+<p><img src="/assets/operators/take.png" width="640" height="305" />​</p>
+
+<p>You can choose to pay attention only to the first <em>n</em> items emitted by an Observable by calling its <code>take(n)</code> method. That method returns an Observable that will invoke an Subscriber’s <code>onNext</code> method a maximum of <em>n</em> times before invoking <code>onCompleted</code>. For example,</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">]);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">take</span><span class="o">(</span><span class="mi">3</span><span class="o">).</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">1
+2
+3
+Sequence complete
+</code></pre></div>
+<p>If you call <code>take(n)</code> on an Observable, and that Observable emits <em>fewer</em> than <em>n</em> items before completing, the new, <code>take</code>-modified Observable will <em>not</em> throw an exception or invoke <code>onError()</code>, but will merely emit this same fewer number of items before it completes.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#take(int)"><code>take(num)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#take(long, java.util.concurrent.TimeUnit)"><code>take(time, timeunit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#take(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>take(time, timeunit, scheduler)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229852.aspx"><code>Take</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetakecount-scheduler"><code>take</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipAndTake">Introduction to Rx: Skip and Take</a></li>
+</ul>
+
+<hr>
+
+<h2 id="first( )-and-takefirst( )">first( ) and takeFirst( )</h2>
+
+<h4 id="emit-only-the-first-item-emitted-by-an-observable,-or-the-first-item-that-meets-some-condition">emit only the first item emitted by an Observable, or the first item that meets some condition</h4>
+
+<p><img src="/assets/operators/first.png" width="640" height="310" />​</p>
+
+<p>To create an Observable that emits only the first item emitted by a source Observable (if any), use the <code>first( )</code> method.</p>
+
+<p><img src="/assets/operators/firstN.png" width="640" height="320" />​</p>
+
+<p>You can also pass a function to this method that evaluates items as they are emitted by the source Observable, in which case <code>first( )</code> will create an Observable that emits the first such item for which your function returns <code>true</code> (if any).</p>
+
+<p><code>takeFirst( )</code> behaves very similarly to <code>first( )</code> with the exception of how they behave when the source Observable emits no items (or no items that match the predicate). In such a case, <code>first( )</code> will throw an <code>NoSuchElementException</code> while <code>takeFirst( )</code> will return an empty Observable (one that calls <code>onCompleted( )</code> but never calls <code>onNext( )</code>).</p>
+
+<p><img src="/assets/operators/first.takeFirst.png" width="640" height="455" />​</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li><a href="Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators">Table of similar blocking and non-blocking operators</a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#first()"><code>first()</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#first(rx.functions.Func1)"><code>first(predicate)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeFirst(rx.functions.Func1)"><code>takeFirst(predicate)</code></a></li>
+<li>Linq: <code>firstAsync</code></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypefirstpredicate-thisarg"><code>first</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#First">Introduction to Rx: First</a></li>
+</ul>
+
+<hr>
+
+<h2 id="firstordefault( )">firstOrDefault( )</h2>
+
+<h4 id="emit-only-the-first-item-emitted-by-an-observable,-or-the-first-item-that-meets-some-condition,-or-a-default-value-if-the-source-observable-is-empty">emit only the first item emitted by an Observable, or the first item that meets some condition, or a default value if the source Observable is empty</h4>
+
+<p><img src="/assets/operators/firstOrDefault.png" width="640" height="305" />​</p>
+
+<p>To create an Observable that emits only the first item emitted by a source Observable (or a default value if the source Observable is empty), use the <code>firstOrDefault( )</code> method.</p>
+
+<p><img src="/assets/operators/firstOrDefaultN.png" width="640" height="310" />​</p>
+
+<p>You can also pass a function to this method that evaluates items as they are emitted by the source Observable, in which case <code>firstOrDefault( )</code> will create an Observable that emits the first such item for which your function returns <code>true</code> (or the supplied default value if no such item is emitted).</p>
+
+<blockquote>
+<p><strong>Note:</strong> in the scala language adaptor for RxJava, this method is called <code>firstOrElse( )</code> or <code>headOrElse( )</code>.</p>
+</blockquote>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li><a href="Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators">Table of similar blocking and non-blocking operators</a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#firstOrDefault(T)"><code>firstOrDefault(default)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#firstOrDefault(T, rx.functions.Func1)"><code>firstOrDefault(default, predicate)</code></a></li>
+<li>Linq: <code>firstOrDefaultAsync</code></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypefirstordefaultpredicate-defaultvalue-thisarg"><code>firstOrDefault</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#First">Introduction to Rx: First</a></li>
+</ul>
+
+<hr>
+
+<h2 id="elementat( )">elementAt( )</h2>
+
+<h4 id="emit-item-n-emitted-by-the-source-observable">emit item <em>n</em> emitted by the source Observable</h4>
+
+<p><img src="/assets/operators/elementAt.png" width="640" height="310" />​</p>
+
+<p>Pass <code>elementAt( )</code> a zero-based index value and it will emit the solitary item from the source Observable&#39;s sequence that matches that index value (for example, if you pass the index value 5, <code>elementAt( )</code> will emit the sixth item emitted by the source Observable).  If you pass in a negative index value, or if the source Observable emits fewer than <em>index value</em> + 1 items, <code>elementAt( )</code> will throw an <code>IndexOutOfBoundsException</code>.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#elementAt(int)"><code>elementAt(index)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229725.aspx"><code>ElementAt</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeelementatindex"><code>elementAt</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#ElementAt">Introduction to Rx: ElementAt</a></li>
+</ul>
+
+<hr>
+
+<h2 id="elementatordefault( )">elementAtOrDefault( )</h2>
+
+<h4 id="emit-item-n-emitted-by-the-source-observable,-or-a-default-item-if-the-source-observable-emits-fewer-than-n-items">emit item <em>n</em> emitted by the source Observable, or a default item if the source Observable emits fewer than <em>n</em> items</h4>
+
+<p><img src="/assets/operators/elementAtOrDefault.png" width="640" height="310" />​</p>
+
+<p>Pass <code>elementAtOrDefault( )</code> a zero-based index value and it will emit the solitary item from the source Observable&#39;s sequence that matches that index value (for example, if you pass the index value 5, <code>elementAtOrDefault( )</code> will emit the sixth item emitted by the source Observable).  If you pass in a negative index value, <code>elementAtOrDefault( )</code> will throw an <code>IndexOutOfBoundsException</code>. If the source Observable emits fewer than <em>index value</em> + 1 items, <code>elementAtOrDefault( )</code> will emit the default value you pass in (you must also pass in a type for this value that is appropriate to what type your Subscribers expect to observe).</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#elementAtOrDefault(int, T)"><code>elementAtOrDefault(index,default)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229845.aspx"><code>ElementAtOrDefault</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeelementatordefaultindex-defaultvalue"><code>elementAtOrDefault</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="sample( )-or-throttlelast( )">sample( ) or throttleLast( )</h2>
+
+<h4 id="emit-the-most-recent-items-emitted-by-an-observable-within-periodic-time-intervals">emit the most recent items emitted by an Observable within periodic time intervals</h4>
+
+<p><img src="/assets/operators/sample.png" width="640" height="305" />​</p>
+
+<p>Use the <code>sample( )</code> method to periodically look at an Observable to see what item it has most recently emitted since the previous sampling.  Note that if the source Observable has emitted no items since the last time it was sampled, the Observable that results from the <code>sample( )</code> operator will emit no item for that sampling period.</p>
+
+<p>The following code constructs an Observable that emits the numbers between one and a million, and then samples that Observable every ten milliseconds to see what number it is emitting at that moment.
+```groovy
+def numbers = Observable.range( 1, 1000000 );</p>
+
+<p>numbers.sample(10, java.util.concurrent.TimeUnit.MILLISECONDS).subscribe(
+  { println(it); },                          // onNext
+  { println(&quot;Error: &quot; + it.getMessage()); }, // onError
+  { println(&quot;Sequence complete&quot;); }          // onCompleted
+);
+<code>
+</code>
+339707
+547810
+891282
+Sequence complete
+```</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#sample(long, java.util.concurrent.TimeUnit)"><code>sample(period,unit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#sample(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>sample(period,unit,scheduler)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#sample(rx.Observable)"><code>sample(sampler)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#throttleLast(long, java.util.concurrent.TimeUnit)"><code>throttleLast(period,unit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#throttleLast(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>throttleLast(period,unit,scheduler)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.sample.aspx"><code>Sample</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesampleinterval--sampleobservable"><code>sample</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Sample">Introduction to Rx: Sample</a></li>
+</ul>
+
+<hr>
+
+<h2 id="throttlefirst( )">throttleFirst( )</h2>
+
+<h4 id="emit-the-first-items-emitted-by-an-observable-within-periodic-time-intervals">emit the first items emitted by an Observable within periodic time intervals</h4>
+
+<p><img src="/assets/operators/throttleFirst.png" width="640" height="305" />​</p>
+
+<p>Use the <code>throttleFirst( )</code> method to periodically look at an Observable to see what item it emitted first during a particular time span. The following code shows how an Observable can be modified by <code>throttleFirst( )</code>:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">Scheduler</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestScheduler</span><span class="o">();</span>
+<span class="n">PublishSubject</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">o</span> <span class="o">=</span> <span class="n">PublishSubject</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+<span class="n">o</span><span class="o">.</span><span class="na">throttleFirst</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">,</span> <span class="n">s</span><span class="o">).</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+<span class="c1">// send events with simulated time increments</span>
+<span class="n">s</span><span class="o">.</span><span class="na">advanceTimeTo</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">);</span>
+<span class="n">o</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// deliver</span>
+<span class="n">o</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span> <span class="c1">// skip</span>
+<span class="n">s</span><span class="o">.</span><span class="na">advanceTimeTo</span><span class="o">(</span><span class="mi">501</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">);</span>
+<span class="n">o</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span> <span class="c1">// deliver</span>
+<span class="n">s</span><span class="o">.</span><span class="na">advanceTimeTo</span><span class="o">(</span><span class="mi">600</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">);</span>
+<span class="n">o</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span> <span class="c1">// skip</span>
+<span class="n">s</span><span class="o">.</span><span class="na">advanceTimeTo</span><span class="o">(</span><span class="mi">700</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">);</span>
+<span class="n">o</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span> <span class="c1">// skip</span>
+<span class="n">o</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="mi">6</span><span class="o">);</span> <span class="c1">// skip</span>
+<span class="n">s</span><span class="o">.</span><span class="na">advanceTimeTo</span><span class="o">(</span><span class="mi">1001</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">);</span>
+<span class="n">o</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span> <span class="c1">// deliver</span>
+<span class="n">s</span><span class="o">.</span><span class="na">advanceTimeTo</span><span class="o">(</span><span class="mi">1501</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">);</span>
+<span class="n">o</span><span class="o">.</span><span class="na">onCompleted</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">1
+3
+7
+Sequence complete
+</code></pre></div>
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#throttleFirst(long, java.util.concurrent.TimeUnit)"><code>throttleFirst(windowDuration,unit)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#throttleFirst(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>throttleFirst(windowDuration,unit,scheduler)</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="throttlewithtimeout( )-or-debounce( )">throttleWithTimeout( ) or debounce( )</h2>
+
+<h4 id="only-emit-an-item-from-the-source-observable-after-a-particular-timespan-has-passed-without-the-observable-emitting-any-other-items">only emit an item from the source Observable after a particular timespan has passed without the Observable emitting any other items</h4>
+
+<p><img src="/assets/operators/throttleWithTimeout.png" width="640" height="305" />​</p>
+
+<p>Use the <code>throttleWithTimeout( )</code> method to select only those items emitted by a source Observable that are not quickly superceded by other items.</p>
+
+<p>Note that the last item emitted by the source Observable will be emitted in turn by <code>throttleWithTimeout( )</code> even if the source Observable&#39;s <code>onCompleted</code> notification is issued within the time window you specify since that item&#39;s emission. That is to say: an <code>onCompleted</code> notification will not trigger a throttle.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#throttleWithTimeout(long, java.util.concurrent.TimeUnit)"><code>throttleWithTimeout(timeout,unit)</code></a> or <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#debounce(long, java.util.concurrent.TimeUnit)"><code>debounce(timeout,unit)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#throttleWithTimeout(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>throttleWithTimeout(timeout,unit,scheduler)</code></a> or <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#debounce(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>debounce(timeout,unit,scheduler)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#debounce(rx.functions.Func1)"><code>debounce(debounceSelector)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.throttle.aspx"><code>Throttle</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypethrottleduetime-scheduler"><code>throttle</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Throttle">Introduction to Rx: Throttle</a></li>
+</ul>
+
+<hr>
+
+<h2 id="timeout( )">timeout( )</h2>
+
+<h4 id="emit-items-from-a-source-observable,-but-issue-an-exception-if-no-item-is-emitted-in-a-specified-timespan">emit items from a source Observable, but issue an exception if no item is emitted in a specified timespan</h4>
+
+<p><img src="/assets/operators/timeout.1.png" width="640" height="305" />​</p>
+
+<p>The <code>timeout( )</code> operator emits the items emitted by a source Observable unless the source Observable fails to emit an item within a specified period of time since the previous item it emitted, in which case <code>timeout( )</code> will call <code>onError( )</code> with a <code>TimeoutException</code>.</p>
+
+<p>Another version of <code>timeout( )</code> does not call <code>onError( )</code> but instead switches to emitting items from an alternative Observable if the original Observable fails to emit an item within the specified timeout period:</p>
+
+<p><img src="/assets/operators/timeout.2.png" width="640" height="305" />​</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timeout(long, java.util.concurrent.TimeUnit)"><code>timeout(time,unit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timeout(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>timeout(time,unit,scheduler)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timeout(long, java.util.concurrent.TimeUnit, rx.Observable)"><code>timeout(time,unit,fallback)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timeout(long, java.util.concurrent.TimeUnit, rx.Observable, rx.Scheduler)"><code>timeout(time,unit,fallback,scheduler)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.timeout.aspx"><code>Timeout</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetimeoutduetime-other-scheduler"><code>timeout</code></a> and <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetimeoutwithselectorfirsttimeout-timeoutdurationselector-other"><code>timeoutWithSelector</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Timeout">Introduction to Rx: Timeout</a></li>
+</ul>
+
+<hr>
+
+<h2 id="distinct( )">distinct( )</h2>
+
+<h4 id="suppress-duplicate-items-emitted-by-the-source-observable">suppress duplicate items emitted by the source Observable</h4>
+
+<p><img src="/assets/operators/distinct.png" width="640" height="310" />​</p>
+
+<p>Use the <code>distinct( )</code> method to remove duplicate items from a source Observable and only emit single examples of those items.</p>
+
+<p><img src="/assets/operators/distinct.key.png" width="640" height="310" />​</p>
+
+<p>You can also pass a function or a comparator into <code>distinct( )</code> that customizes how it distinguishes between distinct and non-distinct items.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#distinct()"><code>distinct()</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#distinct(rx.functions.Func1)"><code>distinct(keySelector)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.distinct.aspx"><code>Distinct</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedistinctkeyselector-keyserializer"><code>distinct</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Distinct">Introduction to Rx: Distinct and DistinctUntilChanged</a></li>
+</ul>
+
+<hr>
+
+<h2 id="distinctuntilchanged( )">distinctUntilChanged( )</h2>
+
+<h4 id="suppress-duplicate-consecutive-items-emitted-by-the-source-observable">suppress duplicate consecutive items emitted by the source Observable</h4>
+
+<p><img src="/assets/operators/distinctUntilChanged.png" width="640" height="310" />​</p>
+
+<p>Use the <code>distinctUntilChanged( )</code> method to remove duplicate consecutive items from a source Observable and only emit single examples of such items.</p>
+
+<p><img src="/assets/operators/distinctUntilChanged.key.png" width="640" height="310" />​</p>
+
+<p>You can also pass a function or a comparator into <code>distinctUntilChanged( )</code> that customizes how it distinguishes between distinct and non-distinct items.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#distinctUntilChanged()"><code>distinctUntilChanged()</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#distinctUntilChanged(rx.functions.Func1)"><code>distinctUntilChanged(keySelector)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.distinctuntilchanged.aspx"><code>DistinctUntilChanged</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedistinctuntilchangedkeyselector-comparer"><code>distinctUntilChanged</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Distinct">Introduction to Rx: Distinct and DistinctUntilChanged</a></li>
+</ul>
+
+<hr>
+
+<h2 id="oftype( )">ofType( )</h2>
+
+<h4 id="emit-only-those-items-from-the-source-observable-that-are-of-a-particular-class">emit only those items from the source Observable that are of a particular class</h4>
+
+<p><img src="/assets/operators/ofClass.png" width="640" height="310" />​</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#ofType(java.lang.Class)"><code>ofType(class)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229380.aspx"><code>OfType</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#CastAndOfType">Introduction to Rx: Cast and OfType</a></li>
+</ul>
+
+<hr>
+
+<h2 id="ignoreelements( )">ignoreElements( )</h2>
+
+<h4 id="discard-the-items-emitted-by-the-source-observable-and-only-pass-through-the-error-or-completed-notification">discard the items emitted by the source Observable and only pass through the error or completed notification</h4>
+
+<p><img src="/assets/operators/ignoreElements.png" width="640" height="305" />​</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#ignoreElements()"><code>ignoreElements()</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229242.aspx"><code>IgnoreElements</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeignoreelements"><code>ignoreElements</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#IgnoreElements">Introduction to Rx: IgnoreElements</a></li>
+</ul>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</b></a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-filtering-observables").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

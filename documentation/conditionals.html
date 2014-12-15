@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Conditional and Boolean Operators</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;"/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 id="conditional-and-boolean-operators">Conditional and Boolean Operators</h1>
+
+<p>This section explains operators with which you conditionally emit or transform Observables, or can do boolean evaluations of them:</p>
+
+<h3 id="conditional-operators">Conditional Operators</h3>
+
+<ul>
+<li><a href="Conditional-and-Boolean-Operators#wiki-amb"><strong><code>amb( )</code></strong></a> — given two or more source Observables, emits all of the items from the first of these Observables to emit an item</li>
+<li><a href="Conditional-and-Boolean-Operators#wiki-defaultifempty"><strong><code>defaultIfEmpty( )</code></strong></a> — emit items from the source Observable, or emit a default item if the source Observable completes after emitting no items</li>
+<li>(<code>rxjava-computation-expressions</code>) <a href="Conditionatl-and-Boolean-Operators#wiki-dowhile"><strong><code>doWhile( )</code></strong></a> — emit the source Observable&#39;s sequence, and then repeat the sequence as long as a condition remains true</li>
+<li>(<code>rxjava-computation-expressions</code>) <a href="Conditional-and-Boolean-Operators#wiki-ifthen"><strong><code>ifThen( )</code></strong></a> — only emit the source Observable&#39;s sequence if a condition is true, otherwise emit an empty or default sequence</li>
+<li><a href="Conditional-and-Boolean-Operators#wiki-skipuntil"><strong><code>skipUntil( )</code></strong></a> — discard items emitted by a source Observable until a second Observable emits an item, then emit the remainder of the source Observable&#39;s items</li>
+<li><a href="Conditional-and-Boolean-Operators#wiki-skipwhile-and-skipwhilewithindex"><strong><code>skipWhile( )</code> and <code>skipWhileWithIndex( )</code></strong></a> — discard items emitted by an Observable until a specified condition is false, then emit the remainder</li>
+<li>(<code>rxjava-computation-expressions</code>) <a href="Conditional-and-Boolean-Operators#wiki-switchcase"><strong><code>switchCase( )</code></strong></a> — emit the sequence from a particular Observable based on the results of an evaluation</li>
+<li><a href="Conditional-and-Boolean-Operators#wiki-takeuntil"><strong><code>takeUntil( )</code></strong></a> — emits the items from the source Observable until a second Observable emits an item or issues a notification</li>
+<li><a href="Conditional-and-Boolean-Operators#wiki-takewhile-and-takewhilewithindex"><strong><code>takeWhile( )</code> and <code>takeWhileWithIndex( )</code></strong></a> — emit items emitted by an Observable as long as a specified condition is true, then skip the remainder</li>
+<li>(<code>rxjava-computation-expressions</code>) <a href="Conditional-and-Boolean-Operators#wiki-whiledo"><strong><code>whileDo( )</code></strong></a> — if a condition is true, emit the source Observable&#39;s sequence and then repeat the sequence as long as the condition remains true</li>
+</ul>
+
+<blockquote>
+<p>(<code>rxjava-computation-expressions</code>) — indicates that this operator is currently part of the optional <code>rxjava-computation-expressions</code> package under <code>rxjava-contrib</code> and is not included with the standard RxJava set of operators</p>
+</blockquote>
+
+<h3 id="boolean-operators">Boolean Operators</h3>
+
+<ul>
+<li><a href="Conditional-and-Boolean-Operators#wiki-all"><strong><code>all( )</code></strong></a> — determine whether all items emitted by an Observable meet some criteria</li>
+<li><a href="Conditional-and-Boolean-Operators#wiki-contains"><strong><code>contains( )</code></strong></a> — determine whether an Observable emits a particular item or not</li>
+<li><a href="Conditional-and-Boolean-Operators#wiki-exists-and-isempty"><strong><code>exists( )</code> and <code>isEmpty( )</code></strong></a> — determine whether an Observable emits any items or not</li>
+<li><a href="Conditional-and-Boolean-Operators#wiki-sequenceequal"><strong><code>sequenceEqual( )</code></strong></a> — test the equality of the sequences emitted by two Observables</li>
+</ul>
+
+<hr>
+
+<h2 id="amb( )">amb( )</h2>
+
+<h4 id="given-two-or-more-source-observables,-emits-all-of-the-items-from-the-first-of-these-observables-to-emit-an-item">given two or more source Observables, emits all of the items from the first of these Observables to emit an item</h4>
+
+<p><img src="/assets/operators/amb.png" width="640" height="385" />​</p>
+
+<p>When you pass a number of source Observables to <code>amb( )</code>, it will pass through the emissions and messages of exactly one of these Observables: the first one that emits an item to <code>amb( )</code>. It will ignore and discard the emissions of all of the other source Observables.</p>
+
+<p>The instance version of <code>amb( )</code> is <code>ambWith( )</code>, so, for example, instead of writing <code>Observable.amb(o1,o2)</code> you could write <code>o1.ambWith(o2)</code>.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(java.lang.Iterable)"><code>amb(iterableOfObservables)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable)"><code>amb(two observables)</code></a> (and versions that take <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable, rx.Observable)">three</a>, <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable, rx.Observable, rx.Observable)">four</a>, <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable)">five</a>, <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable)">six</a>, <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable)">seven</a>, <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable)">eight</a>, and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable, rx.Observable)">nine</a> observables)</li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableambargs"><code>amb</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.amb(v=vs.103).aspx"><code>Amb</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="defaultifempty( )">defaultIfEmpty( )</h2>
+
+<h4 id="emit-items-from-the-source-observable,-or-emit-a-default-item-if-the-source-observable-completes-after-emitting-no-items">emit items from the source Observable, or emit a default item if the source Observable completes after emitting no items</h4>
+
+<p><img src="/assets/operators/defaultIfEmpty.png" width="640" height="305" />​</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(default)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedefaultifemptydefaultvalue"><code>defaultIfEmpty</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.defaultifempty.aspx"><code>DefaultIfEmpty</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#DefaultIfEmpty">Introduction to Rx: DefaultIfEmpty</a></li>
+</ul>
+
+<hr>
+
+<h2 id="dowhile( )">doWhile( )</h2>
+
+<h4 id="emit-the-source-observable&#39;s-sequence,-and-then-repeat-the-sequence-as-long-as-a-condition-remains-true">emit the source Observable&#39;s sequence, and then repeat the sequence as long as a condition remains true</h4>
+
+<blockquote>
+<p>this method is part of the optional (<code>rxjava-computation-expressions</code>) package under <code>rxjava-contrib</code> and is not included with the core RxJava set of operators</p>
+</blockquote>
+
+<p><img src="/assets/operators/doWhile.png" width="640" height="540" />​</p>
+
+<p>The <code>doWhile( )</code> operator emits the sequence emitted by the source Observable and then checks to see if a specified condition is true; if so it will resubscribe and reemit the source Observable&#39;s sequence, repeating this process until the condition becomes false.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedowhilecondition-source"><code>doWhile</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="ifthen( )">ifThen( )</h2>
+
+<h4 id="only-emit-the-source-observable&#39;s-sequence-if-a-condition-is-true,-otherwise-emit-an-empty-or-default-sequence">only emit the source Observable&#39;s sequence if a condition is true, otherwise emit an empty or default sequence</h4>
+
+<blockquote>
+<p>this method is part of the optional (<code>rxjava-computation-expressions</code>) package under <code>rxjava-contrib</code> and is not included with the core RxJava set of operators</p>
+</blockquote>
+
+<p><img src="/assets/operators/ifThen.png" width="640" height="530" />​</p>
+
+<p>The <code>ifThen( )</code> operator evaluates a function and emits the source Observable&#39;s sequence if the function evaluates as true, and otherwise either emits an empty sequence or the sequence from an alternate Observable you specify.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableifcondition-thensource-elsesource"><code>if</code></a></li>
+<li><a href="http://weblogs.asp.net/podwysocki/archive/2010/06/18/introduction-to-the-reactive-extensions-for-javascript-conditionals.aspx#content2">Introduction to the Reactive Extensions for JavaScript – Conditionals</a></li>
+</ul>
+
+<hr>
+
+<h2 id="skipuntil( )">skipUntil( )</h2>
+
+<h4 id="discard-items-emitted-by-a-source-observable-until-a-second-observable-emits-an-item,-then-emit-the-remainder-of-the-source-observable&#39;s-items">discard items emitted by a source Observable until a second Observable emits an item, then emit the remainder of the source Observable&#39;s items</h4>
+
+<p><img src="/assets/operators/skipUntil.png" width="640" height="375" />​</p>
+
+<blockquote>
+<p><strong>Note:</strong> in the scala language adaptor for RxJava, this method is called <code>dropUntil( )</code>.</p>
+</blockquote>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skipUntil(rx.Observable)"><code>skipUntil(other)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeskipuntilother"><code>skipUntil</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229358.aspx"><code>SkipUntil</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipUntilTakeUntil">Introduction to Rx: SkipUntil and TakeUntil</a></li>
+</ul>
+
+<hr>
+
+<h2 id="skipwhile( )-and-skipwhilewithindex( )">skipWhile( ) and skipWhileWithIndex( )</h2>
+
+<h4 id="discard-items-emitted-by-an-observable-until-a-specified-condition-is-false,-then-emit-the-remainder">discard items emitted by an Observable until a specified condition is false, then emit the remainder</h4>
+
+<p><img src="/assets/operators/skipWhile.png" width="640" height="305" />​</p>
+
+<p>The <code>skipWhile( )</code> method returns an Observable that discards items emitted by the source Observable until such time as a function applied to an item emitted by that Observable returns <code>false</code>, whereupon the new Observable emits that item and the remainder of the items emitted by the source Observable.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">(</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">]</span> <span class="o">);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">skipWhile</span><span class="o">({</span> <span class="o">(</span><span class="mi">5</span> <span class="o">!=</span> <span class="n">it</span><span class="o">)</span> <span class="o">}).</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">5
+6
+7
+8
+9
+Sequence complete
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> in the scala language adaptor for RxJava, this method is called <code>dropWhile( )</code>.</p>
+</blockquote>
+
+<p><img src="/assets/operators/skipWhileWithIndex.png" width="640" height="305" />​</p>
+
+<p>The <code>skipWhileWithIndex( )</code> method is similar, but your function takes an additional parameter: the (zero-based) index of the item being emitted by the source Observable.
+```groovy
+numbers = Observable.from( [1, 2, 3, 4, 5, 6, 7, 8, 9] );</p>
+
+<p>numbers.skipWhileWithIndex({ it, index -&gt; ((it &lt; 6) || (index &lt; 5)) }).subscribe(
+  { println(it); },                          // onNext
+  { println(&quot;Error: &quot; + it.getMessage()); }, // onError
+  { println(&quot;Sequence complete&quot;); }          // onCompleted
+);
+<code>
+</code>
+6
+7
+8
+9
+Sequence complete
+```</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skipWhile(rx.functions.Func1)"><code>skipWhile(predicate)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#skipWhileWithIndex(rx.functions.Func2)"><code>skipWhileWithIndex(predicate)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.skipwhile.aspx"><code>SkipWhile</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeskipwhilepredicate-thisarg"><code>skipWhile</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipWhileTakeWhile">Introduction to Rx: SkipWhile and TakeWhile</a></li>
+</ul>
+
+<hr>
+
+<h2 id="switchcase( )">switchCase( )</h2>
+
+<h4 id="emit-the-sequence-from-a-particular-observable-based-on-the-results-of-an-evaluation">emit the sequence from a particular Observable based on the results of an evaluation</h4>
+
+<blockquote>
+<p>this method is part of the optional (<code>rxjava-computation-expressions</code>) package under <code>rxjava-contrib</code> and is not included with the core RxJava set of operators</p>
+</blockquote>
+
+<p><img src="/assets/operators/switchCase.png" width="640" height="290" />​</p>
+
+<p>The <code>switchCase( )</code> operator evaluates a case and passes control to a particular one of a set of Observables based on the case.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservablecaseselector-sources-elsesourcescheduler"><code>case</code></a></li>
+<li><a href="http://weblogs.asp.net/podwysocki/archive/2010/06/18/introduction-to-the-reactive-extensions-for-javascript-conditionals.aspx#content2">Introduction to the Reactive Extensions for JavaScript – Conditionals</a></li>
+</ul>
+
+<hr>
+
+<h2 id="takeuntil( )">takeUntil( )</h2>
+
+<h4 id="emits-the-items-from-the-source-observable-until-another-observable-emits-an-item-or-issues-a-notification">emits the items from the source Observable until another Observable emits an item or issues a notification</h4>
+
+<p><img src="/assets/operators/takeUntil.png" width="640" height="380" />​</p>
+
+<p>Note that the second Observable can cause <code>takeUntil</code> to quit emitting items either by emitting an item or by issuing an Error or Completed notification.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.Observable)"><code>takeUntil(other)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetakeuntilother"><code>takeUntil</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229530.aspx"><code>TakeUntil</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="takewhile( )-and-takewhilewithindex( )">takeWhile( ) and takeWhileWithIndex( )</h2>
+
+<h4 id="emit-items-emitted-by-an-observable-as-long-as-a-specified-condition-is-true,-then-skip-the-remainder">emit items emitted by an Observable as long as a specified condition is true, then skip the remainder</h4>
+
+<p><img src="/assets/operators/takeWhile.png" width="640" height="305" />​</p>
+
+<p>The <code>takeWhile( )</code> method returns an Observable that mirrors the behavior of the source Observable until such time as a function applied to an item emitted by that Observable returns <code>false</code>, whereupon the new Observable invokes <code>onCompleted( )</code>.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">(</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">]</span> <span class="o">);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">takeWhile</span><span class="o">({</span> <span class="o">((</span><span class="n">it</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="mi">0</span> <span class="o">==</span> <span class="o">(</span><span class="n">it</span> <span class="o">%</span> <span class="mi">2</span><span class="o">)))</span> <span class="o">}).</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">1
+2
+3
+4
+5
+6
+Sequence complete
+</code></pre></div>
+<p><img src="/assets/operators/takeWhileWithIndex.png" width="640" height="305" />​</p>
+
+<p>The <code>takeWhileWithIndex( )</code> method is similar, but your function takes an additional parameter: the (zero-based) index of the item being emitted by the source Observable.
+```groovy
+numbers = Observable.from( [1, 2, 3, 4, 5, 6, 7, 8, 9] );</p>
+
+<p>numbers.takeWhileWithIndex({ it, index -&gt; ((it &lt; 6) || (index &lt; 5)) }).subscribe(
+  { println(it); },                          // onNext
+  { println(&quot;Error: &quot; + it.getMessage()); }, // onError
+  { println(&quot;Sequence complete&quot;); }          // onCompleted
+);
+<code>
+</code>
+1
+2
+3
+4
+5
+Sequence complete
+```</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeWhile(rx.functions.Func1)"><code>takeWhile(predicate)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#takeWhileWithIndex(rx.functions.Func2)"><code>takeWhileWithIndex(predicate)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.takewhile.aspx"><code>TakeWhile</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetakewhilepredicate-thisarg"><code>takeWhile</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipWhileTakeWhile">Introduction to Rx: SkipWhile and TakeWhile</a></li>
+</ul>
+
+<hr>
+
+<h2 id="whiledo( )">whileDo( )</h2>
+
+<h4 id="if-a-condition-is-true,-emit-the-source-observable&#39;s-sequence-and-then-repeat-the-sequence-as-long-as-the-condition-remains-true">if a condition is true, emit the source Observable&#39;s sequence and then repeat the sequence as long as the condition remains true</h4>
+
+<blockquote>
+<p>this method is part of the optional (<code>rxjava-computation-expressions</code>) package under <code>rxjava-contrib</code> and is not included with the core RxJava set of operators</p>
+</blockquote>
+
+<p><img src="/assets/operators/whileDo.png" width="640" height="600" />​</p>
+
+<p>If a specified condition evaluates as true, <code>whileDo( )</code> will emit the sequence emitted by the source Observable. It will then check to see if the condition remains true and will resubscribe and reemit the source Observable&#39;s sequence if so; repeating this process until the condition becomes false.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservablewhilecondition-source"><code>while</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="all( )">all( )</h2>
+
+<h4 id="determine-whether-all-items-emitted-by-an-observable-meet-some-criteria">determine whether all items emitted by an Observable meet some criteria</h4>
+
+<p><img src="/assets/operators/all.png" width="640" height="315" />​</p>
+
+<p>Pass an function to <code>all( )</code> that accepts an item emitted by the source Observable and returns a boolean value based on an evaluation of that item, and <code>all( )</code> will emit <code>true</code> if and only if that function returned true for every item emitted by the source Observable.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">]);</span>
+
+<span class="n">println</span><span class="o">(</span><span class="s2">&quot;all even?&quot;</span> <span class="o">)</span>
+<span class="n">numbers</span><span class="o">.</span><span class="na">all</span><span class="o">({</span> <span class="mi">0</span> <span class="o">==</span> <span class="o">(</span><span class="n">it</span> <span class="o">%</span> <span class="mi">2</span><span class="o">)</span> <span class="o">}).</span><span class="na">subscribe</span><span class="o">({</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">});</span>
+
+<span class="n">println</span><span class="o">(</span><span class="s2">&quot;all positive?&quot;</span><span class="o">);</span>
+<span class="n">numbers</span><span class="o">.</span><span class="na">all</span><span class="o">({</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">it</span> <span class="o">}).</span><span class="na">subscribe</span><span class="o">({</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">all even? 
+false
+all positive? 
+true
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> in the scala language adaptor for RxJava, this operator is called <code>forall( )</code>.</p>
+</blockquote>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#all(rx.functions.Func1)"><code>all(predicate)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeallpredicate-thisarg"><code>all</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229537.aspx"><code>All</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#All">Introduction to Rx: All</a></li>
+</ul>
+
+<hr>
+
+<h2 id="contains( )">contains( )</h2>
+
+<h4 id="determine-whether-an-observable-emits-a-particular-item-or-not">determine whether an Observable emits a particular item or not</h4>
+
+<p><img src="/assets/operators/contains.png" width="640" height="320" />​</p>
+
+<p>Pass the <code>contains( )</code> operator a particular item, and it will emit <code>true</code> if that item is emitted by the source Observable, or <code>false</code> if the source Observable terminates without emitting that item.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#contains(java.lang.Object)"><code>contains(item)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.contains.aspx"><code>Contains</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypecontainsvalue-comparer"><code>contains</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#Contains">Introduction to Rx: Contains</a></li>
+</ul>
+
+<hr>
+
+<h2 id="exists( )-and-isempty( )">exists( ) and isEmpty( )</h2>
+
+<h4 id="determine-whether-an-observable-emits-any-items-or-not">determine whether an Observable emits any items or not</h4>
+
+<p><img src="/assets/operators/exists.png" width="640" height="320" />​</p>
+
+<p>When you apply the <code>exists( )</code> operator to a source Observable, the resulting Observable will emit <code>true</code> and complete if the source Observable emits one or more items before completing, or it will emit <code>false</code> and complete if the source Observable completes without emitting any items.</p>
+
+<p><img src="/assets/operators/isEmpty.png" width="640" height="320" />​</p>
+
+<p>The inverse of this is the <code>isEmpty( )</code> operator. Apply it to a source Observable and the resulting Observable will emit <code>true</code> and complete if the source Observable completes without emitting any items, or it will emit <code>false</code> and complete if the source Observable emits any item before completing.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#exists(rx.functions.Func1)"><code>exists(predicate)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#isEmpty()"><code>isEmpty()</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeanypredicate-thisarg"><code>any</code></a> and <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeisempty"><code>isEmpty</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.any.aspx"><code>Any</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#Any">Introduction to Rx: Any</a></li>
+</ul>
+
+<hr>
+
+<h2 id="sequenceequal( )">sequenceEqual( )</h2>
+
+<h4 id="test-the-equality-of-sequences-emitted-by-two-observables">test the equality of sequences emitted by two Observables</h4>
+
+<p><img src="/assets/operators/sequenceEqual.png" width="640" height="385" />​</p>
+
+<p>Pass <code>sequenceEqual( )</code> two Observables, and it will compare the items emitted by each Observable, and emit <code>true</code> only if both sequences are the same. You can optionally pass a third parameter: a function that accepts two items and returns <code>true</code> if they are equal according to a standard of your choosing.
+```groovy
+def firstfour = Observable.from([1, 2, 3, 4]);
+def firstfouragain = Observable.from([1, 2, 3, 4]);
+def firstfive = Observable.from([1, 2, 3, 4, 5]);
+def firstfourscrambled = Observable.from([3, 2, 1, 4]);</p>
+
+<p>println(&#39;firstfour == firstfive?&#39;);
+Observable.sequenceEqual(firstfour, firstfive).subscribe({ println(it); });
+println(&#39;firstfour == firstfouragain?&#39;);
+Observable.sequenceEqual(firstfour, firstfouragain).subscribe({ println(it); });
+println(&#39;firstfour == firstfourscrambled?&#39;);
+Observable.sequenceEqual(firstfour, firstfourscrambled).subscribe({ println(it); });
+<code>
+</code>
+firstfour == firstfive?
+false
+firstfour == firstfouragain?
+true
+firstfour == firstfourscrambled?
+false
+```</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#sequenceEqual(rx.Observable, rx.Observable)"><code>sequenceEqual(observable1, observable2)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#sequenceEqual(rx.Observable, rx.Observable, rx.functions.Func2)"><code>sequenceEqual(observable1, observable2, equalityFunction)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.sequenceequal.aspx"><code>SequenceEqual</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesequenceequalsecond-comparer"><code>sequenceEqual</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#SequenceEqual">Introduction to Rx: SequenceEqual</a></li>
+</ul>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</b></a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-conditionals").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

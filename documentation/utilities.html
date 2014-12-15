@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Observable Utility Operators</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;"/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 id="observable-utility-operators">Observable Utility Operators</h1>
+
+<p>This section explains various utility operators for working with Observables.</p>
+
+<ul>
+<li><a href="Observable-Utility-Operators#materialize"><strong><code>materialize( )</code></strong></a> — convert an Observable into a list of Notifications</li>
+<li><a href="Observable-Utility-Operators#dematerialize"><strong><code>dematerialize( )</code></strong></a> — convert a materialized Observable back into its non-materialized form</li>
+<li><a href="Observable-Utility-Operators#timestamp"><strong><code>timestamp( )</code></strong></a> — attach a timestamp to every item emitted by an Observable</li>
+<li><a href="Observable-Utility-Operators#serialize"><strong><code>serialize( )</code></strong></a> — force an Observable to make serialized calls and to be well-behaved</li>
+<li><a href="Observable-Utility-Operators#cache"><strong><code>cache( )</code></strong></a> — remember the sequence of items emitted by the Observable and emit the same sequence to future Subscribers</li>
+<li><a href="Observable-Utility-Operators#observeon"><strong><code>observeOn( )</code></strong></a> — specify on which Scheduler a Subscriber should observe the Observable</li>
+<li><a href="Observable-Utility-Operators#subscribeon"><strong><code>subscribeOn( )</code></strong></a> — specify which Scheduler an Observable should use when its subscription is invoked</li>
+<li><a href="Observable-Utility-Operators#parallel"><strong><code>parallel( )</code></strong></a> — split the work done on the emissions from an Observable into multiple Observables each operating on its own parallel thread</li>
+<li><a href="Observable-Utility-Operators#dooneach"><strong><code>doOnEach( )</code></strong></a> — register an action to take whenever an Observable emits an item</li>
+<li><a href="Observable-Utility-Operators#dooncompleted"><strong><code>doOnCompleted( )</code></strong></a> — register an action to take when an Observable completes successfully</li>
+<li><a href="Observable-Utility-Operators#doonerror"><strong><code>doOnError( )</code></strong></a> — register an action to take when an Observable completes with an error</li>
+<li><a href="Observable-Utility-Operators#doonterminate"><strong><code>doOnTerminate( )</code></strong></a> — register an action to take when an Observable completes, either successfully or with an error</li>
+<li><a href="Observable-Utility-Operators#finallydo"><strong><code>finallyDo( )</code></strong></a> — register an action to take when an Observable completes</li>
+<li><a href="Observable-Utility-Operators#delay"><strong><code>delay( )</code></strong></a> — shift the emissions from an Observable forward in time by a specified amount</li>
+<li><a href="Observable-Utility-Operators#delaysubscription"><strong><code>delaySubscription( )</code></strong></a> — hold an Subscriber&#39;s subscription request for a specified amount of time before passing it on to the source Observable</li>
+<li><a href="Observable-Utility-Operators#timeinterval"><strong><code>timeInterval( )</code></strong></a> — emit the time lapsed between consecutive emissions of a source Observable</li>
+<li><a href="Observable-Utility-Operators#using"><strong><code>using( )</code></strong></a> — create a disposable resource that has the same lifespan as an Observable</li>
+<li><a href="Observable-Utility-Operators#single-and-singleordefault"><strong><code>single( )</code></strong></a> — if the Observable completes after emitting a single item, return that item, otherwise throw an exception</li>
+<li><a href="Observable-Utility-Operators#single-and-singleordefault"><strong><code>singleOrDefault( )</code></strong></a> — if the Observable completes after emitting a single item, return that item, otherwise return a default item</li>
+</ul>
+
+<hr>
+
+<h2 id="materialize( )">materialize( )</h2>
+
+<h4 id="convert-an-observable-into-a-list-of-notifications">convert an Observable into a list of Notifications</h4>
+
+<p><img src="/assets/operators/materialize.png" width="640" height="315" />​</p>
+
+<p>A well-formed Observable will invoke its Subscriber’s <code>onNext</code> method zero or more times, and then will invoke either the <code>onCompleted</code> or <code>onError</code> method exactly once. The <code>materialize( )</code> method converts this series of invocations into a series of items emitted by an Observable, where it emits each such invocation as a <code>Notification</code> object.</p>
+
+<p>For example:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">]);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">materialize</span><span class="o">().</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="k">if</span><span class="o">(</span><span class="n">rx</span><span class="o">.</span><span class="na">Notification</span><span class="o">.</span><span class="na">Kind</span><span class="o">.</span><span class="na">OnNext</span> <span class="o">==</span> <span class="n">it</span><span class="o">.</span><span class="na">kind</span><span class="o">)</span> <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Next: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">value</span><span class="o">);</span> <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">rx</span><span class="o">.</span><span class="na">Notification</span><span class="o">.</span><span class="na">Kind</span><span class="o">.</span><span class="na">OnCompleted</span> <span class="o">==</span> <span class="n">it</span><span class="o">.</span><span class="na">kind</span><span class="o">)</span> <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Completed&quot;</span><span class="o">);</span> <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">rx</span><span class="o">.</span><span class="na">Notification</span><span class="o">.</span><span class="na">Kind</span><span class="o">.</span><span class="na">OnError</span> <span class="o">==</span> <span class="n">it</span><span class="o">.</span><span class="na">kind</span><span class="o">)</span> <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">exception</span><span class="o">);</span> <span class="o">}</span> <span class="o">},</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Next: 1
+Next: 2
+Next: 3
+Completed
+Sequence complete
+</code></pre></div>
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#materialize()"><code>materialize()</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229453.aspx"><code>Materialize</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#MaterializeAndDematerialize">Introduction to Rx: Materialize and Dematerialize</a></li>
+</ul>
+
+<hr>
+
+<h2 id="dematerialize( )">dematerialize( )</h2>
+
+<h4 id="convert-a-materialized-observable-back-into-its-non-materialized-form">convert a materialized Observable back into its non-materialized form</h4>
+
+<p><img src="/assets/operators/dematerialize.png" width="640" height="335" />​</p>
+
+<p>You can undo the effects of <code>materialize( )</code> by means of the <code>dematerialize( )</code> method, which will emit the items from the Observable as though <code>materialize( )</code> had not been applied to it. The following example dematerializes the materialized Observable from the previous section:
+```groovy
+numbers = Observable.from([1, 2, 3]);</p>
+
+<p>numbers.materialize().dematerialize().subscribe(
+  { println(it); },                          // onNext
+  { println(&quot;Error: &quot; + it.getMessage()); }, // onError
+  { println(&quot;Sequence complete&quot;); }          // onCompleted
+);
+<code>
+</code>
+1
+2
+3
+Sequence complete
+```</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#dematerialize()"><code>dematerialize()</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedematerialize"><code>dematerialize</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh229047.aspx"><code>Dematerialize</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#MaterializeAndDematerialize">Introduction to Rx: Materialize and Dematerialize</a></li>
+</ul>
+
+<hr>
+
+<h2 id="timestamp( )">timestamp( )</h2>
+
+<h4 id="attach-a-timestamp-to-every-item-emitted-by-an-observable">attach a timestamp to every item emitted by an Observable</h4>
+
+<p><img src="/assets/operators/timestamp.png" width="640" height="310" />​</p>
+
+<p>The <code>timestamp( )</code> method converts an Observable that emits items of type <em>T</em> into one that emits objects of type <a href="http://netflix.github.io/RxJava/javadoc/rx/util/Timestamped.html"><code>Timestamped&lt;T&gt;</code></a>, where each such object is stamped with the time at which it was emitted.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="kt">def</span> <span class="n">myObservable</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1000000</span><span class="o">).</span><span class="na">filter</span><span class="o">({</span> <span class="mi">0</span> <span class="o">==</span> <span class="o">(</span><span class="n">it</span> <span class="o">%</span> <span class="mi">200000</span><span class="o">)</span> <span class="o">});</span>
+
+<span class="n">myObservable</span><span class="o">.</span><span class="na">timestamp</span><span class="o">().</span><span class="na">subscribe</span><span class="o">(</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span> <span class="o">},</span>               <span class="c1">// onNext</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+  <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Timestamped(timestampMillis = 1369252582698, value = 200000)
+Timestamped(timestampMillis = 1369252582740, value = 400000)
+Timestamped(timestampMillis = 1369252582782, value = 600000)
+Timestamped(timestampMillis = 1369252582823, value = 800000)
+Timestamped(timestampMillis = 1369252582864, value = 1000000)
+Sequence complete
+</code></pre></div>
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timestamp()"><code>timestamp()</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timestamp(rx.Scheduler)"><code>timestamp(scheduler)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.timestamp.aspx"><code>Timestamp</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetimestampscheduler"><code>timestamp</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#TimeStampAndTimeInterval">Introduction to Rx: TimeStamp and TimeInterval</a></li>
+</ul>
+
+<hr>
+
+<h2 id="serialize( )">serialize( )</h2>
+
+<h4 id="force-an-observable-to-make-serialized-calls-and-to-be-well-behaved">force an Observable to make serialized calls and to be well-behaved</h4>
+
+<p><img src="/assets/operators/synchronize.png" width="640" height="400" />​</p>
+
+<p>It is possible for an Observable to invoke its Subscribers&#39; methods asynchronously, perhaps from different threads. This could make such an Observable poorly-behaved, in that it might try to invoke<code>onCompleted</code> or <code>onError</code> before one of its <code>onNext</code> invocations, or it might call <code>onNext</code> from two different threads concurrently. You can force such an Observable to be well-behaved and synchronous by applying the <code>serialize( )</code> method to it.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#serialize()"><code>serialize()</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.synchronize.aspx"><code>Synchronize</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="cache( )">cache( )</h2>
+
+<h4 id="remember-the-sequence-of-items-emitted-by-the-observable-and-emit-the-same-sequence-to-future-subscribers">remember the sequence of items emitted by the Observable and emit the same sequence to future Subscribers</h4>
+
+<p><img src="/assets/operators/cache.png" width="640" height="410" />​</p>
+
+<p>By default, an Observable will generate its sequence of emitted items afresh for each new Subscriber that subscribes. You can force it to generate its sequence only once and then to emit this identical sequence to every Subscriber by using the <code>cache( )</code> method. Compare the behavior of the following two sets of sample code, the first of which does <em>not</em> use <code>cache( )</code> and the second of which does:
+```groovy
+def myObservable = Observable.range(1, 1000000).filter({ 0 == (it % 400000) }).timestamp();</p>
+
+<p>myObservable.subscribe(
+  { println(it.toString()); },              // onNext
+  { println(&quot;Error:&quot; + it.getMessage()); }, // onError
+  { println(&quot;Sequence complete&quot;); }         // onCompleted
+);
+myObservable.subscribe(
+  { println(it.toString()); },              // onNext
+  { println(&quot;Error:&quot; + it.getMessage()); }, // onError
+  { println(&quot;Sequence complete&quot;); }         // onCompleted
+);
+<code>
+</code>
+Timestamped(timestampMillis = 1369252832871, value = 400000)
+Timestamped(timestampMillis = 1369252832951, value = 800000)
+Sequence complete
+Timestamped(timestampMillis = 1369252833074, value = 400000)
+Timestamped(timestampMillis = 1369252833154, value = 800000)
+Sequence complete
+<code>
+</code>groovy
+def myObservable = Observable.range(1, 1000000).filter({ 0 == (it % 400000) }).timestamp().cache();</p>
+
+<p>myObservable.subscribe(
+  { println(it.toString()); },              // onNext
+  { println(&quot;Error:&quot; + it.getMessage()); }, // onError
+  { println(&quot;Sequence complete&quot;); }         // onCompleted
+);
+myObservable.subscribe(
+  { println(it.toString()); },              // onNext
+  { println(&quot;Error:&quot; + it.getMessage()); }, // onError
+  { println(&quot;Sequence complete&quot;); }         // onCompleted
+);
+<code>
+</code>
+Timestamped(timestampMillis = 1369252924548, value = 400000)
+Timestamped(timestampMillis = 1369252924630, value = 800000)
+Sequence complete
+Timestamped(timestampMillis = 1369252924548, value = 400000)
+Timestamped(timestampMillis = 1369252924630, value = 800000)
+Sequence complete
+```
+Note that in the second example the timestamps are identical for both of the Subscribers, whereas in the first example they differ.</p>
+
+<p>The <code>cache( )</code> method will not itself trigger the execution of the source Observable; an initial Subscriber must subscribe to the Observable returned from <code>cache( )</code> before it will begin emitting items.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#cache()"><code>cache()</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="observeon( )">observeOn( )</h2>
+
+<h4 id="specify-on-which-scheduler-a-subscriber-should-observe-the-observable">specify on which Scheduler a Subscriber should observe the Observable</h4>
+
+<p><img src="/assets/operators/observeOn.png" width="640" height="308" />​</p>
+
+<p>To specify in which Scheduler (thread) the Observable should invoke the Subscribers&#39; <code>onNext( )</code>, <code>onCompleted( )</code>, and <code>onError( )</code> methods, call the Observable&#39;s <code>observeOn( )</code> method, passing it the appropriate <code>Scheduler</code>.</p>
+
+<p>There is a complication with using <code>observeOn( )</code> on a <a href="https://github.com/Netflix/RxJava/wiki/Subject#wiki-publishsubject"><code>PublishSubject</code></a> or on one of the Observables emitted as a result of the <a href="https://github.com/Netflix/RxJava/wiki/Transforming-Observables#wiki-groupby-and-groupbyuntil"><code>groupBy( )</code></a> operator: it is possible that such Observables will begin emitting items before the subscription fully takes hold, and therefore that some of those items will never be observed. For this reason, there is a version of <code>observeOn( )</code> that takes a <code>buffersize</code> parameter; this parameter allows you to establish a buffer that will collect any items emitted between the time of the subscription and the time the scheduled observer begins observing, so that no items will be lost.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#observeOn(rx.Scheduler)"><code>observeOn(scheduler)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#observeOn(rx.Scheduler,%20int)"><code>observeOn(scheduler, buffersize)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeobserveonscheduler"><code>observeOn</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.observeon.aspx"><code>ObserveOn</code></a></li>
+<li><a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers">Rx Workshop: Schedulers</a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html#SubscribeOnObserveOn">Introduction to Rx: SubscribeOn and ObserveOn</a></li>
+</ul>
+
+<hr>
+
+<h2 id="subscribeon( )">subscribeOn( )</h2>
+
+<h4 id="specify-which-scheduler-an-observable-should-use-when-its-subscription-is-invoked">specify which Scheduler an Observable should use when its subscription is invoked</h4>
+
+<p><img src="/assets/operators/subscribeOn.png" width="640" height="305" />​</p>
+
+<p>To specify that the work done by the Observable should be done on a particular Scheduler (thread), call the Observable&#39;s <code>subscribeOn( )</code> method, passing it the appropriate <code>Scheduler</code>. By default (that is, unless you modify the Observable also with <code>observeOn( )</code>) the Observable will invoke the Subscribers&#39; <code>onNext( )</code>, <code>onCompleted( )</code>, and <code>onError( )</code> methods in this same thread.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#subscribeOn(rx.Scheduler)"><code>subscribeOn(scheduler)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesubscribeonscheduler"><code>subscribeOn</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.subscribeon.aspx"><code>SubscribeOn</code></a></li>
+<li><a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers">Rx Workshop: Schedulers</a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html#SubscribeOnObserveOn">Introduction to Rx: SubscribeOn and ObserveOn</a></li>
+</ul>
+
+<hr>
+
+<h2 id="parallel( )">parallel( )</h2>
+
+<h4 id="split-the-work-done-on-the-emissions-from-an-observable-into-multiple-observables-each-operating-on-its-own-parallel-thread">split the work done on the emissions from an Observable into multiple Observables each operating on its own parallel thread</h4>
+
+<p><img src="/assets/operators/parallel.png" width="640" height="475" />​</p>
+
+<p>You can use the <code>parallel( )</code> method to split an Observable into as many Observables as there are available processors, and to do work in parallel on each of these Observables. <code>parallel( )</code> will then merge the results of these parallel computations back into a single, well-behaved Observable sequence.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#parallel(rx.functions.Func1)"><code>parallel(function)</code></a> and <a href=http://netflix.github.io/RxJava/javadoc/rx/Observable.html#parallel(rx.functions.Func1, rx.Scheduler)"><code>parallel(function,scheduler)</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="dooneach( )">doOnEach( )</h2>
+
+<h4 id="register-an-action-to-take-whenever-an-observable-emits-an-item">register an action to take whenever an Observable emits an item</h4>
+
+<p><img src="/assets/operators/doOnEach.png" width="640" height="310" />​</p>
+
+<p>Use the <code>doOnEach( )</code> method to register an <code>Action</code> that RxJava will perform each time the Observable emits an item. This action takes the item as a parameter.</p>
+
+<p>There are also <code>doOnEach( )</code> variants that allow you to register actions to perform if the Observable completes or informs of a throwable.  The <code>doOnNext( )</code> method is equivalent to the version of <code>doOnEach( )</code> that registers an action to be performed only for each emitted item.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.functions.Action1)"><code>doOnEach(action)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.Observer)"><code>doOnEach(observer)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.do.aspx"><code>Do</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedoobserver--onnext-onerror-oncompleted"><code>do</code> and <code>doAction</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="dooncompleted( )">doOnCompleted( )</h2>
+
+<h4 id="register-an-action-to-take-when-an-observable-completes-successfully">register an action to take when an Observable completes successfully</h4>
+
+<p><img src="/assets/operators/doOnCompleted.png" width="640" height="305" />​</p>
+
+<p>Use the <code>doOnCompleted( )</code> method to register an <code>Action</code> that RxJava will perform if the Observable completes normally (not by means of an error).</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#doOnCompleted(rx.functions.Action0)"><code>doOnCompleted(action)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.do.aspx"><code>Do</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedoobserver--onnext-onerror-oncompleted"><code>do</code> and <code>doAction</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="doonerror( )">doOnError( )</h2>
+
+<h4 id="register-an-action-to-take-when-an-observable-completes-with-an-error">register an action to take when an Observable completes with an error</h4>
+
+<p><img src="/assets/operators/doOnError.png" width="640" height="305" />​</p>
+
+<p>Use the <code>doOnError( )</code> method to register an <code>Action</code> that RxJava will perform if the Observable terminates with an error. This action takes the Throwable representing the error as a parameter.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#doOnError(rx.functions.Action1)"><code>doOnError(action)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.do.aspx"><code>Do</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedoobserver--onnext-onerror-oncompleted"><code>do</code> and <code>doAction</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="doonterminate( )">doOnTerminate( )</h2>
+
+<h4 id="register-an-action-to-take-when-an-observable-completes,-either-successfully-or-with-an-error">register an action to take when an Observable completes, either successfully or with an error</h4>
+
+<p><img src="/assets/operators/doOnTerminate.png" width="640" height="305" />​</p>
+
+<p>Use the <code>doOnTerminate( )</code> method to register an <code>Action</code> that RxJava will perform just before the Observable calls <code>onComplete</code> or <code>onError</code>.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li><a href="https://github.com/Netflix/RxJava/wiki/Observable-Utility-Operators#wiki-finallydo"><code>finallyDo</code></a> - a similar operator that performs the action <em>after</em> calling <code>onCompleted</code> or <code>onError</code></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#doOnTerminate(rx.functions.Action0)"><code>doOnTerminate(action)</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.do.aspx"><code>Do</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedoobserver--onnext-onerror-oncompleted"><code>do</code> and <code>doAction</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="finallydo( )">finallyDo( )</h2>
+
+<h4 id="register-an-action-to-take-when-an-observable-completes">register an action to take when an Observable completes</h4>
+
+<p><img src="/assets/operators/finallyDo.png" width="640" height="310" />​</p>
+
+<p>You can use the <code>finallyDo( )</code> method of an Observable to register an action that RxJava will invoke after that Observable invokes either the <code>onCompleted( )</code> or <code>onError( )</code> method of its Subscriber.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="kt">def</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">]);</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="na">finallyDo</span><span class="o">({</span> <span class="n">println</span><span class="o">(</span><span class="s1">&#39;Finally&#39;</span><span class="o">);</span> <span class="o">}).</span><span class="na">subscribe</span><span class="o">(</span>
+   <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">},</span>                          <span class="c1">// onNext</span>
+   <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> <span class="o">},</span> <span class="c1">// onError</span>
+   <span class="o">{</span> <span class="n">println</span><span class="o">(</span><span class="s2">&quot;Sequence complete&quot;</span><span class="o">);</span> <span class="o">}</span>          <span class="c1">// onCompleted</span>
+<span class="o">);</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">1
+2
+3
+4
+5
+Sequence complete
+Finally
+</code></pre></div>
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li><a href="https://github.com/Netflix/RxJava/wiki/Observable-Utility-Operators#wiki-doonterminate"><code>doOnTerminate</code></a> - a similar operator that performs the action <em>before</em> calling <code>onCompleted</code> or <code>onError</code></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#finallyDo(rx.functions.Action0)"><code>finallyDo(action)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypefinallyaction"><code>finally</code> / <code>finallyAction</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/hh212133.aspx"><code>Finally</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="delay( )">delay( )</h2>
+
+<h4 id="shift-the-emissions-from-an-observable-forward-in-time-by-a-specified-amount">shift the emissions from an Observable forward in time by a specified amount</h4>
+
+<p><img src="/assets/operators/delay.png" width="640" height="310" />​</p>
+
+<p>The <code>delay( )</code> operator modifies its source Observable by pausing for a particular increment of time (that you specify) before emitting each of the source Observable&#39;s items. This has the effect of shifting the entire sequence of items emitted by the Observable forward in time by that specified increment.</p>
+
+<p>Note that <code>delay( )</code> will <em>not</em> time-shift an <code>onError( )</code> call in this fashion but it will forward such a call immediately to its subscribers. It will however time shift an <code>onCompleted( )</code> call.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#delay(long, java.util.concurrent.TimeUnit)"><code>delay(delay,unit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#delay(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>delay(delay,unit,scheduler)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func0, rx.functions.Func1)"><code>delay(subscriptionDelay, itemDelay)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#defer(rx.functions.Func0)"><code>delay(observableFactory)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypedelayduetime-scheduler"><code>delay</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.delay.aspx"><code>Delay</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Delay">Introduction to Rx: Delay</a></li>
+</ul>
+
+<hr>
+
+<h2 id="delaysubscription( )">delaySubscription( )</h2>
+
+<h4 id="hold-a-subscriber&#39;s-subscription-request-for-a-specified-amount-of-time-before-passing-it-on-to-the-source-observable">hold a Subscriber&#39;s subscription request for a specified amount of time before passing it on to the source Observable</h4>
+
+<p><img src="/assets/operators/delaySubscription.png" width="640" height="310" />​</p>
+
+<p>The <code>delaySubscription( )</code> operator shifts waits for a specified period of time after receiving a subscription request before subscribing to the source Observable.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long, java.util.concurrent.TimeUnit)"><code>delaySubscription(delay,unit)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>delaySubscription(delay,unit,scheduler)</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="timeinterval( )">timeInterval( )</h2>
+
+<h4 id="emit-the-time-lapsed-between-consecutive-emissions-of-a-source-observable">emit the time lapsed between consecutive emissions of a source Observable</h4>
+
+<p><img src="/assets/operators/timeInterval.png" width="640" height="310" />​</p>
+
+<p>The <code>timeInterval( )</code> operator converts a source Observable into an Observable that emits the amount of time lapsed between consecutive emissions of the source Observable. The first emission is the amount of time lapsed between the time the Subscriber subscribed to the Observable and the time the source Observable emitted its first item. There is no corresponding emission marking the amount of time lapsed between the last emission of the source Observable and the subsequent call to <code>onCompleted( )</code>.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timeInterval()"><code>timeInterval()</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#timeInterval(rx.Scheduler)"><code>timeInterval(scheduler)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypetimeintervalscheduler"><code>timeInterval</code></a></li>
+<li>Linq: <a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.timeinterval.aspx"><code>TimeInterval</code></a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#TimeStampAndTimeInterval">Introduction to Rx: TimeStamp and TimeInterval</a></li>
+</ul>
+
+<hr>
+
+<h2 id="using( )">using( )</h2>
+
+<h4 id="create-a-disposable-resource-that-has-the-same-lifespan-as-an-observable">create a disposable resource that has the same lifespan as an Observable</h4>
+
+<p><img src="/assets/operators/using.png" width="640" height="400" />​</p>
+
+<p>Pass the <code>using( )</code> method two factory functions: the first creates a disposable resource, the second creates an Observable. When a Subscriber subscribes to the resulting Observable, <code>using( )</code> will use the Observable factory function to create the Observable the Subscriber will observe, while at the same time using the resource factory function to create a resource. When the Subscriber unsubscribes from the Observable, or when the Observable terminates (normally or with an error), <code>using( )</code> will dispose of the resource it created.</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#using(rx.functions.Func0, rx.functions.Func1)"><code>using(resourceFactory,observableFactory)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableusingresourcefactory-observablefactory"><code>using</code></a></li>
+</ul>
+
+<hr>
+
+<h2 id="single( )-and-singleordefault( )">single( ) and singleOrDefault( )</h2>
+
+<h4 id="if-the-observable-completes-after-emitting-a-single-item,-return-that-item,-otherwise-throw-an-exception-(or-return-a-default-item)">if the Observable completes after emitting a single item, return that item, otherwise throw an exception (or return a default item)</h4>
+
+<p><img src="/assets/operators/single.png" width="640" height="315" />​</p>
+
+<p>Use the <code>single( )</code> method to retrieve the only item emitted by an Observable. <code>single( )</code> will notify of a <code>NoSuchElementException</code> if the source Observable does not emit exactly one item.</p>
+
+<p>You can also use this method to retrieve the only item emitted by an Observable that meets some particular condition (or <code>null</code> if the Observable method emits no such item). To do this, pass a function to <code>single( )</code> that returns <code>true</code> if the item meets the condition. In such a case, <code>single( )</code> will again notify of a <code>NoSuchElementException</code> unless the source Observable emits exactly one item that meets the condition.</p>
+
+<p><img src="/assets/operators/single.p.png" width="640" height="315" />​</p>
+
+<p>The <code>singleOrDefault( )</code> method is similar, except that while it will still notify of an exception if the underlying Observable emits <em>more than</em> one item, if the underlying Observable does not emit any items at all, rather than notifying of an exception, the Observable returned by <code>singleOrDefault( )</code> will emit a default item that you specify. Specify that default item by passing it as the first parameter to <code>singleOrDefault( )</code>.</p>
+
+<p><img src="/assets/operators/singleOrDefault.png" width="640" height="315" /></p>
+
+<p>​<img src="/assets/operators/singleOrDefault.p.png" width="640" height="315" />​</p>
+
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li><a href="Blocking-Observable-Operators#wiki-appendix-similar-blocking-and-non-blocking-operators">Table of similar blocking and non-blocking operators</a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#single()"><code>single( )</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#single(rx.functions.Func1)"><code>single(predicate)</code></a></li>
+<li>javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#singleOrDefault(T)"><code>singleOrDefault(default)</code></a> and <a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html#singleOrDefault(T, rx.functions.Func1)"><code>singleOrDefault(default,predicate)</code></a></li>
+<li>RxJS: <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesinglepredicate-thisarg"><code>single</code></a> and <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesingleordefaultpredicate-defaultvalue-thisarg"><code>singleOrDefault</code></a></li>
+<li>Linq: <code>singleAsync</code> and <code>singleOrDefaultAsync</code></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Single">Introduction to Rx: Single</a></li>
+</ul>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</b></a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-utility-operators").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

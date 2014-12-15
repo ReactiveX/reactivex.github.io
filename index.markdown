@@ -1,4 +1,0 @@
----
-layout: frontpage
-title: ReactiveX
----

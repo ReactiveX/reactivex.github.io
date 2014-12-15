@@ -1,96 +1,91 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>OPERATOR_NAME</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
-   <h1>OPERATOR_NAME</h1>
-   <h3>BRIEF_OPERATOR_DESCRIPTION</h3>
-   <figure>
-    <img src="images/OPERATOR_NAME.png" width="640" alt="OPERATOR_NAME" />
-   </figure>
-   <p>
-    LONG_OPERATOR_DESCRIPTION
-   </p>
-   <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+---
+layout: documentation
+title: ReactiveX - OPERATOR operator
+id: oPERATOR
+---
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#transforming">Transforming</a></li>
+  <li class="active">OPERATOR</li>
+</ol>
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+<h1>OPERATOR</h1>
+<h3>SHORT_DESCRIPTION</h3>
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy</h3><div id="RxGroovy" class="operator-language-description">
-     <p>
-     </p>
-     <h4>Sample code:</h4>
-     <div class="code groovy"><pre>
-     </pre></div>
-     <div class="output"><pre>
-     </pre></div>
-    </div>
+<figure>
+  <img src="images/OPERATOR.png" width="640" alt="OPERATOR" />
+</figure>
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava</h3><div id="RxJava" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+<p>
+ LONG_DESCRIPTION
+</p>
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS</h3><div id="RxJS" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+<h4>See also:</h4>
+<ul>
+</ul>
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin</h3><div id="RxKotlin" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+<h2>Language-Specific Information:</h2>
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET</h3><div id="RxNET" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY</h3><div id="RxPY" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+  {% lang_operator RxGroovy %}
+    <figure class="variant">
+     <img src="images/oPERATOR.png" width="640" alt="oPERATOR" />
+     <figcaption><p>
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb</h3><div id="Rxrb" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+  {% lang_operator RxJava %}
+    <figure class="variant">
+     <img src="images/oPERATOR.png" width="640" alt="oPERATOR" />
+     <figcaption><p>
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
-     <p>
-     </p>
-    </div>
+  {% lang_operator RxJS %}
+    <figure class="variant">
+     <img src="images/oPERATOR.png" width="640" alt="oPERATOR" />
+     <figcaption><p>
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
+  {% lang_operator RxKotlin %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
 
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+  {% lang_operator Rx.NET %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

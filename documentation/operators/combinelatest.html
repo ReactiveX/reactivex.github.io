@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>CombineLatest</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - CombineLatest operator
+id: combinelatest
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">CombineLatest</li>
+</ol>
+
    <h1>CombineLatest</h1>
    <h3>when an item is emitted by either of two Observables, combine the latest item emitted by each Observable via a specified function and emit items based on the results of this function</h3>
+
    <figure>
     <img src="images/combineLatest.c.png" width="640" alt="CombineLatest" />
    </figure>
+
    <p>
     The <span class="operator">CombineLatest</span> operator behaves in a similar way to
     <span class="operator">Zip</span>, but while <span class="operator">Zip</span> emits items only
@@ -24,30 +28,28 @@
     of the other source Observables, using a function you provide, and emits the return value from
     that function.
    </p>
+
    <h4>See Also</h4>
    <ul>
     <li><a href="zip.html"><span class="operator">Zip</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
+  {% lang_operator RxClojure %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: <code>combine_latest</code></h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp combine_latest %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>combineLatest</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy combineLatest %}
      <figure>
       <img src="images/combineLatest.png" width="640" alt="combineLatest" />
       <figcaption><p>
@@ -57,10 +59,9 @@
        operate on any particular scheduler.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>combineLatest</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava combineLatest %}
      <figure>
       <img src="images/combineLatest.png" width="640" alt="combineLatest" />
       <figcaption><p>
@@ -70,10 +71,9 @@
        operate on any particular scheduler.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>combineLatest</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS combineLatest withLatestFrom %}
      <figure>
       <img src="images/combineLatest.png" width="640" alt="combineLatest" />
       <figcaption><p>
@@ -114,50 +114,45 @@ Next: First: 2, Second: 1
 Completed</pre></div>
       </figcaption>
      </figure>
-    </div>
+     <figure>
+      <img src="images/withLatestFrom.png" width="640" alt="withLatestFrom" />
+      <figcaption><p>
+       RxJS also has a <code>withLatestFrom</code> operator. It is similar to <code>combineLatest</code>, but
+       only emits items when the single source Observable emits an item (not when <em>any</em> of the
+       Observables that are passed to the operator do, as <code>combineLatest</code> does).
+      </p>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin</h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>CombineLatest</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET CombineLatest %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>combine_latest</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY combine_latest %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>combine_latest</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb combine_latest %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>combineLatest</code> and <code>combineLatestWith</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala combineLatest combineLatestWith %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

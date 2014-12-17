@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>Merge</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - Merge operator
+id: merge
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">Merge</li>
+</ol>
+
    <h1>Merge</h1>
    <h3>combine multiple Observables into one by merging their emissions</h3>
    <figure>
@@ -32,16 +34,16 @@
    <figure>
     <img src="images/mergeDelayError.C.png" width="640" alt="MergeDelayError" />
    </figure>
+
    <h4>See Also</h4>
    <ul>
     <li><a href="concat.html"><span class="operator">Concat</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure: <code>interleave</code>, <code>interleave*</code>, <code>merge</code>, <code>merge*</code>, <code>merge-delay_error</code>, and <code>merge-delay-error*</code></h3><div id="RxClojure" class="operator-language-description">
+  {% lang_operator RxClojure interleave interleave* merge merge* merge-delay-error merge-delay-error* %}
      <p>
       In RxClojure there are six operators of concern here:
      </p>
@@ -82,10 +84,9 @@
        <code>interleave*</code> is similar but operates on an Observable of Observables.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: <code>merge</code></h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp merge %}
      <p>
       RxCpp implements this operator as <code>merge</code>.
      </p>
@@ -93,10 +94,9 @@
       <img src="images/merge.png" width="640" alt="merge" />
      </figure>
 <!-- I think we need more here, but it's too cryptic/undocumented for me to figure out easily -->
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>merge</code>, <code>mergeDelayError</code>, and <code>mergeWith</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy merge mergeDelayError mergeWith %}
      <p>
       RxGroovy implements this operator as <code>merge</code>, <code>mergeWith</code>, and
       <code>mergeDelayError</code>.
@@ -183,10 +183,9 @@ Sequence complete</pre></div>
        <code>mergeDelayError</code> as there is for <code>merge</code>.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>merge</code>, <code>mergeDelayError</code>, and <code>mergeWith</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava merge mergeDelayError mergeWith %}
      <p>
       RxJava implements this operator as <code>merge</code>, <code>mergeWith</code>, and
       <code>mergeDelayError</code>.
@@ -247,10 +246,9 @@ Sequence complete</pre></div>
        <code>mergeDelayError</code> as there is for <code>merge</code>.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>merge</code> and <code>mergeAll</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS merge mergeAll %}
      <p>
       RxJS implements this operator as <code>merge</code> (two variants) and <code>mergeAll</code>.
      </p>
@@ -309,10 +307,9 @@ Sequence complete</pre></div>
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>merge</code>, <code>mergeDelayError</code>, and <code>mergeWith</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin merge mergeDelayError mergeWith %}
      <p>
       RxKotlin implements this operator as <code>merge</code>, <code>mergeWith</code>, and
       <code>mergeDelayError</code>.
@@ -373,10 +370,9 @@ Sequence complete</pre></div>
        <code>mergeDelayError</code> as there is for <code>merge</code>.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Merge</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET Merge %}
      <p>
       Rx.NET implements this operator as <code>Merge</code>.
      </p>
@@ -394,10 +390,9 @@ Sequence complete</pre></div>
        notification.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>merge</code>, <code>merge_all</code>, and <code>merge_observable</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY merge merge_all merge_observable %}
      <p>
       RxPY implements this operator as <code>merge</code> and 
       <code>merge_all</code>/<code>merge_observable</code>.
@@ -417,10 +412,9 @@ Sequence complete</pre></div>
        Observables to create their own Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>merge</code>, <code>merge_all</code>, and <code>merge_concurrent</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb merge merge_all merge_concurrent %}
      <p>
       Rx.rb implements this operator as <code>merge</code>, <code>merge_concurrent</code>, and
       <code>merge_all</code>.
@@ -452,10 +446,9 @@ Sequence complete</pre></div>
        <span class="operator">Concat</span> variant.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>flatten</code>, <code>flattenDelayError</code>, <code>merge</code>, and <code>mergeDelayError</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala flatten flattenDelayError merge mergeDelayError %}
      <p>
       RxScala implements this operator as <code>flatten</code>, <code>flattenDelayError</code>,
       <code>merge</code>, and <code>mergeDelayError</code>.
@@ -493,15 +486,6 @@ Sequence complete</pre></div>
        finished emitting items.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>Sum</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - Sum operator
+id: sum
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#mathematical">Mathematical and Aggregate</a></li>
+  <li class="active">Sum</li>
+</ol>
+
    <h1>Sum</h1>
    <h3>calculates the sum of numbers emitted by an Observable and emits this sum</h3>
    <figure>
@@ -18,30 +20,28 @@
     (or items that can be evaluated as numbers), and emits a single value: the sum of all of the
     numbers emitted by the source Observable.
    </p>
+
    <h4>See Also:</h4>
    <ul>
     <li><a href="average.html"><span class="operator">Average</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
-    </div>
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: <code>sum</code></h3><div id="RxCpp" class="operator-language-description">
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
-    </div>
+  {% lang_operator RxCpp sum %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>sumDouble</code>, <code>sumFloat</code>, <code>sumInteger</code>, and <code>sumLong</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy sumDouble sumFloat sumInteger sumLong %}
      <p>
       In RxGroovy, this operator is not in the ReactiveX core, but is part of the distinct
       <code>rxjava-math</code> module, where it is implemented with four type-specific operators:
@@ -74,10 +74,9 @@ Sequence complete</pre></div>
        emitted by the source Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>sumDouble</code>, <code>sumFloat</code>, <code>sumInteger</code>, and <code>sumLong</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava sumDouble sumFloat sumInteger sumLong %}
      <p>
       This operator is not in the RxJava core, but is part of the distinct <code>rxjava-math</code>
       module, where it is implemented with four type-specific operators: <code>sumDouble</code>,
@@ -91,10 +90,9 @@ Sequence complete</pre></div>
        emitted by the source Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>sum</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS sum %}
      <figure>
       <img src="images/sum.png" width="640" alt="sum" />
       <figcaption><p>
@@ -169,50 +167,36 @@ Completed</pre></div></figcaption>
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>sumDouble</code>, <code>sumFloat</code>, <code>sumInteger</code>, and <code>sumLong</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin sumDouble sumFloat sumInteger sumLong %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Sum</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET Sum %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>sum</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY sum %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>sum</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb sum %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

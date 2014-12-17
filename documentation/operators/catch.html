@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>Catch</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - Catch operator
+id: catch
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#error">Error Handling</a></li>
+  <li class="active">Catch</li>
+</ol>
+
    <h1>Catch</h1>
    <h3>recover from an onError notification by continuing the sequence without error</h3>
    <figure>
@@ -31,16 +33,17 @@
     regardless of whether the source Observable terminates normally or with an error. This is
     unfortunate and confusing, but something we have to live with.
    </p>
+
    <h4>See Also:</h4>
    <ul>
     <li><a href="concat.html"><span class="operator">Concat</span></a></li>
     <li><a href="retry.html"><span class="operator">Retry</span></a></li>
    </ul>
-   <h2>Language-Specific Information:</h2>
-   <div id="accordion">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure: <code>catch*</code></h3><div id="RxClojure" class="operator-language-description">
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure catch* %}
      <figure>
       <img src="images/catchX.png" width="640" alt="catch*" />
       <figcaption><p>
@@ -72,18 +75,15 @@
           (fn [e] (rx/return 1)))
 )</pre></div></figcaption>
      </figure>
-     
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: none</h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp %}
      <p>
       RxCpp does not implement the <span class="operator">Catch</span> operator.
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>onErrorResumeNext</code>, <code>onErrorReturn</code>, and <code>onExceptionResumeNext</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy onErrorResumeNext onErrorReturn onExceptionResumeNext %}
      <p>
       RxGroovy implements the <span class="operator">Catch</span> operator in the same way as
       does RxJava. There are three distinct operators that provide this functionality:
@@ -179,10 +179,9 @@ Sequence complete</pre></div></figcaption>
        observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>onErrorResumeNext</code>, <code>onErrorReturn</code>, and <code>onExceptionResumeNext</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava onErrorResumeNext onErrorReturn onExceptionResumeNext %}
      <p>
       RxJava implements the <span class="operator">Catch</span> operator with three distinct
       operators:
@@ -228,10 +227,9 @@ Sequence complete</pre></div></figcaption>
        observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>catch</code> and <code>onErrorResumeNext</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS catch onErrorResumeNext %}
      <p>
       RxJS implements the <span class="operator">Catch</span> operator with two distinct
       operators:
@@ -277,10 +275,9 @@ Sequence complete</pre></div></figcaption>
       <li><code>rx.js</code></li>
       <li><code>rx.compat.js</code></li>
      </ul>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>onErrorResumeNext</code>, <code>onErrorReturn</code>, and <code>onExceptionResumeNext</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin onErrorResumeNext onErrorReturn onExceptionResumeNext %}
      <p>
       RxKotlin implements the <span class="operator">Catch</span> operator in the same way as
       does RxJava. There are three distinct operators that provide this functionality:
@@ -326,10 +323,9 @@ Sequence complete</pre></div></figcaption>
        observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Catch</code> and <code>OnErrorResumeNext</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET Catch OnErrorResumeNext %}
      <p>
       Rx.NET implements the <span class="operator">Catch</span> operator with two distinct
       operators:
@@ -360,10 +356,9 @@ Sequence complete</pre></div></figcaption>
        concatination operator.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>catch_exception</code> and <code>on_error_resume_next</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY catch_exception on_error_resume_next %}
      <p>
       RxPY implements the <span class="operator">Catch</span> operator with two distinct
       operators:
@@ -402,10 +397,9 @@ Sequence complete</pre></div></figcaption>
        last of these Observables.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>on_error_resume_next</code> and <code>rescue_error</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb on_error_resume_next rescue_error %}
      <p>
       Rx.rb implements the <span class="operator">Catch</span> operator with two distinct
       operators:
@@ -433,10 +427,9 @@ Sequence complete</pre></div></figcaption>
        source sequence terminates normally or with an error.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>OnErrorFlatMap</code>, <code>onErrorResumeNext</code>, <code>onErrorReturn</code>, and <code>onExceptionResumeNext</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala onErrorFlatMap onErrorResumeNext onErrorReturn onExceptionResumeNext %}
      <p>
       Rx.rb implements the <span class="operator">Catch</span> operator with four distinct
       operators:
@@ -515,15 +508,6 @@ Sequence complete</pre></div></figcaption>
        observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

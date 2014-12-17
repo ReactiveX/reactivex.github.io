@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>StartWith</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - StartWith operator
+id: startwith
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#async">Asynchronous</a></li>
+  <li class="active">StartWith</li>
+</ol>
+
    <h1>StartWith</h1>
    <h3>emit a specified sequence of items before beginning to emit the items from the source Observable</h3>
    <figure>
@@ -22,16 +24,16 @@
     emitted by an Observable, you want the
     <a href="concat.html"><span class="operator">Concat</span></a> operator.)
    </p>
+
    <h4>See Also</h4>
    <ul>
     <li><a href="concat.html"><span class="operator">Concat</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure: <code>cons</code></h3><div id="RxClojure" class="operator-language-description">
+  {% lang_operator RxClojure cons %}
      <figure>
       <img src="images/cons.png" width="640" alt="cons" />
       <figcaption><p>
@@ -40,10 +42,9 @@
        Observable sequence.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: <code>start_with</code></h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp start_with %}
      <figure>
       <img src="images/start_with.png" width="640" alt="start_with" />
       <figcaption><p>
@@ -52,10 +53,9 @@
        parameter list, to the items emitted by the Observable as its own Observable sequence.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>startWith</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy startWith %}
      <p>
       RxGroovy implements this operator as <code>startWith</code>.
      </p>
@@ -92,10 +92,9 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
        is a sort of inverted <span class="operator">Concat</span> operation.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>startWith</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava startWith %}
      <p>
       RxJava implements this operator as <code>startWith</code>.
      </p>
@@ -115,10 +114,9 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
        This is a sort of inverted <span class="operator">Concat</span> operation.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>startWith</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS startWith %}
      <figure>
       <img src="images/startWith.png" width="640" alt="startWith" />
       <figcaption><p>
@@ -138,10 +136,9 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>startWith</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin startWith %}
      <p>
       RxKotlin implements this operator as <code>startWith</code>.
      </p>
@@ -161,10 +158,9 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
        is a sort of inverted <span class="operator">Concat</span> operation.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>StartWith</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.Net StartWith %}
      <figure>
       <img src="images/startWith.C.png" width="640" alt="StartWith" />
       <figcaption><p>
@@ -173,10 +169,9 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
        before it emits the items from the source Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>start_with</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY start_with %}
      <figure>
       <img src="images/start_with.png" width="640" alt="start_with" />
       <figcaption><p>
@@ -185,10 +180,9 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
        it emits the items from the source Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>start_with</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb start_with %}
      <figure>
       <img src="images/start_with.png" width="640" alt="start_with" />
       <figcaption><p>
@@ -197,10 +191,9 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
        it emits the items from the source Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>+:</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala +: %}
      <figure>
       <img src="images/pluscolon.png" width="640" alt="plus colon" />
       <figcaption><p>
@@ -209,15 +202,6 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
        Observable sequence.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

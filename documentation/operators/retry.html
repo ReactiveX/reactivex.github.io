@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>Retry</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - Retry operator
+id: retry
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#error">Error Handling</a></li>
+  <li class="active">Retry</li>
+</ol>
+
    <h1>Retry</h1>
    <h3>if a source Observable emits an error, resubscribe to it in the hopes that it will complete
        without error</h3>
@@ -22,23 +24,22 @@
     <code>onNext</code> notifications through to its observers, even from sequences that terminate
     with an error, so this can cause duplicate emissions (as shown in the diagram above).
    </p>
+
    <h4>See Also</h4>
    <ul>
     <li><a href="catch.html"><span class="operator">Catch</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure: none</h3><div id="RxClojure" class="operator-language-description">
+  {% lang_operator RxClojure %}
      <p>
       RxClojure does not implement the <span class="operator">Retry</span> operator.
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: <code>retry</code></h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp retry %}
      <p>
       RxCpp implements this operator as <code>retry</code>:
      </p>
@@ -51,10 +52,9 @@
        <code>onError</code> notification to its observers.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>retry</code> and <code>retryWhen</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy retry retryWhen %}
      <p>
       RxGroovy has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
@@ -95,10 +95,9 @@
        there is also a version that accepts a Scheduler as a parameter.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>retry</code> and <code>retryWhen</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava retry retryWhen %}
      <p>
       RxJava has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
@@ -158,10 +157,9 @@ subscribing
 delay retry by 3 second(s)
 subscribing</pre></div></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>retry</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS retry %}
      <p>
       RxJS implements this operator as <code>retry</code>.
      </p>
@@ -191,10 +189,9 @@ subscribing</pre></div></figcaption>
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>retry</code> and <code>retryWhen</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin retry retryWhen %}
      <p>
       RxKotlin has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
@@ -230,10 +227,9 @@ subscribing</pre></div></figcaption>
        notification on to its observers and terminates.
       </p>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Retry</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET Retry %}
      <p>
       Rx.NET implements this operator as <code>Retry</code>.
      </p>
@@ -252,10 +248,9 @@ subscribing</pre></div></figcaption>
        time this happens.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>retry</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY retry %}
      <p>
       RxPY implements this operator as <code>retry</code>:
      </p>
@@ -270,10 +265,9 @@ subscribing</pre></div></figcaption>
        <code>onError</code> notifications it receives.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>retry</code> and <code>retry_infinitely</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb retry retry_infinitely %}
      <p>
       Rx.rb has two versions of this operator: <code>retry</code> and <code>retry_infinitely</code>.
      </p>
@@ -291,10 +285,9 @@ subscribing</pre></div></figcaption>
       source Observable indefinitely, no matter how many <code>onError</code> notifications it
       receives.
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>retry</code> and <code>retryWhen</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala retry retryWhen %}
      <p>
       RxScala has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
@@ -330,15 +323,6 @@ subscribing</pre></div></figcaption>
        notification on to its observers and terminates.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

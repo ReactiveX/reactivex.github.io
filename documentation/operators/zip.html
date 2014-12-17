@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>Zip</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - Zip operator
+id: zip
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">Zip</li>
+</ol>
+
    <h1>Zip</h1>
    <h3>combine the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function</h3>
    <figure>
@@ -24,6 +26,7 @@
     Observable #2; and so forth. It will only emit as many items as the number of items emitted by
     the source Observable that emits the fewest items.
    </p>
+
    <h4>See Also:</h4>
    <ul>
     <li><a href="and-then-when.html"><span class="operator">And</span>/<span class="operator">Then</span>/<span class="operator">When</span></a></li>
@@ -31,24 +34,21 @@
    </ul>
  
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure: <code>map</code> and <code>mapCat</code></h3><div id="RxClojure" class="operator-language-description">
+  {% lang_operator RxClojure map mapCat %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
-    </div>
-
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>zip</code> and <code>zipWith</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy zip zipWith %}
      <p>
       RxGroovy implements this operator as several variants of <code>zip</code> and also as
       <code>zipWith</code>, an instance function version of the operator.
@@ -96,10 +96,9 @@ Sequence complete</pre></div>
       <code>zip</code> and <code>zipWith</code> do not by default operate on any particular
       scheduler.
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>zip</code> and <code>zipWith</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava zip zipWith %}
      <p>
       RxJava implements this operator as several variants of <code>zip</code> and also as
       <code>zipWith</code>, an instance function version of the operator.
@@ -127,10 +126,9 @@ Sequence complete</pre></div>
       <code>zip</code> and <code>zipWith</code> do not by default operate on any particular
       scheduler.
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>zip</code> and <code>zipArray</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS zip zipArray %}
      <p>
       RxJS implements this operator as <code>zip</code> and <code>zipArray</code>.
      </p>
@@ -231,50 +229,36 @@ Next: [2,3,4]
 Completed</pre></div>
       </figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>zip</code> and <code>zipWith</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin zip zipWith %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Zip</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET Zip %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>zip</code> and <code>zip_array</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY zip zip_array %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>zip</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb zip %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>zip</code>, <code>zipWith</code>, and <code>zipWithIndex</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala zip zipWith zipWithIndex %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

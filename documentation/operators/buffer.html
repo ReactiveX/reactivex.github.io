@@ -11,9 +11,7 @@ id: buffer
 </ol>
 
 <h1>Buffer</h1>
-<h3>periodically gather items emitted by an Observable into bundles and emit these
-bundles rather than emitting the items one at a time
-</h3>
+<h3>periodically gather items emitted by an Observable into bundles and emit these bundles rather than emitting the items one at a time</h3>
 
 <figure>
   <img src="images/Buffer.png" width="640" alt="Buffer" />
@@ -43,7 +41,7 @@ bundles rather than emitting the items one at a time
 <h2>Language-Specific Information:</h2>
 
 <div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
-  {% lang_operator RxCpp %}
+  {% lang_operator RxCpp buffer %}
     <p>
     RxCpp implements two variants of <span class="operator">Buffer</span>:
     </p>
@@ -72,7 +70,7 @@ bundles rather than emitting the items one at a time
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy %}
+  {% lang_operator RxGroovy buffer %}
     <p>
     In RxGroovy there are several variants of <span class="operator">Buffer</span>:
     </p>
@@ -212,7 +210,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava %}
+  {% lang_operator RxJava buffer %}
     <p>
     In RxJava there are several variants of <span class="operator">Buffer</span>:
     </p>
@@ -352,7 +350,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJS %}
+  {% lang_operator RxJS buffer bufferWithCount bufferWithTime bufferWithTimeOrCount %}
    <p>
     RxJS has four <span class="operator">Buffer</span> operators &mdash; <code>buffer</code>,
     <code>bufferWithCount</code>, <code>bufferWithTime</code>, and
@@ -503,7 +501,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </ul>
   {% endlang_operator %}
 
-  {% lang_operator RxKotlin %}
+  {% lang_operator RxKotlin buffer %}
    <p>
     In RxKotlin there are several variants of <span class="operator">Buffer</span>:
    </p>
@@ -608,7 +606,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
   {% endlang_operator %}
 
-  {% lang_operator Rx.NET %}
+  {% lang_operator Rx.NET Buffer %}
    <p>
     In Rx.NET there are several variants of <span class="operator">Buffer</span>. For each variety
     you can either pass in the source Observable as the first parameter, or you can call it as
@@ -703,7 +701,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxPY %}
+  {% lang_operator RxPY buffer buffer_with_count buffer_with_time buffer_with_time_or_count %}
    <p>
     RxPY has several <span class="operator">Buffer</span> variants: <code>buffer</code>,
     <code>buffer_with_count</code>, <code>buffer_with_time</code>, and
@@ -812,7 +810,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
   {% endlang_operator %}
 
-  {% lang_operator Rx.rb %}
+  {% lang_operator Rx.rb buffer_with_count buffer_with_time %}
    <p>
     Rx.rb has three variants of the <span class="operator">Buffer</span> operator:
    </p>
@@ -850,7 +848,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxScala %}
+  {% lang_operator RxScala slidingBuffer tumblingBuffer %}
    <p>
     RxScala has two varieties of <span class="operator">Buffer</span> &mdash;
     <code>slidingBuffer</code> and <code>tumblingBuffer</code> &mdash; each of which has variants

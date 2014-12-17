@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>Window</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - Window operator
+id: window
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#transforming">Transforming</a></li>
+  <li class="active">Window</li>
+</ol>
+
    <h1>Window</h1>
    <h3>periodically subdivide items from an Observable into Observable windows and emit these
        windows rather than emitting the items one at a time</h3>
@@ -30,16 +32,16 @@
     means that the emitted Observable stops emitting items from the source Observable and terminates
     with an <code>onCompleted</code> notification to its observers.
    </p>
+
    <h4>See Also</h4>
    <ul>
     <li><a href="buffer.html"><span class="operator">Buffer</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure: <code>partition-all</code></h3><div id="RxClojure" class="operator-language-description">
+  {% lang_operator RxClojure partition-all %}
      <p>
       RxClojure implements this operator as <code>partition-all</code>:
      </p>
@@ -60,10 +62,9 @@
        between every window.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: <code>window</code>, <code>window_with_time</code>, and <code>window_with_time_or_count</code></h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp window window_with_time window_with_time_or_count %}
      <p>
       RxCpp implements this operator as two variants of <code>window</code>, two variants of
       <code>window_with_time</code>, and as <code>window_with_time_or_count</code>:
@@ -138,10 +139,9 @@
        collective emissions correspond one-to-one with those of the source Observable.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>window</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy window %}
      <p>
       There are several varieties of <span class="operator">Window</span> in RxGroovy.
      </p>
@@ -276,10 +276,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, 
 Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</pre></div>
      </figcaption>
     </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>window</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava window %}
      <p>
       There are several varieties of <span class="operator">Window</span> in RxJava.
      </p>
@@ -413,10 +412,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, 
 Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</pre></div>
      </figcaption>
     </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>window</code>, <code>windowWithCount</code>, <code>windowWithTime</code>, and <code>windowWithTimeOrCount</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS window windowWithCount windowWithTime windowWithTimeOrCount %}
      <h4><code>window(windowClosingSelector)</code></h4>
      <figure>
       <img src="images/window1.cs.png" width="640" alt="window(windowClosingSelector)" />
@@ -533,10 +531,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        the <code>timeout</code> scheduler for its timer by default.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>window</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin window %}
      <p>
       There are several varieties of <span class="operator">Window</span> in RxKotlin.
      </p>
@@ -644,10 +641,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>computation</code> scheduler for its timer by default.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Window</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET Window %}
      <p>
       There are several variants of the <span class="operator">Window</span> operator in Rx.NET.
      </p>
@@ -750,10 +746,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        result from this operation may overlap or may have gaps.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>window</code>, <code>window_with_count</code>, <code>window_with_time</code>, <code>window_with_time_or_count</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY window window_with_count window_with_time window_with_time_or_count %}
      <p>
       RxPY implements this operator with several variants of four different functions.
      </p>
@@ -860,11 +855,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        uses the <code>timeout</code> scheduler for its timer by default.
       </p></figcaption>
      </figure>
+  {% endlang_operator %}
 
-    </div>
-
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>window_with_count</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb window_with_count %}
      <h4><code>window_with_count(count,skip)</code></h4>
      <figure>
       <img src="images/window_with_count4.png" width="640" alt="window_with_count(count,skip)" />
@@ -883,10 +876,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        between every window.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>sliding</code> and <code>tumbling</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala sliding tumbling %}
      <p>
       RxScala implements this operator as <code>sliding</code> (creates windows that may overlap or
       have gaps) and <code>tumbling</code> (creates windows whose collective emissions match those
@@ -986,15 +978,6 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        (if any) and opens a new one.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

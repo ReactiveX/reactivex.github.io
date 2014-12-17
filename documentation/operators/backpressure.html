@@ -75,7 +75,7 @@ id: backpressure
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy %}
+  {% lang_operator RxGroovy onBackpressureBlock onBackpressureBuffer onBackpressureDrop %}
     <p>
      RxGroovy implements reactive pull backpressure, and many of its operators support that form of
      backpressure. It also has three operators that you can apply to Observables that have not been
@@ -110,7 +110,7 @@ id: backpressure
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava %}
+  {% lang_operator RxJava onBackpressureBlock onBackpressureBuffer onBackpressureDrop %}
     <p>
      RxJava implements reactive pull backpressure, and many of its operators support that form of
      backpressure. It also has three operators that you can apply to Observables that have not been
@@ -145,7 +145,7 @@ id: backpressure
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJS %}
+  {% lang_operator RxJS controlled pausable pausableBuffered stopAndWait windowed %}
     <p>
      RxJS implements backpressure by transforming an ordinary Observable into a
      <code>ControlledObservable</code> with the <code>controlled</code> operator. This forces the
@@ -219,7 +219,7 @@ id: backpressure
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala %}
+  {% lang_operator RxScala onBackpressureBuffer onBackpressureDrop %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

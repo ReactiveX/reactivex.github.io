@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>And/Then/When</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - And/Then/When operator
+id: and-then-when
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">And/Then/When</li>
+</ol>
+
    <h1>And/Then/When</h1>
    <h3>combine sets of items emitted by two or more Observables by means of Pattern and Plan intermediaries</h3>
    <figure>
@@ -23,30 +25,28 @@
     them in a <code>Plan</code>. <span class="operator">When</span> in turn transforms these various
     <code>Plan</code> objects into emissions from an Observable.
    </p>
+
    <h4>See Also</h4>
    <ul>
     <li><a href="zip.html"><span class="operator">Zip</span></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
-    </div>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
-    </div>
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>and</code>/<code>then</code>/<code>when</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy and then when %}
      <figure>
       <img src="images/and_then_when.png" width="640" alt="and/then/when" />
       <figcpation><p>
@@ -55,10 +55,9 @@
        <code>rxjava-joins</code> module.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>and</code>/<code>then</code>/<code>when</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava and then when %}
      <figure>
       <img src="images/and_then_when.png" width="640" alt="and/then/when" />
       <figcpation><p>
@@ -66,10 +65,9 @@
        <code>then</code>, and <code>when</code> in the <code>rxjava-joins</code> module.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>and</code>/<code>thenDo</code>/<code>when</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS and thenDo when %}
      <figure>
       <img src="images/and_thenDo_when.png" width="640" alt="and/thenDo/when" />
       <figcpation><p>
@@ -94,50 +92,36 @@
       </ul>
       </figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>and</code>/<code>then</code>/<code>when</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin and then when %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>And</code>/<code>Then</code>/<code>When</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET And Then When %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY</h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb</h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala</h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

@@ -1,11 +1,12 @@
 module Jekyll
   class LangOperatorTag < Liquid::Block
     #include TemplateWrapper
-    def initialize(tag_name, title, tokens)
+    def initialize(tag_name, text, tokens)
       super
-      @title = title.strip!
+      @title = text.split(/\s+/)[0]
       @title = @title.gsub(".", "")
       @title = @title.gsub(" ", "")
+      @description = text.split(/\s+/)[1..-1].join(' ')
     end
 
     def render(context)
@@ -15,7 +16,7 @@ module Jekyll
         <div class=\"panel-heading\" role=\"tab\" id=\"heading#{@title}\">
           <h4 class=\"panel-title\">
             <a data-toggle=\"collapse\" data-parent=\"\#accordion\" href=\"\#collapse#{@title}\" aria-expanded=\"true\" aria-controls=\"collapse#{@title}\">
-              #{@title}
+              #{@title} <code>#{@description}</code>
             </a>
           </h4>
         </div>

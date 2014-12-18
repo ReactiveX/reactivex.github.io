@@ -1,0 +1,130 @@
+---
+layout: documentation
+title: ReactiveX - RefCount operator
+id: refcount
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#connectable">Connectable</a></li>
+  <li class="active">RefCount</li>
+</ol>
+
+<h1>RefCount</h1>
+<h3>make a Connectable Observable behave like an ordinary Observable</h3>
+
+<figure>
+  <img src="images/publishRefCount.c.png" width="640" alt="RefCount" />
+</figure>
+
+<p>
+ A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+ emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+ operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
+ time of your choosing.
+</p><p>
+ The <span class="operator">RefCount</span> operator automates the process of connecting to and
+ disconnecting from a connectable Observable. It operates on a connectable Observable and returns an ordinary Observable. When the first observer subscribes to this Observable,
+ <span class="operator">RefCount</span> connects to the underlying connectable Observable.
+ <span class="operator">RefCount</span> then keeps track of how many other observers subscribe to it
+ and does not disconnect from the underlying connectable Observable until the last observer has done
+ so.
+</p>
+
+<h4>See also:</h4>
+<ul>
+ <li><a href="connect.html"><span class="operator">Connect</span></a></li>
+ <li><a href="multicast.html"><span class="operator">Multicast</span></a></li>
+ <li><a href="publish.html"><span class="operator">Publish</span></a></li>
+ <li><a href="publishlast.html"><span class="operator">PublishLast</span></a></li>
+ <li><a href="replay.html"><span class="operator">Replay</span></a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp publish %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy refCount share %}
+    <figure class="variant">
+     <img src="images/publishRefCount.png" width="640" alt="refCount" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>refCount</code>.
+     </p></figcaption>
+    </figure>
+    <p>
+     There is also a <code>share</code> operator, which is the equivalent of applying both the
+     <code>publish</code> and <code>refCount</code> operators to an Observable, in that order.
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava refCount share %}
+    <figure class="variant">
+     <img src="images/publishRefCount.png" width="640" alt="refCount" />
+     <figcaption><p>
+      RxJava implements this operator as <code>refCount</code>.
+     </p></figcaption>
+    </figure>
+    <p>
+     There is also a <code>share</code> operator, which is the equivalent of applying both the
+     <code>publish</code> and <code>refCount</code> operators to an Observable, in that order.
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS refCount share shareValue %}
+    <figure class="variant">
+     <img src="images/publishRefCount.png" width="640" alt="refCount" />
+     <figcaption><p>
+      RxJava implements this operator as <code>refCount</code>.
+     </p></figcaption>
+    </figure>
+    <p>
+     There is also a <code>share</code> operator, which is the equivalent of applying both the
+     <code>publish</code> and <code>refCount</code> operators to an Observable, in that order.
+     A variant called <code>shareValue</code> takes as a parameter a single item that it will
+     emit to any subscribers before beginning to emit items from the source Observable.
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin refCount share %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET RefCount %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY ref_count %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala refCount share %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,0 +1,136 @@
+---
+layout: documentation
+title: ReactiveX - Publish operator
+id: publish
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#connectable">Connectable</a></li>
+  <li class="active">Publish</li>
+</ol>
+
+<h1>Publish</h1>
+<h3>convert an ordinary Observable into a connectable Observable</h3>
+
+<figure>
+  <img src="images/publishConnect.c.png" width="640" alt="Publish" />
+</figure>
+
+<p>
+ A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+ emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+ operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
+ time of your choosing.
+</p>
+
+<h4>See also:</h4>
+<ul>
+ <li><a href="connect.html"><span class="operator">Connect</span></a></li>
+ <li><a href="multicast.html"><span class="operator">Multicast</span></a></li>
+ <li><a href="publishlast.html"><span class="operator">PublishLast</span></a></li>
+ <li><a href="refcount.html"><span class="operator">RefCount</span></a></li>
+ <li><a href="replay.html"><span class="operator">Replay</span></a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp publish %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy publish %}
+    <figure class="variant">
+     <img src="images/publishConnect.png" width="640" alt="publish" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>publish</code>.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/publishConnect.f.png" width="640" alt="publish" />
+     <figcaption><p>
+      There is also a variant that takes a function as a parameter. This function takes an emitted
+      item from the source Observable as a parameter and produces the item that will be emitted in
+      its place by the <code>ConnectableObservable</code>.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava publish %}
+    <figure class="variant">
+     <img src="images/publishConnect.png" width="640" alt="publish" />
+     <figcaption><p>
+      RxJava implements this operator as <code>publish</code>.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/publishConnect.f.png" width="640" alt="publish" />
+     <figcaption><p>
+      There is also a variant that takes a function as a parameter. This function takes an emitted
+      item from the source Observable as a parameter and produces the item that will be emitted in
+      its place by the <code>ConnectableObservable</code>.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS publish publishValue %}
+    <figure class="variant">
+     <img src="images/publishConnect.f.png" width="640" alt="publish" />
+     <figcaption><p>
+      In RxJS, the <code>publish</code> operator takes a function as a parameter. This function
+      takes an emitted item from the source Observable as a parameter and produces the item that
+      will be emitted in its place by the returned <code>ConnectableObservable</code>.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/publishValue.png" width="640" alt="publishValue" />
+     <figcaption><p>
+      The <code>publishValue</code> operator takes, in addition to the function described above, an
+      initial item to be emitted by the resulting <code>ConnectableObservable</code> at connection
+      time before emitting the items from the source Observable. It will not, however, emit this
+      initial item to observers that subscribe after the time of connection.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin publish %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Publish %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY publish publishValue %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala publish %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

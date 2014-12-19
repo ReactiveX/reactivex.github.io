@@ -34,9 +34,7 @@ id: refcount
 <h4>See also:</h4>
 <ul>
  <li><a href="connect.html"><span class="operator">Connect</span></a></li>
- <li><a href="multicast.html"><span class="operator">Multicast</span></a></li>
  <li><a href="publish.html"><span class="operator">Publish</span></a></li>
- <li><a href="publishlast.html"><span class="operator">PublishLast</span></a></li>
  <li><a href="replay.html"><span class="operator">Replay</span></a></li>
 </ul>
 
@@ -87,7 +85,45 @@ id: refcount
      <img src="images/publishRefCount.png" width="640" alt="refCount" />
      <figcaption><p>
       RxJava implements this operator as <code>refCount</code>.
-     </p></figcaption>
+     </p>
+     <h4>Sample code</h4>
+     <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .doAction(function (x) { console.log('Side effect'); });
+
+var published = source.publish().refCount();
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Completed
+Completed</pre></div>
+     <p>
+      <code>refCount</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.binding.js</code> (requires <code>rx.js</code>, <code>rx.compat.js</code>, <code>rx.lite.js</code>, or <code>rx.lite.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
     </figure>
     <p>
      There is also a <code>share</code> operator, which is the equivalent of applying both the
@@ -95,6 +131,48 @@ id: refcount
      A variant called <code>shareValue</code> takes as a parameter a single item that it will
      emit to any subscribers before beginning to emit items from the source Observable.
     </p>
+    <h4>Sample code</h4>
+     <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .do(
+        function (x) { console.log('Side effect'); });
+
+var published = source.share();
+
+// When the number of observers subscribed to published observable goes from
+// 0 to 1, we connect to the underlying observable sequence.
+published.subscribe(createObserver('SourceA'));
+// When the second subscriber is added, no additional subscriptions are added to the
+// underlying observable sequence. As a result the operations that result in side
+// effects are not repeated per subscriber.
+published.subscribe(createObserver('SourceB'));
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Completed</pre></div>
+     <p>
+      <code>share</code> and <code>shareValue</code> are found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.binding.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
   {% endlang_operator %}
 
   {% lang_operator RxKotlin refCount share %}

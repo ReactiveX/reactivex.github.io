@@ -26,9 +26,7 @@ id: connect
 
 <h4>See also:</h4>
 <ul>
- <li><a href="multicast.html"><span class="operator">Multicast</span></a></li>
  <li><a href="publish.html"><span class="operator">Publish</span></a></li>
- <li><a href="publishlast.html"><span class="operator">PublishLast</span></a></li>
  <li><a href="refcount.html"><span class="operator">RefCount</span></a></li>
  <li><a href="replay.html"><span class="operator">Replay</span></a></li>
 </ul>
@@ -111,7 +109,55 @@ id: connect
       You can also use the <code>connect</code> method to instruct an Observable to begin emitting
       items (or, to begin generating items that would be emitted) even before any Subscriber has
       subscribed to it. In this way you can turn a cold Observable into a hot one.
-     </p></figcaption>
+     </p>
+     <h4>Sample code</h4>
+     <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .do(function (x) { console.log('Side effect'); });
+
+var published = source.publish();
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+// Connect the source
+var connection = published.connect();
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Completed
+Completed</pre></div>
+     <p>
+      <code>connect</code> is found in the following packages:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.all.binding.js</code></li>
+     </ul>
+     <p>
+      <code>connect</code> requires one of the following packages:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
     </figure>
   {% endlang_operator %}
 

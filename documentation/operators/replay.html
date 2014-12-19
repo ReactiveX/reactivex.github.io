@@ -23,10 +23,10 @@ id: replay
  operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
  time of your choosing.
 </p><p>
- If you apply the <span class="operator">Replay</span> operator to an Observable before you convert it into a
- connectable Observable, the resulting connectable Observable will always emit the same complete sequence to
- any future observers, even those observers that subscribe after the connectable Observable has begun to emit
- items to other subscribed observers.
+ If you apply the <span class="operator">Replay</span> operator to an Observable before you convert
+ it into a connectable Observable, the resulting connectable Observable will always emit the same
+ complete sequence to any future observers, even those observers that subscribe after the
+ connectable Observable has begun to emit items to other subscribed observers.
 </p>
 
 <h4>See also:</h4>
@@ -41,7 +41,7 @@ id: replay
 <div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
   {% lang_operator RxClojure cache %}
-    <p>
+    <p> 
      <span style="color:#f00">TBD</span>
     </p>
   {% endlang_operator %}
@@ -56,28 +56,31 @@ id: replay
     <figure class="variant">
      <img src="images/replay.png" width="640" alt="replay" />
      <figcaption><p>
-      In RxGroovy there is a variety of the <code>replay</code> operator that returns a connectable Observable.
-      You must <a href="publish.html"><span class="operator">Publish</span></a> this connectable Observable
-      before observers can subscribe to it, and then
-      <a href="connect.html"><span class="operator">Connect</span></a> to it in order to observe its emissions.
+      In RxGroovy there is a variety of the <code>replay</code> operator that returns a connectable
+      Observable. You must <a href="publish.html"><span class="operator">Publish</span></a> this
+      connectable Observable before observers can subscribe to it, and then
+      <a href="connect.html"><span class="operator">Connect</span></a> to it in order to observe its
+      emissions.
      </p><p>
-      Variants of this variety of the <code>replay</code> operator permit you to set a maximum buffer size to
-      limit the number of items <code>replay</code> will buffer and replay to subsequent observers, and/or to
-      establish a moving time window that defines when emitted items become too old to buffer and replay.
+      Variants of this variety of the <code>replay</code> operator permit you to set a maximum
+      buffer size to limit the number of items <code>replay</code> will buffer and replay to
+      subsequent observers, and/or to establish a moving time window that defines when emitted items
+      become too old to buffer and replay.
      </p></figcaption>
     </figure>
     <figure class="variant">
      <img src="images/replay.f.png" width="640" alt="replay" />
      <figcaption><p>
-      There is also a variety of <code>replay</code> that returns an ordinary Observable. These variants take as
-      a parameter a transformative function; this function accepts an item emitted by the source Observable as
-      its parameter, and returns an item to be emitted by the resulting Observable. So really, this operator
-      does not replay the source Observable but instead replays the source Observable <em>as transformed</em> by
-      this function.
+      There is also a variety of <code>replay</code> that returns an ordinary Observable. These
+      variants take as a parameter a transformative function; this function accepts an item emitted
+      by the source Observable as its parameter, and returns an item to be emitted by the resulting
+      Observable. So really, this operator does not replay the source Observable but instead replays
+      the source Observable <em>as transformed</em> by this function.
      </p><p>
-      Variants of this variety of the <code>replay</code> operator permit you to set a maximum buffer size to
-      limit the number of items <code>replay</code> will buffer and replay to subsequent observers, and/or to
-      establish a moving time window that defines when emitted items become too old to buffer and replay.
+      Variants of this variety of the <code>replay</code> operator permit you to set a maximum
+      buffer size to limit the number of items <code>replay</code> will buffer and replay to
+      subsequent observers, and/or to establish a moving time window that defines when emitted items
+      become too old to buffer and replay.
      </p></figcaption>
     </figure>
   {% endlang_operator %}
@@ -86,28 +89,31 @@ id: replay
     <figure class="variant">
      <img src="images/replay.png" width="640" alt="replay" />
      <figcaption><p>
-      In RxJava there is a variety of the <code>replay</code> operator that returns a connectable Observable.
-      You must <a href="publish.html"><span class="operator">Publish</span></a> this connectable Observable
-      before observers can subscribe to it, and then
-      <a href="connect.html"><span class="operator">Connect</span></a> to it in order to observe its emissions.
+      In RxJava there is a variety of the <code>replay</code> operator that returns a connectable
+      Observable. You must <a href="publish.html"><span class="operator">Publish</span></a> this
+      connectable Observable before observers can subscribe to it, and then
+      <a href="connect.html"><span class="operator">Connect</span></a> to it in order to observe its
+      emissions.
      </p><p>
-      Variants of this variety of the <code>replay</code> operator permit you to set a maximum buffer size to
-      limit the number of items <code>replay</code> will buffer and replay to subsequent observers, and/or to
-      establish a moving time window that defines when emitted items become too old to buffer and replay.
+      Variants of this variety of the <code>replay</code> operator permit you to set a maximum
+      buffer size to limit the number of items <code>replay</code> will buffer and replay to
+      subsequent observers, and/or to establish a moving time window that defines when emitted items
+      become too old to buffer and replay.
      </p></figcaption>
     </figure>
     <figure class="variant">
      <img src="images/replay.f.png" width="640" alt="replay" />
      <figcaption><p>
-      There is also a variety of <code>replay</code> that returns an ordinary Observable. These variants take as
-      a parameter a transformative function; this function accepts an item emitted by the source Observable as
-      its parameter, and returns an item to be emitted by the resulting Observable. So really, this operator
-      does not replay the source Observable but instead replays the source Observable <em>as transformed</em> by
-      this function.
+      There is also a variety of <code>replay</code> that returns an ordinary Observable. These
+      variants take as a parameter a transformative function; this function accepts an item emitted
+      by the source Observable as its parameter, and returns an item to be emitted by the resulting
+      Observable. So really, this operator does not replay the source Observable but instead replays
+      the source Observable <em>as transformed</em> by this function.
      </p><p>
-      Variants of this variety of the <code>replay</code> operator permit you to set a maximum buffer size to
-      limit the number of items <code>replay</code> will buffer and replay to subsequent observers, and/or to
-      establish a moving time window that defines when emitted items become too old to buffer and replay.
+      Variants of this variety of the <code>replay</code> operator permit you to set a maximum
+      buffer size to limit the number of items <code>replay</code> will buffer and replay to
+      subsequent observers, and/or to establish a moving time window that defines when emitted items
+      become too old to buffer and replay.
      </p></figcaption>
     </figure>
   {% endlang_operator %}
@@ -116,16 +122,17 @@ id: replay
     <figure class="variant">
      <img src="images/replay.fnts.png" width="640" alt="replay" />
      <figcaption><p>
-      In RxJs the <code>replay</code> operator takes four optional parameters and returns an ordinary
-      Observable:
+      In RxJs the <code>replay</code> operator takes four optional parameters and returns an
+      ordinary Observable:
      </p>
      <dl>
-      <dt><code>selector</code></dt><dd>a transforming function that takes an item emitted by the source
-          Observable as its parameter and returns an item to be emitted by the resulting Observable</dd>
-      <dt><code>bufferSize</code></dt><dd>the maximum number of items to buffer and replay to subsequent
-          observers</dd>
-      <dt><code>window</code></dt><dd>the age, in milliseconds, at which items in this buffer may be discarded
-          without being emitted to subsequent observers</dd>
+      <dt><code>selector</code></dt><dd>a transforming function that takes an item emitted by the
+          source Observable as its parameter and returns an item to be emitted by the resulting
+          Observable</dd>
+      <dt><code>bufferSize</code></dt><dd>the maximum number of items to buffer and replay to
+          subsequent observers</dd>
+      <dt><code>window</code></dt><dd>the age, in milliseconds, at which items in this buffer may be
+          discarded without being emitted to subsequent observers</dd>
       <dt><code>scheduler</code></dt><dd>the Scheduler on which this operator will operate</dd></dt>
      </dl>
      <h4>Sample code</h4>
@@ -169,15 +176,15 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <p>
-     There is also a <code>shareReplay</code> operator, which keeps track of the number of observers, and
-     disconnects from the source Observable when that number drops to zero. <code>shareReplay</code> takes three
-     optional parameters and returns an ordinary Observable:
+     There is also a <code>shareReplay</code> operator, which keeps track of the number of
+     observers, and disconnects from the source Observable when that number drops to zero.
+     <code>shareReplay</code> takes three optional parameters and returns an ordinary Observable:
      </p>
      <dl>
-      <dt><code>bufferSize</code></dt><dd>the maximum number of items to buffer and replay to subsequent
-          observers</dd>
-      <dt><code>window</code></dt><dd>the age, in milliseconds, at which items in this buffer may be discarded
-          without being emitted to subsequent observers</dd>
+      <dt><code>bufferSize</code></dt><dd>the maximum number of items to buffer and replay to
+          subsequent observers</dd>
+      <dt><code>window</code></dt><dd>the age, in milliseconds, at which items in this buffer may be
+          discarded without being emitted to subsequent observers</dd>
       <dt><code>scheduler</code></dt><dd>the Scheduler on which this operator will operate</dd></dt>
      </dl>
     </p>

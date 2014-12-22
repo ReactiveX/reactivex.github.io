@@ -17,102 +17,113 @@ particular language-specific ReactiveX versions have implemented these operators
 
 <h2 id="creating">Creating Observables</h2>
 
-* **`Create`** — 
-* **`Defer`** — 
-* **`Empty`/`Never`/`Throw`** — 
-* **`From`** — 
-* **`Interval`** — 
-* **`Just`** — 
-* **`Range`** — 
-* **`Repeat`** — 
-* **`Timer`** — 
+Operators that originate new Observables.
+
+* [**`Create`**]({{ site.url }}/documentation/operators/create.html) — create an Observable from scratch by calling observer methods programmatically
+* [**`Defer`**]({{ site.url }}/documentation/operators/defer.html) — do not create the Observable until the observer subscribes, and create a fresh Observable for each observer
+* [**`Empty`/`Never`/`Throw`**]({{ site.url }}/documentation/operators/empty-never-throw.html) — create Observables that have very precise and limited behavior
+* [**`From`**]({{ site.url }}/documentation/operators/from.html) — convert some other object or data structure into an Observable
+* [**`Interval`**]({{ site.url }}/documentation/operators/interval.html) — create an Observable that emits a sequence of integers spaced by a particular time interval
+* [**`Just`**]({{ site.url }}/documentation/operators/just.html) — convert an object or a set of objects into an Observable that emits that or those objects
+* [**`Range`**]({{ site.url }}/documentation/operators/range.html) — create an Observable that emits a range of sequential integers
+* [**`Repeat`**]({{ site.url }}/documentation/operators/repeat.html) — create an Observable that emits a particular item or sequence of items repeatedly
+* [**`Start`**]({{ site.url }}/documentation/operators/start.html) — create an Observable that emits the return value of a function
+* [**`Timer`**]({{ site.url }}/documentation/operators/timer.html) — create an Observable that emits a single item after a given delay
 
 <h2 id="transforming">Transforming Observables</h2>
 
-Operators with which you can transform items that are emitted by an Observable.
+Operators that transform items that are emitted by an Observable.
 
 * [**`Buffer`**]({{ site.url }}/documentation/operators/buffer.html) — periodically gather items from an Observable into bundles and emit these bundles rather than emitting the items one at a time
-* **`FlatMap`** — 
-* **`GroupBy`** — 
-* **`Map`** — 
-* **`Scan`** — 
+* [**`FlatMap`**]({{ site.url }}/documentation/operators/flatmap.html) — transform the items emitted by an Observable into Observables, then flatten the emissions from those into a single Observable
+* [**`GroupBy`**]({{ site.url }}/documentation/operators/groupby.html) — divide an Observable into a set of Observables that each emit a different group of items from the original Observable, organized by key
+* [**`Map`**]({{ site.url }}/documentation/operators/map.html) — transform the items emitted by an Observable by applying a function to each item
+* [**`Scan`**]({{ site.url }}/documentation/operators/scan.html) — apply a function to each item emitted by an Observable, sequentially, and emit each successive value
 * [**`Window`**]({{ site.url }}/documentation/operators/window.html) — periodically subdivide items from an Observable into Observable windows and emit these windows rather than emitting the items one at a time
 
 <h2 id="filtering">Filtering Observables</h2>
 
-* **`Distinct`** — 
-* **`ElementAt`** — 
-* **`Filter`** — 
-* **`First`** — 
-* **`IgnoreElements`** — 
-* **`Last`** — 
-* **`Sample`** — 
-* **`Skip`** — 
-* **`SkipLast`** — 
-* **`Take`** — 
-* **`TakeLast`** — 
-* **`Throttle`** — 
-* **`Timeout`** — 
+Operators that selectively emit items from a source Observable.
+
+* [**`Distinct`** — suppress duplicate items emitted by an Observable
+* [**`ElementAt`** — emit only item <i>n</i> emitted by an Observable
+* [**`Filter`** — emit only those items from an Observable that pass a predicate test
+* [**`First`** — emit only the first item, or the first item that meets a condition, from an Observable
+* [**`IgnoreElements`** — do not emit any items from an Observable but mirror its termination notification
+* [**`Last`**]({{ site.url }}/documentation/operators/last.html) — emit only the last item emitted by an Observable
+* [**`Sample`**]({{ site.url }}/documentation/operators/sample.html) — emit the most recent item emitted by an Observable within periodic time intervals
+* [**`Skip`**]({{ site.url }}/documentation/operators/skip.html) — suppress the first <i>n</i> items emitted by an Observable
+* [**`SkipLast`**]({{ site.url }}/documentation/operators/skiplast.html) — suppress the last <i>n</i> items emitted by an Observable
+* [**`Take`**]({{ site.url }}/documentation/operators/take.html) — emit only the first <i>n</i> items emitted by an Observable
+* [**`TakeLast`**]({{ site.url }}/documentation/operators/takelast.html) — emit only the last <i>n</i> items emitted by an Observable
+* [**`Throttle`**]({{ site.url }}/documentation/operators/throttle.html) — only emit an item from an Observable if a particular timespan has passed without it emitting another item
+* [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items
 
 <h2 id="combining">Combining Observables</h2>
 
+Operators that work with multiple source Observables to create a single Observable
+
 * [**`And`/`Then`/`When`**]({{ site.url }}/documentation/operators/and-then-when.html) — combine sets of items emitted by two or more Observables by means of `Pattern` and `Plan` intermediaries
 * [**`CombineLatest`**]({{ site.url }}/documentation/operators/combinelatest.html) — when an item is emitted by either of two Observables, combine the latest item emitted by each Observable via a specified function and emit items based on the results of this function
-* **`GroupJoin`** — 
-* **`Join`** — 
+* [**`Join`**]({{ site.url }}/documentation/operators/join.html) — combine items emitted by two Observables whenever an item from one Observable is emitted during a time window defined according to an item emitted by the other Observable
 * [**`Merge`**]({{ site.url }}/documentation/operators/merge.html) — combine multiple Observables into one by merging their emissions
-* **`Switch`** — 
+* [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html) — emit a specified sequence of items before beginning to emit the items from the source Observable
+* [**`Switch`**]({{ site.url }}/documentation/operators/switch.html) — convert an Observable that emits Observables into a single Observable that emits the items emitted by the most-recently-emitted of those Observables
 * [**`Zip`**]({{ site.url }}/documentation/operators/zip.html) — combine the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function
 
 <h2 id="error">Error Handling Operators</h2>
+
+Operators that help to recover from error notifications from an Observable
 
 * [**`Catch`**]({{ site.url }}/documentation/operators/catch.html) — recover from an `onError` notification by continuing the sequence without error
 * [**`Retry`**]({{ site.url }}/documentation/operators/retry.html) — if a source Observable sends an `onError` notification, resubscribe to it in the hopes that it will complete without error
 
 <h2 id="utility">Observable Utility Operators</h2>
 
-* **`Delay`** — 
-* **`Do`** — 
-* **`Materialize`/`Dematerialize`** — 
-* **`ObserveOn`** — 
-* **`SubscribeOn`** — 
-* **`TimeInterval`** — 
-* **`Timestamp`** — 
-* **`Using`** — 
+A toolbox of useful Operators for working with Observables
+
+* [**`Delay`**]({{ site.url }}/documentation/operators/delay.html) — shift the emissions from an Observable forward in time by a particular amount
+* [**`Do`**]({{ site.url }}/documentation/operators/do.html) — register an action to take upon a variety of Observable lifecycle events
+* [**`Materialize`/`Dematerialize`**]({{ site.url }}/documentation/operators/materialize-dematerialize.html) — represent both the items emitted and the notifications sent as emitted items, or reverse this process
+* [**`ObserveOn`**]({{ site.url }}/documentation/operators/observeon.html) — specify the scheduler on which an observer will observe this Observable
+* [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html) — specify the scheduler an Observable should use when it is subscribed to
+* [**`TimeInterval`**]({{ site.url }}/documentation/operators/timeinterval.html) — convert an Observable that emits items into one that emits indications of the amount of time elapsed between those emissions
+* [**`Timestamp`**]({{ site.url }}/documentation/operators/timestamp.html) — attach a timestamp to each item emitted by an Observable
+* [**`Using`**]({{ site.url }}/documentation/operators/using.html) — create a disposable resource that has the same lifespan as the Observable
 
 <h2 id="conditional">Conditional and Boolean Operators</h2>
 
+Operators that evaluate one or more Observables or items emitted by Observables
+
 * [**`All`**]({{ site.url }}/documentation/operators/all.html) — determine whether all items emitted by an Observable meet some criteria
 * [**`Amb`**]({{ site.url }}/documentation/operators/amb.html) — given two or more source Observables, emit all of the items from only the first of these Observables to emit an item
-* **`Contains`** — 
-* **`DefaultIfEmpty`** — 
-* **`SequenceEqual`** — 
-* **`SkipUntil`** — 
-* **`SkipWhile`** — 
-* **`TakeUntil`** — 
-* **`TakeWhile`** — 
+* [**`Contains`**]({{ site.url }}/documentation/operators/contains.html) — determine whether an Observable emits a particular item or not
+* [**`DefaultIfEmpty`**]({{ site.url }}/documentation/operators/defaultifempty.html) — emit items from the source Observable, or a default item if the source Observable emits nothing
+* [**`SequenceEqual`**]({{ site.url }}/documentation/operators/sequenceequal.html) — determine whether two Observables emit the same sequence of items
+* [**`SkipUntil`**]({{ site.url }}/documentation/operators/skipuntil.html) — discard items emitted by an Observable until a second Observable emits an item
+* [**`SkipWhile`**]({{ site.url }}/documentation/operators/skipwhile.html) — discard items emitted by an Observable until a specified condition becomes false
+* [**`TakeUntil`**]({{ site.url }}/documentation/operators/takeuntil.html) — discard items emitted by an Observable after a second Observable emits an item or terminates
+* [**`TakeWhile`**]({{ site.url }}/documentation/operators/takewhile.html) — discard items emitted by an Observable after a specified condition becomes false
 
 <h2 id="mathematical">Mathematical and Aggregate Operators</h2>
+
+Operators that operate on the entire sequence of items emitted by an Observable
 
 * [**`Average`**]({{ site.url }}/documentation/operators/average.html) — calculates the average of numbers emitted by an Observable and emits this average
 * [**`Concat`**]({{ site.url }}/documentation/operators/concat.html) — emit the emissions from two or more Observables without interleaving them
 * [**`Count`**]({{ site.url }}/documentation/operators/count.html) — count the number of items emitted by the source Observable and emit only this value
-* **`Max`** — 
-* **`Min`** — 
-* **`Reduce`** — 
+* [**`Max`**]({{ site.url }}/documentation/operators/max.html) — determine, and emit, the maximum-valued item emitted by an Observable
+* [**`Min`**]({{ site.url }}/documentation/operators/min.html) — determine, and emit, the minimum-valued item emitted by an Observable
+* [**`Reduce`**]({{ site.url }}/documentation/operators/reduce.html) — apply a function to each item emitted by an Observable, sequentially, and emit the final value
 * [**`Sum`**]({{ site.url }}/documentation/operators/sum.html) — calculate the sum of numbers emitted by an Observable and emit this sum
-
-<h2 id="async">Async Operators</h2>
-
-* **`Start`** — 
-* [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html) — emit a specified sequence of items before beginning to emit the items from the source Observable
-* **`ToAsync`** — 
 
 <h2 id="backpressure">Backpressure Operators</h2>
 
 * [**backpressure operators**]({{ site.url }}/documentation/operators/backpressure.html) — strategies for coping with Observables that produce items more rapidly than their observers consume them
 
 <h2 id="connectable">Connectable Observable Operators</h2>
+
+Specialty Observables that have more precisely-controlled subscription dynamics
 
 * [**`Connect`**]({{ site.url }}/documentation/operators/connect.html) — instruct a connectable Observable to begin emitting items to its subscribers
 * [**`Publish`**]({{ site.url }}/documentation/operators/publish.html) — convert an ordinary Observable into a connectable Observable
@@ -121,12 +132,13 @@ Operators with which you can transform items that are emitted by an Observable.
 
 <h2 id="blocking">Blocking Observable Operators</h2>
 
-* **`To`** — 
+* [**`To`**]({{ site.url }}/documentation/operators/to.html) — convert an Observable into another object or data structure
 
 <h2 id="alphabetical">Alphabetical List of Observable Operators</h2>
 
-Canonical, core operator names in **boldface**. Other entries represent language-specific variants
-of these operators or specialty operators outside of the main ReactiveX core set of operators.
+Canonical, core operator names are in **boldface**. Other entries represent language-specific
+variants of these operators or specialty operators outside of the main ReactiveX core set of
+operators.
 
 * [`Aggregate`]({{ site.url }}/documentation/operators/reduce.html)
 * [**`All`**]({{ site.url }}/documentation/operators/all.html)
@@ -137,8 +149,8 @@ of these operators or specialty operators outside of the main ReactiveX core set
 * `as_blocking`
 * [`AsObservable`]({{ site.url }}/documentation/operators/from.html)
 * [`AssertEqual`]({{ site.url }}/documentation/operators/sequenceequal.html)
-* [`asyncAction`]({{ site.url }}/documentation/operators/toasync.html)
-* [`asyncFunc`]({{ site.url }}/documentation/operators/toasync.html)
+* [`asyncAction`]({{ site.url }}/documentation/operators/start.html)
+* [`asyncFunc`]({{ site.url }}/documentation/operators/start.html)
 * [**`Average`**]({{ site.url }}/documentation/operators/average.html)
 * [`averageDouble`]({{ site.url }}/documentation/operators/average.html)
 * [`averageFloat`]({{ site.url }}/documentation/operators/average.html)
@@ -257,7 +269,7 @@ of these operators or specialty operators outside of the main ReactiveX core set
 * [`getIterator`]({{ site.url }}/documentation/operators/to.html)
 * [**`GroupBy`**]({{ site.url }}/documentation/operators/groupby.html)
 * [`GroupByUntil`]({{ site.url }}/documentation/operators/groupby.html)
-* [**`GroupJoin`**]({{ site.url }}/documentation/operators/groupjoin.html)
+* [`GroupJoin`]({{ site.url }}/documentation/operators/join.html)
 * [`head`]({{ site.url }}/documentation/operators/first.html)
 * [`headOption`]({{ site.url }}/documentation/operators/first.html)
 * [`headOrElse`]({{ site.url }}/documentation/operators/first.html)
@@ -455,7 +467,7 @@ of these operators or specialty operators outside of the main ReactiveX core set
 * [**`To`**]({{ site.url }}/documentation/operators/to.html)
 * [`to_a`]({{ site.url }}/documentation/operators/to.html)
 * [`ToArray`]({{ site.url }}/documentation/operators/to.html)
-* [**`ToAsync`**]({{ site.url }}/documentation/operators/toasync.html)
+* [`ToAsync`]({{ site.url }}/documentation/operators/start.html)
 * `toBlocking`
 * [`toBuffer`]({{ site.url }}/documentation/operators/to.html)
 * [`to_dict`]({{ site.url }}/documentation/operators/to.html)
@@ -497,7 +509,7 @@ of these operators or specialty operators outside of the main ReactiveX core set
 * [**`Zip`**]({{ site.url }}/documentation/operators/zip.html)
 * [`zipArray`]({{ site.url }}/documentation/operators/zip.html)
 * [`zipWith`]({{ site.url }}/documentation/operators/zip.html)
-* [`zipWith`]({{ site.url }}/documentation/operators/zip.html)
+* [`zipWithIndex`]({{ site.url }}/documentation/operators/zip.html)
 * [`++`]({{ site.url }}/documentation/operators/concat.html)
 * [`+:`]({{ site.url }}/documentation/operators/startwith.html)
 * [`:+`]({{ site.url }}/documentation/operators/just.html)

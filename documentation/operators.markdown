@@ -45,11 +45,11 @@ Operators that transform items that are emitted by an Observable.
 
 Operators that selectively emit items from a source Observable.
 
-* [**`Distinct`** — suppress duplicate items emitted by an Observable
-* [**`ElementAt`** — emit only item <i>n</i> emitted by an Observable
-* [**`Filter`** — emit only those items from an Observable that pass a predicate test
-* [**`First`** — emit only the first item, or the first item that meets a condition, from an Observable
-* [**`IgnoreElements`** — do not emit any items from an Observable but mirror its termination notification
+* [**`Distinct`**]({{ site.url }}/documentation/operators/distinct.html) — suppress duplicate items emitted by an Observable
+* [**`ElementAt`**]({{ site.url }}/documentation/operators/elementat.html) — emit only item <i>n</i> emitted by an Observable
+* [**`Filter`**]({{ site.url }}/documentation/operators/filter.html) — emit only those items from an Observable that pass a predicate test
+* [**`First`**]({{ site.url }}/documentation/operators/first.html) — emit only the first item, or the first item that meets a condition, from an Observable
+* [**`IgnoreElements`**]({{ site.url }}/documentation/operators/ignoreelements.html) — do not emit any items from an Observable but mirror its termination notification
 * [**`Last`**]({{ site.url }}/documentation/operators/last.html) — emit only the last item emitted by an Observable
 * [**`Sample`**]({{ site.url }}/documentation/operators/sample.html) — emit the most recent item emitted by an Observable within periodic time intervals
 * [**`Skip`**]({{ site.url }}/documentation/operators/skip.html) — suppress the first <i>n</i> items emitted by an Observable

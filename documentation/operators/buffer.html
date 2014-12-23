@@ -82,7 +82,9 @@ id: buffer
         <code>List</code>s, each of which contains at most <code>count</code> items from the
         source Observable (the final emitted <code>List</code> may have fewer than
         <code>count</code> items).</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(int)"><code>buffer(int)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(count, skip)</code></h4>
     <figure class="variant">
@@ -95,7 +97,9 @@ id: buffer
         <code>count</code> and <code>skip</code> these buffers may overlap (multiple buffers may
         contain the same item), or they may have gaps (where items emitted by the source
         Observable are not represented in any buffer).</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(int, int)"><code>buffer(int,int)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(bufferClosingSelector)</code></h4>
     <figure class="variant">
@@ -108,16 +112,21 @@ id: buffer
         <code>List</code> and repeats this process: beginning a new <code>List</code> and calling
         <code>bufferClosingSelector</code> to create a new Observable to monitor. It will do this
         until the source Observable terminates.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(rx.functions.Func0)"><code>buffer(Func0)</code></a></li>
+     </ul></figcaption>
     </figure>
-    <h4><code>buffer(boundary)</code></h4>
+    <h4><code>buffer(boundary</code>[<code>, initialCapacity</code>]<code>)</code></h4>
     <figure class="variant">
     <img src="images/buffer8.png" width="640" alt="buffer(boundary)" />
     <figcaption>
      <p><code>buffer(boundary)</code> monitors an Observable, <code>boundary</code>. Each time
         that Observable emits an item, it creates a new <code>List</code> to begin collecting
         items emitted by the source Observable and emits the previous <code>List</code>.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(rx.Observable)"><code>buffer(Observable)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(rx.Observable, int)"><code>buffer(Observable,int)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(bufferOpenings, bufferClosingSelector)</code></h4>
     <figure class="variant">
@@ -130,7 +139,9 @@ id: buffer
         Observable into the <code>closingSelector</code> function. That function returns an
         Observable. <code>buffer</code> monitors that Observable and when it detects an emitted
         item from it, it closes the <code>List</code> and emits it as its own emission.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(rx.Observable, rx.functions.Func1)"><code>buffer(Observable,Func1)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
@@ -143,7 +154,10 @@ id: buffer
         variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
         govern the timespan; by default this variant uses the <code>computation</code>
         scheduler.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit)"><code>buffer(long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
@@ -156,7 +170,10 @@ id: buffer
         than <code>count</code>. There is also a version of this variant of the operator that
         takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
         default this variant uses the <code>computation</code> scheduler.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int)"><code>buffer(long,TimeUnit,int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>buffer(long,TimeUnit,int,Scheduler)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
@@ -171,7 +188,10 @@ id: buffer
         There is also a version of this variant of the operator that takes a
         <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
         variant uses the <code>computation</code> scheduler.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit)"><code>buffer(long,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
     </figure>
     <p>
      You can use the <span class="operator">Buffer</span> operator to implement backpressure (that
@@ -222,7 +242,9 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>List</code>s, each of which contains at most <code>count</code> items from the
         source Observable (the final emitted <code>List</code> may have fewer than
         <code>count</code> items).</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(int)"><code>buffer(int)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(count, skip)</code></h4>
     <figure class="variant">
@@ -235,7 +257,9 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>count</code> and <code>skip</code> these buffers may overlap (multiple buffers may
         contain the same item), or they may have gaps (where items emitted by the source
         Observable are not represented in any buffer).</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(int, int)"><code>buffer(int,int)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(bufferClosingSelector)</code></h4>
     <figure class="variant">
@@ -248,7 +272,9 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>List</code> and repeats this process: beginning a new <code>List</code> and calling
         <code>bufferClosingSelector</code> to create a new Observable to monitor. It will do this
         until the source Observable terminates.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(rx.functions.Func0)"><code>buffer(Func0)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(boundary)</code></h4>
     <figure class="variant">
@@ -257,7 +283,10 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
      <p><code>buffer(boundary)</code> monitors an Observable, <code>boundary</code>. Each time
         that Observable emits an item, it creates a new <code>List</code> to begin collecting
         items emitted by the source Observable and emits the previous <code>List</code>.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(rx.Observable)"><code>buffer(Observable)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(rx.Observable, int)"><code>buffer(Observable,int)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(bufferOpenings, bufferClosingSelector)</code></h4>
     <figure class="variant">
@@ -270,7 +299,9 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         Observable into the <code>closingSelector</code> function. That function returns an
         Observable. <code>buffer</code> monitors that Observable and when it detects an emitted
         item from it, it closes the <code>List</code> and emits it as its own emission.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(rx.Observable, rx.functions.Func1)"><code>buffer(Observable,Func1)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
@@ -283,7 +314,10 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
         govern the timespan; by default this variant uses the <code>computation</code>
         scheduler.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit)"><code>buffer(long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
@@ -296,7 +330,10 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         than <code>count</code>. There is also a version of this variant of the operator that
         takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
         default this variant uses the <code>computation</code> scheduler.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int)"><code>buffer(long,TimeUnit,int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>buffer(long,TimeUnit,int,Scheduler)</code></a></li>
+     </ul></figcaption>
     </figure>
     <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
@@ -311,7 +348,10 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         There is also a version of this variant of the operator that takes a
         <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
         variant uses the <code>computation</code> scheduler.</p>
-    </figcaption>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit)"><code>buffer(long,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
     </figure>
     <p>
      You can use the <span class="operator">Buffer</span> operator to implement backpressure (that

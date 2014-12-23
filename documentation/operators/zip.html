@@ -82,7 +82,12 @@ Sequence complete</pre></div>
        Note that in this example, the resulting Observable completes normally after emitting three
        items, which is the number of items emitted by the shorter of the two component Observbles
        (<code>evens</code>, which emits three items).
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable, rx.functions.FuncN)"><code>zip(Iterable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable, rx.functions.FuncN)"><code>zip(Observable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable, rx.Observable, rx.functions.Func2)"><code>zip(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
      <figure>
       <img src="images/zip.i.png" width="640" alt="zipWith" />
@@ -90,7 +95,11 @@ Sequence complete</pre></div>
        The <code>zipWith</code> instance version of this operator always takes two parameters.
        The first parameter may be either a simple Observable, or an iterable (as in the illustration
        above).
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(rx.Observable, rx.functions.Func2)"><code>zipWith(Observable,Func2)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(java.lang.Iterable, rx.functions.Func2)"><code>zipWith(Iterable,Func2)</code></a></li>
+      </ul></figcaption>
      </figure>
      <p>
       <code>zip</code> and <code>zipWith</code> do not by default operate on any particular
@@ -112,7 +121,12 @@ Sequence complete</pre></div>
        <code>zip</code> either as between two and nine individual parameters, or as a single
        parameter: either an Iterable of Observables or an Observable that emits Observables (as
        in the illustration above).
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable, rx.functions.FuncN)"><code>zip(Iterable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable, rx.functions.FuncN)"><code>zip(Observable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable, rx.Observable, rx.functions.Func2)"><code>zip(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
      <figure>
       <img src="images/zip.i.png" width="640" alt="zipWith" />
@@ -120,7 +134,11 @@ Sequence complete</pre></div>
        The <code>zipWith</code> instance version of this operator always takes two parameters.
        The first parameter may be either a simple Observable, or an iterable (as in the illustration
        above).
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(rx.Observable, rx.functions.Func2)"><code>zipWith(Observable,Func2)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(java.lang.Iterable, rx.functions.Func2)"><code>zipWith(Iterable,Func2)</code></a></li>
+      </ul></figcaption>
      </figure>
      <p>
       <code>zip</code> and <code>zipWith</code> do not by default operate on any particular

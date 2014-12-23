@@ -126,7 +126,10 @@ Three
 Two
 One
 Blastoff!
-Sequence complete</pre></div></figcaption>
+Sequence complete</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorReturn(rx.functions.Func1)"><code>onErrorReturn(Func1)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>onErrorResumeNext</code></h4>
      <figure>
@@ -164,7 +167,11 @@ One
 0
 1
 2
-Sequence complete</pre></div></figcaption>
+Sequence complete</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorResumeNext(rx.functions.Func1)"><code>onErrorResumeNext(Func1)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorResumeNext(rx.Observable)"><code>onErrorResumeNext(Observable)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>onExceptionResumeNext</code></h4>
      <figure>
@@ -177,7 +184,10 @@ Sequence complete</pre></div></figcaption>
        begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
        Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
        observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onExceptionResumeNext(rx.Observable)"><code>onExceptionResumeNext(Observable)</code></a></li>
+      </ul></figcaption>
      </figure>
   {% endlang_operator %}
 
@@ -202,7 +212,10 @@ Sequence complete</pre></div></figcaption>
        source Observable, unless that Observable invokes <code>onError</code> in which case, rather
        than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
        specified item and invoke the observer&#8217;s <code>onCompleted</code> method.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorReturn(rx.functions.Func1)"><code>onErrorReturn(Func1)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>onErrorResumeNext</code></h4>
      <figure>
@@ -212,7 +225,11 @@ Sequence complete</pre></div></figcaption>
        the source Observable, unless that Observable invokes <code>onError</code> in which case,
        rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
        instead begin mirroring a second, backup Observable.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorResumeNext(rx.functions.Func1)"><code>onErrorResumeNext(Func1)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorResumeNext(rx.Observable)"><code>onErrorResumeNext(Observable)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>onExceptionResumeNext</code></h4>
      <figure>
@@ -225,7 +242,10 @@ Sequence complete</pre></div></figcaption>
        begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
        Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
        observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onExceptionResumeNext(rx.Observable)"><code>onExceptionResumeNext(Observable)</code></a></li>
+      </ul></figcaption>
      </figure>
   {% endlang_operator %}
 

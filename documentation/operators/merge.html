@@ -134,7 +134,13 @@ Sequence complete</pre></div>
        pass in a <code>List&lt;&gt;</code> (or other Iterable) of Observables, an Array of
        Observables, or even an Observable that emits Observables, and <code>merge</code> will merge
        their output into the output of a single Observable:
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable)"><code>merge(Iterable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable, int)"><code>merge(Iterable,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable[])"><code>merge(Observable[])</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable, rx.Observable)"><code>merge(Observable,Observable)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
      <figure>
       <img src="images/merge.io.png" width="640" alt="merge(List)" />
@@ -145,13 +151,21 @@ Sequence complete</pre></div>
        refrain from subscribing to any other Observables emitted by the source Observable until such
        time as one of the already-subscribed-to Observables issues an <code>onCompleted</code>
        notification.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable)"><code>merge(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable, int)"><code>merge(Observable&lt;Observable&gt;,int)</code></a></li>
+      </ul></figcaption>
      </figure>
      <p>
       The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example, in the
       code sample above, instead of writing <code>Observable.merge(odds,evens)</code> you could also
       write <code>odds.mergeWith(evens)</code>.
-     </p><p>
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeWith(rx.Observable)"><code>mergeWith(Observable)</code></a></li>
+     </ul>
+     <p>
       If any of the individual Observables passed into <code>merge</code> terminates with an
       <code>onError</code> notification, the Observable produced by <code>merge</code> itself will
       immediately terminate with an <code>onError</code> notification. If you would prefer a merge
@@ -181,7 +195,11 @@ Sequence complete</pre></div>
        Observables, but you can pass it an Observable that emits Observables or between one and
        nine individual Observables as parameters. There is not an instance method version of
        <code>mergeDelayError</code> as there is for <code>merge</code>.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeDelayError(rx.Observable)"><code>mergeDelayError(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeDelayError(rx.Observable, rx.Observable)"><code>mergeDelayError(Observable,Observable)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
   {% endlang_operator %}
 
@@ -192,6 +210,12 @@ Sequence complete</pre></div>
      </p>
      <figure>
       <img src="images/merge.png" width="640" alt="merge" />
+      <figcaption><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable)"><code>merge(Iterable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable, int)"><code>merge(Iterable,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable[])"><code>merge(Observable[])</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable, rx.Observable)"><code>merge(Observable,Observable)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
      <p>
       Instead of passing multiple Observables (up to nine) into <code>merge</code>, you could also
@@ -208,7 +232,11 @@ Sequence complete</pre></div>
        refrain from subscribing to any other Observables emitted by the source Observable until such
        time as one of the already-subscribed-to Observables issues an <code>onCompleted</code>
        notification.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable)"><code>merge(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable, int)"><code>merge(Observable&lt;Observable&gt;,int)</code></a></li>
+      </ul></figcaption>
      </figure>
      <p>
       The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example, 
@@ -244,7 +272,11 @@ Sequence complete</pre></div>
        Observables, but you can pass it an Observable that emits Observables or between one and
        nine individual Observables as parameters. There is not an instance method version of
        <code>mergeDelayError</code> as there is for <code>merge</code>.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeDelayError(rx.Observable)"><code>mergeDelayError(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeDelayError(rx.Observable, rx.Observable)"><code>mergeDelayError(Observable,Observable)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
   {% endlang_operator %}
 

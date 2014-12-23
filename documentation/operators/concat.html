@@ -101,12 +101,19 @@ Observable.concat(odds, evens).subscribe(
 2
 4
 6
-Sequence complete</pre></div></figcaption>
+Sequence complete</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable)"><code>concat(Observable&lt;Observable&gt)</code></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable, rx.Observable)"><code>concat(Observable,Observable)</code> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
      <p>
       There is also an instance method, <code>concatWith</code>, such that
       <code>Observable.concat(a,b)</code> is equivalent to <code>a.concatWith(b)</code>.
      </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatWith(rx.Observable)"><code>concatWith(Observable)</code></li>
+     </ul>
   {% endlang_operator %}
 
   {% lang_operator RxJava concat concatWith %}
@@ -118,12 +125,19 @@ Sequence complete</pre></div></figcaption>
        order they appear in the parameter list. There is also a variant that takes as a parameter an
        Observable of Observables, and concatenates each of these Observables in the order that they
        are emitted.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable)"><code>concat(Observable&lt;Observable&gt)</code></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable, rx.Observable)"><code>concat(Observable,Observable)</code> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
      <p>
       There is also an instance method, <code>concatWith</code>, such that
       <code>Observable.concat(a,b)</code> is equivalent to <code>a.concatWith(b)</code>.
      </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatWith(rx.Observable)"><code>concatWith(Observable)</code></li>
+     </ul>
   {% endlang_operator %}
 
   {% lang_operator RxJS concat concatAll %}

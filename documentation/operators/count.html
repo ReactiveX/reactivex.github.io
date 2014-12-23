@@ -63,6 +63,10 @@ myObservable.count().subscribe(
      <div class="output"><pre>
 3
 Sequence complete</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#count()"><code>count()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#countLong()"><code>countLong()</code></a></li>
+     </ul>
   {% endlang_operator %}
 
   {% lang_operator RxJava count countLong %}
@@ -73,6 +77,10 @@ Sequence complete</pre></div>
      <div class="code java"><pre>
 String[] items = new String[] { "one", "two", "three" };
 assertEquals( new Integer(3), Observable.from(items).count().toBlocking().single() );</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#count()"><code>count()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#countLong()"><code>countLong()</code></a></li>
+     </ul>
   {% endlang_operator %}
 
   {% lang_operator RxJS count %}

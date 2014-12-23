@@ -154,7 +154,10 @@ id: window
        by the Observable that is returned from <code>closingSelector</code>. In this way, this
        variant of <code>window</code> emits a series of non-overlapping windows whose collective
        emissions correspond one-to-one with those of the source Observable.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(rx.functions.Func0)"><code>window(Func0)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(windowOpenings, closingSelector)</code></h4>
      <figure>
@@ -168,7 +171,10 @@ id: window
        that are regulated by independent Observables, this variant of <code>window</code> may create
        windows that overlap (duplicating items from the source Observable) or that leave gaps
        (discarding items from the source Observable).
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(rx.Observable, rx.functions.Func1)"><code>window(Observable,Func1)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(count)</code></h4>
      <figure>
@@ -180,7 +186,10 @@ id: window
        <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
        This variant of <code>window</code> emits a series of non-overlapping windows whose
        collective emissions correspond one-to-one with those of the source Observable.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(int)"><code>window(int)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(count, skip)</code></h4>
      <figure>
@@ -197,7 +206,10 @@ id: window
        <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(int, int)"><code>window(int,int)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
@@ -213,12 +225,15 @@ id: window
       </p><p>
        If you do not specify a scheduler, this variant of <code>window</code> uses the 
        <code>computation</code> scheduler for its timer by default.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit)"><code>window(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>window(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
       <img src="images/window6.png" width="640" alt="window(timespan, unit, count[, scheduler])" />
-     </figure>
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
@@ -231,7 +246,11 @@ id: window
       </p><p>
        If you do not specify a scheduler, this variant of <code>window</code> uses the 
        <code>computation</code> scheduler for its timer by default.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int)"><code>window(long,TimeUnit,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>window(long,TimeUnit,int,Scheduler)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
@@ -248,7 +267,11 @@ id: window
       </p><p>
        If you do not specify a scheduler, this variant of <code>window</code> uses the 
        <code>computation</code> scheduler for its timer by default.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit)"><code>window(long,long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>window(long,long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
      </figure>
     <p>
      You can use the <span class="operator">Window</span> operator to implement backpressure (that
@@ -291,7 +314,10 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        by the Observable that is returned from <code>closingSelector</code>. In this way, this
        variant of <code>window</code> emits a series of non-overlapping windows whose collective
        emissions correspond one-to-one with those of the source Observable.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(rx.functions.Func0)"><code>window(Func0)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(windowOpenings, closingSelector)</code></h4>
      <figure>
@@ -305,7 +331,10 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        that are regulated by independent Observables, this variant of <code>window</code> may create
        windows that overlap (duplicating items from the source Observable) or that leave gaps
        (discarding items from the source Observable).
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(rx.Observable, rx.functions.Func1)"><code>window(Observable,Func1)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(count)</code></h4>
      <figure>
@@ -317,7 +346,10 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
        This variant of <code>window</code> emits a series of non-overlapping windows whose
        collective emissions correspond one-to-one with those of the source Observable.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(int)"><code>window(int)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(count, skip)</code></h4>
      <figure>
@@ -334,7 +366,10 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(int, int)"><code>window(int,int)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
@@ -350,7 +385,11 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       </p><p>
        If you do not specify a scheduler, this variant of <code>window</code> uses the 
        <code>computation</code> scheduler for its timer by default.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit)"><code>window(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>window(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
@@ -367,7 +406,11 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       </p><p>
        If you do not specify a scheduler, this variant of <code>window</code> uses the 
        <code>computation</code> scheduler for its timer by default.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int)"><code>window(long,TimeUnit,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>window(long,TimeUnit,int,Scheduler)</code></a></li>
+      </ul></figcaption>
      </figure>
      <h4><code>window(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
@@ -384,7 +427,11 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       </p><p>
        If you do not specify a scheduler, this variant of <code>window</code> uses the 
        <code>computation</code> scheduler for its timer by default.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit)"><code>window(long,long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>window(long,long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
      </figure>
     <p>
      You can use the <span class="operator">Window</span> operator to implement backpressure (that

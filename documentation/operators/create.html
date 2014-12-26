@@ -112,7 +112,7 @@ def myObservable = Observable.create({ aSubscriber ->
       RxJS implements this operator as <code>create</code> (there is also an alternate name for the
       same operator: <code>createWithDisposable</code>).
      </p>
-     <div class="code groovy"><pre>
+     <div class="code javascript"><pre>
 /* Using a function */
 var source = Rx.Observable.create(function (observer) {
     observer.onNext(42);
@@ -128,7 +128,7 @@ var subscription = source.subscribe(
     function () { console.log('Completed'); });</pre></div><div class="output"><pre>
 Next: 42
 Completed</pre></div>
-     <div class="code groovy"><pre>
+     <div class="code javascript"><pre>
 /* Using a disposable */
 var source = Rx.Observable.create(function (observer) {
     observer.onNext(42);

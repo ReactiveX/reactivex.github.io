@@ -1,0 +1,501 @@
+---
+layout: documentation
+title: ReactiveX - From operator
+id: from
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">From</li>
+</ol>
+
+<h1>From</h1>
+<h3>convert various other objects and data types into Observables</h3>
+
+<figure>
+  <img src="images/from.c.png" width="640" alt="From" />
+</figure>
+
+<p>
+ When you work with Observables, it can be more convenient if all of the data you mean to work with
+ can be represented as Observables, rather than as a mixture of Observables and other types. This
+ allows you to use a single set of operators to govern the entire lifespan of the data stream.
+</p><p>
+ Iterables, for example, can be thought of as a sort of synchronous Observable; Futures, as a sort
+ of Observable that always emits only a single item. By explicitly converting such objects to
+ Observables, you allow them to interact as peers with other Observables.
+</p><p>
+ For this reason, most ReactiveX implementations have methods that allow you to convert
+ certain language-specific objects and data structures into Observables.
+</p>
+<h2>See Also</h2>
+<ul>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure seq %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp from %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy from fromAction fromCallable fromFunc0 fromRunnable %}
+    <figure class="variant">
+     <img src="images/from.Future.png" width="640" alt="from" />
+     <figcaption><p>
+      In RxGroovy, the <code>from</code> operator can convert a Future, an Iterable, or an Array.
+      In the case of an Iterable or an Array, the resulting Observable will emit each item contained
+      in the Iterable or Array.
+     </p><p>
+      In the case of a Future, it will emit the single result of the <code>get</code> call. You may
+      optionally pass the version of <code>from</code> that accepts a future two additional
+      parameters indicating a timeout span and the units of time that span is denominated in. The
+      resulting Observable will terminate with an error if that span of time passes before the
+      Future responds with a value.
+     </p><p>
+      <code>from</code> does not by default operate on any particular scheduler, however you can
+      pass the variant that converts a Future a Scheduler as an optional second parameter, and it
+      will use that Scheduler to govern the Future.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T[])"><code>from(array)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.lang.Iterable)"><code>from(Iterable)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future)"><code>from(Future)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future, rx.Scheduler)"><code>from(Future,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future, long, java.util.concurrent.TimeUnit)"><code>from(Future,timout,timeUnit)</code></a></li>
+     </ul></figcaption>
+    <figure class="variant">
+     <img src="images/fromFunc0.png" width="640" alt="fromFunc0" />
+     <figcaption><p>
+      In addition, in the <code>RxJavaAsyncUtil</code> package, you have available to you the
+      following operators that convert actions, callables, functions, and runnables into
+      Observables that emit the results of those things:
+     </p>
+     <ul>
+      <li><code>fromAction</code></li>
+      <li><code>fromCallable</code></li>
+      <li><code>fromFunc0</code></li>
+      <li><code>fromRunnable</code></li>
+     </ul>
+     </figcaption>
+    <figure class="variant">
+     <img src="images/St.from.png" width="640" alt="from" />
+     <figcaption><p>
+      Note that there is also a <code>from</code> operator that is a method of the optional
+      <code>StringObservable</code> class. It converts a stream of characters or a
+      <code>Reader</code> into an Observable that emits byte arrays or Strings.
+     </p>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava from fromAction fromCallable fromFunc0 fromRunnable %}
+    <figure class="variant">
+     <img src="images/from.Future.png" width="640" alt="from" />
+     <figcaption><p>
+      In RxJava, the <code>from</code> operator can convert a Future, an Iterable, or an Array.
+      In the case of an Iterable or an Array, the resulting Observable will emit each item contained
+      in the Iterable or Array.
+     </p><p>
+      In the case of a Future, it will emit the single result of the <code>get</code> call. You may
+      optionally pass the version of <code>from</code> that accepts a future two additional
+      parameters indicating a timeout span and the units of time that span is denominated in. The
+      resulting Observable will terminate with an error if that span of time passes before the
+      Future responds with a value.
+     </p><p>
+      <code>from</code> does not by default operate on any particular scheduler, however you can
+      pass the variant that converts a Future a Scheduler as an optional second parameter, and it
+      will use that Scheduler to govern the Future.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T[])"><code>from(array)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.lang.Iterable)"><code>from(Iterable)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future)"><code>from(Future)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future, rx.Scheduler)"><code>from(Future,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future, long, java.util.concurrent.TimeUnit)"><code>from(Future,timout,timeUnit)</code></a></li>
+     </ul></figcaption>
+    <figure class="variant">
+     <img src="images/fromFunc0.png" width="640" alt="fromFunc0" />
+     <figcaption><p>
+      In addition, in the <code>RxJavaAsyncUtil</code> package, you have available to you the
+      following operators that convert actions, callables, functions, and runnables into
+      Observables that emit the results of those things:
+     </p>
+     <ul>
+      <li><code>fromAction</code></li>
+      <li><code>fromCallable</code></li>
+      <li><code>fromFunc0</code></li>
+      <li><code>fromRunnable</code></li>
+     </ul>
+     </figcaption>
+    <figure class="variant">
+     <img src="images/St.from.png" width="640" alt="from" />
+     <figcaption><p>
+      Note that there is also a <code>from</code> operator that is a method of the optional
+      <code>StringObservable</code> class. It converts a stream of characters or a
+      <code>Reader</code> into an Observable that emits byte arrays or Strings.
+     </p>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS from fromCallback fromEvent fromEventPattern fromNodeCallback fromPromise of ofWithScheduler %}
+    <p>
+     There are several, specialized <span class="operator">From</span> variants in RxJS:
+    </p>
+    <figure class="variant">
+     <img src="images/from.png" width="640" alt="from" />
+     <figcaption><p>
+      In RxJS, the <code>from</code> operator converts an array-like or iterable object into an
+      Observable that emits the items in that array or iterable. A String, in this context, is
+      treated as an array of characters.
+     </p><p>
+      This operator also takes three additional, optional parameters:
+     </p>
+     <ol start="2">
+      <li>a transforming function that takes an item from the array or iterable as input and produces an item to be emitted by the resulting Observable as output</li>
+      <li>a second argument to pass into the transforming function as additional context information</li>
+      <li>a Scheduler on which this operator should operate</li>
+     </ol>
+     <div class="code javascript"><pre>
+// Array-like object (arguments) to Observable
+function f() {
+  return Rx.Observable.from(arguments);
+}
+
+f(1, 2, 3).subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Completed</pre></div>
+     <div class="code javascript"><pre>
+ = new Set(["foo", window]);
+Rx.Observable.from(s).subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); });<pre></div>
+     <div class="output"><pre>
+Next: foo
+Next: window
+Completed</pre></div>
+     <div class="code javascript"><pre>
+// Map
+var m = new Map([[1, 2], [2, 4], [4, 8]]);
+Rx.Observable.from(m).subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: [1, 2]
+Next: [2, 4]
+Next: [4, 8]
+Completed</pre></div>
+     <div class="code javascript"><pre>
+// String
+Rx.Observable.from("foo").subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: f
+Next: o
+Next: o
+Completed</pre></div>
+     <div class="code javascript"><pre>
+// Using an arrow function as the map function to manipulate the elements
+Rx.Observable.from([1, 2, 3], function (x) { return x + x; }).subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 2
+Next: 4
+Next: 6
+Completed</pre></div>
+     <div class="code javascript"><pre>
+// Generate a sequence of numbers
+Rx.Observable.from({length: 5}, function(v, k) { return k; }).subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Completed</pre></div>
+     <p>
+      <code>from</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/fromCallback.png" width="640" alt="fromCallback" />
+     <figcaption><p>
+      The <code>fromCallback</code> operator takes a function as a parameter, calls this
+      function, and emits the value returned from it as its single emission.
+     </p><p>
+      This operator also takes two additional, optional parameters:
+     </p>
+     <ol start="2">
+      <li>a parameter to pass to the callback function</li>
+      <li>a tranforming function that takes the return value of the callback function as input and returns an item to be emitted by the resulting Observable</li>
+     </ol>
+     <div class="code javascript"><pre>
+var fs = require('fs'),
+    Rx = require('rx');
+
+// Wrap fs.exists
+var exists = Rx.Observable.fromCallback(fs.exists);
+
+// Check if file.txt exists
+var source = exists('file.txt');
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: true
+Completed</pre></div>
+     <p>
+      <code>fromCallback</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.async.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.async.compat.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <p>
+      There is also a <code>fromNodeCallback</code> operator, which is specialized for the types
+      of callback functions found in Node.js.
+     </p><p>
+      This operator takes three additional, optional parameters:
+     </p>
+     <ol start="2">
+      <li>a Scheduler on which you want to run the Node.js callback</li>
+      <li>a parameter to give to the callback function</li>
+      <li>a tranforming function that takes the return value of the callback function as input and returns an item to be emitted by the resulting Observable</li>
+     </ol>
+     <div class="code javascript"><pre>
+var fs = require('fs'),
+    Rx = require('rx');
+
+// Wrap fs.exists
+var rename = Rx.Observable.fromNodeCallback(fs.rename);
+
+// Rename file which returns no parameters except an error
+var source = rename('file1.txt', 'file2.txt');
+
+var subscription = source.subscribe(
+    function () { console.log('Next: success!'); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: success!
+Completed</pre></div>
+     <p>
+      <code>fromNodeCallback</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.async.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.async.compat.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/fromEvent.png" width="640" alt="fromEvent" />
+     <figcaption><p>
+      The <code>fromEvent</code> operator takes an &ldquo;element&rdquo; and an event name as
+      parameters, and it then listens for events of that name taking place on that element. It
+      returns an Observable that emits those events. An &ldquo;element&rdquo; may be a simple
+      <abbr title="document-object model">DOM</abbr> element, or a NodeList, jQuery element,
+      Zepto Element, Angular element, Ember.js element, or EventEmitter.
+     </p><p>
+      This operator also takes an optional third parameter: a function that accepts the arguments
+      from the event handler as parameters and returns an item to be emitted by the resulting
+      Observable in place of the event.
+     </p>
+     <div class="code javascript"><pre>
+// using a jQuery element
+var input = $('#input');
+
+var source = Rx.Observable.fromEvent(input, 'click');
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: Clicked!'); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });
+
+input.trigger('click');</pre></div>
+     <div class="output"><pre>
+Next: Clicked!</pre></div>
+     <div class="code javascript"><pre>
+// using a Node.js EventEmitter and the optional third parameter
+var EventEmitter = require('events').EventEmitter,
+    Rx = require('rx');
+
+var eventEmitter = new EventEmitter();
+
+var source = Rx.Observable.fromEvent(
+    eventEmitter,
+    'data',
+    function (args) {
+        return { foo: args[0], bar: args[1] };
+    });
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: foo -' + x.foo + ', bar -' + x.bar);
+    },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });
+
+eventEmitter.emit('data', 'baz', 'quux');</pre></div>
+     <div class="output"><pre>
+Next: foo - baz, bar - quux</pre></div>
+     <p>
+      <code>fromCallback</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.async.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.async.compat.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <p>
+      The <code>fromEventPattern</code> operator is similar, except that instead of taking an
+      element and an event name as parameters, it takes two functions as parameters. The first
+      function attaches an event listener to a variety of events on a variety of elements; the
+      second function removes this set of listeners. In this way you can establish a single
+      Observable that emits items representing a variety of events and a variety of target elements.
+     </p>
+     <div class="code javascript"><pre>
+var input = $('#input');
+
+var source = Rx.Observable.fromEventPattern(
+    function add (h) {
+        input.bind('click', h);
+    },
+    function remove (h) {
+        input.unbind('click', h);
+    }
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: Clicked!'); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });
+
+input.trigger('click');</pre></div>
+     <div class="output"><pre>
+Next: Clicked!</pre></div>
+    <figure class="variant">
+     <img src="images/of.png" width="640" alt="of" />
+     <figcaption><p>
+      The <code>of</code> operator accepts a number of items as parameters, and returns an
+      Observable that emits each of these parameters, in order, as its emitted sequence.
+     </p>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.of(1,2,3);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Completed</pre></div>
+     <p>
+      <code>of</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <p>
+      A variant of this operator, called <code>ofWithScheduler</code> takes a Scheduler as its
+      first parameter, and operates the resulting Observable on this Scheduler.
+     </p>
+     </figcaption>
+    </figure>
+    <p>
+     There is also a <code>fromPromise</code> operator that converts a Promise into an Observable,
+     converting its <code>resolve</code> calls into <code>onNext</code> notifications, and its
+     <code>reject</code> calls into <code>onError</code> notifications.
+    </p><p>
+     <code>fromPromise</code> is found in the following distributions:
+    </p>
+    <ul>
+     <li><code>rx.async.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     <li><code>rx.async.compat.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     <li><code>rx.lite.js</code></li>
+     <li><code>rx.lite.compat.js</code></li>
+    </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin asObservable from %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET AsObservable FromAsyncPattern FromEvent FromEventPattern ToObservable %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY from_array from_callback from_future from_iterable from_list of %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb of_array of_enumerable of_enumerator %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala from items %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

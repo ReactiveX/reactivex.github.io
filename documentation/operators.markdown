@@ -172,7 +172,7 @@ operators.
 * [`combineLatestWith`]({{ site.url }}/documentation/operators/combinelatest.html)
 * [**`Concat`**]({{ site.url }}/documentation/operators/concat.html)
 * `concat_all`
-* `concatMap`
+* [`concatMap`]({{ site.url }}/documentation/operators/flatmap.html)
 * `concatMapObserver`
 * [`concatAll`]({{ site.url }}/documentation/operators/concat.html)
 * [`concatWith`]({{ site.url }}/documentation/operators/concat.html)
@@ -429,7 +429,7 @@ operators.
 * [**`Switch`**]({{ site.url }}/documentation/operators/switch.html)
 * `switchCase`
 * [`switchLatest`]({{ site.url }}/documentation/operators/switch.html)
-* `switchMap`
+* [`switchMap`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`switchOnNext`]({{ site.url }}/documentation/operators/switch.html)
 * `Synchronize`
 * [**`Take`**]({{ site.url }}/documentation/operators/take.html)

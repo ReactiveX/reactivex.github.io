@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>Concat</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - Concat operator
+id: concat
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#mathematical">Mathematical and Aggregate</a></li>
+  <li class="active">Concat</li>
+</ol>
+
    <h1>Concat</h1>
    <h3>emit the emissions from two or more Observables without interleaving them</h3>
    <figure>
@@ -35,18 +37,19 @@
     combines the emissions of two or more Observables, but may interleave them, whereas
     <span class="operator">Concat</span> never interleaves the emissions from multiple Observables.
    </p>
+
    <h4>See Also:</h4>
    <ul>
     <li><a href="catch.html"><span class="operator">Catch</span></a></li>
     <li><a href="merge.html"><span class="operator">Merge</span></a></li>
     <li><a href="startwith.html"><span class="operator">StartWith</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#Concat"><cite>Introduction to Rx</cite>: Concat</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure: <code>concat</code> and <code>concat*</code></h3><div id="RxClojure" class="operator-language-description">
+  {% lang_operator RxClojure concat concat* %}
      <figure>
       <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
@@ -61,20 +64,18 @@
        together, in the order in which they are emitted.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp: <code>concat</code></h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp concat %}
      <p>
       RxCpp implements this operator as <code>concat</code>:
      </p>
      <figure>
       <img src="images/concat.png" width="640" alt="concat" />
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>concat</code> and <code>concatWith</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy concat concatWith %}
      <figure>
       <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
@@ -101,16 +102,22 @@ Observable.concat(odds, evens).subscribe(
 2
 4
 6
-Sequence complete</pre></div></figcaption>
+Sequence complete</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable)"><code>concat(Observable&lt;Observable&gt)</code></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable, rx.Observable)"><code>concat(Observable,Observable)</code> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
      <p>
       There is also an instance method, <code>concatWith</code>, such that
       <code>Observable.concat(a,b)</code> is equivalent to <code>a.concatWith(b)</code>.
      </p>
-    </div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatWith(rx.Observable)"><code>concatWith(Observable)</code></li>
+     </ul>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>concat</code> and <code>concatWith</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava concat concatWith %}
      <figure>
       <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
@@ -119,16 +126,22 @@ Sequence complete</pre></div></figcaption>
        order they appear in the parameter list. There is also a variant that takes as a parameter an
        Observable of Observables, and concatenates each of these Observables in the order that they
        are emitted.
-      </p></figcaption>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable)"><code>concat(Observable&lt;Observable&gt)</code></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable, rx.Observable)"><code>concat(Observable,Observable)</code> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
      </figure>
      <p>
       There is also an instance method, <code>concatWith</code>, such that
       <code>Observable.concat(a,b)</code> is equivalent to <code>a.concatWith(b)</code>.
      </p>
-    </div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatWith(rx.Observable)"><code>concatWith(Observable)</code></li>
+     </ul>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>concat</code> and <code>concatAll</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS concat concatAll %}
      <p>
       RxJS implements this operator as <code>concat</code> and <code>concatAll</code>.
      </p>
@@ -160,10 +173,9 @@ Sequence complete</pre></div></figcaption>
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>concat</code> and <code>concatWith</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin concat concatWith %}
      <figure>
       <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
@@ -178,10 +190,9 @@ Sequence complete</pre></div></figcaption>
       There is also an instance method, <code>concatWith</code>, such that
       <code>Observable.concat(a,b)</code> is equivalent to <code>a.concatWith(b)</code>.
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Concat</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET Concat %}
      <figure>
       <img src="images/concat.C.png" width="640" alt="Concat" />
       <figcaption><p>
@@ -190,10 +201,9 @@ Sequence complete</pre></div></figcaption>
        these in the order given.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>concat</code> and <code>concatAll</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY concat concatAll %}
      <figure>
       <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
@@ -209,10 +219,9 @@ Sequence complete</pre></div></figcaption>
        Observables in the order they are emitted.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>concat</code> and <code>merge_all</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb concat merge_all %}
      <figure>
       <img src="images/concat.png" width="640" alt="concat" />
       <figcaption><p>
@@ -228,10 +237,9 @@ Sequence complete</pre></div></figcaption>
        Observables as its parameter, and concatenates the emissions from these Observables.
       </p></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>concat</code> and <code>++</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala concat ++ %}
      <p>
       RxScala implements this operator in two ways. There is a <code>concat</code> operator that
       accepts an Observable of Observables as its parameter, and then concatenates each of these
@@ -241,15 +249,6 @@ Sequence complete</pre></div></figcaption>
      <figure>
       <img src="images/plusplus.png" width="640" alt="plus-plus" />
      </figure>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

@@ -1,0 +1,200 @@
+---
+layout: documentation
+title: ReactiveX - Repeat operator
+id: repeat
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Repeat</li>
+</ol>
+
+<h1>Repeat</h1>
+<h3>create an Observable that emits a particular item multiple times</h3>
+
+<figure>
+  <img src="images/repeat.c.png" width="640" alt="Repeat" />
+</figure>
+
+<p>
+ The <span class="operator">Repeat</span> operator emits an item repeatedly. Some implementations
+ of this operator allow you to repeat a <em>sequence</em> of items, and some permit you to limit
+ the number of repetitions.
+</p>
+
+<h4>See also:</h4>
+<ul>
+ <li><a href="interval.html"><span class="operator">Interval</span></a></li>
+ <li><a href="range.html"><span class="operator">Range</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#Repeat"><cite>Introduction to Rx</cite>: Repeat</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure cycle %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp repeat %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy repeat repeatWhen %}
+    <figure class="variant">
+     <img src="images/repeat.o.png" width="640" alt="repeat" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>repeat</code>. It does not initiate an Observable,
+      but operates on an Observable in such a way that it repeats the sequence emitted by the
+      source Observable as its own sequence, either infinitely, or in the case of
+      <code>repeat(<i>n</i>)</code>, <i>n</i> times.
+     </p><p>
+      <code>repeat</code> operates by default on the <code>trampoline</code> Scheduler. There is
+      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat()"><code>repeat()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(long)"><code>repeat(long)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(rx.Scheduler)"><code>repeat(Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(long,%20rx.Scheduler)"><code>repeat(long,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/repeatWhen.f.png" width="640" alt="repeatWhen" />
+     <figcaption><p>
+      There is also an operator called <code>repeatWhen</code>. Rather than buffering and replaying
+      the sequence from the source Observable, it <em>resubscribes</em> to and mirrors the source
+      Observable, but only conditionally.
+     </p><p>
+      It decides whether to resubscribe and remirror the source Observable by passing that
+      Observable&#8217;s termination notifications (error or completed) to a notification handler as
+      <code>void</code> emissions. This notification handler acts as an Observable operator, taking
+      an Observable that emits these <code>void</code> notifications as input, and returning an
+      Observable that emits <code>void</code> items (meaning, resubscribe and mirror the source
+      Observable) or terminates (meaning, terminate the sequence emitted by
+      <code>repeatWhen</code>).
+     </p><p>
+      <code>repeatWhen</code> operates by default on the <code>trampoline</code> Scheduler. There is
+      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1)"><code>repeatWhen(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1,%20rx.Scheduler)"><code>repeatWhen(Func1,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava repeat repeatWhen %}
+    <figure class="variant">
+     <img src="images/repeat.o.png" width="640" alt="repeat" />
+     <figcaption><p>
+      RxJava implements this operator as <code>repeat</code>. It does not initiate an Observable,
+      but operates on an Observable in such a way that it repeats the sequence emitted by the
+      source Observable as its own sequence, either infinitely, or in the case of
+      <code>repeat(<i>n</i>)</code>, <i>n</i> times.
+     </p><p>
+      <code>repeat</code> operates by default on the <code>trampoline</code> Scheduler. There is
+      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat()"><code>repeat()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(long)"><code>repeat(long)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(rx.Scheduler)"><code>repeat(Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(long,%20rx.Scheduler)"><code>repeat(long,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/repeatWhen.f.png" width="640" alt="repeatWhen" />
+     <figcaption><p>
+      There is also an operator called <code>repeatWhen</code>. Rather than buffering and replaying
+      the sequence from the source Observable, it <em>resubscribes</em> to and mirrors the source
+      Observable, but only conditionally.
+     </p><p>
+      It decides whether to resubscribe and remirror the source Observable by passing that
+      Observable&#8217;s termination notifications (error or completed) to a notification handler as
+      <code>void</code> emissions. This notification handler acts as an Observable operator, taking
+      an Observable that emits these <code>void</code> notifications as input, and returning an
+      Observable that emits <code>void</code> items (meaning, resubscribe and mirror the source
+      Observable) or terminates (meaning, terminate the sequence emitted by
+      <code>repeatWhen</code>).
+     </p><p>
+      <code>repeatWhen</code> operates by default on the <code>trampoline</code> Scheduler. There is
+      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1)"><code>repeatWhen(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1,%20rx.Scheduler)"><code>repeatWhen(Func1,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS repeat %}
+    <figure class="variant">
+     <img src="images/repeat.png" width="640" alt="repeat" />
+     <figcaption><p>
+      RxJS implements this operator as <code>repeat</code>. It accepts as its parameter the item to
+      repeat, and optionally two other parameters: the number of times you want the item to repeat,
+      and the Scheduler on which you want to perform this operation (it uses the 
+      <code>immediate</code> Scheduler by default).
+     </p>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.repeat(42, 3);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 42
+Next: 42
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>repeat</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin repeat repeatWhen %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Repeat %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY repeat %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb repeat repeat_infinitely %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala repeat repeatWhen %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

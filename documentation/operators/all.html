@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>All</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - All operator
+id: all
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">All</li>
+</ol>
+
    <h1>All</h1>
    <h3>determine whether all items emitted by an Observable meet some criteria</h3>
    <figure>
@@ -22,25 +24,29 @@
     <code>false</code> if any item emitted by the source Observable evaluates as <code>false</code>
     according to this predicate.
    </p>
+   <h4>See Also:</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#All"><cite>Introduction to Rx</cite>: All</a></li>
+   </ul>
+
    <h2>Language-Specific Information:</h2>
    <div id="accordion">
 
-<!-- RxClojure ================================================================================ -->
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure every %}
     <h3>RxClojure: <code>every</code></h3><div id="RxClojure" class="operator-language-description">
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>all</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy all %}
      <figure>
       <img src="images/all.png" width="640" alt="all" />
       <figcaption><p>
@@ -60,23 +66,26 @@ numbers.all({ 0 < it }).subscribe({ println(it); });</pre></div>
 all even? 
 false
 all positive? 
-true</pre></div></figcaption>
+true</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#all(rx.functions.Func1)"><code>all(Func1)</code></a></li>
+      </ul></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>all</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava all %}
      <figure>
       <img src="images/all.png" width="640" alt="all" />
       <figcaption><p>
        RxJava implements this operator as <code>all</code>. It does not by default operate on any
        particular scheduler.
-      </p></figcaption>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#all(rx.functions.Func1)"><code>all(Func1)</code></a></li>
+      </ul></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>every</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS every %}
      <figure>
       <img src="images/every.png" width="640" alt="every" />
       <figcaption><p>
@@ -121,50 +130,36 @@ Completed</pre></div></figcaption>
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>all</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin all %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>All</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET All %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>all</code> and <code>every</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY all every %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>all?</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb all? %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>forall</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala forall %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

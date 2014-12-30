@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
- <head>
-  <meta charset="utf-8" />
-  <title>Amb</title>
-  <link href="jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
- </head>
- <body>
-  <div class="container"><div class="col-md-8 col-md-offset-2">
+---
+layout: documentation
+title: ReactiveX - Amb operator
+id: amb
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">Amb</li>
+</ol>
+
    <h1>Amb</h1>
    <h3>given two or more source Observables, emit all of the items from only the first of these Observables to emit an item</h3>
    <figure>
@@ -19,25 +21,23 @@
     emits an item to <span class="operator">Amb</span>. It will ignore and discard the emissions of
     all of the other source Observables.
    </p>
+
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-<!-- RxClojure ================================================================================ -->
-    <h3>RxClojure</h3><div id="RxClojure" class="operator-language-description">
+  {% lang_operator RxClojure %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxCpp ==================================================================================== -->
-    <h3>RxCpp</h3><div id="RxCpp" class="operator-language-description">
+  {% lang_operator RxCpp %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxGroovy ================================================================================= -->
-    <h3>RxGroovy: <code>amb</code> and <code>ambWith</code></h3><div id="RxGroovy" class="operator-language-description">
+  {% lang_operator RxGroovy amb ambWith %}
      <figure>
       <img src="images/amb.png" width="640" alt="amb" />
       <figcaption><p>
@@ -48,12 +48,15 @@
        same effect.
       </p><p>
        This operator does not by default operate on any particular scheduler
-      </p></figcaption>
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(java.lang.Iterable)"><code>amb(Iterable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable)"><code>amb(Observable,Observable)</code></a> (there are also versions that take up to nine Observable parameters)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ambWith(rx.Observable)"><code>ambWith(Observable)</code></a></li>
+      </ul></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJava =================================================================================== -->
-    <h3>RxJava: <code>amb</code> and <code>ambWith</code></h3><div id="RxJava" class="operator-language-description">
+  {% lang_operator RxJava amb ambWith %}
      <figure>
       <img src="images/amb.png" width="640" alt="amb" />
       <figcaption><p>
@@ -64,12 +67,15 @@
        same effect.
       </p><p>
        This operator does not by default operate on any particular scheduler
-      </p></figcaption>
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(java.lang.Iterable)"><code>amb(Iterable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable)"><code>amb(Observable,Observable)</code></a> (there are also versions that take up to nine Observable parameters)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ambWith(rx.Observable)"><code>ambWith(Observable)</code></a></li>
+      </ul></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxJS ===================================================================================== -->
-    <h3>RxJS: <code>amb</code></h3><div id="RxJS" class="operator-language-description">
+  {% lang_operator RxJS amb %}
      <figure>
       <img src="images/amb.png" width="640" alt="amb" />
       <figcaption><p>
@@ -118,50 +124,36 @@ var subscription = source.subscribe(
 Next: foo
 Completed</pre></div></figcaption>
      </figure>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxKotlin ================================================================================= -->
-    <h3>RxKotlin: <code>amb</code> and <code>ambWith</code></h3><div id="RxKotlin" class="operator-language-description">
+  {% lang_operator RxKotlin amb ambWith %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.NET =================================================================================== -->
-    <h3>Rx.NET: <code>Amb</code></h3><div id="RxNET" class="operator-language-description">
+  {% lang_operator Rx.NET Amb %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxPY ===================================================================================== -->
-    <h3>RxPY: <code>amb</code></h3><div id="RxPY" class="operator-language-description">
+  {% lang_operator RxPY amb %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- Rx.rb ==================================================================================== -->
-    <h3>Rx.rb: <code>amb</code></h3><div id="Rxrb" class="operator-language-description">
+  {% lang_operator Rx.rb amb %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-<!-- RxScala ================================================================================== -->
-    <h3>RxScala: <code>amb</code></h3><div id="RxScala" class="operator-language-description">
+  {% lang_operator RxScala amb %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
-    </div>
+  {% endlang_operator %}
 
-   </div>
-  </div></div>
-
- <script src="JS/jquery-1.11.1.min.js"></script>
- <script src="jquery-ui-1.11.2.custom/jquery-ui.js"></script>
- <script>
-  $("#accordion").accordion({ collapsible: true, active: false, heightStyle: "content" });
- </script>
- </body>
-</html>
+</div>

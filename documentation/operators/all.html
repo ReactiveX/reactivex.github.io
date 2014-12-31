@@ -30,11 +30,9 @@ id: all
    </ul>
 
    <h2>Language-Specific Information:</h2>
-   <div id="accordion">
 
 <div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
   {% lang_operator RxClojure every %}
-    <h3>RxClojure: <code>every</code></h3><div id="RxClojure" class="operator-language-description">
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
@@ -100,15 +98,9 @@ var source = Rx.Observable.of(1,2,3,4,5)
   });
 
 var subscription = source.subscribe(
-  function (x) {
-    console.log('Next: %s', x);
-  },
-  function (err) {
-    console.log('Error: %s', err);
-  },
-  function () {
-    console.log('Completed');
-  });</pre></div>
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
       <div class="output"><pre>
 Next: true
 Completed</pre></div></figcaption>

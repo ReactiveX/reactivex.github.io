@@ -16,6 +16,13 @@ id: distinct
     <img src="images/distinct.c.png" width="640" alt="Distinct" />
    </figure>
    <p>
+    The <span class="operator">Distinct</span> operator filters an Observable by only allowing items through
+    that have not already been emitted.
+   </p><p>
+    In some implementations there are variants that allow you to adjust the criteria by which two items are
+    considered &ldquo;distinct.&rdquo; In some, there is a variant of the operator that only compares an item
+    against its immediate predecessor for distinctness, thereby filtering only <em>consecutive</em> duplicate
+    items from the sequence.
    </p>
    <h4>See Also:</h4>
    <ul>
@@ -163,7 +170,7 @@ var subscription = source.subscribe(
       <div class="output"><pre>
 Next: 42
 Next: 24
-Completed</pre></div></figcaption>
+Completed</pre></div>
       <div class="code javascript"><pre>
 /* With key selector */
 var source = Rx.Observable.fromArray([
@@ -210,7 +217,7 @@ var subscription = source.subscribe(
 Next: 24
 Next: 42
 Next: 24
-Completed</pre></div></figcaption>
+Completed</pre></div>
       <div class="code javascript"><pre>
 /* With key selector */
 var source = Rx.Observable.fromArray([

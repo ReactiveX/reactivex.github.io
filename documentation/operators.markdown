@@ -372,8 +372,8 @@ operators.
 * [`scope`]({{ site.url }}/documentation/operators/using.html)
 * [`Select`]({{ site.url }}/documentation/operators/map.html) (alternate name of of **`Map`**)
 * [`select`]({{ site.url }}/documentation/operators/filter.html) (alternate name of **`Filter`**)
-* `selectConcat`
-* `selectConcatObserver`
+* [`selectConcat`]({{ site.url }})/documentation/operators/flatmap.html)
+* [`selectConcatObserver`]({{ site.url }})/documentation/operators/flatmap.html)
 * [`SelectMany`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`selectManyObserver`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`select_switch`]({{ site.url }}/documentation/operators/switch.html)
@@ -387,10 +387,10 @@ operators.
 * [`share`]({{ site.url }}/documentation/operators/refcount.html)
 * [`shareReplay`]({{ site.url }}/documentation/operators/replay.html)
 * [`shareValue`]({{ site.url }}/documentation/operators/refcount.html)
-* `single`
-* `singleOrDefault`
-* `singleOption`
-* `singleOrElse`
+* [`Single`]({{ site.url }}/documentations/operators/first.html)
+* [`SingleOrDefault`]({{ site.url }}/documentations/operators/first.html)
+* [`singleOption`]({{ site.url }}/documentations/operators/first.html)
+* [`singleOrElse`]({{ site.url }}/documentations/operators/first.html)
 * [`size`]({{ site.url }}/documentation/operators/count.html)
 * [**`Skip`**]({{ site.url }}/documentation/operators/skip.html)
 * [**`SkipLast`**]({{ site.url }}/documentation/operators/skiplast.html)

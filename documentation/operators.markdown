@@ -452,7 +452,7 @@ operators.
 * [**`Then`**]({{ site.url }}/documentation/operators/and-then-when.html)
 * [`thenDo`]({{ site.url }}/documentation/operators/and-then-when.html)
 * [**`Throttle`**]({{ site.url }}/documentation/operators/throttle.html)
-* `throttleFirst`
+* [`throttleFirst`]({{ site.url }}/documentation/operators/sample.html)
 * [`throttleLast`]({{ site.url }}/documentation/operators/sample.html)
 * [`throttleWithSelector`]({{ site.url }}/documentation/operators/throttle.html)
 * [`throttleWithTimeout`]({{ site.url }}/documentation/operators/throttle.html)

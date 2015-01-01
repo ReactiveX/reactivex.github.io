@@ -45,6 +45,7 @@ Operators that transform items that are emitted by an Observable.
 
 Operators that selectively emit items from a source Observable.
 
+* [**`Debounce`**]({{ site.url }}/documentation/operators/debounce.html) — only emit an item from an Observable if a particular timespan has passed without it emitting another item
 * [**`Distinct`**]({{ site.url }}/documentation/operators/distinct.html) — suppress duplicate items emitted by an Observable
 * [**`ElementAt`**]({{ site.url }}/documentation/operators/elementat.html) — emit only item <i>n</i> emitted by an Observable
 * [**`Filter`**]({{ site.url }}/documentation/operators/filter.html) — emit only those items from an Observable that pass a predicate test
@@ -56,7 +57,6 @@ Operators that selectively emit items from a source Observable.
 * [**`SkipLast`**]({{ site.url }}/documentation/operators/skiplast.html) — suppress the last <i>n</i> items emitted by an Observable
 * [**`Take`**]({{ site.url }}/documentation/operators/take.html) — emit only the first <i>n</i> items emitted by an Observable
 * [**`TakeLast`**]({{ site.url }}/documentation/operators/takelast.html) — emit only the last <i>n</i> items emitted by an Observable
-* [**`Throttle`**]({{ site.url }}/documentation/operators/throttle.html) — only emit an item from an Observable if a particular timespan has passed without it emitting another item
 * [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items
 
 <h2 id="combining">Combining Observables</h2>
@@ -185,7 +185,7 @@ operators.
 * [`countLong`]({{ site.url }}/documentation/operators/count.html)
 * [**`Create`**]({{ site.url }}/documentation/operators/create.html)
 * [`cycle`]({{ site.url }}/documentation/operators/repeat.html)
-* [`debounce`]({{ site.url }}/documentation/operators/throttle.html)
+* [**`Debounce`**]({{ site.url }}/documentation/operators/debounce.html)
 * `decode`
 * [**`DefaultIfEmpty`**]({{ site.url }}/documentation/operators/defaultifempty.html)
 * [**`Defer`**]({{ site.url }}/documentation/operators/defer.html)
@@ -451,11 +451,11 @@ operators.
 * [`tapOnNext`]({{ site.url }}/documentation/operators/do.html)
 * [**`Then`**]({{ site.url }}/documentation/operators/and-then-when.html)
 * [`thenDo`]({{ site.url }}/documentation/operators/and-then-when.html)
-* [**`Throttle`**]({{ site.url }}/documentation/operators/throttle.html)
+* [`Throttle`]({{ site.url }}/documentation/operators/debounce.html)
 * [`throttleFirst`]({{ site.url }}/documentation/operators/sample.html)
 * [`throttleLast`]({{ site.url }}/documentation/operators/sample.html)
-* [`throttleWithSelector`]({{ site.url }}/documentation/operators/throttle.html)
-* [`throttleWithTimeout`]({{ site.url }}/documentation/operators/throttle.html)
+* [`throttleWithSelector`]({{ site.url }}/documentation/operators/debounce.html)
+* [`throttleWithTimeout`]({{ site.url }}/documentation/operators/debounce.html)
 * [**`Throw`**]({{ site.url }}/documentation/operators/empty-never-throw.html)
 * [`throwError`]({{ site.url }}/documentation/operators/empty-never-throw.html)
 * [`throwException`]({{ site.url }}/documentation/operators/empty-never-throw.html)

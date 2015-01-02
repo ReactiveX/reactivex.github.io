@@ -57,7 +57,6 @@ Operators that selectively emit items from a source Observable.
 * [**`SkipLast`**]({{ site.url }}/documentation/operators/skiplast.html) — suppress the last <i>n</i> items emitted by an Observable
 * [**`Take`**]({{ site.url }}/documentation/operators/take.html) — emit only the first <i>n</i> items emitted by an Observable
 * [**`TakeLast`**]({{ site.url }}/documentation/operators/takelast.html) — emit only the last <i>n</i> items emitted by an Observable
-* [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items
 
 <h2 id="combining">Combining Observables</h2>
 
@@ -88,6 +87,7 @@ A toolbox of useful Operators for working with Observables
 * [**`ObserveOn`**]({{ site.url }}/documentation/operators/observeon.html) — specify the scheduler on which an observer will observe this Observable
 * [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html) — specify the scheduler an Observable should use when it is subscribed to
 * [**`TimeInterval`**]({{ site.url }}/documentation/operators/timeinterval.html) — convert an Observable that emits items into one that emits indications of the amount of time elapsed between those emissions
+* [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items
 * [**`Timestamp`**]({{ site.url }}/documentation/operators/timestamp.html) — attach a timestamp to each item emitted by an Observable
 * [**`Using`**]({{ site.url }}/documentation/operators/using.html) — create a disposable resource that has the same lifespan as the Observable
 

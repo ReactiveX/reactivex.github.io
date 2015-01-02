@@ -427,7 +427,7 @@ operators.
 * [`sumInteger`]({{ site.url }}/documentation/operators/sum.html)
 * [`sumLong`]({{ site.url }}/documentation/operators/sum.html)
 * [**`Switch`**]({{ site.url }}/documentation/operators/switch.html)
-* `switchCase`
+* [`switchCase`]({{ site.url }}/documentation/operators/defer.html)
 * [`switchLatest`]({{ site.url }}/documentation/operators/switch.html)
 * [`switchMap`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`switchOnNext`]({{ site.url }}/documentation/operators/switch.html)

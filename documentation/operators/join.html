@@ -6,7 +6,7 @@ id: join
 
 <ol class="breadcrumb">
   <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
-  <li><a href="{{ site.url }}/documentation/operators.html#transforming">Transforming</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
   <li class="active">Join</li>
 </ol>
 
@@ -96,6 +96,14 @@ id: join
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#groupJoin(rx.Observable,%20rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func2)"><code>groupJoin(Observable,Func1,Func1,Func2)</code></a></li>
      </ul></figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/St.join.png" width="640" alt="join" />
+     <figcaption><p>
+      Note that there is also a <code>join</code> operator in the optional <code>StringObservable</code> class.
+      It converts an Observable that emits a sequence of strings into an Observable that emits a single string
+      that concatenates them all, separating them by a specified string delimiter.
+     </p></figcaption>
+    </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJava join groupJoin %}
@@ -134,6 +142,14 @@ id: join
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#groupJoin(rx.Observable,%20rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func2)"><code>groupJoin(Observable,Func1,Func1,Func2)</code></a></li>
      </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.join.png" width="640" alt="join" />
+     <figcaption><p>
+      Note that there is also a <code>join</code> operator in the optional <code>StringObservable</code> class.
+      It converts an Observable that emits a sequence of strings into an Observable that emits a single string
+      that concatenates them all, separating them by a specified string delimiter.
+     </p></figcaption>
     </figure>
   {% endlang_operator %}
 

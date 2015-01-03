@@ -16,7 +16,8 @@ id: timeout
     <img src="images/timeout.c.png" width="640" alt="Timeout" />
    </figure>
    <p>
-   </p><p>
+    The <span class="operator">Timeout</span> operator allows you to abort an Observable with an
+    <code>onError</code> termination if that Observable fails to emit any items during a specified span of time.
    </p>
    <h4>See Also:</h4>
    <ul>
@@ -46,7 +47,7 @@ id: timeout
      <figure>
       <img src="images/timeout.1.png" width="640" alt="timeout" />
       <figcaption><p>
-       The first variant accepts parametes that define a duration of time (a quantity of time, and a
+       The first variant accepts parameters that define a duration of time (a quantity of time, and a
        <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable emits an
        item, <code>timeout</code> starts a timer, and if that timer exceeds the duration before the source
        Observable emits another item, <code>timeout</code> terminates its Observable with an error
@@ -140,7 +141,7 @@ id: timeout
      <figure>
       <img src="images/timeout.1.png" width="640" alt="timeout" />
       <figcaption><p>
-       The first variant accepts parametes that define a duration of time (a quantity of time, and a
+       The first variant accepts parameters that define a duration of time (a quantity of time, and a
        <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable emits an
        item, <code>timeout</code> starts a timer, and if that timer exceeds the duration before the source
        Observable emits another item, <code>timeout</code> terminates its Observable with an error

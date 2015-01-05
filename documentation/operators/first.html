@@ -14,23 +14,24 @@ id: first
    <h3>emit only the first item (or the first item that meets some condition) emitted by an Observable</h3>
    <figure>
     <img src="images/first.c.png" width="640" alt="First" />
-   </figure>
-   <p>
+    <figcaption><p>
     If you are only interested in the first item emitted by an Observable, or the first item that meets some
     criteria, you can filter the Observable with the <span class="operator">First</span> operator.
-   </p><p>
+    </p><p>
     In some implementations, <code>First</code> is not implemented as a filtering operator that returns an
     Observable, but as a blocking function that returns a particular item at such time as the source Observable
     emits that item. In those implementations, if you instead want a filtering operator, you may have better
     luck with <a href="take.html"><code>Take(1)</code></a> or <a href="elementat"><code>ElementAt(0)</code></a>.
-   </p><p>
+    </p><p>
     In some implementations there is also a <span class="operator">Single</span> operator. It behaves similarly
     to <span class="operator">First</span> except that it waits until the source Observable terminates in order
     to guarantee that it only emits a single item (otherwise, rather than emitting that item, it terminates with
     an error). You can use this to not only take the first item from the source Observable but to also
     guarantee that there was only one item.
-   </p>
-   <h4>See Also:</h4>
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="elementat.html"><span class="operator">ElementAt</span></a></li>
     <li><a href="last.html"><span class="operator">Last</span></a></li>
@@ -495,7 +496,7 @@ id: first
        <li>the zero-based index of this item in the source Observable&#8217;s sequence</li>
        <li>the source Observable object</li>
       </ol>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 10)
     .first(function (x, idx, obs) { return x % 2 === 1; });
@@ -532,6 +533,7 @@ Completed</pre></div>
        While <code>first</code> will send an <code>onError</code> notification in such a case, <code>find</code>
        will instead emit an <code>undefined</code> item.
       </p>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var array = [1,2,3,4];
 
@@ -557,6 +559,7 @@ Completed</pre></div>
        the item that matches the predicate (or <code>undefined</code>), it emits the zero-based index of that
        item in the source Observable&#8217;s sequence (or <code>-1</code>).
       </p>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var array = [1,2,3,4];
 
@@ -583,7 +586,7 @@ Completed</pre></div>
        <code>onError</code> notification. (If you do not specify the default item,
        <code>firstOrDefault</code> will emit a <code>null</code> as its default.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 10)
     .firstOrDefault(function (x, idx, obs) { return x > 42; }, 88 );

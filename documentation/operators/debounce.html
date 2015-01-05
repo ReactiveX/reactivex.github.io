@@ -12,14 +12,16 @@ id: debounce
 
    <h1>Debounce</h1>
    <h3>only emit an item from an Observable if a particular timespan has passed without it emitting another item</h3>
+
    <figure>
     <img src="images/debounce.c.png" width="640" alt="Debounce" />
+    <figcaption><p>
+     The <span class="operator">Debounce</span> operator filters out items emitted by the source Observable that
+     are rapidly followed by another emitted item.
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">Debounce</span> operator filters out items emitted by the source Observable that
-    are rapidly followed by another emitted item.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="backpressure.html">Backpressure-related Operators</a></li>
     <li><a href="sample.html"><span class="operator">Sample</span></a></li>
@@ -131,7 +133,7 @@ id: debounce
        emitted items that are followed by other emitted items during that duration since the first item&#8217;s
        emission.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var times = [
     { value: 0, time: 100 },
@@ -174,7 +176,7 @@ Completed</pre></div>
        each item it emits, this function generating an Observable. If the source Observable emits another item
        before this newly-generated Observable terminates, <code>debounce</code> will suppress the item.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var array = [
     800,

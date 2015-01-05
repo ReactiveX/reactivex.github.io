@@ -14,12 +14,13 @@ id: filter
    <h3>emit only those items from an Observable that pass a predicate test</h3>
    <figure>
     <img src="images/filter.c.png" width="640" alt="Filter" />
+    <figcaption><p>
+     The <span class="operator">Filter</span> operator filters an Observable by only allowing items through
+     that pass a test that you specify in the form of a predicate function.
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">Filter</span> operator filters an Observable by only allowing items through
-    that pass a test that you specify in the form of a predicate function.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Where"><cite>Introduction to Rx</cite>: Where</a></li>
    </ul>
@@ -48,6 +49,7 @@ id: filter
        For example, the following code filters a list of integers, emitting only those that are even (that is,
        where the remainder from dividing the number by two is zero):
       </p>
+      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
@@ -106,7 +108,7 @@ Sequence complete</pre></div></figcaption>
        through the filter to the next observer, and <code>false</code> for those items you want the filter to
        block and suppress.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 5)
   .filter(function (x, idx, obs) {

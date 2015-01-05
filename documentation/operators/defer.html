@@ -14,18 +14,17 @@ id: defer
 <h3>do not create the Observable until the observer subscribes, and create a fresh Observable for each observer</h3>
 
 <figure>
-  <img src="images/defer.c.png" width="640" alt="Defer" />
+ <img src="images/defer.c.png" width="640" alt="Defer" />
+ <figcaption><p>
+  The <span class="operator">Defer</span> operator waits until an observer subscribes to it, and
+  then it generates an Observable, typically with an Observable factory function. It does this
+  afresh for each subscriber, so although each subscriber may think it is subscribing to the same
+  Observable, in fact each subscriber gets its own individual sequence.
+ </p><p>
+  In some circumstances, waiting until the last minute (that is, until subscription time) to generate
+  the Observable can ensure that this Observable contains the freshest data.
+ </p></figcaption>
 </figure>
-
-<p>
- The <span class="operator">Defer</span> operator waits until an observer subscribes to it, and
- then it generates an Observable, typically with an Observable factory function. It does this
- afresh for each subscriber, so although each subscriber may think it is subscribing to the same
- Observable, in fact each subscriber gets its own individual sequence.
-</p><p>
- In some circumstances, waiting until the last minute (that is, until subscription time) to generate
- the Observable can ensure that this Observable contains the freshest data.
-</p>
 
 <h2>Language-Specific Information:</h2>
 
@@ -98,6 +97,7 @@ id: defer
       an Observable factory function of your choosing. This function takes no parameters and returns
       an Observable or a Promise.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 /* Using an observable sequence */
 var source = Rx.Observable.defer(function () {
@@ -153,6 +153,7 @@ Completed</pre></div>
          <dd>the default Observable to emit if the key does not associate with any Observables</dd>
        </dl></li>
      </ol>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var sources = {
     'foo': Rx.Observable.return(42),

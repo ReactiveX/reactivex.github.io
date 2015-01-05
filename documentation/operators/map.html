@@ -12,14 +12,16 @@ id: map
 
    <h1>Map</h1>
    <h3>transform the items emitted by an Observable by applying a function to each item</h3>
+
    <figure>
     <img src="images/map.c.png" width="640" alt="Map" />
+    <figcaption><p>
+     The <span class="operator">Map</span> operator applies a function of your choosing to each item
+     emitted by the source Observable, and returns an Observable that emits the results of these
+     function applications.
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">Map</span> operator applies a function of your choosing to each item
-    emitted by the source Observable, and returns an Observable that emits the results of these
-    function applications.
-   </p>
+
    <h4>See Also</h4>
    <ul>
     <li><a href="flatmap"><span class="operator">FlatMap</span></a></li>
@@ -48,7 +50,7 @@ id: map
        RxGroovy implements this operator as <code>map</code>. For example, the following code maps a
        function that squares the incoming value onto the values in <code>numbers</code>:
       </p>
-      <h4>Sample Code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 numbers = Observable.from([1, 2, 3, 4, 5]);
 
@@ -101,7 +103,7 @@ Sequence complete</pre></div></figcaption>
        <li>the index of that item in the sequence of emitted items</li>
        <li>the Observable from which that item was emitted</li>
       </ol>
-      <h4>Sample Code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 // Using a value
 var md = Rx.Observable.fromEvent(document, 'mousedown').map(true);
@@ -131,7 +133,7 @@ Completed</pre></div>
        operator. It transforms the elements emitted by the source Observable by extracting a
        single named property from those elements and emitting that property in their place.
       </p>
-      <h4>Sample Code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable
     .fromArray([

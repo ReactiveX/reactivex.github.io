@@ -15,23 +15,23 @@ id: window
        windows rather than emitting the items one at a time</h3>
    <figure>
     <img src="images/window.C.png" width="640" alt="Window" />
+    <figcaption><p>
+     <span class="operator">Window</span> is similar to
+     <a href="buffer.html"><span class="operator">Buffer</span></a>, but rather than emitting packets
+     of items from the source Observable, it emits Observables, each one of which emits a subset of
+     items from the source Observable and then terminates with an <code>onCompleted</code>
+     notification.
+    </p><p>
+     Like <span class="operator">Buffer</span>, <span class="operator">Window</span> has many
+     varieties, each with its own way of subdividing the original Observable into the resulting
+     Observable emissions, each one of which contains a &ldquo;window&rdquo; onto the original
+     emitted items. In the terminology of the <span class="operator">Window</span> operator, when a
+     window &ldquo;opens,&rdquo; this means that a new Observable is emitted and that Observable will
+     begin emitting items emitted by the source Observable. When a window &ldquo;closes,&rdquo; this
+     means that the emitted Observable stops emitting items from the source Observable and terminates
+     with an <code>onCompleted</code> notification to its observers.
+    </p></figcaption>
    </figure>
-   <p>
-    <span class="operator">Window</span> is similar to
-    <a href="buffer.html"><span class="operator">Buffer</span></a>, but rather than emitting packets
-    of items from the source Observable, it emits Observables, each one of which emits a subset of
-    items from the source Observable and then terminates with an <code>onCompleted</code>
-    notification.
-   </p><p>
-    Like <span class="operator">Buffer</span>, <span class="operator">Window</span> has many
-    varieties, each with its own way of subdividing the original Observable into the resulting
-    Observable emissions, each one of which contains a &ldquo;window&rdquo; onto the original
-    emitted items. In the terminology of the <span class="operator">Window</span> operator, when a
-    window &ldquo;opens,&rdquo; this means that a new Observable is emitted and that Observable will
-    begin emitting items emitted by the source Observable. When a window &ldquo;closes,&rdquo; this
-    means that the emitted Observable stops emitting items from the source Observable and terminates
-    with an <code>onCompleted</code> notification to its observers.
-   </p>
 
    <h4>See Also</h4>
    <ul>
@@ -285,7 +285,7 @@ id: window
       them more manageable. You could, for example, emit a window of items from a bursty Observable
       periodically, at a regular interval of time.
      </p>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code groovy"><pre>
 Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, TimeUnit.MILLISECONDS);</pre></div></figcaption>
     </figure>
@@ -295,7 +295,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, 
       Or you could choose to emit a new window of items for every <i>n</i> items emitted by the
       bursty Observable.
      </p>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code groovy"><pre>
 Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</pre></div>
      </figcaption>
@@ -445,7 +445,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       them more manageable. You could, for example, emit a window of items from a bursty Observable
       periodically, at a regular interval of time.
      </p>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code java"><pre>
 Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, TimeUnit.MILLISECONDS);</pre></div></figcaption>
     </figure>
@@ -455,7 +455,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, 
       Or you could choose to emit a new window of items for every <i>n</i> items emitted by the
       bursty Observable.
      </p>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code java"><pre>
 Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</pre></div>
      </figcaption>

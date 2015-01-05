@@ -14,17 +14,18 @@ id: distinct
    <h3>suppress duplicate items emitted by an Observable</h3>
    <figure>
     <img src="images/distinct.c.png" width="640" alt="Distinct" />
+    <figcaption><p>
+     The <span class="operator">Distinct</span> operator filters an Observable by only allowing items through
+     that have not already been emitted.
+    </p><p>
+     In some implementations there are variants that allow you to adjust the criteria by which two items are
+     considered &ldquo;distinct.&rdquo; In some, there is a variant of the operator that only compares an item
+     against its immediate predecessor for distinctness, thereby filtering only <em>consecutive</em> duplicate
+     items from the sequence.
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">Distinct</span> operator filters an Observable by only allowing items through
-    that have not already been emitted.
-   </p><p>
-    In some implementations there are variants that allow you to adjust the criteria by which two items are
-    considered &ldquo;distinct.&rdquo; In some, there is a variant of the operator that only compares an item
-    against its immediate predecessor for distinctness, thereby filtering only <em>consecutive</em> duplicate
-    items from the sequence.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="filter.html"><span class="operator">Filter</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Distinct"><cite>Introduction to Rx</cite>: Distinct and DistinctUntilChanged</a></li>
@@ -155,7 +156,7 @@ id: distinct
        <li>a function that accepts an item emitted by the source Observable and returns a <i>key</i> which will be used instead of the item itself when comparing two items for distinctness</li>
        <li>a function that accepts two items (or two keys) and compares them for distinctness, returning <code>false</code> if they are distinct (an equality function is the default if you do not supply your own function here)</li>
       </ol>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 /* Without key selector */
 var source = Rx.Observable.fromArray([
@@ -201,7 +202,7 @@ Completed</pre></div></figcaption>
        or not they are distinct. It takes the same two optional parameters as the
        <code>distinct</code> operator.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 /* Without key selector */
 var source = Rx.Observable.fromArray([

@@ -14,15 +14,14 @@ id: interval
 <h3>create an Observable that emits a sequence of integers spaced by a given time interval</h3>
 
 <figure>
-  <img src="images/interval.c.png" width="640" alt="Interval" />
+ <img src="images/interval.c.png" width="640" alt="Interval" />
+ <figcaption><p>
+  The <span class="operator">Interval</span> operator returns an Observable that emits an infinite sequence of
+  ascending integers, with a constant interval of time of your choosing between emissions.
+ </p></figcaption>
 </figure>
 
-<p>
- The <span class="operator">Interval</span> operator emits an infinite sequence of ascending
- integers, with a constant interval of time of your choosing between emissions.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="range.html"><span class="operator">Range</span></a></li>
  <li><a href="repeat.html"><span class="operator">Repeat</span></a></li>
@@ -105,6 +104,7 @@ id: interval
       optionally pass in a different Scheduler as a second parameter, and <code>interval</code> will
       operate on that Scheduler instead.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var source = Rx.Observable
     .interval(500 /* ms */)

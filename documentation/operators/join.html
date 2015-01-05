@@ -35,7 +35,7 @@ id: join
  </p></figcaption>
 </figure>
 
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="combinelatest.html"><span class="operator">CombineLatest</span></a></li>
  <li><a href="zip.html"><span class="operator">Zip</span></a></li>
@@ -165,6 +165,7 @@ id: join
       <li>a function that accepts an item from the second Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the first Observable</li>
       <li>a function that accepts an item from the first Observable and an item from the second Observable and returns an item to be emitted by the Observable returned from <code>groupJoin</code></li>
      </ol>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var xs = Rx.Observable.interval(100)
     .map(function (x) { return 'first' + x; });
@@ -205,6 +206,7 @@ Completed</pre></div>
       <li>a function that accepts an item from the second Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the first Observable</li>
       <li>a function that accepts an item from the first Observable and an Observable that emits items from the second Observable and returns an item to be emitted by the Observable returned from <code>groupJoin</code></li>
      </ol>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 ar xs = Rx.Observable.interval(100)
     .map(function (x) { return 'first' + x; });

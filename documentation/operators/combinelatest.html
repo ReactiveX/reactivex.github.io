@@ -15,19 +15,18 @@ id: combinelatest
 
    <figure>
     <img src="images/combineLatest.c.png" width="640" alt="CombineLatest" />
+    <figcaption><p>
+     The <span class="operator">CombineLatest</span> operator behaves in a similar way to
+     <span class="operator">Zip</span>, but while <span class="operator">Zip</span> emits items only
+     when <em>each</em> of the zipped source Observables have emitted a previously unzipped item,
+     <span class="operator">CombineLatest</span> emits an item whenever <em>any</em> of the source
+     Observables emits an item (so long as each of the source Observables has emitted at least one
+     item). When any of the source Observables emits an item,
+     <span class="operator">CombineLatest</span> combines the most recently emitted items from each
+     of the other source Observables, using a function you provide, and emits the return value from
+     that function.
+    </p></figcaption>
    </figure>
-
-   <p>
-    The <span class="operator">CombineLatest</span> operator behaves in a similar way to
-    <span class="operator">Zip</span>, but while <span class="operator">Zip</span> emits items only
-    when <em>each</em> of the zipped source Observables have emitted a previously unzipped item,
-    <span class="operator">CombineLatest</span> emits an item whenever <em>any</em> of the source
-    Observables emits an item (so long as each of the source Observables has emitted at least one
-    item). When any of the source Observables emits an item,
-    <span class="operator">CombineLatest</span> combines the most recently emitted items from each
-    of the other source Observables, using a function you provide, and emits the return value from
-    that function.
-   </p>
 
    <h4>See Also</h4>
    <ul>
@@ -90,7 +89,7 @@ id: combinelatest
        of individual Observables (as well as the combining function) as parameters, or a single
        <code>Array</code> of Observables (as well as the combining function).
       </p>
-      <h4>Sample code</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 /* Have staggering intervals */
 var source1 = Rx.Observable.interval(100)
@@ -130,7 +129,7 @@ Completed</pre></div>
        only emits items when the single source Observable emits an item (not when <em>any</em> of the
        Observables that are passed to the operator do, as <code>combineLatest</code> does).
       </p>
-      <h4>Sample code</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 /* Have staggering intervals */
 var source1 = Rx.Observable.interval(140)

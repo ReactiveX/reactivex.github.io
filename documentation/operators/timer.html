@@ -14,15 +14,14 @@ id: timer
 <h3>create an Observable that emits a particular item after a given delay</h3>
 
 <figure>
-  <img src="images/timer.c.png" width="640" alt="Timer" />
+ <img src="images/timer.c.png" width="640" alt="Timer" />
+ <figcaption><p>
+  The <span class="operator">Timer</span> operator creates an Observable that emits one particular
+  item after a span of time that you specify.
+ </p></figcaption>
 </figure>
 
-<p>
- The <span class="operator">Timer</span> operator creates an Observable that emits one particular
- item after a span of time that you specify.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="from.html"><span class="operator">From</span></a></li>
  <li><a href="interval.html"><span class="operator">Interval</span></a></li>
@@ -130,6 +129,7 @@ id: timer
       periodicity. In this way it behaves a bit more like the
       <a href="interval.html"><span class="operator">Interval</span></a> operator.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var source = Rx.Observable.timer(200, 100)
     .timeInterval()

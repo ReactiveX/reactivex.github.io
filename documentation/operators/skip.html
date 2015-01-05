@@ -12,14 +12,16 @@ id: skip
 
    <h1>Skip</h1>
    <h3>suppress the first <i>n</i> items emitted by an Observable</h3>
+
    <figure>
     <img src="images/skip.c.png" width="640" alt="Skip" />
+    <figcaption><p>
+     You can ignore the first <i>n</i> items emitted by an Observable and attend only to those items that come
+     after, by modifying the Observable with the <span class="operator">Skip</span> operator.
+    </p></figcaption>
    </figure>
-   <p>
-    You can ignore the first <i>n</i> items emitted by an Observable and attend only to those items that come
-    after, by modifying the Observable with the <span class="operator">Skip</span> operator.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="last.html"><span class="operator">Last</span></a></li>
     <li><a href="skiplast.html"><span class="operator">SkipLast</span></a></li>
@@ -53,6 +55,7 @@ id: skip
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>skip</code>.
       </p>
+     <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8]);
 
@@ -129,7 +132,7 @@ Sequence complete</pre></div>
       <figcaption><p>
        RxJS implements the <code>skip</code> operator.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 5)
     .skip(3);

@@ -14,17 +14,19 @@ id: ignoreElements
    <h3>do not emit any items from an Observable but mirror its termination notification</h3>
    <figure>
     <img src="images/ignoreElements.c.png" width="640" alt="IgnoreElements" />
+    <figcaption><p>
+     The <span class="operator">IgnoreElements</span> operator suppresses all of the items emitted by the
+     source Observable, but allows its termination notification (either <code>onError</code> or
+     <code>onCompleted</code>) to pass through unchanged.
+    </p><p>
+     If you do not care about the items being emitted by an Observable, but you do want to be notified when it
+     completes or when it terminates with an error, you can apply the <code>ignoreElements</code> operator to
+     the Observable, which will ensure that it will never call its observers&#8217; <code>onNext</code>
+     handlers.
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">IgnoreElements</span> operator suppresses all of the items emitted by the
-    source Observable, but allows its termination notification (either <code>onError</code> or
-    <code>onCompleted</code>) to pass through unchanged.
-   </p><p>
-    If you do not care about the items being emitted by an Observable, but you do want to be notified when it
-    completes or when it terminates with an error, you can apply the <code>ignoreElements</code> operator to the
-    Observable, which will ensure that it will never call its observers&#8217; <code>onNext</code> handlers.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#IgnoreElements"><cite>Introduction to Rx</cite>: IgnoreElements</a></li>
    </ul>
@@ -80,7 +82,7 @@ id: ignoreElements
       <figcaption><p>
        RxJS implements this operator as <code>ignoreElements</code>.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 10)
     .ignoreElements();

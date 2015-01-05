@@ -14,24 +14,23 @@ id: refcount
 <h3>make a Connectable Observable behave like an ordinary Observable</h3>
 
 <figure>
-  <img src="images/publishRefCount.c.png" width="640" alt="RefCount" />
+ <img src="images/publishRefCount.c.png" width="640" alt="RefCount" />
+ <figcaption><p>
+  A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+  emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+  operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
+  time of your choosing.
+ </p><p>
+  The <span class="operator">RefCount</span> operator automates the process of connecting to and disconnecting
+  from a connectable Observable. It operates on a connectable Observable and returns an ordinary Observable.
+  When the first observer subscribes to this Observable, <span class="operator">RefCount</span> connects to the 
+  underlying connectable Observable. <span class="operator">RefCount</span> then keeps track of how many other
+  observers subscribe to it and does not disconnect from the underlying connectable Observable until the last
+  observer has done so.
+ </p></figcaption>
 </figure>
 
-<p>
- A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
- emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
- operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
- time of your choosing.
-</p><p>
- The <span class="operator">RefCount</span> operator automates the process of connecting to and
- disconnecting from a connectable Observable. It operates on a connectable Observable and returns an ordinary Observable. When the first observer subscribes to this Observable,
- <span class="operator">RefCount</span> connects to the underlying connectable Observable.
- <span class="operator">RefCount</span> then keeps track of how many other observers subscribe to it
- and does not disconnect from the underlying connectable Observable until the last observer has done
- so.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="connect.html"><span class="operator">Connect</span></a></li>
  <li><a href="publish.html"><span class="operator">Publish</span></a></li>
@@ -99,7 +98,7 @@ id: refcount
      <figcaption><p>
       RxJava implements this operator as <code>refCount</code>.
      </p>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);
 
@@ -144,7 +143,7 @@ Completed</pre></div>
      A variant called <code>shareValue</code> takes as a parameter a single item that it will
      emit to any subscribers before beginning to emit items from the source Observable.
     </p>
-    <h4>Sample code</h4>
+    <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);
 

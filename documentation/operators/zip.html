@@ -14,20 +14,20 @@ id: zip
    <h3>combine the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function</h3>
    <figure>
     <img src="images/zip.c.png" width="640" alt="Zip" />
+    <figcaption><p>
+     The <code>Zip</code> method returns an Observable that applies a function of your choosing to
+     the combination of items emitted, in sequence, by two (or more) other Observables, with the
+     results of this function becoming the items emitted by the returned Observable. It applies this
+     function in strict sequence, so the first item emitted by the new Observable will be the result
+     of the function applied to the first item emitted by Observable #1 and the first item emitted by
+     Observable #2; the second item emitted by the new zip-Observable will be the result of the
+     function applied to the second item emitted by Observable #1 and the second item emitted by
+     Observable #2; and so forth. It will only emit as many items as the number of items emitted by
+     the source Observable that emits the fewest items.
+    </p></figcaption>
    </figure>
-   <p>
-    The <code>Zip</code> method returns an Observable that applies a function of your choosing to
-    the combination of items emitted, in sequence, by two (or more) other Observables, with the
-    results of this function becoming the items emitted by the returned Observable. It applies this
-    function in strict sequence, so the first item emitted by the new Observable will be the result
-    of the function applied to the first item emitted by Observable #1 and the first item emitted by
-    Observable #2; the second item emitted by the new zip-Observable will be the result of the
-    function applied to the second item emitted by Observable #1 and the second item emitted by
-    Observable #2; and so forth. It will only emit as many items as the number of items emitted by
-    the source Observable that emits the fewest items.
-   </p>
 
-   <h4>See Also:</h4>
+   <h4>See Also</h4>
    <ul>
     <li><a href="and-then-when.html"><span class="operator">And</span>/<span class="operator">Then</span>/<span class="operator">When</span></a></li>
     <li><a href="combinelatest.html"><span class="operator">CombineLatest</span></a></li>
@@ -64,7 +64,7 @@ id: zip
        parameter: either an Iterable of Observables or an Observable that emits Observables (as
        in the illustration above).
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 odds  = Observable.from([1, 3, 5, 7, 9]);
 evens = Observable.from([2, 4, 6]);
@@ -158,7 +158,7 @@ Sequence complete</pre></div>
        by a function that accepts one item emitted by each of those Observables or resolved by those
        Promises as input and produces a single item to be emitted by the resulting Observable.
       </p>
-      <h4>Sample code</h4>
+      <h4>Sample Code</h4>
        <div class="code javascript"><pre>
 /* Using arguments */
 var range = Rx.Observable.range(0, 5);
@@ -222,6 +222,7 @@ Completed</pre></div>
        Observable that emits arrays, each one containing the <i>n</i><sup>th</sup> item from each
        source Observable.
       </p>
+     <h4>Sample Code</h4>
        <div class="code javascript"><pre>
 var range = Rx.Observable.range(0, 5);
 

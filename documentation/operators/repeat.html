@@ -14,16 +14,15 @@ id: repeat
 <h3>create an Observable that emits a particular item multiple times</h3>
 
 <figure>
-  <img src="images/repeat.c.png" width="640" alt="Repeat" />
+ <img src="images/repeat.c.png" width="640" alt="Repeat" />
+ <figcaption><p>
+  The <span class="operator">Repeat</span> operator emits an item repeatedly. Some implementations
+  of this operator allow you to repeat a <em>sequence</em> of items, and some permit you to limit
+  the number of repetitions.
+ </p></figcaption>
 </figure>
 
-<p>
- The <span class="operator">Repeat</span> operator emits an item repeatedly. Some implementations
- of this operator allow you to repeat a <em>sequence</em> of items, and some permit you to limit
- the number of repetitions.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="interval.html"><span class="operator">Interval</span></a></li>
  <li><a href="range.html"><span class="operator">Range</span></a></li>
@@ -143,6 +142,7 @@ id: repeat
       and the Scheduler on which you want to perform this operation (it uses the 
       <code>immediate</code> Scheduler by default).
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var source = Rx.Observable.repeat(42, 3);
 

@@ -12,14 +12,17 @@ id: timeout
 
    <h1>Timeout</h1>
    <h3>mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items</h3>
+
    <figure>
     <img src="images/timeout.c.png" width="640" alt="Timeout" />
+    <figcaption><p>
+     The <span class="operator">Timeout</span> operator allows you to abort an Observable with an
+     <code>onError</code> termination if that Observable fails to emit any items during a specified span of
+     time.
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">Timeout</span> operator allows you to abort an Observable with an
-    <code>onError</code> termination if that Observable fails to emit any items during a specified span of time.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="debounce.html"><span class="operator">Debounce</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Timeout"><cite>Introduction to Rx</cite>: Timeout</a></li>
@@ -241,7 +244,7 @@ id: timeout
        error (&ldquo;<code>Timeout</code>&rdquo; or a string of your choice that you pass as an optional
        second parameter).
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable
     .return(42)
@@ -263,7 +266,7 @@ Error: Timeout has occurred.</pre></div>
        variant, pass the backup Observable (or <code>Promise</code>) as the second parameter to
        <code>timeout</code>.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable
   .return(42)
@@ -288,7 +291,7 @@ Completed</pre></div>
        <code>onError</code> notification (&ldquo;<code>Error: Timeout</code>&rdquo;) from the Observable
        <code>timeoutWithSelector</code> returns.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var array = [
     200,
@@ -323,7 +326,7 @@ Error: Error: Timeout</pre></div>
        There is also a variant of <code>timeoutWithSelector</code> that both uses a per-item Observable to set
        the timeout duration and switches to a backup Observable in case of a timeout.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var array = [
     200,
@@ -362,7 +365,7 @@ Completed</pre></div>
        that is to say, the default Observable that governs this first timeout period is
        <code>Rx.Observable.never()</code>).
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var array = [
     200,
@@ -397,7 +400,7 @@ Error: Error: Timeout</pre></div>
        And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
        an error upon hitting a timeout condition.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var array = [
     200,

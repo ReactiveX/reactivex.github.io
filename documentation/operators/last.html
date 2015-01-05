@@ -14,17 +14,18 @@ id: last
    <h3>emit only the last item (or the last item that meets some condition) emitted by an Observable</h3>
    <figure>
     <img src="images/last.c.png" width="640" alt="Last" />
+    <figcaption><p>
+     If you are only interested in the last item emitted by an Observable, or the last item that meets some
+     criteria, you can filter the Observable with the <span class="operator">Last</span> operator.
+    </p><p>
+     In some implementations, <code>Last</code> is not implemented as a filtering operator that returns an
+     Observable, but as a blocking function that returns a particular item when the source Observable
+     terminates. In those implementations, if you instead want a filtering operator, you may have better luck
+     with <a href="take.html"><code>TakeLast(1)</code></a>.
+    </p></figcaption>
    </figure>
-   <p>
-    If you are only interested in the last item emitted by an Observable, or the last item that meets some
-    criteria, you can filter the Observable with the <span class="operator">Last</span> operator.
-   </p><p>
-    In some implementations, <code>Last</code> is not implemented as a filtering operator that returns an
-    Observable, but as a blocking function that returns a particular item when the source Observable terminates.
-    In those implementations, if you instead want a filtering operator, you may have better luck with
-    <a href="take.html"><code>TakeLast(1)</code></a>.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="elementat.html"><span class="operator">ElementAt</span></a></li>
     <li><a href="first.html"><span class="operator">First</span></a></li>
@@ -287,7 +288,7 @@ id: last
        <li>the zero-based index of this item in the source Observable&#8217;s sequence</li>
        <li>the source Observable object</li>
       </ol>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 10)
     .last(function (x, idx, obs) { return x % 2 === 1; });
@@ -315,7 +316,7 @@ Completed</pre></div>
        <code>onError</code> notification. (If you do not specify the default item,
        <code>lastOrDefault</code> will emit a <code>null</code> as its default.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 10)
     .lastOrDefault(function (x, idx, obs) { return x > 42; }, 88 );

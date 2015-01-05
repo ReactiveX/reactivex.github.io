@@ -14,16 +14,17 @@ id: sample
    <h3>emit the most recent items emitted by an Observable within periodic time intervals</h3>
    <figure>
     <img src="images/sample.c.png" width="640" alt="Sample" />
+    <figcaption><p>
+     The <span class="operator">Sample</span> operator periodically looks at an Observable and emits whichever
+     item it has most recently emitted since the previous sampling.
+    </p><p>
+     In some implementations, there is also a <span class="operator">ThrottleFirst</span> operator that is
+     similar, but emits not the most-recently emitted item in the sample period, but the <em>first</em> item
+     that was emitted during that period.
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">Sample</span> operator periodically looks at an Observable and emits whichever
-    item it has most recently emitted since the previous sampling.
-   </p><p>
-    In some implementations, there is also a <span class="operator">ThrottleFirst</span> operator that is
-    similar, but emits not the most-recently emitted item in the sample period, but the <em>first</em> item
-    that was emitted during that period.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="backpressure.html">Backpressure-related Operators</a></li>
     <li><a href="throttle.html"><span class="operator">Throttle</span></a></li>
@@ -63,6 +64,7 @@ id: sample
        The following code constructs an Observable that emits the numbers between one and a million, and then
        samples that Observable every ten milliseconds to see what number it is emitting at that moment.
       </p>
+     <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 def numbers = Observable.range( 1, 1000000 );
 
@@ -105,6 +107,7 @@ Sequence complete</pre></div>
        <code>throttleLast</code>/<code>sample</code> in that it emits the <em>first</em> item emitted by the
        source Observable in each sampling period rather than the <em>most recently emitted</em> item.
       </p>
+     <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 Scheduler s = new TestScheduler();
 PublishSubject<Integer> o = PublishSubject.create();
@@ -206,7 +209,7 @@ Sequence complete</pre></div>
        The first variant accepts as its parameter a periodicity, defined as an integer number of milliseconds,
        and it samples the source Observable periodically at that frequency.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.interval(1000)
     .sample(5000)
@@ -228,7 +231,7 @@ Completed</pre></div>
        The second variant accepts as its parameter an Observable, and it samples the source Observable whenever
        this second Observable emits an item.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.interval(1000)
     .sample(Rx.Observable.interval(5000))
@@ -254,7 +257,7 @@ Completed</pre></div>
        It does not have the variant that uses the emissions from a second Observable to regulate the sampling
        periodicity.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var times = [
     { value: 0, time: 100 },

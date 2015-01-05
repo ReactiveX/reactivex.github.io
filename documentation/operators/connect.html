@@ -14,17 +14,16 @@ id: connect
 <h3>instruct a connectable Observable to begin emitting items to its subscribers</h3>
 
 <figure>
-  <img src="images/publishConnect.c.png" width="640" alt="Connect" />
+ <img src="images/publishConnect.c.png" width="640" alt="Connect" />
+ <figcaption><p>
+  A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+  emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+  operator is applied to it. In this way you can wait for all intended observers to subscribe to the
+  Observable before the Observable begins emitting items.
+ </p></figcaption>
 </figure>
 
-<p>
- A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
- emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
- operator is applied to it. In this way you can wait for all intended observers to subscribe to the
- Observable before the Observable begins emitting items.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="publish.html"><span class="operator">Publish</span></a></li>
  <li><a href="refcount.html"><span class="operator">RefCount</span></a></li>
@@ -119,7 +118,7 @@ id: connect
       items (or, to begin generating items that would be emitted) even before any Subscriber has
       subscribed to it. In this way you can turn a cold Observable into a hot one.
      </p>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);
 

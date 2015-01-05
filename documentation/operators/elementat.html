@@ -15,12 +15,13 @@ id: elementAt
 
    <figure>
     <img src="images/elementAt.c.png" width="640" alt="ElementAt" />
+    <figcaption><p>
+     The <code>ElementAt</code> operator pulls an item located at a specified index location in the sequence
+     of items emitted by the source Observable and emits that item as its own sole emission.
+    </p></figcaption>
    </figure>
-   <p>
-    The <code>ElementAt</code> operator pulls an item located at a specified index location in the sequence
-    of items emitted by the source Observable and emits that item as its own sole emission.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="first.html"><span class="operator">First</span></a></li>
     <li><a href="last.html"><span class="operator">Last</span></a></li>
@@ -130,7 +131,7 @@ id: elementAt
        If there is no element in the source sequence with the index value you specify, <code>elementAt</code>
        will issue an <code>onError</code> notification: &ldquo;<code>Argument out of range</code>&rdquo;
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.fromArray([1,2,3,4])
     .elementAt(1);
@@ -150,7 +151,7 @@ Completed</pre></div></figcaption>
        source sequence with the index value you specify, it will emit a default value of your choosing (rather
        than making an <code>onError</code> notification).
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.fromArray([1,2,3,4])
     .elementAt(4, 0);

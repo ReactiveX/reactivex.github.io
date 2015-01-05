@@ -14,13 +14,13 @@ id: amb
    <h3>given two or more source Observables, emit all of the items from only the first of these Observables to emit an item</h3>
    <figure>
     <img src="images/amb.C.png" width="640" alt="Amb" />
-   </figure>
-   <p>
+   <figcaption><p>
     When you pass a number of source Observables to <span class="operator">Amb</span>, it will pass
     through the emissions and notifications of exactly one of these Observables: the first one that
     emits an item to <span class="operator">Amb</span>. It will ignore and discard the emissions of
     all of the other source Observables.
-   </p>
+    </p></figcaption>
+   </figure>
 
    <h2>Language-Specific Information:</h2>
 <div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
@@ -82,7 +82,7 @@ id: amb
        RxJS implements this operator as <code>amb</code>. It takes a variable number of parameters,
        which may be either Observables or Promises (or combinations of the two).
       </p>
-      <h4>Sample Code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 /* Using Observable sequences */
 var source = Rx.Observable.amb(

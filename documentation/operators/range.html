@@ -14,15 +14,14 @@ id: range
 <h3>create an Observable that emits a particular range of sequential integers</h3>
 
 <figure>
-  <img src="images/range.c.png" width="640" alt="Range" />
+ <img src="images/range.c.png" width="640" alt="Range" />
+ <figcaption><p>
+  The <span class="operator">Range</span> operator emits a range of sequential integers, in order,
+  where you select the start of the range and its length.
+ </p></figcaption>
 </figure>
 
-<p>
- The <span class="operator">Range</span> operator emits a range of sequential integers, in order,
- where you select the start of the range and its length.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="interval.html"><span class="operator">Interval</span></a></li>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableRange"><cite>Introduction to Rx</cite>: Range</a></li>
@@ -56,7 +55,7 @@ id: range
       <code>range</code> does not by default operate on any particular Scheduler, but there is
       a variant that allows you to set the Scheduler by passing one in as a parameter.
      </p>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code groovy"><pre>
 // myObservable emits the integers 5, 6, and 7 before completing:
 def myObservable = Observable.range(5, 3);</pre></div>
@@ -97,6 +96,7 @@ def myObservable = Observable.range(5, 3);</pre></div>
       is a variant that allows you to set the Scheduler by passing one in as the optional third
       parameter.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 3);
 

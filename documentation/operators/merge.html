@@ -14,25 +14,28 @@ id: merge
    <h3>combine multiple Observables into one by merging their emissions</h3>
    <figure>
     <img src="images/merge.C.png" width="640" alt="Merge" />
+    <figcaption><p>
+     You can combine the output of multiple Observables so that they act like a single Observable, by
+     using the <span class="operator">Merge</span> operator.
+    </p><p>
+     Merge may interleave the items emitted by the merged Observables (a similar operator,
+     <a href="concat.html"><span class="operator">Concat</span></a>, does not interleave items, but
+     emits all of each source Observable&#8217;s items in turn before beginning to emit items from
+     the next source Observable).
+    </p><p>
+     As shown in the above diagram, an <code>onError</code> notification from any of the source
+     Observables will immediately be passed through to observers and will terminate the merged
+     Observable.
+    </p></figcaption>
    </figure>
-   <p>
-    You can combine the output of multiple Observables so that they act like a single Observable, by
-    using the <span class="operator">Merge</span> operator.
-   </p><p>
-    Merge may interleave the items emitted by the merged Observables (a similar operator,
-    <a href="concat.html"><span class="operator">Concat</span></a>, does not interleave items, but
-    emits all of each source Observable&#8217;s items in turn before beginning to emit items from
-    the next source Observable).
-   </p><p>
-    As shown in the above diagram, an <code>onError</code> notification from any of the source
-    Observables will immediately be passed through to observers and will terminate the merged
-    Observable. In many ReactiveX implementations there is a second operator,
-    <span class="operator">MergeDelayError</span>, that changes this behavior &mdash; reserving
-    <code>onError</code> notifications until all of the merged Observables complete and only then
-    passing it along to the observers:
-   </p>
    <figure>
     <img src="images/mergeDelayError.C.png" width="640" alt="MergeDelayError" />
+    <figcaption><p>
+     In many ReactiveX implementations there is a second operator,
+     <span class="operator">MergeDelayError</span>, that changes this behavior &mdash; reserving
+     <code>onError</code> notifications until all of the merged Observables complete and only then
+     passing it along to the observers:
+    </p></figcaption>
    </figure>
 
    <h4>See Also</h4>
@@ -111,7 +114,7 @@ id: merge
        at the same time, to demonstrate how <span class="operator">Merge</span> may interleave these
        items.)
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 odds  = Observable.from([1, 3, 5, 7]).subscribeOn(someScheduler);
 evens = Observable.from([2, 4, 6]);

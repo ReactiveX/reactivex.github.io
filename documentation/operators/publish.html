@@ -14,17 +14,16 @@ id: publish
 <h3>convert an ordinary Observable into a connectable Observable</h3>
 
 <figure>
-  <img src="images/publishConnect.c.png" width="640" alt="Publish" />
+ <img src="images/publishConnect.c.png" width="640" alt="Publish" />
+ <figcaption><p>
+  A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+  emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+  operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
+  time of your choosing.
+ </p></figcaption>
 </figure>
 
-<p>
- A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
- emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
- operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
- time of your choosing.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="connect.html"><span class="operator">Connect</span></a></li>
  <li><a href="refcount.html"><span class="operator">RefCount</span></a></li>
@@ -102,7 +101,7 @@ id: publish
       takes an emitted item from the source Observable as a parameter and produces the item that
       will be emitted in its place by the returned <code>ConnectableObservable</code>.
      </p>
-    <h4>Sample code</h4>
+    <h4>Sample Code</h4>
     <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);
 
@@ -143,7 +142,7 @@ Completed</pre></code>
       initial item to observers that subscribe after the time of connection.
      </p>
      </figcaption>
-    <h4>Sample code</h4>
+    <h4>Sample Code</h4>
     <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);
 
@@ -187,7 +186,7 @@ Completed</pre></code>
       an item for the <em>last</em> item that was emitted by the source Observable, when that source
       Observable terminates normally.
      </p>
-    <h4>Sample code</h4>
+    <h4>Sample Code</h4>
     <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);
 
@@ -235,7 +234,7 @@ Completed</pre></code>
      ordinary Observable sequence. Each subscription to this new Observable will trigger a
      new subscription to the underlying multicast Observable.
     </p>
-    <h4>Sample code</h4>
+    <h4>Sample Code</h4>
     <div class="code javascript"><pre>
 var subject = new Rx.Subject();
 var source = Rx.Observable.range(0, 3)
@@ -276,7 +275,7 @@ Completed</pre></code>
      forbidden). It is similar to <code>multicast</code> but does not multicast the underlying
      Observable through a Subject:
     </p>
-    <h4>Sample code</h4>
+    <h4>Sample Code</h4>
     <div class="code javascript"><pre>
 var obs = Rx.Observable.range(1, 3);
 

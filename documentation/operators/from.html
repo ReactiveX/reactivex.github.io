@@ -14,21 +14,21 @@ id: from
 <h3>convert various other objects and data types into Observables</h3>
 
 <figure>
-  <img src="images/from.c.png" width="640" alt="From" />
+ <img src="images/from.c.png" width="640" alt="From" />
+ <figcaption><p>
+  When you work with Observables, it can be more convenient if all of the data you mean to work with
+  can be represented as Observables, rather than as a mixture of Observables and other types. This
+  allows you to use a single set of operators to govern the entire lifespan of the data stream.
+ </p><p>
+  Iterables, for example, can be thought of as a sort of synchronous Observable; Futures, as a sort
+  of Observable that always emits only a single item. By explicitly converting such objects to
+  Observables, you allow them to interact as peers with other Observables.
+ </p><p>
+  For this reason, most ReactiveX implementations have methods that allow you to convert
+  certain language-specific objects and data structures into Observables.
+ </p></figcaption>
 </figure>
 
-<p>
- When you work with Observables, it can be more convenient if all of the data you mean to work with
- can be represented as Observables, rather than as a mixture of Observables and other types. This
- allows you to use a single set of operators to govern the entire lifespan of the data stream.
-</p><p>
- Iterables, for example, can be thought of as a sort of synchronous Observable; Futures, as a sort
- of Observable that always emits only a single item. By explicitly converting such objects to
- Observables, you allow them to interact as peers with other Observables.
-</p><p>
- For this reason, most ReactiveX implementations have methods that allow you to convert
- certain language-specific objects and data structures into Observables.
-</p>
 <h2>See Also</h2>
 <ul>
  <li><a href="just.html"><span class="operator">Just</span></a></li>
@@ -179,6 +179,7 @@ id: from
       <li>a second argument to pass into the transforming function as additional context information</li>
       <li>a Scheduler on which this operator should operate</li>
      </ol>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 // Array-like object (arguments) to Observable
 function f() {
@@ -276,6 +277,7 @@ Completed</pre></div>
       <li>a parameter to pass to the callback function</li>
       <li>a tranforming function that takes the return value of the callback function as input and returns an item to be emitted by the resulting Observable</li>
      </ol>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var fs = require('fs'),
     Rx = require('rx');
@@ -315,6 +317,7 @@ Completed</pre></div>
       <li>a parameter to give to the callback function</li>
       <li>a tranforming function that takes the return value of the callback function as input and returns an item to be emitted by the resulting Observable</li>
      </ol>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var fs = require('fs'),
     Rx = require('rx');
@@ -356,6 +359,7 @@ Completed</pre></div>
       from the event handler as parameters and returns an item to be emitted by the resulting
       Observable in place of the event.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 // using a jQuery element
 var input = $('#input');
@@ -410,6 +414,7 @@ Next: foo - baz, bar - quux</pre></div>
       second function removes this set of listeners. In this way you can establish a single
       Observable that emits items representing a variety of events and a variety of target elements.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var input = $('#input');
 
@@ -436,6 +441,7 @@ Next: Clicked!</pre></div>
       The <code>of</code> operator accepts a number of items as parameters, and returns an
       Observable that emits each of these parameters, in order, as its emitted sequence.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var source = Rx.Observable.of(1,2,3);
 

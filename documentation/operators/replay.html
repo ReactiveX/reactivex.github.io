@@ -14,22 +14,21 @@ id: replay
 <h3>ensure that all observers see the same sequence of emitted items, even if they subscribe after the Observable has begun emitting items</h3>
 
 <figure>
-  <img src="images/replay.c.png" width="640" alt="Replay" />
+ <img src="images/replay.c.png" width="640" alt="Replay" />
+ <figcaption><p>
+  A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+  emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+  operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
+  time of your choosing.
+ </p><p>
+  If you apply the <span class="operator">Replay</span> operator to an Observable before you convert
+  it into a connectable Observable, the resulting connectable Observable will always emit the same
+  complete sequence to any future observers, even those observers that subscribe after the
+  connectable Observable has begun to emit items to other subscribed observers.
+ </p></figcaption>
 </figure>
 
-<p>
- A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
- emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
- operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
- time of your choosing.
-</p><p>
- If you apply the <span class="operator">Replay</span> operator to an Observable before you convert
- it into a connectable Observable, the resulting connectable Observable will always emit the same
- complete sequence to any future observers, even those observers that subscribe after the
- connectable Observable has begun to emit items to other subscribed observers.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="connect.html"><span class="operator">Connect</span></a></li>
  <li><a href="publish.html"><span class="operator">Publish</span></a></li>
@@ -176,7 +175,7 @@ id: replay
           discarded without being emitted to subsequent observers</dd>
       <dt><code>scheduler</code></dt><dd>the Scheduler on which this operator will operate</dd></dt>
      </dl>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);
 
@@ -229,7 +228,7 @@ Completed</pre></div>
       <dt><code>scheduler</code></dt><dd>the Scheduler on which this operator will operate</dd></dt>
      </dl>
     </p>
-    <h4>Sample code</h4>
+    <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);
 

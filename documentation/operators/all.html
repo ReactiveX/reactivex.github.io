@@ -14,8 +14,7 @@ id: all
    <h3>determine whether all items emitted by an Observable meet some criteria</h3>
    <figure>
     <img src="images/all.C.png" width="640" alt="All" />
-   </figure>
-   <p>
+    <figcaption><p>
     Pass a predicate function to the <span class="operator">All</span> operator that accepts an item
     emitted by the source Observable and returns a boolean value based on an evaluation of that
     item. <span class="operator">All</span> returns an Observable that emits a single boolean value:
@@ -23,8 +22,10 @@ id: all
     emitted by the source Observable evaluated as <code>true</code> according to this predicate;
     <code>false</code> if any item emitted by the source Observable evaluates as <code>false</code>
     according to this predicate.
-   </p>
-   <h4>See Also:</h4>
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#All"><cite>Introduction to Rx</cite>: All</a></li>
    </ul>
@@ -51,7 +52,7 @@ id: all
        RxGroovy implements this operator as <code>all</code>. It does not by default operate on any
        particular scheduler. The following example shows how to use this operator:
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 numbers = Observable.from([1, 2, 3, 4, 5]);
 
@@ -90,7 +91,7 @@ true</pre></div>
        RxJS implements this operator as <code>every</code>. The following example shows how to use
        this operator:
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.of(1,2,3,4,5)
   .every(function (x) {

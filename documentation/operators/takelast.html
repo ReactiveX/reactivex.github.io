@@ -12,14 +12,16 @@ id: takeLast
 
    <h1>TakeLast</h1>
    <h3>emit only the final <i>n</i> items emitted by an Observable</h3>
+
    <figure>
     <img src="images/takeLast.c.png" width="640" alt="TakeLast" />
+    <figcaption><p>
+     You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that come
+     before them, by modifying the Observable with the <span class="operator">TakeLast</span> operator.
+    </p></figcaption>
    </figure>
-   <p>
-    You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that come
-    before them, by modifying the Observable with the <span class="operator">TakeLast</span> operator.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="last.html"><span class="operator">Last</span></a></li>
     <li><a href="skip.html"><span class="operator">Skip</span></a></li>
@@ -55,6 +57,7 @@ id: takeLast
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
        delay the emission of any item from the source Observable until the source Observable completes.
       </p>
+     <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
@@ -196,7 +199,7 @@ Sequence complete</pre></div>
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
        delay the emission of any item from the source Observable until that Observable completes.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 5)
     .takeLast(3);
@@ -238,7 +241,7 @@ Completed</pre></div>
        emits items on the <code>currentThread</code> Scheduler, but you may also pass in Schedulers of your
        choosing to override these, as an optional second and third parameters, respectively.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.timer(0, 1000)
     .take(10)
@@ -274,7 +277,7 @@ Completed</pre></div>
        <code>takeLast</code> by emitting its items not individually but collected into a single array of items
        that is emitted as a single item.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 5)
     .takeLastBuffer(3);
@@ -305,7 +308,7 @@ Completed</pre></div>
        which is similar to <code>takeLastWithTime</code> except that it emits its items not individually but
        collected into a single array of items that is emitted as a single item.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable
     .timer(0, 1000)

@@ -14,12 +14,12 @@ id: startwith
    <h3>emit a specified sequence of items before beginning to emit the items from the source Observable</h3>
    <figure>
     <img src="images/startWith.C.png" width="640" alt="StartWith" />
+    <figcaption><p>
+     If you want an Observable to emit a specific sequence of items before it begins emitting the
+     items normally expected from it, apply the <span class="operator">StartWith</span> operator to it.
+    </p></figcaption>
    </figure>
    <p>
-    If you want an Observable to emit a specific sequence of items before it begins emitting the
-    items normally expected from it, apply the <span class="operator">StartWith</span> operator to
-    it.
-   </p><p>
     (If, on the other hand, you want to append a sequence of items to the end of those normally
     emitted by an Observable, you want the
     <a href="concat.html"><span class="operator">Concat</span></a> operator.)
@@ -67,7 +67,7 @@ id: startwith
        <code>startWith</code> either in a single Iterable or as a series of one to nine function
        parameters.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 def myObservable = Observable.from([1, 2, 3]);
 

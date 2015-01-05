@@ -14,21 +14,20 @@ id: create
 <h3>create an Observable from scratch by means of a function</h3>
 
 <figure>
-  <img src="images/create.c.png" width="640" alt="Create" />
+ <img src="images/create.c.png" width="640" alt="Create" />
+ <figcaption><p>
+  You can create an Observable from scratch by using the <span class="operator">Create</span>
+  operator. You pass this operator a function that accepts the observer as its parameter. Write this
+  function so that it behaves as an Observable &mdash; by calling the observer’s <code>onNext</code>,
+  <code>onError</code>, and <code>onCompleted</code> methods appropriately.
+ </p><p>
+  A well-formed finite Observable must attempt to call either the observer’s <code>onCompleted</code>
+  method exactly once or its <code>onError</code> method exactly once, and must not thereafter
+  attempt to call any of the observer’s other methods.
+ </p></figcaption>
 </figure>
 
-<p>
- You can create an Observable from scratch by using the <span class="operator">Create</span>
- operator. You pass this operator a function that accepts the observer as its parameter. Write this
- function so that it behaves as an Observable &mdash; by calling the observer’s <code>onNext</code>,
- <code>onError</code>, and <code>onCompleted</code> methods appropriately.
-</p><p>
- A well-formed finite Observable must attempt to call either the observer’s <code>onCompleted</code>
- method exactly once or its <code>onError</code> method exactly once, and must not thereafter
- attempt to call any of the observer’s other methods.
-</p>
-
-<h4>See also:</h4>
+<h4>See Also</h4>
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableCreate"><cite>Introduction to Rx</cite>: Create</a></li>
 </ul>
@@ -55,7 +54,7 @@ id: create
      <figcaption><p>
       RxGroovy implements this operator as <code>create</code>.
      </p>
-     <h4>Sample code</h4>
+     <h4>Sample Code</h4>
      <div class="code groovy"><pre>
 def myObservable = Observable.create({ aSubscriber ->
   try {
@@ -112,6 +111,7 @@ def myObservable = Observable.create({ aSubscriber ->
       RxJS implements this operator as <code>create</code> (there is also an alternate name for the
       same operator: <code>createWithDisposable</code>).
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 /* Using a function */
 var source = Rx.Observable.create(function (observer) {

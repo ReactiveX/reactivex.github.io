@@ -13,17 +13,18 @@ id: retry
    <h1>Retry</h1>
    <h3>if a source Observable emits an error, resubscribe to it in the hopes that it will complete
        without error</h3>
+
    <figure>
     <img src="images/retry.C.png" width="640" alt="Retry" />
+    <figcaption><p>
+     The <span class="operator">Retry</span> operator responds to an <code>onError</code>
+     notification from the source Observable by not passing that call through to its observers, but
+     instead by resubscribing to the source Observable and giving it another opportunity to complete
+     its sequence without error. <span class="operator">Retry</span> always passes
+     <code>onNext</code> notifications through to its observers, even from sequences that terminate
+     with an error, so this can cause duplicate emissions (as shown in the diagram above).
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">Retry</span> operator responds to an <code>onError</code>
-    notification from the source Observable by not passing that call through to its observers, but
-    instead by resubscribing to the source Observable and giving it another opportunity to complete
-    its sequence without error. <span class="operator">Retry</span> always passes
-    <code>onNext</code> notifications through to its observers, even from sequences that terminate
-    with an error, so this can cause duplicate emissions (as shown in the diagram above).
-   </p>
 
    <h4>See Also</h4>
    <ul>
@@ -152,7 +153,7 @@ id: retry
        <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and there
        is also a version that accepts a Scheduler as a parameter.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code java"><pre>
 Observable.create((Subscriber&lt;? super String&gt; s) -&gt; {
       System.out.println("subscribing");

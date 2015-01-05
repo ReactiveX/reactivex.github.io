@@ -12,14 +12,16 @@ id: take
 
    <h1>Take</h1>
    <h3>emit only the first <i>n</i> items emitted by an Observable</h3>
+
    <figure>
     <img src="images/take.c.png" width="640" alt="Take" />
+    <figcaption><p>
+     You can emit only the first <i>n</i> items emitted by an Observable and then complete while ignoring the
+     remainder, by modifying the Observable with the <span class="operator">Take</span> operator.
+    </p></figcaption>
    </figure>
-   <p>
-    You can emit only the first <i>n</i> items emitted by an Observable and then complete while ignoring the
-    remainder, by modifying the Observable with the <span class="operator">Take</span> operator.
-   </p>
-   <h4>See Also:</h4>
+
+   <h4>See Also</h4>
    <ul>
     <li><a href="first.html"><span class="operator">First</span></a></li>
     <li><a href="skip.html"><span class="operator">Skip</span></a></li>
@@ -58,6 +60,7 @@ id: take
        exception or invoke <code>onError</code>, but will merely emit this same fewer number of items before it
        completes.
       </p>
+     <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8]);
 
@@ -137,7 +140,7 @@ Sequence complete</pre></div>
       <figcaption><p>
        RxJS implements the <code>take</code> operator.
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 5)
     .take(3);

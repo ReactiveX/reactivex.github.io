@@ -62,6 +62,7 @@ id: empty-never-throw
      </p><p>
       These operators do not operate by default on any particular scheduler.
      </p>
+     <h4>Sample Code</h4>
      <div class="code groovy"><pre>
 println("*** empty() ***");
 Observable.empty().subscribe(
@@ -120,6 +121,7 @@ error: error - badness
       RxJS implements these operators as <code>empty</code>, <code>never</code>, and
       <code>throw</code> (alias <code>throwError</code>).
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var source = Rx.Observable.empty();
 

@@ -14,15 +14,16 @@ id: start
 <h3>create an Observable that emits the return value of a function-like directive</h3>
 
 <figure>
-  <img src="images/start.c.png" width="640" alt="Start" />
+ <img src="images/start.c.png" width="640" alt="Start" />
+ <figcaption><p>
+  There are a number of ways that programming languages have for obtaining values as the result of
+  calculations, with names like functions, futures, actions, callables, runnables, and so forth.
+  The operators grouped here under the <span class="operator">Start</span> operator category
+  make these things behave like Observables so that they can be chained with other Observables in
+  an Observable cascade
+ </p></figcaption>
 </figure>
-<p>
- There are a number of ways that programming languages have for obtaining values as the result of
- calculations, with names like functions, futures, actions, callables, runnables, and so forth.
- The operators grouped here under the <span class="operator">Start</span> operator category
- make these things behave like Observables so that they can be chained with other Observables in
- an Observable cascade
-</p>
+
 <h2>See Also</h2>
 <ul>
  <li><a href="from.html"><span class="operator">From</span></a></li>
@@ -299,6 +300,7 @@ id: start
       return value will be the emission from the resulting Observable, and, optionally, any
       additional parameter to that function and a Scheduler on which to run the function.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var context = { value: 42 };
 
@@ -346,6 +348,7 @@ Completed</pre></div>
       parameters are optional; if you do not specify a Scheduler, the <code>timeout</code> Scheduler
       will be used by default.
      </p>
+     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var source = Rx.Observable.startAsync(function () {
     return RSVP.Promise.resolve(42);

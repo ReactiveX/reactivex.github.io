@@ -14,27 +14,27 @@ id: catch
    <h3>recover from an onError notification by continuing the sequence without error</h3>
    <figure>
     <img src="images/Catch.png" width="640" alt="Catch" />
+    <figcaption><p>
+     The <span class="operator">Catch</span> operator intercepts an <code>onError</code>
+     notification from the source Observable and, instead of passing it through to any
+     observers, replaces it with some other item or sequence of items, potentially allowing
+     the resulting Observable to terminate normally or not to terminate at all.
+    </p><p>
+     There are several variants of the <span class="operator">Catch</span> operator, and a
+     variety of names used by different ReactiveX implementations to describe this operation,
+     as you can see in the sections below.
+    </p><p>
+     In some ReactiveX implementations, there is an operator called something like
+     &ldquo;OnErrorResumeNext&rdquo; that behaves like a <span class="operator">Catch</span>
+     variant: specifically reacting to an <code>onError</code> notification from the source
+     Observable. In others, there is an operator with that name that behaves more like a
+     <span class="operator">Concat</span> variant: performing the concatination operation
+     regardless of whether the source Observable terminates normally or with an error. This is
+     unfortunate and confusing, but something we have to live with.
+    </p></figcaption>
    </figure>
-   <p>
-    The <span class="operator">Catch</span> operator intercepts an <code>onError</code>
-    notification from the source Observable and, instead of passing it through to any
-    observers, replaces it with some other item or sequence of items, potentially allowing
-    the resulting Observable to terminate normally or not to terminate at all.
-   </p><p>
-    There are several variants of the <span class="operator">Catch</span> operator, and a
-    variety of names used by different ReactiveX implementations to describe this operation,
-    as you can see in the sections below.
-   </p><p>
-    In some ReactiveX implementations, there is an operator called something like
-    &ldquo;OnErrorResumeNext&rdquo; that behaves like a <span class="operator">Catch</span>
-    variant: specifically reacting to an <code>onError</code> notification from the source
-    Observable. In others, there is an operator with that name that behaves more like a
-    <span class="operator">Concat</span> variant: performing the concatination operation
-    regardless of whether the source Observable terminates normally or with an error. This is
-    unfortunate and confusing, but something we have to live with.
-   </p>
 
-   <h4>See Also:</h4>
+   <h4>See Also</h4>
    <ul>
     <li><a href="concat.html"><span class="operator">Concat</span></a></li>
     <li><a href="retry.html"><span class="operator">Retry</span></a></li>
@@ -62,6 +62,7 @@ id: catch
        if the exception from the <code>onError</code> notification is an instance of the class
        object. In other words:
       </p>
+      <h4>Sample Code</h4>
       <div class="code clojure"><pre>
 (->> my-observable
   (catch* IllegalArgumentException
@@ -107,6 +108,7 @@ id: catch
        specified item and invoke the observer&#8217;s <code>onCompleted</code> method, as shown in
        the following sample code:
       </p>
+      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 def myObservable = Observable.create({ aSubscriber ->
   if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Four');
@@ -141,7 +143,7 @@ Sequence complete</pre></div>
        rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
        instead begin mirroring a second, backup Observable, as shown in the following sample code:
       </p>
-      <h4>Sample code:</h4>
+      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
 def myObservable = Observable.create({ aSubscriber ->
   if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Three');

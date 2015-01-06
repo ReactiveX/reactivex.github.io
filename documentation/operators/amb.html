@@ -91,15 +91,9 @@ var source = Rx.Observable.amb(
 );
 
 var subscription = source.subscribe(
-    function (x) {
-        console.log('Next: ' + x);
-    },
-    function (err) {
-        console.log('Error: ' + err);
-    },
-    function () {
-        console.log('Completed');
-    });</pre></div>
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
       <div class="output"><pre>
 Next: bar
 Completed</pre></div>
@@ -111,15 +105,9 @@ var source = Rx.Observable.amb(
 );
 
 var subscription = source.subscribe(
-    function (x) {
-        console.log('Next: ' + x);
-    },
-    function (err) {
-        console.log('Error: ' + err);
-    },
-    function () {
-        console.log('Completed');
-    });</pre></div>
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
       <div class="output"><pre>
 Next: foo
 Completed</pre></div></figcaption>

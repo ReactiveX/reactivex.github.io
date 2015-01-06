@@ -134,7 +134,7 @@ Sequence complete</pre></div>
      </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJS take %}
+  {% lang_operator RxJS take takeUntilWithTime %}
      <figure>
       <img src="images/take.png" width="640" alt="take" />
       <figcaption><p>
@@ -175,6 +175,52 @@ Completed</pre></div>
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
+     <figure>
+      <img src="images/takeUntilWithTime.png" width="640" alt="takeUntilWithTime" />
+      <figcaption><p>
+       RxJS also implements a <code>takeUntilWithTime</code> operator, which is like <code>take</code>
+       except that rather than taking a particular quantity of items, it takes all of the items that are
+       emitted during an initial period of time. You establish this period of by passing in a parameter to
+       <code>takeUntilWithTime</code>, in either of these formats:
+      </p>
+      <dl>
+       <dt>a number</dt>
+        <dd>mirrors items from the source Observable until this many milliseconds have passed since the Observable was subscribed to</dd>
+       <dt>a <code>Date</code></dt>
+        <dd>mirrors items from the source Observable until this absolute time</dd>
+      </dl>
+      <p>
+       You may also, optionally, pass in a Scheduler as a second parameter, and the timer will operate on that
+       Scheduler (<code>takeUntilWithTime</code> uses the <code>timeout</code> Scheduler by default).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .takeUntilWithTime(5000);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Completed</pre></div>
+      <p>
+       <code>takeUntilWithTime</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
   {% endlang_operator %}
 
   {% lang_operator RxKotlin take %}

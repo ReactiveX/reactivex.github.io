@@ -83,7 +83,7 @@ id: skipUntil
       <figcaption><p>
        RxJS implements the <code>skipUntil</code> operator. You can pass it either an Observable or a
        <code>Promise</code> that it will monitor for an item that triggers <code>skipUntil</code> to begin
-       mirroring the source Observale..
+       mirroring the source Observable.
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
@@ -113,7 +113,8 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <p>
-      There is also a <code>skipUntilWithTime</code> operator, but this is described on the
+      There is also a <code>skipUntilWithTime</code> operator to which you can pass an absolute time or an
+      initial duration in place of an Observable, but this is described on the
       <a href="skip.html"><span class="operator">Skip</span></a> operator page.
      </p>
   {% endlang_operator %}

@@ -115,19 +115,19 @@ The real power comes with the “reactive extensions” (hence “Rx”) — ope
 
 These Rx operators allow you to compose asynchronous sequences together in a declarative manner with all the efficiency benefits of callbacks but without the drawbacks of nesting callback handlers that are typically associated with asynchronous systems.
 
-This documentation groups information about [the various operators]({{ site.url }}/observables/alphabetical.html) and examples of their usage into the following pages (these are also listed in the sidebar):
+This documentation groups information about [the various operators]({{ site.url }}/documentation/alphabetical.html) and examples of their usage into the following pages (these are also listed in the sidebar):
 
-  * [Creating]({{ site.url }}/observables/creating.html)
-  * [Transforming]({{ site.url }}/observables/transforming.html)
-  * [Filtering]({{ site.url }}/observables/filtering.html)
-  * [Combining]({{ site.url }}/observables/combining.html)
-  * [Error Handling]({{ site.url }}/observables/error-handling.html)
-  * [Utility]({{ site.url }}/observables/utilities.html)
-  * [Conditional and Boolean]({{ site.url }}/observables/conditionals.html)
-  * [Mathematical and Aggregate]({{ site.url }}/observables/mathematical.html)
-  * [Asynchronous Conversion]({{ site.url }}/observables/async.html)
-  * [Connectable Observables]({{ site.url }}/observables/connectable.html)
-  * [Blocking Observables]({{ site.url }}/observables/blocking.html)
-  * [String Observables]({{ site.url }}/observables/string.html)
+  * [Creating]({{ site.url }}/documentation/creating.html)
+  * [Transforming]({{ site.url }}/documentation/transforming.html)
+  * [Filtering]({{ site.url }}/documentation/filtering.html)
+  * [Combining]({{ site.url }}/documentation/combining.html)
+  * [Error Handling]({{ site.url }}/documentation/error-handling.html)
+  * [Utility]({{ site.url }}/documentation/utilities.html)
+  * [Conditional and Boolean]({{ site.url }}/documentation/conditionals.html)
+  * [Mathematical and Aggregate]({{ site.url }}/documentation/mathematical.html)
+  * [Asynchronous Conversion]({{ site.url }}/documentation/async.html)
+  * [Connectable Observables]({{ site.url }}/documentation/connectable.html)
+  * [Blocking Observables]({{ site.url }}/documentation/blocking.html)
+  * [String Observables]({{ site.url }}/documentation/string.html)
 
 These pages include information about some operators that are not part of the core of RxJava but are implemented in a variety of contributed modules that you must include separately as part of your project.

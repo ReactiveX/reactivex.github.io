@@ -6,21 +6,19 @@ id: scheduler
 
 #Scheduler
 
-If you want to introduce multithreading into your cascade of Observable operators, you can do so by instructing those operators (or particular Observables) to operate on particular Schedulers.
+If you want to introduce multithreading into your cascade of Observable operators, you can do so by instructing those operators (or particular Observables) to operate on particular <dfn>Schedulers</dfn>.
 
-Many of the RxJava Observable operators have varieties that take a Scheduler as a parameter. These instruct the operator to do some or all of its work on a particular Scheduler.
+Some ReactiveX Observable operators have variants that take a Scheduler as a parameter. These instruct the operator to do some or all of its work on a particular Scheduler.
 
-You can make an Observable act on a particular Scheduler by means of the <a href="https://github.com/Netflix/RxJava/wiki/Observable-Utility-Operators#wiki-observeon">`observeOn`</a> or <a href="https://github.com/Netflix/RxJava/wiki/Observable-Utility-Operators#wiki-subscribeon">`subscribeOn`</a> operators.  `observeOn` instructs an Observable to call its observer's `onNext`, `onError`, and `onCompleted` methods on a particular Scheduler; `subscribeOn` takes this a step further and instructs the Observable to do all of its processing (including the sending of items and notifications to observers) on a particular Scheduler.
-
-You can also split an operator that works on an Observable onto multiple threads with the <a href="https://github.com/Netflix/RxJava/wiki/Observable-Utility-Operators#wiki-parallel">`parallel`</a> operator.
+You can make an Observable act on a particular Scheduler by means of the <a href="operators/observeon.html"><span class="operator">ObserveOn</span></a> or <a href="operators/subscribeon.html"><span class="operator">SubscribeOn</span></a> operators.  <span class="operator">ObserveOn</span> instructs an Observable to call its observer&#8217;s <code>onNext</code>, <code>onError</code>, and <code>onCompleted</code> methods on a particular Scheduler; <span class="operator">SubscribeOn</span> takes this a step further and instructs the Observable to do all of its processing (including the sending of items and notifications to observers) on a particular Scheduler.
 
 #### See also:
-* <a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html">Intro to Rx: Scheduling and Threading</a>
-* <a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers">Rx Workshop: Schedulers</a>
+* <a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html"><cite>Introduction to Rx</cite>: Scheduling and Threading</a>
+* <a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers"><cite>Rx Workshop</cite>: Schedulers</a>
 
 ## Varieties of Scheduler
 
-You obtain a Scheduler from the factory methods described in the `Schedulers` class. The following table shows the varieties of Scheduler that are available to you by means of these methods:
+You obtain a Scheduler from the factory methods described in the <code>Schedulers</code> class. The following table shows the varieties of Scheduler that are available to you by means of these methods in the RxJava implementation of ReactiveX:
 
 <table class="table">
  <thead>
@@ -28,7 +26,7 @@ You obtain a Scheduler from the factory methods described in the `Schedulers` cl
  </thead>
  <tbody>
   <tr><td><code>Schedulers.computation(&#8239;)</code></td><td>meant for computational work such as event-loops and callback processing; do not use this scheduler for I/O (use <code>Schedulers.io(&#8239;)</code> instead)</td></tr>
-  <tr><td><code>Schedulers.from(executor)</code></td><td>uses the specified `Executor` as a Scheduler</td></tr>
+  <tr><td><code>Schedulers.from(executor)</code></td><td>uses the specified <code>Executor</code> as a Scheduler</td></tr>
   <tr><td><code>Schedulers.immediate(&#8239;)</code></td><td>schedules work to begin immediately in the current thread</td></tr>
   <tr><td><code>Schedulers.io(&#8239;)</code></td><td>meant for I/O-bound work such as asynchronous performance of blocking I/O, this scheduler is backed by a thread-pool that will grow as needed; for ordinary computational work, switch to <code>Schedulers.computation(&#8239;)</code></td></tr>
   <tr><td><code>Schedulers.newThread(&#8239;)</code></td><td>creates a new thread for each unit of work</td></tr>
@@ -90,7 +88,7 @@ Some Observable operators in RxJava have alternate forms that allow you to set w
 
 Aside from passing these Schedulers in to RxJava Observable operators, you can also use them to schedule your own work on Subscriptions. The following example uses the `schedule( )` method of the `Scheduler` class to schedule work on the `newThread` Scheduler:
 
-```java
+<div class="code java"><pre>
 worker = Schedulers.newThread().createWorker();
 worker.schedule(new Action0() {
 
@@ -102,10 +100,12 @@ worker.schedule(new Action0() {
 });
 // some time later...
 worker.unsubscribe();
-```
+</pre></div>
+
 ### Recursive Schedulers
 To schedule recursive calls, you can use `schedule( )` and then `schedule(this)` on the Worker object:
-```java
+
+<div class="code java"><pre>
 worker = Schedulers.newThread().createWorker();
 worker.schedule(new Action0() {
 
@@ -119,11 +119,12 @@ worker.schedule(new Action0() {
 });
 // some time later...
 worker.unsubscribe();
-```
+</pre></div>
 
 ### Checking or Setting Unsubscribed Status
 Objects of the `Worker` class implement the `Subscription` interface, with its `isUnsubscribed( )` and `unsubscribe( )` methods, so you can stop work when a subscription is cancelled, or you can cancel the subscription from within the scheduled task:
-```java
+
+<div class="code java"><pre>
 Worker worker = Schedulers.newThread().createWorker();
 Subscription mySubscription = worker.schedule(new Action0() {
 
@@ -136,18 +137,23 @@ Subscription mySubscription = worker.schedule(new Action0() {
     }
 
 });
-```
+</pre></div>
+
 The `Worker` is also a `Subscription` and so you can (and should, eventually) call its `unsubscribe( )` method to signal that it can halt work and release resources:
-```java
+
+<div class="code java"><pre>
 worker.unsubscribe();
-```
+</pre></div>
 
 ### Delayed and Periodic Schedulers
 You can also use a version of `schedule( )` that delays your action on the given Scheduler until a certain timespan has passed. The following example schedules `someAction` to be performed on `someScheduler` after 500ms have passed according to that Scheduler's clock:
-```java
+
+<div class="code java"><pre>
 someScheduler.schedule(someAction, 500, TimeUnit.MILLISECONDS);
-```
+</pre></div>
+
 Another `Scheduler` method allows you to schedule an action to take place at regular intervals. The following example schedules `someAction` to be performed on `someScheduler` after 500ms have passed, and then every 250ms thereafter:
-```java
+
+<div class="code java"><pre>
 someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
-```
+</pre></div>

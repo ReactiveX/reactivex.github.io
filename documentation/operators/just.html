@@ -91,6 +91,30 @@ def observableThatEmitsSeveralNumbers = Observable.just( 1, 2, 3, 4, 5 );</pre><
      </p><p>
       <code>just</code> does not by default operate on any particular scheduler.
      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3)
+          .subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Sequence complete.</pre></div>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#just(T)"><code>just(item)</code></a> (there are also versions that accept between two and nine items as parameters)</li>
      </ul></figcaption>

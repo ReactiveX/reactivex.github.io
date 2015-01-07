@@ -79,6 +79,35 @@ Sequence complete</pre></div></figcaption>
       <figcaption><p>
        RxJava implements this operator as <code>filter</code>.
       </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3, 4, 5)
+          .filter(new Func1<Integer, Boolean>() {
+              @Override
+              public Boolean call(Integer item) {
+                return( item < 4 );
+              }
+          }).subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Sequence complete.</pre></div>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#filter(rx.functions.Func1)"><code>filter(Func1)</code></a></li>
       </ul></figcaption>

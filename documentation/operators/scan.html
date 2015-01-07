@@ -103,6 +103,37 @@ Sequence complete</pre></div>
       <figcaption><p>
        RxJava implements this operator as <code>scan</code>.
       </p>
+      <h4>Sample Code</h4>
+      <div class="code java"><pre>
+Observable.just(1, 2, 3, 4, 5)
+    .scan(new Func2<Integer, Integer, Integer>() {
+        @Override
+        public Integer call(Integer sum, Integer item) {
+            return sum + item;
+        }
+    }).subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+      <div class="output"><pre>
+Next: 1
+Next: 3
+Next: 6
+Next: 10
+Next: 15
+Sequence complete.</pre></div>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#scan(rx.functions.Func2)"><code>scan(Func2)</code></a></li>
       </ul></figcaption>

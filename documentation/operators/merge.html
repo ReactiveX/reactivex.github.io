@@ -214,6 +214,36 @@ Sequence complete</pre></div>
      </p>
      <figure>
       <img src="images/merge.png" width="640" alt="merge" />
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable<Integer> odds = Observable.just(1, 3, 5);
+Observable<Integer> evens = Observable.just(2, 4, 6);
+
+Observable.merge(odds, evens)
+          .subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 3
+Next: 5
+Next: 2
+Next: 4
+Next: 6
+Sequence complete.</pre></div>
       <figcaption><ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable)"><code>merge(Iterable)</code></a></li>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable, int)"><code>merge(Iterable,int)</code></a></li>

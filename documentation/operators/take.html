@@ -109,7 +109,34 @@ Sequence complete</pre></div>
        than <i>n</i> items before completing, the new, <code>take</code>-modified Observable will not throw an
        exception or invoke <code>onError</code>, but will merely emit this same fewer number of items before it
        completes.
-      </p><p>
+      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3, 4, 5, 6, 7, 8)
+          .take(4)
+          .subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Sequence complete.</pre></div>
+      <p>
        This variant of <code>take</code> does not by default operate on any particular Scheduler.
       </p>
       <ul>

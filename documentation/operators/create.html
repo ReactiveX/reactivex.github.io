@@ -95,7 +95,46 @@ def myObservable = Observable.create({ aSubscriber ->
       It is good practice to check the observer’s <code>isUnsubscribed</code> state from within the
       function you pass to <code>create</code> so that your Observable can stop emitting items or
       doing expensive calculations when there is no longer an interested observer.
-     </p><p>
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.create(new Observable.OnSubscribe<Integer>() {
+    @Override
+    public void call(Subscriber<? super Integer> observer) {
+        try {
+            if (!observer.isUnsubscribed()) {
+                for (int i = 1; i < 5; i++) {
+                    observer.onNext(i);
+                }
+                observer.onCompleted();
+            }
+        } catch (Exception e) {
+            observer.onError(e);
+        }
+    }
+ } ).subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Sequence complete.</pre></div>
+     <p>
       <code>create</code> does not by default operate on any particular Scheduler.
      </p>
      <ul>

@@ -10,12 +10,14 @@ In ReactiveX an <dfn>observer</dfn> <dfn>subscribes</dfn> to an <dfn>Observable<
 
 This page explains what the reactive pattern is and what Observables and observers are (and how observers subscribe to Observables). Subsequent child pages (as shown in sidebar) show how you use the variety of Observable operators to link Observables together and change their behaviors.
 
-> This documentation accompanies its explanations with "marble diagrams." Here is how marble diagrams represent Observables and transformations of Observables:
-<img src="{{ site.url }}/assets/operators/legend.png" width="640" height="301" />​
+> This documentation accompanies its explanations with &ldquo;marble diagrams.&rdquo; Here is how marble diagrams represent Observables and transformations of Observables:
+<img src="{{ site.url }}/assets/operators/legend.png" width="640" height="301" />
 
 #### see also
 * <a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Introduction"><cite>Rx Workshop</cite>: Introduction</a>
 * <a href="http://www.introtorx.com/Content/v1.0.10621.0/02_KeyTypes.html#IObservable"><cite>Introduction to Rx</cite>: IObservable</a>
+* <a href="http://docs.couchbase.com/developer/java-2.0/observables.html"><cite>Mastering observables</cite></a> (from the Couchbase Server documentation)
+* <a href="https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877"><cite>2 minute introduction to Rx</cite></a> by Andre Staltz (&ldquo;Think of an Observable as an asynchronous immutable array.&rdquo;)
 
 # Background
 

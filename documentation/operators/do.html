@@ -45,7 +45,7 @@ id: do
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy doOnCompleted doOnEach doOnError doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+  {% lang_operator RxGroovy doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
     <p>
      RxGroovy has several <span class="operator">Do</span> variants.
     </p>
@@ -154,7 +154,7 @@ Finally</pre></div>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava doOnCompleted doOnEach doOnError doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+  {% lang_operator RxJava doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
     <p>
      RxJava has several <span class="operator">Do</span> variants.
     </p>
@@ -179,6 +179,35 @@ Finally</pre></div>
       <code>Action</code> that you pass it as a parameter does not accept a <code>Notification</code> but
       instead simply accepts the emitted item.
      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3)
+          .doOnNext(new Action1<Integer>() {
+          @Override
+          public void call(Integer item) {
+            if( item > 1 ) {
+              throw new RuntimeException( "Item exceeds maximum value" );
+            }
+          }
+        }).subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Error: Item exceeds maximum value</pre></div>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnNext(rx.functions.Action1)"><code>doOnNext(Action1)</code></a></li>
      </ul></figcaption>
@@ -433,7 +462,7 @@ Finally</pre></div>
     </ul>
   {% endlang_operator %}
 
-  {% lang_operator RxKotlin doOnCompleted doOnEach doOnError doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+  {% lang_operator RxKotlin doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>
@@ -457,7 +486,7 @@ Finally</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala doOnCompleted doOnEach doOnError doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+  {% lang_operator RxScala doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

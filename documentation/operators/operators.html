@@ -69,10 +69,6 @@
     <dd class="sub"><dl>
      <dt>that was returned from a function called at subscribe-time</dt>
       <dd><a href="start.html">Start</a></dd>
-      <dd class="sub"><dl>
-       <dt>anew for each subscriber</dt>
-        <dd><a href="toAsync.html">ToAsync</a></dd>
-      </dl></dd>
      <dt>that was returned from an <code>Action</code>, <code>Callable</code>, <code>Runnable</code>, or something of that sort, called at subscribe-time</dt>
       <dd><a href="from.html">From</a></dd>
      <dt>after a specified delay</dt>
@@ -84,14 +80,8 @@
     <dd><a href="start.html">Start</a></dd>
    <dt>that obtains its sequence from a Future</dt>
     <dd><a href="from.html">From</a></dd>
-   <dt>that obtains its sequence from an <code>Action</code> called periodically</dt>
-    <dd><a href="runAsync.html">RunAsync</a></dd>
    <dt>that emits a sequence of items repeatedly</dt>
     <dd><a href="repeat.html">Repeat</a></dd>
-    <dd class="sub"><dl>
-     <dt>as long as a predicate remains true</dt>
-      <dd><a href="whileDo.html">WhileDo</a></dd>
-    </dl></dd>
    <dt>from scratch, with custom logic</dt>
     <dd><a href="create.html">Create</a></dd>
    <dt>for each observer that subscribes</dt>
@@ -107,9 +97,9 @@
       </dl></dd>
     </dl></dd>
    <dt>that completes without emitting items</dt>
-    <dd><a href="empty.html">Empty</a></dd>
+    <dd><a href="empty-never-throw.html">Empty</a></dd>
    <dt>that does nothing at all</dt>
-    <dd><a href="never.html">Never</a></dd>
+    <dd><a href="empty-never-throw.html">Never</a></dd>
   </dl></dd>
 
  <dt>I want to create an Observable by combining other Observables</dt>
@@ -123,13 +113,9 @@
      <dt>whenever <em>each</em> of the Observables has emitted a new item</dt>
       <dd><a href="zip.html">Zip</a></dd>
      <dt>whenever <em>any</em> of the Observables has emitted a new item</dt>
-      <dd><a href="combineLatest.html">CombineLatest</a></dd>
+      <dd><a href="combinelatest.html">CombineLatest</a></dd>
      <dt>whenever an item is emitted by one Observable in a window defined by an item emitted by another</dt>
       <dd><a href="join.html">Join</a></dd>
-      <dd class="sub"><dl>
-       <dt>based on an Observable that emits all items that have fallen in such a window</dt>
-        <dd><a href="groupJoin.html">GroupJoin</a></dd>
-      </dl></dd>
      <dt>by means of <code>Pattern</code> and <code>Plan</code> intermediaries</dt>
       <dd><a href="and-then-when.html">And/Then/When</a></dd>
     </dl></dd>
@@ -142,10 +128,10 @@
    <dt>one at a time with a function</dt>
     <dd><a href="map.html">Map</a></dd>
    <dt>by emitting all of the items emitted by corresponding Observables</dt>
-    <dd><a href="flatMap.html">FlatMap</a></dd>
+    <dd><a href="flatmap.html">FlatMap</a></dd>
     <dd class="sub"><dl>
      <dt>one Observable at a time, in the order they are emitted</dt>
-      <dd><a href="concatMap.html">ConcatMap</a></dd>
+      <dd><a href="flatmap.html">ConcatMap</a></dd>
     </dl></dd>
    <dt>based on all of the items that preceded them</dt>
     <dd><a href="scan.html">Scan</a></dd>
@@ -161,35 +147,35 @@
  <dt>I want to transform items <em>and</em> notifications from an Observable into items and reemit them</dt>
   <dd class="sub"><dl>
    <dt>by wrapping them in <code>Notification</code> objects</dt>
-    <dd><a href="materialize.html">Materialize</a></dd>
+    <dd><a href="materialize-dematerialize.html">Materialize</a></dd>
     <dd class="sub"><dl>
      <dt>which I can then unwrap again with</dt>
-      <dd><a href="dematerialize.html">Dematerialize</a></dd>
+      <dd><a href="materialize-dematerialize.html">Dematerialize</a></dd>
     </dl></dd>
   </dl></dd>
 
  <dt>I want to ignore all items emitted by an Observable and only pass along its completed/error notification</dt>
-  <dd><a href="ignoreElements.html">IgnoreElements</a></dd>
+  <dd><a href="ignoreelements.html">IgnoreElements</a></dd>
 
  <dt>I want to mirror an Observable but prefix items to its sequence</dt>
-  <dd><a href="startWith.html">StartWith</a></dd>
+  <dd><a href="startwith.html">StartWith</a></dd>
   <dd class="sub"><dl>
    <dt>only if its sequence is empty</dt>
-    <dd><a href="defaultIfEmpty.html">DefaultIfEmpty</a></dd>
+    <dd><a href="defaultifempty.html">DefaultIfEmpty</a></dd>
   </dl></dd>
 
  <dt>I want to collect items from an Observable and reemit them as buffers of items</dt>
   <dd><a href="buffer.html">Buffer</a></dd>
   <dd class="sub"><dl>
    <dt>containing only the last items emitted</dt>
-    <dd><a href="takeLast.html">TakeLast</a></dd>
+    <dd><a href="takelast.html">TakeLastBuffer</a></dd>
   </dl></dd>
 
  <dt>I want to split one Observable into multiple Observables</dt>
   <dd><a href="window.html">Window</a></dd>
   <dd class="sub"><dl>
    <dt>so that similar items end up on the same Observable</dt>
-    <dd><a href="groupBy.html">GroupBy</a></dd>
+    <dd><a href="groupby.html">GroupBy</a></dd>
   </dl></dd>
 
  <dt>I want to retrieve a particular item emitted by an Observable:</dt>
@@ -197,7 +183,7 @@
    <dt>the last item emitted before it completed</dt>
     <dd><a href="last.html">Last</a></dd>
    <dt>the sole item it emitted</dt>
-    <dd><a href="single.html">Single</a></dd>
+    <dd><a href="first.html">Single</a></dd>
    <dt>the first item it emitted</dt>
     <dd><a href="first.html">First</a></dd>
   </dl></dd>
@@ -213,33 +199,33 @@
    <dt>that is, only the last item</dt>
     <dd><a href="last.html">Last</a></dd>
    <dt>that is, only item <i>n</i></dt>
-    <dd><a href="elementAt.html">ElementAt</a></dd>
+    <dd><a href="elementat.html">ElementAt</a></dd>
    <dt>that is, only those items after the first items</dt>
     <dd class="sub"><dl>
      <dt>that is, after the first <i>n</i> items</dt>
       <dd><a href="skip.html">Skip</a></dd>
      <dt>that is, until one of those items matches a predicate</dt>
-      <dd><a href="skipWhile.html">SkipWhile</a></dd>
+      <dd><a href="skipwhile.html">SkipWhile</a></dd>
      <dt>that is, after an initial period of time</dt>
       <dd><a href="skip.html">Skip</a></dd>
      <dt>that is, after a second Observable emits an item</dt>
-      <dd><a href="skipUntil.html">SkipUntil</a></dd>
+      <dd><a href="skipuntil.html">SkipUntil</a></dd>
     </dl></dd>
    <dt>that is, those items except the last items</dt>
     <dd class="sub"><dl>
      <dt>that is, except the last <i>n</i> items</dt>
-      <dd><a href="skipLast.html">SkipLast</a></dd>
+      <dd><a href="skiplast.html">SkipLast</a></dd>
      <dt>that is, until one of those items matches a predicate</dt>
-      <dd><a href="takeWhile.html">TakeWhile</a></dd>
+      <dd><a href="takewhile.html">TakeWhile</a></dd>
      <dt>that is, except items emitted during a period of time before the source completes</dt>
-      <dd><a href="skipLast.html">SkipLast</a></dd>
+      <dd><a href="skiplast.html">SkipLast</a></dd>
      <dt>that is, except items emitted after a second Observable emits an item</dt>
-      <dd><a href="takeUntil.html">TakeUntil</a></dd>
+      <dd><a href="takeuntil.html">TakeUntil</a></dd>
     </dl></dd>
    <dt>by sampling the Observable periodically</dt>
     <dd><a href="sample.html">Sample</a></dd>
    <dt>by only emitting items that are not followed by other items within some duration</dt>
-    <dd><a href="throttle.html">Throttle</a></dd>
+    <dd><a href="debounce.html">Debounce</a></dd>
    <dt>by suppressing items that are duplicates of already-emitted items</dt>
     <dd><a href="distinct.html">Distinct</a></dd>
     <dd class="sub"><dl>
@@ -260,9 +246,9 @@
    <dt>and emit a single boolean indicating if the Observable emitted <em>any</em> item (that passes some test)</dt>
     <dd><a href="contains.html">Contains</a></dd>
    <dt>and emit a single boolean indicating if the Observable emitted <em>no</em> items</dt>
-    <dd><a href="isEmpty.html">IsEmpty</a></dd>
+    <dd><a href="contains.html">IsEmpty</a></dd>
    <dt>and emit a single boolean indicating if the sequence is identical to one emitted by a second Observable</dt>
-    <dd><a href="sequenceEqual.html">SequenceEqual</a></dd>
+    <dd><a href="sequenceequal.html">SequenceEqual</a></dd>
    <dt>and emit the average of all of their values</dt>
     <dd><a href="average.html">Average</a></dd>
    <dt>and emit the sum of all of their values</dt>
@@ -281,17 +267,17 @@
   <dd><a href="to.html">To</a></dd>
 
  <dt>I want an operator to operate on a particular Scheduler</dt>
-  <dd><a href="observeOn.html">SubscribeOn</a></dd>
+  <dd><a href="subscribeon.html">SubscribeOn</a></dd>
   <dd class="sub"><dl>
    <dt>when it notifies observers</dt>
-    <dd><a href="observeOn.html">ObserveOn</a></dd>
+    <dd><a href="observeon.html">ObserveOn</a></dd>
   </dl></dd>
 
  <dt>I want an Observable to invoke a particular action when certain events occur</dt>
   <dd><a href="do.html">Do</a></dd>
 
  <dt>I want an Observable that will notify observers of an error</dt>
-  <dd><a href="throw.html">Throw</a></dd>
+  <dd><a href="empty-never-throw.html">Throw</a></dd>
   <dd class="sub"><dl>
    <dt>if a specified period of time elapses without it emitting an item</dt>
     <dd><a href="timeout.html">Timeout</a></dd>
@@ -307,8 +293,6 @@
      <dt>by attempting to resubscribe to the upstream Observable</dt>
       <dd><a href="retry.html">Retry</a></dd>
     </dl></dd>
-   <dt>from being potentially unserialized or otherwise poorly-behaved</dt>
-    <dd><a href="serialize.html">Serialize</a></dd>
   </dl></dd>
 
  <dt>I want to create a resource that has the same lifespan as the Observable</dt>
@@ -321,20 +305,17 @@
   <dd><a href="publish.html">Publish</a></dd>
   <dd class="sub"><dl>
    <dt>and then only emits the last item in its sequence</dt>
-    <dd><a href="publishLast.html">PublishLast</a></dd>
+    <dd><a href="publish.html">PublishLast</a></dd>
    <dt>and then emits the complete sequence, even to those who subscribe after the sequence has begun</dt>
     <dd><a href="replay.html">Replay</a></dd>
    <dt>but I want it to go away once all of its subscribers unsubscribe</dt>
-    <dd><a href="refCount.html">RefCount</a></dd>
+    <dd><a href="refcount.html">RefCount</a></dd>
    <dt>and then I want to ask it to start</dt>
-    <dd><a href="connect">Connect</a></dd>
+    <dd><a href="connect.html">Connect</a></dd>
   </dl></dd>
 
 </dl>
 </div>
-<hr />
-<p>
- This page was inspired by the RxJS tables (<a href="https://github.com/trxcllnt/RxJS/blob/master/doc/static-operators.md">static</a> and <a href="https://github.com/trxcllnt/RxJS/blob/master/doc/instance-operators.md">instance</a>) created by Paul Taylor.
-</p>
+
  </div></body>
 </html>

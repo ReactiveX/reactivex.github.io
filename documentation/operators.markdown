@@ -475,7 +475,7 @@ operators.
 * [`ToEnumerable`]({{ site.url }}/documentation/operators/to.html)
 * `ToEvent`
 * [`ToEventPattern`]({{ site.url }}/documentation/operators/to.html)
-* `ToFuture`
+* [`ToFuture`]({{ site.url }}/documentation/operators/to.html)
 * [`to_h`]({{ site.url }}/documentation/operators/to.html)
 * [`toIndexedSeq`]({{ site.url }}/documentation/operators/to.html)
 * [`toIterable`]({{ site.url }}/documentation/operators/to.html)

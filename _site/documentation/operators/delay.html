@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Delay operator</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Delay</li>
+</ol>
+
+   <h1>Delay</h1>
+   <h3>shift the emissions from an Observable forward in time by a particular amount</h3>
+   <figure>
+    <img src="images/delay.c.png" width="640" alt="Delay" />
+    <figcaption><p>
+     The <span class="operator">Delay</span> operator modifies its source Observable by pausing for a particular
+     increment of time (that you specify) before emitting each of the source Observable&#8217;s items. This has
+     the effect of shifting the entire sequence of items emitted by the Observable forward in time by that
+     specified increment.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Delay"><cite>Introduction to Rx</cite>: Delay</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>delay delaySubscription</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+     <p>
+      RxGroovy implements this operator as variants of <code>delay</code> and <code>delaySubscription</code>.
+     </p>
+     <figure>
+      <img src="images/delay.png" width="640" alt="delay" />
+      <figcaption><p>
+       The first variant of <code>delay</code> accepts parameters that define a duration of time (a quantity of
+       time, and a <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable
+       emits an item, <code>delay</code> starts a timer, and when that timer reaches the given duration, the
+       Observable returned from <code>delay</code> emits the same item.
+      </p><p>
+       Note that <code>delay</code> will not time-shift an <code>onError</code> notification in this fashion but
+       it will forward such a notification immediately to its subscribers while dropping any pending
+       <code>onNext</code> notifications. It will however time shift an <code>onCompleted</code> notification.
+      </p><p>
+       By default this variant of <code>delay</code> operates on the <code>computation</code> Scheduler, but
+       you can choose a different Scheduler by passing it in as an optional third parameter to
+       <code>delay</code>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit)"><code>delay(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>delay()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delay.o.png" width="640" alt="delay" />
+      <figcaption><p>
+       Another variant of <code>delay</code> does not use a constant delay duration, but sets its delay
+       duration on a per-item basis by passing each item from the source Observable into a function that returns
+       an Observable and then monitoring those Observables. When any such Observable completes, the Observable
+       returned by <code>delay</code> emits the associated item.
+      </p><p>
+       This variant of <code>delay</code> does not by default run on any particular Scheduler.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func1)"><code>delay(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delay.oo.png" width="640" alt="delay" />
+      <figcaption><p>
+       The variant of <code>delay</code> that uses a per-item Observable to set the delay has a variant
+       that allows you to pass in a function that returns an Observable that acts as a delay timer for the
+       subscription to the source Observable (in the absence of this, <code>delay</code> subscribes to the
+       source Observable as soon as an observer subscribes to the Observable returned by <code>delay</code>).
+      </p><p>
+       This variant of <code>delay</code> does not by default run on any particular Scheduler.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func0,%20rx.functions.Func1)"><code>delay(Func0,Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.png" width="640" alt="delaySubscription" />
+      <figcaption><p>
+       There is also an operator with which you can delay the subscription to the source Observable:
+       <code>delaySubscription</code>. It accepts parameters that define the amount of time to delay (a quantity
+       of time, and a <code>TimeUnit</code> that this quantity is denominated in).
+      </p><p>
+       This variant of <code>delay</code> by default runs on the <code>computation</code> Scheduler, but you can
+       choose a different Scheduler by passing it in as an optional third parameter to
+       <code>delaySubscription</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit)"><code>delaySubscription(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>delaySubscription(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.o.png" width="640" alt="delaySubscription" />
+      <figcaption><p>
+       And there is a variant of <code>delaySubscription</code> that uses an Observable (returned by a function
+       you supply) rather than a fixed duration in order to set the subscription delay.
+      </p><p>
+       This variant of <code>delaySubscription</code> does not by default run on any particular Scheduler.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(rx.functions.Func0)"><code>delaySubscription(Func0)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
+              RxJava <code>delay delaySubscription</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
+          <div class="panel-body">
+            
+     <p>
+      RxJava implements this operator as variants of <code>delay</code> and <code>delaySubscription</code>.
+     </p>
+     <figure>
+      <img src="images/delay.png" width="640" alt="delay" />
+      <figcaption><p>
+       The first variant of <code>delay</code> accepts parameters that define a duration of time (a quantity of
+       time, and a <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable
+       emits an item, <code>delay</code> starts a timer, and when that timer reaches the given duration, the
+       Observable returned from <code>delay</code> emits the same item.
+      </p><p>
+       Note that <code>delay</code> will not time-shift an <code>onError</code> notification in this fashion but
+       it will forward such a notification immediately to its subscribers while dropping any pending
+       <code>onNext</code> notifications. It will however time shift an <code>onCompleted</code> notification.
+      </p><p>
+       By default this variant of <code>delay</code> operates on the <code>computation</code> Scheduler, but
+       you can choose a different Scheduler by passing it in as an optional third parameter to
+       <code>delay</code>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit)"><code>delay(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>delay()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delay.o.png" width="640" alt="delay" />
+      <figcaption><p>
+       Another variant of <code>delay</code> does not use a constant delay duration, but sets its delay
+       duration on a per-item basis by passing each item from the source Observable into a function that returns
+       an Observable and then monitoring those Observables. When any such Observable completes, the Observable
+       returned by <code>delay</code> emits the associated item.
+      </p><p>
+       This variant of <code>delay</code> does not by default run on any particular Scheduler.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func1)"><code>delay(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delay.oo.png" width="640" alt="delay" />
+      <figcaption><p>
+       The variant of <code>delay</code> that uses a per-item Observable to set the delay has a variant
+       that allows you to pass in a function that returns an Observable that acts as a delay timer for the
+       subscription to the source Observable (in the absence of this, <code>delay</code> subscribes to the
+       source Observable as soon as an observer subscribes to the Observable returned by <code>delay</code>).
+      </p><p>
+       This variant of <code>delay</code> does not by default run on any particular Scheduler.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func0,%20rx.functions.Func1)"><code>delay(Func0,Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.png" width="640" alt="delaySubscription" />
+      <figcaption><p>
+       There is also an operator with which you can delay the subscription to the source Observable:
+       <code>delaySubscription</code>. It accepts parameters that define the amount of time to delay (a quantity
+       of time, and a <code>TimeUnit</code> that this quantity is denominated in).
+      </p><p>
+       This variant of <code>delay</code> by default runs on the <code>computation</code> Scheduler, but you can
+       choose a different Scheduler by passing it in as an optional third parameter to
+       <code>delaySubscription</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit)"><code>delaySubscription(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>delaySubscription(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.o.png" width="640" alt="delaySubscription" />
+      <figcaption><p>
+       And there is a variant of <code>delaySubscription</code> that uses an Observable (returned by a function
+       you supply) rather than a fixed duration in order to set the subscription delay.
+      </p><p>
+       This variant of <code>delaySubscription</code> does not by default run on any particular Scheduler.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(rx.functions.Func0)"><code>delaySubscription(Func0)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>delay delayWithSelector</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+     <figure>
+      <img src="images/delay.png" width="640" alt="delay" />
+      <figcaption><p>
+       In RxJS you can set the per-item delay in two ways: by passing a number of milliseconds into the
+       <code>delay</code> operator (which will delay each emission by that amount of time), or by passing in
+       a <code>Date</code> object (which will delay the beginning of the sequence of emissions until that
+       absolute point in time).
+      </p><p>
+       This operator operates by default on the <code>timeout</code> Scheduler, but you can override this by
+       passing in another Scheduler as an optional second parameter.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+    .delay(new Date(Date.now() + 1000));
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); }); </pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+    .delay(1000);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+     </figure>
+     <figure>
+      <img src="images/delayWithSelector.png" width="640" alt="delayWithSelector" />
+      <figcaption><p>
+       <code>delayWithSelector</code> is like <code>delay</code> but does not use a constant delay duration (or
+       absolute time), but sets its delay duration on a per-item basis by passing each item from the source
+       Observable into a function that returns an Observable and then monitoring those Observables. When any
+       such Observable completes, the Observable returned by <code>delay</code> emits the associated item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable
+    .range(0, 3)
+    .delayWithSelector(
+        function (x) {
+            return Rx.Observable.timer(x * 400);
+        })
+    .timeInterval()
+    .map(function (x) { return x.value + ':' + x.interval; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0:0
+Next: 1:400
+Next: 2:400
+Completed</pre></div>
+     </figure>
+     <figure>
+      <img src="images/delayWithSelector.o.png" width="640" alt="delayWithSelector" />
+      <figcaption><p>
+       There is also a version of <code>delayWithSelector</code> that takes an additional (first) argument:
+       an Observable that sets a delay before <code>delayWithSelector</code> subscribes to the source
+       Observable after it itself is subscribed to.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable
+    .range(0, 3)
+    .delayWithSelector(
+        Rx.Observable.timer(300),
+        function (x) {
+            return Rx.Observable.timer(x * 400);
+        }
+    )
+    .timeInterval()
+    .map(function (x) { return x.value + ':' + x.interval; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0:300
+Next: 1:400
+Next: 2:400
+Completed</pre></div>
+     </figure>
+     <p>
+      <code>delay</code> and <code>delayWithSelector</code> require <code>rx.lite.js</code> or
+      <code>rx.lite.compat.js</code> and are found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>delay delaySubscription</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Delay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>delay delay_subscription delay_with_selector</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>delay delaySubscription</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-delay").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

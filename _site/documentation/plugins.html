@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Plugins</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 id="plugins">Plugins</h1>
+
+<p>Plugins allow you to modify the default behavior of RxJava in several respects:</p>
+
+<ul>
+<li>by changing the set of default computation, i/o, and new thread Schedulers</li>
+<li>by registering a handler for extraordinary errors that RxJava may encounter</li>
+<li>by registering functions that can take note of the occurrence of several regular RxJava activities</li>
+</ul>
+
+<h2 id="rxjavadefaultschedulers">RxJavaDefaultSchedulers</h2>
+
+<p>This plugin allows you to override the default computation, i/o, and new thread Schedulers with Schedulers of your choosing.  To do this, extend the class <code>RxJavaDefaultSchedulers</code> and override these methods:</p>
+
+<ul>
+<li><code>Scheduler getComputationScheduler( )</code></li>
+<li><code>Scheduler getIOScheduler( )</code></li>
+<li><code>Scheduler getNewThreadScheduler( )</code></li>
+</ul>
+
+<p>Then follow these steps:</p>
+
+<ol>
+<li>Create an object of the new <code>RxJavaDefaultSchedulers</code> subclass you have implemented.</li>
+<li>Obtain the global <code>RxJavaPlugins</code> instance via <code>RxJavaPlugins.getInstance( )</code>.</li>
+<li>Pass your default schedulers object to the <code>registerDefaultSchedulers( )</code> method of that instance.</li>
+</ol>
+
+<p>When you do this, RxJava will begin to use the Schedulers returned by your methods rather than its built-in defaults.</p>
+
+<h2 id="rxjavaerrorhandler">RxJavaErrorHandler</h2>
+
+<p>This plugin allows you to register a function that will handle errors that are raised by RxJava but that cannot be handled by the ordinary RxJava <code>onError</code> notification process (for instance, if RxJava tries to propagate an error to a subscriber that has not implemented an <code>onError</code> handler). To do this, extend the class <code>RxJavaErrorHandler</code> and override this method:</p>
+
+<ul>
+<li><code>void handleError(Throwable e)</code></li>
+</ul>
+
+<p>Then follow these steps:</p>
+
+<ol>
+<li>Create an object of the new <code>RxJavaErrorHandler</code> subclass you have implemented.</li>
+<li>Obtain the global <code>RxJavaPlugins</code> instance via <code>RxJavaPlugins.getInstance( )</code>.</li>
+<li>Pass your error handler object to the <code>registerErrorHandler( )</code> method of that instance.</li>
+</ol>
+
+<p>When you do this, RxJava will begin to use your error handler to field errors that cannot be handled in ordinary ways.</p>
+
+<h2 id="rxjavaobservableexecutionhook">RxJavaObservableExecutionHook</h2>
+
+<p>This plugin allows you to register functions that RxJava will call upon certain regular RxJava activities, for instance for logging or metrics-collection purposes. To do this, extend the class <code>RxJavaObservableExecutionHook</code> and override any or all of these methods:</p>
+
+<table><thead>
+ <tr><th>method</th><th>when invoked</th></tr>
+ </thead><tbody>
+  <tr><td><tt>onCreate( )</tt></td><td>during <tt>Observable.create( )</tt></td></tr>
+  <tr><td><tt>onSubscribeStart( )</tt></td><td>immediately before <tt>Observable.subscribe( )</tt></td></tr>
+  <tr><td><tt>onSubscribeReturn( )</tt></td><td>immediately after <tt>Observable.subscribe( )</tt></td></tr>
+  <tr><td><tt>onSubscribeError( )</tt></td><td>upon a failed execution of <tt>Observable.subscribe( )</tt></td></tr>
+  <tr><td><tt>onLift( )</tt></td><td>during <tt>Observable.lift( )</tt></td></tr>
+ </tbody>
+</table>
+
+<p>Then follow these steps:</p>
+
+<ol>
+<li>Create an object of the new <code>RxJavaObservableExecutionHook</code> subclass you have implemented.</li>
+<li>Obtain the global <code>RxJavaPlugins</code> instance via <code>RxJavaPlugins.getInstance( )</code>.</li>
+<li>Pass your execution hooks object to the <code>registerObservableExecutionHook( )</code> method of that instance.</li>
+</ol>
+
+<p>When you do this, RxJava will begin to call your functions when it encounters the specific conditions they were designed to take note of.</p>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-plugins").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Do operator</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Do</li>
+</ol>
+
+<h1>Do</h1>
+<h3>register an action to take upon a variety of Observable lifecycle events</h3>
+
+<figure>
+ <img src="images/do.c.png" width="640" alt="Do" />
+ <figcaption><p>
+  You can register callbacks that ReactiveX will call when certain events take place on an Observable, where
+  those callbacks will be called independently from the normal set of notifications associated with an
+  Observable cascade. There are a variety of operators that various ReactiveX implementations have designed to
+  allow for this.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/09_SideEffects.html#Do"><cite>Introduction to Rx</cite>: Do</a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/11_AdvancedErrorHandling.html#Finally"><cite>Introduction to Rx</cite>: Finally</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>do finally</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>finally</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+    <p>
+     RxGroovy has several <span class="operator">Do</span> variants.
+    </p>
+    <figure class="variant">
+     <img src="images/doOnEach.png" width="640" alt="doOnEach" />
+     <figcaption><p>
+      The <code>doOnEach</code> operator allows you to establish a callback that the resulting Observable will
+      call each time it emits an item. You can pass this callback either in the form of an <code>Action</code>
+      that takes an <code>onNext</code> variety of <code>Notification</code> as its sole parameter, or you can
+      pass in an Observer whose <code>onNext</code> method will be called as if it had subscribed to the
+      Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.functions.Action1)"><code>doOnEach(Action1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.Observer)"><code>doOnEach(Observer)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnNext.png" width="640" alt="doOnNext" />
+     <figcaption><p>
+      The <code>doOnNext</code> operator is much like <code>doOnEach(Action1)</code> except that the
+      <code>Action</code> that you pass it as a parameter does not accept a <code>Notification</code> but
+      instead simply accepts the emitted item.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnNext(rx.functions.Action1)"><code>doOnNext(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnSubscribe.png" width="640" alt="doOnSubscribe" />
+     <figcaption><p>
+      The <code>doOnSubscribe</code> operator registers an <code>Action</code> which will be called whenever
+      an observer subscribes to the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnSubscribe(rx.functions.Action0)"><code>doOnSubscribe(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnUnsubscribe.png" width="640" alt="doOnUnsubscribe" />
+     <figcaption><p>
+      The <code>doOnUnsubscribe</code> operator registers an <code>Action</code> which will be called whenever
+      an observer unsubscribes from the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnUnsubscribe(rx.functions.Action0)"><code>doOnUnsubscribe(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnCompleted.png" width="640" alt="doOnCompleted" />
+     <figcaption><p>
+      The <code>doOnCompleted</code> operator registers an <code>Action</code> which will be called if the
+      resulting Observable terminates normally, calling <code>onCompleted</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnCompleted(rx.functions.Action0)"><code>doOnCompleted(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnError.png" width="640" alt="doOnError" />
+     <figcaption><p>
+      The <code>doOnError</code> operator registers an <code>Action</code> which will be called if the
+      resulting Observable terminates abnormally, calling <code>onError</code>. This <code>Action</code> will
+      be passed the <code>Throwable</code> representing the error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnError(rx.functions.Action1)"><code>doOnError(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnTerminate.png" width="640" alt="doOnTerminate" />
+     <figcaption><p>
+      The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
+      <em>before</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnTerminate(rx.functions.Action0)"><code>doOnTerminate(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/finallyDo.png" width="640" alt="finallyDo" />
+     <figcaption><p>
+      The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
+      <em>after</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+def numbers = Observable.from([1, 2, 3, 4, 5]);
+
+numbers.finallyDo({ println('Finally'); }).subscribe(
+   { println(it); },                          // onNext
+   { println("Error: " + it.getMessage()); }, // onError
+   { println("Sequence complete"); }          // onCompleted
+);</pre></code>
+     <div class="output"><pre>
+1
+2
+3
+4
+5
+Sequence complete
+Finally</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#finallyDo(rx.functions.Action0)"><code>finallyDo(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
+              RxJava <code>doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
+          <div class="panel-body">
+            
+    <p>
+     RxJava has several <span class="operator">Do</span> variants.
+    </p>
+    <figure class="variant">
+     <img src="images/doOnEach.png" width="640" alt="doOnEach" />
+     <figcaption><p>
+      The <code>doOnEach</code> operator allows you to establish a callback that the resulting Observable will
+      call each time it emits an item. You can pass this callback either in the form of an <code>Action</code>
+      that takes an <code>onNext</code> variety of <code>Notification</code> as its sole parameter, or you can
+      pass in an Observer whose <code>onNext</code> method will be called as if it had subscribed to the
+      Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.functions.Action1)"><code>doOnEach(Action1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.Observer)"><code>doOnEach(Observer)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnNext.png" width="640" alt="doOnNext" />
+     <figcaption><p>
+      The <code>doOnNext</code> operator is much like <code>doOnEach(Action1)</code> except that the
+      <code>Action</code> that you pass it as a parameter does not accept a <code>Notification</code> but
+      instead simply accepts the emitted item.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3)
+          .doOnNext(new Action1<Integer>() {
+          @Override
+          public void call(Integer item) {
+            if( item > 1 ) {
+              throw new RuntimeException( "Item exceeds maximum value" );
+            }
+          }
+        }).subscribe(new Subscriber<Integer>() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Error: Item exceeds maximum value</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnNext(rx.functions.Action1)"><code>doOnNext(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnSubscribe.png" width="640" alt="doOnSubscribe" />
+     <figcaption><p>
+      The <code>doOnSubscribe</code> operator registers an <code>Action</code> which will be called whenever
+      an observer subscribes to the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnSubscribe(rx.functions.Action0)"><code>doOnSubscribe(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnUnsubscribe.png" width="640" alt="doOnUnsubscribe" />
+     <figcaption><p>
+      The <code>doOnUnsubscribe</code> operator registers an <code>Action</code> which will be called whenever
+      an observer unsubscribes from the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnUnsubscribe(rx.functions.Action0)"><code>doOnUnsubscribe(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnCompleted.png" width="640" alt="doOnCompleted" />
+     <figcaption><p>
+      The <code>doOnCompleted</code> operator registers an <code>Action</code> which will be called if the
+      resulting Observable terminates normally, calling <code>onCompleted</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnCompleted(rx.functions.Action0)"><code>doOnCompleted(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnError.png" width="640" alt="doOnError" />
+     <figcaption><p>
+      The <code>doOnError</code> operator registers an <code>Action</code> which will be called if the
+      resulting Observable terminates abnormally, calling <code>onError</code>. This <code>Action</code> will
+      be passed the <code>Throwable</code> representing the error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnError(rx.functions.Action1)"><code>doOnError(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnTerminate.png" width="640" alt="doOnTerminate" />
+     <figcaption><p>
+      The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
+      <em>before</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnTerminate(rx.functions.Action0)"><code>doOnTerminate(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/finallyDo.png" width="640" alt="finallyDo" />
+     <figcaption><p>
+      The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
+      <em>after</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#finallyDo(rx.functions.Action0)"><code>finallyDo(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>do doOnCompleted doOnError doOnNext finally tap tapOnCompleted tapOnError tapOnNext</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/do.png" width="640" alt="do" />
+     <figcaption><p>
+      RxJS implements the basic <span class="operator">Do</span> operator as <code>do</code> or <code>tap</code>
+      (two names for the same operator). You have two choices for how to use this operator:
+     </p>
+     <ol>
+      <li>You can pass it an Observer, in which case <code>do</code>/<code>tap</code> will call that
+          Observer&#8217;s methods as though that Observer had subscribed to the resulting Observable.</li>
+      <li>You can pass in a set of 1&ndash;3 individual functions (<code>onNext</code>, <code>onError</code>,
+          and <code>onCompleted</code>) that <code>do</code>/<code>tap</code> will call along with the
+          similarly-named functions of any of its observers.</li>
+     </ol>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+/* Using an observer */
+var observer = Rx.Observer.create(
+  function (x) { console.log('Do Next: %s', x); },
+  function (err) { console.log('Do Error: %s', err); },
+  function () { console.log('Do Completed'); }
+);
+
+var source = Rx.Observable.range(0, 3)
+    .do(observer);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Do Next: 0
+Next: 0
+Do Next: 1
+Next: 1
+Do Next: 2
+Next: 2
+Do Completed
+Completed</pre></div>
+     <div class="code javascript"><pre>
+/* Using a function */
+var source = Rx.Observable.range(0, 3)
+  .do(
+    function (x)   { console.log('Do Next:', x); },
+    function (err) { console.log('Do Error:', err); },
+    function ()    { console.log('Do Completed'); }
+  );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Do Next: 0
+Next: 0
+Do Next: 1
+Next: 1
+Do Next: 2
+Next: 2
+Do Completed
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnNext.png" width="640" alt="doOnNext" />
+     <figcaption><p>
+      RxJS also implements <code>doOnNext</code> or <code>tapOnNext</code> (two names for the same operator).
+      It is a specialized form of <span class="operator">Do</span> that responds only to the
+      <code>onNext</code> case, by calling a callback function you provide as a parameter. You may also
+      optionally pass a second parameter that will be the &ldquo;<code>this</code>&rdquo; object from the
+      point of view of your callback function when it executes.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+  .doOnNext(
+    function () { this.log('Do Next: %s', x); },
+    console
+  );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Do Next: 0
+Next: 0
+Do Next: 1
+Next: 1
+Do Next: 2
+Next: 2
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnError.png" width="640" alt="doOnError" />
+     <figcaption><p>
+      RxJS also implements <code>doOnError</code> or <code>tapOnError</code> (two names for the same operator).
+      It is a specialized form of <span class="operator">Do</span> that responds only to the
+      <code>onError</code> case, by calling a callback function you provide as a parameter. You may also
+      optionally pass a second parameter that will be the &ldquo;<code>this</code>&rdquo; object from the
+      point of view of your callback function when it executes.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.throw(new Error());
+  .doOnError(
+    function (err) { this.log('Do Error: %s', err); },
+    console
+  );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Do Error: Error
+Error: Error</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnCompleted.png" width="640" alt="doOnCompleted" />
+     <figcaption><p>
+      RxJS also implements <code>doOnCompleted</code> or <code>tapOnCompleted</code> (two names for the same
+      operator). It is a specialized form of <span class="operator">Do</span> that responds only to the
+      <code>onCompleted</code> case, by calling a callback function you provide as a parameter. You may also
+      optionally pass a second parameter that will be the &ldquo;<code>this</code>&rdquo; object from the
+      point of view of your callback function when it executes.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+  .doOnCompleted(
+    function () { this.log('Do Completed'); },
+    console
+  );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Do Completed
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/finally.png" width="640" alt="finally" />
+     <figcaption><p>
+      RxJS also implements a <code>finally</code> operator. It takes a function that will be called after the
+      resulting Observable terminates, whether normally (<code>onCompleted</code>) or abnormally
+      (<code>onError</code>).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.throw(new Error())
+    .finally(function () {
+        console.log('Finally');
+    });
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Error: Error
+Finally</pre></div>
+     </figcaption>
+    </figure>
+    <p>
+     <code>do</code>/<code>tap</code>, <code>doOnNext</code>/<code>tapOnNext</code>,
+     <code>doOnError</code>/<code>tapOnError</code>, <code>doOnCompleted</code>/<code>tapOnCompleted</code>, and
+     <code>finally</code> are found in each of the following distributions:
+    </p>
+    <ul>
+     <li><code>rx.js</code></li>
+     <li><code>rx.all.js</code></li>
+     <li><code>rx.all.compat.js</code></li>
+     <li><code>rx.compat.js</code></li>
+     <li><code>rx.lite.js</code></li>
+     <li><code>rx.lite.compat.js</code></li>
+    </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Do Finally</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>do_action finally_action tap</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>ensures tap</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-do").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

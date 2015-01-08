@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comparison of Scala Observable and Java Observable</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, td, th {
+        border: 1px solid black;
+    }
+    th {
+        padding-left: 3px;
+        font-size: 15pt;
+        color: #000;
+        background-color: #ddd;
+    }
+    code {
+        color: #444;
+    }
+    .container {
+        width: 99%;
+    }
+</style>
+
+<div class="container">
+    <h1 id="comparison-of-scala-observable-and-java-observable">Comparison of Scala Observable and Java Observable</h1>
+
+<h3 id="note:">Note:</h3>
+
+<ul>
+<li>   This table contains both static methods and instance methods.</li>
+<li>   If a signature is too long, move your mouse over it to get the full signature.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Java Method</th>
+<th>Scala Method</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>all(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td><code>forall(T =&gt; Boolean)</code></td>
+</tr>
+<tr>
+<td><code>amb(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)</code><br/><span title="amb(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>amb(...)</code></span><br/><span title="amb(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>amb(...)</code></span><br/><span title="amb(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>amb(...)</code></span><br/><span title="amb(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>amb(...)</code></span><br/><span title="amb(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>amb(...)</code></span><br/><span title="amb(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>amb(...)</code></span><br/><span title="amb(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>amb(...)</code></span></td>
+<td>unnecessary because we can use <code>o1 amb o2</code> instead or <code>amb(List(o1, o2, o3, ...)</code></td>
+</tr>
+<tr>
+<td><code>amb(Iterable&lt;? extends Observable&lt;? extends T&gt;&gt;)</code></td>
+<td><code>amb(Observable[T]*)</code></td>
+</tr>
+<tr>
+<td><code>ambWith(Observable&lt;? extends T&gt;)</code></td>
+<td><code>amb(Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>asObservable()</code></td>
+<td>considered unnecessary in Scala land</td>
+</tr>
+<tr>
+<td><code>buffer(Int)</code></td>
+<td><code>tumblingBuffer(Int)</code></td>
+</tr>
+<tr>
+<td><code>buffer(Long, TimeUnit)</code></td>
+<td><code>tumblingBuffer(Duration)</code></td>
+</tr>
+<tr>
+<td><code>buffer(Func0&lt;? extends Observable&lt;? extends TClosing&gt;&gt;)</code><br/><code>buffer(Observable&lt;B&gt;)</code></td>
+<td><code>tumblingBuffer(=&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>buffer(Long, Long, TimeUnit, Scheduler)</code></td>
+<td><code>slidingBuffer(Duration, Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>buffer(Int, Int)</code></td>
+<td><code>slidingBuffer(Int, Int)</code></td>
+</tr>
+<tr>
+<td><code>buffer(Long, TimeUnit, Scheduler)</code></td>
+<td><code>tumblingBuffer(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="buffer(Observable&lt;? extends TOpening&gt;, Func1&lt;? super TOpening, ? extends Observable&lt;? extends TClosing&gt;&gt;)"><code>buffer(...)</code></span></td>
+<td><code>slidingBuffer(Observable[Opening])(Opening =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>buffer(Long, TimeUnit, Int, Scheduler)</code></td>
+<td><code>tumblingBuffer(Duration, Int, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>buffer(Observable&lt;B&gt;, Int)</code></td>
+<td><code>tumblingBuffer(Observable[Any], Int)</code></td>
+</tr>
+<tr>
+<td><code>buffer(Long, Long, TimeUnit)</code></td>
+<td><code>slidingBuffer(Duration, Duration)</code></td>
+</tr>
+<tr>
+<td><code>buffer(Long, TimeUnit, Int)</code></td>
+<td><code>tumblingBuffer(Duration, Int)</code></td>
+</tr>
+<tr>
+<td><code>cache(Int)</code></td>
+<td><code>cache(Int)</code></td>
+</tr>
+<tr>
+<td><code>cache()</code></td>
+<td><code>cache</code></td>
+</tr>
+<tr>
+<td><code>cast(Class&lt;R&gt;)</code></td>
+<td>RxJava needs this one because <code>rx.Observable</code> is invariant. <code>Observable</code> in RxScala is covariant and does not need this operator.</td>
+</tr>
+<tr>
+<td><code>collect(Func0&lt;R&gt;, Action2&lt;R, ? super T&gt;)</code></td>
+<td>TODO: See <a href="https://github.com/ReactiveX/RxScala/issues/63">https://github.com/ReactiveX/RxScala/issues/63</a></td>
+</tr>
+<tr>
+<td><span title="combineLatest(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Func2&lt;? super T1, ? super T2, ? extends R&gt;)"><code>combineLatest(...)</code></span></td>
+<td><code>combineLatest(Observable[U])</code></td>
+</tr>
+<tr>
+<td><span title="combineLatest(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Func3&lt;? super T1, ? super T2, ? super T3, ? extends R&gt;)"><code>combineLatest(...)</code></span><br/><span title="combineLatest(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Func4&lt;? super T1, ? super T2, ? super T3, ? super T4, ? extends R&gt;)"><code>combineLatest(...)</code></span><br/><span title="combineLatest(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Func5&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? extends R&gt;)"><code>combineLatest(...)</code></span><br/><span title="combineLatest(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Func6&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? extends R&gt;)"><code>combineLatest(...)</code></span><br/><span title="combineLatest(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Func7&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? extends R&gt;)"><code>combineLatest(...)</code></span><br/><span title="combineLatest(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Observable&lt;? extends T8&gt;, Func8&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? super T8, ? extends R&gt;)"><code>combineLatest(...)</code></span><br/><span title="combineLatest(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Observable&lt;? extends T8&gt;, Observable&lt;? extends T9&gt;, Func9&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? super T8, ? super T9, ? extends R&gt;)"><code>combineLatest(...)</code></span></td>
+<td>If C# doesn&#39;t need it, Scala doesn&#39;t need it either ;-)</td>
+</tr>
+<tr>
+<td><span title="combineLatest(List&lt;? extends Observable&lt;? extends T&gt;&gt;, FuncN&lt;? extends R&gt;)"><code>combineLatest(...)</code></span></td>
+<td><code>combineLatest(Seq[Observable[T]])(Seq[T] =&gt; R)</code></td>
+</tr>
+<tr>
+<td><code>compose(Transformer&lt;? super T, ? extends R&gt;)</code></td>
+<td>use extension methods instead</td>
+</tr>
+<tr>
+<td><code>concat(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;)</code></td>
+<td><code>concat(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
+</tr>
+<tr>
+<td><code>concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)</code><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span></td>
+<td>unnecessary because we can use <code>++</code> instead or <code>Observable(o1, o2, ...).concat</code></td>
+</tr>
+<tr>
+<td><code>concatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;)</code></td>
+<td><code>concatMap(T =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><code>concatWith(Observable&lt;? extends T&gt;)</code></td>
+<td>use <code>o1 ++ o2</code></td>
+</tr>
+<tr>
+<td><code>contains(Any)</code></td>
+<td><code>contains(U)</code></td>
+</tr>
+<tr>
+<td><code>count()</code></td>
+<td><code>length</code></td>
+</tr>
+<tr>
+<td><code>countLong()</code></td>
+<td><code>countLong</code></td>
+</tr>
+<tr>
+<td><code>create(OnSubscribe&lt;T&gt;)</code></td>
+<td><code>apply(Subscriber[T] =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>debounce(Long, TimeUnit)</code></td>
+<td><code>debounce(Duration)</code></td>
+</tr>
+<tr>
+<td><code>debounce(Func1&lt;? super T, ? extends Observable&lt;U&gt;&gt;)</code></td>
+<td><code>debounce(T =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>debounce(Long, TimeUnit, Scheduler)</code></td>
+<td><code>debounce(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>defaultIfEmpty(T)</code></td>
+<td><code>orElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>defer(Func0&lt;Observable&lt;T&gt;&gt;)</code></td>
+<td><code>defer(=&gt; Observable[T])</code></td>
+</tr>
+<tr>
+<td><code>delay(Long, TimeUnit)</code></td>
+<td><code>delay(Duration)</code></td>
+</tr>
+<tr>
+<td><span title="delay(Func0&lt;? extends Observable&lt;U&gt;&gt;, Func1&lt;? super T, ? extends Observable&lt;V&gt;&gt;)"><code>delay(...)</code></span></td>
+<td><code>delay(() =&gt; Observable[Any], T =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>delay(Long, TimeUnit, Scheduler)</code></td>
+<td><code>delay(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>delay(Func1&lt;? super T, ? extends Observable&lt;U&gt;&gt;)</code></td>
+<td><code>delay(T =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>delaySubscription(Long, TimeUnit, Scheduler)</code></td>
+<td><code>delaySubscription(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>delaySubscription(Func0&lt;? extends Observable&lt;U&gt;&gt;)</code></td>
+<td><code>delaySubscription(() =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>delaySubscription(Long, TimeUnit)</code></td>
+<td><code>delaySubscription(Duration)</code></td>
+</tr>
+<tr>
+<td><code>dematerialize()</code></td>
+<td><code>dematerialize(&lt;:&lt;[Observable[T], Observable[Notification[U]]])</code></td>
+</tr>
+<tr>
+<td><code>distinct(Func1&lt;? super T, ? extends U&gt;)</code></td>
+<td><code>distinct(T =&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>distinct()</code></td>
+<td><code>distinct</code></td>
+</tr>
+<tr>
+<td><code>distinctUntilChanged()</code></td>
+<td><code>distinctUntilChanged</code></td>
+</tr>
+<tr>
+<td><code>distinctUntilChanged(Func1&lt;? super T, ? extends U&gt;)</code></td>
+<td><code>distinctUntilChanged(T =&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>doOnCompleted(Action0)</code></td>
+<td><code>doOnCompleted(=&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>doOnEach(Action1&lt;Notification&lt;? super T&gt;&gt;)</code></td>
+<td>use <code>doOnEach(T =&gt; Unit, Throwable =&gt; Unit, () =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>doOnEach(Observer&lt;? super T&gt;)</code></td>
+<td><code>doOnEach(Observer[T])</code></td>
+</tr>
+<tr>
+<td><code>doOnError(Action1&lt;Throwable&gt;)</code></td>
+<td><code>doOnError(Throwable =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>doOnNext(Action1&lt;? super T&gt;)</code></td>
+<td><code>doOnNext(T =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>doOnSubscribe(Action0)</code></td>
+<td><code>doOnSubscribe(=&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>doOnTerminate(Action0)</code></td>
+<td><code>doOnTerminate(=&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>doOnUnsubscribe(Action0)</code></td>
+<td><code>doOnUnsubscribe(=&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>elementAt(Int)</code></td>
+<td><code>elementAt(Int)</code></td>
+</tr>
+<tr>
+<td><code>elementAtOrDefault(Int, T)</code></td>
+<td><code>elementAtOrDefault(Int, U)</code></td>
+</tr>
+<tr>
+<td><code>empty()</code></td>
+<td><code>empty</code></td>
+</tr>
+<tr>
+<td><code>error(Throwable)</code></td>
+<td><code>error(Throwable)</code></td>
+</tr>
+<tr>
+<td><code>exists(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td><code>exists(T =&gt; Boolean)</code></td>
+</tr>
+<tr>
+<td><code>filter(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td><code>filter(T =&gt; Boolean)</code></td>
+</tr>
+<tr>
+<td><code>finallyDo(Action0)</code></td>
+<td><code>finallyDo(=&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>first()</code></td>
+<td><code>first</code></td>
+</tr>
+<tr>
+<td><code>first(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>.filter(condition).first</code></td>
+</tr>
+<tr>
+<td><code>firstOrDefault(T, Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>.filter(condition).firstOrElse(default)</code></td>
+</tr>
+<tr>
+<td><code>firstOrDefault(T)</code></td>
+<td><code>firstOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Func1&lt;? super Throwable, ? extends Observable&lt;? extends R&gt;&gt;, Func0&lt;? extends Observable&lt;? extends R&gt;&gt;)"><code>flatMap(...)</code></span></td>
+<td><code>flatMap(T =&gt; Observable[R], Throwable =&gt; Observable[R], () =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends U&gt;&gt;, Func2&lt;? super T, ? super U, ? extends R&gt;)"><code>flatMap(...)</code></span></td>
+<td><code>flatMapWith(T =&gt; Observable[U])((T, U) =&gt; R)</code></td>
+</tr>
+<tr>
+<td><code>flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;)</code></td>
+<td><code>flatMap(T =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><span title="flatMapIterable(Func1&lt;? super T, ? extends Iterable&lt;? extends R&gt;&gt;)"><code>flatMapIterable(...)</code></span></td>
+<td><code>flatMapIterable(T =&gt; Iterable[R])</code></td>
+</tr>
+<tr>
+<td><span title="flatMapIterable(Func1&lt;? super T, ? extends Iterable&lt;? extends U&gt;&gt;, Func2&lt;? super T, ? super U, ? extends R&gt;)"><code>flatMapIterable(...)</code></span></td>
+<td><code>flatMapIterableWith(T =&gt; Iterable[U])((T, U) =&gt; R)</code></td>
+</tr>
+<tr>
+<td><code>forEach(Action1&lt;? super T&gt;)</code></td>
+<td><code>foreach(T =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>forEach(Action1&lt;? super T&gt;, Action1&lt;Throwable&gt;, Action0)</code></td>
+<td><code>foreach(T =&gt; Unit, Throwable =&gt; Unit, () =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>forEach(Action1&lt;? super T&gt;, Action1&lt;Throwable&gt;)</code></td>
+<td><code>foreach(T =&gt; Unit, Throwable =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>from(Future&lt;? extends T&gt;)</code><br/><code>from(Future&lt;? extends T&gt;, Long, TimeUnit)</code><br/><code>from(Future&lt;? extends T&gt;, Scheduler)</code></td>
+<td>TODO: Decide how Scala Futures should relate to Observables. Should there be a common base interface for Future and Observable? And should Futures also have an unsubscribe method?</td>
+</tr>
+<tr>
+<td><code>from(T[])</code><br/><code>from(Iterable&lt;? extends T&gt;)</code></td>
+<td><code>from(Iterable[T])</code></td>
+</tr>
+<tr>
+<td><code>groupBy(Func1&lt;? super T, ? extends K&gt;)</code></td>
+<td><code>groupBy(T =&gt; K)</code></td>
+</tr>
+<tr>
+<td><span title="groupBy(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends R&gt;)"><code>groupBy(...)</code></span></td>
+<td><code>groupBy(T =&gt; K, T =&gt; V)</code></td>
+</tr>
+<tr>
+<td><span title="groupJoin(Observable&lt;T2&gt;, Func1&lt;? super T, ? extends Observable&lt;D1&gt;&gt;, Func1&lt;? super T2, ? extends Observable&lt;D2&gt;&gt;, Func2&lt;? super T, ? super Observable&lt;T2&gt;, ? extends R&gt;)"><code>groupJoin(...)</code></span></td>
+<td><code>groupJoin(Observable[S])(T =&gt; Observable[Any], S =&gt; Observable[Any], (T, Observable[S]) =&gt; R)</code></td>
+</tr>
+<tr>
+<td><code>ignoreElements()</code></td>
+<td>use <code>filter(_ =&gt; false)</code></td>
+</tr>
+<tr>
+<td><code>interval(Long, TimeUnit)</code></td>
+<td><code>interval(Duration)</code></td>
+</tr>
+<tr>
+<td><code>interval(Long, TimeUnit, Scheduler)</code></td>
+<td><code>interval(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>isEmpty()</code></td>
+<td><code>isEmpty</code></td>
+</tr>
+<tr>
+<td><span title="join(Observable&lt;TRight&gt;, Func1&lt;T, Observable&lt;TLeftDuration&gt;&gt;, Func1&lt;TRight, Observable&lt;TRightDuration&gt;&gt;, Func2&lt;T, TRight, R&gt;)"><code>join(...)</code></span></td>
+<td><code>join(Observable[S])(T =&gt; Observable[Any], S =&gt; Observable[Any], (T, S) =&gt; R)</code></td>
+</tr>
+<tr>
+<td><code>just(T)</code><br/><code>just(T, T)</code><br/><code>just(T, T, T)</code><br/><code>just(T, T, T, T)</code><br/><code>just(T, T, T, T, T)</code><br/><code>just(T, T, T, T, T, T)</code><br/><code>just(T, T, T, T, T, T, T)</code><br/><code>just(T, T, T, T, T, T, T, T)</code><br/><code>just(T, T, T, T, T, T, T, T, T)</code><br/><code>just(T, T, T, T, T, T, T, T, T, T)</code></td>
+<td>use <code>just(T*)</code></td>
+</tr>
+<tr>
+<td><code>last()</code></td>
+<td><code>last</code></td>
+</tr>
+<tr>
+<td><code>last(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>filter(predicate).last</code></td>
+</tr>
+<tr>
+<td><code>lastOrDefault(T, Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>filter(predicate).lastOrElse(default)</code></td>
+</tr>
+<tr>
+<td><code>lastOrDefault(T)</code></td>
+<td><code>lastOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>lift(Operator&lt;? extends R, ? super T&gt;)</code></td>
+<td><code>lift(Subscriber[R] =&gt; Subscriber[T])</code></td>
+</tr>
+<tr>
+<td><code>limit(Int)</code></td>
+<td><code>take(Int)</code></td>
+</tr>
+<tr>
+<td><code>map(Func1&lt;? super T, ? extends R&gt;)</code></td>
+<td><code>map(T =&gt; R)</code></td>
+</tr>
+<tr>
+<td><code>materialize()</code></td>
+<td><code>materialize</code></td>
+</tr>
+<tr>
+<td><code>merge(Array&lt;Observable&lt;? extends T&gt;&gt;)</code></td>
+<td>use <code>Observable.from(array).flatten</code></td>
+</tr>
+<tr>
+<td><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span></td>
+<td>unnecessary because we can use <code>Observable(o1, o2, ...).flatten</code> instead</td>
+</tr>
+<tr>
+<td><code>merge(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;)</code></td>
+<td><code>flatten(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
+</tr>
+<tr>
+<td><code>merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)</code></td>
+<td><code>merge(Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>merge(Iterable&lt;? extends Observable&lt;? extends T&gt;&gt;)</code></td>
+<td>use <code>Observable.from(iter).flatten</code></td>
+</tr>
+<tr>
+<td><code>merge(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;, Int)</code></td>
+<td><code>flatten(Int)(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
+</tr>
+<tr>
+<td><code>merge(Iterable&lt;? extends Observable&lt;? extends T&gt;&gt;, Int)</code></td>
+<td>use <code>Observable.from(iter).flatten(n)</code></td>
+</tr>
+<tr>
+<td><code>mergeDelayError(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;)</code></td>
+<td><code>flattenDelayError(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
+</tr>
+<tr>
+<td><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span></td>
+<td>unnecessary because we can use <code>Observable(o1, o2, ...).flattenDelayError</code> instead</td>
+</tr>
+<tr>
+<td><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span></td>
+<td><code>mergeDelayError(Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>mergeWith(Observable&lt;? extends T&gt;)</code></td>
+<td><code>merge(Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>nest()</code></td>
+<td><code>nest</code></td>
+</tr>
+<tr>
+<td><code>never()</code></td>
+<td><code>never</code></td>
+</tr>
+<tr>
+<td><code>observeOn(Scheduler)</code></td>
+<td><code>observeOn(Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>ofType(Class&lt;R&gt;)</code></td>
+<td>use <code>filter(_.isInstanceOf[Class])</code></td>
+</tr>
+<tr>
+<td><code>onBackpressureBlock()</code><br/><code>onBackpressureBlock(Int)</code></td>
+<td>Marked as <code>@Beta</code> or <code>@Experimental</code> in RxJava and thus not available in RxScala</td>
+</tr>
+<tr>
+<td><code>onBackpressureBuffer()</code></td>
+<td><code>onBackpressureBuffer</code></td>
+</tr>
+<tr>
+<td><code>onBackpressureDrop()</code></td>
+<td><code>onBackpressureDrop</code></td>
+</tr>
+<tr>
+<td><span title="onErrorResumeNext(Func1&lt;Throwable, ? extends Observable&lt;? extends T&gt;&gt;)"><code>onErrorResumeNext(...)</code></span></td>
+<td><code>onErrorResumeNext(Throwable =&gt; Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>onErrorResumeNext(Observable&lt;? extends T&gt;)</code></td>
+<td><code>onErrorResumeNext(Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>onErrorReturn(Func1&lt;Throwable, ? extends T&gt;)</code></td>
+<td><code>onErrorReturn(Throwable =&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>onExceptionResumeNext(Observable&lt;? extends T&gt;)</code></td>
+<td><code>onExceptionResumeNext(Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>publish()</code></td>
+<td><code>publish</code></td>
+</tr>
+<tr>
+<td><code>publish(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;)</code></td>
+<td><code>publish(Observable[T] =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><code>range(Int, Int)</code></td>
+<td>The <code>range</code> method of the Java Observable takes <code>start</code> and <code>count</code> parameters, whereas the <code>range</code> method of the Scala Iterable takes <code>start</code> and <code>end</code> parameters, so adding any of these two would be confusing. Moreover, since <code>scala.collection.immutable.Range</code> is a subtype of <code>Iterable</code>, there are two nice ways of creating range Observables: <code>(start to end).toObservable</code> or <code>Observable.from(start to end)</code>, and even more options are possible using <code>until</code> and <code>by</code>.</td>
+</tr>
+<tr>
+<td><code>range(Int, Int, Scheduler)</code></td>
+<td>use <code>(start until end).toObservable.subscribeOn(scheduler)</code> instead of <code>range(start, count, scheduler)</code></td>
+</tr>
+<tr>
+<td><code>reduce(Func2&lt;T, T, T&gt;)</code></td>
+<td><code>reduce((U, U) =&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>reduce(R, Func2&lt;R, ? super T, R&gt;)</code></td>
+<td><code>foldLeft(R)((R, T) =&gt; R)</code></td>
+</tr>
+<tr>
+<td><code>repeat()</code></td>
+<td><code>repeat</code></td>
+</tr>
+<tr>
+<td><code>repeat(Long)</code></td>
+<td><code>repeat(Long)</code></td>
+</tr>
+<tr>
+<td><code>repeat(Long, Scheduler)</code></td>
+<td><code>repeat(Long, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>repeat(Scheduler)</code></td>
+<td><code>repeat(Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="repeatWhen(Func1&lt;? super Observable&lt;? extends Void&gt;, ? extends Observable&lt;_&gt;&gt;)"><code>repeatWhen(...)</code></span></td>
+<td><code>repeatWhen(Observable[Unit] =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><span title="repeatWhen(Func1&lt;? super Observable&lt;? extends Void&gt;, ? extends Observable&lt;_&gt;&gt;, Scheduler)"><code>repeatWhen(...)</code></span></td>
+<td><code>repeatWhen(Observable[Unit] =&gt; Observable[Any], Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="replay(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;, Int, Long, TimeUnit, Scheduler)"><code>replay(...)</code></span></td>
+<td><code>replay(Observable[T] =&gt; Observable[R], Int, Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="replay(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;, Scheduler)"><code>replay(...)</code></span></td>
+<td><code>replay(Observable[T] =&gt; Observable[R], Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>replay(Long, TimeUnit, Scheduler)</code></td>
+<td><code>replay(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>replay(Scheduler)</code></td>
+<td><code>replay(Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="replay(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;, Int)"><code>replay(...)</code></span></td>
+<td><code>replay(Observable[T] =&gt; Observable[R], Int)</code></td>
+</tr>
+<tr>
+<td><span title="replay(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;, Long, TimeUnit)"><code>replay(...)</code></span></td>
+<td><code>replay(Observable[T] =&gt; Observable[R], Duration)</code></td>
+</tr>
+<tr>
+<td><code>replay(Long, TimeUnit)</code></td>
+<td><code>replay(Duration)</code></td>
+</tr>
+<tr>
+<td><code>replay(Int, Long, TimeUnit)</code></td>
+<td><code>replay(Int, Duration)</code></td>
+</tr>
+<tr>
+<td><span title="replay(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;, Int, Long, TimeUnit)"><code>replay(...)</code></span></td>
+<td><code>replay(Observable[T] =&gt; Observable[R], Int, Duration)</code></td>
+</tr>
+<tr>
+<td><code>replay(Int, Long, TimeUnit, Scheduler)</code></td>
+<td><code>replay(Int, Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>replay(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;)</code></td>
+<td><code>replay(Observable[T] =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><code>replay(Int)</code></td>
+<td><code>replay(Int)</code></td>
+</tr>
+<tr>
+<td><span title="replay(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;, Int, Scheduler)"><code>replay(...)</code></span></td>
+<td><code>replay(Observable[T] =&gt; Observable[R], Int, Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="replay(Func1&lt;? super Observable&lt;T&gt;, ? extends Observable&lt;R&gt;&gt;, Long, TimeUnit, Scheduler)"><code>replay(...)</code></span></td>
+<td><code>replay(Observable[T] =&gt; Observable[R], Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>replay(Int, Scheduler)</code></td>
+<td><code>replay(Int, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>replay()</code></td>
+<td><code>replay</code></td>
+</tr>
+<tr>
+<td><code>retry(Long)</code></td>
+<td><code>retry(Long)</code></td>
+</tr>
+<tr>
+<td><code>retry()</code></td>
+<td><code>retry</code></td>
+</tr>
+<tr>
+<td><code>retry(Func2&lt;Integer, Throwable, Boolean&gt;)</code></td>
+<td><code>retry((Int, Throwable) =&gt; Boolean)</code></td>
+</tr>
+<tr>
+<td><span title="retryWhen(Func1&lt;? super Observable&lt;? extends Throwable&gt;, ? extends Observable&lt;_&gt;&gt;)"><code>retryWhen(...)</code></span></td>
+<td><code>retryWhen(Observable[Throwable] =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><span title="retryWhen(Func1&lt;? super Observable&lt;? extends Throwable&gt;, ? extends Observable&lt;_&gt;&gt;, Scheduler)"><code>retryWhen(...)</code></span></td>
+<td><code>retryWhen(Observable[Throwable] =&gt; Observable[Any], Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>sample(Long, TimeUnit)</code></td>
+<td><code>sample(Duration)</code></td>
+</tr>
+<tr>
+<td><code>sample(Long, TimeUnit, Scheduler)</code></td>
+<td><code>sample(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>sample(Observable&lt;U&gt;)</code></td>
+<td><code>sample(Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>scan(Func2&lt;T, T, T&gt;)</code></td>
+<td>considered unnecessary in Scala land</td>
+</tr>
+<tr>
+<td><code>scan(R, Func2&lt;R, ? super T, R&gt;)</code></td>
+<td><code>scan(R)((R, T) =&gt; R)</code></td>
+</tr>
+<tr>
+<td><code>sequenceEqual(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)</code></td>
+<td><code>sequenceEqual(Observable[U])</code></td>
+</tr>
+<tr>
+<td><span title="sequenceEqual(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Func2&lt;? super T, ? super T, Boolean&gt;)"><code>sequenceEqual(...)</code></span></td>
+<td><code>sequenceEqualWith(Observable[U])((U, U) =&gt; Boolean)</code></td>
+</tr>
+<tr>
+<td><code>serialize()</code></td>
+<td><code>serialize</code></td>
+</tr>
+<tr>
+<td><code>share()</code></td>
+<td><code>share</code></td>
+</tr>
+<tr>
+<td><code>single(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>filter(predicate).single</code></td>
+</tr>
+<tr>
+<td><code>single()</code></td>
+<td><code>single</code></td>
+</tr>
+<tr>
+<td><code>singleOrDefault(T, Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>filter(predicate).singleOrElse(default)</code></td>
+</tr>
+<tr>
+<td><code>singleOrDefault(T)</code></td>
+<td><code>singleOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>skip(Long, TimeUnit, Scheduler)</code></td>
+<td><code>drop(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>skip(Int)</code></td>
+<td><code>drop(Int)</code></td>
+</tr>
+<tr>
+<td><code>skip(Long, TimeUnit)</code></td>
+<td><code>drop(Duration)</code></td>
+</tr>
+<tr>
+<td><code>skipLast(Long, TimeUnit, Scheduler)</code></td>
+<td><code>dropRight(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>skipLast(Long, TimeUnit)</code></td>
+<td><code>dropRight(Duration)</code></td>
+</tr>
+<tr>
+<td><code>skipLast(Int)</code></td>
+<td><code>dropRight(Int)</code></td>
+</tr>
+<tr>
+<td><code>skipUntil(Observable&lt;U&gt;)</code></td>
+<td><code>dropUntil(Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>skipWhile(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td><code>dropWhile(T =&gt; Boolean)</code></td>
+</tr>
+<tr>
+<td><code>startWith(Iterable&lt;T&gt;)</code></td>
+<td>use <code>Observable.from(iterable) ++ o</code></td>
+</tr>
+<tr>
+<td><code>startWith(T, T)</code><br/><code>startWith(T, T, T)</code><br/><code>startWith(T, T, T, T)</code><br/><code>startWith(T, T, T, T, T)</code><br/><code>startWith(T, T, T, T, T, T)</code><br/><code>startWith(T, T, T, T, T, T, T)</code><br/><code>startWith(T, T, T, T, T, T, T, T)</code><br/><code>startWith(T, T, T, T, T, T, T, T, T)</code></td>
+<td>use <code>Observable.just(...) ++ o</code></td>
+</tr>
+<tr>
+<td><code>startWith(T)</code></td>
+<td>use <code>item +: o</code></td>
+</tr>
+<tr>
+<td><code>startWith(Observable&lt;T&gt;)</code></td>
+<td>use <code>++</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Action1&lt;? super T&gt;, Action1&lt;Throwable&gt;)</code></td>
+<td><code>subscribe(T =&gt; Unit, Throwable =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Action1&lt;? super T&gt;, Action1&lt;Throwable&gt;, Action0)</code></td>
+<td><code>subscribe(T =&gt; Unit, Throwable =&gt; Unit, () =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>subscribe()</code></td>
+<td><code>subscribe()</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Action1&lt;? super T&gt;)</code></td>
+<td><code>subscribe(T =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Subscriber&lt;? super T&gt;)</code></td>
+<td><code>subscribe(Subscriber[T])</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Observer&lt;? super T&gt;)</code></td>
+<td><code>subscribe(Observer[T])</code></td>
+</tr>
+<tr>
+<td><code>subscribeOn(Scheduler)</code></td>
+<td><code>subscribeOn(Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>switchMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;)</code></td>
+<td><code>switchMap(T =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><code>switchOnNext(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;)</code></td>
+<td><code>switch(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
+</tr>
+<tr>
+<td><code>take(Long, TimeUnit, Scheduler)</code></td>
+<td><code>take(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>take(Int)</code></td>
+<td><code>take(Int)</code></td>
+</tr>
+<tr>
+<td><code>take(Long, TimeUnit)</code></td>
+<td><code>take(Duration)</code></td>
+</tr>
+<tr>
+<td><code>takeFirst(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>filter(condition).take(1)</code></td>
+</tr>
+<tr>
+<td><code>takeLast(Int, Long, TimeUnit)</code></td>
+<td><code>takeRight(Int, Duration)</code></td>
+</tr>
+<tr>
+<td><code>takeLast(Long, TimeUnit, Scheduler)</code></td>
+<td><code>takeRight(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>takeLast(Int, Long, TimeUnit, Scheduler)</code></td>
+<td><code>takeRight(Int, Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>takeLast(Long, TimeUnit)</code></td>
+<td><code>takeRight(Duration)</code></td>
+</tr>
+<tr>
+<td><code>takeLast(Int)</code></td>
+<td><code>takeRight(Int)</code></td>
+</tr>
+<tr>
+<td><code>takeLastBuffer(Int)</code><br/><code>takeLastBuffer(Int, Long, TimeUnit)</code><br/><code>takeLastBuffer(Int, Long, TimeUnit, Scheduler)</code><br/><code>takeLastBuffer(Long, TimeUnit)</code><br/><code>takeLastBuffer(Long, TimeUnit, Scheduler)</code></td>
+<td>use <code>takeRight(...).toSeq</code></td>
+</tr>
+<tr>
+<td><code>takeUntil(Observable&lt;? extends E&gt;)</code></td>
+<td><code>takeUntil(Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>takeWhile(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td><code>takeWhile(T =&gt; Boolean)</code></td>
+</tr>
+<tr>
+<td><code>throttleFirst(Long, TimeUnit)</code></td>
+<td><code>throttleFirst(Duration)</code></td>
+</tr>
+<tr>
+<td><code>throttleFirst(Long, TimeUnit, Scheduler)</code></td>
+<td><code>throttleFirst(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>throttleLast(Long, TimeUnit)</code></td>
+<td><code>throttleLast(Duration)</code></td>
+</tr>
+<tr>
+<td><code>throttleLast(Long, TimeUnit, Scheduler)</code></td>
+<td><code>throttleLast(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>throttleWithTimeout(Long, TimeUnit, Scheduler)</code></td>
+<td><code>throttleWithTimeout(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>throttleWithTimeout(Long, TimeUnit)</code></td>
+<td><code>throttleWithTimeout(Duration)</code></td>
+</tr>
+<tr>
+<td><code>timeInterval()</code></td>
+<td><code>timeInterval</code></td>
+</tr>
+<tr>
+<td><code>timeInterval(Scheduler)</code></td>
+<td><code>timeInterval(Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="timeout(Func1&lt;? super T, ? extends Observable&lt;V&gt;&gt;, Observable&lt;? extends T&gt;)"><code>timeout(...)</code></span></td>
+<td><code>timeout(T =&gt; Observable[Any], Observable[U])</code></td>
+</tr>
+<tr>
+<td><span title="timeout(Func0&lt;? extends Observable&lt;U&gt;&gt;, Func1&lt;? super T, ? extends Observable&lt;V&gt;&gt;)"><code>timeout(...)</code></span></td>
+<td><code>timeout(() =&gt; Observable[Any], T =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>timeout(Func1&lt;? super T, ? extends Observable&lt;V&gt;&gt;)</code></td>
+<td><code>timeout(T =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>timeout(Long, TimeUnit, Observable&lt;? extends T&gt;)</code></td>
+<td><code>timeout(Duration, Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>timeout(Long, TimeUnit, Observable&lt;? extends T&gt;, Scheduler)</code></td>
+<td><code>timeout(Duration, Observable[U], Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>timeout(Long, TimeUnit)</code></td>
+<td><code>timeout(Duration)</code></td>
+</tr>
+<tr>
+<td><span title="timeout(Func0&lt;? extends Observable&lt;U&gt;&gt;, Func1&lt;? super T, ? extends Observable&lt;V&gt;&gt;, Observable&lt;? extends T&gt;)"><code>timeout(...)</code></span></td>
+<td><code>timeout(() =&gt; Observable[Any], T =&gt; Observable[Any], Observable[U])</code></td>
+</tr>
+<tr>
+<td><code>timeout(Long, TimeUnit, Scheduler)</code></td>
+<td><code>timeout(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>timer(Long, Long, TimeUnit)</code></td>
+<td><code>timer(Duration, Duration)</code></td>
+</tr>
+<tr>
+<td><code>timer(Long, Long, TimeUnit, Scheduler)</code></td>
+<td><code>timer(Duration, Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>timer(Long, TimeUnit, Scheduler)</code></td>
+<td><code>timer(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>timer(Long, TimeUnit)</code></td>
+<td><code>timer(Duration)</code></td>
+</tr>
+<tr>
+<td><code>timestamp(Scheduler)</code></td>
+<td><code>timestamp(Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>timestamp()</code></td>
+<td><code>timestamp</code></td>
+</tr>
+<tr>
+<td><code>toBlocking()</code></td>
+<td><code>toBlocking</code></td>
+</tr>
+<tr>
+<td><code>toList()</code></td>
+<td><code>toSeq</code></td>
+</tr>
+<tr>
+<td><span title="toMap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;)"><code>toMap(...)</code></span></td>
+<td><code>toMap(T =&gt; K, T =&gt; V)</code></td>
+</tr>
+<tr>
+<td><code>toMap(Func1&lt;? super T, ? extends K&gt;)</code></td>
+<td><code>toMap(T =&gt; K)</code></td>
+</tr>
+<tr>
+<td><span title="toMap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;, Func0&lt;? extends Map&lt;K, V&gt;&gt;)"><code>toMap(...)</code></span></td>
+<td>mapFactory is not necessary because Scala has <code>CanBuildFrom</code></td>
+</tr>
+<tr>
+<td><span title="toMultimap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;, Func0&lt;? extends Map&lt;K, Collection&lt;V&gt;&gt;&gt;, Func1&lt;? super K, ? extends Collection&lt;V&gt;&gt;)"><code>toMultimap(...)</code></span></td>
+<td><code>toMultiMap</code> in RxScala returns <code>mutable.MultiMap</code>. It&#39;s a <code>Map[A, mutable.Set[B]]</code>. You can override <code>def makeSet: Set[B]</code> to create a custom Set.</td>
+</tr>
+<tr>
+<td><code>toMultimap(Func1&lt;? super T, ? extends K&gt;)</code></td>
+<td><code>toMultiMap(T =&gt; K)</code></td>
+</tr>
+<tr>
+<td><span title="toMultimap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;, Func0&lt;? extends Map&lt;K, Collection&lt;V&gt;&gt;&gt;)"><code>toMultimap(...)</code></span></td>
+<td><code>toMultiMap(T =&gt; K, T =&gt; V, =&gt; M)</code></td>
+</tr>
+<tr>
+<td><span title="toMultimap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;)"><code>toMultimap(...)</code></span></td>
+<td><code>toMultiMap(T =&gt; K, T =&gt; V)</code></td>
+</tr>
+<tr>
+<td><code>toSortedList(Func2&lt;? super T, ? super T, Integer&gt;)</code></td>
+<td>Sorting is already done in Scala&#39;s collection library, use <code>.toSeq.map(_.sortWith(f))</code></td>
+</tr>
+<tr>
+<td><code>toSortedList()</code></td>
+<td>Sorting is already done in Scala&#39;s collection library, use <code>.toSeq.map(_.sorted)</code></td>
+</tr>
+<tr>
+<td><code>unsafeSubscribe(Subscriber&lt;? super T&gt;)</code></td>
+<td><code>unsafeSubscribe(Subscriber[T])</code></td>
+</tr>
+<tr>
+<td><code>unsubscribeOn(Scheduler)</code></td>
+<td><code>unsubscribeOn(Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="using(Func0&lt;Resource&gt;, Func1&lt;? super Resource, ? extends Observable&lt;? extends T&gt;&gt;, Action1&lt;? super Resource&gt;)"><code>using(...)</code></span></td>
+<td><code>using(=&gt; Resource)(Resource =&gt; Observable[T], Resource =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>window(Long, TimeUnit, Scheduler)</code></td>
+<td><code>tumbling(Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>window(Func0&lt;? extends Observable&lt;? extends TClosing&gt;&gt;)</code><br/><code>window(Observable&lt;U&gt;)</code></td>
+<td><code>tumbling(=&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>window(Int)</code></td>
+<td><code>tumbling(Int)</code></td>
+</tr>
+<tr>
+<td><code>window(Long, Long, TimeUnit)</code></td>
+<td><code>sliding(Duration, Duration)</code></td>
+</tr>
+<tr>
+<td><code>window(Int, Int)</code></td>
+<td><code>sliding(Int, Int)</code></td>
+</tr>
+<tr>
+<td><code>window(Long, Long, TimeUnit, Int, Scheduler)</code></td>
+<td><code>sliding(Duration, Duration, Int, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>window(Long, TimeUnit, Int, Scheduler)</code></td>
+<td><code>tumbling(Duration, Int, Scheduler)</code></td>
+</tr>
+<tr>
+<td><code>window(Long, Long, TimeUnit, Scheduler)</code></td>
+<td><code>sliding(Duration, Duration, Scheduler)</code></td>
+</tr>
+<tr>
+<td><span title="window(Observable&lt;? extends TOpening&gt;, Func1&lt;? super TOpening, ? extends Observable&lt;? extends TClosing&gt;&gt;)"><code>window(...)</code></span></td>
+<td><code>sliding(Observable[Opening])(Opening =&gt; Observable[Any])</code></td>
+</tr>
+<tr>
+<td><code>window(Long, TimeUnit)</code></td>
+<td><code>tumbling(Duration)</code></td>
+</tr>
+<tr>
+<td><code>window(Long, TimeUnit, Int)</code></td>
+<td><code>tumbling(Duration, Int)</code></td>
+</tr>
+<tr>
+<td><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Func2&lt;? super T1, ? super T2, ? extends R&gt;)"><code>zip(...)</code></span></td>
+<td>use instance method <code>zip</code> and <code>map</code></td>
+</tr>
+<tr>
+<td><code>zip(Iterable&lt;? extends Observable&lt;_&gt;&gt;, FuncN&lt;? extends R&gt;)</code><br/><code>zip(Observable&lt;? extends Observable&lt;_&gt;&gt;, FuncN&lt;? extends R&gt;)</code></td>
+<td>use <code>zip</code> in companion object and <code>map</code></td>
+</tr>
+<tr>
+<td><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Func3&lt;? super T1, ? super T2, ? super T3, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Func4&lt;? super T1, ? super T2, ? super T3, ? super T4, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Func5&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Func6&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Func7&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Observable&lt;? extends T8&gt;, Func8&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? super T8, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Observable&lt;? extends T8&gt;, Observable&lt;? extends T9&gt;, Func9&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? super T8, ? super T9, ? extends R&gt;)"><code>zip(...)</code></span></td>
+<td>considered unnecessary in Scala land</td>
+</tr>
+<tr>
+<td><span title="zipWith(Iterable&lt;? extends T2&gt;, Func2&lt;? super T, ? super T2, ? extends R&gt;)"><code>zipWith(...)</code></span></td>
+<td><code>zipWith(Iterable[U])((T, U) =&gt; R)</code></td>
+</tr>
+<tr>
+<td><span title="zipWith(Observable&lt;? extends T2&gt;, Func2&lt;? super T, ? super T2, ? extends R&gt;)"><code>zipWith(...)</code></span></td>
+<td><code>zipWith(Observable[U])((T, U) =&gt; R)</code></td>
+</tr>
+</tbody></table>
+
+<p>This table was generated on Sat Dec 06 22:47:02 CET 2014.
+<strong>Do not edit</strong>. Instead, edit <code>rx.lang.scala.CompletenessTest</code>.</p>
+
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

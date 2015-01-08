@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Observable</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 id="observable">Observable</h1>
+
+<p>In ReactiveX an <dfn>observer</dfn> <dfn>subscribes</dfn> to an <dfn>Observable</dfn>. Then that observer reacts to whatever item or sequence of items the Observable object <dfn>emits</dfn>. This pattern facilitates concurrent operations because it does not need to block while waiting for the Observable to emit objects, but instead it creates a sentry in the form of an observer that stands ready to react appropriately at whatever future time the Observable does so.</p>
+
+<p>This page explains what the reactive pattern is and what Observables and observers are (and how observers subscribe to Observables). Subsequent child pages (as shown in sidebar) show how you use the variety of Observable operators to link Observables together and change their behaviors.</p>
+
+<blockquote>
+<p>This documentation accompanies its explanations with &ldquo;marble diagrams.&rdquo; Here is how marble diagrams represent Observables and transformations of Observables:
+<img src="/assets/operators/legend.png" width="640" height="301" /></p>
+</blockquote>
+
+<h4 id="see-also">see also</h4>
+
+<ul>
+<li><a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Introduction"><cite>Rx Workshop</cite>: Introduction</a></li>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/02_KeyTypes.html#IObservable"><cite>Introduction to Rx</cite>: IObservable</a></li>
+<li><a href="http://docs.couchbase.com/developer/java-2.0/observables.html"><cite>Mastering observables</cite></a> (from the Couchbase Server documentation)</li>
+<li><a href="https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877"><cite>2 minute introduction to Rx</cite></a> by Andre Staltz (&ldquo;Think of an Observable as an asynchronous immutable array.&rdquo;)</li>
+</ul>
+
+<h1 id="background">Background</h1>
+
+<p>In many software programming tasks, you more or less expect that the instructions you write will execute and complete incrementally, one-at-a-time, in order as you have written them. But in the Rx paradigm, many instructions may execute in parallel and their results are later captured, in arbitrary order, by “observers.” In these cases, rather than <em>calling</em> a method, you define a mechanism for retrieving and transforming the data, in the form of an “Observable,” and then <em>subscribe</em> an observer to it, at which point the previously-defined mechanism fires into action with the observer standing sentry to capture and respond to its emissions whenever they arrive.</p>
+
+<p>An advantage of this approach is that when you have a bunch of tasks to do that are not dependent on each other, you can start them all at the same time rather than waiting for each one to finish before starting the next one --- that way, your entire bundle of tasks only takes as long to complete as the longest task in the bundle.</p>
+
+<p>There are many terms used to describe this model of asynchronous programming and design. This document will use the following terms: An <dfn>observer</dfn> <dfn>subscribes<dfn> to an <dfn>Observable</dfn>. An Observable <dfn>emits</dfn> <dfn>items</dfn> or sends <dfn>notifications</dfn> to its observers by invoking the observers’ methods.</p>
+
+<p>In other documents and other contexts, what we are calling an “observer” is sometimes called a “subscriber,” “watcher” or “reactor.” This model in general is often referred to as the <a href="http://en.wikipedia.org/wiki/Reactor_pattern">“reactor pattern”</a>.</p>
+
+<h1 id="establishing-observers">Establishing Observers</h1>
+
+<p>This document usually uses Groovy for code examples, but there are ReactiveX implementations in many languages.</p>
+
+<p>In an ordinary method call — that is, <em>not</em> the sort of asynchronous, parallel calls typical in reactive programming — the flow is something like this:</p>
+
+<ol>
+<li>Call a method.<br></li>
+<li>Store the return value from that method in a variable.<br></li>
+<li>Use that variable and its new value to do something useful.<br></li>
+</ol>
+
+<p>Or, something like this:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// make the call, assign its return value to `returnVal`</span>
+<span class="n">returnVal</span> <span class="o">=</span> <span class="n">someMethod</span><span class="o">(</span><span class="n">itsParameters</span><span class="o">);</span>
+<span class="c1">// do something useful with returnVal</span>
+</code></pre></div>
+<p>In the asynchronous model the flow goes more like this:</p>
+
+<ol>
+<li>Define a method that does something useful with the return value from the asynchronous call, this method is part of the <em>observer</em>.<br></li>
+<li>Define the asynchronous call itself as an object of the <em>Observable</em> class.</li>
+<li>Attach the observer to that Observable by <em>subscribing</em> it (this also initiates the method call).<br></li>
+<li>Go on with your business; whenever the call returns, the observer’s method will begin to operate on its return value or values — the <em>items</em> emitted by the Observable.<br></li>
+</ol>
+
+<p>Which looks something like this:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// defines, but does not invoke, the Subscriber&#39;s onNext handler</span>
+<span class="c1">// (in this example, the observer is very simple and has only an onNext handler)</span>
+<span class="kt">def</span> <span class="n">myOnNext</span> <span class="o">=</span> <span class="o">{</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="k">do</span> <span class="n">something</span> <span class="n">useful</span> <span class="n">with</span> <span class="n">it</span> <span class="o">};</span>
+<span class="c1">// defines, but does not invoke, the Observable</span>
+<span class="kt">def</span> <span class="n">myObservable</span> <span class="o">=</span> <span class="n">someObservable</span><span class="o">(</span><span class="n">itsParameters</span><span class="o">);</span>
+<span class="c1">// subscribes the Subscriber to the Observable, and invokes the Observable</span>
+<span class="n">myObservable</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">myOnNext</span><span class="o">);</span>
+<span class="c1">// go on about my business</span>
+</code></pre></div>
+<h2 id="onnext,-oncompleted,-and-onerror">onNext, onCompleted, and onError</h2>
+
+<p>The <code>subscribe()</code> method may accept one to three methods, or it may accept an object that implements the <code>Observer</code> interface (which includes these three methods):</p>
+
+<p><strong>onNext</strong>: An Observable will call this method of its observers whenever the Observable emits an item. This method takes as a parameter the item emitted by the Observable.</p>
+
+<p><strong>onError</strong>: An Observable will call this method of its observers to indicate that it has failed to generate the expected data or has encountered some other error. This stops the Observable and it will not make further calls to <code>onNext</code> or <code>onCompleted</code>. The <code>onError</code> method takes as its parameter an indication of what caused the error.</p>
+
+<p><strong>onCompleted</strong>: An Observable will invoke this method of its observers after it has called <code>onNext</code> for the final time, if it has not encountered any errors.</p>
+
+<p>A more complete <code>subscribe()</code> example would therefore look like this:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="kt">def</span> <span class="n">myOnNext</span>     <span class="o">=</span> <span class="o">{</span> <span class="n">item</span> <span class="o">-&gt;</span> <span class="cm">/* do something useful with item */</span> <span class="o">};</span>
+<span class="kt">def</span> <span class="n">myError</span>      <span class="o">=</span> <span class="o">{</span> <span class="n">throwable</span> <span class="o">-&gt;</span> <span class="cm">/* react sensibly to a failed call */</span> <span class="o">};</span>
+<span class="kt">def</span> <span class="n">myComplete</span>   <span class="o">=</span> <span class="o">{</span> <span class="cm">/* clean up after the final response */</span> <span class="o">};</span>
+<span class="kt">def</span> <span class="n">myObservable</span> <span class="o">=</span> <span class="n">someMethod</span><span class="o">(</span><span class="n">itsParameters</span><span class="o">);</span>
+<span class="n">myObservable</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">myOnNext</span><span class="o">,</span> <span class="n">myError</span><span class="o">,</span> <span class="n">myComplete</span><span class="o">);</span>
+<span class="c1">// go on about my business</span>
+</code></pre></div>
+<h4 id="see-also:">see also:</h4>
+
+<ul>
+<li><a href="http://www.introtorx.com/Content/v1.0.10621.0/02_KeyTypes.html#IObserver"><cite>Introduction to Rx</cite>: IObserver</a></li>
+</ul>
+
+<h2 id="unsubscribing">Unsubscribing</h2>
+
+<p>In some ReactiveX implementations, there is a specialized observer interface, <code>Subscriber</code>, that implements an <code>unsubscribe()</code> method. You can call this method to indicate that the Subscriber is no longer interested in any of the Observables it is currently subscribed to. Those Observables can then (if they have no other interested observers) choose to stop generating new items to emit.</p>
+
+<p>The results of this unsubscription will cascade back through the chain of operators that applies to the Observable that the Subscriber subscribed to, and this will cause each link in the chain to stop emitting items. This is not guaranteed to happen immediately, however, and it is possible for an Observable to generate and attempt to emit items for a while even after no Subscribers remain to observe these emissions.</p>
+
+<h2 id="some-notes-on-naming-conventions">Some Notes on Naming Conventions</h2>
+
+<p>Each language-specific implementation of ReactiveX has its own naming quirks. There is no canonical naming standard, though there are many commonalities between implementations.</p>
+
+<p>Furthermore, some of these names have different implications in other contexts, or seem awkward in the idiom of a particular implementing language.</p>
+
+<p>For example there is the <code>onEvent</code> naming pattern (e.g. <code>onNext</code>, <code>onCompleted</code>, <code>onError</code>). In many contexts such names would indicate methods by means of which event handlers are <em>registered</em>. In ReactiveX, however, they name the event handlers themselves.</p>
+
+<h1 id="&ldquo;hot&rdquo;-and-&ldquo;cold&rdquo;-observables">&ldquo;Hot&rdquo; and &ldquo;Cold&rdquo; Observables</h1>
+
+<p>When does an Observable begin emitting its sequence of items? It depends on the Observable. A &ldquo;hot&rdquo; Observable may begin emitting items as soon as it is created, and so any observer who subscribes to that Observable may start observing the sequence somewhere in the middle. A &ldquo;cold&rdquo; Observable, on the other hand, waits until an observer subscribes to it before it begins to emit items, and so such an observer is guaranteed to see the whole sequence from the beginning.</p>
+
+<p>In some implementations of ReactiveX, there is also something called a &ldquo;Connectable&rdquo; Observable. Such an Observable does not begin emitting items until its <a href="/documentation/operators/connect.html"><code>connect</code></a> method is called, whether or not any observers have subscribed to it.</p>
+
+<h1 id="composition-via-observable-operators">Composition via Observable Operators</h1>
+
+<p>Observables and observers are only the start of ReactiveX. By themselves they’d be nothing more than a slight extension of the standard observer pattern, better suited to handling a sequence of events rather than a single callback.</p>
+
+<p>The real power comes with the “reactive extensions” (hence “ReactiveX”) — operators that allow you to transform, combine, manipulate, and work with the sequences of items emitted by Observables.</p>
+
+<p>These Rx operators allow you to compose asynchronous sequences together in a declarative manner with all the efficiency benefits of callbacks but without the drawbacks of nesting callback handlers that are typically associated with asynchronous systems.</p>
+
+<p>This documentation groups information about <a href="/documentation/operators.html#alphabetical">the various operators</a> and examples of their usage into the following pages:</p>
+
+<ul>
+<li><a href="/documentation/operators.html#creating">Creating</a></li>
+<li><a href="/documentation/operators.html#transforming">Transforming</a></li>
+<li><a href="/documentation/operators.html#filtering">Filtering</a></li>
+<li><a href="/documentation/operators.html#combining">Combining</a></li>
+<li><a href="/documentation/operators.html#error">Error Handling</a></li>
+<li><a href="/documentation/operators.html#utility">Utility</a></li>
+<li><a href="/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+<li><a href="/documentation/operators.html#mathematical">Mathematical and Aggregate</a></li>
+<li><a href="/documentation/operators.html#backpressure">Backpressure</a></li>
+<li><a href="/documentation/operators.html#connectable">Connectable Observables</a></li>
+<li><a href="/documentation/operators.html#blocking">Blocking Observables</a></li>
+</ul>
+
+<p>These pages include information about some operators that are not part of the core of ReactiveX but are implemented in the variety of language-specific implementations and/or optional modules.</p>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-observable").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="318px" height="324px" viewBox="0 0 318 324" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.4 (8053) - http://www.bohemiancoding.com/sketch -->
+    <title>Less</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Less" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)" stroke="#333333" stroke-width="25">
+            <path d="M146.076941,175.678313 C146.076941,224.153012 145.267872,289.047896 145.267874,301.81584 C145.267876,314.583785 134.343224,322.310347 122.779547,322.310347 C111.21587,322.310347 26.0580002,322.310349 -0.314276842,322.310347" id="Path-12" sketch:type="MSShapeGroup" transform="translate(72.665570, 248.903077) scale(1, -1) translate(-72.665570, -248.903077) "></path>
+            <path d="M317.076941,-0.321687089 C317.076941,48.1530116 316.267872,113.047896 316.267874,125.81584 C316.267876,138.583785 305.343224,146.310347 293.779547,146.310347 C282.21587,146.310347 197.058,146.310349 170.685723,146.310347" id="Path-13" sketch:type="MSShapeGroup" transform="translate(243.665570, 72.903077) scale(1, -1) rotate(-180.000000) translate(-243.665570, -72.903077) "></path>
+        </g>
+    </g>
+</svg>

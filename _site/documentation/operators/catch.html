@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Catch operator</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#error">Error Handling</a></li>
+  <li class="active">Catch</li>
+</ol>
+
+   <h1>Catch</h1>
+   <h3>recover from an onError notification by continuing the sequence without error</h3>
+   <figure>
+    <img src="images/Catch.png" width="640" alt="Catch" />
+    <figcaption><p>
+     The <span class="operator">Catch</span> operator intercepts an <code>onError</code>
+     notification from the source Observable and, instead of passing it through to any
+     observers, replaces it with some other item or sequence of items, potentially allowing
+     the resulting Observable to terminate normally or not to terminate at all.
+    </p><p>
+     There are several variants of the <span class="operator">Catch</span> operator, and a
+     variety of names used by different ReactiveX implementations to describe this operation,
+     as you can see in the sections below.
+    </p><p>
+     In some ReactiveX implementations, there is an operator called something like
+     &ldquo;OnErrorResumeNext&rdquo; that behaves like a <span class="operator">Catch</span>
+     variant: specifically reacting to an <code>onError</code> notification from the source
+     Observable. In others, there is an operator with that name that behaves more like a
+     <span class="operator">Concat</span> variant: performing the concatination operation
+     regardless of whether the source Observable terminates normally or with an error. This is
+     unfortunate and confusing, but something we have to live with.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="concat.html"><span class="operator">Concat</span></a></li>
+    <li><a href="retry.html"><span class="operator">Retry</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/11_AdvancedErrorHandling.html#Catch"><cide>Introduction to Rx</cite>: Catch</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>catch*</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+     <figure>
+      <img src="images/catchX.png" width="640" alt="catch*" />
+      <figcaption><p>
+       RxClojure implements this operator as <code>catch*</code>. This operator takes two arguments,
+       both of which are functions of your choosing that take the exception raised by
+       <code>onError</code> as their single parameters. The first function is a predicate. If it
+       returns <code>false</code>, <code>catch*</code> passes the <code>onError</code> notification
+       unchanged to its observers. If it returns <code>true</code>, however, <code>catch*</code>
+       swallows the error, calls the second function (which returns an Observable), and passes along
+       the emissions and notifications from this new Observable to its observers.
+      </p><p>
+       You may replace the first function parameter (the predicate that evaluates the exception)
+       with a class object representing a variety of exception. If you do this, <code>catch*</code>
+       will treat it as equivalent to predicate that performs an <code>instance?</code> check to see
+       if the exception from the <code>onError</code> notification is an instance of the class
+       object. In other words:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code clojure"><pre>
+(->> my-observable
+  (catch* IllegalArgumentException
+          (fn [e] (rx/return 1)))
+)</pre></div>
+      <p>
+       is equivalent to:
+      </p>
+      <div class="code clojure"><pre>
+(->> my-observable
+  (catch* (fn [e] (-> instance? IllegalArgumentException e))
+          (fn [e] (rx/return 1)))
+)</pre></div></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+     <p>
+      RxCpp does not implement the <span class="operator">Catch</span> operator.
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>onErrorResumeNext onErrorReturn onExceptionResumeNext</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+     <p>
+      RxGroovy implements the <span class="operator">Catch</span> operator in the same way as
+      does RxJava. There are three distinct operators that provide this functionality:
+     </p>
+     <dl>
+      <dt><code>onErrorReturn</code></dt>
+       <dd>instructs an Observable to emit a particular item when it encounters an error, and then terminate normally</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onExceptionResumeNext</code></dt>
+       <dd>instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)</dd>
+     </dl>
+     <h4><code>onErrorReturn</code></h4>
+     <figure>
+      <img src="images/onErrorReturn.png" width="640" alt="onErrorReturn" />
+      <figcaption><p>
+       The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
+       source Observable, unless that Observable invokes <code>onError</code> in which case, rather
+       than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
+       specified item and invoke the observer&#8217;s <code>onCompleted</code> method, as shown in
+       the following sample code:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber ->
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Four');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Three');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Two');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('One');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onError();
+});
+
+myObservable.onErrorReturn({ return('Blastoff!'); }).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+Four
+Three
+Two
+One
+Blastoff!
+Sequence complete</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorReturn(rx.functions.Func1)"><code>onErrorReturn(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <h4><code>onErrorResumeNext</code></h4>
+     <figure>
+      <img src="images/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+      <figcaption><p>
+       The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
+       the source Observable, unless that Observable invokes <code>onError</code> in which case,
+       rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
+       instead begin mirroring a second, backup Observable, as shown in the following sample code:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber ->
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Three');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Two');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('One');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onError();
+});
+def myFallback = Observable.create({ aSubscriber ->
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('0');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('1');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('2');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onCompleted();
+});
+
+myObservable.onErrorResumeNext(myFallback).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+Three
+Two
+One
+0
+1
+2
+Sequence complete</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorResumeNext(rx.functions.Func1)"><code>onErrorResumeNext(Func1)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorResumeNext(rx.Observable)"><code>onErrorResumeNext(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <h4><code>onExceptionResumeNext</code></h4>
+     <figure>
+      <img src="images/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+      <figcaption><p>
+       Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
+       behavior of the source Observable, unless that Observable invokes <code>onError</code> in
+       which case, if the Throwable passed to <code>onError</code> is an Exception, rather than
+       propagating that Exception to the observer, <code>onExceptionResumeNext</code> will instead
+       begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
+       Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
+       observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onExceptionResumeNext(rx.Observable)"><code>onExceptionResumeNext(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
+              RxJava <code>onErrorResumeNext onErrorReturn onExceptionResumeNext</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
+          <div class="panel-body">
+            
+     <p>
+      RxJava implements the <span class="operator">Catch</span> operator with three distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>onErrorReturn</code></dt>
+       <dd>instructs an Observable to emit a particular item when it encounters an error, and then terminate normally</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onExceptionResumeNext</code></dt>
+       <dd>instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)</dd>
+     </dl>
+     <h4><code>onErrorReturn</code></h4>
+     <figure>
+      <img src="images/onErrorReturn.png" width="640" alt="onErrorReturn" />
+      <figcaption><p>
+       The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
+       source Observable, unless that Observable invokes <code>onError</code> in which case, rather
+       than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
+       specified item and invoke the observer&#8217;s <code>onCompleted</code> method.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorReturn(rx.functions.Func1)"><code>onErrorReturn(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <h4><code>onErrorResumeNext</code></h4>
+     <figure>
+      <img src="images/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+      <figcaption><p>
+       The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
+       the source Observable, unless that Observable invokes <code>onError</code> in which case,
+       rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
+       instead begin mirroring a second, backup Observable.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorResumeNext(rx.functions.Func1)"><code>onErrorResumeNext(Func1)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onErrorResumeNext(rx.Observable)"><code>onErrorResumeNext(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <h4><code>onExceptionResumeNext</code></h4>
+     <figure>
+      <img src="images/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+      <figcaption><p>
+       Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
+       behavior of the source Observable, unless that Observable invokes <code>onError</code> in
+       which case, if the Throwable passed to <code>onError</code> is an Exception, rather than
+       propagating that Exception to the observer, <code>onExceptionResumeNext</code> will instead
+       begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
+       Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
+       observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onExceptionResumeNext(rx.Observable)"><code>onExceptionResumeNext(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>catch onErrorResumeNext</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+     <p>
+      RxJS implements the <span class="operator">Catch</span> operator with two distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>catch</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error or if the source Observable terminates normally</dd>
+     </dl>
+     <h4><code>catch</code></h4>
+     <figure>
+      <img src="images/catch.js.png" width="640" alt="catch" />
+     </figure>
+     <p>
+      <code>catch</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <p>
+      For those browsers (e.g. Internet Explorer before IE9) for which the name &ldquo;catch&rdquo;
+      creates a conflict, there is also an alias called <code>catchException</code>
+     </p>
+     <h4><code>onErrorResumeNext</code></h4>
+     <figure>
+      <img src="images/onErrorResumeNext.js.png" width="640" alt="onErrorResumeNext" />
+      <figcaption><p>
+       This implementation borrows the confusing nomenclature from Rx.NET, in which
+       <code>onErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
+       on a normal, error-free termination of the source Observable.
+      </p></figcaption>
+     </figure>
+     <p>
+      <code>onErrorResumeNext</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+     </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>onErrorResumeNext onErrorReturn onExceptionResumeNext</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+     <p>
+      RxKotlin implements the <span class="operator">Catch</span> operator in the same way as
+      does RxJava. There are three distinct operators that provide this functionality:
+     </p>
+     <dl>
+      <dt><code>onErrorReturn</code></dt>
+       <dd>instructs an Observable to emit a particular item when it encounters an error, and then terminate normally</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onExceptionResumeNext</code></dt>
+       <dd>instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)</dd>
+     </dl>
+     <h4><code>onErrorReturn</code></h4>
+     <figure>
+      <img src="images/onErrorReturn.png" width="640" alt="onErrorReturn" />
+      <figcaption><p>
+       The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
+       source Observable, unless that Observable invokes <code>onError</code> in which case, rather
+       than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
+       specified item and invoke the observer&#8217;s <code>onCompleted</code> method.
+      </p></figcaption>
+     </figure>
+     <h4><code>onErrorResumeNext</code></h4>
+     <figure>
+      <img src="images/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+      <figcaption><p>
+       The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
+       the source Observable, unless that Observable invokes <code>onError</code> in which case,
+       rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
+       instead begin mirroring a second, backup Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>onExceptionResumeNext</code></h4>
+     <figure>
+      <img src="images/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+      <figcaption><p>
+       Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
+       behavior of the source Observable, unless that Observable invokes <code>onError</code> in
+       which case, if the Throwable passed to <code>onError</code> is an Exception, rather than
+       propagating that Exception to the observer, <code>onExceptionResumeNext</code> will instead
+       begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
+       Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
+       observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
+      </p></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Catch OnErrorResumeNext</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+     <p>
+      Rx.NET implements the <span class="operator">Catch</span> operator with two distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>Catch</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>OnErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error or if the source Observable terminates normally</dd>
+     </dl>
+     <h4><code>Catch</code></h4>
+     <figure>
+      <img src="images/Catch.png" width="640" alt="Catch" />
+      <figcaption><p>
+       The <code>Catch</code> operator has a variant that allows you to specify which sort of
+       Exception you want to catch. If you use that variant of the operator, any other Exceptions
+       will be passed through to the observer as if the <code>Catch</code> operator had not been
+       applied.
+      </p></figcaption>
+     </figure>
+     <h4><code>OnErrorResumeNext</code></h4>
+     <figure>
+      <img src="images/OnErrorResumeNext.net.png" width="640" alt="OnErrorResumeNext" />
+      <figcaption><p>
+       This implementation introduces a confusing nomenclature, in which in spite of its name
+       <code>OnErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
+       on a normal, error-free termination of the source Observable. It is therefore more like a
+       concatination operator.
+      </p></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>catch_exception on_error_resume_next</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+     <p>
+      RxPY implements the <span class="operator">Catch</span> operator with two distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>catch_exception</code></dt>
+       <dd>instructs an Observable, if it encounters an error, to begin emitting items from a set of other Observables, one Observable at a time, until one of those Observables terminates successfully</dd>
+      <dt><code>on_error_resume_next</code></dt>
+       <dd>instructs an Observable to concatinate items emitted by a set of other Observables, one Observable at a time, regardless of whether the source Observable or any subsequent Observable terminates with an error</dd>
+     </dl>
+     <h4><code>catch_exception</code></h4>
+     <figure>
+      <img src="images/catch_exception.png" width="640" alt="catch_exception" />
+      <figcaption><p>
+       You may pass <code>catch_exception</code> a set of back-up Observables either as individual
+       function parameters or as a single array of Observables. If it encounters an
+       <code>onError</code> notification from the source Observable, it will subscribe to and begin
+       mirroring the first of these back-up Observables. If this back-up Observable itself
+       issues an <code>onError</code> notification, <code>catch_exception</code> will swallow it
+       and switch over to the next back-up Observable. If any of these Observables issues an
+       <code>onCompleted</code> notification, <code>catch_exception</code> will pass this along
+       and will stop.
+      </p></figcaption>
+     </figure>
+     <h4><code>on_error_resume_next</code></h4>
+     <figure>
+      <img src="images/on_error_resume_next.png" width="640" alt="on_error_resume_next" />
+      <figcaption><p>
+       You may pass <code>on_error_resume_next</code> a set of back-up Observables either as
+       individual function parameters, as a single array of Observables, or as a factory function
+       that generates Observables. When the source Observable terminates, whether normally or with
+       an error, <code>on_error_resume_next</code> will subscribe to and begin mirroring the first
+       of these back-up Observables, and then will recursively continue this concatination process
+       for each additional Observable until there are no more Observables to mirror, at which time
+       it will pass on the <code>onError</code> or <code>onCompleted</code> notification from the
+       last of these Observables.
+      </p></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>on_error_resume_next rescue_error</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+     <p>
+      Rx.rb implements the <span class="operator">Catch</span> operator with two distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>rescue_error</code></dt>
+       <dd>instructs an Observable to begin emitting items from another Observable, or from an Observable returned from an action, if it encounters an error</dd>
+      <dt><code>on_error_resume_next</code></dt>
+       <dd>instructs an Observable to concatinate items emitted by another Observable to the sequence emitted by the source Observable, regardless of whether the source Observable terminates normally or with an error</dd>
+     </dl>
+     <h4><code>rescue_error</code></h4>
+     <figure>
+      <img src="images/rescue_error.png" width="640" alt="rescue_error" />
+      <figcaption><p>
+       You may pass <code>rescue_error</code> either an Observable or a factory action that
+       generates an Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>on_error_resume_next</code></h4>
+     <figure>
+      <img src="images/on_error_resume_next.png" width="640" alt="on_error_resume_next" />
+      <figcaption><p>
+       In Rx.rb, <code>on_error_resume_next</code> inherits the misleading nomenclature from Rx.NET
+       in that it concatinates the second Observable sequence to the source sequence whether that
+       source sequence terminates normally or with an error.
+      </p></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>onErrorFlatMap onErrorResumeNext onErrorReturn onExceptionResumeNext</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+     <p>
+      Rx.rb implements the <span class="operator">Catch</span> operator with four distinct
+      operators:
+     </p>
+     <dl>
+      <dt><code>onErrorFlatMap</code></dt>
+       <dd>replaces all <code>onError</code> notifications from a misbehaving Observable into the emissions from a secondary Observable</dd>
+      <dt><code>onErrorResumeNext</code></dt>
+       <dd>instructs an Observable to begin emitting a second Observable sequence if it encounters an error</dd>
+      <dt><code>onErrorReturn</code></dt>
+       <dd>instructs an Observable to emit a particular item when it encounters an error, and then terminate normally</dd>
+      <dt><code>onExceptionResumeNext</code></dt>
+       <dd>instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)</dd>
+     </dl>
+     <h4><code>onErrorFlatMap</code></h4>
+     <figure>
+      <img src="images/onErrorFlatMap.png" width="640" alt="onErrorFlatMap" />
+      <figcaption><p>
+       <code>onErrorFlatMap</code> handles a special case: a source Observable that is noncompliant
+       with the Observable contract in such a way that it may interleave <code>onError</code>
+       notifications with its emissions without terminating. This operator allows you to replace
+       those <code>onError</code> notifications with the emissions of an Observable of your choosing
+       without unsubscribing from the source, so that any future items emitted from the source will
+       be passed along to observers as though the sequence had not been interrupted with an
+       <code>onError</code> notification.
+      </p><p>
+       Because <code>onErrorFlatMap</code> is designed to work with pathological source Observables
+       that do not terminate after issuing an error, it is mostly useful in debugging/testing
+       scenarios.
+      </p><p>
+       Note that you should apply <code>onErrorFlatMap</code> directly to the pathological source
+       Observable, and not to that Observable after it has been modified by additional operators,
+       as such operators may effectively renormalize the source Observable by unsubscribing from it
+       immediately after it issues an error. Below, for example, is an illustration showing how
+       <code>onErrorFlatMap</code> will respond to two error-generating Observables that have been
+       merged by the <a href="merge.html"><span class="operator">Merge</span></a> operator:
+      </p>
+      <figure>
+       <img src="images/onErrorFlatMap.withMerge.png" width="640" alt="unintuitive onErrorFlatMap and Merge interaction" />
+       <figcaption><p>
+        Note that <code>onErrorFlatMap</code> will not react to both errors generated by both
+        Observables, but only to the single error passed along by <code>merge</code>.
+       </p></figcaption>
+      </figcaption>
+     </figure>
+     <h4><code>onErrorResumeNext</code></h4>
+     <figure>
+      <img src="images/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+      <figcaption><p>
+       The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
+       the source Observable, unless that Observable invokes <code>onError</code> in which case,
+       rather than propagating that error to the observer, <code>onErrorResumeNext</code> will
+       instead begin mirroring a second, backup Observable.
+      </p></figcaption>
+     </figure>
+     <h4><code>onErrorReturn</code></h4>
+     <figure>
+      <img src="images/onErrorReturn.png" width="640" alt="onErrorReturn" />
+      <figcaption><p>
+       The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
+       source Observable, unless that Observable invokes <code>onError</code> in which case, rather
+       than propagating that error to the observer, <code>onErrorReturn</code> will instead emit a
+       specified item and invoke the observer&#8217;s <code>onCompleted</code> method.
+      </p></figcaption>
+     </figure>
+     <h4><code>onExceptionResumeNext</code></h4>
+     <figure>
+      <img src="images/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+      <figcaption><p>
+       Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
+       behavior of the source Observable, unless that Observable invokes <code>onError</code> in
+       which case, if the Throwable passed to <code>onError</code> is an Exception, rather than
+       propagating that Exception to the observer, <code>onExceptionResumeNext</code> will instead
+       begin mirroring a second, backup Observable. If the Throwable is not an Exception, the
+       Observable returned by <code>onExceptionResumeNext</code> will propagate it to its
+       observer&#8217;s <code>onError</code> method and will not invoke its backup Observable.
+      </p></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-catch").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

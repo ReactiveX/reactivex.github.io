@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="272px" height="349px" viewBox="0 0 272 349" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.4 (8053) - http://www.bohemiancoding.com/sketch -->
+    <title>Lambda</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Lambda" sketch:type="MSLayerGroup" transform="translate(-40.000000, -3.000000)">
+            <rect id="Rectangle-12" stroke="#656565" opacity="0" fill="#D8D8D8" sketch:type="MSShapeGroup" x="0" y="0" width="353" height="353"></rect>
+            <path d="M165.968485,189.804543 L92.761669,351.246013 L40,351.246013 C40,351.246013 141.646062,135.412996 140.027331,131.138653 C125.607822,93.0631958 85.0725196,54.6083373 56.820965,54.6083373 L54.509459,54.6083388 L54.509459,3 L61.1046676,3 C124.638513,3 182.821276,70.2911992 204.349352,127.066974 L258.081565,244.721108 C276.548242,286.919591 294.501686,322.427537 311.942436,351.246013 L241.373703,351.246013 L236.097537,341.321332 C222.467371,315.737584 209.130526,288.022271 196.086604,258.174564 L165.968485,189.804543 Z" id="λ" opacity="0.991546175" fill="#333333" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

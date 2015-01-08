@@ -1,0 +1,27 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+code {
+	padding: 2px;
+	color: #000;
+	background-color: #ededed;
+	border-radius: 3px;
+}
+
+#top-link-block.affix {
+  position: fixed;
+  bottom: 18px;
+  left: 10px;
+}

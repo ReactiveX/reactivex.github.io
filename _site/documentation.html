@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Documentation</title>
+
+    <!-- Polymer -->
+    <script src="/polymer/components/platform/platform.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <style shim-shadowdom>
+        /* This is overriding our styles for body, and it shouldn't.
+        body {
+          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+          color: #333;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          -webkit-touch-callout: none;
+        }
+        */
+
+        paper-tabs, core-toolbar {
+          background-color: #00bcd4;
+          color: #fff;
+          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+          box-shadow: none;
+        }
+
+        paper-tabs[noink][nobar] paper-tab.core-selected {
+          color: #ffff8d;
+        }
+
+        paper-tabs.transparent-teal {
+          background-color: transparent;
+          color: #00bcd4;
+          box-shadow: none;
+        }
+
+        paper-tabs.transparent-teal::shadow #selectionBar {
+          background-color: #00bcd4;
+        }
+
+        paper-tabs.transparent-teal paper-tab::shadow #ink {
+          color: #00bcd4;
+        }
+
+        /* This is overriding our custom styles, and it shouldn't.
+        h3 {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        */
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 id="getting-started">Getting Started</h1>
+
+<h2 id="getting-binaries">Getting Binaries</h2>
+
+<p>You can find binaries and dependency information for Maven, Ivy, Gradle, SBT, and others at <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.netflix.rxjava%22%20AND%20a%3A%22rxjava-core%22">http://search.maven.org</a>. You need Java 6 or later.</p>
+
+<div id="getting-binaries">
+  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a href="#maven" data-toggle="tab">Maven</a></li>
+    <li><a href="#ivy" data-toggle="tab">Ivy</a></li>
+    <li><a href="#sbt" data-toggle="tab">SBT</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="maven">
+
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.netflix.rxjava<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>rxjava-core<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.19.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></div>
+
+
+If you need to download the jars instead of using a build system, create a Maven `pom` file like this with the desired version:
+
+
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.netflix.rxjava.download<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>rxjava-download<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Simple POM to download rxjava-core and dependencies<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://github.com/Netflix/RxJava<span class="nt">&lt;/url&gt;</span>
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.netflix.rxjava<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>rxjava-core<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>0.17.0<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope/&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span></code></pre></div>
+
+
+Then execute:
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>mvn -f download-rxjava-pom.xml dependency:copy-dependencies</code></pre></div>
+
+
+That command downloads `rxjava-core-*.jar` and its dependencies into `./target/dependency/`.
+
+    </div>
+    <div class="tab-pane" id="ivy">
+
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span> <span class="na">org=</span><span class="s">&quot;com.netflix.rxjava&quot;</span> <span class="na">name=</span><span class="s">&quot;rxjava-core&quot;</span> <span class="na">rev=</span><span class="s">&quot;0.17.0&quot;</span> <span class="nt">/&gt;</span></code></pre></div>
+
+    </div>
+    <div class="tab-pane" id="sbt">
+
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">&quot;com.netflix.rxjava&quot;</span> <span class="o">%</span> <span class="s">&quot;rxjava-scala&quot;</span> <span class="o">%</span> <span class="s">&quot;0.17.0&quot;</span></code></pre></div>
+
+    </div>
+  </div>
+</div>
+
+<h2 id="building-from-source">Building from source</h2>
+
+<p>To check out and build the RxJava source, issue the following commands:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git clone git@github.com:Netflix/RxJava.git
+$ cd RxJava/
+$ ./gradlew build
+</code></pre></div>
+<p>To do a clean build, issue the following command:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ ./gradlew clean build
+</code></pre></div>
+<p>A build should look similar to this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ ./gradlew build
+:rxjava-core:compileJava
+:rxjava-core:processResources UP-TO-DATE
+:rxjava-core:classes
+:rxjava-core:jar
+:rxjava-core:sourcesJar
+:rxjava-core:signArchives SKIPPED
+:rxjava-core:assemble
+:rxjava-core:licenseMain UP-TO-DATE
+:rxjava-core:licenseTest UP-TO-DATE
+:rxjava-core:compileTestJava
+:rxjava-core:processTestResources UP-TO-DATE
+:rxjava-core:testClasses
+:rxjava-core:test
+:rxjava-core:check
+:rxjava-core:build
+
+BUILD SUCCESSFUL
+
+Total time: 30.758 secs
+</code></pre></div>
+<p>On a clean build you will see the unit tests run. They will look something like this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; Building &gt; :rxjava-core:test &gt; 91 tests completed
+</code></pre></div>
+<h1 id="hello-world!">Hello World!</h1>
+
+<p>The following sample implementations of “Hello World” in Java, Groovy, Clojure, and Scala create an Observable from a list of Strings, and then subscribe to this Observable with a method that prints “Hello <em>String</em>!” for each string emitted by the Observable.</p>
+
+<p>You can find additional code examples in the <code>/src/examples</code> folders of each <a href="https://github.com/Netflix/RxJava/tree/master/language-adaptors">language adaptor</a>:</p>
+
+<ul>
+<li><a href="https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-groovy/src/examples">Groovy examples</a></li>
+<li><a href="https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-clojure/src/examples">Clojure examples</a></li>
+<li><a href="https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-scala/src/examples">Scala examples</a></li>
+</ul>
+
+<p><tabs-panel flex>
+  <tab-code label="Java" language="java" 
+    url="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/java/hello.java" 
+    url2="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/java/hello.output"></tab-code>
+  <tab-code label="Scala" language="scala" 
+    url="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.scala" 
+    url2="https://api.github.com/repos/GeorgiKhomeriki/RxJava/contents/language-adaptors/rxjava-scala/src/examples/reactivex/getting-started/hello.output"></tab-code>
+  <tab-code label="Groovy" language="groovy" 
+    url="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/groovy/hello.groovy" 
+    url2="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/groovy/hello.output"></tab-code>
+  <tab-code label="Clojure" language="clojure" 
+    url="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/clojure/hello.clj" 
+    url2="https://api.github.com/repos/ReactiveX/reactivex.github.io/contents/examples/clojure/hello.output"></tab-code>
+  <tab-code label="Kotlin" language="" url=""></tab-code>
+  <tab-code label="JRuby" language="" url=""></tab-code>
+</tabs-panel></p>
+
+<h1 id="larger-example">Larger example</h1>
+
+<p>To use RxJava you create Observables (which emit data items), transform those Observables in various ways to get the precise data items that interest you (by using Observable operators), and then observe and react to these sequences of interesting items (by implementing Observers or Subscribers and then subscribing them to the resulting transformed Observables).</p>
+
+<h2 id="creating-observables">Creating Observables</h2>
+
+<p>To create an Observable, you can either implement the Observable&#39;s behavior manually by passing a function to <a href="Creating-Observables#create"><code>create( )</code></a> that exhibits Observable behavior, or you can convert an existing data structure into an Observable by using <a href="Creating-Observables">some of the Observable operators that are designed for this purpose</a>.</p>
+
+<h3 id="creating-an-observable-from-an-existing-data-structures">Creating an Observable from an Existing Data Structures</h3>
+
+<p>You use the Observable <a href="Creating-Observables#just"><code>just( )</code></a> and <a href="Creating-Observables#from"><code>from( )</code></a> methods to convert objects, lists, or arrays of objects into Observables that emit those objects:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">Observable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">o</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s2">&quot;a&quot;</span><span class="o">,</span> <span class="s2">&quot;b&quot;</span><span class="o">,</span> <span class="s2">&quot;c&quot;</span><span class="o">);</span>
+
+<span class="kt">def</span> <span class="n">list</span> <span class="o">=</span> <span class="o">[</span><span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">]</span>
+<span class="n">Observable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">o</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+
+<span class="n">Observable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">o</span> <span class="o">=</span> <span class="n">Observable</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="s2">&quot;one object&quot;</span><span class="o">);</span>
+</code></pre></div>
+<p>These converted Observables will synchronously invoke the <a href="Observable#onnext-oncompleted-and-onerror"><code>onNext( )</code></a> method of any subscriber that subscribes to them, for each item to be emitted by the Observable, and will then invoke the subscriber’s <a href="Observable#onnext-oncompleted-and-onerror"><code>onCompleted( )</code></a> method.</p>
+
+<h3 id="creating-an-observable-via-the-create( )-method">Creating an Observable via the <code>create( )</code> method</h3>
+
+<p>You can implement asynchronous i/o, computational operations, or even “infinite” streams of data by designing your own Observable and implementing it with the <a href="Creating-Observables#create"><code>create( )</code></a> method.</p>
+
+<h4 id="synchronous-observable-example">Synchronous Observable Example</h4>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="cm">/**</span>
+<span class="cm"> * This example shows a custom Observable that blocks </span>
+<span class="cm"> * when subscribed to (does not spawn an extra thread).</span>
+<span class="cm"> */</span>
+<span class="kt">def</span> <span class="nf">customObservableBlocking</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Observable</span><span class="o">.</span><span class="na">create</span><span class="o">({</span> <span class="n">aSubscriber</span> <span class="o">-&gt;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">50</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">==</span> <span class="n">aSubscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">aSubscriber</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="s2">&quot;value_&quot;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="o">};</span>
+        <span class="o">}</span>
+        <span class="c1">// after sending all values we complete the sequence</span>
+        <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">==</span> <span class="n">aSubscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">aSubscriber</span><span class="o">.</span><span class="na">onCompleted</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+
+<span class="c1">// To see output:</span>
+<span class="n">customObservableBlocking</span><span class="o">().</span><span class="na">subscribe</span><span class="o">({</span> <span class="n">it</span> <span class="o">-&gt;</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">);</span> <span class="o">});</span>
+</code></pre></div>
+<h4 id="asynchronous-observable-example">Asynchronous Observable Example</h4>
+
+<p>The following example uses Groovy to create an Observable that emits 75 strings.</p>
+
+<p>It is written verbosely, with static typing and implementation of the <code>Func1</code> anonymous inner class, to make the example more clear:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="cm">/**</span>
+<span class="cm"> * This example shows a custom Observable that does not block</span>
+<span class="cm"> * when subscribed to as it spawns a separate thread.</span>
+<span class="cm"> */</span>
+<span class="kt">def</span> <span class="nf">customObservableNonBlocking</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Observable</span><span class="o">.</span><span class="na">create</span><span class="o">(</span>
+        <span class="cm">/*</span>
+<span class="cm">         * This &#39;call&#39; method will be invoked with the Observable is subscribed to.</span>
+<span class="cm">         * </span>
+<span class="cm">         * It spawns a thread to do it asynchronously.</span>
+<span class="cm">         */</span>
+         <span class="o">{</span> <span class="n">subscriber</span> <span class="o">-&gt;</span>
+            <span class="c1">// For simplicity this example uses a Thread instead of an ExecutorService/ThreadPool</span>
+            <span class="kd">final</span> <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+                <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">75</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="kc">true</span> <span class="o">==</span> <span class="n">subscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+                            <span class="k">return</span><span class="o">;</span>
+                        <span class="o">}</span>
+                        <span class="n">subscriber</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="s2">&quot;value_&quot;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="c1">// after sending all values we complete the sequence</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">==</span> <span class="n">subscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+                        <span class="n">subscriber</span><span class="o">.</span><span class="na">onCompleted</span><span class="o">();</span>
+                    <span class="o">}</span>
+                <span class="o">};</span>
+            <span class="o">});</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// To see output:</span>
+<span class="n">customObservableNonBlocking</span><span class="o">().</span><span class="na">subscribe</span><span class="o">({</span> <span class="n">println</span><span class="o">(</span><span class="n">it</span><span class="o">)</span> <span class="o">});</span>
+</code></pre></div>
+<p>Here is the same code in Clojure that uses a Future (instead of raw thread) and is implemented more consisely:</p>
+<div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">customObservableNonBlocking</span> <span class="p">[]</span>
+  <span class="s">&quot;This example shows a custom Observable that does not block </span>
+<span class="s">   when subscribed to as it spawns a separate thread.</span>
+
+<span class="s">  returns Observable&lt;String&gt;&quot;</span>
+  <span class="p">(</span><span class="nf">Observable/create</span> 
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">subscriber</span><span class="p">]</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">f</span> <span class="p">(</span><span class="nf">future</span> 
+                <span class="p">(</span><span class="nb">doseq </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">50</span><span class="p">)]</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="nv">subscriber</span> <span class="p">(</span><span class="nf">.onNext</span> <span class="p">(</span><span class="nb">str </span><span class="s">&quot;value_&quot;</span> <span class="nv">x</span><span class="p">))))</span>
+                <span class="c1">; after sending all values we complete the sequence</span>
+                <span class="p">(</span><span class="nb">-&gt; </span><span class="nv">subscriber</span> <span class="nv">.onCompleted</span><span class="p">))</span>
+        <span class="p">))</span>
+      <span class="p">))</span>
+</code></pre></div><div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="c1">; To see output</span>
+<span class="p">(</span><span class="nf">.subscribe</span> <span class="p">(</span><span class="nf">customObservableNonBlocking</span><span class="p">)</span> <span class="o">#</span><span class="p">(</span><span class="nb">println </span><span class="nv">%</span><span class="p">))</span>
+</code></pre></div>
+<p>Here is an example that fetches articles from Wikipedia and invokes onNext with each one:</p>
+<div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fetchWikipediaArticleAsynchronously</span> <span class="p">[</span><span class="nv">wikipediaArticleNames</span><span class="p">]</span>
+  <span class="s">&quot;Fetch a list of Wikipedia articles asynchronously.</span>
+
+<span class="s">   return Observable&lt;String&gt; of HTML&quot;</span>
+  <span class="p">(</span><span class="nf">Observable/create</span> 
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">subscriber</span><span class="p">]</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">f</span> <span class="p">(</span><span class="nf">future</span>
+                <span class="p">(</span><span class="nb">doseq </span><span class="p">[</span><span class="nv">articleName</span> <span class="nv">wikipediaArticleNames</span><span class="p">]</span>
+                  <span class="p">(</span><span class="nb">-&gt; </span><span class="nv">subscriber</span> <span class="p">(</span><span class="nf">.onNext</span> <span class="p">(</span><span class="nf">http/get</span> <span class="p">(</span><span class="nb">str </span><span class="s">&quot;http://en.wikipedia.org/wiki/&quot;</span> <span class="nv">articleName</span><span class="p">)))))</span>
+                <span class="c1">; after sending response to onnext we complete the sequence</span>
+                <span class="p">(</span><span class="nb">-&gt; </span><span class="nv">subscriber</span> <span class="nv">.onCompleted</span><span class="p">))</span>
+        <span class="p">))))</span>
+</code></pre></div><div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">fetchWikipediaArticleAsynchronously</span> <span class="p">[</span><span class="s">&quot;Tiger&quot;</span> <span class="s">&quot;Elephant&quot;</span><span class="p">])</span> 
+  <span class="p">(</span><span class="nf">.subscribe</span> <span class="o">#</span><span class="p">(</span><span class="nb">println </span><span class="s">&quot;--- Article ---\n&quot;</span> <span class="p">(</span><span class="nb">subs </span><span class="p">(</span><span class="ss">:body</span> <span class="nv">%</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">125</span><span class="p">)</span> <span class="s">&quot;...&quot;</span><span class="p">)))</span>
+</code></pre></div>
+<p>Back to Groovy, the same Wikipedia functionality but using closures instead of anonymous inner classes:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="cm">/*</span>
+<span class="cm"> * Fetch a list of Wikipedia articles asynchronously.</span>
+<span class="cm"> */</span>
+<span class="kt">def</span> <span class="nf">fetchWikipediaArticleAsynchronously</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">wikipediaArticleNames</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Observable</span><span class="o">.</span><span class="na">create</span><span class="o">({</span> <span class="n">subscriber</span> <span class="o">-&gt;</span>
+        <span class="n">Thread</span><span class="o">.</span><span class="na">start</span><span class="o">(</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">articleName</span> <span class="k">in</span> <span class="n">wikipediaArticleNames</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="kc">true</span> <span class="o">==</span> <span class="n">subscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="k">return</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">subscriber</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s2">&quot;http://en.wikipedia.org/wiki/&quot;</span><span class="o">+</span><span class="n">articleName</span><span class="o">).</span><span class="na">getText</span><span class="o">());</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">==</span> <span class="n">subscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">subscriber</span><span class="o">.</span><span class="na">onCompleted</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="o">);</span>
+        <span class="k">return</span><span class="o">(</span> <span class="n">subscriber</span> <span class="o">);</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+
+<span class="n">fetchWikipediaArticleAsynchronously</span><span class="o">(</span><span class="s2">&quot;Tiger&quot;</span><span class="o">,</span> <span class="s2">&quot;Elephant&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">subscribe</span><span class="o">({</span> <span class="n">println</span> <span class="s2">&quot;--- Article ---\n&quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">125</span><span class="o">);</span> <span class="o">});</span>
+</code></pre></div>
+<p>Results:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">--- Article ---
+ &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; dir=&quot;ltr&quot; class=&quot;client-nojs&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;Tiger - Wikipedia, the free encyclopedia&lt;/title&gt; ...
+--- Article ---
+ &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; dir=&quot;ltr&quot; class=&quot;client-nojs&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;Elephant - Wikipedia, the free encyclopedia&lt;/tit ...
+</code></pre></div>
+<p>Note that all of the above examples ignore error handling, for brevity. See below for examples that include error handling.</p>
+
+<p>More information can be found on the [[Observable]] and [[Creating Observables|Creating-Observables]] pages.</p>
+
+<h2 id="transforming-observables-with-operators">Transforming Observables with Operators</h2>
+
+<p>Rx allows you to chain <em>operators</em> together to transform and compose Observables.</p>
+
+<p>The following example, in Groovy, uses a previously defined, asynchronous Observable that emits 75 items, skips over the first 10 of these (<a href="Filtering-Observables#wiki-skip"><code>skip(10)</code></a>), then takes the next 5 (<a href="Filtering-Observables#wiki-take"><code>take(5)</code></a>), and transforms them (<a href="Transforming-Observables#wiki-map"><code>map(...)</code></a>) before subscribing and printing the items:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="cm">/**</span>
+<span class="cm"> * Asynchronously calls &#39;customObservableNonBlocking&#39; and defines</span>
+<span class="cm"> * a chain of operators to apply to the callback sequence.</span>
+<span class="cm"> */</span>
+<span class="kt">def</span> <span class="nf">simpleComposition</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">customObservableNonBlocking</span><span class="o">().</span><span class="na">skip</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="na">take</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">map</span><span class="o">({</span> <span class="n">stringValue</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">stringValue</span> <span class="o">+</span> <span class="s2">&quot;_xform&quot;</span><span class="o">})</span>
+        <span class="o">.</span><span class="na">subscribe</span><span class="o">({</span> <span class="n">println</span> <span class="s2">&quot;onNext =&gt; &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">})</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>This results in:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">onNext =&gt; value_10_xform
+onNext =&gt; value_11_xform
+onNext =&gt; value_12_xform
+onNext =&gt; value_13_xform
+onNext =&gt; value_14_xform
+</code></pre></div>
+<p>Here is a marble diagram that illustrates this transformation:</p>
+
+<p><img src="/assets/operators/Composition.1.png" width="640" height="536" /></p>
+
+<p>This next example, in Clojure, consumes three asynchronous Observables, including a dependency from one to another, and emits a single response item by combining the items emitted by each of the three Observables with the <a href="Combining-Observables#zip"><code>zip</code></a> operator and then transforming the result with <a href="Transforming-Observables#wiki-map"><code>map</code></a>:</p>
+<div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">getVideoForUser</span> <span class="p">[</span><span class="nv">userId</span> <span class="nv">videoId</span><span class="p">]</span>
+  <span class="s">&quot;Get video metadata for a given userId</span>
+<span class="s">   - video metadata</span>
+<span class="s">   - video bookmark position</span>
+<span class="s">   - user data</span>
+<span class="s">  return Observable&lt;Map&gt;&quot;</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">user-observable</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">getUser</span> <span class="nv">userId</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">.map</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">user</span><span class="p">]</span> <span class="p">{</span><span class="ss">:user-name</span> <span class="p">(</span><span class="ss">:name</span> <span class="nv">user</span><span class="p">)</span> <span class="ss">:language</span> <span class="p">(</span><span class="ss">:preferred-language</span> <span class="nv">user</span><span class="p">)})))</span>
+          <span class="nv">bookmark-observable</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">getVideoBookmark</span> <span class="nv">userId</span> <span class="nv">videoId</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">.map</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">bookmark</span><span class="p">]</span> <span class="p">{</span><span class="ss">:viewed-position</span> <span class="p">(</span><span class="ss">:position</span> <span class="nv">bookmark</span><span class="p">)})))</span>
+          <span class="c1">; getVideoMetadata requires :language from user-observable so nest inside map function</span>
+          <span class="nv">video-metadata-observable</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="nv">user-observable</span> 
+              <span class="p">(</span><span class="nf">.mapMany</span>
+                <span class="c1">; fetch metadata after a response from user-observable is received</span>
+                <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">user-map</span><span class="p">]</span> 
+                  <span class="p">(</span><span class="nf">getVideoMetadata</span> <span class="nv">videoId</span> <span class="p">(</span><span class="ss">:language</span> <span class="nv">user-map</span><span class="p">)))))]</span>
+          <span class="c1">; now combine 3 observables using zip</span>
+          <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">Observable/zip</span> <span class="nv">bookmark-observable</span> <span class="nv">video-metadata-observable</span> <span class="nv">user-observable</span> 
+                <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">bookmark-map</span> <span class="nv">metadata-map</span> <span class="nv">user-map</span><span class="p">]</span>
+                  <span class="p">{</span><span class="ss">:bookmark-map</span> <span class="nv">bookmark-map</span> 
+                  <span class="ss">:metadata-map</span> <span class="nv">metadata-map</span>
+                  <span class="ss">:user-map</span> <span class="nv">user-map</span><span class="p">}))</span>
+            <span class="c1">; and transform into a single response object</span>
+            <span class="p">(</span><span class="nf">.map</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">data</span><span class="p">]</span>
+                  <span class="p">{</span><span class="ss">:video-id</span> <span class="nv">videoId</span>
+                   <span class="ss">:video-metadata</span> <span class="p">(</span><span class="ss">:metadata-map</span> <span class="nv">data</span><span class="p">)</span>
+                   <span class="ss">:user-id</span> <span class="nv">userId</span>
+                   <span class="ss">:language</span> <span class="p">(</span><span class="ss">:language</span> <span class="p">(</span><span class="ss">:user-map</span> <span class="nv">data</span><span class="p">))</span>
+                   <span class="ss">:bookmark</span> <span class="p">(</span><span class="ss">:viewed-position</span> <span class="p">(</span><span class="ss">:bookmark-map</span> <span class="nv">data</span><span class="p">))</span>
+                  <span class="p">})))))</span>
+</code></pre></div>
+<p>The response looks like this:</p>
+<div class="highlight"><pre><code class="language-clojure" data-lang="clojure"><span class="p">{</span><span class="ss">:video-id</span> <span class="mi">78965</span>, 
+ <span class="ss">:video-metadata</span> <span class="p">{</span><span class="ss">:video-id</span> <span class="mi">78965</span>, <span class="ss">:title</span> <span class="nv">House</span> <span class="nv">of</span> <span class="nv">Cards</span><span class="err">:</span> <span class="nv">Episode</span> <span class="mi">1</span>, 
+                  <span class="ss">:director</span> <span class="nv">David</span> <span class="nv">Fincher</span>, <span class="ss">:duration</span> <span class="mi">3365</span><span class="p">}</span>, 
+ <span class="ss">:user-id</span> <span class="mi">12345</span>, <span class="ss">:language</span> <span class="nv">es-us</span>, <span class="ss">:bookmark</span> <span class="mi">0</span><span class="p">}</span>
+</code></pre></div>
+<p>And here is a marble diagram that illustrates how that code produces that response:</p>
+
+<p><img src="/assets/operators/Composition.2.png" width="640" height="742" /></p>
+
+<p>The following example, in Groovy, comes from <a href="https://speakerdeck.com/benjchristensen/evolution-of-the-netflix-api-qcon-sf-2013">Ben Christensen’s QCon presentation on the evolution of the Netflix API</a>. It combines two Observables with the <a href="Combining-Observables#wiki-merge"><code>merge</code></a> operator, then uses the <a href="Mathematical-and-Aggregate-Operators#wiki-reduce"><code>reduce</code></a> operator to construct a single item out of the resulting sequence, then transforms that item with <a href="Transforming-Observables#wiki-map"><code>map</code></a> before emitting it:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="kd">public</span> <span class="n">Observable</span> <span class="nf">getVideoSummary</span><span class="o">(</span><span class="n">APIVideo</span> <span class="n">video</span><span class="o">)</span> <span class="o">{</span>
+   <span class="kt">def</span> <span class="n">seed</span> <span class="o">=</span> <span class="o">[</span><span class="nl">id:</span><span class="n">video</span><span class="o">.</span><span class="na">id</span><span class="o">,</span> <span class="nl">title:</span><span class="n">video</span><span class="o">.</span><span class="na">getTitle</span><span class="o">()];</span>
+   <span class="kt">def</span> <span class="n">bookmarkObservable</span> <span class="o">=</span> <span class="n">getBookmark</span><span class="o">(</span><span class="n">video</span><span class="o">);</span>
+   <span class="kt">def</span> <span class="n">artworkObservable</span> <span class="o">=</span> <span class="n">getArtworkImageUrl</span><span class="o">(</span><span class="n">video</span><span class="o">);</span>
+   <span class="k">return</span><span class="o">(</span> <span class="n">Observable</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">bookmarkObservable</span><span class="o">,</span> <span class="n">artworkObservable</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">seed</span><span class="o">,</span> <span class="o">{</span> <span class="n">aggregate</span><span class="o">,</span> <span class="n">current</span> <span class="o">-&gt;</span> <span class="n">aggregate</span> <span class="o">&lt;&lt;</span> <span class="n">current</span> <span class="o">})</span>
+      <span class="o">.</span><span class="na">map</span><span class="o">({</span> <span class="o">[(</span><span class="n">video</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span> <span class="o">:</span> <span class="n">it</span><span class="o">]</span> <span class="o">}))</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>And here is a marble diagram that illustrates how that code uses the <a href="Mathematical-and-Aggregate-Operators#wiki-reduce"><code>reduce</code></a> operator to bring the results from multiple Observables together in one structure:</p>
+
+<p><img src="/assets/operators/Composition.3.png" width="640" height="640" /></p>
+
+<h2 id="error-handling">Error Handling</h2>
+
+<p>Here is a version of the Wikipedia example from above revised to include error handling:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="cm">/*</span>
+<span class="cm"> * Fetch a list of Wikipedia articles asynchronously, with error handling.</span>
+<span class="cm"> */</span>
+<span class="kt">def</span> <span class="nf">fetchWikipediaArticleAsynchronouslyWithErrorHandling</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">wikipediaArticleNames</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Observable</span><span class="o">.</span><span class="na">create</span><span class="o">({</span> <span class="n">subscriber</span> <span class="o">-&gt;</span>
+        <span class="n">Thread</span><span class="o">.</span><span class="na">start</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">articleName</span> <span class="k">in</span> <span class="n">wikipediaArticleNames</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="kc">true</span> <span class="o">==</span> <span class="n">subscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+                        <span class="k">return</span><span class="o">;</span>
+                    <span class="o">}</span>
+                    <span class="n">subscriber</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s2">&quot;http://en.wikipedia.org/wiki/&quot;</span><span class="o">+</span><span class="n">articleName</span><span class="o">).</span><span class="na">getText</span><span class="o">());</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">==</span> <span class="n">subscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">subscriber</span><span class="o">.</span><span class="na">onCompleted</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">==</span> <span class="n">subscriber</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">subscriber</span><span class="o">.</span><span class="na">onError</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="o">(</span><span class="n">subscriber</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Notice how it now invokes <a href="Observable#onnext-oncompleted-and-onerror"><code>onError(Throwable t)</code></a> if an error occurs and note that the following code passes <code>subscribe()</code> a second method that handles <code>onError</code>:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">fetchWikipediaArticleAsynchronouslyWithErrorHandling</span><span class="o">(</span><span class="s2">&quot;Tiger&quot;</span><span class="o">,</span> <span class="s2">&quot;NonExistentTitle&quot;</span><span class="o">,</span> <span class="s2">&quot;Elephant&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span>
+        <span class="o">{</span> <span class="n">println</span> <span class="s2">&quot;--- Article ---\n&quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">125</span><span class="o">)</span> <span class="o">},</span> 
+        <span class="o">{</span> <span class="n">println</span> <span class="s2">&quot;--- Error ---\n&quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">getMessage</span><span class="o">()</span> <span class="o">})</span>
+</code></pre></div>
+<p>See the <a href="Observable-Utility-Operators">Observable Utility Operators</a> page for more information on specialized error handling techniques in RxJava, including methods like <a href="Observable-Utility-Operators#onerrorresumenext"><code>onErrorResumeNext()</code></a> and [<code>onErrorReturn()</code>]](Observable-Utility-Operators#onerrorreturn) that allow Observables to continue with fallbacks in the event that they encounter errors.</p>
+
+<p>Here is an example of how you can use such a method to pass along custom information about any exceptions you encounter. Imagine you have an Observable or cascade of Observables — <code>myObservable</code> — and you want to intercept any exceptions that would normally pass through to an Subscriber’s <code>onError</code> method, replacing these with a customized Throwable of your own design. You could do this by modifying <code>myObservable</code> with the <a href="Observable-Utility-Operators#onerrorresumenext"><code>onErrorResumeNext()</code></a> method, and passing into that method an Observable that calls <code>onError</code> with your customized Throwable (a utility method called <a href="Creating-Observables#wiki-empty-error-and-never"><code>error()</code></a> will generate such an Observable for you):</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">myModifiedObservable</span> <span class="o">=</span> <span class="n">myObservable</span><span class="o">.</span><span class="na">onErrorResumeNext</span><span class="o">({</span> <span class="n">t</span> <span class="o">-&gt;</span>
+   <span class="n">Throwable</span> <span class="n">myThrowable</span> <span class="o">=</span> <span class="n">myCustomizedThrowableCreator</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+   <span class="k">return</span> <span class="o">(</span><span class="n">Observable</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">myThrowable</span><span class="o">));</span>
+<span class="o">});</span>
+</code></pre></div>
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation.html">Getting Started</a></li>
+      <li><a href="/documentation/observable.html">Observable</a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+      <li><a href="/documentation/plugins.html">Plugins</a></li>
+      <li>
+        <a href="#">Language Adapters</a>
+        <ul>
+            <li><a href="#">Groovy</a></li>
+            <li><a href="#">Clojure</a></li>
+            <li><a href="#">Scala</a></li>
+            <li><a href="#">JRuby</a></li>
+            <li><a href="#">Kotlin</a></li>
+          </ul>
+      </li>
+      <li><a href="/contribute.html">How to Contribute</a></li>
+      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation.html">Getting Started</a></li>
+<li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+<li><a href="/documentation/backpressure.html">Backpressure</a></li>
+<li><a href="/documentation/errors.html">Error handling</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-documentation").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html">
+    <link rel="import" href="/polymer/elements/tabs-panel.html">
+    <link rel="import" href="/polymer/elements/tab-code.html">
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

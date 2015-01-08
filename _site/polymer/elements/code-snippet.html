@@ -1,0 +1,40 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="code-snippet" attributes="url language">
+  <template>
+    <link href="/css/prism.css" rel="stylesheet">
+    <div id="code"></div>
+  </template>
+  <script>
+  	Polymer('code-snippet', {
+  		url: "",
+  		language: "",
+  		ready: function() {
+        this.callbackFunc = "CodeSnippetCallback" + callbackId++;
+        window[this.callbackFunc] = this.respond.bind(this);
+        var url = this.url + "?callback=" + this.callbackFunc;
+        this.addScript(url);
+	    },
+      respond: function(inResponse) {
+        var code = atob(inResponse.data.content).trim();
+        var safeCode = goog.html.SafeHtml.unwrap(goog.html.SafeHtml.from(code));
+        this.$.code.innerHTML = "<pre><code class='language-" + this.language + "'>" + safeCode + "</code></pre>";
+        Prism.highlightElement(this.shadowRoot.querySelector('code'));
+      },
+      addScript: function(inSrc) {
+        this.script = document.createElement('script');
+        this.script.src = inSrc;
+        this.script.onerror = this.respond.bind(this);
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(this.script, s);
+      },
+      removeScript: function() {
+        if (this.script.parentNode) {
+          this.script.parentNode.removeChild(this.script);
+        }
+        this.script = null;
+      }
+  	});
+  	var callbackId = 0;
+  </script>
+</polymer-element>

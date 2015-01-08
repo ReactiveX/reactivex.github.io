@@ -1,0 +1,36 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="tab-code" attributes="label language url url2">
+  <template>
+  </template>
+  <script>
+  	Polymer('tab-code', {
+      label: "",
+      language: "",
+      url: "",
+      url2: "",
+  		attached: function() {
+        // create tab
+        var tabs = this.parentNode.$["tabs"];
+        var tabNode = document.createElement("paper-tab");
+        tabNode.innerHTML = this.label;
+        tabs.appendChild(tabNode);
+
+        // create content
+        var divs = this.parentNode.$["divs"]
+        var divNode = document.createElement("div");
+        divNode.id = "div" + tabId++;
+        if (this.url) {
+          divNode.innerHTML = "<code-snippet url='" + this.url + "' language='" + this.language + "'></code-snippet>";
+          if (this.url2) {
+            divNode.innerHTML += "<code-snippet url='" + this.url2 + "' language='" + this.language + "'></code-snippet>";
+          }
+        } else {
+          divNode.innerHTML = "<div><h2>TODO: " + this.label + "</h2></div>";
+        }
+        divs.appendChild(divNode);
+	    }
+  	});
+    var tabId = 0;
+  </script>
+</polymer-element>

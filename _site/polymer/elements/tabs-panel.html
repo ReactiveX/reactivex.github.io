@@ -1,0 +1,36 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="tabs-panel" attributes="selectedTab data">
+	<template>
+		<link href="/css/tabs.css" rel="stylesheet">
+		<polymer-layout vertical></polymer-layout>
+
+		<paper-tabs id="tabs" selected="{{selectedTab}}" class="transparent-teal" noink></paper-tabs>
+		<div id="divs"></div>
+
+		<content></content>
+	</template>
+
+	<script>
+
+	  Polymer('tabs-panel', {
+	  	data: [],
+	    ready: function() {
+			this.selectedTab = 0;
+			var polymer = this;
+
+			var divs = this.$.divs.childNodes;
+			var tabs = this.$.tabs;
+
+			tabs.addEventListener('core-select', function() {
+				for (var i = 0; i < divs.length; i++) {
+					if (divs[i].style) {
+						divs[i].style['display'] = i == tabs.selected ? 'block' : 'none';
+					}
+				}
+			});
+	    }
+	  });
+
+	</script>
+</polymer-element>

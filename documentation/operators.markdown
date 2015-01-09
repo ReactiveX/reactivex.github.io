@@ -85,6 +85,7 @@ A toolbox of useful Operators for working with Observables
 * [**`Do`**]({{ site.url }}/documentation/operators/do.html) — register an action to take upon a variety of Observable lifecycle events
 * [**`Materialize`/`Dematerialize`**]({{ site.url }}/documentation/operators/materialize-dematerialize.html) — represent both the items emitted and the notifications sent as emitted items, or reverse this process
 * [**`ObserveOn`**]({{ site.url }}/documentation/operators/observeon.html) — specify the scheduler on which an observer will observe this Observable
+* [**`Serialize`**]({{ site.url }}/documentation/operators/serialize.html) — force an Observable to make serialized calls and to be well-behaved
 * [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html) — specify the scheduler an Observable should use when it is subscribed to
 * [**`TimeInterval`**]({{ site.url }}/documentation/operators/timeinterval.html) — convert an Observable that emits items into one that emits indications of the amount of time elapsed between those emissions
 * [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items
@@ -383,7 +384,7 @@ operators.
 * [**`SequenceEqual`**]({{ site.url }}/documentation/operators/sequenceequal.html)
 * [`sequence_eql?`]({{ site.url }}/documentation/operators/sequenceequal.html)
 * [`SequenceEqualWith`]({{ site.url }}/documentation/operators/sequenceequal.html)
-* `serialize`
+* [**`Serialize`**]({{ site.url }}/documentation/operators/serialize.html)
 * [`share`]({{ site.url }}/documentation/operators/refcount.html)
 * [`shareReplay`]({{ site.url }}/documentation/operators/replay.html)
 * [`shareValue`]({{ site.url }}/documentation/operators/refcount.html)
@@ -431,7 +432,7 @@ operators.
 * [`switchLatest`]({{ site.url }}/documentation/operators/switch.html)
 * [`switchMap`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`switchOnNext`]({{ site.url }}/documentation/operators/switch.html)
-* `Synchronize`
+* [`Synchronize`]({{ site.url }}/documentation/operators/serialize.html)
 * [**`Take`**]({{ site.url }}/documentation/operators/take.html)
 * [`take_with_time`]({{ site.url }}/documentation/operators/take.html)
 * [`takeFirst`]({{ site.url }}/documentation/operators/first.html)

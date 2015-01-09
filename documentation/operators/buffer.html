@@ -153,9 +153,9 @@ id: buffer
         periodically, every <code>timespan</code> amount of time, containing all items emitted by
         the source Observable since the previous bundle emission or, in the case of the first
         bundle, since the subscription to the source Observable. There is also a version of this
-        variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
-        govern the timespan; by default this variant uses the <code>computation</code>
-        scheduler.</p>
+        variant of the operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a
+        parameter and uses it to govern the timespan; by default this variant uses the <code>computation</code>
+        Scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit)"><code>buffer(long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,TimeUnit,Scheduler)</code></a></li>
@@ -170,8 +170,8 @@ id: buffer
         <code>timespan</code> has elapsed since its last bundle emission, it emits a bundle of
         however many items the source Observable has emitted in that span, even if this is fewer
         than <code>count</code>. There is also a version of this variant of the operator that
-        takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
-        default this variant uses the <code>computation</code> scheduler.</p>
+        takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int)"><code>buffer(long,TimeUnit,int)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>buffer(long,TimeUnit,int,Scheduler)</code></a></li>
@@ -188,8 +188,8 @@ id: buffer
         own emission. If <code>timespan</code> is longer than <code>timeshift</code>, the emitted
         bundles will represent time periods that overlap and so they may contain duplicate items.
         There is also a version of this variant of the operator that takes a
-        <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
-        variant uses the <code>computation</code> scheduler.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit)"><code>buffer(long,long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,long,TimeUnit,Scheduler)</code></a></li>
@@ -313,8 +313,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         periodically, every <code>timespan</code> amount of time, containing all items emitted by
         the source Observable since the previous bundle emission or, in the case of the first
         bundle, since the subscription to the source Observable. There is also a version of this
-        variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
-        govern the timespan; by default this variant uses the <code>computation</code>
+        variant of the operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a
+        parameter and uses it to govern the timespan; by default this variant uses the <code>computation</code>
         scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit)"><code>buffer(long,TimeUnit)</code></a></li>
@@ -330,8 +330,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>timespan</code> has elapsed since its last bundle emission, it emits a bundle of
         however many items the source Observable has emitted in that span, even if this is fewer
         than <code>count</code>. There is also a version of this variant of the operator that
-        takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
-        default this variant uses the <code>computation</code> scheduler.</p>
+        takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int)"><code>buffer(long,TimeUnit,int)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>buffer(long,TimeUnit,int,Scheduler)</code></a></li>
@@ -348,8 +348,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         own emission. If <code>timespan</code> is longer than <code>timeshift</code>, the emitted
         bundles will represent time periods that overlap and so they may contain duplicate items.
         There is also a version of this variant of the operator that takes a
-        <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
-        variant uses the <code>computation</code> scheduler.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit)"><code>buffer(long,long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,long,TimeUnit,Scheduler)</code></a></li>
@@ -496,8 +496,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>timeSpan</code> milliseconds, containing all items emitted by the source Observable
         since the previous bundle emission or, in the case of the first bundle, since the
         subscription to the source Observable. There is also a version of this variant of the
-        operator that takes a <code>Scheduler</code> as a parameter and uses it to govern the
-        timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
+        operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it
+        to govern the timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
     </figcaption>
    </figure>
    <h4><code>bufferWithTime(timeSpan, timeShift)</code></h4>
@@ -511,8 +511,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         emission. If <code>timeSpan</code> is longer than <code>timeShift</code>, the emitted
         bundles will represent time periods that overlap and so they may contain duplicate items.
         There is also a version of this variant of the operator that takes a
-        <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
-        variant uses the <code>computation</code> scheduler.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
     </figcaption>
    </figure>
    <h4><code>bufferWithTimeOrCount(timeSpan, count)</code></h4>
@@ -524,8 +524,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>timeSpan</code> milliseconds have elapsed since its last collection emission, it
         emits a collection of however many items the source Observable has emitted in that span,
         even if this is fewer than <code>count</code>. There is also a version of this variant of
-        the operator that takes a <code>Scheduler</code> as a parameter and uses it to govern the
-        timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
+        the operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses
+        it to govern the timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
     </figcaption>
    </figure>
    <p>
@@ -616,9 +616,9 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
      <p><code>buffer(timespan,&#8239;unit)</code> emits a new <code>List</code> of items
         periodically, every <code>timespan</code> amount of time, containing all items emitted by
         the source Observable since the previous bundle emission or, in the case of the first
-        bundle, since the subscription to the source Observable. There is also a version of this
-        variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
-        govern the timespan; by default this variant uses the <code>computation</code>
+        bundle, since the subscription to the source Observable.  There is also a version of this
+        variant of the operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a
+        parameter and uses it to govern the timespan; by default this variant uses the <code>computation</code>
         scheduler.</p>
     </figcaption>
    </figure>
@@ -631,8 +631,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>timespan</code> has elapsed since its last bundle emission, it emits a bundle of
         however many items the source Observable has emitted in that span, even if this is fewer
         than <code>count</code>. There is also a version of this variant of the operator that
-        takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
-        default this variant uses the <code>computation</code> scheduler.</p>
+        takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
     </figcaption>
    </figure>
    <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
@@ -646,8 +646,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         own emission. If <code>timespan</code> is longer than <code>timeshift</code>, the emitted
         bundles will represent time periods that overlap and so they may contain duplicate items.
         There is also a version of this variant of the operator that takes a
-        <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
-        variant uses the <code>computation</code> scheduler.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
     </figcaption>
    </figure>
   {% endlang_operator %}
@@ -715,8 +715,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>timeSpan</code> amount of time, containing all items emitted by the source
         Observable since the previous bundle emission or, in the case of the first list, since
         the subscription to the source Observable. There is also a version of this variant of the
-        operator that takes an <code>IScheduler</code> as a parameter and uses it to
-        govern the timespan.</p>
+        operator that takes an <a href="../scheduler.html"><code>IScheduler</code></a> as a parameter and uses
+        it to govern the timespan.</p>
     </figcaption>
    </figure>
    <h4><code>Buffer(timeSpan, count)</code></h4>
@@ -728,7 +728,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         <code>timeSpan</code> has elapsed since its last list emission, it emits a list of
         however many items the source Observable has emitted in that span, even if this is fewer
         than <code>count</code>. There is also a version of this variant of the operator that
-        takes an <code>IScheduler</code> as a parameter and uses it to govern the timespan.</p>
+        takes an <a href="../scheduler.html"><code>IScheduler</code></a> as a parameter and uses it to govern
+        the timespan.</p>
     </figcaption>
    </figure>
    <h4><code>Buffer(timeSpan, timeShift)</code></h4>
@@ -741,8 +742,9 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         the list&#8217;s creation, before emitting this <code>IList</code> as its own emission. If
         <code>timeSpan</code> is longer than <code>timeShift</code>, the emitted lists will
         represent time periods that overlap and so they may contain duplicate items. There is also
-        a version of this variant of the operator that takes an <code>IScheduler</code> as a
-        parameter and uses it to govern the timespan.</p>
+        a version of this variant of the operator that takes an
+        <a href="../scheduler.html"><code>IScheduler</code></a> as a parameter and uses it to govern the
+        timespan.</p>
     </figcaption>
    </figure>
   {% endlang_operator %}
@@ -924,8 +926,9 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         creation, before emitting this <code>Seq</code> as its own emission. If
         <code>timespan</code> is longer than <code>timeshift</code>, the emitted arrays will
         represent time periods that overlap and so they may contain duplicate items. There is also
-        a version of this variant of the operator that takes a <code>Scheduler</code> as a
-        parameter and uses it to govern the timespan.</p>
+        a version of this variant of the operator that takes a
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan.</p>
     </figcaption>
    </figure>
    <h4><code>slidingBuffer(openings, closings)</code></h4>
@@ -971,7 +974,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         source Observable since the previous bundle emission or, in the case of the first bundle,
         since the subscription to the source Observable. This variant of the operator has an
         optional second parameter, <code>scheduler</code>, with which you can set the
-        <code>Scheduler</code> that you want to govern the timespan calculation.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> that you want to govern the timespan
+        calculation.</p>
     </figcaption>
    </figure>
    <h4><code>tumblingBuffer(timespan, count)</code></h4>
@@ -984,7 +988,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         emission, it emits a <code>Seq</code> containing however many items the source Observable
         emitted in that span, even if this is fewer than <code>count</code>. This variant of the
         operator has an optional third parameter, <code>scheduler</code>, with which you can set
-        the <code>Scheduler</code> that you want to govern the timespan calculation.</p>
+        the <a href="../scheduler.html"><code>Scheduler</code></a> that you want to govern the timespan
+        calculation.</p>
     </figcaption>
    </figure>
   {% endlang_operator %}

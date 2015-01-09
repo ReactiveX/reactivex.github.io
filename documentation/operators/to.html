@@ -22,6 +22,12 @@ id: to
   or data structure; others return an Observable that emits such an object or data structure.
  </p></figcaption>
 </figure>
+<p>
+ In some implementations of ReactiveX, there is also an operator that converts an Observable into a
+ &ldquo;Blocking&rdquo; Observable. A Blocking Observable extends the ordinary Observable by providing a set of
+ methods, operating on the items emitted by the Observable, that block. Some of the
+ <span class="operator">To</span> operators are in this Blocking Obsevable set of extended operations.
+</p>
 
 <h4>See Also</h4>
 <ul>
@@ -32,19 +38,19 @@ id: to
 
 <div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-  {% lang_operator RxClojure into seq sorted-list-by %}
+  {% lang_operator RxClojure BlockingObservable.blocking interpose BlockingObservable.into BlockingObservable.seq sort sort-by sorted-list-by %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxCpp %}
+  {% lang_operator RxCpp as_blocking %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy getIterator toFuture toIterable toList toMap toMultiMap toSortedList %}
+  {% lang_operator RxGroovy BlockingObservable.from BlockingObservable.getIterator StringObservable.join StringObservable.stringConcat toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
     <figure class="variant">
      <img src="images/B.getIterator.png" width="640" alt="getIterator" />
      <figcaption><p>
@@ -124,7 +130,8 @@ Sequence complete</pre></div>
       source Observable invokes <code>onError</code>, the Observable returned by <code>toList</code> will
       immediately invoke the <code>onError</code> methods of its observers.
      </p><p>
-      <code>toList</code> does not by default operate on any particular Scheduler.
+      <code>toList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toList()"><code>toList()</code></a></li>
@@ -139,7 +146,8 @@ Sequence complete</pre></div>
       emitted item. You may also optionally supply a function that converts an emitted item into the value to be
       stored in the map (by default, the item itself is this value).
      </p><p>
-      <code>toMap</code> does not by default operate on any particular Scheduler.
+      <code>toMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1)"><code>toMap(Func1)</code></a></li>
@@ -154,7 +162,8 @@ Sequence complete</pre></div>
       also an <code>ArrayList</code> (by default; or you can pass an optional factory method as a fourth
       parameter by which you generate the variety of collection you prefer).
      </p><p>
-      <code>toMultiMap</code> does not by default operate on any particular Scheduler.
+      <code>toMultiMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1)"><code>toMultiMap(Func1)</code></a></li>
@@ -206,16 +215,34 @@ numbers.toSortedList({ n, m -> Math.abs(5-n) - Math.abs(5-m) }).subscribe(
 [5, 6, 4, 3, 7, 8, 2, 1, 9]
 Sequence complete</pre></div>
      <p>
-      <code>toSortedList</code> does not by default operate on any particular Scheduler.
+      <code>toSortedList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList()"><code>toSortedList()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList(rx.functions.Func2)"><code>toSortedList(Func2)</code></a></li>
      </ul></figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/St.stringConcat.png" width="640" alt="stringConcat" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
+      <code>stringConcat</code> operator that converts an Observable that emits a sequence of strings into an
+      Observable that emits a single string that represents the concatenation of them all.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.join.png" width="640" alt="join" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
+      <code>join</code> operator that converts an Observable that emits a sequence of strings into an
+      Observable that emits a single string that represents the concatenation of each of them, delimited by a
+      string of your choosing.
+     </p></figcaption>
+    </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava getIterator toFuture toIterable toList toMap toMultiMap toSortedList %}
+  {% lang_operator RxJava BlockingObservable.from BlockingObservable.getIterator StringObservable.join StringObservable.stringConcat toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
     <figure class="variant">
      <img src="images/B.getIterator.png" width="640" alt="getIterator" />
      <figcaption><p>
@@ -279,7 +306,8 @@ Sequence complete</pre></div>
       source Observable invokes <code>onError</code>, the Observable returned by <code>toList</code> will
       immediately invoke the <code>onError</code> methods of its observers.
      </p><p>
-      <code>toList</code> does not by default operate on any particular Scheduler.
+      <code>toList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toList()"><code>toList()</code></a></li>
@@ -294,7 +322,8 @@ Sequence complete</pre></div>
       emitted item. You may also optionally supply a function that converts an emitted item into the value to be
       stored in the map (by default, the item itself is this value).
      </p><p>
-      <code>toMap</code> does not by default operate on any particular Scheduler.
+      <code>toMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1)"><code>toMap(Func1)</code></a></li>
@@ -309,7 +338,8 @@ Sequence complete</pre></div>
       also an <code>ArrayList</code> (by default; or you can pass an optional factory method as a fourth
       parameter by which you generate the variety of collection you prefer).
      </p><p>
-      <code>toMultiMap</code> does not by default operate on any particular Scheduler.
+      <code>toMultiMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1)"><code>toMultiMap(Func1)</code></a></li>
@@ -330,12 +360,30 @@ Sequence complete</pre></div>
       number; <code>toSortedList</code> will then use that function instead of <code>Comparable</code> to sort
       the items.
      </p><p>
-      <code>toSortedList</code> does not by default operate on any particular Scheduler.
+      <code>toSortedList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList()"><code>toSortedList()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList(rx.functions.Func2)"><code>toSortedList(Func2)</code></a></li>
      </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.stringConcat.png" width="640" alt="stringConcat" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
+      <code>stringConcat</code> operator that converts an Observable that emits a sequence of strings into an
+      Observable that emits a single string that represents the concatenation of them all.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.join.png" width="640" alt="join" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
+      <code>join</code> operator that converts an Observable that emits a sequence of strings into an
+      Observable that emits a single string that represents the concatenation of each of them, delimited by a
+      string of your choosing.
+     </p></figcaption>
     </figure>
   {% endlang_operator %}
 
@@ -442,19 +490,19 @@ Completed</pre></code>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxKotlin getIterator toIterable toList toMap toMultiMap toSortedList %}
+  {% lang_operator RxKotlin BlockingObservable.from BlockingObservable.getIterator toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator Rx.NET GetEnumerator ToArray ToDictionary ToEnumerable ToEventPattern ToList ToLookup %}
+  {% lang_operator Rx.NET GetEnumerator ToArray ToDictionary ToEnumerable ToEvent ToEventPattern ToList ToLookup ToTask %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPY to_array to_dict to_iterable to_list to_set %}
+  {% lang_operator RxPY to_array to_dict to_future to_iterable to_list to_set %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>
@@ -466,7 +514,7 @@ Completed</pre></code>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala to toArray toBuffer toIndexedSeq toIterable toIterator toList toMap toMultiMap toSet toStream toTraversable toVector %}
+  {% lang_operator RxScala to toArray toBlocking toBuffer BlockingObservable.toFuture toIndexedSeq BlockingObservable.toIterable toIterable toIterator BlockingObservable.toList toList toMap toMultiMap toSet toStream toTraversable toVector %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

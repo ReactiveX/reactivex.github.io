@@ -69,7 +69,8 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <p>
-      <code>filter</code> does not by default operate on any particular scheduler.
+      <code>filter</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
   {% endlang_operator %}
 
@@ -113,7 +114,8 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <p>
-      <code>filter</code> does not by default operate on any particular scheduler.
+      <code>filter</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
   {% endlang_operator %}
 
@@ -191,7 +193,7 @@ Completed</pre></div></figcaption>
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala filter filterNot collect %}
+  {% lang_operator RxScala collect filter filterNot BlockingObservable.withFilter withFilter%}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>

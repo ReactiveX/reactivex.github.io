@@ -60,7 +60,7 @@ id: empty-never-throw
       <code>error</code>. The <code>error</code> operator takes as a parameter the
       <code>Throwable</code> with which you want the Observable to terminate.
      </p><p>
-      These operators do not operate by default on any particular scheduler.
+      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>.
      </p>
      <h4>Sample Code</h4>
      <div class="code groovy"><pre>
@@ -105,7 +105,7 @@ error: error - badness
       <code>error</code>. The <code>error</code> operator takes as a parameter the
       <code>Error</code> with which you want the Observable to terminate.
      </p><p>
-      These operators do not operate by default on any particular Scheduler, but
+      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>, but
       <code>empty</code> and <code>throw</code> optionally take a Scheduler as a parameter, and if
       you pass it a Scheduler it will issue its termination notification on that Scheduler.
      </p>

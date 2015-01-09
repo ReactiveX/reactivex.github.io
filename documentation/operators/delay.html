@@ -58,9 +58,9 @@ id: delay
        it will forward such a notification immediately to its subscribers while dropping any pending
        <code>onNext</code> notifications. It will however time shift an <code>onCompleted</code> notification.
       </p><p>
-       By default this variant of <code>delay</code> operates on the <code>computation</code> Scheduler, but
-       you can choose a different Scheduler by passing it in as an optional third parameter to
-       <code>delay</code>
+       By default this variant of <code>delay</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>delay</code>
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit)"><code>delay(long,TimeUnit)</code></a></li>
@@ -75,7 +75,8 @@ id: delay
        an Observable and then monitoring those Observables. When any such Observable completes, the Observable
        returned by <code>delay</code> emits the associated item.
       </p><p>
-       This variant of <code>delay</code> does not by default run on any particular Scheduler.
+       This variant of <code>delay</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func1)"><code>delay(Func1)</code></a></li>
@@ -89,7 +90,8 @@ id: delay
        subscription to the source Observable (in the absence of this, <code>delay</code> subscribes to the
        source Observable as soon as an observer subscribes to the Observable returned by <code>delay</code>).
       </p><p>
-       This variant of <code>delay</code> does not by default run on any particular Scheduler.
+       This variant of <code>delay</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func0,%20rx.functions.Func1)"><code>delay(Func0,Func1)</code></a></li>
@@ -102,9 +104,9 @@ id: delay
        <code>delaySubscription</code>. It accepts parameters that define the amount of time to delay (a quantity
        of time, and a <code>TimeUnit</code> that this quantity is denominated in).
       </p><p>
-       This variant of <code>delay</code> by default runs on the <code>computation</code> Scheduler, but you can
-       choose a different Scheduler by passing it in as an optional third parameter to
-       <code>delaySubscription</code>.
+       This variant of <code>delay</code> by default runs on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>delaySubscription</code>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit)"><code>delaySubscription(long,TimeUnit)</code></a></li>
@@ -117,7 +119,8 @@ id: delay
        And there is a variant of <code>delaySubscription</code> that uses an Observable (returned by a function
        you supply) rather than a fixed duration in order to set the subscription delay.
       </p><p>
-       This variant of <code>delaySubscription</code> does not by default run on any particular Scheduler.
+       This variant of <code>delaySubscription</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(rx.functions.Func0)"><code>delaySubscription(Func0)</code></a></li>
@@ -141,9 +144,9 @@ id: delay
        it will forward such a notification immediately to its subscribers while dropping any pending
        <code>onNext</code> notifications. It will however time shift an <code>onCompleted</code> notification.
       </p><p>
-       By default this variant of <code>delay</code> operates on the <code>computation</code> Scheduler, but
-       you can choose a different Scheduler by passing it in as an optional third parameter to
-       <code>delay</code>
+       By default this variant of <code>delay</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>delay</code>
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit)"><code>delay(long,TimeUnit)</code></a></li>
@@ -158,7 +161,8 @@ id: delay
        an Observable and then monitoring those Observables. When any such Observable completes, the Observable
        returned by <code>delay</code> emits the associated item.
       </p><p>
-       This variant of <code>delay</code> does not by default run on any particular Scheduler.
+       This variant of <code>delay</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func1)"><code>delay(Func1)</code></a></li>
@@ -172,7 +176,8 @@ id: delay
        subscription to the source Observable (in the absence of this, <code>delay</code> subscribes to the
        source Observable as soon as an observer subscribes to the Observable returned by <code>delay</code>).
       </p><p>
-       This variant of <code>delay</code> does not by default run on any particular Scheduler.
+       This variant of <code>delay</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func0,%20rx.functions.Func1)"><code>delay(Func0,Func1)</code></a></li>
@@ -185,9 +190,9 @@ id: delay
        <code>delaySubscription</code>. It accepts parameters that define the amount of time to delay (a quantity
        of time, and a <code>TimeUnit</code> that this quantity is denominated in).
       </p><p>
-       This variant of <code>delay</code> by default runs on the <code>computation</code> Scheduler, but you can
-       choose a different Scheduler by passing it in as an optional third parameter to
-       <code>delaySubscription</code>.
+       This variant of <code>delay</code> by default runs on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>delaySubscription</code>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit)"><code>delaySubscription(long,TimeUnit)</code></a></li>
@@ -200,7 +205,8 @@ id: delay
        And there is a variant of <code>delaySubscription</code> that uses an Observable (returned by a function
        you supply) rather than a fixed duration in order to set the subscription delay.
       </p><p>
-       This variant of <code>delaySubscription</code> does not by default run on any particular Scheduler.
+       This variant of <code>delaySubscription</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(rx.functions.Func0)"><code>delaySubscription(Func0)</code></a></li>
@@ -217,8 +223,8 @@ id: delay
        a <code>Date</code> object (which will delay the beginning of the sequence of emissions until that
        absolute point in time).
       </p><p>
-       This operator operates by default on the <code>timeout</code> Scheduler, but you can override this by
-       passing in another Scheduler as an optional second parameter.
+       This operator operates by default on the <code>timeout</code> <a href="../scheduler.html">Scheduler</a>,
+       but you can override this by passing in another Scheduler as an optional second parameter.
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>

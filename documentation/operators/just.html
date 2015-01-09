@@ -65,7 +65,7 @@ id: just
       items as parameters, and returns an Observable that emits these items in the same order as
       they are given in the parameter list.
      </p><p>
-      <code>just</code> does not by default operate on any particular scheduler.
+      <code>just</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
      </p>
      <h4>Sample Code</h4>
      <div class="code groovy"><pre>
@@ -89,7 +89,7 @@ def observableThatEmitsSeveralNumbers = Observable.just( 1, 2, 3, 4, 5 );</pre><
       parameters, and returns an Observable that emits these items in the same order as they are
       given in the parameter list.
      </p><p>
-      <code>just</code> does not by default operate on any particular scheduler.
+      <code>just</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
      </p>
      <h4>Sample Code</h4>
      <div class="code java"><pre>
@@ -130,8 +130,8 @@ Sequence complete.</pre></div>
       an Observable that emits that single item as its sole emission.
      </p><p>
       <code>return</code>/<code>just</code> operates by default on the <code>immediate</code>
-      Scheduler, but you can also pass in a Scheduler of your choosing as an optional second
-      parameter, in which case it will operate on that Scheduler instead.
+      <a href="../scheduler.html">Scheduler</a>, but you can also pass in a Scheduler of your choosing as an
+      optional second parameter, in which case it will operate on that Scheduler instead.
      </p>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>

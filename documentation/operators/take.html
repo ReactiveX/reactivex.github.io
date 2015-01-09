@@ -75,7 +75,8 @@ numbers.take(3).subscribe(
 3
 Sequence complete</pre></div>
       <p>
-       This variant of <code>take</code> does not by default operate on any particular Scheduler.
+       This variant of <code>take</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(int)"><code>take(int)</code></a></li>
@@ -89,8 +90,9 @@ Sequence complete</pre></div>
        duration of the source Observable&#8217;s lifespan. You set this duration by passing in a length of time
        and the time units this length is denominated in as parameters to <code>take</code>.
       </p><p>
-       This variant of <code>take</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>take</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(long,%20java.util.concurrent.TimeUnit)"><code>take(long,TimeUnit)</code></a></li>
@@ -137,7 +139,8 @@ Next: 3
 Next: 4
 Sequence complete.</pre></div>
       <p>
-       This variant of <code>take</code> does not by default operate on any particular Scheduler.
+       This variant of <code>take</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(int)"><code>take(int)</code></a></li>
@@ -151,8 +154,9 @@ Sequence complete.</pre></div>
        duration of the source Observable&#8217;s lifespan. You set this duration by passing in a length of time
        and the time units this length is denominated in as parameters to <code>take</code>.
       </p><p>
-       This variant of <code>take</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>take</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(long,%20java.util.concurrent.TimeUnit)"><code>take(long,TimeUnit)</code></a></li>
@@ -186,8 +190,9 @@ Completed</pre></div>
      <figure>
       <img src="images/take.0.png" width="640" alt="take" />
       <figcaption><p>
-       For the special case of <code>take(0)</code> you can also pass as a second parameter a Scheduler that
-       <code>take</code> will use to immediately schedule a call to <code>onCompleted</code>.
+       For the special case of <code>take(0)</code> you can also pass as a second parameter a
+       <a href="../scheduler.html">Scheduler</a> that <code>take</code> will use to immediately schedule a call
+       to <code>onCompleted</code>.
       </p>
       </figcaption>
      </figure>
@@ -217,8 +222,9 @@ Completed</pre></div>
         <dd>mirrors items from the source Observable until this absolute time</dd>
       </dl>
       <p>
-       You may also, optionally, pass in a Scheduler as a second parameter, and the timer will operate on that
-       Scheduler (<code>takeUntilWithTime</code> uses the <code>timeout</code> Scheduler by default).
+       You may also, optionally, pass in a <a href="../scheduler.html">Scheduler</a> as a second parameter, and
+       the timer will operate on that Scheduler (<code>takeUntilWithTime</code> uses the <code>timeout</code>
+       Scheduler by default).
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>

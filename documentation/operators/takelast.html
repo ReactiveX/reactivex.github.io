@@ -37,7 +37,7 @@ id: takeLast
    <h2>Language-Specific Information:</h2>
 
 <div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
-  {% lang_operator RxClojure %}
+  {% lang_operator RxClojure next %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
@@ -71,7 +71,8 @@ numbers.takeLast(2).subscribe(
 9
 Sequence complete</pre></div>
       <p>
-       This variant of <code>takeLast</code> does not by default operate on any particular Scheduler.
+       This variant of <code>takeLast</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int)"><code>takeLast(int)</code></a></li>
@@ -88,8 +89,9 @@ Sequence complete</pre></div>
        Note that this will delay the emission of any item from the source Observable until the source Observable
        completes.
       </p><p>
-       This variant of <code>takeLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(long,%20java.util.concurrent.TimeUnit)"><code>takeLast(long,TimeUnit)</code></a></li>
@@ -102,8 +104,9 @@ Sequence complete</pre></div>
        There is also a variant that combines the two methods. It emits the minimum of the number of items
        emitted during a specified time window <em>or</em> a particular count of items.
       </p><p>
-       This variant of <code>takeLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional fourth parameter.
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional fourth parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int,%20long,%20java.util.concurrent.TimeUnit)"><code>takeLast(int,long,TimeUnit)</code></a></li>
@@ -135,7 +138,8 @@ Sequence complete</pre></div>
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
        delay the emission of any item from the source Observable until the source Observable completes.
       </p><p>
-       This variant of <code>takeLast</code> does not by default operate on any particular Scheduler.
+       This variant of <code>takeLast</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int)"><code>takeLast(int)</code></a></li>
@@ -152,8 +156,9 @@ Sequence complete</pre></div>
        Note that this will delay the emission of any item from the source Observable until the source Observable
        completes.
       </p><p>
-       This variant of <code>takeLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(long,%20java.util.concurrent.TimeUnit)"><code>takeLast(long,TimeUnit)</code></a></li>
@@ -166,8 +171,9 @@ Sequence complete</pre></div>
        There is also a variant that combines the two methods. It emits the minimum of the number of items
        emitted during a specified time window <em>or</em> a particular count of items.
       </p><p>
-       This variant of <code>takeLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional fourth parameter.
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional fourth parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int,%20long,%20java.util.concurrent.TimeUnit)"><code>takeLast(int,long,TimeUnit)</code></a></li>
@@ -237,9 +243,10 @@ Completed</pre></div>
        Note that the mechanism by which this is implemented will delay the emission of any item from the source
        Observable until that Observable completes.
       </p><p>
-       <code>takeLastWithTime</code> by default operates the timer on the <code>timeout</code> Scheduler and
-       emits items on the <code>currentThread</code> Scheduler, but you may also pass in Schedulers of your
-       choosing to override these, as an optional second and third parameters, respectively.
+       <code>takeLastWithTime</code> by default operates the timer on the <code>timeout</code>
+       <a href="../scheduler.html">Scheduler</a> and emits items on the <code>currentThread</code> Scheduler,
+       but you may also pass in Schedulers of your choosing to override these, as an optional second and third
+       parameters, respectively.
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
@@ -361,7 +368,7 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala takeRight %}
+  {% lang_operator RxScala tail takeRight %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>

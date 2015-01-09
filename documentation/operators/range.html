@@ -52,8 +52,9 @@ id: range
       items to zero, the resulting Observable will emit no values (if you set it to a negative
       number, <code>range</code> will cause an exception).
      </p><p>
-      <code>range</code> does not by default operate on any particular Scheduler, but there is
-      a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>range</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <h4>Sample Code</h4>
      <div class="code groovy"><pre>
@@ -75,8 +76,9 @@ def myObservable = Observable.range(5, 3);</pre></div>
       items to zero, the resulting Observable will emit no values (if you set it to a negative
       number, <code>range</code> will cause an exception).
      </p><p>
-      <code>range</code> does not by default operate on any particular Scheduler, but there is
-      a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>range</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#range(int,%20int)"><code>range(int,int)</code></a></li>
@@ -92,9 +94,9 @@ def myObservable = Observable.range(5, 3);</pre></div>
       RxJS implements this operator as <code>range</code>. It accepts as its parameters the
       start value of the range and the number of items in the range.
      </p><p>
-      <code>range</code> operates by default on the <code>currentThread</code> Scheduler, but there
-      is a variant that allows you to set the Scheduler by passing one in as the optional third
-      parameter.
+      <code>range</code> operates by default on the <code>currentThread</code>
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as the optional third parameter.
      </p>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>

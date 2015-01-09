@@ -218,14 +218,15 @@ id: window
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
-       (measured in <code>unit</code>, and optionally on a particular <code>scheduler</code>). It
+       (measured in <code>unit</code>, and optionally on a particular
+       <a href="../scheduler.html"><code>Scheduler</code></a>). It
        will also close the currently open window if it receives an <code>onCompleted</code> or
        <code>onError</code> notification from the source Observable. This variant of
        <code>window</code> emits a series of non-overlapping windows whose collective emissions
        correspond one-to-one with those of the source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit)"><code>window(long,TimeUnit)</code></a></li>
@@ -238,15 +239,16 @@ id: window
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
-       (measured in <code>unit</code>, and optionally on a particular <code>scheduler</code>) or
+       (measured in <code>unit</code>, and optionally on a particular
+       <a href="../scheduler.html"><code>Scheduler</code></a>) or
        whenever the currently open window has emitted <code>count</code> items. It will also close
        the currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
        notification from the source Observable. This variant of <code>window</code> emits a series
        of non-overlapping windows whose collective emissions correspond one-to-one with those of the
        source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int)"><code>window(long,TimeUnit,int)</code></a></li>
@@ -259,15 +261,15 @@ id: window
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeshift</code> period of time (measured in <code>unit</code>, and
-       optionally on a particular <code>scheduler</code>). It closes a currently open window after
-       <code>timespan</code> period of time has passed since that window was opened. It will also
-       close any currently open window if it receives an <code>onCompleted</code> or
+       optionally on a particular <a href="../scheduler.html"><code>Scheduler</code></a>). It closes a
+       currently open window after <code>timespan</code> period of time has passed since that window was
+       opened. It will also close any currently open window if it receives an <code>onCompleted</code> or
        <code>onError</code> notification from the source Observable. Depending on how you set
        <code>timespan</code> and <code>timeshift</code> the windows that result from this operation
        may overlap or may have gaps.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit)"><code>window(long,long,TimeUnit)</code></a></li>
@@ -378,14 +380,15 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
-       (measured in <code>unit</code>, and optionally on a particular <code>scheduler</code>). It
+       (measured in <code>unit</code>, and optionally on a particular
+       <a href="../scheduler.html"><code>Scheduler</code></a>). It
        will also close the currently open window if it receives an <code>onCompleted</code> or
        <code>onError</code> notification from the source Observable. This variant of
        <code>window</code> emits a series of non-overlapping windows whose collective emissions
        correspond one-to-one with those of the source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit)"><code>window(long,TimeUnit)</code></a></li>
@@ -398,15 +401,16 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
-       (measured in <code>unit</code>, and optionally on a particular <code>scheduler</code>) or
+       (measured in <code>unit</code>, and optionally on a particular
+       <a href="../scheduler.html"><code>Scheduler</code></a>) or
        whenever the currently open window has emitted <code>count</code> items. It will also close
        the currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
        notification from the source Observable. This variant of <code>window</code> emits a series
        of non-overlapping windows whose collective emissions correspond one-to-one with those of the
        source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int)"><code>window(long,TimeUnit,int)</code></a></li>
@@ -419,15 +423,15 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeshift</code> period of time (measured in <code>unit</code>, and
-       optionally on a particular <code>scheduler</code>). It closes a currently open window after
-       <code>timespan</code> period of time has passed since that window was opened. It will also
-       close any currently open window if it receives an <code>onCompleted</code> or
+       optionally on a particular <a href="../scheduler.html"><code>Scheduler</code></a>). It closes a
+       currently open window after <code>timespan</code> period of time has passed since that window was
+       opened. It will also close any currently open window if it receives an <code>onCompleted</code> or
        <code>onError</code> notification from the source Observable. Depending on how you set
        <code>timespan</code> and <code>timeshift</code> the windows that result from this operation
        may overlap or may have gaps.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit)"><code>window(long,long,TimeUnit)</code></a></li>
@@ -536,14 +540,14 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>windowWithTime</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time (in
-       milliseconds, optionally measured on a particular Scheduler). It will also close the
-       currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
+       milliseconds, optionally measured on a particular <a href="../scheduler.html">Scheduler</a>). It will
+       also close the currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
        notification from the source Observable. This variant of <code>windowWithTime</code> emits a
        series of non-overlapping windows whose collective emissions correspond one-to-one with those
        of the source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>windowWithTime</code> uses the 
-       <code>timeout</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>windowWithTime</code> uses the 
+       <code>timeout</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
      <h4><code>windowWithTime(timeSpan,timeShift</code>[<code>,scheduler</code>]<code>)</code></h4>
@@ -552,15 +556,15 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>windowWithTime</code> opens its first window immediately, and
        thereafter opens a new window every <code>timeshift</code> milliseconds (optionally measured
-       on a particular Scheduler). It closes a currently open window after <code>timespan</code>
-       milliseconds have passed since that window was opened. It will also close any currently open
-       window if it receives an <code>onCompleted</code> or <code>onError</code> notification from
-       the source Observable. Depending on how you set <code>timespan</code> and
+       on a particular <a href="../scheduler.html">Scheduler</a>). It closes a currently open window after
+       <code>timespan</code> milliseconds have passed since that window was opened. It will also close any
+       currently open window if it receives an <code>onCompleted</code> or <code>onError</code> notification
+       from the source Observable. Depending on how you set <code>timespan</code> and
        <code>timeshift</code> the windows that result from this operation may overlap or may have
        gaps.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>windowWithTime</code> uses the 
-       <code>timeout</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>windowWithTime</code> uses the 
+       <code>timeout</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
      <h4><code>windowWithTimeOrCount(timeSpan,count</code>[<code>,scheduler</code>]<code>)</code></h4>
@@ -568,15 +572,15 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <img src="images/windowWithTimeOrCount6.png" width="640" alt="windowWithTimeOrCount(timeSpan,count)" />
       <figcaption><p>
        <code>windowWithTimeOrCount</code> opens its first window immediately. It closes the
-       currently open window and opens another one every <code>timespan</code> milliseconds
-       (optionally measured on a particular Scheduler) or whenever the currently open window has
-       emitted <code>count</code> items. It will also close the currently open window if it receives
+       currently open window and opens another one every <code>timespan</code> milliseconds (optionally
+       measured on a particular  <a href="../scheduler.html">Scheduler</a>) or whenever the currently open
+       window has emitted <code>count</code> items. It will also close the currently open window if it receives
        an <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
        <code>windowWithTimeOrCount</code> emits a series of non-overlapping windows whose collective
        emissions correspond one-to-one with those of the source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>windowWithTimeOrCount</code> uses
-       the <code>timeout</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>windowWithTimeOrCount</code> uses
+       the <code>timeout</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
   {% endlang_operator %}
@@ -645,14 +649,15 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
-       (measured in <code>unit</code>, and optionally on a particular <code>scheduler</code>). It
+       (measured in <code>unit</code>, and optionally on a particular
+       <a href="../scheduler.html"><code>Scheduler</code></a>). It
        will also close the currently open window if it receives an <code>onCompleted</code> or
        <code>onError</code> notification from the source Observable. This variant of
        <code>window</code> emits a series of non-overlapping windows whose collective emissions
        correspond one-to-one with those of the source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
      <h4><code>window(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
@@ -661,15 +666,16 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
-       (measured in <code>unit</code>, and optionally on a particular <code>scheduler</code>) or
+       (measured in <code>unit</code>, and optionally on a particular
+       <a href="../scheduler.html"><code>Scheduler</code></a>) or
        whenever the currently open window has emitted <code>count</code> items. It will also close
        the currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
        notification from the source Observable. This variant of <code>window</code> emits a series
        of non-overlapping windows whose collective emissions correspond one-to-one with those of the
        source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
      <h4><code>window(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
@@ -678,15 +684,15 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeshift</code> period of time (measured in <code>unit</code>, and
-       optionally on a particular <code>scheduler</code>). It closes a currently open window after
-       <code>timespan</code> period of time has passed since that window was opened. It will also
-       close any currently open window if it receives an <code>onCompleted</code> or
+       optionally on a particular <a href="../scheduler.html"><code>Scheduler</code></a>). It closes a currently
+       open window after <code>timespan</code> period of time has passed since that window was opened. It will
+       also close any currently open window if it receives an <code>onCompleted</code> or
        <code>onError</code> notification from the source Observable. Depending on how you set
        <code>timespan</code> and <code>timeshift</code> the windows that result from this operation
        may overlap or may have gaps.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window</code> uses the 
-       <code>computation</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window</code> uses the 
+       <code>computation</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
   {% endlang_operator %}
@@ -728,8 +734,8 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        This variant of <code>Window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
        (in the form of a <code>TimeSpan</code> object, and optionally on a particular
-       <code>IScheduler</code>). It will also close the currently open window if it receives an
-       <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
+       <a href="../scheduler.html"><code>IScheduler</code></a>). It will also close the currently open window if
+       it receives an <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
        This variant of <code>Window</code> emits a series of non-overlapping windows whose
        collective emissions correspond one-to-one with those of the source Observable.
       </p></figcaption>
@@ -773,8 +779,8 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        This variant of <code>Window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timeSpan</code> period of time
        (in the form of a <code>TimeSpan</code> object, and optionally on a particular
-       <code>IScheduler</code>) or whenever the currently open window has emitted <code>count</code>
-       items. It will also close the currently open window if it receives an
+       <a href="../scheduler.html"><code>IScheduler</code></a>) or whenever the currently open window has
+       emitted <code>count</code> items. It will also close the currently open window if it receives an
        <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
        This variant of <code>window</code> emits a series of non-overlapping windows whose
        collective emissions correspond one-to-one with those of the source Observable.
@@ -786,7 +792,8 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <figcaption><p>
        This variant of <code>Window</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeShift</code> period of time (in the form of a
-       <code>TimeSpan</code> object, and optionally on a particular <code>IScheduler</code>). It
+       <code>TimeSpan</code> object, and optionally on a particular
+       <a href="../scheduler.html"><code>IScheduler</code></a>). It
        closes a currently open window after <code>timeSpan</code> period of time has passed since
        that window was opened. It will also close any currently open window if it receives an
        <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
@@ -876,15 +883,15 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <img src="images/window_with_time7.py.png" width="640" alt="window_with_time(timespan,timeshift)" />
       <figcaption><p>
        This variant of <code>window_with_time</code> opens its first window immediately. It closes
-       the currently open window and opens another one every <code>timespan</code> milliseconds
-       (optionally measured on a particular <code>scheduler</code>). It will also close the
+       the currently open window and opens another one every <code>timespan</code> milliseconds (optionally
+       measured on a particular <a href="../scheduler.html"><code>Scheduler</code></a>). It will also close the
        currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
        notification from the source Observable. This variant of <code>window_with_time</code> emits
        a series of non-overlapping windows whose collective emissions correspond one-to-one with
        those of the source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window_with_time</code> uses the 
-       <code>timeout</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window_with_time</code> uses the 
+       <code>timeout</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
      <h4><code>window_with_time_or_count(timespan,count</code>[<code>,scheduler</code>]</code>)</code></h4>
@@ -892,15 +899,15 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <img src="images/window_with_time_or_count.py.png" width="640" alt="window_with_time_or_count(timespan,count)" />
       <figcaption><p>
        <code>window_with_time_or_count</code> opens its first window immediately. It closes the
-       currently open window and opens another one every <code>timespan</code> milliseconds
-       (optionally measured on a particular scheduler) or whenever the currently open window has
+       currently open window and opens another one every <code>timespan</code> milliseconds (optionally measured
+       on a particular <a href="../scheduler.html">Scheduler</a>) or whenever the currently open window has
        emitted <code>count</code> items. It will also close the currently open window if it receives
        an <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
        <code>window_with_time_or_count</code> emits a series of non-overlapping windows whose
        collective emissions correspond one-to-one with those of the source Observable.
       </p><p>
-       If you do not specify a scheduler, this variant of <code>window_with_time_or_count</code>
-       uses the <code>timeout</code> scheduler for its timer by default.
+       If you do not specify a Scheduler, this variant of <code>window_with_time_or_count</code>
+       uses the <code>timeout</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
   {% endlang_operator %}
@@ -937,8 +944,8 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <img src="images/sliding9.png" width="640" alt="sliding(timespan,timeshift,count)" />
       <figcaption><p>
        This variant of <code>sliding</code> opens its first window immediately, and thereafter opens
-       a new window every <code>timeshift</code> period of time (in the form of a
-       <code>Duration</code> object, and optionally on a particular <code>scheduler</code>). It
+       a new window every <code>timeshift</code> period of time (in the form of a <code>Duration</code> object,
+       and optionally on a particular <a href="../scheduler.html"><code>Scheduler</code></a>). It
        closes a currently open window after <code>timespan</code> period of time has passed since
        that window was opened or once <code>count</code> items have been emitted on that window. It
        will also close any currently open window if it receives an <code>onCompleted</code> or
@@ -950,8 +957,8 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <img src="images/sliding7.png" width="640" alt="sliding(timespan,timeshift)" />
       <figcaption><p>
        This variant of <code>sliding</code> opens its first window immediately, and thereafter opens
-       a new window every <code>timeshift</code> period of time (in the form of a
-       <code>Duration</code> object, and optionally on a particular <code>scheduler</code>). It
+       a new window every <code>timeshift</code> period of time (in the form of a <code>Duration</code> object,
+       and optionally on a particular <a href="../scheduler.html"><code>Scheduler</code></a>). It
        closes a currently open window after <code>timespan</code> period of time has passed since
        that window was opened. It will also close any currently open window if it receives an
        <code>onCompleted</code> or <code>onError</code> notification from the source Observable.
@@ -988,9 +995,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      <figure>
       <img src="images/tumbling6.png" width="640" alt="tumbling(timespan,count)" />
       <figcaption><p>
-       This variant of <code>tumbling</code> opens its first window immediately. It closes the
-       currently open window and opens another one every <code>timespan</code> period of time (a
-       <code>Duration</code>, optionally measured on a particular <code>scheduler</code>) or
+       This variant of <code>tumbling</code> opens its first window immediately. It closes the currently open
+       window and opens another one every <code>timespan</code> period of time (a <code>Duration</code>,
+       optionally measured on a particular <a href="../scheduler.html"><code>Scheduler</code></a>) or
        whenever the currently open window has emitted <code>count</code> items. It will also close
        the currently open window if it receives an <code>onCompleted</code> or <code>onError</code>
        notification from the source Observable.
@@ -1000,9 +1007,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      <figure>
       <img src="images/tumbling5.png" width="640" alt="tumbling(timespan)" />
       <figcaption><p>
-       This variant of <code>tumbling</code> opens its first window immediately. It closes the
-       currently open window and opens another one every <code>timespan</code> period of time (a
-       <code>Duration</code>, optionally measured on a particular <code>scheduler</code>). It
+       This variant of <code>tumbling</code> opens its first window immediately. It closes the currently open
+       window and opens another one every <code>timespan</code> period of time (a <code>Duration</code>,
+       optionally measured on a particular <a href="../scheduler.html"><code>scheduler</code></a>). It
        will also close the currently open window if it receives an <code>onCompleted</code> or
        <code>onError</code> notification from the source Observable.
       </p></figcaption>

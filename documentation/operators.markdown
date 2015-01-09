@@ -146,7 +146,7 @@ operators.
 * [**`And`**]({{ site.url }}/documentation/operators/and-then-when.html)
 * [`Any`]({{ site.url }}/documentation/operators/contains.html)
 * [`apply`]({{ site.url }}/documentation/operators/create.html)
-* `as_blocking`
+* [`as_blocking`]({{ site.url }}/documentation/operators/to.html)
 * [`AsObservable`]({{ site.url }}/documentation/operators/from.html)
 * [`AssertEqual`]({{ site.url }}/documentation/operators/sequenceequal.html)
 * [`asyncAction`]({{ site.url }}/documentation/operators/start.html)
@@ -156,7 +156,7 @@ operators.
 * [`averageFloat`]({{ site.url }}/documentation/operators/average.html)
 * [`averageInteger`]({{ site.url }}/documentation/operators/average.html)
 * [`averageLong`]({{ site.url }}/documentation/operators/average.html)
-* `blocking`
+* [`blocking`]({{ site.url }}/documentation/operators/to.html)
 * [**`Buffer`**]({{ site.url }}/documentation/operators/buffer.html)
 * [`bufferWithCount`]({{ site.url }}/documentation/operators/buffer.html)
 * [`bufferWithTime`]({{ site.url }}/documentation/operators/buffer.html)
@@ -284,7 +284,7 @@ operators.
 * [`isEmpty`]({{ site.url }}/documentation/operators/contains.html)
 * [`items`]({{ site.url }}/documentation/operators/just.html)
 * [**`Join`**]({{ site.url }}/documentation/operators/join.html)
-* `join` (string)
+* [`join`]({{ site.url }}/documentation/operators/to.html) (string)
 * [**`Just`**]({{ site.url }}/documentation/operators/just.html)
 * `keep`
 * `keep-indexed`
@@ -320,7 +320,7 @@ operators.
 * [`Multicast`]({{ site.url }}/documentation/operators/publish.html)
 * `nest`
 * [**`Never`**]({{ site.url }}/documentation/operators/empty-never-throw.html)
-* `Next`
+* [`Next`]({{ site.url }}/documentation/operators/takelast.html)
 * [`none`]({{ site.url }}/documentation/operators/contains.html)
 * [`nonEmpty`]({{ site.url }}/documentation/operators/contains.html)
 * [`nth`]({{ site.url }}/documentation/operators/elementat.html)
@@ -345,7 +345,7 @@ operators.
 * [`pausable`]({{ site.url }}/documentation/operators/backpressure.html)
 * [`pausableBuffered`]({{ site.url }}/documentation/operators/backpressure.html)
 * [`pluck`]({{ site.url }}/documentation/operators/map.html)
-* `product`
+* [`product`]({{ site.url }}/documentation/operators/sum.html)
 * [**`Publish`**]({{ site.url }}/documentation/operators/publish.html)
 * [`PublishLast`]({{ site.url }}/documentation/operators/publish.html)
 * [`publish_synchronized`]({{ site.url }}/documentation/operators/replay.html)
@@ -403,17 +403,17 @@ operators.
 * [`sliding`]({{ site.url }}/documentation/operators/window.html)
 * [`slidingBuffer`]({{ site.url }}/documentation/operators/buffer.html)
 * [`some`]({{ site.url }}/documentation/operators/contains.html)
-* `sort`
-* `sort-by`
+* [`sort`]({{ site.url }}/documentation/operators/to.html)
+* [`sort-by`]({{ site.url }}/documentation/operators/to.html)
 * [`sorted-list-by`]({{ site.url }}/documentation/operators/to.html)
 * `spawn`
-* `split`
+* [`split`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`split-with`]({{ site.url }}/documentation/operators/groupby.html)
 * [**`Start`**]({{ site.url }}/documentation/operators/start.html)
 * [`startAsync`]({{ site.url }}/documentation/operators/start.html)
 * [`startFuture`]({{ site.url }}/documentation/operators/start.html)
 * [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html)
-* `stringConcat`
+* [`stringConcat`]({{ site.url }}/documentation/operators/to.html)
 * [`stopAndWait`]({{ site.url }}/documentation/operators/backpressure.html)
 * `subscribe`
 * [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html)
@@ -444,7 +444,7 @@ operators.
 * [`takeUntilWithTime`]({{ site.url }}/documentation/operators/takeuntil.html)
 * [**`TakeWhile`**]({{ site.url }}/documentation/operators/takewhile.html)
 * [`take_while_with_index`]({{ site.url }}/documentation/operators/takewhile.html)
-* `tail`
+* [`tail`]({{ site.url }}/documentation/operators/takelast.html)
 * [`tap`]({{ site.url }}/documentation/operators/do.html)
 * [`tapOnCompleted`]({{ site.url }}/documentation/operators/do.html)
 * [`tapOnError`]({{ site.url }}/documentation/operators/do.html)
@@ -468,12 +468,12 @@ operators.
 * [`to_a`]({{ site.url }}/documentation/operators/to.html)
 * [`ToArray`]({{ site.url }}/documentation/operators/to.html)
 * [`ToAsync`]({{ site.url }}/documentation/operators/start.html)
-* `toBlocking`
+* [`toBlocking`]({{ site.url }}/documentation/operators/to.html)
 * [`toBuffer`]({{ site.url }}/documentation/operators/to.html)
 * [`to_dict`]({{ site.url }}/documentation/operators/to.html)
 * [`ToDictionary`]({{ site.url }}/documentation/operators/to.html)
 * [`ToEnumerable`]({{ site.url }}/documentation/operators/to.html)
-* `ToEvent`
+* [`ToEvent`]({{ site.url }}/documentation/operators/to.html)
 * [`ToEventPattern`]({{ site.url }}/documentation/operators/to.html)
 * [`ToFuture`]({{ site.url }}/documentation/operators/to.html)
 * [`to_h`]({{ site.url }}/documentation/operators/to.html)
@@ -488,7 +488,7 @@ operators.
 * [`toSet`]({{ site.url }}/documentation/operators/to.html)
 * [`toSortedList`]({{ site.url }}/documentation/operators/to.html)
 * [`toStream`]({{ site.url }}/documentation/operators/to.html)
-* `ToTask`
+* [`ToTask`]({{ site.url }}/documentation/operators/to.html)
 * [`toTraversable`]({{ site.url }}/documentation/operators/to.html)
 * [`toVector`]({{ site.url }}/documentation/operators/to.html)
 * [`tumbling`]({{ site.url }}/documentation/operators/window.html)
@@ -497,14 +497,14 @@ operators.
 * [**`Using`**]({{ site.url }}/documentation/operators/using.html)
 * [**`When`**]({{ site.url }}/documentation/operators/and-then-when.html)
 * [`Where`]({{ site.url }}/documentation/operators/filter.html)
-* `while`
-* `whileDo`
+* [`while`]({{ site.url }}/documentation/operators/repeat.html)
+* [`whileDo`]({{ site.url }}/documentation/operators/repeat.html)
 * [**`Window`**]({{ site.url }}/documentation/operators/window.html)
 * [`windowWithCount`]({{ site.url }}/documentation/operators/window.html)
 * [`windowWithTime`]({{ site.url }}/documentation/operators/window.html)
 * [`windowWithTimeOrCount`]({{ site.url }}/documentation/operators/window.html)
 * [`windowed`]({{ site.url }}/documentation/operators/backpressure.html)
-* `withFilter`
+* [`withFilter`]({{ site.url }}/documentation/operators/filter.html)
 * [`withLatestFrom`]({{ site.url }}/documentation/operators/combinelatest.html)
 * [**`Zip`**]({{ site.url }}/documentation/operators/zip.html)
 * [`zipArray`]({{ site.url }}/documentation/operators/zip.html)

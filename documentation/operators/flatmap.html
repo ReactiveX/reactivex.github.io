@@ -59,7 +59,7 @@ id: flatMap
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy concatMap flatMap flatMapIterable switchMap %}
+  {% lang_operator RxGroovy concatMap flatMap flatMapIterable StringObservable.split switchMap %}
     <figure class="variant">
      <img src="images/mergeMap.png" width="640" alt="flatMap" />
      <figcaption><p>
@@ -149,9 +149,18 @@ Sequence complete</pre></div>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchMap(rx.functions.Func1)"><code>switchMap(Func1)</code></a></li>
      </ul></figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/St.split.png" width="640" alt="split" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
+      <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
+      treats the source sequence as a stream and splits it on a specified regex boundary, then merges the
+      results of this split.
+     </p></figcaption>
+    </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava concatMap flatMap flatMapIterable switchMap %}
+  {% lang_operator RxJava concatMap flatMap flatMapIterable StringObervable.split switchMap %}
     <figure class="variant">
      <img src="images/mergeMap.png" width="640" alt="flatMap" />
      <figcaption><p>
@@ -219,6 +228,15 @@ Sequence complete</pre></div>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchMap(rx.functions.Func1)"><code>switchMap(Func1)</code></a></li>
      </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.split.png" width="640" alt="split" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxJS by default) there is also a
+      <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
+      treats the source sequence as a stream and splits it on a specified regex boundary, then merges the
+      results of this split.
+     </p></figcaption>
     </figure>
   {% endlang_operator %}
 

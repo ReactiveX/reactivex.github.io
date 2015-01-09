@@ -56,9 +56,9 @@ id: timeout
        Observable emits another item, <code>timeout</code> terminates its Observable with an error
        (<code>TimeoutException</code>).
       </p><p>
-       By default this variant of <code>timeout</code> operates on the <code>computation</code> Scheduler, but
-       you can choose a different Scheduler by passing it in as an optional third parameter to
-       <code>timeout</code>
+       By default this variant of <code>timeout</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>timeout</code>
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit)"><code>timeout(long,TimeUnit)</code></a></li>
@@ -72,9 +72,9 @@ id: timeout
        notification in case of a timeout condition, it instead immediately switches to a backup Observable that
        you specify.
       </p><p>
-       By default this variant of <code>timeout</code> operates on the <code>computation</code> Scheduler, but
-       you can choose a different Scheduler by passing it in as an optional third parameter to
-       <code>timeout</code>
+       By default this variant of <code>timeout</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>timeout</code>
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit,%20rx.Observable)"><code>timeout(long,TimeUnit,Observable)</code></a></li>
@@ -91,7 +91,8 @@ id: timeout
        <code>onError</code> notification (&ldquo;<code>TimeoutException</code>&rdquo;) from the Observable
        <code>timeout</code> returns.
       </p><p>
-       This variant of <code>timeout</code> by default runs on the <code>immediate</code> Scheduler.
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func1)"><code>timeout(Func1)</code></a></li>
@@ -103,7 +104,8 @@ id: timeout
        There is also a variant of <code>timeout</code> that both uses a per-item Observable to set the timeout
        duration and switches to a backup Observable in case of a timeout.
       </p><p>
-       This variant of <code>timeout</code> by default runs on the <code>immediate</code> Scheduler.
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func1,%20rx.Observable)"><code>timeout(Func1,Observable)</code></a></li>
@@ -117,7 +119,8 @@ id: timeout
        very first item emitted by the source Observable (in the absence of this, there would be no timeout for
        the first item).
       </p><p>
-       This variant of <code>timeout</code> by default runs on the <code>immediate</code> Scheduler.
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func0,%20rx.functions.Func1)"><code>timeout(Func0,Func1)</code></a></li>
@@ -129,7 +132,8 @@ id: timeout
        And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
        an error upon hitting a timeout condition.
       </p><p>
-       This variant of <code>timeout</code> by default runs on the <code>immediate</code> Scheduler.
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func0,%20rx.functions.Func1,%20rx.Observable)"><code>timeout(Func0,Func1,Observable)</code></a></li>
@@ -150,9 +154,9 @@ id: timeout
        Observable emits another item, <code>timeout</code> terminates its Observable with an error
        (<code>TimeoutException</code>).
       </p><p>
-       By default this variant of <code>timeout</code> operates on the <code>computation</code> Scheduler, but
-       you can choose a different Scheduler by passing it in as an optional third parameter to
-       <code>timeout</code>
+       By default this variant of <code>timeout</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>timeout</code>
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit)"><code>timeout(long,TimeUnit)</code></a></li>
@@ -166,9 +170,9 @@ id: timeout
        notification in case of a timeout condition, it instead immediately switches to a backup Observable that
        you specify.
       </p><p>
-       By default this variant of <code>timeout</code> operates on the <code>computation</code> Scheduler, but
-       you can choose a different Scheduler by passing it in as an optional third parameter to
-       <code>timeout</code>.
+       By default this variant of <code>timeout</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>timeout</code>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit,%20rx.Observable)"><code>timeout(long,TimeUnit,Observable)</code></a></li>
@@ -185,7 +189,8 @@ id: timeout
        <code>onError</code> notification (&ldquo;<code>TimeoutException</code>&rdquo;) from the Observable
        <code>timeout</code> returns.
       </p><p>
-       This variant of <code>timeout</code> by default runs on the <code>immediate</code> Scheduler.
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func1)"><code>timeout(Func1)</code></a></li>
@@ -197,7 +202,8 @@ id: timeout
        There is also a variant of <code>timeout</code> that both uses a per-item Observable to set the timeout
        duration and switches to a backup Observable in case of a timeout.
       </p><p>
-       This variant of <code>timeout</code> by default runs on the <code>immediate</code> Scheduler.
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func1,%20rx.Observable)"><code>timeout(Func1,Observable)</code></a></li>
@@ -211,7 +217,8 @@ id: timeout
        very first item emitted by the source Observable (in the absence of this, there would be no timeout for
        the first item).
       </p><p>
-       This variant of <code>timeout</code> by default runs on the <code>immediate</code> Scheduler.
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func0,%20rx.functions.Func1)"><code>timeout(Func0,Func1)</code></a></li>
@@ -223,7 +230,8 @@ id: timeout
        And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
        an error upon hitting a timeout condition.
       </p><p>
-       This variant of <code>timeout</code> by default runs on the <code>immediate</code> Scheduler.
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func0,%20rx.functions.Func1,%20rx.Observable)"><code>timeout(Func0,Func1,Observable)</code></a></li>

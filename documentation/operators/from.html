@@ -65,9 +65,9 @@ id: from
       resulting Observable will terminate with an error if that span of time passes before the
       Future responds with a value.
      </p><p>
-      <code>from</code> does not by default operate on any particular scheduler, however you can
-      pass the variant that converts a Future a Scheduler as an optional second parameter, and it
-      will use that Scheduler to govern the Future.
+      <code>from</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>,
+      however you can pass the variant that converts a Future a Scheduler as an optional second parameter, and
+      it will use that Scheduler to govern the Future.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T[])"><code>from(array)</code></a></li>
@@ -120,9 +120,9 @@ id: from
       resulting Observable will terminate with an error if that span of time passes before the
       Future responds with a value.
      </p><p>
-      <code>from</code> does not by default operate on any particular scheduler, however you can
-      pass the variant that converts a Future a Scheduler as an optional second parameter, and it
-      will use that Scheduler to govern the Future.
+      <code>from</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>,
+      however you can pass the variant that converts a Future a Scheduler as an optional second parameter, and
+      it will use that Scheduler to govern the Future.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T[])"><code>from(array)</code></a></li>
@@ -177,7 +177,7 @@ id: from
      <ol start="2">
       <li>a transforming function that takes an item from the array or iterable as input and produces an item to be emitted by the resulting Observable as output</li>
       <li>a second argument to pass into the transforming function as additional context information</li>
-      <li>a Scheduler on which this operator should operate</li>
+      <li>a <a href="../scheduler.html">Scheduler</a> on which this operator should operate</li>
      </ol>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>
@@ -313,7 +313,7 @@ Completed</pre></div>
       This operator takes three additional, optional parameters:
      </p>
      <ol start="2">
-      <li>a Scheduler on which you want to run the Node.js callback</li>
+      <li>a <a href="../scheduler.html">Scheduler</a> on which you want to run the Node.js callback</li>
       <li>a parameter to give to the callback function</li>
       <li>a tranforming function that takes the return value of the callback function as input and returns an item to be emitted by the resulting Observable</li>
      </ol>
@@ -466,8 +466,9 @@ Completed</pre></div>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <p>
-      A variant of this operator, called <code>ofWithScheduler</code> takes a Scheduler as its
-      first parameter, and operates the resulting Observable on this Scheduler.
+      A variant of this operator, called <code>ofWithScheduler</code> takes a
+      <a href="../scheduler.html">Scheduler</a> as its first parameter, and operates the resulting Observable
+      on this Scheduler.
      </p>
      </figcaption>
     </figure>

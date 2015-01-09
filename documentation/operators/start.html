@@ -145,7 +145,8 @@ id: start
      peculiar in that it creates a specialization of an Observable called a
      <code>StoppableObservable</code>.
     </p><p>
-     Pass <code>runAsync</code> an <code>Action</code> and a <code>Scheduler</code>, and it will
+     Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will
      return a <code>StoppableObservable</code> that uses the specified <code>Action</code> to
      generate items that it emits. The <code>Action</code> accepts an <code>Observer</code> and a
      <code>Subscription</code>. It uses the <code>Subscription</code> to check for the
@@ -268,7 +269,8 @@ id: start
      peculiar in that it creates a specialization of an Observable called a
      <code>StoppableObservable</code>.
     </p><p>
-     Pass <code>runAsync</code> an <code>Action</code> and a <code>Scheduler</code>, and it will
+     Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will
      return a <code>StoppableObservable</code> that uses the specified <code>Action</code> to
      generate items that it emits. The <code>Action</code> accepts an <code>Observer</code> and a
      <code>Subscription</code>. It uses the <code>Subscription</code> to check for the
@@ -298,7 +300,8 @@ id: start
      <figcaption><p>
       RxJS implements the <code>start</code> operator. It takes as its parameters a function whose
       return value will be the emission from the resulting Observable, and, optionally, any
-      additional parameter to that function and a Scheduler on which to run the function.
+      additional parameter to that function and a <a href="../scheduler.html">Scheduler</a> on which to run the
+      function.
      </p>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>
@@ -343,9 +346,9 @@ Completed</pre></div>
       asynchronous function whose return value will be the emission from the resulting Observable.
      </p><p>
       You can convert a function into an asynchronous function with the <code>toAsync</code>
-      method. It takes a function, function parameter, and Scheduler as parameters, and returns
-      an asynchronous function that will be invoked on the specified Scheduler. The last two
-      parameters are optional; if you do not specify a Scheduler, the <code>timeout</code> Scheduler
+      method. It takes a function, function parameter, and <a href="../scheduler.html">Scheduler</a> as
+      parameters, and returns an asynchronous function that will be invoked on the specified Scheduler. The
+      last two parameters are optional; if you do not specify a Scheduler, the <code>timeout</code> Scheduler
       will be used by default.
      </p>
      <h4>Sample Code</h4>

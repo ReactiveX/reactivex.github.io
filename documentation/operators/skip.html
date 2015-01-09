@@ -72,7 +72,8 @@ numbers.skip(3).subscribe(
 8
 Sequence complete</pre></div>
       <p>
-       This variant of <code>skip</code> does not by default operate on any particular Scheduler.
+       This variant of <code>skip</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skip(int)"><code>skip(int)</code></a></li>
@@ -86,8 +87,9 @@ Sequence complete</pre></div>
        Observable&#8217;s lifespan. You set this duration by passing in a length of time and the time units
        this length is denominated in as parameters to <code>skip</code>.
       </p><p>
-       This variant of <code>skip</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>skip</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skip(long,%20java.util.concurrent.TimeUnit)"><code>skip(long,TimeUnit)</code></a></li>
@@ -102,7 +104,8 @@ Sequence complete</pre></div>
       <figcaption><p>
        In RxJava, this operator is implemented as <code>skip</code>.
       </p><p>
-       This variant of <code>skip</code> does not by default operate on any particular Scheduler.
+       This variant of <code>skip</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skip(int)"><code>skip(int)</code></a></li>
@@ -116,8 +119,9 @@ Sequence complete</pre></div>
        Observable&#8217;s lifespan. You set this duration by passing in a length of time and the time units
        this length is denominated in as parameters to <code>skip</code>.
       </p><p>
-       This variant of <code>skip</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>skip</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skip(long,%20java.util.concurrent.TimeUnit)"><code>skip(long,TimeUnit)</code></a></li>
@@ -172,8 +176,9 @@ Completed</pre></div>
         <dd>skips items from the source Observable until this absolute time</dd>
       </dl>
       <p>
-       You may also, optionally, pass in a Scheduler as a second parameter, and the timer will operate on that
-       Scheduler (<code>skipUntilWithTime</code> uses the <code>timeout</code> Scheduler by default).
+       You may also, optionally, pass in a <a href="../scheduler.html">Scheduler</a> as a second parameter, and
+       the timer will operate on that Scheduler (<code>skipUntilWithTime</code> uses the <code>timeout</code>
+       Scheduler by default).
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>

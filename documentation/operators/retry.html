@@ -79,7 +79,8 @@ id: retry
        should resubscribe to and mirror the source Observable. If it does not, then
        <code>retry</code> passes the latest <code>onError</code> notification to its observers.
       </p><p>
-       <code>retry</code> by default operates on the <code>trampoline</code> Scheduler.
+       <code>retry</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry()"><code>retry()</code></a></li>
@@ -98,8 +99,9 @@ id: retry
        that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
        notification on to its observers and terminates.
       </p><p>
-       <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and
-       there is also a version that accepts a Scheduler as a parameter.
+       <code>retryWhen</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>, and there is also a version that accepts a Scheduler as a
+       parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1)"><code>retryWhen(Func1)</code></a></li>
@@ -131,7 +133,8 @@ id: retry
        should resubscribe to and mirror the source Observable. If it does not, then
        <code>retry</code> passes the latest <code>onError</code> notification to its observers.
       </p><p>
-       <code>retry</code> by default operates on the <code>trampoline</code> Scheduler.
+       <code>retry</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry()"><code>retry()</code></a></li>
@@ -150,8 +153,9 @@ id: retry
        result is an <code>onError</code> notification, <code>retryWhen</code> passes this
        notification on to its observers and terminates.
       </p><p>
-       <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and there
-       is also a version that accepts a Scheduler as a parameter.
+       <code>retryWhen</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>, and there is also a version that accepts a Scheduler as a
+       parameter.
       </p>
       <h4>Sample Code</h4>
       <div class="code java"><pre>

@@ -23,6 +23,7 @@ id: filter
    <h4>See Also</h4>
    <ul>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Where"><cite>Introduction to Rx</cite>: Where</a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#CastAndOfType"><cite>Introduction to Rx</cite>: Cast and OfType</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -40,7 +41,7 @@ id: filter
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy filter %}
+  {% lang_operator RxGroovy filter ofType %}
      <figure>
       <img src="images/filter.png" width="640" alt="filter" />
       <figcaption><p>
@@ -64,17 +65,30 @@ numbers.filter({ 0 == (it % 2) }).subscribe(
 6
 8
 Sequence complete</pre></div></figcaption>
+      <p>
+       <code>filter</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#filter(rx.functions.Func1)"><code>filter(Func1)</code></a></li>
       </ul></figcaption>
      </figure>
-     <p>
-      <code>filter</code> does not by default operate on any particular
-      <a href="../scheduler.html">Scheduler</a>.
-     </p>
+     <figure>
+      <img src="images/ofClass.png" width="640" alt="ofType" />
+      <figcaption><p>
+       There is also a specialized form of the <span class="operator">Filter</span> operator in RxGroovy that
+       filters an Observable so that it only emits items of a particular class.
+      </p><p>
+       <code>ofType</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ofType(java.lang.Class)"><code>ofType(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava filter %}
+  {% lang_operator RxJava filter ofType %}
      <figure>
       <img src="images/filter.png" width="640" alt="filter" />
       <figcaption><p>
@@ -109,14 +123,27 @@ Next: 1
 Next: 2
 Next: 3
 Sequence complete.</pre></div>
+      <p>
+       <code>filter</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#filter(rx.functions.Func1)"><code>filter(Func1)</code></a></li>
       </ul></figcaption>
      </figure>
-     <p>
-      <code>filter</code> does not by default operate on any particular
-      <a href="../scheduler.html">Scheduler</a>.
-     </p>
+     <figure>
+      <img src="images/ofClass.png" width="640" alt="ofType" />
+      <figcaption><p>
+       There is also a specialized form of the <span class="operator">Filter</span> operator in RxGroovy that
+       filters an Observable so that it only emits items of a particular class.
+      </p><p>
+       <code>ofType</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ofType(java.lang.Class)"><code>ofType(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJS filter where %}
@@ -169,13 +196,13 @@ Completed</pre></div></figcaption>
      </ul>
   {% endlang_operator %}
 
-  {% lang_operator RxKotlin filter %}
+  {% lang_operator RxKotlin filter ofType %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
   {% endlang_operator %}
 
-  {% lang_operator Rx.NET Where %}
+  {% lang_operator Rx.NET OfType Where %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>

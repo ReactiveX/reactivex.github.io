@@ -51,7 +51,7 @@ id: from
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy from fromAction fromCallable fromFunc0 fromRunnable %}
+  {% lang_operator RxGroovy from fromAction fromCallable fromFunc0 fromRunnable runAsync %}
     <figure class="variant">
      <img src="images/from.Future.png" width="640" alt="from" />
      <figcaption><p>
@@ -104,9 +104,29 @@ id: from
       <code>Reader</code> into an Observable that emits byte arrays or Strings.
      </p>
     </figure>
+    <p>
+     In the separate <code>RxJavaAsyncUtil</code> package, which is not included by default with RxGroovy, there
+     is also a <code>runAsync</code> function. Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will return a
+     <code>StoppableObservable</code> that uses the specified <code>Action</code> to generate items that it
+     emits.
+    </p><p>
+     The <code>Action</code> accepts an <code>Observer</code> and a <code>Subscription</code>. It uses the
+     <code>Subscription</code> to check for the <code>isUnsubscribed</code> condition, upon which it will stop
+     emitting items. You can also manually stop a <code>StoppableObservable</code> at any time by calling its
+     <code>unsubscribe</code> method (which will also unsubscribe the <code>Subscription</code> you have
+     associated with the <code>StoppableObservable</code>).
+    </p><p>
+     Because <code>runAsync</code> immediately invokes the <code>Action</code> and begins emitting the items, it
+     is possible that some items may be lost in the interval between when you establish the
+     <code>StoppableObservable</code> with this method and when your <code>Observer</code> is ready to receive
+     items. If this is a problem, you can use the variant of <code>runAsync</code> that also accepts a
+     <a href="../subject.html"><code>Subject</code></a> and pass a <code>ReplaySubject</code> with which you can
+     retrieve the otherwise-missing items.
+    </p>
   {% endlang_operator %}
 
-  {% lang_operator RxJava from fromAction fromCallable fromFunc0 fromRunnable %}
+  {% lang_operator RxJava from fromAction fromCallable fromFunc0 fromRunnable runAsync %}
     <figure class="variant">
      <img src="images/from.Future.png" width="640" alt="from" />
      <figcaption><p>
@@ -159,6 +179,26 @@ id: from
       <code>Reader</code> into an Observable that emits byte arrays or Strings.
      </p>
     </figure>
+    <p>
+     In the separate <code>RxJavaAsyncUtil</code> package, which is not included by default with RxJava, there
+     is also a <code>runAsync</code> function. Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will return a
+     <code>StoppableObservable</code> that uses the specified <code>Action</code> to generate items that it
+     emits.
+    </p><p>
+     The <code>Action</code> accepts an <code>Observer</code> and a <code>Subscription</code>. It uses the
+     <code>Subscription</code> to check for the <code>isUnsubscribed</code> condition, upon which it will stop
+     emitting items. You can also manually stop a <code>StoppableObservable</code> at any time by calling its
+     <code>unsubscribe</code> method (which will also unsubscribe the <code>Subscription</code> you have
+     associated with the <code>StoppableObservable</code>).
+    </p><p>
+     Because <code>runAsync</code> immediately invokes the <code>Action</code> and begins emitting the items, it
+     is possible that some items may be lost in the interval between when you establish the
+     <code>StoppableObservable</code> with this method and when your <code>Observer</code> is ready to receive
+     items. If this is a problem, you can use the variant of <code>runAsync</code> that also accepts a
+     <a href="../subject.html"><code>Subject</code></a> and pass a <code>ReplaySubject</code> with which you can
+     retrieve the otherwise-missing items.
+    </p>
   {% endlang_operator %}
 
   {% lang_operator RxJS from fromCallback fromEvent fromEventPattern fromNodeCallback fromPromise of ofWithScheduler %}

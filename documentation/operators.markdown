@@ -331,7 +331,7 @@ operators.
 * [`of_array`]({{ site.url }}/documentation/operators/from.html)
 * [`of_enumerable`]({{ site.url }}/documentation/operators/from.html)
 * [`of_enumerator`]({{ site.url }}/documentation/operators/from.html)
-* `OfType`
+* [`OfType`]({{ site.url }}/documentation/operators/filter.html)
 * [`ofWithScheduler`]({{ site.url }}/documentation/operators/from.html)
 * [`onBackpressureBlock`]({{ site.url }}/documentation/operators/backpressure.html)
 * [`onBackpressureBuffer`]({{ site.url }}/documentation/operators/backpressure.html)
@@ -367,7 +367,7 @@ operators.
 * [`retryWhen`]({{ site.url }}/documentation/operators/retry.html)
 * [`Return`]({{ site.url }}/documentation/operators/just.html)
 * [`returnValue`]({{ site.url }}/documentation/operators/just.html)
-* `runAsync`
+* [`runAsync`]({{ site.url }}/documentation/operators/from.html)
 * [**`Sample`**]({{ site.url }}/documentation/operators/sample.html)
 * [**`Scan`**]({{ site.url }}/documentation/operators/scan.html)
 * [`scope`]({{ site.url }}/documentation/operators/using.html)

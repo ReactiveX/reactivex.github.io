@@ -55,7 +55,7 @@ id: first
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy first firstOrDefault single singleOrDefault takeFirst %}
+  {% lang_operator RxGroovy first firstOrDefault latest next single singleOrDefault takeFirst %}
      <p>
       In RxGroovy, this filtering operator is implemented as <code>first</code>, <code>firstOrDefault</code>,
       and <code>takeFirst</code>.
@@ -267,9 +267,25 @@ id: first
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#singleOrDefault(rx.functions.Func1,%20T)"><code>singleOrDefault(Func1,T)</code></a></li>
       </ul></figcaption>
      </figure>
+     <figure>
+      <img src="images/B.next.p.png" width="640" alt="next" />
+      <figcaption><p>
+       The <code>next</code> operator blocks until the <code>BlockingObservable</code> emits another item, and
+       then returns that item. You can call this function repeatedly to get successive items from the
+       <code>BlockingObservable</code>, effectively iterating over its emissions in a blocking fashion.
+      </p><p>
+       The <code>latest</code> operator is similar, but rather than blocking to wait for the next emitted item,
+       it immediately returns the most-recently-emitted item, and only blocks if the Observable has not yet
+       emitted anything.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#next()"><code>next()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#latest()"><code>latest()</code></a></li>
+      </ul></figcaption>
+     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava first firstOrDefault single singleOrDefault takeFirst %}
+  {% lang_operator RxJava first firstOrDefault latest next single singleOrDefault takeFirst %}
      <p>
       In RxJava, this filtering operator is implemented as <code>first</code>, <code>firstOrDefault</code>,
       and <code>takeFirst</code>.
@@ -504,6 +520,22 @@ Sequence complete.</pre></div>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#singleOrDefault(rx.functions.Func1,%20T)"><code>singleOrDefault(Func1,T)</code></a></li>
       </ul></figcaption>
      </figure>
+     <figure>
+      <img src="images/B.next.p.png" width="640" alt="next" />
+      <figcaption><p>
+       The <code>next</code> operator blocks until the <code>BlockingObservable</code> emits another item, and
+       then returns that item. You can call this function repeatedly to get successive items from the
+       <code>BlockingObservable</code>, effectively iterating over its emissions in a blocking fashion.
+      </p><p>
+       The <code>latest</code> operator is similar, but rather than blocking to wait for the next emitted item,
+       it immediately returns the most-recently-emitted item, and only blocks if the Observable has not yet
+       emitted anything.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#next()"><code>next()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#latest()"><code>latest()</code></a></li>
+      </ul></figcaption>
+     </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJS find findIndex first firstOrDefault single singleOrDefault %}
@@ -662,7 +694,7 @@ Completed
      </p>
   {% endlang_operator %}
 
-  {% lang_operator Rx.NET First FirstOrDefault Single SingleOrDefault %}
+  {% lang_operator Rx.NET First FirstOrDefault Latest Next Single SingleOrDefault %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
@@ -680,7 +712,7 @@ Completed
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala first firstOrElse head headOption headOrElse single singleOption singleOrElse %}
+  {% lang_operator RxScala first firstOrElse head headOption headOrElse latest next single singleOption singleOrElse %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>

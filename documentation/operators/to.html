@@ -50,7 +50,7 @@ id: to
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy BlockingObservable.from BlockingObservable.getIterator StringObservable.join StringObservable.stringConcat toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
+  {% lang_operator RxGroovy BlockingObservable.from BlockingObservable.getIterator nest toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
     <figure class="variant">
      <img src="images/B.getIterator.png" width="640" alt="getIterator" />
      <figcaption><p>
@@ -224,25 +224,15 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/St.stringConcat.png" width="640" alt="stringConcat" />
+     <img src="images/nest.png" width="640" alt="nest" />
      <figcaption><p>
-      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
-      <code>stringConcat</code> operator that converts an Observable that emits a sequence of strings into an
-      Observable that emits a single string that represents the concatenation of them all.
-     </p></figcaption>
-    </figure>
-    <figure class="variant">
-     <img src="images/St.join.png" width="640" alt="join" />
-     <figcaption><p>
-      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
-      <code>join</code> operator that converts an Observable that emits a sequence of strings into an
-      Observable that emits a single string that represents the concatenation of each of them, delimited by a
-      string of your choosing.
+      RxGroovy also has a <code>nest</code> operator that has one particular purpose: it converts a source
+      Observable into an Observable that emits that source Observable as its sole item.
      </p></figcaption>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava BlockingObservable.from BlockingObservable.getIterator StringObservable.join StringObservable.stringConcat toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
+  {% lang_operator RxJava BlockingObservable.from BlockingObservable.getIterator nest toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
     <figure class="variant">
      <img src="images/B.getIterator.png" width="640" alt="getIterator" />
      <figcaption><p>
@@ -369,20 +359,10 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/St.stringConcat.png" width="640" alt="stringConcat" />
+     <img src="images/nest.png" width="640" alt="nest" />
      <figcaption><p>
-      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
-      <code>stringConcat</code> operator that converts an Observable that emits a sequence of strings into an
-      Observable that emits a single string that represents the concatenation of them all.
-     </p></figcaption>
-    </figure>
-    <figure class="variant">
-     <img src="images/St.join.png" width="640" alt="join" />
-     <figcaption><p>
-      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
-      <code>join</code> operator that converts an Observable that emits a sequence of strings into an
-      Observable that emits a single string that represents the concatenation of each of them, delimited by a
-      string of your choosing.
+      RxJava also has a <code>nest</code> operator that has one particular purpose: it converts a source
+      Observable into an Observable that emits that source Observable as its sole item.
      </p></figcaption>
     </figure>
   {% endlang_operator %}
@@ -514,7 +494,7 @@ Completed</pre></code>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala to toArray toBlocking toBuffer BlockingObservable.toFuture toIndexedSeq BlockingObservable.toIterable toIterable toIterator BlockingObservable.toList toList toMap toMultiMap toSet toStream toTraversable toVector %}
+  {% lang_operator RxScala nest to toArray toBlocking toBuffer BlockingObservable.toFuture toIndexedSeq BlockingObservable.toIterable toIterable toIterator BlockingObservable.toList toList toMap toMultiMap toSet toStream toTraversable toVector %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

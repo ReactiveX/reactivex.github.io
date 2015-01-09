@@ -43,7 +43,7 @@ id: sum
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy sumDouble sumFloat sumInteger sumLong %}
+  {% lang_operator RxGroovy sumDouble sumFloat sumInteger sumLong StringObservable.join StringObservable.stringConcat %}
      <p>
       In RxGroovy, this operator is not in the ReactiveX core, but is part of the distinct
       <code>rxjava-math</code> module, where it is implemented with four type-specific operators:
@@ -76,9 +76,26 @@ Sequence complete</pre></div>
        emitted by the source Observable.
       </p></figcaption>
      </figure>
+    <figure class="variant">
+     <img src="images/St.stringConcat.png" width="640" alt="stringConcat" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
+      <code>stringConcat</code> operator that converts an Observable that emits a sequence of strings into an
+      Observable that emits a single string that represents the concatenation of them all.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.join.png" width="640" alt="join" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
+      <code>join</code> operator that converts an Observable that emits a sequence of strings into an
+      Observable that emits a single string that represents the concatenation of each of them, delimited by a
+      string of your choosing.
+     </p></figcaption>
+    </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava sumDouble sumFloat sumInteger sumLong %}
+  {% lang_operator RxJava sumDouble sumFloat sumInteger sumLong StringObservable.join StringObservable.stringConcat %}
      <p>
       This operator is not in the RxJava core, but is part of the distinct <code>rxjava-math</code>
       module, where it is implemented with four type-specific operators: <code>sumDouble</code>,
@@ -92,6 +109,23 @@ Sequence complete</pre></div>
        emitted by the source Observable.
       </p></figcaption>
      </figure>
+    <figure class="variant">
+     <img src="images/St.stringConcat.png" width="640" alt="stringConcat" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
+      <code>stringConcat</code> operator that converts an Observable that emits a sequence of strings into an
+      Observable that emits a single string that represents the concatenation of them all.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.join.png" width="640" alt="join" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
+      <code>join</code> operator that converts an Observable that emits a sequence of strings into an
+      Observable that emits a single string that represents the concatenation of each of them, delimited by a
+      string of your choosing.
+     </p></figcaption>
+    </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJS sum %}

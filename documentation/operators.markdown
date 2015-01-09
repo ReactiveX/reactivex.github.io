@@ -285,7 +285,7 @@ operators.
 * [`isEmpty`]({{ site.url }}/documentation/operators/contains.html)
 * [`items`]({{ site.url }}/documentation/operators/just.html)
 * [**`Join`**]({{ site.url }}/documentation/operators/join.html)
-* [`join`]({{ site.url }}/documentation/operators/to.html) (string)
+* [`join`]({{ site.url }}/documentation/operators/sum.html) (string)
 * [**`Just`**]({{ site.url }}/documentation/operators/just.html)
 * `keep`
 * `keep-indexed`
@@ -293,7 +293,7 @@ operators.
 * [`lastOption`]({{ site.url }}/documentation/operators/last.html)
 * [`LastOrDefault`]({{ site.url }}/documentation/operators/last.html)
 * [`lastOrElse`]({{ site.url }}/documentation/operators/last.html)
-* `Latest`
+* [`Latest`]({{ site.url }}/documentation/operators/first.html)
 * [`latest`]({{ site.url }}/documentation/operators/switch.html) (Rx.rb version of **`Switch`**)
 * [`length`]({{ site.url }}/documentation/operators/count.html)
 * [`let`]({{ site.url }}/documentation/operators/publish.html)
@@ -319,9 +319,10 @@ operators.
 * [`MinBy`]({{ site.url }}/documentation/operators/min.html)
 * `MostRecent`
 * [`Multicast`]({{ site.url }}/documentation/operators/publish.html)
-* `nest`
+* [`nest`]({{ site.url }}/documentation/operators/to.html)
 * [**`Never`**]({{ site.url }}/documentation/operators/empty-never-throw.html)
 * [`Next`]({{ site.url }}/documentation/operators/takelast.html)
+* [`Next`]({{ site.url }}/documentation/operators/first.html) (BlockingObservable version)
 * [`none`]({{ site.url }}/documentation/operators/contains.html)
 * [`nonEmpty`]({{ site.url }}/documentation/operators/contains.html)
 * [`nth`]({{ site.url }}/documentation/operators/elementat.html)
@@ -414,7 +415,7 @@ operators.
 * [`startAsync`]({{ site.url }}/documentation/operators/start.html)
 * [`startFuture`]({{ site.url }}/documentation/operators/start.html)
 * [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html)
-* [`stringConcat`]({{ site.url }}/documentation/operators/to.html)
+* [`stringConcat`]({{ site.url }}/documentation/operators/sum.html)
 * [`stopAndWait`]({{ site.url }}/documentation/operators/backpressure.html)
 * `subscribe`
 * [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html)

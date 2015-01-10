@@ -55,7 +55,7 @@ id: first
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy first firstOrDefault latest next single singleOrDefault takeFirst %}
+  {% lang_operator RxGroovy first firstOrDefault latest mostRecent next single singleOrDefault takeFirst %}
      <p>
       In RxGroovy, this filtering operator is implemented as <code>first</code>, <code>firstOrDefault</code>,
       and <code>takeFirst</code>.
@@ -63,6 +63,8 @@ id: first
       Somewhat confusingly, there are also <code>BlockingObservable</code> operators called <code>first</code>
       and <code>firstOrDefault</code> that block and then return items, rather than immediately returning
       Observables.
+     </p><p>
+      There are also several other operators that perform similar functions.
      </p>
      <h3>The Filtering Operators</h3>
      <figure>
@@ -152,6 +154,7 @@ id: first
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#singleOrDefault(T)"><code>singleOrDefault(T)</code></a></li>
       </ul></figcaption>
+     </figure>
      <figure>
       <img src="images/singleOrDefault.p.png" width="640" alt="singleOrDefault" />
       <figcaption><p>
@@ -256,6 +259,7 @@ id: first
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#singleOrDefault(T)"><code>singleOrDefault(T)</code></a></li>
       </ul></figcaption>
+     </figure>
      <figure>
       <img src="images/B.singleOrDefault.p.png" width="640" alt="singleOrDefault" />
       <figcaption><p>
@@ -268,7 +272,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.next.p.png" width="640" alt="next" />
+      <img src="images/B.next.png" width="640" alt="next" />
       <figcaption><p>
        The <code>next</code> operator blocks until the <code>BlockingObservable</code> emits another item, and
        then returns that item. You can call this function repeatedly to get successive items from the
@@ -283,9 +287,21 @@ id: first
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#latest()"><code>latest()</code></a></li>
       </ul></figcaption>
      </figure>
+     <figure>
+      <img src="images/B.mostRecent.png" width="640" alt="mostRecent" />
+      <figcaption><p>
+       The <code>mostRecent</code> operator similarly allows you to iterate over the emissions of a
+       <code>BlockingObservable</code>, but its Iterable always immediately returns a value: either a default
+       item you provide (if the <code>BlockingObservable</code> has not yet emitted an item), or the latest
+       item the <code>BlockingObservable</code> has emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#mostRecent(T)">mostRecent(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava first firstOrDefault latest next single singleOrDefault takeFirst %}
+  {% lang_operator RxJava first firstOrDefault latest mostRecent next single singleOrDefault takeFirst %}
      <p>
       In RxJava, this filtering operator is implemented as <code>first</code>, <code>firstOrDefault</code>,
       and <code>takeFirst</code>.
@@ -293,6 +309,8 @@ id: first
       Somewhat confusingly, there are also <code>BlockingObservable</code> operators called <code>first</code>
       and <code>firstOrDefault</code> that block and then return items, rather than immediately returning
       Observables.
+     </p><p>
+      There are also several other operators that perform similar functions.
      </p>
      <h3>The Filtering Operators</h3>
      <figure>
@@ -405,6 +423,7 @@ Sequence complete.</pre></div>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#singleOrDefault(T)"><code>singleOrDefault(T)</code></a></li>
       </ul></figcaption>
+     </figure>
      <figure>
       <img src="images/singleOrDefault.p.png" width="640" alt="singleOrDefault" />
       <figcaption><p>
@@ -509,6 +528,7 @@ Sequence complete.</pre></div>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#singleOrDefault(T)"><code>singleOrDefault(T)</code></a></li>
       </ul></figcaption>
+     </figure>
      <figure>
       <img src="images/B.singleOrDefault.p.png" width="640" alt="singleOrDefault" />
       <figcaption><p>
@@ -521,7 +541,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.next.p.png" width="640" alt="next" />
+      <img src="images/B.next.png" width="640" alt="next" />
       <figcaption><p>
        The <code>next</code> operator blocks until the <code>BlockingObservable</code> emits another item, and
        then returns that item. You can call this function repeatedly to get successive items from the
@@ -534,6 +554,18 @@ Sequence complete.</pre></div>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#next()"><code>next()</code></a></li>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#latest()"><code>latest()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.mostRecent.png" width="640" alt="mostRecent" />
+      <figcaption><p>
+       The <code>mostRecent</code> operator similarly allows you to iterate over the emissions of a
+       <code>BlockingObservable</code>, but its Iterable always immediately returns a value: either a default
+       item you provide (if the <code>BlockingObservable</code> has not yet emitted an item), or the latest
+       item the <code>BlockingObservable</code> has emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#mostRecent(T)">mostRecent(T)</code></a></li>
       </ul></figcaption>
      </figure>
   {% endlang_operator %}
@@ -688,7 +720,7 @@ Completed
      </ul>
   {% endlang_operator %}
 
-  {% lang_operator RxKotlin first firstOrDefault single singleOrDefault takeFirst %}
+  {% lang_operator RxKotlin first firstOrDefault mostRecent single singleOrDefault takeFirst %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>

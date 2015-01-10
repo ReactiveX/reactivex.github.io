@@ -232,7 +232,7 @@ Sequence complete</pre></div>
     <figure class="variant">
      <img src="images/St.split.png" width="640" alt="split" />
      <figcaption><p>
-      In the distinct <code>StringObservable</code> class (not part of RxJS by default) there is also a
+      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
       <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
       treats the source sequence as a stream and splits it on a specified regex boundary, then merges the
       results of this split.
@@ -240,7 +240,7 @@ Sequence complete</pre></div>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJS concatMap concatMapObserver flatMap flatMapLatest flatMapObserver for forIn selectConcat selectConcatObserver selectMany selectManyObserver selectSwitch %}
+  {% lang_operator RxJS concatMap concatMapObserver flatMap flatMapLatest flatMapObserver for forIn manySelect selectConcat selectConcatObserver selectMany selectManyObserver selectSwitch %}
     <p>
      RxJS has a wealth of operators that perform
      <span class="operator">FlatMap</span>-like operations. In RxJS, the functions that transform
@@ -461,6 +461,42 @@ Completed</pre></div>
      </ul>
      </figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/manySelect.png" width="640" alt="manySelect" />
+     <figcaption><p>
+      The <code>manySelect</code> operator is often described as a &ldquo;comonadic bind.&rdquo; If that clears
+      things up for you, you&#8217;re welcome. Elsewise, here&#8217;s an explanation:
+     </p><p>
+      <code>manySelect</code> internally transforms each item emitted by the source Observable into an
+      Observable that emits that item and all items subsequently emitted by the source Observable, in the
+      same order. So, for example, it internally transforms an Observable that emits the numbers 1,2,3 into
+      three Observables: one that emits 1,2,3, one that emits 2,3, and one that emits 3.
+     </p><p>
+      Then <code>manySelect</code> passes each of these Observables into a function that you provide, and emits,
+      as the emissions from the Observable that <code>manySelect</code> returns, the return values from those
+      function calls.
+     </p><p>
+      In this way, each item emitted by the resulting Observable is a function of the corresponding item in
+      the source Observable and all of the items emitted by the source Observable after it.
+     </p><p>
+      <code>manySelect</code> is found in each of the following distributions:</p>
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code></li>
+     </ul>
+     <p>
+      <code>manySelect</code> requires one of the following distributions:</p>
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
   {% endlang_operator %}
 
   {% lang_operator RxKotlin concatMap flatMap flatMapIterable switchMap %}
@@ -469,13 +505,13 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator Rx.NET SelectMany %}
+  {% lang_operator Rx.NET ManySelect SelectMany %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPY concat_all flat_map for_in select_many %}
+  {% lang_operator RxPY concat_all flat_map for_in many_select select_many %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

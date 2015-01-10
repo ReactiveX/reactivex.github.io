@@ -287,8 +287,8 @@ operators.
 * [**`Join`**]({{ site.url }}/documentation/operators/join.html)
 * [`join`]({{ site.url }}/documentation/operators/sum.html) (string)
 * [**`Just`**]({{ site.url }}/documentation/operators/just.html)
-* `keep`
-* `keep-indexed`
+* [`keep`]({{ site.url }}/documentation/operators/map.html)
+* [`keep-indexed`]({{ site.url }}/documentation/operators/map.html)
 * [**`Last`**]({{ site.url }}/documentation/operators/last.html)
 * [`lastOption`]({{ site.url }}/documentation/operators/last.html)
 * [`LastOrDefault`]({{ site.url }}/documentation/operators/last.html)
@@ -299,10 +299,10 @@ operators.
 * [`let`]({{ site.url }}/documentation/operators/publish.html)
 * [`letBind`]({{ site.url }}/documentation/operators/publish.html)
 * [`LongCount`]({{ site.url }}/documentation/operators/count.html)
-* `ManySelect`
+* [`ManySelect`]({{ site.url }}/documentation/operators/flatmap.html)
 * [**`Map`**]({{ site.url }}/documentation/operators/map.html)
 * [`map`]({{ site.url }}/documentation/operators/zip.html) (RxClojure version of **`Zip`**)
-* `mapCat`
+* [`MapCat`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`mapCat`]({{ site.url }}/documentation/operators/zip.html) (RxClojure version of **`Zip`**)
 * [`map-indexed`]({{ site.url }}/documentation/operators/map.html)
 * [`map_with_index`]({{ site.url }}/documentation/operators/map.html)
@@ -317,7 +317,7 @@ operators.
 * [`mergeWith`]({{ site.url }}/documentation/operators/merge.html)
 * [**`Min`**]({{ site.url }}/documentation/operators/min.html)
 * [`MinBy`]({{ site.url }}/documentation/operators/min.html)
-* `MostRecent`
+* [`MostRecent`]({{ site.url }}/documentation/operators/first.html)
 * [`Multicast`]({{ site.url }}/documentation/operators/publish.html)
 * [`nest`]({{ site.url }}/documentation/operators/to.html)
 * [**`Never`**]({{ site.url }}/documentation/operators/empty-never-throw.html)

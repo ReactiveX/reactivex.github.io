@@ -86,6 +86,7 @@ A toolbox of useful Operators for working with Observables
 * [**`Materialize`/`Dematerialize`**]({{ site.url }}/documentation/operators/materialize-dematerialize.html) — represent both the items emitted and the notifications sent as emitted items, or reverse this process
 * [**`ObserveOn`**]({{ site.url }}/documentation/operators/observeon.html) — specify the scheduler on which an observer will observe this Observable
 * [**`Serialize`**]({{ site.url }}/documentation/operators/serialize.html) — force an Observable to make serialized calls and to be well-behaved
+* [**`Subscribe`**]({{ site.url }}/documentation/operators/subscribe.html) — operate upon the emissions and notifications from an Observable
 * [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html) — specify the scheduler an Observable should use when it is subscribed to
 * [**`TimeInterval`**]({{ site.url }}/documentation/operators/timeinterval.html) — convert an Observable that emits items into one that emits indications of the amount of time elapsed between those emissions
 * [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items
@@ -162,7 +163,7 @@ operators.
 * [`bufferWithCount`]({{ site.url }}/documentation/operators/buffer.html)
 * [`bufferWithTime`]({{ site.url }}/documentation/operators/buffer.html)
 * [`bufferWithTimeOrCount`]({{ site.url }}/documentation/operators/buffer.html)
-* `byLine`
+* [`byLine`]({{ site.url }}/documentation/operators/map.html)
 * [`cache`]({{ site.url }}/documentation/operators/replay.html)
 * [`case`]({{ site.url }}/documentation/operators/defer.html)
 * [`Cast`]({{ site.url }}/documentation/operators/map.html)
@@ -205,7 +206,7 @@ operators.
 * [`doOnSubscribe`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnTerminate`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnUnsubscribe`]({{ site.url }}/documentation/operators/do.html)
-* `doseq`
+* [`doseq`]({{ site.url }}/documentation/operators/subscribe.html)
 * [`doWhile`]({{ site.url }}/documentation/operators/repeat.html)
 * [`drop`]({{ site.url }}/documentation/operators/skip.html)
 * [`dropRight`]({{ site.url }}/documentation/operators/skiplast.html)
@@ -243,7 +244,7 @@ operators.
 * [`foldLeft`]({{ site.url }}/documentation/operators/reduce.html)
 * [`for`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`forall`]({{ site.url }}/documentation/operators/all.html)
-* `ForEach`
+* [`ForEach`]({{ site.url }}/documentation/operators/subscribe.html)
 * [`forEachFuture`]({{ site.url }}/documentation/operators/start.html)
 * [`forIn`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`forkJoin`]({{ site.url }}/documentation/operators/zip.html)
@@ -262,10 +263,10 @@ operators.
 * [`fromNodeCallback`]({{ site.url }}/documentation/operators/from.html)
 * [`fromPromise`]({{ site.url }}/documentation/operators/from.html)
 * [`fromRunnable`]({{ site.url }}/documentation/operators/from.html)
-* `Generate`
-* `generateWithAbsoluteTime`
-* `generateWithRelativeTime`
-* `generator`
+* [`Generate`]({{ site.url }}/documentation/operators/create.html)
+* [`generateWithAbsoluteTime`]({{ site.url }}/documentation/operators/create.html)
+* [`generateWithRelativeTime`]({{ site.url }}/documentation/operators/create.html)
+* [`generator`]({{ site.url }}/documentation/operators/create.html)
 * [`GetEnumerator`]({{ site.url }}/documentation/operators/to.html)
 * [`getIterator`]({{ site.url }}/documentation/operators/to.html)
 * [**`GroupBy`**]({{ site.url }}/documentation/operators/groupby.html)
@@ -279,7 +280,7 @@ operators.
 * [**`IgnoreElements`**]({{ site.url }}/documentation/operators/ignoreelements.html)
 * [`indexOf`]({{ site.url }}/documentation/operators/contains.html)
 * [`interleave`]({{ site.url }}/documentation/operators/merge.html)
-* `interpose`
+* [`interpose`]({{ site.url }}/documentation/operators/to.html)
 * [**`Interval`**]({{ site.url }}/documentation/operators/interval.html)
 * [`into`]({{ site.url }}/documentation/operators/reduce.html)
 * [`isEmpty`]({{ site.url }}/documentation/operators/contains.html)
@@ -362,7 +363,7 @@ operators.
 * [`repeatWhen`]({{ site.url }}/documentation/operators/repeat.html)
 * [**`Replay`**]({{ site.url }}/documentation/operators/replay.html)
 * [`rescue_error`]({{ site.url }}/documentation/operators/catch.html)
-* `rest`
+* [`rest`]({{ site.url }}/documentation/operators/first.html)
 * [**`Retry`**]({{ site.url }}/documentation/operators/retry.html)
 * [`retry_infinitely`]({{ site.url }}/documentation/operators/retry.html)
 * [`retryWhen`]({{ site.url }}/documentation/operators/retry.html)
@@ -408,7 +409,6 @@ operators.
 * [`sort`]({{ site.url }}/documentation/operators/to.html)
 * [`sort-by`]({{ site.url }}/documentation/operators/to.html)
 * [`sorted-list-by`]({{ site.url }}/documentation/operators/to.html)
-* `spawn`
 * [`split`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`split-with`]({{ site.url }}/documentation/operators/groupby.html)
 * [**`Start`**]({{ site.url }}/documentation/operators/start.html)
@@ -417,12 +417,12 @@ operators.
 * [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html)
 * [`stringConcat`]({{ site.url }}/documentation/operators/sum.html)
 * [`stopAndWait`]({{ site.url }}/documentation/operators/backpressure.html)
-* `subscribe`
+* [`subscribe`]({{ site.url }}/documentation/operators/subscribe.html)
 * [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html)
 * [`SubscribeOnDispatcher`]({{ site.url }}/documentation/operators/subscribeon.html)
-* `subscribeOnCompleted`
-* `subscribeOnError`
-* `subscribeOnNext`
+* [`subscribeOnCompleted`]({{ site.url }}/documentation/operators/subscribe.html)
+* [`subscribeOnError`]({{ site.url }}/documentation/operators/subscribe.html)
+* [`subscribeOnNext`]({{ site.url }}/documentation/operators/subscribe.html)
 * [**`Sum`**]({{ site.url }}/documentation/operators/sum.html)
 * [`sumDouble`]({{ site.url }}/documentation/operators/sum.html)
 * [`sumFloat`]({{ site.url }}/documentation/operators/sum.html)

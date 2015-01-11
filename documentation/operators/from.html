@@ -51,7 +51,7 @@ id: from
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy from fromAction fromCallable fromFunc0 fromRunnable runAsync %}
+  {% lang_operator RxGroovy decode from fromAction fromCallable fromFunc0 fromRunnable runAsync %}
     <figure class="variant">
      <img src="images/from.Future.png" width="640" alt="from" />
      <figcaption><p>
@@ -124,16 +124,59 @@ id: from
      <a href="../subject.html"><code>Subject</code></a> and pass a <code>ReplaySubject</code> with which you can
      retrieve the otherwise-missing items.
     </p>
+    <figure>
+     <img src="images/St.decode.png" width="640" alt="decode" />
+     <figcaption><p>
+      The <code>StringObservable</code> class, which is not a default part of RxGroovy, also includes the
+      <code>decode</code> operator which converts a stream of multibyte characters into an Observable that
+      emits byte arrays that respect the character boundaries.
+     </p></figcaption>
+    </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava from fromAction fromCallable fromFunc0 fromRunnable runAsync %}
+  {% lang_operator RxJava decode from fromAction fromCallable fromFunc0 fromRunnable runAsync %}
     <figure class="variant">
      <img src="images/from.Future.png" width="640" alt="from" />
      <figcaption><p>
       In RxJava, the <code>from</code> operator can convert a Future, an Iterable, or an Array.
       In the case of an Iterable or an Array, the resulting Observable will emit each item contained
       in the Iterable or Array.
-     </p><p>
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Integer[] items = { 0, 1, 2, 3, 4, 5 };
+Observable myObservable = Observable.from(items);
+
+myObservable.subscribe(
+    new Action1<Integer>() {
+        @Override
+        public void call(Integer item) {
+            System.out.println(item);
+        }
+    },
+    new Action1<Throwable>() {
+        @Override
+        public void call(Throwable error) {
+            System.out.println("Error encountered: " + error.getMessage());
+        }
+    },
+    new Action0() {
+        @Override
+        public void call() {
+            System.out.println("Sequence complete");
+        }
+    }
+);
+</pre></div>
+     <div class="output"><pre>
+0
+1
+2
+3
+4
+5
+Sequence complete</pre></div>
+     <p>
       In the case of a Future, it will emit the single result of the <code>get</code> call. You may
       optionally pass the version of <code>from</code> that accepts a future two additional
       parameters indicating a timeout span and the units of time that span is denominated in. The
@@ -199,6 +242,14 @@ id: from
      <a href="../subject.html"><code>Subject</code></a> and pass a <code>ReplaySubject</code> with which you can
      retrieve the otherwise-missing items.
     </p>
+    <figure>
+     <img src="images/St.decode.png" width="640" alt="decode" />
+     <figcaption><p>
+      The <code>StringObservable</code> class, which is not a default part of RxGroovy, also includes the
+      <code>decode</code> operator which converts a stream of multibyte characters into an Observable that
+      emits byte arrays that respect the character boundaries.
+     </p></figcaption>
+    </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJS from fromCallback fromEvent fromEventPattern fromNodeCallback fromPromise of ofWithScheduler %}

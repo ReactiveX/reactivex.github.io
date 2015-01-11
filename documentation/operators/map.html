@@ -43,7 +43,7 @@ id: map
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy encode map %}
+  {% lang_operator RxGroovy byLine cast encode map %}
      <figure>
       <img src="images/map.png" width="640" alt="map" />
       <figcaption><p>
@@ -73,6 +73,16 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
+      <img src="images/cast.png" width="640" alt="cast" />
+      <figcaption><p>
+       The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
+       transforms each item from the source Observable by casting it into a particular Class before reemitting
+       it.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#cast(java.lang.Class)"><code>cast(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
       <img src="images/St.encode.png" width="640" alt="encode" />
       <figcaption><p>
        In the <code>StringObservable</code> class that is not part of the RxGroovy core there is also a
@@ -81,9 +91,18 @@ Sequence complete</pre></div></figcaption>
        original strings.
       </p></figcaption>
      </figure>
+     <figure>
+      <img src="images/St.byLine.png" width="640" alt="byLine" />
+      <figcaption><p>
+       Also in the <code>StringObservable</code> class that is not part of the RxGroovy core there is a
+       specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
+       into an Observable that emits lines of text, by buffering the strings from the source Observable until a
+       line-feed is found in one of them.
+      </p></figcaption>
+     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava encode map %}
+  {% lang_operator RxJava byLine cast encode map %}
      <figure>
       <img src="images/map.png" width="640" alt="map" />
       <figcaption><p>
@@ -95,12 +114,31 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
+      <img src="images/cast.png" width="640" alt="cast" />
+      <figcaption><p>
+       The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
+       transforms each item from the source Observable by casting it into a particular Class before reemitting
+       it.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#cast(java.lang.Class)"><code>cast(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
       <img src="images/St.encode.png" width="640" alt="encode" />
       <figcaption><p>
        In the <code>StringObservable</code> class that is not part of the RxJava core there is also a specialty
        mapping operator, <code>encode</code>, that transforms an Observable that emits strings into an
        Observable that emits byte arrays that respect character boundaries of multibyte characters in the
        original strings.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.byLine.png" width="640" alt="byLine" />
+      <figcaption><p>
+       Also in the <code>StringObservable</code> class that is not part of the RxJava core there is a
+       specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
+       into an Observable that emits lines of text, by buffering the strings from the source Observable until a
+       line-feed is found in one of them.
       </p></figcaption>
      </figure>
   {% endlang_operator %}
@@ -183,13 +221,13 @@ Completed</pre></div></figcaption>
      </ul>
   {% endlang_operator %}
 
-  {% lang_operator RxKotlin map %}
+  {% lang_operator RxKotlin cast map %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
   {% endlang_operator %}
 
-  {% lang_operator Rx.NET Select %}
+  {% lang_operator Rx.NET Cast Select %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>

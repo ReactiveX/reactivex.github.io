@@ -165,16 +165,16 @@ operators.
 * `byLine`
 * [`cache`]({{ site.url }}/documentation/operators/replay.html)
 * [`case`]({{ site.url }}/documentation/operators/defer.html)
-* `Cast`
+* [`Cast`]({{ site.url }}/documentation/operators/map.html)
 * [**`Catch`**]({{ site.url }}/documentation/operators/catch.html)
 * [`catchException`]({{ site.url }}/documentation/operators/catch.html)
 * [`collect`]({{ site.url }}/documentation/operators/filter.html)
 * [**`CombineLatest`**]({{ site.url }}/documentation/operators/combinelatest.html)
 * [`combineLatestWith`]({{ site.url }}/documentation/operators/combinelatest.html)
 * [**`Concat`**]({{ site.url }}/documentation/operators/concat.html)
-* `concat_all`
+* [`concat_all`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`concatMap`]({{ site.url }}/documentation/operators/flatmap.html)
-* `concatMapObserver`
+* [`concatMapObserver`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`concatAll`]({{ site.url }}/documentation/operators/concat.html)
 * [`concatWith`]({{ site.url }}/documentation/operators/concat.html)
 * [**`Connect`**]({{ site.url }}/documentation/operators/connect.html)
@@ -187,7 +187,7 @@ operators.
 * [**`Create`**]({{ site.url }}/documentation/operators/create.html)
 * [`cycle`]({{ site.url }}/documentation/operators/repeat.html)
 * [**`Debounce`**]({{ site.url }}/documentation/operators/debounce.html)
-* `decode`
+* [`decode`]({{ site.url }}/documentation/operators/from.html)
 * [**`DefaultIfEmpty`**]({{ site.url }}/documentation/operators/defaultifempty.html)
 * [**`Defer`**]({{ site.url }}/documentation/operators/defer.html)
 * [`deferFuture`]({{ site.url }}/documentation/operators/start.html)

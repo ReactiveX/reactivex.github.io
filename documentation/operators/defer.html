@@ -42,7 +42,7 @@ id: defer
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy defer switchCase %}
+  {% lang_operator RxGroovy defer ifThen switchCase %}
     <figure class="variant">
      <img src="images/defer.png" width="640" alt="defer" />
      <figcaption><p>
@@ -60,13 +60,21 @@ id: defer
      <img src="images/switchCase.png" width="640" alt="switchCase" />
      <figcaption><p>
       There is a somewhat similar operator in the optional <code>rxjava-computation-expressions</code>
-      package (it is not part of the standard RxJava set of operators). The <code>switchCase</code> operator
+      package (it is not part of the standard RxGroovy set of operators). The <code>switchCase</code> operator
       conditionally creates and returns one of a set of possible Observables.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/ifThen.png" width="640" alt="ifThen" />
+     <figcaption><p>
+      An even simpler operator in the optional <code>rxjava-computation-expressions</code> package (also not
+      part of the standard RxGroovy set of operators) is <code>ifThen</code>. This operator checks a condition
+      and then either mirrors the source Observable or an empty Observable depending on the result.
      </p></figcaption>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava defer switchCase %}
+  {% lang_operator RxJava defer ifThen switchCase %}
     <figure class="variant">
      <img src="images/defer.png" width="640" alt="defer" />
      <figcaption><p>
@@ -87,9 +95,18 @@ id: defer
       package (it is not part of the standard RxJava set of operators). The <code>switchCase</code> operator
       conditionally creates and returns one of a set of possible Observables.
      </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/ifThen.png" width="640" alt="ifThen" />
+     <figcaption><p>
+      An even simpler operator in the optional <code>rxjava-computation-expressions</code> package (also not
+      part of the standard RxGroovy set of operators) is <code>ifThen</code>. This operator checks a condition
+      and then either mirrors the source Observable or an empty Observable depending on the result.
+     </p></figcaption>
+    </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJS case defer switchCase %}
+  {% lang_operator RxJS case defer if switchCase %}
     <figure class="variant">
      <img src="images/defer.png" width="640" alt="defer" />
      <figcaption><p>
@@ -133,6 +150,39 @@ Completed</pre></div>
       <li><code>rx.compat.js</code></li>
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/if.png" width="640" alt="if" />
+     <figcaption><p>
+      RxJS also implements the <code>if</code> operator. It takes as parameters a function that returns a
+      boolean, an Observable to mirror if that function returns a true value, and optionally a second
+      Observable to mirror if that function returns a false value (if you omit this parameter, <code>if</code>
+      will mirror an empty Observable in such a case).
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var shouldRun = false;
+
+var source = Rx.Observable.if(
+    function () { return shouldRun; },
+    Rx.Observable.return(42),
+    Rx.Observable.return(56)
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 56
+Completed</pre></div>
+     <p>
+      <code>if</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.experimental.js</code> (requires <code>rx.js</code>, <code>rx.compat.js</code>, <code>rx.lite.js</code>, or <code>rx.lite.compat.js</code>)</li>
      </ul>
      </figcaption>
     </figure>
@@ -200,7 +250,7 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPY case defer switch_case %}
+  {% lang_operator RxPY case defer if_then switch_case %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

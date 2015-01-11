@@ -324,55 +324,57 @@ Sequence complete.</pre></div>
        The first variant of <code>merge</code> is an instance operator that takes a variable number
        of Observables as parameters, merging each of these Observables with the source (instance)
        Observables to produce its single output Observable.
-      </p></figcaption>
+      </p>
+      <p>
+       This first variant of <code>merge</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      <p>
+       The second variant of <code>merge</code> is a prototype (class) operator that accepts two
+       parameters. The second of these is an Observable that emits the Observables you want to merge.
+       The first is a number that indicates the maximum number of these emitted Observables that you
+       want <code>merge</code> to attempt to be subscribed to at any moment. Once it reaches this
+       maximum subscription count, it will refrain from subscribing to any other Observables emitted
+       by the source Observable until such time as one of the already-subscribed-to Observables
+       issues an <code>onCompleted</code> notification.
+      </p><p>
+       This second variant of <code>merge</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
      </figure>
-     <p>
-      This first variant of <code>merge</code> is found in the following distributions:
-     </p>
-     <ul>
-      <li><code>rx.js</code></li>
-      <li><code>rx.compat.js</code></li>
-      <li><code>rx.lite.js</code></li>
-      <li><code>rx.lite.compat.js</code></li>
-     </ul>
-     <p>
-      The second variant of <code>merge</code> is a prototype (class) operator that accepts two
-      parameters. The second of these is an Observable that emits the Observables you want to merge.
-      The first is a number that indicates the maximum number of these emitted Observables that you
-      want <code>merge</code> to attempt to be subscribed to at any moment. Once it reaches this
-      maximum subscription count, it will refrain from subscribing to any other Observables emitted
-      by the source Observable until such time as one of the already-subscribed-to Observables
-      issues an <code>onCompleted</code> notification.
-     </p><p>
-      This second variant of <code>merge</code> is found in the following distributions:
-     </p>
-     <ul>
-      <li><code>rx.js</code></li>
-      <li><code>rx.all.js</code></li>
-      <li><code>rx.all.compat.js</code></li>
-      <li><code>rx.compat.js</code></li>
-      <li><code>rx.lite.js</code></li>
-      <li><code>rx.lite.compat.js</code></li>
-     </ul>
      <figure>
       <img src="images/mergeAll.png" width="640" alt="mergeAll" />
       <figcaption><p>
        <code>mergeAll</code> is like this second variant of <code>merge</code> except that it does
        not allow you to set this maximum subscription count. It only takes the single parameter of
        an Observable of Observables.
-      </p></figcaption>
+      </p>
+      <p>
+       <code>mergeAll</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
      </figure>
-     <p>
-      <code>mergeAll</code> is found in the following distributions:
-     </p>
-     <ul>
-      <li><code>rx.js</code></li>
-      <li><code>rx.all.js</code></li>
-      <li><code>rx.all.compat.js</code></li>
-      <li><code>rx.compat.js</code></li>
-      <li><code>rx.lite.js</code></li>
-      <li><code>rx.lite.compat.js</code></li>
-     </ul>
   {% endlang_operator %}
 
   {% lang_operator RxKotlin merge mergeDelayError mergeWith %}

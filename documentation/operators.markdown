@@ -131,7 +131,7 @@ Specialty Observables that have more precisely-controlled subscription dynamics
 * [**`RefCount`**]({{ site.url }}/documentation/operators/refcount.html) — make a Connectable Observable behave like an ordinary Observable
 * [**`Replay`**]({{ site.url }}/documentation/operators/replay.html) — ensure that all observers see the same sequence of emitted items, even if they subscribe after the Observable has begun emitting items
 
-<h2 id="blocking">Blocking Observable Operators</h2>
+<h2 id="conversion">Operators to Convert Observables</h2>
 
 * [**`To`**]({{ site.url }}/documentation/operators/to.html) — convert an Observable into another object or data structure
 
@@ -164,7 +164,7 @@ operators.
 * [`bufferWithTimeOrCount`]({{ site.url }}/documentation/operators/buffer.html)
 * `byLine`
 * [`cache`]({{ site.url }}/documentation/operators/replay.html)
-* `case`
+* [`case`]({{ site.url }}/documentation/operators/defer.html)
 * `Cast`
 * [**`Catch`**]({{ site.url }}/documentation/operators/catch.html)
 * [`catchException`]({{ site.url }}/documentation/operators/catch.html)
@@ -206,7 +206,7 @@ operators.
 * [`doOnTerminate`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnUnsubscribe`]({{ site.url }}/documentation/operators/do.html)
 * `doseq`
-* `doWhile`
+* [`doWhile`]({{ site.url }}/documentation/operators/repeat.html)
 * [`drop`]({{ site.url }}/documentation/operators/skip.html)
 * [`dropRight`]({{ site.url }}/documentation/operators/skiplast.html)
 * [`dropUntil`]({{ site.url }}/documentation/operators/skipuntil.html)
@@ -215,7 +215,7 @@ operators.
 * [`ElementAtOrDefault`]({{ site.url }}/documentation/operators/elementat.html)
 * [**`Empty`**]({{ site.url }}/documentation/operators/empty-never-throw.html)
 * [`empty?`]({{ site.url }}/documentation/operators/contains.html)
-* `encode`
+* [`encode`]({{ site.url }}/documentation/operators/map.html)
 * [`ensures`]({{ site.url }}/documentation/operators/do.html)
 * [`error`]({{ site.url }}/documentation/operators/empty-never-throw.html)
 * [`every`]({{ site.url }}/documentation/operators/all.html)
@@ -241,12 +241,12 @@ operators.
 * [`flatten`]({{ site.url }}/documentation/operators/merge.html)
 * [`flattenDelayError`]({{ site.url }}/documentation/operators/merge.html)
 * [`foldLeft`]({{ site.url }}/documentation/operators/reduce.html)
-* `for`
+* [`for`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`forall`]({{ site.url }}/documentation/operators/all.html)
 * `ForEach`
 * [`forEachFuture`]({{ site.url }}/documentation/operators/start.html)
-* `forIn`
-* `forkJoin`
+* [`forIn`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`forkJoin`]({{ site.url }}/documentation/operators/zip.html)
 * [**`From`**]({{ site.url }}/documentation/operators/from.html)
 * [`fromAction`]({{ site.url }}/documentation/operators/from.html)
 * [`fromArray`]({{ site.url }}/documentation/operators/from.html)
@@ -274,8 +274,8 @@ operators.
 * [`head`]({{ site.url }}/documentation/operators/first.html)
 * [`headOption`]({{ site.url }}/documentation/operators/first.html)
 * [`headOrElse`]({{ site.url }}/documentation/operators/first.html)
-* `if`
-* `ifThen`
+* [`if`]({{ site.url }}/documentation/operators/defer.html)
+* [`ifThen`]({{ site.url }}/documentation/operators/defer.html)
 * [**`IgnoreElements`**]({{ site.url }}/documentation/operators/ignoreelements.html)
 * [`indexOf`]({{ site.url }}/documentation/operators/contains.html)
 * [`interleave`]({{ site.url }}/documentation/operators/merge.html)
@@ -374,8 +374,8 @@ operators.
 * [`scope`]({{ site.url }}/documentation/operators/using.html)
 * [`Select`]({{ site.url }}/documentation/operators/map.html) (alternate name of of **`Map`**)
 * [`select`]({{ site.url }}/documentation/operators/filter.html) (alternate name of **`Filter`**)
-* [`selectConcat`]({{ site.url }})/documentation/operators/flatmap.html)
-* [`selectConcatObserver`]({{ site.url }})/documentation/operators/flatmap.html)
+* [`selectConcat`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`selectConcatObserver`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`SelectMany`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`selectManyObserver`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`select_switch`]({{ site.url }}/documentation/operators/switch.html)

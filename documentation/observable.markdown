@@ -129,8 +129,8 @@ This documentation groups information about [the various operators]({{ site.url 
   * [Utility]({{ site.url }}/documentation/operators.html#utility)
   * [Conditional and Boolean]({{ site.url }}/documentation/operators.html#conditional)
   * [Mathematical and Aggregate]({{ site.url }}/documentation/operators.html#mathematical)
+  * [Converting]({{ site.url }}/documentation/operators.html#conversion)
   * [Backpressure]({{ site.url }}/documentation/operators.html#backpressure)
   * [Connectable Observables]({{ site.url }}/documentation/operators.html#connectable)
-  * [Blocking Observables]({{ site.url }}/documentation/operators.html#blocking)
 
 These pages include information about some operators that are not part of the core of ReactiveX but are implemented in the variety of language-specific implementations and/or optional modules.

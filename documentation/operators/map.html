@@ -43,7 +43,7 @@ id: map
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy map %}
+  {% lang_operator RxGroovy encode map %}
      <figure>
       <img src="images/map.png" width="640" alt="map" />
       <figcaption><p>
@@ -72,9 +72,18 @@ Sequence complete</pre></div></figcaption>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#map(rx.functions.Func1)"><code>map(Func1)</code></a></li>
       </ul></figcaption>
      </figure>
+     <figure>
+      <img src="images/St.encode.png" width="640" alt="encode" />
+      <figcaption><p>
+       In the <code>StringObservable</code> class that is not part of the RxGroovy core there is also a
+       specialty mapping operator, <code>encode</code>, that transforms an Observable that emits strings into
+       an Observable that emits byte arrays that respect character boundaries of multibyte characters in the
+       original strings.
+      </p></figcaption>
+     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava map %}
+  {% lang_operator RxJava encode map %}
      <figure>
       <img src="images/map.png" width="640" alt="map" />
       <figcaption><p>
@@ -84,6 +93,15 @@ Sequence complete</pre></div></figcaption>
       </p><ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#map(rx.functions.Func1)"><code>map(Func1)</code></a></li>
       </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.encode.png" width="640" alt="encode" />
+      <figcaption><p>
+       In the <code>StringObservable</code> class that is not part of the RxJava core there is also a specialty
+       mapping operator, <code>encode</code>, that transforms an Observable that emits strings into an
+       Observable that emits byte arrays that respect character boundaries of multibyte characters in the
+       original strings.
+      </p></figcaption>
      </figure>
   {% endlang_operator %}
 

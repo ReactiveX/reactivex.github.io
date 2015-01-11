@@ -147,7 +147,7 @@ Sequence complete</pre></div>
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxJS zip zipArray %}
+  {% lang_operator RxJS forkJoin zip zipArray %}
      <p>
       RxJS implements this operator as <code>zip</code> and <code>zipArray</code>.
      </p>
@@ -249,6 +249,65 @@ Next: [2,3,4]
 Completed</pre></div>
       </figcaption>
      </figure>
+     <figure>
+      <img src="images/forkJoin.png" width="640" alt="forkJoin" />
+      <figcaption><p>
+       RxJS also implements a similar operator, <code>forkJoin</code>. There are two varities of this
+       operator. The first collects the last element emitted by each of the source Observables into an array and
+       emits this array as its own sole emitted item. You can either pass a list of Observables to
+       <code>forkJoin</code> as individual parameters or as an array of Observables.
+      </p>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.forkJoin(
+    Rx.Observable.return(42),
+    Rx.Observable.range(0, 10),
+    Rx.Observable.fromArray([1,2,3]),
+    RSVP.Promise.resolve(56)
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: [42, 9, 3, 56]
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/forkJoin.p.png" width="640" alt="forkJoin" />
+      <figcaption><p>
+      <p>
+       A second variant of <code>forkJoin</code> exists as a prototype function, and you call it on an instance
+       of one source Observable, passing it another source Observable as a parameter.  As a second parameter,
+       you pass it a function that combines the final item emitted by the two source Observables into the sole
+       item to be emitted by the resulting Observable.
+      </p>
+      <div class="code javascript"><pre>
+var source1 = Rx.Observable.return(42);
+var source2 = Rx.Observable.range(0, 3);
+
+var source = source1.forkJoin(source2, function (s1, s2) {
+    return s1 + s2;
+});
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 44
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <p>
+      <code>forkJoin</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code> (requires <code>rx.js</code>, <code>rx.compat.js</code>, <code>rx.lite.js</code>, or <code>rx.lite.compat.js</code>)</li>
+     </ul>
   {% endlang_operator %}
 
   {% lang_operator RxKotlin zip zipWith %}

@@ -45,7 +45,7 @@ id: repeat
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy repeat repeatWhen whileDo %}
+  {% lang_operator RxGroovy doWhile repeat repeatWhen whileDo %}
     <figure class="variant">
      <img src="images/repeat.o.png" width="640" alt="repeat" />
      <figcaption><p>
@@ -90,6 +90,14 @@ id: repeat
      </ul></figcaption>
     </figure>
     <figure class="variant">
+     <img src="images/doWhile.png" width="640" alt="doWhile" />
+     <figcaption><p>
+      In RxGroovy, <code>doWhile</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>doWhile</code> checks a condition
+      after each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
      <img src="images/whileDo.png" width="640" alt="whileDo" />
      <figcaption><p>
       In RxGroovy, <code>whileDo</code> is not part of the standard set of operators, but is part of the
@@ -99,7 +107,7 @@ id: repeat
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava repeat repeatWhen whileDo %}
+  {% lang_operator RxJava doWhile repeat repeatWhen whileDo %}
     <figure class="variant">
      <img src="images/repeat.o.png" width="640" alt="repeat" />
      <figcaption><p>
@@ -144,6 +152,14 @@ id: repeat
      </ul></figcaption>
     </figure>
     <figure class="variant">
+     <img src="images/doWhile.png" width="640" alt="doWhile" />
+     <figcaption><p>
+      In RxJava, <code>doWhile</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>doWhile</code> checks a condition
+      after each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
      <img src="images/whileDo.png" width="640" alt="whileDo" />
      <figcaption><p>
       In RxJava, <code>whileDo</code> is not part of the standard set of operators, but is part of the
@@ -153,7 +169,7 @@ id: repeat
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJS repeat while %}
+  {% lang_operator RxJS doWhile repeat while %}
     <figure class="variant">
      <img src="images/repeat.png" width="640" alt="repeat" />
      <figcaption><p>
@@ -186,10 +202,45 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
+     <img src="images/doWhile.png" width="640" alt="doWile" />
+     <figcaption><p>
+      RxJS also implements the <code>doWhile</code> operator. It repeats the source Observable&#8217;s sequence
+      of emissions only so long as a condition you specify remains true.
+     </p>
+     <div class="code javascript"><pre>
+var i = 0;
+
+var source = Rx.Observable.return(42).doWhile(
+    function (x) { return ++i < 2; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Next: 42
+Completed</pre></div>
+     <p><code>doWhile</code> is found in each of the following distributions.
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code></li>
+     </ul>
+     <p>It requires one of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
      <img src="images/while.png" width="640" alt="while" />
      <figcaption><p>
       RxJS also implements the <code>while</code> operator. It repeats the source Observable&#8217;s sequence
-      of emissions only so long as a condition you specifyremains true.
+      of emissions only if a condition you specify is true.
      </p>
      <div class="code javascript"><pre>
 var i = 0;
@@ -221,7 +272,7 @@ Completed</pre></div>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxKotlin repeat repeatWhen whileDo %}
+  {% lang_operator RxKotlin doWhile repeat repeatWhen whileDo %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>
@@ -233,7 +284,7 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPY repeat while_do %}
+  {% lang_operator RxPY do_while repeat while_do %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

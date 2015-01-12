@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ReactiveX - Languages</title>
+    <title>ReactiveX - Serialize operator</title>
 
     <!-- Polymer -->
     <script src="/polymer/components/platform/platform.js"></script>
@@ -156,32 +156,281 @@
     <script src="/js/jquery/1.11.0/jquery.min.js"></script>
 
     <div class="site-content">
-      <div class="container">
-  <div class="col-md-8 col-md-offset-2">
-    <h2 id="languages">Languages</h2>
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
 
-<ul>
-<li>Java: <a href="https://github.com/ReactiveX/RxJava">RxJava</a></li>
-<li>JavaScript: <a href="https://github.com/Reactive-Extensions/RxJS">RxJS</a></li>
-<li>C#: <a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET</a></li>
-<li>C#(Unity): <a href="https://github.com/neuecc/UniRx">UniRx</a></li>
-<li>Scala: <a href="https://github.com/ReactiveX/RxScala">RxScala</a></li>
-<li>Clojure: <a href="https://github.com/ReactiveX/RxClojure">RxClojure</a></li>
-<li>C++: <a href="https://github.com/Reactive-Extensions/RxCpp">RxCpp</a></li>
-<li>Ruby: <a href="https://github.com/Reactive-Extensions/Rx.rb">Rx.rb</a></li>
-<li>Python: <a href="https://github.com/ReactiveX/RxPY">RxPY</a></li>
-<li>Groovy: <a href="https://github.com/ReactiveX/RxGroovy">RxGroovy</a></li>
-<li>JRuby: <a href="https://github.com/ReactiveX/RxJRuby">RxJRuby</a></li>
-<li>Kotlin: <a href="https://github.com/ReactiveX/RxKotlin">RxKotlin</a></li>
-</ul>
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Serialize</li>
+</ol>
 
-<h2 id="reactivex-for-platforms-and-frameworks">ReactiveX for platforms and frameworks</h2>
+<h1>Serialize</h1>
+<h3>force an Observable to make serialized calls and to be well-behaved</h3>
 
-<ul>
-<li><a href="https://github.com/ReactiveX/RxNetty">RxNetty</a></li>
-<li><a href="https://github.com/ReactiveX/RxAndroid">RxAndroid</a></li>
-</ul>
+<figure>
+ <img src="images/serialize.c.png" width="640" alt="Serialize" />
+ <figcaption><p>
+  It is possible for an Observable to invoke its observers&#8217; methods asynchronously, perhaps from
+  different threads. This could make such an Observable poorly-behaved, in that it might try to invoke
+  <code>onCompleted</code> or <code>onError</code> before one of its <code>onNext</code> invocations, or it
+  might call <code>onNext</code> from two different threads concurrently. You can force such an Observable to be
+  well-behaved and synchronous by applying the <span class="operator">Serialize</span> operator to it.
+ </p></figcaption>
+</figure>
 
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>serialize</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>serialize</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/synchronize.png" width="640" alt="serialize" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>serialize</code>. It does not by default operate on any
+      particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#serialize()"><code>serialize()</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
+              RxJava <code>serialize</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/synchronize.png" width="640" alt="serialize" />
+     <figcaption><p>
+      RxJava implements this operator as <code>serialize</code>. It does not by default operate on any
+      particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#serialize()"><code>serialize()</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>serialize</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Synchronize</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>sychronize</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>serialize</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+    <ul class="side-menu">
+      <li><a href="/documentation/observable.html">Observable</a></li>
+      <li><a href="/documentation/operators.html">Operators</a></li>
+      <li><a href="/documentation/subject.html">Subject</a></li>
+      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+    </ul>
+    </div>
   </div>
 </div>
 
@@ -260,7 +509,7 @@
     </span>
 
     <!-- Activate current page menu button -->
-    <script>$("#menu-languages").addClass("active");</script>
+    <script>$("#menu-serialize").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
     <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">

@@ -49,16 +49,16 @@ id: take
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy take %}
+  {% lang_operator RxGroovy limit take %}
      <figure>
       <img src="images/take.png" width="640" alt="take" />
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>take</code>.
       </p><p>
-       If you use the <code>take(<i>n</i>)</code> operator on an Observable, and that Observable emits fewer
-       than <i>n</i> items before completing, the new, <code>take</code>-modified Observable will not throw an
-       exception or invoke <code>onError</code>, but will merely emit this same fewer number of items before it
-       completes.
+       If you use the <code>take(<i>n</i>)</code> operator (or its synonym, <code>limit(<i>n</i>)</code>) on an
+       Observable, and that Observable emits fewer than <i>n</i> items before completing, the new,
+       <code>take</code>-modified Observable will not throw an exception or invoke <code>onError</code>, but
+       will merely emit this same fewer number of items before it completes.
       </p>
      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
@@ -101,16 +101,16 @@ Sequence complete</pre></div>
      </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava take %}
+  {% lang_operator RxJava limit take %}
      <figure>
       <img src="images/take.png" width="640" alt="take" />
       <figcaption><p>
        In RxJava, this operator is implemented as <code>take</code>.
       </p><p>
-       If you use the <code>take(<i>n</i>)</code> operator on an Observable, and that Observable emits fewer
-       than <i>n</i> items before completing, the new, <code>take</code>-modified Observable will not throw an
-       exception or invoke <code>onError</code>, but will merely emit this same fewer number of items before it
-       completes.
+       If you use the <code>take(<i>n</i>)</code> operator (or its synonym, <code>limit(<i>n</i>)</code>) on an
+       Observable, and that Observable emits fewer than <i>n</i> items before completing, the new,
+       <code>take</code>-modified Observable will not throw an exception or invoke <code>onError</code>, but
+       will merely emit this same fewer number of items before it completes.
       </p>
      <h4>Sample Code</h4>
      <div class="code java"><pre>

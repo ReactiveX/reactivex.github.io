@@ -14,7 +14,7 @@ id: to
 <h3>convert an Observable into another object or data structure</h3>
 
 <figure>
- <img src="images/To.c.png" width="640" alt="To" />
+ <img src="images/To.c.png" width="100%" alt="To" />
  <figcaption><p>
   The various language-specific implementations of ReactiveX have a variety of operators that you can use to
   convert an Observable, or a sequence of items emitted by an Observable, into another variety of object or
@@ -52,7 +52,7 @@ id: to
 
   {% lang_operator RxGroovy BlockingObservable.from BlockingObservable.getIterator nest toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
     <figure class="variant">
-     <img src="images/B.getIterator.png" width="640" alt="getIterator" />
+     <img src="images/B.getIterator.png" width="100%" alt="getIterator" />
      <figcaption><p>
       The <code>getIterator</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -67,7 +67,7 @@ id: to
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/B.toFuture.png" width="640" alt="toFuture" />
+     <img src="images/B.toFuture.png" width="100%" alt="toFuture" />
      <figcaption><p>
       The <code>toFuture</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -87,7 +87,7 @@ id: to
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/B.toIterable.png" width="640" alt="toIterable" />
+     <img src="images/B.toIterable.png" width="100%" alt="toIterable" />
      <figcaption><p>
       The <code>toIterable</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -102,7 +102,7 @@ id: to
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toList.png" width="640" alt="toList" />
+     <img src="images/toList.png" width="100%" alt="toList" />
      <figcaption><p>
       Normally, an Observable that emits multiple items will do so by invoking its observer’s
       <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
@@ -138,7 +138,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMap.png" width="640" alt="toMap" />
+     <img src="images/toMap.png" width="100%" alt="toMap" />
      <figcaption><p>
       The <code>toMap</code> operator collects the items emitted by the source Observable into a map (by
       default, a <code>HashMap</code>, but you can optionally supply a factory function that generates another
@@ -156,7 +156,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMultiMap.png" width="640" alt="toMultiMap" />
+     <img src="images/toMultiMap.png" width="100%" alt="toMultiMap" />
      <figcaption><p>
       The <code>toMultiMap</code> operator is similar to <code>toMap</code> except that the map it generates is
       also an <code>ArrayList</code> (by default; or you can pass an optional factory method as a fourth
@@ -173,7 +173,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toSortedList.png" width="640" alt="toSortedList" />
+     <img src="images/toSortedList.png" width="100%" alt="toSortedList" />
      <figcaption><p>
       The <code>toSortedList</code> operator behaves much like <code>toList</code> except that it sorts the
       resulting list. By default it sorts the list naturally in ascending order by means of the
@@ -224,7 +224,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/nest.png" width="640" alt="nest" />
+     <img src="images/nest.png" width="100%" alt="nest" />
      <figcaption><p>
       RxGroovy also has a <code>nest</code> operator that has one particular purpose: it converts a source
       Observable into an Observable that emits that source Observable as its sole item.
@@ -234,7 +234,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJava BlockingObservable.from BlockingObservable.getIterator nest toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
     <figure class="variant">
-     <img src="images/B.getIterator.png" width="640" alt="getIterator" />
+     <img src="images/B.getIterator.png" width="100%" alt="getIterator" />
      <figcaption><p>
       The <code>getIterator</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -249,7 +249,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/B.toFuture.png" width="640" alt="toFuture" />
+     <img src="images/B.toFuture.png" width="100%" alt="toFuture" />
      <figcaption><p>
       The <code>toFuture</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -269,7 +269,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/B.toIterable.png" width="640" alt="toIterable" />
+     <img src="images/B.toIterable.png" width="100%" alt="toIterable" />
      <figcaption><p>
       The <code>toIterable</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -284,7 +284,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toList.png" width="640" alt="toList" />
+     <img src="images/toList.png" width="100%" alt="toList" />
      <figcaption><p>
       Normally, an Observable that emits multiple items will do so by invoking its observer’s
       <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
@@ -304,7 +304,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMap.png" width="640" alt="toMap" />
+     <img src="images/toMap.png" width="100%" alt="toMap" />
      <figcaption><p>
       The <code>toMap</code> operator collects the items emitted by the source Observable into a map (by
       default, a <code>HashMap</code>, but you can optionally supply a factory function that generates another
@@ -322,7 +322,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMultiMap.png" width="640" alt="toMultiMap" />
+     <img src="images/toMultiMap.png" width="100%" alt="toMultiMap" />
      <figcaption><p>
       The <code>toMultiMap</code> operator is similar to <code>toMap</code> except that the map it generates is
       also an <code>ArrayList</code> (by default; or you can pass an optional factory method as a fourth
@@ -339,7 +339,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toSortedList.png" width="640" alt="toSortedList" />
+     <img src="images/toSortedList.png" width="100%" alt="toSortedList" />
      <figcaption><p>
       The <code>toSortedList</code> operator behaves much like <code>toList</code> except that it sorts the
       resulting list. By default it sorts the list naturally in ascending order by means of the
@@ -359,7 +359,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/nest.png" width="640" alt="nest" />
+     <img src="images/nest.png" width="100%" alt="nest" />
      <figcaption><p>
       RxJava also has a <code>nest</code> operator that has one particular purpose: it converts a source
       Observable into an Observable that emits that source Observable as its sole item.
@@ -369,7 +369,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJS toArray toMap toSet %}
     <figure class="variant">
-     <img src="images/toArray.png" width="640" alt="toArray" />
+     <img src="images/toArray.png" width="100%" alt="toArray" />
      <figcaption><p>
       Normally, an Observable that emits multiple items will do so by invoking its observer’s
       <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
@@ -401,7 +401,7 @@ Completed</pre></code>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMap.png" width="640" alt="toMap" />
+     <img src="images/toMap.png" width="100%" alt="toMap" />
      <figcaption><p>
       The <code>toMap</code> operator collects the items emitted by the source Observable into a
       <code>Map</code> and then emits that map. You supply a function that generates the key for each emitted
@@ -434,7 +434,7 @@ Completed</pre></code>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toSet.png" width="640" alt="toSet" />
+     <img src="images/toSet.png" width="100%" alt="toSet" />
      <figcaption><p>
       Normally, an Observable that emits multiple items will do so by invoking its observer’s
       <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to

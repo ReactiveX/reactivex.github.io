@@ -14,7 +14,7 @@ id: publish
 <h3>convert an ordinary Observable into a connectable Observable</h3>
 
 <figure>
- <img src="images/publishConnect.c.png" width="640" alt="Publish" />
+ <img src="images/publishConnect.c.png" width="100%" alt="Publish" />
  <figcaption><p>
   A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
   emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
@@ -49,7 +49,7 @@ id: publish
 
   {% lang_operator RxGroovy publish %}
     <figure class="variant">
-     <img src="images/publishConnect.png" width="640" alt="publish" />
+     <img src="images/publishConnect.png" width="100%" alt="publish" />
      <figcaption><p>
       RxGroovy implements this operator as <code>publish</code>.
      </p>
@@ -58,7 +58,7 @@ id: publish
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/publishConnect.f.png" width="640" alt="publish" />
+     <img src="images/publishConnect.f.png" width="100%" alt="publish" />
      <figcaption><p>
       There is also a variant that takes a function as a parameter. This function takes an emitted
       item from the source Observable as a parameter and produces the item that will be emitted in
@@ -72,7 +72,7 @@ id: publish
 
   {% lang_operator RxJava publish %}
     <figure class="variant">
-     <img src="images/publishConnect.png" width="640" alt="publish" />
+     <img src="images/publishConnect.png" width="100%" alt="publish" />
      <figcaption><p>
       RxJava implements this operator as <code>publish</code>.
      </p>
@@ -81,7 +81,7 @@ id: publish
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/publishConnect.f.png" width="640" alt="publish" />
+     <img src="images/publishConnect.f.png" width="100%" alt="publish" />
      <figcaption><p>
       There is also a variant that takes a function as a parameter. This function takes an emitted
       item from the source Observable as a parameter and produces the item that will be emitted in
@@ -95,7 +95,7 @@ id: publish
 
   {% lang_operator RxJS let letBind multicast publish publishLast publishValue %}
     <figure class="variant">
-     <img src="images/publishConnect.f.png" width="640" alt="publish" />
+     <img src="images/publishConnect.f.png" width="100%" alt="publish" />
      <figcaption><p>
       In RxJS, the <code>publish</code> operator takes a function as a parameter. This function
       takes an emitted item from the source Observable as a parameter and produces the item that
@@ -134,7 +134,7 @@ Completed</pre></code>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/publishValue.png" width="640" alt="publishValue" />
+     <img src="images/publishValue.png" width="100%" alt="publishValue" />
      <figcaption><p>
       The <code>publishValue</code> operator takes, in addition to the function described above, an
       initial item to be emitted by the resulting <code>ConnectableObservable</code> at connection
@@ -177,7 +177,7 @@ Completed
 Completed</pre></code>
     </figure>
     <figure class="variant">
-     <img src="images/publishLast.png" width="640" alt="publishLast" />
+     <img src="images/publishLast.png" width="100%" alt="publishLast" />
      <figcaption><p>
       The <code>publishLast</code> operator is similar to <code>publish</code>, and takes a
       similarly-behaving function as its parameter. It differs from <code>publish</code> in that

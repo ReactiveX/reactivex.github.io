@@ -13,7 +13,7 @@ id: first
    <h1>First</h1>
    <h3>emit only the first item (or the first item that meets some condition) emitted by an Observable</h3>
    <figure>
-    <img src="images/first.c.png" width="640" alt="First" />
+    <img src="images/first.c.png" width="100%" alt="First" />
     <figcaption><p>
     If you are only interested in the first item emitted by an Observable, or the first item that meets some
     criteria, you can filter the Observable with the <span class="operator">First</span> operator.
@@ -68,7 +68,7 @@ id: first
      </p>
      <h3>The Filtering Operators</h3>
      <figure>
-      <img src="images/first.png" width="640" alt="first" />
+      <img src="images/first.png" width="100%" alt="first" />
       <figcaption><p>
        To filter an Observable so that only its first emission is emitted, use the
        <code>first</code> operator with no parameters. 
@@ -78,7 +78,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/firstN.png" width="640" alt="first" />
+      <img src="images/firstN.png" width="100%" alt="first" />
       <figcaption><p>
        You can also pass a predicate function to <code>first</code>, in which case it will produce an
        Observable that emits only the first item from the source Observable that the predicate evaluates as
@@ -89,7 +89,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/firstOrDefault.png" width="640" alt="firstOrDefault" />
+      <img src="images/firstOrDefault.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        The <code>firstOrDefault</code> operator is similar to <code>first</code>, but you pass it a default item
        that it can emit if the source Observable fails to emit any items
@@ -99,7 +99,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/firstOrDefaultN.png" width="640" alt="firstOrDefault" />
+      <img src="images/firstOrDefaultN.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        <code>firstOrDefault</code> also has a variant to which you can pass a predicate function, so that its
        Observable will emit the first item from the source Observable that the predicate evaluates as
@@ -110,7 +110,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/first.takefirst.png" width="640" alt="takeFirst" />
+      <img src="images/first.takefirst.png" width="100%" alt="takeFirst" />
       <figcaption><p>
        The <code>takeFirst</code> operator behaves similarly to <code>first</code>, with the exception of how
        these operators behave wihen the source Observable emits no items that satisfy the predicate. In such a
@@ -123,7 +123,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/single.png" width="640" alt="single" />
+      <img src="images/single.png" width="100%" alt="single" />
       <figcaption><p>
        The <code>single</code> operator is similar to <code>first</code>, but throws a
        <code>NoSuchElementException</code> if the source Observable does not emit exactly one item before
@@ -134,7 +134,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/single.p.png" width="640" alt="single" />
+      <img src="images/single.p.png" width="100%" alt="single" />
       <figcaption><p>
        <code>single</code> also has a version that accepts a predicate, and emits the sole item emitted by the
        source Observable that matches that predicate, or notifies of an exception if exactly one such item does
@@ -145,7 +145,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/singleOrDefault.png" width="640" alt="singleOrDefault" />
+      <img src="images/singleOrDefault.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        As with <code>firstOrDefault</code> there is also a <code>singleOrDefault</code> that emits a default
        item if the source Observable is empty, although it will still notify of an error if the source
@@ -156,7 +156,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/singleOrDefault.p.png" width="640" alt="singleOrDefault" />
+      <img src="images/singleOrDefault.p.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and emits
        the sole item from the source Observable that matches that predicate, if any; the default item if no
@@ -185,7 +185,7 @@ id: first
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
      </ul>
      <figure>
-      <img src="images/B.first.png" width="640" alt="first" />
+      <img src="images/B.first.png" width="100%" alt="first" />
       <figcaption><p>
        To retrieve the first emission from a <code>BlockingObservable</code>, use the
        <code>first</code> method with no parameters. 
@@ -195,7 +195,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.first.p.png" width="640" alt="first" />
+      <img src="images/B.first.p.png" width="100%" alt="first" />
       <figcaption><p>
        You can also pass a predicate function to the <code>first</code> method to retrieve the first emission
        from a <code>BlockingObservable</code> that satisfies the predicate.
@@ -205,7 +205,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.firstOrDefault.png" width="640" alt="firstOrDefault" />
+      <img src="images/B.firstOrDefault.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        As with the filtering operators, the <code>first</code> method of <code>BlockingObservable</code> will
        throw a <code>NoSuchElementException</code> if there is no first element in the source
@@ -217,7 +217,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.firstOrDefault.p.png" width="640" alt="firstOrDefault" />
+      <img src="images/B.firstOrDefault.p.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        And, as with <code>first</code>, there is a <code>firstOrDefault</code> variant that takes a predicate
        function as an argument and returns the first item from the source <code>BlockingObservable</code>
@@ -228,7 +228,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.single.png" width="640" alt="single" />
+      <img src="images/B.single.png" width="100%" alt="single" />
       <figcaption><p>
        The <code>single</code> operator is similar to <code>first</code>, but throws a
        <code>NoSuchElementException</code> if the source Observable does not emit exactly one item before
@@ -239,7 +239,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.single.p.png" width="640" alt="single" />
+      <img src="images/B.single.p.png" width="100%" alt="single" />
       <figcaption><p>
        <code>single</code> also has a version that accepts a predicate, and returns the sole item emitted by the
        source Observable that matches that predicate, or throws an exception if exactly one such item does
@@ -250,7 +250,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.singleOrDefault.png" width="640" alt="singleOrDefault" />
+      <img src="images/B.singleOrDefault.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        As with <code>firstOrDefault</code> there is also a <code>singleOrDefault</code> that returns a default
        item if the source Observable is empty, although it will still throw an error if the source
@@ -261,7 +261,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.singleOrDefault.p.png" width="640" alt="singleOrDefault" />
+      <img src="images/B.singleOrDefault.p.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and returns
        the sole item from the source Observable that matches that predicate, if any; the default item if no
@@ -272,7 +272,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.next.png" width="640" alt="next" />
+      <img src="images/B.next.png" width="100%" alt="next" />
       <figcaption><p>
        The <code>next</code> operator blocks until the <code>BlockingObservable</code> emits another item, and
        then returns that item. You can call this function repeatedly to get successive items from the
@@ -288,7 +288,7 @@ id: first
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.mostRecent.png" width="640" alt="mostRecent" />
+      <img src="images/B.mostRecent.png" width="100%" alt="mostRecent" />
       <figcaption><p>
        The <code>mostRecent</code> operator similarly allows you to iterate over the emissions of a
        <code>BlockingObservable</code>, but its Iterable always immediately returns a value: either a default
@@ -314,7 +314,7 @@ id: first
      </p>
      <h3>The Filtering Operators</h3>
      <figure>
-      <img src="images/first.png" width="640" alt="first" />
+      <img src="images/first.png" width="100%" alt="first" />
       <figcaption><p>
        To filter an Observable so that only its first emission is emitted, use the
        <code>first</code> operator with no parameters. 
@@ -347,7 +347,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/firstN.png" width="640" alt="first" />
+      <img src="images/firstN.png" width="100%" alt="first" />
       <figcaption><p>
        You can also pass a predicate function to <code>first</code>, in which case it will produce an
        Observable that emits only the first item from the source Observable that the predicate evaluates as
@@ -358,7 +358,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/firstOrDefault.png" width="640" alt="firstOrDefault" />
+      <img src="images/firstOrDefault.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        The <code>firstOrDefault</code> operator is similar to <code>first</code>, but you pass it a default item
        that it can emit if the source Observable fails to emit any items
@@ -368,7 +368,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/firstOrDefaultN.png" width="640" alt="firstOrDefault" />
+      <img src="images/firstOrDefaultN.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        <code>firstOrDefault</code> also has a variant to which you can pass a predicate function, so that its
        Observable will emit the first item from the source Observable that the predicate evaluates as
@@ -379,7 +379,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/first.takefirst.png" width="640" alt="takeFirst" />
+      <img src="images/first.takefirst.png" width="100%" alt="takeFirst" />
       <figcaption><p>
        The <code>takeFirst</code> operator behaves similarly to <code>first</code>, with the exception of how
        these operators behave wihen the source Observable emits no items that satisfy the predicate. In such a
@@ -392,7 +392,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/single.png" width="640" alt="single" />
+      <img src="images/single.png" width="100%" alt="single" />
       <figcaption><p>
        The <code>single</code> operator is similar to <code>first</code>, but throws a
        <code>NoSuchElementException</code> if the source Observable does not emit exactly one item before
@@ -403,7 +403,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/single.p.png" width="640" alt="single" />
+      <img src="images/single.p.png" width="100%" alt="single" />
       <figcaption><p>
        <code>single</code> also has a version that accepts a predicate, and emits the sole item emitted by the
        source Observable that matches that predicate, or notifies of an exception if exactly one such item does
@@ -414,7 +414,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/singleOrDefault.png" width="640" alt="singleOrDefault" />
+      <img src="images/singleOrDefault.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        As with <code>firstOrDefault</code> there is also a <code>singleOrDefault</code> that emits a default
        item if the source Observable is empty, although it will still notify of an error if the source
@@ -425,7 +425,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/singleOrDefault.p.png" width="640" alt="singleOrDefault" />
+      <img src="images/singleOrDefault.p.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and emits
        the sole item from the source Observable that matches that predicate, if any; the default item if no
@@ -454,7 +454,7 @@ Sequence complete.</pre></div>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
      </ul>
      <figure>
-      <img src="images/B.first.png" width="640" alt="first" />
+      <img src="images/B.first.png" width="100%" alt="first" />
       <figcaption><p>
        To retrieve the first emission from a <code>BlockingObservable</code>, use the
        <code>first</code> method with no parameters. 
@@ -464,7 +464,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.first.p.png" width="640" alt="first" />
+      <img src="images/B.first.p.png" width="100%" alt="first" />
       <figcaption><p>
        You can also pass a predicate function to the <code>first</code> method to retrieve the first emission
        from a <code>BlockingObservable</code> that satisfies the predicate.
@@ -474,7 +474,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.firstOrDefault.png" width="640" alt="firstOrDefault" />
+      <img src="images/B.firstOrDefault.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        As with the filtering operators, the <code>first</code> method of <code>BlockingObservable</code> will
        throw a <code>NoSuchElementException</code> if there is no first element in the source
@@ -486,7 +486,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.firstOrDefault.p.png" width="640" alt="firstOrDefault" />
+      <img src="images/B.firstOrDefault.p.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        And, as with <code>first</code>, there is a <code>firstOrDefault</code> variant that takes a predicate
        function as an argument and retrieves the first item from the source <code>BlockingObservable</code>
@@ -497,7 +497,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.single.png" width="640" alt="single" />
+      <img src="images/B.single.png" width="100%" alt="single" />
       <figcaption><p>
        The <code>single</code> operator is similar to <code>first</code>, but throws a
        <code>NoSuchElementException</code> if the source Observable does not emit exactly one item before
@@ -508,7 +508,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.single.p.png" width="640" alt="single" />
+      <img src="images/B.single.p.png" width="100%" alt="single" />
       <figcaption><p>
        <code>single</code> also has a version that accepts a predicate, and returns the sole item emitted by the
        source Observable that matches that predicate, or throws an exception if exactly one such item does
@@ -519,7 +519,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.singleOrDefault.png" width="640" alt="singleOrDefault" />
+      <img src="images/B.singleOrDefault.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        As with <code>firstOrDefault</code> there is also a <code>singleOrDefault</code> that returns a default
        item if the source Observable is empty, although it will still throw an error if the source
@@ -530,7 +530,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.singleOrDefault.p.png" width="640" alt="singleOrDefault" />
+      <img src="images/B.singleOrDefault.p.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and returns
        the sole item from the source Observable that matches that predicate, if any; the default item if no
@@ -541,7 +541,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.next.png" width="640" alt="next" />
+      <img src="images/B.next.png" width="100%" alt="next" />
       <figcaption><p>
        The <code>next</code> operator blocks until the <code>BlockingObservable</code> emits another item, and
        then returns that item. You can call this function repeatedly to get successive items from the
@@ -557,7 +557,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.mostRecent.png" width="640" alt="mostRecent" />
+      <img src="images/B.mostRecent.png" width="100%" alt="mostRecent" />
       <figcaption><p>
        The <code>mostRecent</code> operator similarly allows you to iterate over the emissions of a
        <code>BlockingObservable</code>, but its Iterable always immediately returns a value: either a default
@@ -572,7 +572,7 @@ Sequence complete.</pre></div>
 
   {% lang_operator RxJS find findIndex first firstOrDefault single singleOrDefault %}
      <figure>
-      <img src="images/firstN.png" width="640" alt="first" />
+      <img src="images/firstN.png" width="100%" alt="first" />
       <figcaption><p>
        RxJS implements the <code>first</code> operator. It optionally takes a predicate function as a parameter,
        in which case, rather than emitting the first item from the source Observable, the resulting Observable
@@ -605,7 +605,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/single.p.png" width="640" alt="single" />
+      <img src="images/single.p.png" width="100%" alt="single" />
       <p>
        The <code>single</code> operator is similar, except that it only emits its item once the source
        Observable successfully completes after emitting one item (or one item that matches the predicate). If it
@@ -615,7 +615,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/find.png" width="640" alt="find" />
+      <img src="images/find.png" width="100%" alt="find" />
       <figcaption><p>
        The <code>find</code> operator is much like <code>first</code> except that the predicate argument is
        mandatory, and it behaves differently if no item from the source Observable matches the predicate.
@@ -641,7 +641,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/findIndex.png" width="640" alt="findIndex" />
+      <img src="images/findIndex.png" width="100%" alt="findIndex" />
       <figcaption><p>
       <p>
        The <code>findIndex</code> operator is similar to <code>find</code>, except that instead of emitting
@@ -667,7 +667,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/firstOrDefaultN.png" width="640" alt="firstOrDefault" />
+      <img src="images/firstOrDefaultN.png" width="100%" alt="firstOrDefault" />
       <figcaption><p>
        RxJS also implements the <code>firstOrDefault</code> operator. It is similar to <code>first</code>
        except that if the source Observable emits no items (or no items that match the predicate),
@@ -692,7 +692,7 @@ Completed
       </figcaption>
      </figure>
      <figure>
-      <img src="images/singleOrDefault.p.png" width="640" alt="singleOrDefault" />
+      <img src="images/singleOrDefault.p.png" width="100%" alt="singleOrDefault" />
       <figcaption><p>
        The <code>singleOrDefault</code> operator is similar, except that it only emits its item once the source
        Observable successfully completes after emitting zero or one items. If it emits more than one item (or

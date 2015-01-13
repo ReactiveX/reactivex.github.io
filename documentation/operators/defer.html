@@ -14,7 +14,7 @@ id: defer
 <h3>do not create the Observable until the observer subscribes, and create a fresh Observable for each observer</h3>
 
 <figure>
- <img src="images/defer.c.png" width="640" alt="Defer" />
+ <img src="images/defer.c.png" width="100%" alt="Defer" />
  <figcaption><p>
   The <span class="operator">Defer</span> operator waits until an observer subscribes to it, and
   then it generates an Observable, typically with an Observable factory function. It does this
@@ -44,7 +44,7 @@ id: defer
 
   {% lang_operator RxGroovy defer ifThen switchCase %}
     <figure class="variant">
-     <img src="images/defer.png" width="640" alt="defer" />
+     <img src="images/defer.png" width="100%" alt="defer" />
      <figcaption><p>
       RxGroovy implements this operator as <code>defer</code>. This operator takes as its sole
       parameter an Observable factory function of your choosing. This function takes no parameters
@@ -57,7 +57,7 @@ id: defer
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/switchCase.png" width="640" alt="switchCase" />
+     <img src="images/switchCase.png" width="100%" alt="switchCase" />
      <figcaption><p>
       There is a somewhat similar operator in the optional <code>rxjava-computation-expressions</code>
       package (it is not part of the standard RxGroovy set of operators). The <code>switchCase</code> operator
@@ -65,7 +65,7 @@ id: defer
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/ifThen.png" width="640" alt="ifThen" />
+     <img src="images/ifThen.png" width="100%" alt="ifThen" />
      <figcaption><p>
       An even simpler operator in the optional <code>rxjava-computation-expressions</code> package (also not
       part of the standard RxGroovy set of operators) is <code>ifThen</code>. This operator checks a condition
@@ -76,7 +76,7 @@ id: defer
 
   {% lang_operator RxJava defer ifThen switchCase %}
     <figure class="variant">
-     <img src="images/defer.png" width="640" alt="defer" />
+     <img src="images/defer.png" width="100%" alt="defer" />
      <figcaption><p>
       RxJava implements this operator as <code>defer</code>. This operator takes as its sole
       parameter an Observable factory function of your choosing. This function takes no parameters
@@ -89,7 +89,7 @@ id: defer
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/switchCase.png" width="640" alt="switchCase" />
+     <img src="images/switchCase.png" width="100%" alt="switchCase" />
      <figcaption><p>
       There is a somewhat similar operator in the optional <code>rxjava-computation-expressions</code>
       package (it is not part of the standard RxJava set of operators). The <code>switchCase</code> operator
@@ -97,7 +97,7 @@ id: defer
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/ifThen.png" width="640" alt="ifThen" />
+     <img src="images/ifThen.png" width="100%" alt="ifThen" />
      <figcaption><p>
       An even simpler operator in the optional <code>rxjava-computation-expressions</code> package (also not
       part of the standard RxGroovy set of operators) is <code>ifThen</code>. This operator checks a condition
@@ -108,7 +108,7 @@ id: defer
 
   {% lang_operator RxJS case defer if switchCase %}
     <figure class="variant">
-     <img src="images/defer.png" width="640" alt="defer" />
+     <img src="images/defer.png" width="100%" alt="defer" />
      <figcaption><p>
       RxJS implements this operator as <code>defer</code>. This operator takes as its sole parameter
       an Observable factory function of your choosing. This function takes no parameters and returns
@@ -154,7 +154,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/if.png" width="640" alt="if" />
+     <img src="images/if.png" width="100%" alt="if" />
      <figcaption><p>
       RxJS also implements the <code>if</code> operator. It takes as parameters a function that returns a
       boolean, an Observable to mirror if that function returns a true value, and optionally a second
@@ -187,7 +187,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/case.png" width="640" alt="case" />
+     <img src="images/case.png" width="100%" alt="case" />
      <figcaption><p>
       RxJS implements a somewhat similar operator called <code>case</code> (or
       &ldquo;<code>switchCase</code>&rdquo;). This operator conditionally creates and returns one of a set of

@@ -28,7 +28,7 @@ id: subject
 </p>
 <h3>AsyncSubject</h3>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.png" width="640" height="405" />
+ <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.png" width="100%" />
  <figcaption><p>
   An <code>AsyncSubject</code> emits the last value (and only the last value) emitted by the source Observable,
   and only after that source Observable completes. (If the source Observable does not emit any values, the
@@ -36,7 +36,7 @@ id: subject
  </p></figcaption>
 </figure>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.e.png" width="640" height="395" />
+ <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.e.png" width="100%" />
  <figcaption><p>
   It will also emit this same final value to any subsequent observers. However, if the source Observable
   terminates with an error, the <code>AsyncSubject</code> will not emit any items, but will simply pass along
@@ -49,7 +49,7 @@ id: subject
 </ul>
 <h3>BehaviorSubject</h3>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.png" width="640" height="415" />
+ <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.png" width="100%" />
  <figcaption><p>
   When an observer subscribes to a <code>BehaviorSubject</code>, it begins by emitting the item most recently
   emitted by the source Observable (or a seed/default value if none has yet been emitted) and then continues to
@@ -57,7 +57,7 @@ id: subject
  </p></figcaption>
 </figure>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.e.png" width="640" height="405" />
+ <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.e.png" width="100%" />
  <figcaption><p>
   However, if the source Observable terminates with an error, the <code>BehaviorSubject</code> will not emit any
   items to subsequent observers, but will simply pass along the error notification from the source Observable.
@@ -69,7 +69,7 @@ id: subject
 </ul>
 <h3>PublishSubject</h3>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.png" width="640" height="405" />
+ <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.png" width="100%" />
  <figcaption><p>
   <code>PublishSubject</code> emits to an observer only those items that are emitted by the source Observable(s)
   subsequent to the time of the subscription.
@@ -84,7 +84,7 @@ id: subject
  </p></figcaption>
 </figure>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.e.png" width="640" height="395" />
+ <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.e.png" width="100%" />
  <figcaption><p>
   If the source Observable terminates with an error, the <code>PublishSubject</code> will not emit any items to
   subsequent observers, but will simply pass along the error notification from the source Observable.
@@ -92,7 +92,7 @@ id: subject
 </figure>
 <h3>ReplaySubject</h3>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.ReplaySubject.png" width="640" height="405" />
+ <img src="{{ site.url }}/documentation/operators/images/S.ReplaySubject.png" width="100%" />
  <figcaption><p>
   <code>ReplaySubject</code> emits to any observer all of the items that were emitted by the source
   Observable(s), regardless of when the observer subscribes.

@@ -14,7 +14,7 @@ id: flatMap
 <h3>transform the items emitted by an Observable into Observables, then flatten the emissions from those into a single Observable</h3>
 
 <figure>
- <img src="images/flatMap.c.png" width="640" alt="FlatMap" />
+ <img src="images/flatMap.c.png" width="100%" alt="FlatMap" />
  <figcaption><p>
   The <span class="operator">FlatMap</span> operator transforms an Observable by applying a function
   that you specify to each item emitted by the source Observable, where that function returns an
@@ -61,7 +61,7 @@ id: flatMap
 
   {% lang_operator RxGroovy concatMap flatMap flatMapIterable StringObservable.split switchMap %}
     <figure class="variant">
-     <img src="images/mergeMap.png" width="640" alt="flatMap" />
+     <img src="images/mergeMap.png" width="100%" alt="flatMap" />
      <figcaption><p>
       RxGroovy implements the <code>flatMap</code> operator.
      </p>
@@ -95,7 +95,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/mergeMap.nce.png" width="640" alt="flatMap" />
+     <img src="images/mergeMap.nce.png" width="100%" alt="flatMap" />
      <figcaption><p>
       Another version of <code>flatMap</code> creates (and flattens) a new Observable for each item
       <em>and notification</em> from the source Observable.
@@ -105,7 +105,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/mergeMap.r.png" width="640" alt="flatMap" />
+     <img src="images/mergeMap.r.png" width="100%" alt="flatMap" />
      <figcaption><p>
       Another version combines items from the source Observable with the Observable triggered by
       those source items, and emits these combinations:
@@ -115,7 +115,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/mergeMapIterable.png" width="640" alt="flatMapIterable" />
+     <img src="images/mergeMapIterable.png" width="100%" alt="flatMapIterable" />
      <figcaption><p>
       The <code>flatMapIterable</code> variants pair up source items and generated
       <code>Iterable</code>s rather than source items and generated Observables, but otherwise work
@@ -127,7 +127,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/concatMap.png" width="640" alt="concatMap" />
+     <img src="images/concatMap.png" width="100%" alt="concatMap" />
      <figcaption><p>
       There is also a <code>concatMap</code> operator, which is like the simpler version of the
       <code>flatMap</code> operator, but it concatinates rather than merges the resulting
@@ -138,7 +138,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/switchMap.png" width="640" alt="switchMap" />
+     <img src="images/switchMap.png" width="100%" alt="switchMap" />
      <figcaption><p>
       RxGroovy also implements the <code>switchMap</code> operator. It behaves much like 
       <code>flatMap</code>, except that whenever a new item is emitted by the source Observable, it
@@ -150,7 +150,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/St.split.png" width="640" alt="split" />
+     <img src="images/St.split.png" width="100%" alt="split" />
      <figcaption><p>
       In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
       <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
@@ -162,7 +162,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJava concatMap flatMap flatMapIterable StringObervable.split switchMap %}
     <figure class="variant">
-     <img src="images/mergeMap.png" width="640" alt="flatMap" />
+     <img src="images/mergeMap.png" width="100%" alt="flatMap" />
      <figcaption><p>
       RxJava implements the <code>flatMap</code> operator.
      </p><p>
@@ -175,7 +175,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/mergeMap.nce.png" width="640" alt="flatMap" />
+     <img src="images/mergeMap.nce.png" width="100%" alt="flatMap" />
      <figcaption><p>
       Another version of <code>flatMap</code> creates (and flattens) a new Observable for each item
       <em>and notification</em> from the source Observable.
@@ -185,7 +185,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/mergeMap.r.png" width="640" alt="flatMap" />
+     <img src="images/mergeMap.r.png" width="100%" alt="flatMap" />
      <figcaption><p>
       Another version combines items from the source Observable with the Observable triggered by
       those source items, and emits these combinations:
@@ -195,7 +195,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/mergeMapIterable.png" width="640" alt="flatMapIterable" />
+     <img src="images/mergeMapIterable.png" width="100%" alt="flatMapIterable" />
      <figcaption><p>
       The <code>flatMapIterable</code> variants pair up source items and generated
       <code>Iterable</code>s rather than source items and generated Observables, but otherwise work
@@ -207,7 +207,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/concatMap.png" width="640" alt="concatMap" />
+     <img src="images/concatMap.png" width="100%" alt="concatMap" />
      <figcaption><p>
       There is also a <code>concatMap</code> operator, which is like the simpler version of the
       <code>flatMap</code> operator, but it concatinates rather than merges the resulting
@@ -218,7 +218,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/switchMap.png" width="640" alt="switchMap" />
+     <img src="images/switchMap.png" width="100%" alt="switchMap" />
      <figcaption><p>
       RxJava also implements the <code>switchMap</code> operator. It behaves much like 
       <code>flatMap</code>, except that whenever a new item is emitted by the source Observable, it
@@ -230,7 +230,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/St.split.png" width="640" alt="split" />
+     <img src="images/St.split.png" width="100%" alt="split" />
      <figcaption><p>
       In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
       <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
@@ -248,7 +248,7 @@ Sequence complete</pre></div>
      item and the index of the item in the Observable sequence.
     </p>
     <figure class="variant">
-     <img src="images/flatMap.png" width="640" alt="flatMap" />
+     <img src="images/flatMap.png" width="100%" alt="flatMap" />
      <figcaption><p>
       RxJS implements the basic <code>flatMap</code> operator. It has a variant that allows you to
       apply a transformative function (an optional second parameter to <code>flatMap</code>) to the
@@ -324,7 +324,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/flatMapLatest.png" width="640" alt="flatMapLatest" />
+     <img src="images/flatMapLatest.png" width="100%" alt="flatMapLatest" />
      <figcaption><p>
       The <code>flatMapLatest</code> operator behaves much like the standard
       <span class="operator">FlatMap</span> operator, except that whenever a new item is emitted
@@ -361,7 +361,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/flatMapObserver.png" width="640" alt="flatMapObserver" />
+     <img src="images/flatMapObserver.png" width="100%" alt="flatMapObserver" />
      <figcaption><p>
       <code>flatMapObserver</code> creates (and flattens) a new Observable for each item <em>and
       notification</em> from the source Observable. It accepts a different transformation function
@@ -402,7 +402,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/concatMap.png" width="640" alt="concatMap" />
+     <img src="images/concatMap.png" width="100%" alt="concatMap" />
      <figcaption><p>
       There is also a <code>concatMap</code> operator, which is like the <code>flatMap</code>
       operator, but it concatinates rather than merges the resulting Observables in order to
@@ -425,7 +425,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/for.png" width="640" alt="for" />
+     <img src="images/for.png" width="100%" alt="for" />
      <figcaption><p>
       The <code>for</code> operator (and its alias, <code>forIn</code>) is very similar to
       <code>concatMap</code>, though it has a converse flexibility. While <code>concatMap</code>
@@ -442,7 +442,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/concatMapObserver.png" width="640" alt="concatMapObserver" />
+     <img src="images/concatMapObserver.png" width="100%" alt="concatMapObserver" />
      <figcaption><p>
       There is also a <code>concatMapObserver</code> operator, which is like the
       <code>flatMapObserver</code> operator, in that it creates Observables to merge from both the
@@ -462,7 +462,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/manySelect.png" width="640" alt="manySelect" />
+     <img src="images/manySelect.png" width="100%" alt="manySelect" />
      <figcaption><p>
       The <code>manySelect</code> operator is often described as a &ldquo;comonadic bind.&rdquo; If that clears
       things up for you, you&#8217;re welcome. Elsewise, here&#8217;s an explanation:

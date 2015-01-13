@@ -14,7 +14,7 @@ id: scan
    <h3>apply a function to each item emitted by an Observable, sequentially, and emit each successive value</h3>
 
    <figure>
-    <img src="images/scan.c.png" width="640" alt="Scan" />
+    <img src="images/scan.c.png" width="100%" alt="Scan" />
     <figcaption><p>
      The <span class="operator">Scan</span> operator applies a function to the first item emitted
      by the source Observable and then emits the result of that function as its own first emission.
@@ -50,7 +50,7 @@ id: scan
 
   {% lang_operator RxGroovy scan %}
      <figure>
-      <img src="images/scan.png" width="640" alt="scan" />
+      <img src="images/scan.png" width="100%" alt="scan" />
       <figcaption><p>
        RxGroovy implements this operator as <code>scan</code>. The following code, for example,
        takes an Observable that emits a consecutive sequence of <i>n</i> integers starting with
@@ -79,7 +79,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.png" width="640" alt="scan" />
+      <img src="images/scanSeed.png" width="100%" alt="scan" />
       <figcaption><p>
        There is also a variant of <code>scan</code> to which you can pass a seed value to pass
        to the accumulator function the first time it is called (for the first emission from the
@@ -99,7 +99,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJava scan %}
      <figure>
-      <img src="images/scan.png" width="640" alt="scan" />
+      <img src="images/scan.png" width="100%" alt="scan" />
       <figcaption><p>
        RxJava implements this operator as <code>scan</code>.
       </p>
@@ -139,7 +139,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.png" width="640" alt="scan" />
+      <img src="images/scanSeed.png" width="100%" alt="scan" />
       <figcaption><p>
        There is also a variant of <code>scan</code> to which you can pass a seed value to pass
        to the accumulator function the first time it is called (for the first emission from the
@@ -159,7 +159,7 @@ Sequence complete.</pre></div>
 
   {% lang_operator RxJS expand scan %}
      <figure>
-      <img src="images/scan.png" width="640" alt="scan" />
+      <img src="images/scan.png" width="100%" alt="scan" />
       <figcaption><p>
        RxJS implements the <code>scan</code> operator.
       </p>
@@ -183,7 +183,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.js.png" width="640" alt="scan" />
+      <img src="images/scanSeed.js.png" width="100%" alt="scan" />
       <figcaption><p>
        You can optionally pass <code>scan</code> a seed value as a first parameter.
        <code>scan</code> will pass this seed value to the accumulator function the first time it is
@@ -219,7 +219,7 @@ Completed</pre></div></figcaption>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <figure>
-      <img src="images/expand.png" width="640" alt="expand" />
+      <img src="images/expand.png" width="100%" alt="expand" />
       <figcaption><p>
        RxJS also implements the <code>expand</code> operator, which is somewhat similar. Rather than applying
        the function to the previous return value of the function combined with the next item emitted from the

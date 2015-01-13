@@ -18,7 +18,7 @@ id: observable
 </p>
 <figure>
  <figcaption><p>This documentation accompanies its explanations with &ldquo;marble diagrams.&rdquo; Here is how marble diagrams represent Observables and transformations of Observables:</p></figcaption>
- <img src="{{ site.url }}/assets/operators/legend.png" width="640" height="301" />
+ <img src="{{ site.url }}/assets/operators/legend.png" width="100%" />
 </figure>
 <h4>See Also</h4>
 <ul>

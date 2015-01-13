@@ -14,7 +14,7 @@ id: take
    <h3>emit only the first <i>n</i> items emitted by an Observable</h3>
 
    <figure>
-    <img src="images/take.c.png" width="640" alt="Take" />
+    <img src="images/take.c.png" width="100%" alt="Take" />
     <figcaption><p>
      You can emit only the first <i>n</i> items emitted by an Observable and then complete while ignoring the
      remainder, by modifying the Observable with the <span class="operator">Take</span> operator.
@@ -51,7 +51,7 @@ id: take
 
   {% lang_operator RxGroovy limit take %}
      <figure>
-      <img src="images/take.png" width="640" alt="take" />
+      <img src="images/take.png" width="100%" alt="take" />
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>take</code>.
       </p><p>
@@ -83,7 +83,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/take.t.png" width="640" alt="take" />
+      <img src="images/take.t.png" width="100%" alt="take" />
       <figcaption><p>
        There is also a variant of <code>take</code> that takes a temporal duration rather than a quantity of
        items. It results in an Observable that emits only those items that are emitted during that initial
@@ -103,7 +103,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJava limit take %}
      <figure>
-      <img src="images/take.png" width="640" alt="take" />
+      <img src="images/take.png" width="100%" alt="take" />
       <figcaption><p>
        In RxJava, this operator is implemented as <code>take</code>.
       </p><p>
@@ -147,7 +147,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/take.t.png" width="640" alt="take" />
+      <img src="images/take.t.png" width="100%" alt="take" />
       <figcaption><p>
        There is also a variant of <code>take</code> that takes a temporal duration rather than a quantity of
        items. It results in an Observable that emits only those items that are emitted during that initial
@@ -167,7 +167,7 @@ Sequence complete.</pre></div>
 
   {% lang_operator RxJS take takeUntilWithTime %}
      <figure>
-      <img src="images/take.png" width="640" alt="take" />
+      <img src="images/take.png" width="100%" alt="take" />
       <figcaption><p>
        RxJS implements the <code>take</code> operator.
       </p>
@@ -188,7 +188,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/take.0.png" width="640" alt="take" />
+      <img src="images/take.0.png" width="100%" alt="take" />
       <figcaption><p>
        For the special case of <code>take(0)</code> you can also pass as a second parameter a
        <a href="../scheduler.html">Scheduler</a> that <code>take</code> will use to immediately schedule a call
@@ -208,7 +208,7 @@ Completed</pre></div>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <figure>
-      <img src="images/takeUntilWithTime.png" width="640" alt="takeUntilWithTime" />
+      <img src="images/takeUntilWithTime.png" width="100%" alt="takeUntilWithTime" />
       <figcaption><p>
        RxJS also implements a <code>takeUntilWithTime</code> operator, which is like <code>take</code>
        except that rather than taking a particular quantity of items, it takes all of the items that are

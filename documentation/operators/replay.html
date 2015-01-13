@@ -14,7 +14,7 @@ id: replay
 <h3>ensure that all observers see the same sequence of emitted items, even if they subscribe after the Observable has begun emitting items</h3>
 
 <figure>
- <img src="images/replay.c.png" width="640" alt="Replay" />
+ <img src="images/replay.c.png" width="100%" alt="Replay" />
  <figcaption><p>
   A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
   emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
@@ -54,7 +54,7 @@ id: replay
  
   {% lang_operator RxGroovy replay cache %}
     <figure class="variant">
-     <img src="images/replay.png" width="640" alt="replay" />
+     <img src="images/replay.png" width="100%" alt="replay" />
      <figcaption><p>
       In RxGroovy there is a variety of the <code>replay</code> operator that returns a connectable
       Observable. You must <a href="publish.html"><span class="operator">Publish</span></a> this
@@ -79,7 +79,7 @@ id: replay
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/replay.f.png" width="640" alt="replay" />
+     <img src="images/replay.f.png" width="100%" alt="replay" />
      <figcaption><p>
       There is also a variety of <code>replay</code> that returns an ordinary Observable. These
       variants take as a parameter a transformative function; this function accepts an item emitted
@@ -107,7 +107,7 @@ id: replay
 
   {% lang_operator RxJava replay cache %}
     <figure class="variant">
-     <img src="images/replay.png" width="640" alt="replay" />
+     <img src="images/replay.png" width="100%" alt="replay" />
      <figcaption><p>
       In RxJava there is a variety of the <code>replay</code> operator that returns a connectable
       Observable. You must <a href="publish.html"><span class="operator">Publish</span></a> this
@@ -132,7 +132,7 @@ id: replay
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/replay.f.png" width="640" alt="replay" />
+     <img src="images/replay.f.png" width="100%" alt="replay" />
      <figcaption><p>
       There is also a variety of <code>replay</code> that returns an ordinary Observable. These
       variants take as a parameter a transformative function; this function accepts an item emitted
@@ -160,7 +160,7 @@ id: replay
 
   {% lang_operator RxJS replay shareReplay %}
     <figure class="variant">
-     <img src="images/replay.fnts.png" width="640" alt="replay" />
+     <img src="images/replay.fnts.png" width="100%" alt="replay" />
      <figcaption><p>
       In RxJs the <code>replay</code> operator takes four optional parameters and returns an
       ordinary Observable:

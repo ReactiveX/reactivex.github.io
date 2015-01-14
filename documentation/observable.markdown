@@ -182,19 +182,40 @@ myObservable.subscribe(myOnNext, myError, myComplete);
 </p><p>
  This documentation groups information about <a href="operators.html#alphabetical">the various operators</a>
  and examples of their usage into the following pages:
-</p><ul>
- <li><a href="operators.html#creating">Creating</a></li>
- <li><a href="operators.html#transforming">Transforming</a></li>
- <li><a href="operators.html#filtering">Filtering</a></li>
- <li><a href="operators.html#combining">Combining</a></li>
- <li><a href="operators.html#error">Error Handling</a></li>
- <li><a href="operators.html#utility">Utility</a></li>
- <li><a href="operators.html#conditional">Conditional and Boolean</a></li>
- <li><a href="operators.html#mathematical">Mathematical and Aggregate</a></li>
- <li><a href="operators.html#conversion">Converting</a></li>
- <li><a href="operators.html#backpressure">Backpressure</a></li>
- <li><a href="operators.html#connectable">Connectable Observables</a></li>
-</ul>
+</p><dl>
+ <dt><a href="operators.html#creating">Creating Observables</a></dt>
+  <dd><code>Create</code>, <code>Defer</code>, <code>Empty</code>/<code>Never</code>/<code>Throw</code>,
+      <code>From</code>, <code>Interval</code>, <code>Just</code>, <code>Range</code>, <code>Repeat</code>,
+      <code>Start</code>, and <code>Timer</code></dd>
+ <dt><a href="operators.html#transforming">Transforming Observable Items</a></dt>
+  <dd><code>Buffer</code>, <code>FlatMap</code>, <code>GroupBy</code>, <code>Map</code>, <code>Scan</code>, and
+      <code>Window</code></dd>
+ <dt><a href="operators.html#filtering">Filtering Observables</a></dt>
+  <dd><code>Debounce</code>, <code>Distinct</code>, <code>ElementAt</code>, <code>Filter</code>,
+      <code>First</code>, <code>IgnoreElements</code>, <code>Last</code>, <code>Sample</code>,
+      <code>Skip</code>, <code>SkipLast</code>, <code>Take</code>, and <code>TakeLast</code></dd>
+ <dt><a href="operators.html#combining">Combining Observables</a></dt>
+  <dd><code>And</code>/<code>Then</code>/<code>When</code>, <code>CombineLatest</code>, <code>Join</code>,
+      <code>Merge</code>, <code>StartWith</code>, <code>Switch</code>, and <code>Zip</code></dd>
+ <dt><a href="operators.html#error">Error Handling Operators</a></dt>
+  <dd><code>Catch</code> and <code>Retry</code></dd>
+ <dt><a href="operators.html#utility">Utility Operators</a></dt>
+  <dd><code>Delay</code>, <code>Do</code>, <code>Materialize</code>/<code>Dematerialize</code>,
+      <code>ObserveOn</code>, <code>Serialize</code>, <code>Subscribe</code>, <code>SubscribeOn</code>,
+      <code>TimeInterval</code>, <code>Timeout</code>, <code>Timestamp</code>, and <code>Using</code></dd>
+ <dt><a href="operators.html#conditional">Conditional and Boolean Operators</a></dt>
+  <dd><code>All</code>, <code>Amb</code>, <code>Contains</code>, <code>DefaultIfEmpty</code>,
+      <code>SequenceEqual</code>, <code>SkipUntil</code>, <code>SkipWhile</code>, <code>TakeUntil</code>,
+      and <code>TakeWhile</code></dd>
+ <dt><a href="operators.html#mathematical">Mathematical and Aggregate Operators</a></dt>
+  <dd><code>Average</code>, <code>Concat</code>, <code>Count</code>, <code>Max</code>, <code>Min</code>,
+      <code>Reduce</code>, and <code>Sum</code></dd>
+ <dt><a href="operators.html#conversion">Converting Observables</a></dt>
+  <dd><code>To</code></dd>
+ <dt><a href="operators.html#connectable">Connectable Observable Operatorss</a></dt>
+  <dd><code>Connect</code>, <code>Publish</code>, <code>RefCount</code>, and <code>Replay</code></dd>
+ <dt><a href="operators/backpressure.html">Backpressure Operators</a></dt>
+</dl>
 <p>
  These pages include information about some operators that are not part of the core of ReactiveX but are
  implemented in one or more of language-specific implementations and/or optional modules.

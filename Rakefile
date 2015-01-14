@@ -1,5 +1,14 @@
 BOOTSTRAP_SOURCE = File.expand_path("./bootstrap")
 LESS_MAIN_FILE = './styles/reactivex.less'
+bootstrap_js_parts = ['transition', 'alert', 'button', 'carousel', 
+  'collapse', 'dropdown', 'modal', 'tooltip', 'popover', 'scrollspy',
+  'tab', 'affix']
+bootstrap_js_files = bootstrap_js_parts.map do |name|
+  File.join(BOOTSTRAP_SOURCE, 'js', "#{name}.js")
+end
+bootstrap_js_min_files = bootstrap_js_parts.map do |name|
+  "js/#{name}.bootstrap.min.js"
+end
 
 task :bootstrap => [:bootstrap_js, :bootstrap_css]
 
@@ -13,7 +22,7 @@ task :bootstrap_js do
   # Minifies each javascript subscript
   paths = []
   minifier = Uglifier.new
-  Dir.glob(File.join(BOOTSTRAP_SOURCE, 'js', '*.js')).each do |source|
+  bootstrap_js_files.each do |source|
     base = File.basename(source).sub(/^(.*)\.js$/, '\1.bootstrap.min.js')
     paths << base
     target = File.join('js', base)
@@ -26,7 +35,7 @@ task :bootstrap_js do
 
   # Concatenates all javascript subscripts
   out = ""
-  Dir['js/*.bootstrap.min.js'].each do |file|
+  bootstrap_js_min_files.each do |file|
     out += File.read(file)
     out += "\n"
   end

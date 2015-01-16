@@ -194,7 +194,12 @@ id: backpressure
       the <code>pausable</code> operator, it will drop (ignore) any items emitted by the underlying
       source Observable until such time as you call its <code>resume</code> method, whereupon it
       will continue to pass along emitted items to its observers.
-     </p></figcaption>
+     </p>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="http://rxmarbles.com/#pausable">RxMarbles: <code>pausable</code></a></li>
+     </ul>
+     </figcaption>
     </figure>
     <figure class="variant">
      <img src="images/bp.pausableBuffered.png" width="100%" alt="pausableBuffered" />
@@ -204,7 +209,12 @@ id: backpressure
       source Observable until such time as you call its <code>resume</code> method, whereupon it
       will emit those buffered items and then continue to pass along any additional emitted items to
       its observers.
-     </p></figcaption>
+     </p>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="http://rxmarbles.com/#pausableBuffered">RxMarbles: <code>pausableBuffered</code></a></li>
+     </ul>
+     </figcaption>
     </figure>
   {% endlang_operator %}
 

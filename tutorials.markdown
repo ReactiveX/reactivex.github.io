@@ -7,7 +7,7 @@ id: tutorials
 ## Introductions
 * [Introduction to Rx](http://www.introtorx.com/): a free, on-line book by Lee Campbell
 * [Your Mouse is a Database](http://queue.acm.org/detail.cfm?id=2169076) by Erik Meijer
-* [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) by André Staltz
+* [The introduction to Reactive Programming you&#8217;ve been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) by André Staltz
 * [Mastering Observables](http://docs.couchbase.com/prebuilt/java-sdk-2.0-beta/topics/observables.html) from the Couchbase documentation
 * [33rd Degree Reactive Java](http://www.slideshare.net/tkowalcz/33rd-degree-reactive-java) by Tomasz Kowalczewski
 * [2 minute introduction to Rx](https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877) by André Staltz
@@ -16,8 +16,9 @@ id: tutorials
 * [Collection Pipeline](http://martinfowler.com/articles/collection-pipeline/) by Martin Fowler
 
 ## Tutorials
-* [Learn RxJS](http://reactive-extensions.github.io/learnrx/)
-* [RxJS Koans](https://github.com/mattpodwysocki/RxJSKoans)
+* [Learn RxJS](http://reactive-extensions.github.io/learnrx/) by Jafar Husain
+* [Learn RxJava](http://github.com/jhusain/learnrxjava/) by Jafar Husain
+* [RxJS Koans](https://github.com/mattpodwysocki/RxJSKoans) by Matt Podwysocki
 * [Rx Workshop](http://rxworkshop.codeplex.com/)
 * [Reactive Programming and MVC](http://aaronstacy.com/writings/reactive-programming-and-mvc/)
 
@@ -85,7 +86,7 @@ id: tutorials
 * [Reactive Trader](https://github.com/AdaptiveConsulting/ReactiveTrader) - [Site](https://reactivetrader.azurewebsites.net/)
 
 ## Presentations
-* Don't Cross the Streams - Cascadia.js 2012 [slides/demos](http://www.slideshare.net/mattpodwysocki/cascadiajs-dont-cross-the-streams) | [video](http://www.youtube.com/watch?v=FqBq4uoiG0M)
+* Don&#8217;t Cross the Streams - Cascadia.js 2012 [slides/demos](http://www.slideshare.net/mattpodwysocki/cascadiajs-dont-cross-the-streams) | [video](http://www.youtube.com/watch?v=FqBq4uoiG0M)
 * Curing Your Asynchronous Blues - Strange Loop 2013 [slides/demos](https://github.com/Reactive-Extensions/StrangeLoop2013) | [video](http://www.infoq.com/presentations/rx-event-processing)
 * Streaming and event-based programming using FRP and RxJS - FutureJS 2014 [slides/demos](https://github.com/Reactive-Extensions/FutureJS) | [video](https://www.youtube.com/watch?v=zlERo_JMGCw)
 

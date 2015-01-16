@@ -1,6 +1,6 @@
 ---
 layout: simple
-title: ReactiveX - Languages
+title: ReactiveX - Links to More Information
 id: tutorials
 ---
 
@@ -13,6 +13,7 @@ id: tutorials
 * [2 minute introduction to Rx](https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877) by André Staltz
 * Wikipedia: [Reactive Programming](http://en.wikipedia.org/wiki/Reactive_programming) and [Functional Reactive Programming](http://en.wikipedia.org/wiki/Functional_reactive_programming)
 * [Be Reactive](http://colintheshots.com/blog/?p=85) by ColinTheShots
+* [Collection Pipeline](http://martinfowler.com/articles/collection-pipeline/) by Martin Fowler
 
 ## Tutorials
 * [Learn RxJS](http://reactive-extensions.github.io/learnrx/)
@@ -31,11 +32,15 @@ id: tutorials
 * [Principles of Reactive Programming](https://www.coursera.org/course/reactive) on Coursera
 
 ## RxJava
+* [Grokking RxJava](http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/) by Dan Lew
 * LambdaJam Chicago 2013: [Functional Reactive Programming in the Netflix API](https://speakerdeck.com/benjchristensen/functional-reactive-programming-in-the-netflix-api-lambdajam-2013) by Ben Christensen
 * QCon London 2013 presentation: [Functional Reactive Programming in the Netflix API](http://www.infoq.com/presentations/netflix-functional-rx) and a related [interview](http://www.infoq.com/interviews/christensen-hystrix-rxjava) with Ben Christensen
 * [Functional Reactive in the Netflix API with RxJava](http://techblog.netflix.com/2013/02/rxjava-netflix-api.html) by Ben Christensen and Jafar Husain
 * [Optimizing the Netflix API](http://techblog.netflix.com/2013/01/optimizing-netflix-api.html) by Ben Christensen
 * [Reactive Programming at Netflix](http://techblog.netflix.com/2013/01/reactive-programming-at-netflix.html) by Jafar Husain
+* [Implementing an Event Bus with RxJava](http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/) by Kaushik Gopal
+* [Turning Twitter4J into RxJava&#8217;s Observable](http://www.nurkiewicz.com/2014/01/turning-twitter4j-into-rxjavas.html) by Tomasz Nurkiewicz
+* [Converting between Completablefuture and Observable](http://www.nurkiewicz.com/2014/11/converting-between-completablefuture.html) by Tomasz Nurkiewicz
 
 ## RxScala
 * [RxJava: Reactive Extensions in Scala](http://www.youtube.com/watch?v=tOMK_FYJREw&feature=youtu.be): video of Ben Christensen and Matt Jacobs presenting at SF Scala
@@ -51,6 +56,17 @@ id: tutorials
 * An interactive tutorial: [Functional Programming in Javascript](http://jhusain.github.io/learnrx/) and [an accompanying lecture (video)](http://www.youtube.com/watch?v=LB4lhFJBBq0) by Jafar Husain
 * [Netflix JavaScript Talks - Async JavaScript with Reactive Extensions](https://www.youtube.com/watch?v=XRYN2xt11Ek) video of a talk by Jafar Husain about the Rx way of programming
 * [Journey from procedural to reactive Javascript with stops](http://bahmutov.calepin.co/journey-from-procedural-to-reactive-javascript-with-stops.html) by Gleb Bahmutov
+* [RxEmber](https://github.com/blesh/RxEmber) &mdash; an experimental set of helpers for Ember and RxJS
+
+## Android
+* [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall
+* [RxJava on Android: PopupMenus and Dialogs](http://adelnizamutdinov.github.io/blog/2014/11/23/advanced-rxjava-on-android-popupmenus-and-dialogs/) by Adel Nizamutdinov
+* [Tackling Complexity in Android Apps with RxJava at SoundCloud](http://www.infoq.com/news/2014/11/android-rxjava-at-soundcloud): Matt McComb interviews Matthias Käppler
+* [RxBinding](https://android-arsenal.com/details/1/1259) &mdash; easy one-way binding support for Android, based on RxJava
+* [G-Rex](https://github.com/Naturally-Being/G-Rex) &mdash; a tiny library that assists in saving and restoring objects to and from disk using RxJava on Android
+
+## RxNetty
+* [Accessing Meetup&#8217;s streaming API with RxNetty](http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html) by Tomasz Nurkiewicz
 
 ## Miscellany
 * [RxJava Observables and Akka Actors](http://onoffswitch.net/rxjava-observables-akka-actors/) by Anton Kropp
@@ -87,6 +103,7 @@ id: tutorials
 * [Reactive Game Programming for the Discerning Hipster - JSConf 2014 - Bodil Stokke](https://www.youtube.com/watch?v=x8mmAu7ZR9Y)
 * [What Every Hipster Should Know About Functional Reactive Programming](http://www.infoq.com/presentations/game-functional-reactive-programming) - Bodil Stokke demos the creation of interactive game mechanics in RxJS
 * [A Playful Introduction to Rx](https://www.youtube.com/watch?v=WKore-AkisY) a video lecture by Erik Meijer
+* [Ben Christensen explains RxJava &ldquo;backpressure&rdquo; strategies](https://www.parleys.com/play/543f8d5be4b06e1184ae4106/about)
 
 ## Reference Material
 * [101 Rx Samples Wiki](http://rxwiki.wikidot.com/101samples)

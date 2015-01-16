@@ -41,6 +41,7 @@ id: flatMap
  <li><a href="map.html"><span class="operator">Map</span></a></li>
  <li><a href="http://blog.danlew.net/2014/09/22/grokking-rxjava-part-2/"><cite>Grokking RxJava</cite>: Operator, Operator</a> by Dan Lew</li>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#SelectMany"><cite>Introduction to Rx</cite>: SelectMany</a></li>
+ <li><a href="https://jkschneider.github.io/blog/2014/recursive-observables-with-rxjava.html"><cite>Recurseive Observables with RxJava</cite></a> by Jon Schneider</li>
 </ul>
 
 <h2>Language-Specific Information:</h2>
@@ -156,7 +157,12 @@ Sequence complete</pre></div>
       <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
       treats the source sequence as a stream and splits it on a specified regex boundary, then merges the
       results of this split.
-     </p></figcaption>
+     </p>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html">Aligning packets with JSON documents</a> with the <code>split</code> operator</li>
+     </ul>
+     </figcaption>
     </figure>
   {% endlang_operator %}
 
@@ -495,6 +501,10 @@ Completed</pre></div>
       <li><code>rx.lite.js</code></li>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="https://social.msdn.microsoft.com/Forums/en-US/e70fe8b6-6d9d-486a-a8d0-c1bc66551ded/what-does-the-new-manyselect-operator-do?forum=rx"><cite>Microsoft Developer Network</cite>: &ldquo;What does the new ManySelect operator do?&rdquo;</a></li>
+     </ul>
      </figcaption>
     </figure>
   {% endlang_operator %}
@@ -509,6 +519,10 @@ Completed</pre></div>
     <p>
      <span style="color:#f00">TBD</span>
     </p>
+    <h4>See Also</h4>
+    <ul>
+     <li><a href="https://social.msdn.microsoft.com/Forums/en-US/e70fe8b6-6d9d-486a-a8d0-c1bc66551ded/what-does-the-new-manyselect-operator-do?forum=rx"><cite>Microsoft Developer Network</cite>: &ldquo;What does the new ManySelect operator do?&rdquo;</a></li>
+    </ul>
   {% endlang_operator %}
 
   {% lang_operator RxPY concat_all flat_map for_in many_select select_many %}

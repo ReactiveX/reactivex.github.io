@@ -4,15 +4,25 @@ title: ReactiveX - Operators
 id: operators
 ---
 
-Each language-specific version of ReactiveX implements a set of operators, and, although there is
-much overlap, there are also some operators that are only implemented by certain versions, and
-also each language tends to name its operators to conform to those of other similar operators that
-are already familiar in other contexts in that language.
+Each language-specific implementation of ReactiveX implements a set of operators. Although there is much overlap
+between implementations, there are also some operators that are only implemented in certain implementations.
+Also, each implementation tends to name its operators to resemble those of similar methods that are already
+familiar from other contexts in that language.
 
-This page lists what could be considered the &ldquo;core&rdquo; operators in the ReactiveX set,
-and links to pages that have more in-depth information on how these operators work and how
-particular language-specific ReactiveX versions have implemented these operators.
+This page first lists what could be considered the &ldquo;core&rdquo; operators in ReactiveX, and links to
+pages that have more in-depth information on how these operators work and how particular language-specific
+ReactiveX versions have implemented these operators.
 
+Next is a &ldquo;decision tree&rdquo; that may help you choose the operator that is most appropriate to your use
+case.
+
+Finally, there is an alphabetical list of most of the operators available in the many language-specific
+implementations of ReactiveX. These link to the page that documents the core operator that most closely
+resembles the language-specific operator (so, for instance, the Rx.NET &ldquo;SelectMany&rdquo; operator links
+to the documentation of the <span class="operator">FlatMap</span> ReactiveX operator, of which
+&ldquo;SelectMany&rdquo; is the Rx.NET implementation).
+
+<h4>Contents</h4> 
 <ol>
  <li><a href="#categorized">Operators By Category</a></li>
  <li><a href="#tree">A Decision Tree of Observable Operators</a></li>

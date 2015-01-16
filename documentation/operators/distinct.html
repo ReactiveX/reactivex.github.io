@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>Distinct</h1>
    <h3>suppress duplicate items emitted by an Observable</h3>
    <figure>
-    <img src="images/distinct.c.png" width="640" alt="Distinct" />
+    <img src="images/distinct.c.png" width="100%" alt="Distinct" />
     <figcaption><p>
      The <span class="operator">Distinct</span> operator filters an Observable by only allowing items through
      that have not already been emitted.
@@ -260,7 +257,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/distinct.png" width="640" alt="distinct" />
+      <img src="images/distinct.png" width="100%" alt="distinct" />
       <figcaption><p>
        RxGroovy implements this operator as <code>distinct</code>.
       </p>
@@ -269,7 +266,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinct.key.png" width="640" alt="distinct" />
+      <img src="images/distinct.key.png" width="100%" alt="distinct" />
       <figcaption><p>
        There is also a variant of this operator that takes a function as a parameter. This function
        operates on items emitted by the source Observable to generate a &ldquo;key.&rdquo; It is
@@ -281,7 +278,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.png" width="640" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.png" width="100%" alt="distinctUntilChanged" />
       <figcaption><p>
        RxGroovy also implements the <code>distinctUntilChanged</code> operator. It only compares
        emitted items from the source Observable against their immediate predecessors in order to
@@ -292,7 +289,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.key.png" width="640" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.key.png" width="100%" alt="distinctUntilChanged" />
       <figcaption><p>
        As with <code>distinct</code>, there is also a version of <code>distinctUntilChanged</code>
        that accepts a key selector function and that uses the resulting key to determine whether or
@@ -304,7 +301,7 @@
      </figure>
      <p>
       <code>distinct</code> and <code>distinctUntilChanged</code> do not by default operate on any
-      particular scheduler.
+      particular <a href="../scheduler.html">Scheduler</a>.
      </p>
   
           </div>
@@ -325,7 +322,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/distinct.png" width="640" alt="distinct" />
+      <img src="images/distinct.png" width="100%" alt="distinct" />
       <figcaption><p>
        RxJava implements this operator as <code>distinct</code>.
       </p>
@@ -359,7 +356,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinct.key.png" width="640" alt="distinct" />
+      <img src="images/distinct.key.png" width="100%" alt="distinct" />
       <figcaption><p>
        There is also a variant of this operator that takes a function as a parameter. This function
        operates on items emitted by the source Observable to generate a &ldquo;key.&rdquo; It is
@@ -371,7 +368,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.png" width="640" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.png" width="100%" alt="distinctUntilChanged" />
       <figcaption><p>
        RxJava also implements the <code>distinctUntilChanged</code> operator. It only compares
        emitted items from the source Observable against their immediate predecessors in order to
@@ -382,7 +379,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.key.png" width="640" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.key.png" width="100%" alt="distinctUntilChanged" />
       <figcaption><p>
        As with <code>distinct</code>, there is also a version of <code>distinctUntilChanged</code>
        that accepts a key selector function and that uses the resulting key to determine whether or
@@ -394,7 +391,7 @@ Sequence complete.</pre></div>
      </figure>
      <p>
       <code>distinct</code> and <code>distinctUntilChanged</code> do not by default operate on any
-      particular scheduler.
+      particular <a href="../scheduler.html">Scheduler</a>.
      </p>
   
           </div>
@@ -415,7 +412,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/distinct.png" width="640" alt="distinct" />
+      <img src="images/distinct.png" width="100%" alt="distinct" />
       <figcaption><p>
        In RxJS, the <code>distinct</code> operator has two optional parameters:
       </p>
@@ -462,7 +459,7 @@ Next: { value: 24 }
 Completed</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.png" width="640" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.png" width="100%" alt="distinctUntilChanged" />
       <figcaption><p>
        RxJS also has a <code>distinctUntilChanged</code> operator. It only compares emitted items
        from the source Observable against their immediate predecessors in order to determine whether
@@ -631,24 +628,10 @@ Completed</pre></div></figcaption>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -663,13 +646,10 @@ Completed</pre></div></figcaption>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

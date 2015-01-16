@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>Filter</h1>
    <h3>emit only those items from an Observable that pass a predicate test</h3>
    <figure>
-    <img src="images/filter.c.png" width="640" alt="Filter" />
+    <img src="images/filter.c.png" width="100%" alt="Filter" />
     <figcaption><p>
      The <span class="operator">Filter</span> operator filters an Observable by only allowing items through
      that pass a test that you specify in the form of a predicate function.
@@ -194,6 +191,7 @@
    <h4>See Also</h4>
    <ul>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Where"><cite>Introduction to Rx</cite>: Where</a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#CastAndOfType"><cite>Introduction to Rx</cite>: Cast and OfType</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -246,7 +244,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>filter</code>
+              RxGroovy <code>filter ofType</code>
             </a>
           </h4>
         </div>
@@ -254,7 +252,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/filter.png" width="640" alt="filter" />
+      <img src="images/filter.png" width="100%" alt="filter" />
       <figcaption><p>
        RxGroovy implements this operator as <code>filter</code>. You can filter an Observable, discarding any
        items that do not meet some test, by passing a filtering function into the <code>filter</code> operator.
@@ -276,13 +274,27 @@ numbers.filter({ 0 == (it % 2) }).subscribe(
 6
 8
 Sequence complete</pre></div></figcaption>
+      <p>
+       <code>filter</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#filter(rx.functions.Func1)"><code>filter(Func1)</code></a></li>
       </ul></figcaption>
      </figure>
-     <p>
-      <code>filter</code> does not by default operate on any particular scheduler.
-     </p>
+     <figure>
+      <img src="images/ofClass.png" width="100%" alt="ofType" />
+      <figcaption><p>
+       There is also a specialized form of the <span class="operator">Filter</span> operator in RxGroovy that
+       filters an Observable so that it only emits items of a particular class.
+      </p><p>
+       <code>ofType</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ofType(java.lang.Class)"><code>ofType(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
   
           </div>
         </div>
@@ -294,7 +306,7 @@ Sequence complete</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxJava">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>filter</code>
+              RxJava <code>filter ofType</code>
             </a>
           </h4>
         </div>
@@ -302,7 +314,7 @@ Sequence complete</pre></div></figcaption>
           <div class="panel-body">
             
      <figure>
-      <img src="images/filter.png" width="640" alt="filter" />
+      <img src="images/filter.png" width="100%" alt="filter" />
       <figcaption><p>
        RxJava implements this operator as <code>filter</code>.
       </p>
@@ -335,13 +347,27 @@ Next: 1
 Next: 2
 Next: 3
 Sequence complete.</pre></div>
+      <p>
+       <code>filter</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#filter(rx.functions.Func1)"><code>filter(Func1)</code></a></li>
       </ul></figcaption>
      </figure>
-     <p>
-      <code>filter</code> does not by default operate on any particular scheduler.
-     </p>
+     <figure>
+      <img src="images/ofClass.png" width="100%" alt="ofType" />
+      <figcaption><p>
+       There is also a specialized form of the <span class="operator">Filter</span> operator in RxGroovy that
+       filters an Observable so that it only emits items of a particular class.
+      </p><p>
+       <code>ofType</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ofType(java.lang.Class)"><code>ofType(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
   
           </div>
         </div>
@@ -361,7 +387,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/filter.png" width="640" alt="filter" />
+      <img src="images/filter.png" width="100%" alt="filter" />
       <figcaption><p>
        RxJS implements this operator under two names, but with identical behavior: <code>filter</code> and
        <code>where</code>. This operator takes two parameters: the predicate function, and an optional object
@@ -418,7 +444,7 @@ Completed</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxKotlin">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
-              RxKotlin <code>filter</code>
+              RxKotlin <code>filter ofType</code>
             </a>
           </h4>
         </div>
@@ -439,7 +465,7 @@ Completed</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxNET">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
-              RxNET <code>Where</code>
+              RxNET <code>OfType Where</code>
             </a>
           </h4>
         </div>
@@ -502,7 +528,7 @@ Completed</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxScala">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
-              RxScala <code>filter filterNot collect</code>
+              RxScala <code>collect filter filterNot BlockingObservable.withFilter withFilter</code>
             </a>
           </h4>
         </div>
@@ -523,24 +549,10 @@ Completed</pre></div></figcaption>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -555,13 +567,10 @@ Completed</pre></div></figcaption>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>create an Observable that emits a particular item multiple times</h3>
 
 <figure>
- <img src="images/repeat.c.png" width="640" alt="Repeat" />
+ <img src="images/repeat.c.png" width="100%" alt="Repeat" />
  <figcaption><p>
   The <span class="operator">Repeat</span> operator emits an item repeatedly. Some implementations
   of this operator allow you to repeat a <em>sequence</em> of items, and some permit you to limit
@@ -251,7 +248,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>repeat repeatWhen</code>
+              RxGroovy <code>doWhile repeat repeatWhen whileDo</code>
             </a>
           </h4>
         </div>
@@ -259,15 +256,16 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/repeat.o.png" width="640" alt="repeat" />
+     <img src="images/repeat.o.png" width="100%" alt="repeat" />
      <figcaption><p>
       RxGroovy implements this operator as <code>repeat</code>. It does not initiate an Observable,
       but operates on an Observable in such a way that it repeats the sequence emitted by the
       source Observable as its own sequence, either infinitely, or in the case of
       <code>repeat(<i>n</i>)</code>, <i>n</i> times.
      </p><p>
-      <code>repeat</code> operates by default on the <code>trampoline</code> Scheduler. There is
-      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>repeat</code> operates by default on the <code>trampoline</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat()"><code>repeat()</code></a></li>
@@ -277,7 +275,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/repeatWhen.f.png" width="640" alt="repeatWhen" />
+     <img src="images/repeatWhen.f.png" width="100%" alt="repeatWhen" />
      <figcaption><p>
       There is also an operator called <code>repeatWhen</code>. Rather than buffering and replaying
       the sequence from the source Observable, it <em>resubscribes</em> to and mirrors the source
@@ -291,13 +289,30 @@
       Observable) or terminates (meaning, terminate the sequence emitted by
       <code>repeatWhen</code>).
      </p><p>
-      <code>repeatWhen</code> operates by default on the <code>trampoline</code> Scheduler. There is
-      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>repeatWhen</code> operates by default on the <code>trampoline</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1)"><code>repeatWhen(Func1)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1,%20rx.Scheduler)"><code>repeatWhen(Func1,Scheduler)</code></a></li>
      </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doWhile.png" width="100%" alt="doWhile" />
+     <figcaption><p>
+      In RxGroovy, <code>doWhile</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>doWhile</code> checks a condition
+      after each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/whileDo.png" width="100%" alt="whileDo" />
+     <figcaption><p>
+      In RxGroovy, <code>whileDo</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>whileDo</code> checks a condition
+      before each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
     </figure>
   
           </div>
@@ -310,7 +325,7 @@
         <div class="panel-heading" role="tab" id="headingRxJava">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>repeat repeatWhen</code>
+              RxJava <code>doWhile repeat repeatWhen whileDo</code>
             </a>
           </h4>
         </div>
@@ -318,15 +333,16 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/repeat.o.png" width="640" alt="repeat" />
+     <img src="images/repeat.o.png" width="100%" alt="repeat" />
      <figcaption><p>
       RxJava implements this operator as <code>repeat</code>. It does not initiate an Observable,
       but operates on an Observable in such a way that it repeats the sequence emitted by the
       source Observable as its own sequence, either infinitely, or in the case of
       <code>repeat(<i>n</i>)</code>, <i>n</i> times.
      </p><p>
-      <code>repeat</code> operates by default on the <code>trampoline</code> Scheduler. There is
-      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>repeat</code> operates by default on the <code>trampoline</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat()"><code>repeat()</code></a></li>
@@ -336,7 +352,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/repeatWhen.f.png" width="640" alt="repeatWhen" />
+     <img src="images/repeatWhen.f.png" width="100%" alt="repeatWhen" />
      <figcaption><p>
       There is also an operator called <code>repeatWhen</code>. Rather than buffering and replaying
       the sequence from the source Observable, it <em>resubscribes</em> to and mirrors the source
@@ -350,13 +366,30 @@
       Observable) or terminates (meaning, terminate the sequence emitted by
       <code>repeatWhen</code>).
      </p><p>
-      <code>repeatWhen</code> operates by default on the <code>trampoline</code> Scheduler. There is
-      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>repeatWhen</code> operates by default on the <code>trampoline</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1)"><code>repeatWhen(Func1)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1,%20rx.Scheduler)"><code>repeatWhen(Func1,Scheduler)</code></a></li>
      </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doWhile.png" width="100%" alt="doWhile" />
+     <figcaption><p>
+      In RxJava, <code>doWhile</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>doWhile</code> checks a condition
+      after each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/whileDo.png" width="100%" alt="whileDo" />
+     <figcaption><p>
+      In RxJava, <code>whileDo</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>whileDo</code> checks a condition
+      before each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
     </figure>
   
           </div>
@@ -369,7 +402,7 @@
         <div class="panel-heading" role="tab" id="headingRxJS">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code>repeat</code>
+              RxJS <code>doWhile repeat while</code>
             </a>
           </h4>
         </div>
@@ -377,11 +410,11 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/repeat.png" width="640" alt="repeat" />
+     <img src="images/repeat.png" width="100%" alt="repeat" />
      <figcaption><p>
       RxJS implements this operator as <code>repeat</code>. It accepts as its parameter the item to
       repeat, and optionally two other parameters: the number of times you want the item to repeat,
-      and the Scheduler on which you want to perform this operation (it uses the 
+      and the <a href="../scheduler.html">Scheduler</a> on which you want to perform this operation (it uses the
       <code>immediate</code> Scheduler by default).
      </p>
      <h4>Sample Code</h4>
@@ -407,6 +440,75 @@ Completed</pre></div>
      </ul>
      </figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/doWhile.png" width="100%" alt="doWile" />
+     <figcaption><p>
+      RxJS also implements the <code>doWhile</code> operator. It repeats the source Observable&#8217;s sequence
+      of emissions only so long as a condition you specify remains true.
+     </p>
+     <div class="code javascript"><pre>
+var i = 0;
+
+var source = Rx.Observable.return(42).doWhile(
+    function (x) { return ++i < 2; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Next: 42
+Completed</pre></div>
+     <p><code>doWhile</code> is found in each of the following distributions.
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code></li>
+     </ul>
+     <p>It requires one of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/while.png" width="100%" alt="while" />
+     <figcaption><p>
+      RxJS also implements the <code>while</code> operator. It repeats the source Observable&#8217;s sequence
+      of emissions only if a condition you specify is true.
+     </p>
+     <div class="code javascript"><pre>
+var i = 0;
+
+// Repeat until condition no longer holds
+var source = Rx.Observable.while(
+    function () { return i++ < 3 },
+    Rx.Observable.return(42)
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Next: 42
+Next: 42
+Completed</pre></div>
+     <p><code>while</code> is found in the <code>rx.experimental.js</code> distribution. It requires one of the
+     following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
   
           </div>
         </div>
@@ -418,7 +520,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxKotlin">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
-              RxKotlin <code>repeat repeatWhen</code>
+              RxKotlin <code>doWhile repeat repeatWhen whileDo</code>
             </a>
           </h4>
         </div>
@@ -460,7 +562,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
-              RxPY <code>repeat</code>
+              RxPY <code>do_while repeat while_do</code>
             </a>
           </h4>
         </div>
@@ -523,24 +625,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -555,13 +643,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

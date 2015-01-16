@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>when an item is emitted by either of two Observables, combine the latest item emitted by each Observable via a specified function and emit items based on the results of this function</h3>
 
    <figure>
-    <img src="images/combineLatest.c.png" width="640" alt="CombineLatest" />
+    <img src="images/combineLatest.c.png" width="100%" alt="CombineLatest" />
     <figcaption><p>
      The <span class="operator">CombineLatest</span> operator behaves in a similar way to
      <span class="operator">Zip</span>, but while <span class="operator">Zip</span> emits items only
@@ -263,12 +260,12 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/combineLatest.png" width="640" alt="combineLatest" />
+      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
       <figcaption><p>
        RxGroovy implements this operator as <code>combineLatest</code>. It may take between two and
        nine Observables (as well as the combining function) as parameters, or a single
        <code>List</code> of Observables (as well as the combining function). It does not by default
-       operate on any particular scheduler.
+       operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List, rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
@@ -294,12 +291,12 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/combineLatest.png" width="640" alt="combineLatest" />
+      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
       <figcaption><p>
        RxJava implements this operator as <code>combineLatest</code>. It may take between two and
        nine Observables (as well as the combining function) as parameters, or a single
        <code>List</code> of Observables (as well as the combining function). It does not by default
-       operate on any particular scheduler.
+       operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List, rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
@@ -325,7 +322,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/combineLatest.png" width="640" alt="combineLatest" />
+      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
       <figcaption><p>
        RxJS implements this operator as <code>combineLatest</code>. It may take a variable number
        of individual Observables (as well as the combining function) as parameters, or a single
@@ -365,7 +362,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/withLatestFrom.png" width="640" alt="withLatestFrom" />
+      <img src="images/withLatestFrom.png" width="100%" alt="withLatestFrom" />
       <figcaption><p>
        RxJS also has a <code>withLatestFrom</code> operator. It is similar to <code>combineLatest</code>, but
        only emits items when the single source Observable emits an item (not when <em>any</em> of the
@@ -529,24 +526,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -561,13 +544,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

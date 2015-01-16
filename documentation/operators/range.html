@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>create an Observable that emits a particular range of sequential integers</h3>
 
 <figure>
- <img src="images/range.c.png" width="640" alt="Range" />
+ <img src="images/range.c.png" width="100%" alt="Range" />
  <figcaption><p>
   The <span class="operator">Range</span> operator emits a range of sequential integers, in order,
   where you select the start of the range and its length.
@@ -257,15 +254,16 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/range.png" width="640" alt="range" />
+     <img src="images/range.png" width="100%" alt="range" />
      <figcaption><p>
       RxGroovy implements this operator as <code>range</code>. It accepts as its parameters the
       start value of the range and the number of items in the range. If you set that number of
       items to zero, the resulting Observable will emit no values (if you set it to a negative
       number, <code>range</code> will cause an exception).
      </p><p>
-      <code>range</code> does not by default operate on any particular Scheduler, but there is
-      a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>range</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <h4>Sample Code</h4>
      <div class="code groovy"><pre>
@@ -295,15 +293,16 @@ def myObservable = Observable.range(5, 3);</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/range.png" width="640" alt="range" />
+     <img src="images/range.png" width="100%" alt="range" />
      <figcaption><p>
       RxJava implements this operator as <code>range</code>. It accepts as its parameters the
       start value of the range and the number of items in the range. If you set that number of
       items to zero, the resulting Observable will emit no values (if you set it to a negative
       number, <code>range</code> will cause an exception).
      </p><p>
-      <code>range</code> does not by default operate on any particular Scheduler, but there is
-      a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>range</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#range(int,%20int)"><code>range(int,int)</code></a></li>
@@ -329,14 +328,14 @@ def myObservable = Observable.range(5, 3);</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/range.png" width="640" alt="range" />
+     <img src="images/range.png" width="100%" alt="range" />
      <figcaption><p>
       RxJS implements this operator as <code>range</code>. It accepts as its parameters the
       start value of the range and the number of items in the range.
      </p><p>
-      <code>range</code> operates by default on the <code>currentThread</code> Scheduler, but there
-      is a variant that allows you to set the Scheduler by passing one in as the optional third
-      parameter.
+      <code>range</code> operates by default on the <code>currentThread</code>
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as the optional third parameter.
      </p>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>
@@ -477,24 +476,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -509,13 +494,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

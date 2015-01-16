@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>convert various other objects and data types into Observables</h3>
 
 <figure>
- <img src="images/from.c.png" width="640" alt="From" />
+ <img src="images/from.c.png" width="100%" alt="From" />
  <figcaption><p>
   When you work with Observables, it can be more convenient if all of the data you mean to work with
   can be represented as Observables, rather than as a mixture of Observables and other types. This
@@ -257,7 +254,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>from fromAction fromCallable fromFunc0 fromRunnable</code>
+              RxGroovy <code>decode from fromAction fromCallable fromFunc0 fromRunnable runAsync</code>
             </a>
           </h4>
         </div>
@@ -265,7 +262,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/from.Future.png" width="640" alt="from" />
+     <img src="images/from.Future.png" width="100%" alt="from" />
      <figcaption><p>
       In RxGroovy, the <code>from</code> operator can convert a Future, an Iterable, or an Array.
       In the case of an Iterable or an Array, the resulting Observable will emit each item contained
@@ -277,9 +274,9 @@
       resulting Observable will terminate with an error if that span of time passes before the
       Future responds with a value.
      </p><p>
-      <code>from</code> does not by default operate on any particular scheduler, however you can
-      pass the variant that converts a Future a Scheduler as an optional second parameter, and it
-      will use that Scheduler to govern the Future.
+      <code>from</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>,
+      however you can pass the variant that converts a Future a Scheduler as an optional second parameter, and
+      it will use that Scheduler to govern the Future.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T[])"><code>from(array)</code></a></li>
@@ -290,7 +287,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromFunc0.png" width="640" alt="fromFunc0" />
+     <img src="images/fromFunc0.png" width="100%" alt="fromFunc0" />
      <figcaption><p>
       In addition, in the <code>RxJavaAsyncUtil</code> package, you have available to you the
       following operators that convert actions, callables, functions, and runnables into
@@ -309,12 +306,40 @@
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/St.from.png" width="640" alt="from" />
+     <img src="images/St.from.png" width="100%" alt="from" />
      <figcaption><p>
       Note that there is also a <code>from</code> operator that is a method of the optional
       <code>StringObservable</code> class. It converts a stream of characters or a
       <code>Reader</code> into an Observable that emits byte arrays or Strings.
      </p>
+    </figure>
+    <p>
+     In the separate <code>RxJavaAsyncUtil</code> package, which is not included by default with RxGroovy, there
+     is also a <code>runAsync</code> function. Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will return a
+     <code>StoppableObservable</code> that uses the specified <code>Action</code> to generate items that it
+     emits.
+    </p><p>
+     The <code>Action</code> accepts an <code>Observer</code> and a <code>Subscription</code>. It uses the
+     <code>Subscription</code> to check for the <code>isUnsubscribed</code> condition, upon which it will stop
+     emitting items. You can also manually stop a <code>StoppableObservable</code> at any time by calling its
+     <code>unsubscribe</code> method (which will also unsubscribe the <code>Subscription</code> you have
+     associated with the <code>StoppableObservable</code>).
+    </p><p>
+     Because <code>runAsync</code> immediately invokes the <code>Action</code> and begins emitting the items, it
+     is possible that some items may be lost in the interval between when you establish the
+     <code>StoppableObservable</code> with this method and when your <code>Observer</code> is ready to receive
+     items. If this is a problem, you can use the variant of <code>runAsync</code> that also accepts a
+     <a href="../subject.html"><code>Subject</code></a> and pass a <code>ReplaySubject</code> with which you can
+     retrieve the otherwise-missing items.
+    </p>
+    <figure>
+     <img src="images/St.decode.png" width="100%" alt="decode" />
+     <figcaption><p>
+      The <code>StringObservable</code> class, which is not a default part of RxGroovy, also includes the
+      <code>decode</code> operator which converts a stream of multibyte characters into an Observable that
+      emits byte arrays that respect the character boundaries.
+     </p></figcaption>
     </figure>
   
           </div>
@@ -327,7 +352,7 @@
         <div class="panel-heading" role="tab" id="headingRxJava">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>from fromAction fromCallable fromFunc0 fromRunnable</code>
+              RxJava <code>decode from fromAction fromCallable fromFunc0 fromRunnable runAsync</code>
             </a>
           </h4>
         </div>
@@ -335,21 +360,56 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/from.Future.png" width="640" alt="from" />
+     <img src="images/from.Future.png" width="100%" alt="from" />
      <figcaption><p>
       In RxJava, the <code>from</code> operator can convert a Future, an Iterable, or an Array.
       In the case of an Iterable or an Array, the resulting Observable will emit each item contained
       in the Iterable or Array.
-     </p><p>
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Integer[] items = { 0, 1, 2, 3, 4, 5 };
+Observable myObservable = Observable.from(items);
+
+myObservable.subscribe(
+    new Action1<Integer>() {
+        @Override
+        public void call(Integer item) {
+            System.out.println(item);
+        }
+    },
+    new Action1<Throwable>() {
+        @Override
+        public void call(Throwable error) {
+            System.out.println("Error encountered: " + error.getMessage());
+        }
+    },
+    new Action0() {
+        @Override
+        public void call() {
+            System.out.println("Sequence complete");
+        }
+    }
+);
+</pre></div>
+     <div class="output"><pre>
+0
+1
+2
+3
+4
+5
+Sequence complete</pre></div>
+     <p>
       In the case of a Future, it will emit the single result of the <code>get</code> call. You may
       optionally pass the version of <code>from</code> that accepts a future two additional
       parameters indicating a timeout span and the units of time that span is denominated in. The
       resulting Observable will terminate with an error if that span of time passes before the
       Future responds with a value.
      </p><p>
-      <code>from</code> does not by default operate on any particular scheduler, however you can
-      pass the variant that converts a Future a Scheduler as an optional second parameter, and it
-      will use that Scheduler to govern the Future.
+      <code>from</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>,
+      however you can pass the variant that converts a Future a Scheduler as an optional second parameter, and
+      it will use that Scheduler to govern the Future.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T[])"><code>from(array)</code></a></li>
@@ -360,7 +420,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromFunc0.png" width="640" alt="fromFunc0" />
+     <img src="images/fromFunc0.png" width="100%" alt="fromFunc0" />
      <figcaption><p>
       In addition, in the <code>RxJavaAsyncUtil</code> package, you have available to you the
       following operators that convert actions, callables, functions, and runnables into
@@ -379,12 +439,40 @@
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/St.from.png" width="640" alt="from" />
+     <img src="images/St.from.png" width="100%" alt="from" />
      <figcaption><p>
       Note that there is also a <code>from</code> operator that is a method of the optional
       <code>StringObservable</code> class. It converts a stream of characters or a
       <code>Reader</code> into an Observable that emits byte arrays or Strings.
      </p>
+    </figure>
+    <p>
+     In the separate <code>RxJavaAsyncUtil</code> package, which is not included by default with RxJava, there
+     is also a <code>runAsync</code> function. Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will return a
+     <code>StoppableObservable</code> that uses the specified <code>Action</code> to generate items that it
+     emits.
+    </p><p>
+     The <code>Action</code> accepts an <code>Observer</code> and a <code>Subscription</code>. It uses the
+     <code>Subscription</code> to check for the <code>isUnsubscribed</code> condition, upon which it will stop
+     emitting items. You can also manually stop a <code>StoppableObservable</code> at any time by calling its
+     <code>unsubscribe</code> method (which will also unsubscribe the <code>Subscription</code> you have
+     associated with the <code>StoppableObservable</code>).
+    </p><p>
+     Because <code>runAsync</code> immediately invokes the <code>Action</code> and begins emitting the items, it
+     is possible that some items may be lost in the interval between when you establish the
+     <code>StoppableObservable</code> with this method and when your <code>Observer</code> is ready to receive
+     items. If this is a problem, you can use the variant of <code>runAsync</code> that also accepts a
+     <a href="../subject.html"><code>Subject</code></a> and pass a <code>ReplaySubject</code> with which you can
+     retrieve the otherwise-missing items.
+    </p>
+    <figure>
+     <img src="images/St.decode.png" width="100%" alt="decode" />
+     <figcaption><p>
+      The <code>StringObservable</code> class, which is not a default part of RxGroovy, also includes the
+      <code>decode</code> operator which converts a stream of multibyte characters into an Observable that
+      emits byte arrays that respect the character boundaries.
+     </p></figcaption>
     </figure>
   
           </div>
@@ -408,7 +496,7 @@
      There are several, specialized <span class="operator">From</span> variants in RxJS:
     </p>
     <figure class="variant">
-     <img src="images/from.png" width="640" alt="from" />
+     <img src="images/from.png" width="100%" alt="from" />
      <figcaption><p>
       In RxJS, the <code>from</code> operator converts an array-like or iterable object into an
       Observable that emits the items in that array or iterable. A String, in this context, is
@@ -419,7 +507,7 @@
      <ol start="2">
       <li>a transforming function that takes an item from the array or iterable as input and produces an item to be emitted by the resulting Observable as output</li>
       <li>a second argument to pass into the transforming function as additional context information</li>
-      <li>a Scheduler on which this operator should operate</li>
+      <li>a <a href="../scheduler.html">Scheduler</a> on which this operator should operate</li>
      </ol>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>
@@ -508,7 +596,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromCallback.png" width="640" alt="fromCallback" />
+     <img src="images/fromCallback.png" width="100%" alt="fromCallback" />
      <figcaption><p>
       The <code>fromCallback</code> operator takes a function as a parameter, calls this
       function, and emits the value returned from it as its single emission.
@@ -555,7 +643,7 @@ Completed</pre></div>
       This operator takes three additional, optional parameters:
      </p>
      <ol start="2">
-      <li>a Scheduler on which you want to run the Node.js callback</li>
+      <li>a <a href="../scheduler.html">Scheduler</a> on which you want to run the Node.js callback</li>
       <li>a parameter to give to the callback function</li>
       <li>a tranforming function that takes the return value of the callback function as input and returns an item to be emitted by the resulting Observable</li>
      </ol>
@@ -589,7 +677,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromEvent.png" width="640" alt="fromEvent" />
+     <img src="images/fromEvent.png" width="100%" alt="fromEvent" />
      <figcaption><p>
       The <code>fromEvent</code> operator takes an &ldquo;element&rdquo; and an event name as
       parameters, and it then listens for events of that name taking place on that element. It
@@ -678,7 +766,7 @@ input.trigger('click');</pre></div>
      <div class="output"><pre>
 Next: Clicked!</pre></div>
     <figure class="variant">
-     <img src="images/of.png" width="640" alt="of" />
+     <img src="images/of.png" width="100%" alt="of" />
      <figcaption><p>
       The <code>of</code> operator accepts a number of items as parameters, and returns an
       Observable that emits each of these parameters, in order, as its emitted sequence.
@@ -708,8 +796,9 @@ Completed</pre></div>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <p>
-      A variant of this operator, called <code>ofWithScheduler</code> takes a Scheduler as its
-      first parameter, and operates the resulting Observable on this Scheduler.
+      A variant of this operator, called <code>ofWithScheduler</code> takes a
+      <a href="../scheduler.html">Scheduler</a> as its first parameter, and operates the resulting Observable
+      on this Scheduler.
      </p>
      </figcaption>
     </figure>
@@ -844,24 +933,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -876,13 +951,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

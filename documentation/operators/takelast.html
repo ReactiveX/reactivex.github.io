@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>emit only the final <i>n</i> items emitted by an Observable</h3>
 
    <figure>
-    <img src="images/takeLast.c.png" width="640" alt="TakeLast" />
+    <img src="images/takeLast.c.png" width="100%" alt="TakeLast" />
     <figcaption><p>
      You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that come
      before them, by modifying the Observable with the <span class="operator">TakeLast</span> operator.
@@ -213,7 +210,7 @@
         <div class="panel-heading" role="tab" id="headingRxClojure">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
-              RxClojure <code></code>
+              RxClojure <code>next</code>
             </a>
           </h4>
         </div>
@@ -263,7 +260,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeLast.n.png" width="640" alt="takeLast" />
+      <img src="images/takeLast.n.png" width="100%" alt="takeLast" />
       <figcaption><p>
        You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
@@ -283,14 +280,15 @@ numbers.takeLast(2).subscribe(
 9
 Sequence complete</pre></div>
       <p>
-       This variant of <code>takeLast</code> does not by default operate on any particular Scheduler.
+       This variant of <code>takeLast</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int)"><code>takeLast(int)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLast.t.png" width="640" alt="takeLast" />
+      <img src="images/takeLast.t.png" width="100%" alt="takeLast" />
       <figcaption><p>
        There is also a variant of <code>takeLast</code> that takes a temporal duration rather than a quantity of
        items. It emits only those items that are emitted during that final duration of the source
@@ -300,8 +298,9 @@ Sequence complete</pre></div>
        Note that this will delay the emission of any item from the source Observable until the source Observable
        completes.
       </p><p>
-       This variant of <code>takeLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(long,%20java.util.concurrent.TimeUnit)"><code>takeLast(long,TimeUnit)</code></a></li>
@@ -309,13 +308,14 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLast.tn.png" width="640" alt="takeLast" />
+      <img src="images/takeLast.tn.png" width="100%" alt="takeLast" />
       <figcaption><p>
        There is also a variant that combines the two methods. It emits the minimum of the number of items
        emitted during a specified time window <em>or</em> a particular count of items.
       </p><p>
-       This variant of <code>takeLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional fourth parameter.
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional fourth parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int,%20long,%20java.util.concurrent.TimeUnit)"><code>takeLast(int,long,TimeUnit)</code></a></li>
@@ -323,7 +323,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastBuffer.png" width="640" alt="takeLastBuffer" />
+      <img src="images/takeLastBuffer.png" width="100%" alt="takeLastBuffer" />
       <figcaption><p>
        There is also an operator called <code>takeLastBuffer</code>. It exists in the same set of variants
        as described above for <code>takeLast</code>, and only differs in behavior by emitting its items not
@@ -356,20 +356,21 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeLast.n.png" width="640" alt="takeLast" />
+      <img src="images/takeLast.n.png" width="100%" alt="takeLast" />
       <figcaption><p>
        You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
        delay the emission of any item from the source Observable until the source Observable completes.
       </p><p>
-       This variant of <code>takeLast</code> does not by default operate on any particular Scheduler.
+       This variant of <code>takeLast</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int)"><code>takeLast(int)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLast.t.png" width="640" alt="takeLast" />
+      <img src="images/takeLast.t.png" width="100%" alt="takeLast" />
       <figcaption><p>
        There is also a variant of <code>takeLast</code> that takes a temporal duration rather than a quantity of
        items. It emits only those items that are emitted during that final duration of the source
@@ -379,8 +380,9 @@ Sequence complete</pre></div>
        Note that this will delay the emission of any item from the source Observable until the source Observable
        completes.
       </p><p>
-       This variant of <code>takeLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(long,%20java.util.concurrent.TimeUnit)"><code>takeLast(long,TimeUnit)</code></a></li>
@@ -388,13 +390,14 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLast.tn.png" width="640" alt="takeLast" />
+      <img src="images/takeLast.tn.png" width="100%" alt="takeLast" />
       <figcaption><p>
        There is also a variant that combines the two methods. It emits the minimum of the number of items
        emitted during a specified time window <em>or</em> a particular count of items.
       </p><p>
-       This variant of <code>takeLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional fourth parameter.
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional fourth parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int,%20long,%20java.util.concurrent.TimeUnit)"><code>takeLast(int,long,TimeUnit)</code></a></li>
@@ -402,7 +405,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastBuffer.png" width="640" alt="takeLastBuffer" />
+      <img src="images/takeLastBuffer.png" width="100%" alt="takeLastBuffer" />
       <figcaption><p>
        There is also an operator called <code>takeLastBuffer</code>. It exists in the same set of variants
        as described above for <code>takeLast</code>, and only differs in behavior by emitting its items not
@@ -435,7 +438,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeLast.n.png" width="640" alt="takeLast" />
+      <img src="images/takeLast.n.png" width="100%" alt="takeLast" />
       <figcaption><p>
        You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
@@ -469,7 +472,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastWithTime.png" width="640" alt="takeLastWithTime" />
+      <img src="images/takeLastWithTime.png" width="100%" alt="takeLastWithTime" />
       <figcaption><p>
        The <code>takeLastWithTime</code> operator takes a temporal duration rather than a quantity of items. It
        emits only those items that are emitted during that final duration of the source Observable&#8217;s
@@ -479,9 +482,10 @@ Completed</pre></div>
        Note that the mechanism by which this is implemented will delay the emission of any item from the source
        Observable until that Observable completes.
       </p><p>
-       <code>takeLastWithTime</code> by default operates the timer on the <code>timeout</code> Scheduler and
-       emits items on the <code>currentThread</code> Scheduler, but you may also pass in Schedulers of your
-       choosing to override these, as an optional second and third parameters, respectively.
+       <code>takeLastWithTime</code> by default operates the timer on the <code>timeout</code>
+       <a href="../scheduler.html">Scheduler</a> and emits items on the <code>currentThread</code> Scheduler,
+       but you may also pass in Schedulers of your choosing to override these, as an optional second and third
+       parameters, respectively.
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
@@ -513,7 +517,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastBuffer.png" width="640" alt="takeLastBuffer" />
+      <img src="images/takeLastBuffer.png" width="100%" alt="takeLastBuffer" />
       <figcaption><p>
        There is also an operator called <code>takeLastBuffer</code>. It differs in behavior from
        <code>takeLast</code> by emitting its items not individually but collected into a single array of items
@@ -544,7 +548,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastBufferWithTime.png" width="640" alt="takeLastBufferWithTime" />
+      <img src="images/takeLastBufferWithTime.png" width="100%" alt="takeLastBufferWithTime" />
       <figcaption><p>
        <code>takeLastBuffer</code> also has its duration-based variant, <code>takeLastBufferWithTime</code>,
        which is similar to <code>takeLastWithTime</code> except that it emits its items not individually but
@@ -672,7 +676,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxScala">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
-              RxScala <code>takeRight</code>
+              RxScala <code>tail takeRight</code>
             </a>
           </h4>
         </div>
@@ -693,24 +697,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -725,13 +715,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

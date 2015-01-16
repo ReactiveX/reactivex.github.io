@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>transform the items emitted by an Observable by applying a function to each item</h3>
 
    <figure>
-    <img src="images/map.c.png" width="640" alt="Map" />
+    <img src="images/map.c.png" width="100%" alt="Map" />
     <figcaption><p>
      The <span class="operator">Map</span> operator applies a function of your choosing to each item
      emitted by the source Observable, and returns an Observable that emits the results of these
@@ -207,7 +204,7 @@
         <div class="panel-heading" role="tab" id="headingRxClojure">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
-              RxClojure <code>map-indexed</code>
+              RxClojure <code>keep keep-indexed map map-indexed</code>
             </a>
           </h4>
         </div>
@@ -249,7 +246,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>map</code>
+              RxGroovy <code>byLine cast encode map</code>
             </a>
           </h4>
         </div>
@@ -257,7 +254,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/map.png" width="640" alt="map" />
+      <img src="images/map.png" width="100%" alt="map" />
       <figcaption><p>
        RxGroovy implements this operator as <code>map</code>. For example, the following code maps a
        function that squares the incoming value onto the values in <code>numbers</code>:
@@ -279,10 +276,38 @@ numbers.map({it * it}).subscribe(
 25
 Sequence complete</pre></div></figcaption>
       <p>
-       This operator does not by default operate on any particular scheduler
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p><ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#map(rx.functions.Func1)"><code>map(Func1)</code></a></li>
       </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/cast.png" width="100%" alt="cast" />
+      <figcaption><p>
+       The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
+       transforms each item from the source Observable by casting it into a particular Class before reemitting
+       it.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#cast(java.lang.Class)"><code>cast(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.encode.png" width="100%" alt="encode" />
+      <figcaption><p>
+       In the <code>StringObservable</code> class that is not part of the RxGroovy core there is also a
+       specialty mapping operator, <code>encode</code>, that transforms an Observable that emits strings into
+       an Observable that emits byte arrays that respect character boundaries of multibyte characters in the
+       original strings.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.byLine.png" width="100%" alt="byLine" />
+      <figcaption><p>
+       Also in the <code>StringObservable</code> class that is not part of the RxGroovy core there is a
+       specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
+       into an Observable that emits lines of text, by buffering the strings from the source Observable until a
+       line-feed is found in one of them.
+      </p></figcaption>
      </figure>
   
           </div>
@@ -295,7 +320,7 @@ Sequence complete</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxJava">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>map</code>
+              RxJava <code>byLine cast encode map</code>
             </a>
           </h4>
         </div>
@@ -303,14 +328,42 @@ Sequence complete</pre></div></figcaption>
           <div class="panel-body">
             
      <figure>
-      <img src="images/map.png" width="640" alt="map" />
+      <img src="images/map.png" width="100%" alt="map" />
       <figcaption><p>
        RxJava implements this operator as <code>map</code>.
       </p><p>
-       This operator does not by default operate on any particular scheduler
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p><ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#map(rx.functions.Func1)"><code>map(Func1)</code></a></li>
       </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/cast.png" width="100%" alt="cast" />
+      <figcaption><p>
+       The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
+       transforms each item from the source Observable by casting it into a particular Class before reemitting
+       it.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#cast(java.lang.Class)"><code>cast(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.encode.png" width="100%" alt="encode" />
+      <figcaption><p>
+       In the <code>StringObservable</code> class that is not part of the RxJava core there is also a specialty
+       mapping operator, <code>encode</code>, that transforms an Observable that emits strings into an
+       Observable that emits byte arrays that respect character boundaries of multibyte characters in the
+       original strings.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.byLine.png" width="100%" alt="byLine" />
+      <figcaption><p>
+       Also in the <code>StringObservable</code> class that is not part of the RxJava core there is a
+       specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
+       into an Observable that emits lines of text, by buffering the strings from the source Observable until a
+       line-feed is found in one of them.
+      </p></figcaption>
      </figure>
   
           </div>
@@ -331,7 +384,7 @@ Sequence complete</pre></div></figcaption>
           <div class="panel-body">
             
      <figure>
-      <img src="images/map.i.png" width="640" alt="map" />
+      <img src="images/map.i.png" width="100%" alt="map" />
       <figcaption><p>
        RxJS implements this operator as <code>map</code> or <code>select</code> (the two are
        synonymous). In addition to the transforming function, you may pass this operator an optional
@@ -369,7 +422,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/pluck.png" width="640" alt="pluck" />
+      <img src="images/pluck.png" width="100%" alt="pluck" />
       <figcaption><p>
        There is also an operator called <code>pluck</code> which is a simpler version of this
        operator. It transforms the elements emitted by the source Observable by extracting a
@@ -416,7 +469,7 @@ Completed</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxKotlin">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
-              RxKotlin <code>map</code>
+              RxKotlin <code>cast map</code>
             </a>
           </h4>
         </div>
@@ -437,7 +490,7 @@ Completed</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxNET">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
-              RxNET <code>Select</code>
+              RxNET <code>Cast Select</code>
             </a>
           </h4>
         </div>
@@ -521,24 +574,10 @@ Completed</pre></div></figcaption>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -553,13 +592,10 @@ Completed</pre></div></figcaption>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

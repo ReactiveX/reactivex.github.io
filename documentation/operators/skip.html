@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>suppress the first <i>n</i> items emitted by an Observable</h3>
 
    <figure>
-    <img src="images/skip.c.png" width="640" alt="Skip" />
+    <img src="images/skip.c.png" width="100%" alt="Skip" />
     <figcaption><p>
      You can ignore the first <i>n</i> items emitted by an Observable and attend only to those items that come
      after, by modifying the Observable with the <span class="operator">Skip</span> operator.
@@ -263,7 +260,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skip.png" width="640" alt="skip" />
+      <img src="images/skip.png" width="100%" alt="skip" />
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>skip</code>.
       </p>
@@ -284,22 +281,24 @@ numbers.skip(3).subscribe(
 8
 Sequence complete</pre></div>
       <p>
-       This variant of <code>skip</code> does not by default operate on any particular Scheduler.
+       This variant of <code>skip</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skip(int)"><code>skip(int)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/skip.t.png" width="640" alt="skip" />
+      <img src="images/skip.t.png" width="100%" alt="skip" />
       <figcaption><p>
        There is also a variant of <code>skip</code> that takes a temporal duration rather than a quantity of
        items. It drops those items that are emitted during that initial duration of the source
        Observable&#8217;s lifespan. You set this duration by passing in a length of time and the time units
        this length is denominated in as parameters to <code>skip</code>.
       </p><p>
-       This variant of <code>skip</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>skip</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skip(long,%20java.util.concurrent.TimeUnit)"><code>skip(long,TimeUnit)</code></a></li>
@@ -325,26 +324,28 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/skip.png" width="640" alt="skip" />
+      <img src="images/skip.png" width="100%" alt="skip" />
       <figcaption><p>
        In RxJava, this operator is implemented as <code>skip</code>.
       </p><p>
-       This variant of <code>skip</code> does not by default operate on any particular Scheduler.
+       This variant of <code>skip</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skip(int)"><code>skip(int)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/skip.t.png" width="640" alt="skip" />
+      <img src="images/skip.t.png" width="100%" alt="skip" />
       <figcaption><p>
        There is also a variant of <code>skip</code> that takes a temporal duration rather than a quantity of
        items. It drops those items that are emitted during that initial duration of the source
        Observable&#8217;s lifespan. You set this duration by passing in a length of time and the time units
        this length is denominated in as parameters to <code>skip</code>.
       </p><p>
-       This variant of <code>skip</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>skip</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skip(long,%20java.util.concurrent.TimeUnit)"><code>skip(long,TimeUnit)</code></a></li>
@@ -370,7 +371,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/skip.png" width="640" alt="skip" />
+      <img src="images/skip.png" width="100%" alt="skip" />
       <figcaption><p>
        RxJS implements the <code>skip</code> operator.
       </p>
@@ -401,7 +402,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/skipUntilWithTime.png" width="640" alt="skipUntilWithTime" />
+      <img src="images/skipUntilWithTime.png" width="100%" alt="skipUntilWithTime" />
       <figcaption><p>
        RxJS also implements a <code>skipUntilWithTime</code> operator that does not skip a particular quantity
        of items from the source Observable, but skips items based on chronology. You set this skip period by
@@ -414,8 +415,9 @@ Completed</pre></div>
         <dd>skips items from the source Observable until this absolute time</dd>
       </dl>
       <p>
-       You may also, optionally, pass in a Scheduler as a second parameter, and the timer will operate on that
-       Scheduler (<code>skipUntilWithTime</code> uses the <code>timeout</code> Scheduler by default).
+       You may also, optionally, pass in a <a href="../scheduler.html">Scheduler</a> as a second parameter, and
+       the timer will operate on that Scheduler (<code>skipUntilWithTime</code> uses the <code>timeout</code>
+       Scheduler by default).
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
@@ -559,24 +561,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -591,13 +579,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

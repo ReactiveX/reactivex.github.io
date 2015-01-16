@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>periodically gather items emitted by an Observable into bundles and emit these bundles rather than emitting the items one at a time</h3>
 
 <figure>
- <img src="images/Buffer.png" width="640" alt="Buffer" />
+ <img src="images/Buffer.png" width="100%" alt="Buffer" />
  <figcaption><p>
   The <span class="operator">Buffer</span> operator transforms an Observable that emits items into
   an Observable that emits buffered collections of those items. There are a number of variants in
@@ -231,7 +228,7 @@
     </p>
     <h4><code>buffer(count)</code></h4>
     <figure class="variant">
-    <img src="images/buffer3.png" width="640" alt="buffer(count)" />
+    <img src="images/buffer3.png" width="100%" alt="buffer(count)" />
     <figcaption>
      <p><code>buffer(count)</code> emits non-overlapping buffers in the form of
         <code>vector</code>s, each of which contains at most <code>count</code> items from the
@@ -241,7 +238,7 @@
     </figure>
     <h4><code>buffer(count, skip)</code></h4>
     <figure class="variant">
-    <img src="images/buffer4.png" width="640" alt="buffer(count,skip)" />
+    <img src="images/buffer4.png" width="100%" alt="buffer(count,skip)" />
     <figcaption>
      <p><code>buffer(count,&#8239;skip)</code> creates a new buffer starting with the first
         emitted item from the source Observable, and every <code>skip</code> items thereafter, and
@@ -275,7 +272,7 @@
     </p>
     <h4><code>buffer(count)</code></h4>
     <figure class="variant">
-    <img src="images/buffer3.png" width="640" alt="buffer(count)" />
+    <img src="images/buffer3.png" width="100%" alt="buffer(count)" />
     <figcaption>
      <p><code>buffer(count)</code> emits non-overlapping buffers in the form of
         <code>List</code>s, each of which contains at most <code>count</code> items from the
@@ -287,7 +284,7 @@
     </figure>
     <h4><code>buffer(count, skip)</code></h4>
     <figure class="variant">
-    <img src="images/buffer4.png" width="640" alt="buffer(count,skip)" />
+    <img src="images/buffer4.png" width="100%" alt="buffer(count,skip)" />
     <figcaption>
      <p><code>buffer(count,&#8239;skip)</code> creates a new buffer starting with the first
         emitted item from the source Observable, and every <code>skip</code> items thereafter, and
@@ -302,7 +299,7 @@
     </figure>
     <h4><code>buffer(bufferClosingSelector)</code></h4>
     <figure class="variant">
-    <img src="images/buffer1.png" width="640" alt="buffer(bufferClosingSelector)" />
+    <img src="images/buffer1.png" width="100%" alt="buffer(bufferClosingSelector)" />
     <figcaption>
      <p>When it subscribes to the source Observable, <code>buffer(bufferClosingSelector)</code>
         begins to collect its emissions into a <code>List</code>, and it also calls
@@ -317,7 +314,7 @@
     </figure>
     <h4><code>buffer(boundary</code>[<code>, initialCapacity</code>]<code>)</code></h4>
     <figure class="variant">
-    <img src="images/buffer8.png" width="640" alt="buffer(boundary)" />
+    <img src="images/buffer8.png" width="100%" alt="buffer(boundary)" />
     <figcaption>
      <p><code>buffer(boundary)</code> monitors an Observable, <code>boundary</code>. Each time
         that Observable emits an item, it creates a new <code>List</code> to begin collecting
@@ -329,7 +326,7 @@
     </figure>
     <h4><code>buffer(bufferOpenings, bufferClosingSelector)</code></h4>
     <figure class="variant">
-    <img src="images/buffer2.png" width="640" alt="buffer(bufferOpenings,bufferClosingSelector)" />
+    <img src="images/buffer2.png" width="100%" alt="buffer(bufferOpenings,bufferClosingSelector)" />
     <figcaption>
      <p><code>buffer(bufferOpenings,&#8239;bufferClosingSelector)</code> monitors an Observable,
         <code>bufferOpenings</code>, that emits <code>BufferOpening</code> objects. Each time it
@@ -344,15 +341,15 @@
     </figure>
     <h4><code>buffer(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
-    <img src="images/buffer5.png" width="640" alt="buffer(timespan,unit)" />
+    <img src="images/buffer5.png" width="100%" alt="buffer(timespan,unit)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;unit)</code> emits a new <code>List</code> of items
         periodically, every <code>timespan</code> amount of time, containing all items emitted by
         the source Observable since the previous bundle emission or, in the case of the first
         bundle, since the subscription to the source Observable. There is also a version of this
-        variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
-        govern the timespan; by default this variant uses the <code>computation</code>
-        scheduler.</p>
+        variant of the operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a
+        parameter and uses it to govern the timespan; by default this variant uses the <code>computation</code>
+        Scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit)"><code>buffer(long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,TimeUnit,Scheduler)</code></a></li>
@@ -360,15 +357,15 @@
     </figure>
     <h4><code>buffer(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
-    <img src="images/buffer6.png" width="640" alt="buffer(timespan,unit,count)" />
+    <img src="images/buffer6.png" width="100%" alt="buffer(timespan,unit,count)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;unit,&#8239;count)</code> emits a new <code>List</code> of
         items for every <code>count</code> items emitted by the source Observable, or, if
         <code>timespan</code> has elapsed since its last bundle emission, it emits a bundle of
         however many items the source Observable has emitted in that span, even if this is fewer
         than <code>count</code>. There is also a version of this variant of the operator that
-        takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
-        default this variant uses the <code>computation</code> scheduler.</p>
+        takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int)"><code>buffer(long,TimeUnit,int)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>buffer(long,TimeUnit,int,Scheduler)</code></a></li>
@@ -376,7 +373,7 @@
     </figure>
     <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
-    <img src="images/buffer7.png" width="640" alt="buffer(timespan,timeshift,unit)" />
+    <img src="images/buffer7.png" width="100%" alt="buffer(timespan,timeshift,unit)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;timeshift,&#8239;unit)</code> creates a new <code>List</code>
         of items every <code>timeshift</code> period of time, and fills this bundle with every
@@ -385,8 +382,8 @@
         own emission. If <code>timespan</code> is longer than <code>timeshift</code>, the emitted
         bundles will represent time periods that overlap and so they may contain duplicate items.
         There is also a version of this variant of the operator that takes a
-        <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
-        variant uses the <code>computation</code> scheduler.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit)"><code>buffer(long,long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,long,TimeUnit,Scheduler)</code></a></li>
@@ -397,7 +394,7 @@
      is, to cope with an Observable that may produce items too quickly for its observer to consume).
     </p>
     <figure class="variant">
-     <img src="images/bp.buffer2.png" width="640" alt="Buffer as a backpressure strategy" />
+     <img src="images/bp.buffer2.png" width="100%" alt="Buffer as a backpressure strategy" />
      <figcaption><p>
       Buffer can reduce a sequence of many items to a sequence of fewer buffers-of-items, making
       them more manageable. You could, for example, close and emit a buffer of items from a bursty
@@ -409,7 +406,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = bursty.buffer(500, TimeUn
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.buffer1.png" width="640" alt="Buffer as a backpressure strategy" />
+     <img src="images/bp.buffer1.png" width="100%" alt="Buffer as a backpressure strategy" />
      <figcaption><p>
       Or you could get fancy, and collect items in buffers during the bursty periods and emit them
       at the end of each burst, by using the
@@ -450,7 +447,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </p>
     <h4><code>buffer(count)</code></h4>
     <figure class="variant">
-    <img src="images/buffer3.png" width="640" alt="buffer(count)" />
+    <img src="images/buffer3.png" width="100%" alt="buffer(count)" />
     <figcaption>
      <p><code>buffer(count)</code> emits non-overlapping buffers in the form of
         <code>List</code>s, each of which contains at most <code>count</code> items from the
@@ -462,7 +459,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
     <h4><code>buffer(count, skip)</code></h4>
     <figure class="variant">
-    <img src="images/buffer4.png" width="640" alt="buffer(count,skip)" />
+    <img src="images/buffer4.png" width="100%" alt="buffer(count,skip)" />
     <figcaption>
      <p><code>buffer(count,&#8239;skip)</code> creates a new buffer starting with the first
         emitted item from the source Observable, and every <code>skip</code> items thereafter, and
@@ -477,7 +474,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
     <h4><code>buffer(bufferClosingSelector)</code></h4>
     <figure class="variant">
-    <img src="images/buffer1.png" width="640" alt="buffer(bufferClosingSelector)" />
+    <img src="images/buffer1.png" width="100%" alt="buffer(bufferClosingSelector)" />
     <figcaption>
      <p>When it subscribes to the source Observable, <code>buffer(bufferClosingSelector)</code>
         begins to collect its emissions into a <code>List</code>, and it also calls
@@ -492,7 +489,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
     <h4><code>buffer(boundary)</code></h4>
     <figure class="variant">
-    <img src="images/buffer8.png" width="640" alt="buffer(boundary)" />
+    <img src="images/buffer8.png" width="100%" alt="buffer(boundary)" />
     <figcaption>
      <p><code>buffer(boundary)</code> monitors an Observable, <code>boundary</code>. Each time
         that Observable emits an item, it creates a new <code>List</code> to begin collecting
@@ -504,7 +501,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
     <h4><code>buffer(bufferOpenings, bufferClosingSelector)</code></h4>
     <figure class="variant">
-    <img src="images/buffer2.png" width="640" alt="buffer(bufferOpenings,bufferClosingSelector)" />
+    <img src="images/buffer2.png" width="100%" alt="buffer(bufferOpenings,bufferClosingSelector)" />
     <figcaption>
      <p><code>buffer(bufferOpenings,&#8239;bufferClosingSelector)</code> monitors an Observable,
         <code>bufferOpenings</code>, that emits <code>BufferOpening</code> objects. Each time it
@@ -519,14 +516,14 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
     <h4><code>buffer(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
-    <img src="images/buffer5.png" width="640" alt="buffer(timespan,unit)" />
+    <img src="images/buffer5.png" width="100%" alt="buffer(timespan,unit)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;unit)</code> emits a new <code>List</code> of items
         periodically, every <code>timespan</code> amount of time, containing all items emitted by
         the source Observable since the previous bundle emission or, in the case of the first
         bundle, since the subscription to the source Observable. There is also a version of this
-        variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
-        govern the timespan; by default this variant uses the <code>computation</code>
+        variant of the operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a
+        parameter and uses it to govern the timespan; by default this variant uses the <code>computation</code>
         scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit)"><code>buffer(long,TimeUnit)</code></a></li>
@@ -535,15 +532,15 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
     <h4><code>buffer(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
-    <img src="images/buffer6.png" width="640" alt="buffer(timespan,unit,count)" />
+    <img src="images/buffer6.png" width="100%" alt="buffer(timespan,unit,count)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;unit,&#8239;count)</code> emits a new <code>List</code> of
         items for every <code>count</code> items emitted by the source Observable, or, if
         <code>timespan</code> has elapsed since its last bundle emission, it emits a bundle of
         however many items the source Observable has emitted in that span, even if this is fewer
         than <code>count</code>. There is also a version of this variant of the operator that
-        takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
-        default this variant uses the <code>computation</code> scheduler.</p>
+        takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int)"><code>buffer(long,TimeUnit,int)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>buffer(long,TimeUnit,int,Scheduler)</code></a></li>
@@ -551,7 +548,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figure>
     <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
     <figure class="variant">
-    <img src="images/buffer7.png" width="640" alt="buffer(timespan,timeshift,unit)" />
+    <img src="images/buffer7.png" width="100%" alt="buffer(timespan,timeshift,unit)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;timeshift,&#8239;unit)</code> creates a new <code>List</code>
         of items every <code>timeshift</code> period of time, and fills this bundle with every
@@ -560,8 +557,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         own emission. If <code>timespan</code> is longer than <code>timeshift</code>, the emitted
         bundles will represent time periods that overlap and so they may contain duplicate items.
         There is also a version of this variant of the operator that takes a
-        <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
-        variant uses the <code>computation</code> scheduler.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit)"><code>buffer(long,long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#buffer(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>buffer(long,long,TimeUnit,Scheduler)</code></a></li>
@@ -572,7 +569,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
      is, to cope with an Observable that may produce items too quickly for its observer to consume).
     </p>
     <figure class="variant">
-     <img src="images/bp.buffer2.png" width="640" alt="Buffer as a backpressure strategy" />
+     <img src="images/bp.buffer2.png" width="100%" alt="Buffer as a backpressure strategy" />
      <figcaption><p>
       Buffer can reduce a sequence of many items to a sequence of fewer buffers-of-items, making
       them more manageable. You could, for example, close and emit a buffer of items from a bursty
@@ -584,7 +581,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = bursty.buffer(500, TimeUn
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.buffer1.png" width="640" alt="Buffer as a backpressure strategy" />
+     <img src="images/bp.buffer1.png" width="100%" alt="Buffer as a backpressure strategy" />
      <figcaption><p>
       Or you could get fancy, and collect items in buffers during the bursty periods and emit them
       at the end of each burst, by using the
@@ -632,7 +629,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </p>
    <h4><code>buffer(bufferBoundaries)</code></h4>
    <figure class="variant">
-    <img src="images/buffer8.png" width="640" alt="buffer(bufferBoundaries)" />
+    <img src="images/buffer8.png" width="100%" alt="buffer(bufferBoundaries)" />
     <figcaption>
      <p><code>buffer(bufferBoundaries)</code> monitors an Observable,
         <code>bufferBoundaries</code>. Each time that Observable emits an item, it creates a new
@@ -642,7 +639,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer(bufferClosingSelector)</code></h4>
    <figure class="variant">
-    <img src="images/buffer1.png" width="640" alt="buffer(bufferClosingSelector)" />
+    <img src="images/buffer1.png" width="100%" alt="buffer(bufferClosingSelector)" />
     <figcaption>
      <p>When it subscribes to the source Observable, <code>buffer(bufferClosingSelector)</code>
         begins to collect its emissions into a collection, and it also calls
@@ -655,7 +652,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer(bufferOpenings,bufferClosingSelector)</code></h4>
    <figure class="variant">
-    <img src="images/buffer2.png" width="640" alt="buffer(bufferOpenings,bufferClosingSelector)" />
+    <img src="images/buffer2.png" width="100%" alt="buffer(bufferOpenings,bufferClosingSelector)" />
     <figcaption>
      <p><code>buffer(bufferOpenings,&#8239;bufferClosingSelector)</code> monitors an Observable,
         <code>bufferOpenings</code>, that emits <code>BufferOpening</code> objects. Each time it
@@ -685,7 +682,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </ul>
    <h4><code>bufferWithCount(count)</code></h4>
    <figure class="variant">
-    <img src="images/bufferWithCount3.png" width="640" alt="bufferWithCount(count)" />
+    <img src="images/bufferWithCount3.png" width="100%" alt="bufferWithCount(count)" />
     <figcaption>
      <p><code>bufferWithCount(count)</code> emits non-overlapping buffers, each of which contains
         at most <code>count</code> items from the source Observable (the final emitted buffer may
@@ -694,7 +691,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>bufferWithCount(count, skip)</code></h4>
    <figure class="variant">
-    <img src="images/bufferWithCount4.png" width="640" alt="bufferWithCount(count,skip)" />
+    <img src="images/bufferWithCount4.png" width="100%" alt="bufferWithCount(count,skip)" />
     <figcaption>
      <p><code>bufferWithCount(count,&#8239;skip)</code> creates a new buffer starting with the
         first emitted item from the source Observable, and a new one for every <code>skip</code>
@@ -717,19 +714,19 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </ul>
    <h4><code>bufferWithTime(timeSpan)</code></h4>
    <figure class="variant">
-    <img src="images/bufferWithTime5.png" width="640" alt="bufferWithTime(timeSpan)" />
+    <img src="images/bufferWithTime5.png" width="100%" alt="bufferWithTime(timeSpan)" />
     <figcaption>
      <p><code>bufferWithTime(timeSpan)</code> emits a new collection of items periodically, every
         <code>timeSpan</code> milliseconds, containing all items emitted by the source Observable
         since the previous bundle emission or, in the case of the first bundle, since the
         subscription to the source Observable. There is also a version of this variant of the
-        operator that takes a <code>Scheduler</code> as a parameter and uses it to govern the
-        timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
+        operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it
+        to govern the timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
     </figcaption>
    </figure>
    <h4><code>bufferWithTime(timeSpan, timeShift)</code></h4>
    <figure class="variant">
-    <img src="images/bufferWithTime7.png" width="640" alt="bufferWithTime(timeSpan,timeShift)" />
+    <img src="images/bufferWithTime7.png" width="100%" alt="bufferWithTime(timeSpan,timeShift)" />
     <figcaption>
      <p><code>bufferWithTime(timeSpan,&#8239;timeShift)</code> creates a new collection of items
         every <code>timeShift</code> milliseconds, and fills this bundle with every item emitted
@@ -738,21 +735,21 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         emission. If <code>timeSpan</code> is longer than <code>timeShift</code>, the emitted
         bundles will represent time periods that overlap and so they may contain duplicate items.
         There is also a version of this variant of the operator that takes a
-        <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
-        variant uses the <code>computation</code> scheduler.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
     </figcaption>
    </figure>
    <h4><code>bufferWithTimeOrCount(timeSpan, count)</code></h4>
    <figure class="variant">
-    <img src="images/bufferWithTimeOrCount6.png" width="640" alt="bufferWithTimeOrCount(timeSpan,count)" />
+    <img src="images/bufferWithTimeOrCount6.png" width="100%" alt="bufferWithTimeOrCount(timeSpan,count)" />
     <figcaption>
      <p><code>bufferWithTimeOrCount(timeSpan,&#8239;count)</code> emits a new collection of items
         for every <code>count</code> items emitted by the source Observable, or, if
         <code>timeSpan</code> milliseconds have elapsed since its last collection emission, it
         emits a collection of however many items the source Observable has emitted in that span,
         even if this is fewer than <code>count</code>. There is also a version of this variant of
-        the operator that takes a <code>Scheduler</code> as a parameter and uses it to govern the
-        timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
+        the operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses
+        it to govern the timespan; by default this variant uses the <code>timeout</code> scheduler.</p>
     </figcaption>
    </figure>
    <p>
@@ -795,7 +792,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </p>
    <h4><code>buffer(count)</code></h4>
    <figure class="variant">
-    <img src="images/buffer3.png" width="640" alt="buffer(count)" />
+    <img src="images/buffer3.png" width="100%" alt="buffer(count)" />
     <figcaption>
      <p><code>buffer(count)</code> emits non-overlapping buffers in the form of
         <code>List</code>s, each of which contains at most <code>count</code> items from the
@@ -805,7 +802,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer(count, skip)</code></h4>
    <figure class="variant">
-    <img src="images/buffer4.png" width="640" alt="buffer(count,skip)" />
+    <img src="images/buffer4.png" width="100%" alt="buffer(count,skip)" />
     <figcaption>
      <p><code>buffer(count,&#8239;skip)</code> creates a new buffer starting with the first
         emitted item from the source Observable, and every <code>skip</code> items thereafter, and
@@ -818,7 +815,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer(bufferClosingSelector)</code></h4>
    <figure class="variant">
-    <img src="images/buffer1.png" width="640" alt="buffer(bufferClosingSelector)" />
+    <img src="images/buffer1.png" width="100%" alt="buffer(bufferClosingSelector)" />
     <figcaption>
      <p>When it subscribes to the source Observable, <code>buffer(bufferClosingSelector)</code>
         begins to collect its emissions into a <code>List</code>, and it also calls
@@ -831,7 +828,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer(boundary)</code></h4>
    <figure class="variant">
-    <img src="images/buffer8.png" width="640" alt="buffer(boundary)" />
+    <img src="images/buffer8.png" width="100%" alt="buffer(boundary)" />
     <figcaption>
      <p><code>buffer(boundary)</code> monitors an Observable, <code>boundary</code>. Each time
         that Observable emits an item, it creates a new <code>List</code> to begin collecting
@@ -840,7 +837,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer(bufferOpenings, bufferClosingSelector)</code></h4>
    <figure class="variant">
-    <img src="images/buffer2.png" width="640" alt="buffer(bufferOpenings,bufferClosingSelector)" />
+    <img src="images/buffer2.png" width="100%" alt="buffer(bufferOpenings,bufferClosingSelector)" />
     <figcaption>
      <p><code>buffer(bufferOpenings,&#8239;bufferClosingSelector)</code> monitors an Observable,
         <code>bufferOpenings</code>, that emits <code>BufferOpening</code> objects. Each time it
@@ -853,33 +850,33 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
    <figure class="variant">
-    <img src="images/buffer5.png" width="640" alt="buffer(timespan,unit)" />
+    <img src="images/buffer5.png" width="100%" alt="buffer(timespan,unit)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;unit)</code> emits a new <code>List</code> of items
         periodically, every <code>timespan</code> amount of time, containing all items emitted by
         the source Observable since the previous bundle emission or, in the case of the first
-        bundle, since the subscription to the source Observable. There is also a version of this
-        variant of the operator that takes a <code>Scheduler</code> as a parameter and uses it to
-        govern the timespan; by default this variant uses the <code>computation</code>
+        bundle, since the subscription to the source Observable.  There is also a version of this
+        variant of the operator that takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a
+        parameter and uses it to govern the timespan; by default this variant uses the <code>computation</code>
         scheduler.</p>
     </figcaption>
    </figure>
    <h4><code>buffer(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
    <figure class="variant">
-    <img src="images/buffer6.png" width="640" alt="buffer(timespan,unit,count)" />
+    <img src="images/buffer6.png" width="100%" alt="buffer(timespan,unit,count)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;unit,&#8239;count)</code> emits a new <code>List</code> of
         items for every <code>count</code> items emitted by the source Observable, or, if
         <code>timespan</code> has elapsed since its last bundle emission, it emits a bundle of
         however many items the source Observable has emitted in that span, even if this is fewer
         than <code>count</code>. There is also a version of this variant of the operator that
-        takes a <code>Scheduler</code> as a parameter and uses it to govern the timespan; by
-        default this variant uses the <code>computation</code> scheduler.</p>
+        takes a <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
     </figcaption>
    </figure>
    <h4><code>buffer(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
    <figure class="variant">
-    <img src="images/buffer7.png" width="640" alt="buffer(timespan,timeshift,unit)" />
+    <img src="images/buffer7.png" width="100%" alt="buffer(timespan,timeshift,unit)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;timeshift,&#8239;unit)</code> creates a new <code>List</code>
         of items every <code>timeshift</code> period of time, and fills this bundle with every
@@ -888,8 +885,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         own emission. If <code>timespan</code> is longer than <code>timeshift</code>, the emitted
         bundles will represent time periods that overlap and so they may contain duplicate items.
         There is also a version of this variant of the operator that takes a
-        <code>Scheduler</code> as a parameter and uses it to govern the timespan; by default this
-        variant uses the <code>computation</code> scheduler.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan; by default this variant uses the <code>computation</code> scheduler.</p>
     </figcaption>
    </figure>
   
@@ -917,7 +914,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </p>
    <h4><code>Buffer(count)</code></h4>
    <figure class="variant">
-    <img src="images/Buffer3.net.png" width="640" alt="Buffer(count)" />
+    <img src="images/Buffer3.net.png" width="100%" alt="Buffer(count)" />
     <figcaption>
      <p><code>Buffer(count)</code> emits non-overlapping buffers in the form of
         <code>IList</code>s, each of which contains at most <code>count</code> items from the
@@ -927,7 +924,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>Buffer(count, skip)</code></h4>
    <figure class="variant">
-    <img src="images/Buffer4.net.png" width="640" alt="Buffer(count,skip)" />
+    <img src="images/Buffer4.net.png" width="100%" alt="Buffer(count,skip)" />
     <figcaption>
      <p><code>Buffer(count,&#8239;skip)</code> creates a new buffer starting with the first
         emitted item from the source Observable, and every <code>skip</code> items thereafter, and
@@ -940,7 +937,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>Buffer(bufferClosingSelector)</code></h4>
    <figure class="variant">
-    <img src="images/Buffer1.net.png" width="640" alt="Buffer(bufferClosingSelector)" />
+    <img src="images/Buffer1.net.png" width="100%" alt="Buffer(bufferClosingSelector)" />
     <figcaption>
      <p>When it subscribes to the source Observable, <code>Buffer(bufferClosingSelector)</code>
         begins to collect its emissions into an <code>IList</code>, and it also calls
@@ -953,7 +950,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>Buffer(bufferOpenings,bufferClosingSelector)</code></h4>
    <figure class="variant">
-    <img src="images/Buffer2.net.png" width="640" alt="Buffer(bufferOpenings,bufferClosingSelector)" />
+    <img src="images/Buffer2.net.png" width="100%" alt="Buffer(bufferOpenings,bufferClosingSelector)" />
     <figcaption>
      <p><code>Buffer(bufferOpenings,&#8239;bufferClosingSelector)</code> monitors an Observable,
         <code>BufferOpenings</code>, that emits <code>TBufferOpening</code> objects. Each time it
@@ -966,31 +963,32 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>Buffer(timeSpan)</code></h4>
    <figure class="variant">
-    <img src="images/Buffer5.net.png" width="640" alt="Buffer(timeSpan)" />
+    <img src="images/Buffer5.net.png" width="100%" alt="Buffer(timeSpan)" />
     <figcaption>
      <p><code>Buffer(timeSpan)</code> emits a new <code>IList</code> of items periodically, every
         <code>timeSpan</code> amount of time, containing all items emitted by the source
         Observable since the previous bundle emission or, in the case of the first list, since
         the subscription to the source Observable. There is also a version of this variant of the
-        operator that takes an <code>IScheduler</code> as a parameter and uses it to
-        govern the timespan.</p>
+        operator that takes an <a href="../scheduler.html"><code>IScheduler</code></a> as a parameter and uses
+        it to govern the timespan.</p>
     </figcaption>
    </figure>
    <h4><code>Buffer(timeSpan, count)</code></h4>
    <figure class="variant">
-    <img src="images/Buffer6.net.png" width="640" alt="Buffer(timeSpan,count)" />
+    <img src="images/Buffer6.net.png" width="100%" alt="Buffer(timeSpan,count)" />
     <figcaption>
      <p><code>Buffer(timeSpan,&#8239;count)</code> emits a new <code>IList</code> of items for
         every <code>count</code> items emitted by the source Observable, or, if
         <code>timeSpan</code> has elapsed since its last list emission, it emits a list of
         however many items the source Observable has emitted in that span, even if this is fewer
         than <code>count</code>. There is also a version of this variant of the operator that
-        takes an <code>IScheduler</code> as a parameter and uses it to govern the timespan.</p>
+        takes an <a href="../scheduler.html"><code>IScheduler</code></a> as a parameter and uses it to govern
+        the timespan.</p>
     </figcaption>
    </figure>
    <h4><code>Buffer(timeSpan, timeShift)</code></h4>
    <figure class="variant">
-    <img src="images/Buffer7.net.png" width="640" alt="Buffer(timeSpan,timeShift)" />
+    <img src="images/Buffer7.net.png" width="100%" alt="Buffer(timeSpan,timeShift)" />
     <figcaption>
      <p><code>Buffer(timeSpan,&#8239;timeShift)</code> creates a new <code>IList</code> of items
         every <code>timeShift</code> period of time, and fills this list with every item emitted
@@ -998,8 +996,9 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         the list&#8217;s creation, before emitting this <code>IList</code> as its own emission. If
         <code>timeSpan</code> is longer than <code>timeShift</code>, the emitted lists will
         represent time periods that overlap and so they may contain duplicate items. There is also
-        a version of this variant of the operator that takes an <code>IScheduler</code> as a
-        parameter and uses it to govern the timespan.</p>
+        a version of this variant of the operator that takes an
+        <a href="../scheduler.html"><code>IScheduler</code></a> as a parameter and uses it to govern the
+        timespan.</p>
     </figcaption>
    </figure>
   
@@ -1030,7 +1029,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </p>
    <h4><code>buffer(buffer_openings)</code></h4>
    <figure class="variant">
-    <img src="images/buffer8.py.png" width="640" alt="buffer(buffer_openings)" />
+    <img src="images/buffer8.py.png" width="100%" alt="buffer(buffer_openings)" />
     <figcaption>
      <p><code>buffer(buffer_openings=boundaryObservable)</code> monitors an Observable,
         <code>buffer_openings</code>. Each time that Observable emits an item, it creates a new
@@ -1040,7 +1039,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer(closing_selector)</code></h4>
    <figure class="variant">
-    <img src="images/buffer1.py.png" width="640" alt="buffer(closing_selector)" />
+    <img src="images/buffer1.py.png" width="100%" alt="buffer(closing_selector)" />
     <figcaption>
      <p><code>buffer(closing_selector=closingSelector)</code> begins collecting items emitted
         by the source Observable immediately upon subscription, and also calls the
@@ -1053,7 +1052,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </figcaption>
    </figure>
    <figure class="variant">
-    <img src="images/buffer2.py.png" width="640" alt="buffer(closing_selector,buffer_closing_selector)" />
+    <img src="images/buffer2.py.png" width="100%" alt="buffer(closing_selector,buffer_closing_selector)" />
     <figcaption>
      <p><code>buffer(closing_selector=openingSelector,&nbsp;buffer_closing_selector=closingSelector)</code>
      begins by calling <code>closing_selector</code> to get an Observable. It monitors this
@@ -1066,7 +1065,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer_with_count(count)</code></h4>
    <figure class="variant">
-    <img src="images/buffer_with_count3.py.png" width="640" alt="buffer_with_count(count)" />
+    <img src="images/buffer_with_count3.py.png" width="100%" alt="buffer_with_count(count)" />
     <figcaption>
      <p><code>buffer_with_count(count)</code> emits non-overlapping buffers in the form of
         arrays, each of which contains at most <code>count</code> items from the source Observable
@@ -1075,7 +1074,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer_with_count(count, skip)</code></h4>
    <figure class="variant">
-    <img src="images/buffer_with_count4.py.png" width="640" alt="buffer_with_count(count,skip)" />
+    <img src="images/buffer_with_count4.py.png" width="100%" alt="buffer_with_count(count,skip)" />
     <figcaption>
      <p><code>buffer_with_count(count,&#8239;skip=skip)</code> creates a new buffer starting with
         the first emitted item from the source Observable, and every <code>skip</code> items
@@ -1088,7 +1087,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer_with_time(timespan)</code></h4>
    <figure class="variant">
-    <img src="images/buffer_with_time5.py.png" width="640" alt="buffer_with_time(timespan)" />
+    <img src="images/buffer_with_time5.py.png" width="100%" alt="buffer_with_time(timespan)" />
     <figcaption>
      <p><code>buffer_with_time(timespan)</code> emits a new array of items periodically, every
         <code>timespan</code> milliseconds, containing all items emitted by the source Observable
@@ -1100,7 +1099,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer_with_time(timespan, timeshift)</code></h4>
    <figure class="variant">
-    <img src="images/buffer_with_time7.py.png" width="640" alt="buffer_with_time(timespan,timeshift)" />
+    <img src="images/buffer_with_time7.py.png" width="100%" alt="buffer_with_time(timespan,timeshift)" />
     <figcaption>
      <p><code>buffer(timespan,&#8239;timeshift=timeshift)</code> creates a new array of items
         every <code>timeshift</code> milliseconds, and fills this array with every item emitted
@@ -1115,7 +1114,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer_with_time_or_count(timespan, count)</code></h4>
    <figure class="variant">
-    <img src="images/buffer_with_time_or_count6.py.png" width="640" alt="buffer_with_time_or_count(timespan,count)" />
+    <img src="images/buffer_with_time_or_count6.py.png" width="100%" alt="buffer_with_time_or_count(timespan,count)" />
     <figcaption>
      <p><code>buffer_with_time_or_count(timespan,&#8239;count)</code> emits a new array of items
         for every <code>count</code> items emitted by the source Observable, or, if
@@ -1149,7 +1148,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </p>
    <h4><code>buffer_with_count(count)</code></h4>
    <figure class="variant">
-    <img src="images/buffer_with_count3.py.png" width="640" alt="buffer_with_count(count)" />
+    <img src="images/buffer_with_count3.py.png" width="100%" alt="buffer_with_count(count)" />
     <figcaption>
      <p><code>buffer_with_count(count)</code> emits non-overlapping buffers in the form of
         arrays, each of which contains at most <code>count</code> items from the source Observable
@@ -1158,7 +1157,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer_with_count(count,skip)</code></h4>
    <figure class="variant">
-    <img src="images/buffer_with_count4.rb.png" width="640" alt="buffer_with_count(count,skip)" />
+    <img src="images/buffer_with_count4.rb.png" width="100%" alt="buffer_with_count(count,skip)" />
     <figcaption>
      <p><code>buffer_with_count(count,&#8239;skip=skip)</code> creates a new buffer starting with
         the first emitted item from the source Observable, and every <code>skip</code> items
@@ -1171,7 +1170,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>buffer_with_time(timespan)</code></h4>
    <figure class="variant">
-    <img src="images/buffer_with_time5.py.png" width="640" alt="buffer_with_time(timespan)" />
+    <img src="images/buffer_with_time5.py.png" width="100%" alt="buffer_with_time(timespan)" />
     <figcaption>
      <p><code>buffer_with_time(timespan)</code> emits a new array of items periodically, every
         <code>timespan</code> milliseconds, containing all items emitted by the source Observable
@@ -1204,7 +1203,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </p>
    <h4><code>slidingBuffer(count, skip)</code></h4>
    <figure class="variant">
-    <img src="images/slidingBuffer4.png" width="640" alt="slidingBuffer(count,skip)" />
+    <img src="images/slidingBuffer4.png" width="100%" alt="slidingBuffer(count,skip)" />
     <figcaption>
      <p><code>slidingBuffer(count,&#8239;skip)</code> creates a new buffer starting with the first
         emitted item from the source Observable, and every <code>skip</code> items thereafter, and
@@ -1217,7 +1216,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>slidingBuffer(timespan, timeshift)</code></h4>
    <figure class="variant">
-    <img src="images/slidingBuffer7.png" width="640" alt="slidingBuffer(timespan,timeshift)" />
+    <img src="images/slidingBuffer7.png" width="100%" alt="slidingBuffer(timespan,timeshift)" />
     <figcaption>
      <p><code>slidingBuffer(timespan,&#8239;timeshift)</code> creates a new
         <code>Seq</code> of items every <code>timeshift</code> (a <code>Duration</code>), and
@@ -1226,13 +1225,14 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         creation, before emitting this <code>Seq</code> as its own emission. If
         <code>timespan</code> is longer than <code>timeshift</code>, the emitted arrays will
         represent time periods that overlap and so they may contain duplicate items. There is also
-        a version of this variant of the operator that takes a <code>Scheduler</code> as a
-        parameter and uses it to govern the timespan.</p>
+        a version of this variant of the operator that takes a
+        <a href="../scheduler.html"><code>Scheduler</code></a> as a parameter and uses it to govern the
+        timespan.</p>
     </figcaption>
    </figure>
    <h4><code>slidingBuffer(openings, closings)</code></h4>
    <figure class="variant">
-    <img src="images/slidingBuffer2.png" width="640" alt="slidingBuffer(openings,closings)" />
+    <img src="images/slidingBuffer2.png" width="100%" alt="slidingBuffer(openings,closings)" />
     <figcaption>
      <p><code>slidingBuffer(openings,closings)</code> monitors the <code>openings</code>
      Observable, and, whenever it emits an <code>Opening</code> item, <code>slidingBuffer</code>
@@ -1245,7 +1245,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>tumblingBuffer(count)</code></h4>
    <figure class="variant">
-    <img src="images/tumblingBuffer3.png" width="640" alt="tumblingBuffer(count)" />
+    <img src="images/tumblingBuffer3.png" width="100%" alt="tumblingBuffer(count)" />
     <figcaption>
      <p><code>tumblingBuffer(count)</code> emits non-overlapping buffers in the form of
         <code>Seq</code>s, each of which contains at most <code>count</code> items from the source
@@ -1254,7 +1254,7 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>tumblingBuffer(boundary)</code></h4>
    <figure class="variant">
-    <img src="images/tumblingBuffer8.png" width="640" alt="tumblingBuffer(boundary)" />
+    <img src="images/tumblingBuffer8.png" width="100%" alt="tumblingBuffer(boundary)" />
     <figcaption>
      <p><code>tumblingBuffer(boundary)</code> monitors an Observable, <code>boundary</code>. Each
         time that Observable emits an item, it creates a new <code>Seq</code> to begin collecting
@@ -1266,19 +1266,20 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
    <h4><code>tumblingBuffer(timespan)</code></h4>
    <figure class="variant">
-    <img src="images/tumblingBuffer5.png" width="640" alt="tumblingBuffer(timespan)" />
+    <img src="images/tumblingBuffer5.png" width="100%" alt="tumblingBuffer(timespan)" />
     <figcaption>
      <p><code>tumblingBuffer(timespan)</code> emits a new <code>Seq</code> of items periodically,
         every <code>timespan</code> (a <code>Duration</code>), containing all items emitted by the
         source Observable since the previous bundle emission or, in the case of the first bundle,
         since the subscription to the source Observable. This variant of the operator has an
         optional second parameter, <code>scheduler</code>, with which you can set the
-        <code>Scheduler</code> that you want to govern the timespan calculation.</p>
+        <a href="../scheduler.html"><code>Scheduler</code></a> that you want to govern the timespan
+        calculation.</p>
     </figcaption>
    </figure>
    <h4><code>tumblingBuffer(timespan, count)</code></h4>
    <figure class="variant">
-    <img src="images/tumblingBuffer6.png" width="640" alt="tumblingBuffer(timespan,count)" />
+    <img src="images/tumblingBuffer6.png" width="100%" alt="tumblingBuffer(timespan,count)" />
     <figcaption>
      <p><code>tumblingBuffer(timespan,&#8239;count)</code> emits a new <code>Seq</code> of items
         for every <code>count</code> items emitted by the source Observable, or, if
@@ -1286,7 +1287,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
         emission, it emits a <code>Seq</code> containing however many items the source Observable
         emitted in that span, even if this is fewer than <code>count</code>. This variant of the
         operator has an optional third parameter, <code>scheduler</code>, with which you can set
-        the <code>Scheduler</code> that you want to govern the timespan calculation.</p>
+        the <a href="../scheduler.html"><code>Scheduler</code></a> that you want to govern the timespan
+        calculation.</p>
     </figcaption>
    </figure>
   
@@ -1300,24 +1302,10 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -1332,13 +1320,10 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

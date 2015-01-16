@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>convert an Observable into another object or data structure</h3>
 
 <figure>
- <img src="images/To.c.png" width="640" alt="To" />
+ <img src="images/To.c.png" width="100%" alt="To" />
  <figcaption><p>
   The various language-specific implementations of ReactiveX have a variety of operators that you can use to
   convert an Observable, or a sequence of items emitted by an Observable, into another variety of object or
@@ -193,6 +190,12 @@
   or data structure; others return an Observable that emits such an object or data structure.
  </p></figcaption>
 </figure>
+<p>
+ In some implementations of ReactiveX, there is also an operator that converts an Observable into a
+ &ldquo;Blocking&rdquo; Observable. A Blocking Observable extends the ordinary Observable by providing a set of
+ methods, operating on the items emitted by the Observable, that block. Some of the
+ <span class="operator">To</span> operators are in this Blocking Obsevable set of extended operations.
+</p>
 
 <h4>See Also</h4>
 <ul>
@@ -208,7 +211,7 @@
         <div class="panel-heading" role="tab" id="headingRxClojure">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
-              RxClojure <code>into seq sorted-list-by</code>
+              RxClojure <code>BlockingObservable.blocking interpose BlockingObservable.into BlockingObservable.seq sort sort-by sorted-list-by</code>
             </a>
           </h4>
         </div>
@@ -229,7 +232,7 @@
         <div class="panel-heading" role="tab" id="headingRxCpp">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
-              RxCpp <code></code>
+              RxCpp <code>as_blocking</code>
             </a>
           </h4>
         </div>
@@ -250,7 +253,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>getIterator toFuture toIterable toList toMap toMultiMap toSortedList</code>
+              RxGroovy <code>BlockingObservable.from BlockingObservable.getIterator nest toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList</code>
             </a>
           </h4>
         </div>
@@ -258,7 +261,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/B.getIterator.png" width="640" alt="getIterator" />
+     <img src="images/B.getIterator.png" width="100%" alt="getIterator" />
      <figcaption><p>
       The <code>getIterator</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -273,7 +276,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/B.toFuture.png" width="640" alt="toFuture" />
+     <img src="images/B.toFuture.png" width="100%" alt="toFuture" />
      <figcaption><p>
       The <code>toFuture</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -293,7 +296,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/B.toIterable.png" width="640" alt="toIterable" />
+     <img src="images/B.toIterable.png" width="100%" alt="toIterable" />
      <figcaption><p>
       The <code>toIterable</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -308,7 +311,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toList.png" width="640" alt="toList" />
+     <img src="images/toList.png" width="100%" alt="toList" />
      <figcaption><p>
       Normally, an Observable that emits multiple items will do so by invoking its observer’s
       <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
@@ -336,14 +339,15 @@ Sequence complete</pre></div>
       source Observable invokes <code>onError</code>, the Observable returned by <code>toList</code> will
       immediately invoke the <code>onError</code> methods of its observers.
      </p><p>
-      <code>toList</code> does not by default operate on any particular Scheduler.
+      <code>toList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toList()"><code>toList()</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMap.png" width="640" alt="toMap" />
+     <img src="images/toMap.png" width="100%" alt="toMap" />
      <figcaption><p>
       The <code>toMap</code> operator collects the items emitted by the source Observable into a map (by
       default, a <code>HashMap</code>, but you can optionally supply a factory function that generates another
@@ -351,7 +355,8 @@ Sequence complete</pre></div>
       emitted item. You may also optionally supply a function that converts an emitted item into the value to be
       stored in the map (by default, the item itself is this value).
      </p><p>
-      <code>toMap</code> does not by default operate on any particular Scheduler.
+      <code>toMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1)"><code>toMap(Func1)</code></a></li>
@@ -360,13 +365,14 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMultiMap.png" width="640" alt="toMultiMap" />
+     <img src="images/toMultiMap.png" width="100%" alt="toMultiMap" />
      <figcaption><p>
       The <code>toMultiMap</code> operator is similar to <code>toMap</code> except that the map it generates is
       also an <code>ArrayList</code> (by default; or you can pass an optional factory method as a fourth
       parameter by which you generate the variety of collection you prefer).
      </p><p>
-      <code>toMultiMap</code> does not by default operate on any particular Scheduler.
+      <code>toMultiMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1)"><code>toMultiMap(Func1)</code></a></li>
@@ -376,7 +382,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toSortedList.png" width="640" alt="toSortedList" />
+     <img src="images/toSortedList.png" width="100%" alt="toSortedList" />
      <figcaption><p>
       The <code>toSortedList</code> operator behaves much like <code>toList</code> except that it sorts the
       resulting list. By default it sorts the list naturally in ascending order by means of the
@@ -418,12 +424,20 @@ numbers.toSortedList({ n, m -> Math.abs(5-n) - Math.abs(5-m) }).subscribe(
 [5, 6, 4, 3, 7, 8, 2, 1, 9]
 Sequence complete</pre></div>
      <p>
-      <code>toSortedList</code> does not by default operate on any particular Scheduler.
+      <code>toSortedList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList()"><code>toSortedList()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList(rx.functions.Func2)"><code>toSortedList(Func2)</code></a></li>
      </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/nest.png" width="100%" alt="nest" />
+     <figcaption><p>
+      RxGroovy also has a <code>nest</code> operator that has one particular purpose: it converts a source
+      Observable into an Observable that emits that source Observable as its sole item.
+     </p></figcaption>
     </figure>
   
           </div>
@@ -436,7 +450,7 @@ Sequence complete</pre></div>
         <div class="panel-heading" role="tab" id="headingRxJava">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>getIterator toFuture toIterable toList toMap toMultiMap toSortedList</code>
+              RxJava <code>BlockingObservable.from BlockingObservable.getIterator nest toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList</code>
             </a>
           </h4>
         </div>
@@ -444,7 +458,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/B.getIterator.png" width="640" alt="getIterator" />
+     <img src="images/B.getIterator.png" width="100%" alt="getIterator" />
      <figcaption><p>
       The <code>getIterator</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -459,7 +473,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/B.toFuture.png" width="640" alt="toFuture" />
+     <img src="images/B.toFuture.png" width="100%" alt="toFuture" />
      <figcaption><p>
       The <code>toFuture</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -479,7 +493,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/B.toIterable.png" width="640" alt="toIterable" />
+     <img src="images/B.toIterable.png" width="100%" alt="toIterable" />
      <figcaption><p>
       The <code>toIterable</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
       to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
@@ -494,7 +508,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toList.png" width="640" alt="toList" />
+     <img src="images/toList.png" width="100%" alt="toList" />
      <figcaption><p>
       Normally, an Observable that emits multiple items will do so by invoking its observer’s
       <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
@@ -506,14 +520,15 @@ Sequence complete</pre></div>
       source Observable invokes <code>onError</code>, the Observable returned by <code>toList</code> will
       immediately invoke the <code>onError</code> methods of its observers.
      </p><p>
-      <code>toList</code> does not by default operate on any particular Scheduler.
+      <code>toList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toList()"><code>toList()</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMap.png" width="640" alt="toMap" />
+     <img src="images/toMap.png" width="100%" alt="toMap" />
      <figcaption><p>
       The <code>toMap</code> operator collects the items emitted by the source Observable into a map (by
       default, a <code>HashMap</code>, but you can optionally supply a factory function that generates another
@@ -521,7 +536,8 @@ Sequence complete</pre></div>
       emitted item. You may also optionally supply a function that converts an emitted item into the value to be
       stored in the map (by default, the item itself is this value).
      </p><p>
-      <code>toMap</code> does not by default operate on any particular Scheduler.
+      <code>toMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1)"><code>toMap(Func1)</code></a></li>
@@ -530,13 +546,14 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMultiMap.png" width="640" alt="toMultiMap" />
+     <img src="images/toMultiMap.png" width="100%" alt="toMultiMap" />
      <figcaption><p>
       The <code>toMultiMap</code> operator is similar to <code>toMap</code> except that the map it generates is
       also an <code>ArrayList</code> (by default; or you can pass an optional factory method as a fourth
       parameter by which you generate the variety of collection you prefer).
      </p><p>
-      <code>toMultiMap</code> does not by default operate on any particular Scheduler.
+      <code>toMultiMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1)"><code>toMultiMap(Func1)</code></a></li>
@@ -546,7 +563,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toSortedList.png" width="640" alt="toSortedList" />
+     <img src="images/toSortedList.png" width="100%" alt="toSortedList" />
      <figcaption><p>
       The <code>toSortedList</code> operator behaves much like <code>toList</code> except that it sorts the
       resulting list. By default it sorts the list naturally in ascending order by means of the
@@ -557,12 +574,20 @@ Sequence complete</pre></div>
       number; <code>toSortedList</code> will then use that function instead of <code>Comparable</code> to sort
       the items.
      </p><p>
-      <code>toSortedList</code> does not by default operate on any particular Scheduler.
+      <code>toSortedList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList()"><code>toSortedList()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList(rx.functions.Func2)"><code>toSortedList(Func2)</code></a></li>
      </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/nest.png" width="100%" alt="nest" />
+     <figcaption><p>
+      RxJava also has a <code>nest</code> operator that has one particular purpose: it converts a source
+      Observable into an Observable that emits that source Observable as its sole item.
+     </p></figcaption>
     </figure>
   
           </div>
@@ -583,7 +608,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/toArray.png" width="640" alt="toArray" />
+     <img src="images/toArray.png" width="100%" alt="toArray" />
      <figcaption><p>
       Normally, an Observable that emits multiple items will do so by invoking its observer’s
       <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
@@ -615,7 +640,7 @@ Completed</pre></code>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toMap.png" width="640" alt="toMap" />
+     <img src="images/toMap.png" width="100%" alt="toMap" />
      <figcaption><p>
       The <code>toMap</code> operator collects the items emitted by the source Observable into a
       <code>Map</code> and then emits that map. You supply a function that generates the key for each emitted
@@ -648,7 +673,7 @@ Completed</pre></code>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toSet.png" width="640" alt="toSet" />
+     <img src="images/toSet.png" width="100%" alt="toSet" />
      <figcaption><p>
       Normally, an Observable that emits multiple items will do so by invoking its observer’s
       <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
@@ -693,7 +718,7 @@ Completed</pre></code>
         <div class="panel-heading" role="tab" id="headingRxKotlin">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
-              RxKotlin <code>getIterator toIterable toList toMap toMultiMap toSortedList</code>
+              RxKotlin <code>BlockingObservable.from BlockingObservable.getIterator toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList</code>
             </a>
           </h4>
         </div>
@@ -714,7 +739,7 @@ Completed</pre></code>
         <div class="panel-heading" role="tab" id="headingRxNET">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
-              RxNET <code>GetEnumerator ToArray ToDictionary ToEnumerable ToEventPattern ToList ToLookup</code>
+              RxNET <code>GetEnumerator ToArray ToDictionary ToEnumerable ToEvent ToEventPattern ToList ToLookup ToTask</code>
             </a>
           </h4>
         </div>
@@ -735,7 +760,7 @@ Completed</pre></code>
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
-              RxPY <code>to_array to_dict to_iterable to_list to_set</code>
+              RxPY <code>to_array to_dict to_future to_iterable to_list to_set</code>
             </a>
           </h4>
         </div>
@@ -777,7 +802,7 @@ Completed</pre></code>
         <div class="panel-heading" role="tab" id="headingRxScala">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
-              RxScala <code>to toArray toBuffer toIndexedSeq toIterable toIterator toList toMap toMultiMap toSet toStream toTraversable toVector</code>
+              RxScala <code>nest to toArray toBlocking toBuffer BlockingObservable.toFuture toIndexedSeq BlockingObservable.toIterable toIterable toIterator BlockingObservable.toList toList toMap toMultiMap toSet toStream toTraversable toVector</code>
             </a>
           </h4>
         </div>
@@ -798,24 +823,10 @@ Completed</pre></code>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -830,13 +841,10 @@ Completed</pre></code>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

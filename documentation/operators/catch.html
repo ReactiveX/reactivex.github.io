@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>Catch</h1>
    <h3>recover from an onError notification by continuing the sequence without error</h3>
    <figure>
-    <img src="images/Catch.png" width="640" alt="Catch" />
+    <img src="images/Catch.png" width="100%" alt="Catch" />
     <figcaption><p>
      The <span class="operator">Catch</span> operator intercepts an <code>onError</code>
      notification from the source Observable and, instead of passing it through to any
@@ -228,7 +225,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/catchX.png" width="640" alt="catch*" />
+      <img src="images/catchX.png" width="100%" alt="catch*" />
       <figcaption><p>
        RxClojure implements this operator as <code>catch*</code>. This operator takes two arguments,
        both of which are functions of your choosing that take the exception raised by
@@ -312,7 +309,7 @@
      </dl>
      <h4><code>onErrorReturn</code></h4>
      <figure>
-      <img src="images/onErrorReturn.png" width="640" alt="onErrorReturn" />
+      <img src="images/onErrorReturn.png" width="100%" alt="onErrorReturn" />
       <figcaption><p>
        The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
        source Observable, unless that Observable invokes <code>onError</code> in which case, rather
@@ -348,7 +345,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onErrorResumeNext</code></h4>
      <figure>
-      <img src="images/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+      <img src="images/onErrorResumeNext.png" width="100%" alt="onErrorResumeNext" />
       <figcaption><p>
        The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
        the source Observable, unless that Observable invokes <code>onError</code> in which case,
@@ -390,7 +387,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onExceptionResumeNext</code></h4>
      <figure>
-      <img src="images/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+      <img src="images/onExceptionResumeNextViaObservable.png" width="100%" alt="onExceptionResumeNext" />
       <figcaption><p>
        Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
        behavior of the source Observable, unless that Observable invokes <code>onError</code> in
@@ -436,7 +433,7 @@ Sequence complete</pre></div>
      </dl>
      <h4><code>onErrorReturn</code></h4>
      <figure>
-      <img src="images/onErrorReturn.png" width="640" alt="onErrorReturn" />
+      <img src="images/onErrorReturn.png" width="100%" alt="onErrorReturn" />
       <figcaption><p>
        The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
        source Observable, unless that Observable invokes <code>onError</code> in which case, rather
@@ -449,7 +446,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onErrorResumeNext</code></h4>
      <figure>
-      <img src="images/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+      <img src="images/onErrorResumeNext.png" width="100%" alt="onErrorResumeNext" />
       <figcaption><p>
        The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
        the source Observable, unless that Observable invokes <code>onError</code> in which case,
@@ -463,7 +460,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onExceptionResumeNext</code></h4>
      <figure>
-      <img src="images/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+      <img src="images/onExceptionResumeNextViaObservable.png" width="100%" alt="onExceptionResumeNext" />
       <figcaption><p>
        Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
        behavior of the source Observable, unless that Observable invokes <code>onError</code> in
@@ -507,7 +504,7 @@ Sequence complete</pre></div>
      </dl>
      <h4><code>catch</code></h4>
      <figure>
-      <img src="images/catch.js.png" width="640" alt="catch" />
+      <img src="images/catch.js.png" width="100%" alt="catch" />
      </figure>
      <p>
       <code>catch</code> is found in the following distributions:
@@ -526,7 +523,7 @@ Sequence complete</pre></div>
      </p>
      <h4><code>onErrorResumeNext</code></h4>
      <figure>
-      <img src="images/onErrorResumeNext.js.png" width="640" alt="onErrorResumeNext" />
+      <img src="images/onErrorResumeNext.js.png" width="100%" alt="onErrorResumeNext" />
       <figcaption><p>
        This implementation borrows the confusing nomenclature from Rx.NET, in which
        <code>onErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
@@ -572,7 +569,7 @@ Sequence complete</pre></div>
      </dl>
      <h4><code>onErrorReturn</code></h4>
      <figure>
-      <img src="images/onErrorReturn.png" width="640" alt="onErrorReturn" />
+      <img src="images/onErrorReturn.png" width="100%" alt="onErrorReturn" />
       <figcaption><p>
        The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
        source Observable, unless that Observable invokes <code>onError</code> in which case, rather
@@ -582,7 +579,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onErrorResumeNext</code></h4>
      <figure>
-      <img src="images/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+      <img src="images/onErrorResumeNext.png" width="100%" alt="onErrorResumeNext" />
       <figcaption><p>
        The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
        the source Observable, unless that Observable invokes <code>onError</code> in which case,
@@ -592,7 +589,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onExceptionResumeNext</code></h4>
      <figure>
-      <img src="images/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+      <img src="images/onExceptionResumeNextViaObservable.png" width="100%" alt="onExceptionResumeNext" />
       <figcaption><p>
        Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
        behavior of the source Observable, unless that Observable invokes <code>onError</code> in
@@ -633,7 +630,7 @@ Sequence complete</pre></div>
      </dl>
      <h4><code>Catch</code></h4>
      <figure>
-      <img src="images/Catch.png" width="640" alt="Catch" />
+      <img src="images/Catch.png" width="100%" alt="Catch" />
       <figcaption><p>
        The <code>Catch</code> operator has a variant that allows you to specify which sort of
        Exception you want to catch. If you use that variant of the operator, any other Exceptions
@@ -643,7 +640,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>OnErrorResumeNext</code></h4>
      <figure>
-      <img src="images/OnErrorResumeNext.net.png" width="640" alt="OnErrorResumeNext" />
+      <img src="images/OnErrorResumeNext.net.png" width="100%" alt="OnErrorResumeNext" />
       <figcaption><p>
        This implementation introduces a confusing nomenclature, in which in spite of its name
        <code>OnErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
@@ -681,7 +678,7 @@ Sequence complete</pre></div>
      </dl>
      <h4><code>catch_exception</code></h4>
      <figure>
-      <img src="images/catch_exception.png" width="640" alt="catch_exception" />
+      <img src="images/catch_exception.png" width="100%" alt="catch_exception" />
       <figcaption><p>
        You may pass <code>catch_exception</code> a set of back-up Observables either as individual
        function parameters or as a single array of Observables. If it encounters an
@@ -695,7 +692,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>on_error_resume_next</code></h4>
      <figure>
-      <img src="images/on_error_resume_next.png" width="640" alt="on_error_resume_next" />
+      <img src="images/on_error_resume_next.png" width="100%" alt="on_error_resume_next" />
       <figcaption><p>
        You may pass <code>on_error_resume_next</code> a set of back-up Observables either as
        individual function parameters, as a single array of Observables, or as a factory function
@@ -737,7 +734,7 @@ Sequence complete</pre></div>
      </dl>
      <h4><code>rescue_error</code></h4>
      <figure>
-      <img src="images/rescue_error.png" width="640" alt="rescue_error" />
+      <img src="images/rescue_error.png" width="100%" alt="rescue_error" />
       <figcaption><p>
        You may pass <code>rescue_error</code> either an Observable or a factory action that
        generates an Observable.
@@ -745,7 +742,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>on_error_resume_next</code></h4>
      <figure>
-      <img src="images/on_error_resume_next.png" width="640" alt="on_error_resume_next" />
+      <img src="images/on_error_resume_next.png" width="100%" alt="on_error_resume_next" />
       <figcaption><p>
        In Rx.rb, <code>on_error_resume_next</code> inherits the misleading nomenclature from Rx.NET
        in that it concatinates the second Observable sequence to the source sequence whether that
@@ -786,7 +783,7 @@ Sequence complete</pre></div>
      </dl>
      <h4><code>onErrorFlatMap</code></h4>
      <figure>
-      <img src="images/onErrorFlatMap.png" width="640" alt="onErrorFlatMap" />
+      <img src="images/onErrorFlatMap.png" width="100%" alt="onErrorFlatMap" />
       <figcaption><p>
        <code>onErrorFlatMap</code> handles a special case: a source Observable that is noncompliant
        with the Observable contract in such a way that it may interleave <code>onError</code>
@@ -808,7 +805,7 @@ Sequence complete</pre></div>
        merged by the <a href="merge.html"><span class="operator">Merge</span></a> operator:
       </p>
       <figure>
-       <img src="images/onErrorFlatMap.withMerge.png" width="640" alt="unintuitive onErrorFlatMap and Merge interaction" />
+       <img src="images/onErrorFlatMap.withMerge.png" width="100%" alt="unintuitive onErrorFlatMap and Merge interaction" />
        <figcaption><p>
         Note that <code>onErrorFlatMap</code> will not react to both errors generated by both
         Observables, but only to the single error passed along by <code>merge</code>.
@@ -817,7 +814,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onErrorResumeNext</code></h4>
      <figure>
-      <img src="images/onErrorResumeNext.png" width="640" alt="onErrorResumeNext" />
+      <img src="images/onErrorResumeNext.png" width="100%" alt="onErrorResumeNext" />
       <figcaption><p>
        The <code>onErrorResumeNext</code> method returns an Observable that mirrors the behavior of
        the source Observable, unless that Observable invokes <code>onError</code> in which case,
@@ -827,7 +824,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onErrorReturn</code></h4>
      <figure>
-      <img src="images/onErrorReturn.png" width="640" alt="onErrorReturn" />
+      <img src="images/onErrorReturn.png" width="100%" alt="onErrorReturn" />
       <figcaption><p>
        The <code>onErrorReturn</code> method returns an Observable that mirrors the behavior of the
        source Observable, unless that Observable invokes <code>onError</code> in which case, rather
@@ -837,7 +834,7 @@ Sequence complete</pre></div>
      </figure>
      <h4><code>onExceptionResumeNext</code></h4>
      <figure>
-      <img src="images/onExceptionResumeNextViaObservable.png" width="640" alt="onExceptionResumeNext" />
+      <img src="images/onExceptionResumeNextViaObservable.png" width="100%" alt="onExceptionResumeNext" />
       <figcaption><p>
        Much like <code>onErrorResumeNext</code> method, this returns an Observable that mirrors the
        behavior of the source Observable, unless that Observable invokes <code>onError</code> in
@@ -859,24 +856,10 @@ Sequence complete</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -891,13 +874,10 @@ Sequence complete</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

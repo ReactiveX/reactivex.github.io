@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -206,7 +203,7 @@
 <h3>AsyncSubject</h3>
 
 <figure>
- <img src="/documentation/operators/images/S.AsyncSubject.png" width="640" height="405" />
+ <img src="/documentation/operators/images/S.AsyncSubject.png" width="100%" />
  <figcaption><p>
   An <code>AsyncSubject</code> emits the last value (and only the last value) emitted by the source Observable,
   and only after that source Observable completes. (If the source Observable does not emit any values, the
@@ -215,7 +212,7 @@
 </figure>
 
 <figure>
- <img src="/documentation/operators/images/S.AsyncSubject.e.png" width="640" height="395" />
+ <img src="/documentation/operators/images/S.AsyncSubject.e.png" width="100%" />
  <figcaption><p>
   It will also emit this same final value to any subsequent observers. However, if the source Observable
   terminates with an error, the <code>AsyncSubject</code> will not emit any items, but will simply pass along
@@ -232,7 +229,7 @@
 <h3>BehaviorSubject</h3>
 
 <figure>
- <img src="/documentation/operators/images/S.BehaviorSubject.png" width="640" height="415" />
+ <img src="/documentation/operators/images/S.BehaviorSubject.png" width="100%" />
  <figcaption><p>
   When an observer subscribes to a <code>BehaviorSubject</code>, it begins by emitting the item most recently
   emitted by the source Observable (or a seed/default value if none has yet been emitted) and then continues to
@@ -241,7 +238,7 @@
 </figure>
 
 <figure>
- <img src="/documentation/operators/images/S.BehaviorSubject.e.png" width="640" height="405" />
+ <img src="/documentation/operators/images/S.BehaviorSubject.e.png" width="100%" />
  <figcaption><p>
   However, if the source Observable terminates with an error, the <code>BehaviorSubject</code> will not emit any
   items to subsequent observers, but will simply pass along the error notification from the source Observable.
@@ -257,7 +254,7 @@
 <h3>PublishSubject</h3>
 
 <figure>
- <img src="/documentation/operators/images/S.PublishSubject.png" width="640" height="405" />
+ <img src="/documentation/operators/images/S.PublishSubject.png" width="100%" />
  <figcaption><p>
   <code>PublishSubject</code> emits to an observer only those items that are emitted by the source Observable(s)
   subsequent to the time of the subscription.
@@ -273,7 +270,7 @@
 </figure>
 
 <figure>
- <img src="/documentation/operators/images/S.PublishSubject.e.png" width="640" height="395" />
+ <img src="/documentation/operators/images/S.PublishSubject.e.png" width="100%" />
  <figcaption><p>
   If the source Observable terminates with an error, the <code>PublishSubject</code> will not emit any items to
   subsequent observers, but will simply pass along the error notification from the source Observable.
@@ -283,7 +280,7 @@
 <h3>ReplaySubject</h3>
 
 <figure>
- <img src="/documentation/operators/images/S.ReplaySubject.png" width="640" height="405" />
+ <img src="/documentation/operators/images/S.ReplaySubject.png" width="100%" />
  <figcaption><p>
   <code>ReplaySubject</code> emits to any observer all of the items that were emitted by the source
   Observable(s), regardless of when the observer subscribes.
@@ -548,24 +545,10 @@
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -580,13 +563,10 @@
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -175,9 +172,7 @@
 <div class="full-page-container">
   <div class="row">
     <div class="col-sm-8">
-      <h1 id="operators">Operators</h1>
-
-<p>Each language-specific version of ReactiveX implements a set of operators, and, although there is
+      <p>Each language-specific version of ReactiveX implements a set of operators, and, although there is
 much overlap, there are also some operators that are only implemented by certain versions, and
 also each language tends to name its operators to conform to those of other similar operators that
 are already familiar in other contexts in that language.</p>
@@ -185,6 +180,14 @@ are already familiar in other contexts in that language.</p>
 <p>This page lists what could be considered the &ldquo;core&rdquo; operators in the ReactiveX set,
 and links to pages that have more in-depth information on how these operators work and how
 particular language-specific ReactiveX versions have implemented these operators.</p>
+
+<ol>
+ <li><a href="#categorized">Operators By Category</a></li>
+ <li><a href="#tree">A Decision Tree of Observable Operators</a></li>
+ <li><a href="#alphabetical">An Alphabetical List of Observable Operators</a></li>
+</ol>
+
+<h1 id="categorized">Operators By Category</h1>
 
 <h2 id="creating">Creating Observables</h2>
 
@@ -267,6 +270,8 @@ particular language-specific ReactiveX versions have implemented these operators
 <li><a href="/documentation/operators/do.html"><strong><code>Do</code></strong></a> — register an action to take upon a variety of Observable lifecycle events</li>
 <li><a href="/documentation/operators/materialize-dematerialize.html"><strong><code>Materialize</code>/<code>Dematerialize</code></strong></a> — represent both the items emitted and the notifications sent as emitted items, or reverse this process</li>
 <li><a href="/documentation/operators/observeon.html"><strong><code>ObserveOn</code></strong></a> — specify the scheduler on which an observer will observe this Observable</li>
+<li><a href="/documentation/operators/serialize.html"><strong><code>Serialize</code></strong></a> — force an Observable to make serialized calls and to be well-behaved</li>
+<li><a href="/documentation/operators/subscribe.html"><strong><code>Subscribe</code></strong></a> — operate upon the emissions and notifications from an Observable</li>
 <li><a href="/documentation/operators/subscribeon.html"><strong><code>SubscribeOn</code></strong></a> — specify the scheduler an Observable should use when it is subscribed to</li>
 <li><a href="/documentation/operators/timeinterval.html"><strong><code>TimeInterval</code></strong></a> — convert an Observable that emits items into one that emits indications of the amount of time elapsed between those emissions</li>
 <li><a href="/documentation/operators/timeout.html"><strong><code>Timeout</code></strong></a> — mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items</li>
@@ -321,13 +326,296 @@ particular language-specific ReactiveX versions have implemented these operators
 <li><a href="/documentation/operators/replay.html"><strong><code>Replay</code></strong></a> — ensure that all observers see the same sequence of emitted items, even if they subscribe after the Observable has begun emitting items</li>
 </ul>
 
-<h2 id="blocking">Blocking Observable Operators</h2>
+<h2 id="conversion">Operators to Convert Observables</h2>
 
 <ul>
 <li><a href="/documentation/operators/to.html"><strong><code>To</code></strong></a> — convert an Observable into another object or data structure</li>
 </ul>
 
-<h2 id="alphabetical">Alphabetical List of Observable Operators</h2>
+<div id="tree">
+<style>
+   div#tree dl { margin-top: 0;
+                 margin-bottom: 1.5em;
+                 margin-left: 1.5em; }
+   div#tree dl#outer>dt { font-weight: bold;
+                          margin-right: -1.5em;
+                          margin-top: .5em; }
+   div#tree dl#outer>dd { margin-top: .5em; }
+   div#tree dt { font-weight: normal;
+                 margin-right: -1.5em; }
+   div#tree dl > dt::before { content: "…"; }
+   div#tree dl#outer > dt::before { content: ""; }
+   div#tree dd::before { content: ": "; }
+   div#tree dd.sub::before { content: ""; }
+
+   div#tree dt { float: left; clear: left; }
+   div#tree dd { float: left;
+                 margin-start: 0;
+                 -webkit-margin-start: 0;
+                 margin-left: 1.5em; }
+   div#tree dd.sub { float: none;
+                     margin-left: 0; }
+</style>
+  <h1>A Decision Tree of Observable Operators</h1>
+  <p>
+   This tree can help you find the ReactiveX Observable operator you&#8217;re looking for.
+  </p>
+<dl id="outer">
+ <dt>I want to create a new Observable</dt>
+  <dd class="sub"><dl>
+   <dt>that emits a particular item</dt>
+    <dd><a href="operators/just.html">Just</a></dd>
+    <dd class="sub"><dl>
+     <dt>that was returned from a function called at subscribe-time</dt>
+      <dd><a href="operators/start.html">Start</a></dd>
+     <dt>that was returned from an <code>Action</code>, <code>Callable</code>, <code>Runnable</code>, or something of that sort, called at subscribe-time</dt>
+      <dd><a href="operators/from.html">From</a></dd>
+     <dt>after a specified delay</dt>
+      <dd><a href="operators/timer.html">Timer</a></dd>
+     </dl></dd>
+   <dt>that pulls its emissions from a particular <code>Array</code>, <code>Iterable</code>, or something like that</dt>
+    <dd><a href="operators/from.html">From</a></dd>
+   <dt>by retrieving it from a Future</dt>
+    <dd><a href="operators/start.html">Start</a></dd>
+   <dt>that obtains its sequence from a Future</dt>
+    <dd><a href="operators/from.html">From</a></dd>
+   <dt>that emits a sequence of items repeatedly</dt>
+    <dd><a href="operators/repeat.html">Repeat</a></dd>
+   <dt>from scratch, with custom logic</dt>
+    <dd><a href="operators/create.html">Create</a></dd>
+   <dt>for each observer that subscribes</dt>
+    <dd><a href="operators/defer.html">Defer</a></dd>
+   <dt>that emits a sequence of integers</dt>
+    <dd><a href="operators/range.html">Range</a></dd>
+    <dd class="sub"><dl>
+     <dt>at particular intervals of time</dt>
+      <dd><a href="operators/interval.html">Interval</a></dd>
+      <dd class="sub"><dl>
+       <dt>after a specified delay</dt>
+       <dd><a href="operators/timer.html">Timer</a></dd>
+      </dl></dd>
+    </dl></dd>
+   <dt>that completes without emitting items</dt>
+    <dd><a href="operators/empty-never-throw.html">Empty</a></dd>
+   <dt>that does nothing at all</dt>
+    <dd><a href="operators/empty-never-throw.html">Never</a></dd>
+  </dl></dd>
+
+ <dt>I want to create an Observable by combining other Observables</dt>
+  <dd class="sub"><dl>
+   <dt>and emitting all of the items from all of the Observables in whatever order they are received</dt>
+    <dd><a href="operators/merge.html">Merge</a></dd>
+   <dt>and emitting all of the items from all of the Observables, one Observable at a time</dt>
+    <dd><a href="operators/concat.html">Concat</a></dd>
+   <dt>by combining the items from two or more Observables sequentially to come up with new items to emit</dt>
+    <dd class="sub"><dl>
+     <dt>whenever <em>each</em> of the Observables has emitted a new item</dt>
+      <dd><a href="operators/zip.html">Zip</a></dd>
+     <dt>whenever <em>any</em> of the Observables has emitted a new item</dt>
+      <dd><a href="operators/combinelatest.html">CombineLatest</a></dd>
+     <dt>whenever an item is emitted by one Observable in a window defined by an item emitted by another</dt>
+      <dd><a href="operators/join.html">Join</a></dd>
+     <dt>by means of <code>Pattern</code> and <code>Plan</code> intermediaries</dt>
+      <dd><a href="operators/and-then-when.html">And/Then/When</a></dd>
+    </dl></dd>
+   <dt>and emitting the items from only the most-recently emitted of those Observables</dt>
+    <dd><a href="operators/switch.html">Switch</a></dd>
+  </dl></dd>
+
+ <dt>I want emit the items from an Observable after transforming them</dt>
+  <dd class="sub"><dl>
+   <dt>one at a time with a function</dt>
+    <dd><a href="operators/map.html">Map</a></dd>
+   <dt>by emitting all of the items emitted by corresponding Observables</dt>
+    <dd><a href="operators/flatmap.html">FlatMap</a></dd>
+    <dd class="sub"><dl>
+     <dt>one Observable at a time, in the order they are emitted</dt>
+      <dd><a href="operators/flatmap.html">ConcatMap</a></dd>
+    </dl></dd>
+   <dt>based on all of the items that preceded them</dt>
+    <dd><a href="operators/scan.html">Scan</a></dd>
+   <dt>by attaching a timestamp to them</dt>
+    <dd><a href="operators/timestamp.html">Timestamp</a></dd>
+   <dt>into an indicator of the amount of time that lapsed before the emission of the item</dt>
+    <dd><a href="operators/timeinterval.html">TimeInterval</a></dd>
+  </dl></dd>
+
+ <dt>I want to shift the items emitted by an Observable forward in time before reemitting them</dt>
+  <dd><a href="operators/delay.html">Delay</a></dd>
+
+ <dt>I want to transform items <em>and</em> notifications from an Observable into items and reemit them</dt>
+  <dd class="sub"><dl>
+   <dt>by wrapping them in <code>Notification</code> objects</dt>
+    <dd><a href="operators/materialize-dematerialize.html">Materialize</a></dd>
+    <dd class="sub"><dl>
+     <dt>which I can then unwrap again with</dt>
+      <dd><a href="operators/materialize-dematerialize.html">Dematerialize</a></dd>
+    </dl></dd>
+  </dl></dd>
+
+ <dt>I want to ignore all items emitted by an Observable and only pass along its completed/error notification</dt>
+  <dd><a href="operators/ignoreelements.html">IgnoreElements</a></dd>
+
+ <dt>I want to mirror an Observable but prefix items to its sequence</dt>
+  <dd><a href="operators/startwith.html">StartWith</a></dd>
+  <dd class="sub"><dl>
+   <dt>only if its sequence is empty</dt>
+    <dd><a href="operators/defaultifempty.html">DefaultIfEmpty</a></dd>
+  </dl></dd>
+
+ <dt>I want to collect items from an Observable and reemit them as buffers of items</dt>
+  <dd><a href="operators/buffer.html">Buffer</a></dd>
+  <dd class="sub"><dl>
+   <dt>containing only the last items emitted</dt>
+    <dd><a href="operators/takelast.html">TakeLastBuffer</a></dd>
+  </dl></dd>
+
+ <dt>I want to split one Observable into multiple Observables</dt>
+  <dd><a href="operators/window.html">Window</a></dd>
+  <dd class="sub"><dl>
+   <dt>so that similar items end up on the same Observable</dt>
+    <dd><a href="operators/groupby.html">GroupBy</a></dd>
+  </dl></dd>
+
+ <dt>I want to retrieve a particular item emitted by an Observable:</dt>
+  <dd class="sub"><dl>
+   <dt>the last item emitted before it completed</dt>
+    <dd><a href="operators/last.html">Last</a></dd>
+   <dt>the sole item it emitted</dt>
+    <dd><a href="operators/first.html">Single</a></dd>
+   <dt>the first item it emitted</dt>
+    <dd><a href="operators/first.html">First</a></dd>
+  </dl></dd>
+
+ <dt>I want to reemit only certain items from an Observable</dt>
+  <dd class="sub"><dl>
+   <dt>by filtering out those that do not match some predicate</dt>
+    <dd><a href="operators/filter.html">Filter</a></dd>
+   <dt>that is, only the first item</dt>
+    <dd><a href="operators/first.html">First</a></dd>
+   <dt>that is, only the first item<em>s</em></dt>
+    <dd><a href="operators/take.html">Take</a></dd>
+   <dt>that is, only the last item</dt>
+    <dd><a href="operators/last.html">Last</a></dd>
+   <dt>that is, only item <i>n</i></dt>
+    <dd><a href="operators/elementat.html">ElementAt</a></dd>
+   <dt>that is, only those items after the first items</dt>
+    <dd class="sub"><dl>
+     <dt>that is, after the first <i>n</i> items</dt>
+      <dd><a href="operators/skip.html">Skip</a></dd>
+     <dt>that is, until one of those items matches a predicate</dt>
+      <dd><a href="operators/skipwhile.html">SkipWhile</a></dd>
+     <dt>that is, after an initial period of time</dt>
+      <dd><a href="operators/skip.html">Skip</a></dd>
+     <dt>that is, after a second Observable emits an item</dt>
+      <dd><a href="operators/skipuntil.html">SkipUntil</a></dd>
+    </dl></dd>
+   <dt>that is, those items except the last items</dt>
+    <dd class="sub"><dl>
+     <dt>that is, except the last <i>n</i> items</dt>
+      <dd><a href="operators/skiplast.html">SkipLast</a></dd>
+     <dt>that is, until one of those items matches a predicate</dt>
+      <dd><a href="operators/takewhile.html">TakeWhile</a></dd>
+     <dt>that is, except items emitted during a period of time before the source completes</dt>
+      <dd><a href="operators/skiplast.html">SkipLast</a></dd>
+     <dt>that is, except items emitted after a second Observable emits an item</dt>
+      <dd><a href="operators/takeuntil.html">TakeUntil</a></dd>
+    </dl></dd>
+   <dt>by sampling the Observable periodically</dt>
+    <dd><a href="operators/sample.html">Sample</a></dd>
+   <dt>by only emitting items that are not followed by other items within some duration</dt>
+    <dd><a href="operators/debounce.html">Debounce</a></dd>
+   <dt>by suppressing items that are duplicates of already-emitted items</dt>
+    <dd><a href="operators/distinct.html">Distinct</a></dd>
+    <dd class="sub"><dl>
+     <dt>if they immediately follow the item they are duplicates of</dt>
+      <dd><a href="operators/distinct.html">DistinctUntilChanged</a></dd>
+    </dl></dd>
+   <dt>by delaying my subscription to it for some time after it begins emitting items</dt>
+    <dd><a href="operators/delay.html">DelaySubscription</a></dd>
+  </dl></dd>
+
+ <dt>I want to reemit items from an Observable only on condition that it was the first of a collection of Observables to emit an item</dt>
+  <dd><a href="operators/amb.html">Amb</a></dd>
+
+ <dt>I want to evaluate the entire sequence of items emitted by an Observable</dt>
+  <dd class="sub"><dl>
+   <dt>and emit a single boolean indicating if <em>all</em> of the items pass some test</dt>
+    <dd><a href="operators/all.html">All</a></dd>
+   <dt>and emit a single boolean indicating if the Observable emitted <em>any</em> item (that passes some test)</dt>
+    <dd><a href="operators/contains.html">Contains</a></dd>
+   <dt>and emit a single boolean indicating if the Observable emitted <em>no</em> items</dt>
+    <dd><a href="operators/contains.html">IsEmpty</a></dd>
+   <dt>and emit a single boolean indicating if the sequence is identical to one emitted by a second Observable</dt>
+    <dd><a href="operators/sequenceequal.html">SequenceEqual</a></dd>
+   <dt>and emit the average of all of their values</dt>
+    <dd><a href="operators/average.html">Average</a></dd>
+   <dt>and emit the sum of all of their values</dt>
+    <dd><a href="operators/sum.html">Sum</a></dd>
+   <dt>and emit a number indicating how many items were in the sequence</dt>
+    <dd><a href="operators/count.html">Count</a></dd>
+   <dt>and emit the item with the maximum value</dt>
+    <dd><a href="operators/max.html">Max</a></dd>
+   <dt>and emit the item with the minimum value</dt>
+    <dd><a href="operators/min.html">Min</a></dd>
+   <dt>by applying an aggregation function to each item in turn and emitting the result</dt>
+    <dd><a href="operators/scan.html">Scan</a></dd>
+  </dl></dd>
+
+ <dt>I want to convert the entire sequence of items emitted by an Observable into some other data structure</dt>
+  <dd><a href="operators/to.html">To</a></dd>
+
+ <dt>I want an operator to operate on a particular <a href="../scheduler.html">Scheduler</a></dt>
+  <dd><a href="operators/subscribeon.html">SubscribeOn</a></dd>
+  <dd class="sub"><dl>
+   <dt>when it notifies observers</dt>
+    <dd><a href="operators/observeon.html">ObserveOn</a></dd>
+  </dl></dd>
+
+ <dt>I want an Observable to invoke a particular action when certain events occur</dt>
+  <dd><a href="operators/do.html">Do</a></dd>
+
+ <dt>I want an Observable that will notify observers of an error</dt>
+  <dd><a href="operators/empty-never-throw.html">Throw</a></dd>
+  <dd class="sub"><dl>
+   <dt>if a specified period of time elapses without it emitting an item</dt>
+    <dd><a href="operators/timeout.html">Timeout</a></dd>
+  </dl></dd>
+
+ <dt>I want an Observable to recover gracefully</dt>
+  <dd class="sub"><dl>
+   <dt>from a timeout by switching to a backup Observable</dt>
+    <dd><a href="operators/timeout.html">Timeout</a></dd>
+   <dt>from an upstream error notification</dt>
+    <dd><a href="operators/catch.html">Catch</a></dd>
+    <dd class="sub"><dl>
+     <dt>by attempting to resubscribe to the upstream Observable</dt>
+      <dd><a href="operators/retry.html">Retry</a></dd>
+    </dl></dd>
+  </dl></dd>
+
+ <dt>I want to create a resource that has the same lifespan as the Observable</dt>
+  <dd><a href="operators/using.html">Using</a></dd>
+
+ <dt>I want to subscribe to an Observable and receive a <code>Future</code> that blocks until the Observable completes</dt>
+  <dd><a href="operators/start.html">Start</a></dd>
+
+ <dt>I want an Observable that does not start emitting items to subscribers until asked</dt>
+  <dd><a href="operators/publish.html">Publish</a></dd>
+  <dd class="sub"><dl>
+   <dt>and then only emits the last item in its sequence</dt>
+    <dd><a href="operators/publish.html">PublishLast</a></dd>
+   <dt>and then emits the complete sequence, even to those who subscribe after the sequence has begun</dt>
+    <dd><a href="operators/replay.html">Replay</a></dd>
+   <dt>but I want it to go away once all of its subscribers unsubscribe</dt>
+    <dd><a href="operators/refcount.html">RefCount</a></dd>
+   <dt>and then I want to ask it to start</dt>
+    <dd><a href="operators/connect.html">Connect</a></dd>
+  </dl></dd>
+</dl>
+</div>
+
+<h1 id="alphabetical" style="clear: left;">An Alphabetical List of Observable Operators</h1>
 
 <p>Canonical, core operator names are in <strong>boldface</strong>. Other entries represent language-specific
 variants of these operators or specialty operators outside of the main ReactiveX core set of
@@ -340,7 +628,7 @@ operators.</p>
 <li><a href="/documentation/operators/and-then-when.html"><strong><code>And</code></strong></a></li>
 <li><a href="/documentation/operators/contains.html"><code>Any</code></a></li>
 <li><a href="/documentation/operators/create.html"><code>apply</code></a></li>
-<li><code>as_blocking</code></li>
+<li><a href="/documentation/operators/to.html"><code>as_blocking</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>AsObservable</code></a></li>
 <li><a href="/documentation/operators/sequenceequal.html"><code>AssertEqual</code></a></li>
 <li><a href="/documentation/operators/start.html"><code>asyncAction</code></a></li>
@@ -350,24 +638,25 @@ operators.</p>
 <li><a href="/documentation/operators/average.html"><code>averageFloat</code></a></li>
 <li><a href="/documentation/operators/average.html"><code>averageInteger</code></a></li>
 <li><a href="/documentation/operators/average.html"><code>averageLong</code></a></li>
-<li><code>blocking</code></li>
+<li><a href="/documentation/operators/to.html"><code>blocking</code></a></li>
 <li><a href="/documentation/operators/buffer.html"><strong><code>Buffer</code></strong></a></li>
 <li><a href="/documentation/operators/buffer.html"><code>bufferWithCount</code></a></li>
 <li><a href="/documentation/operators/buffer.html"><code>bufferWithTime</code></a></li>
 <li><a href="/documentation/operators/buffer.html"><code>bufferWithTimeOrCount</code></a></li>
-<li><code>byLine</code></li>
+<li><a href="/documentation/operators/map.html"><code>byLine</code></a></li>
 <li><a href="/documentation/operators/replay.html"><code>cache</code></a></li>
-<li><code>case</code></li>
-<li><code>Cast</code></li>
+<li><a href="/documentation/operators/defer.html"><code>case</code></a></li>
+<li><a href="/documentation/operators/map.html"><code>Cast</code></a></li>
 <li><a href="/documentation/operators/catch.html"><strong><code>Catch</code></strong></a></li>
 <li><a href="/documentation/operators/catch.html"><code>catchException</code></a></li>
-<li><a href="/documentation/operators/filter.html"><code>collect</code></a></li>
+<li><a href="/documentation/operators/reduce.html"><code>collect</code></a></li>
+<li><a href="/documentation/operators/filter.html"><code>collect</code></a> (RxScala version of <strong><code>Filter</code></strong>)</li>
 <li><a href="/documentation/operators/combinelatest.html"><strong><code>CombineLatest</code></strong></a></li>
 <li><a href="/documentation/operators/combinelatest.html"><code>combineLatestWith</code></a></li>
 <li><a href="/documentation/operators/concat.html"><strong><code>Concat</code></strong></a></li>
-<li><code>concat_all</code></li>
+<li><a href="/documentation/operators/flatmap.html"><code>concat_all</code></a></li>
 <li><a href="/documentation/operators/flatmap.html"><code>concatMap</code></a></li>
-<li><code>concatMapObserver</code></li>
+<li><a href="/documentation/operators/flatmap.html"><code>concatMapObserver</code></a></li>
 <li><a href="/documentation/operators/concat.html"><code>concatAll</code></a></li>
 <li><a href="/documentation/operators/concat.html"><code>concatWith</code></a></li>
 <li><a href="/documentation/operators/connect.html"><strong><code>Connect</code></strong></a></li>
@@ -380,7 +669,7 @@ operators.</p>
 <li><a href="/documentation/operators/create.html"><strong><code>Create</code></strong></a></li>
 <li><a href="/documentation/operators/repeat.html"><code>cycle</code></a></li>
 <li><a href="/documentation/operators/debounce.html"><strong><code>Debounce</code></strong></a></li>
-<li><code>decode</code></li>
+<li><a href="/documentation/operators/from.html"><code>decode</code></a></li>
 <li><a href="/documentation/operators/defaultifempty.html"><strong><code>DefaultIfEmpty</code></strong></a></li>
 <li><a href="/documentation/operators/defer.html"><strong><code>Defer</code></strong></a></li>
 <li><a href="/documentation/operators/start.html"><code>deferFuture</code></a></li>
@@ -398,8 +687,8 @@ operators.</p>
 <li><a href="/documentation/operators/do.html"><code>doOnSubscribe</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>doOnTerminate</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>doOnUnsubscribe</code></a></li>
-<li><code>doseq</code></li>
-<li><code>doWhile</code></li>
+<li><a href="/documentation/operators/subscribe.html"><code>doseq</code></a></li>
+<li><a href="/documentation/operators/repeat.html"><code>doWhile</code></a></li>
 <li><a href="/documentation/operators/skip.html"><code>drop</code></a></li>
 <li><a href="/documentation/operators/skiplast.html"><code>dropRight</code></a></li>
 <li><a href="/documentation/operators/skipuntil.html"><code>dropUntil</code></a></li>
@@ -408,7 +697,7 @@ operators.</p>
 <li><a href="/documentation/operators/elementat.html"><code>ElementAtOrDefault</code></a></li>
 <li><a href="/documentation/operators/empty-never-throw.html"><strong><code>Empty</code></strong></a></li>
 <li><a href="/documentation/operators/contains.html"><code>empty?</code></a></li>
-<li><code>encode</code></li>
+<li><a href="/documentation/operators/map.html"><code>encode</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>ensures</code></a></li>
 <li><a href="/documentation/operators/empty-never-throw.html"><code>error</code></a></li>
 <li><a href="/documentation/operators/all.html"><code>every</code></a></li>
@@ -434,12 +723,12 @@ operators.</p>
 <li><a href="/documentation/operators/merge.html"><code>flatten</code></a></li>
 <li><a href="/documentation/operators/merge.html"><code>flattenDelayError</code></a></li>
 <li><a href="/documentation/operators/reduce.html"><code>foldLeft</code></a></li>
-<li><code>for</code></li>
+<li><a href="/documentation/operators/flatmap.html"><code>for</code></a></li>
 <li><a href="/documentation/operators/all.html"><code>forall</code></a></li>
-<li><code>ForEach</code></li>
+<li><a href="/documentation/operators/subscribe.html"><code>ForEach</code></a></li>
 <li><a href="/documentation/operators/start.html"><code>forEachFuture</code></a></li>
-<li><code>forIn</code></li>
-<li><code>forkJoin</code></li>
+<li><a href="/documentation/operators/flatmap.html"><code>forIn</code></a></li>
+<li><a href="/documentation/operators/zip.html"><code>forkJoin</code></a></li>
 <li><a href="/documentation/operators/from.html"><strong><code>From</code></strong></a></li>
 <li><a href="/documentation/operators/from.html"><code>fromAction</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>fromArray</code></a></li>
@@ -455,10 +744,10 @@ operators.</p>
 <li><a href="/documentation/operators/from.html"><code>fromNodeCallback</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>fromPromise</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>fromRunnable</code></a></li>
-<li><code>Generate</code></li>
-<li><code>generateWithAbsoluteTime</code></li>
-<li><code>generateWithRelativeTime</code></li>
-<li><code>generator</code></li>
+<li><a href="/documentation/operators/create.html"><code>Generate</code></a></li>
+<li><a href="/documentation/operators/create.html"><code>generateWithAbsoluteTime</code></a></li>
+<li><a href="/documentation/operators/create.html"><code>generateWithRelativeTime</code></a></li>
+<li><a href="/documentation/operators/create.html"><code>generator</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>GetEnumerator</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>getIterator</code></a></li>
 <li><a href="/documentation/operators/groupby.html"><strong><code>GroupBy</code></strong></a></li>
@@ -467,35 +756,35 @@ operators.</p>
 <li><a href="/documentation/operators/first.html"><code>head</code></a></li>
 <li><a href="/documentation/operators/first.html"><code>headOption</code></a></li>
 <li><a href="/documentation/operators/first.html"><code>headOrElse</code></a></li>
-<li><code>if</code></li>
-<li><code>ifThen</code></li>
+<li><a href="/documentation/operators/defer.html"><code>if</code></a></li>
+<li><a href="/documentation/operators/defer.html"><code>ifThen</code></a></li>
 <li><a href="/documentation/operators/ignoreelements.html"><strong><code>IgnoreElements</code></strong></a></li>
 <li><a href="/documentation/operators/contains.html"><code>indexOf</code></a></li>
 <li><a href="/documentation/operators/merge.html"><code>interleave</code></a></li>
-<li><code>interpose</code></li>
+<li><a href="/documentation/operators/to.html"><code>interpose</code></a></li>
 <li><a href="/documentation/operators/interval.html"><strong><code>Interval</code></strong></a></li>
 <li><a href="/documentation/operators/reduce.html"><code>into</code></a></li>
 <li><a href="/documentation/operators/contains.html"><code>isEmpty</code></a></li>
 <li><a href="/documentation/operators/just.html"><code>items</code></a></li>
 <li><a href="/documentation/operators/join.html"><strong><code>Join</code></strong></a></li>
-<li><code>join</code> (string)</li>
+<li><a href="/documentation/operators/sum.html"><code>join</code></a> (string)</li>
 <li><a href="/documentation/operators/just.html"><strong><code>Just</code></strong></a></li>
-<li><code>keep</code></li>
-<li><code>keep-indexed</code></li>
+<li><a href="/documentation/operators/map.html"><code>keep</code></a></li>
+<li><a href="/documentation/operators/map.html"><code>keep-indexed</code></a></li>
 <li><a href="/documentation/operators/last.html"><strong><code>Last</code></strong></a></li>
 <li><a href="/documentation/operators/last.html"><code>lastOption</code></a></li>
 <li><a href="/documentation/operators/last.html"><code>LastOrDefault</code></a></li>
 <li><a href="/documentation/operators/last.html"><code>lastOrElse</code></a></li>
-<li><code>Latest</code></li>
+<li><a href="/documentation/operators/first.html"><code>Latest</code></a></li>
 <li><a href="/documentation/operators/switch.html"><code>latest</code></a> (Rx.rb version of <strong><code>Switch</code></strong>)</li>
 <li><a href="/documentation/operators/count.html"><code>length</code></a></li>
 <li><a href="/documentation/operators/publish.html"><code>let</code></a></li>
 <li><a href="/documentation/operators/publish.html"><code>letBind</code></a></li>
 <li><a href="/documentation/operators/count.html"><code>LongCount</code></a></li>
-<li><code>ManySelect</code></li>
+<li><a href="/documentation/operators/flatmap.html"><code>ManySelect</code></a></li>
 <li><a href="/documentation/operators/map.html"><strong><code>Map</code></strong></a></li>
 <li><a href="/documentation/operators/zip.html"><code>map</code></a> (RxClojure version of <strong><code>Zip</code></strong>)</li>
-<li><code>mapCat</code></li>
+<li><a href="/documentation/operators/flatmap.html"><code>MapCat</code></a></li>
 <li><a href="/documentation/operators/zip.html"><code>mapCat</code></a> (RxClojure version of <strong><code>Zip</code></strong>)</li>
 <li><a href="/documentation/operators/map.html"><code>map-indexed</code></a></li>
 <li><a href="/documentation/operators/map.html"><code>map_with_index</code></a></li>
@@ -510,11 +799,12 @@ operators.</p>
 <li><a href="/documentation/operators/merge.html"><code>mergeWith</code></a></li>
 <li><a href="/documentation/operators/min.html"><strong><code>Min</code></strong></a></li>
 <li><a href="/documentation/operators/min.html"><code>MinBy</code></a></li>
-<li><code>MostRecent</code></li>
+<li><a href="/documentation/operators/first.html"><code>MostRecent</code></a></li>
 <li><a href="/documentation/operators/publish.html"><code>Multicast</code></a></li>
-<li><code>nest</code></li>
+<li><a href="/documentation/operators/to.html"><code>nest</code></a></li>
 <li><a href="/documentation/operators/empty-never-throw.html"><strong><code>Never</code></strong></a></li>
-<li><code>Next</code></li>
+<li><a href="/documentation/operators/takelast.html"><code>Next</code></a></li>
+<li><a href="/documentation/operators/first.html"><code>Next</code></a> (BlockingObservable version)</li>
 <li><a href="/documentation/operators/contains.html"><code>none</code></a></li>
 <li><a href="/documentation/operators/contains.html"><code>nonEmpty</code></a></li>
 <li><a href="/documentation/operators/elementat.html"><code>nth</code></a></li>
@@ -524,7 +814,7 @@ operators.</p>
 <li><a href="/documentation/operators/from.html"><code>of_array</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>of_enumerable</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>of_enumerator</code></a></li>
-<li><code>OfType</code></li>
+<li><a href="/documentation/operators/filter.html"><code>OfType</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>ofWithScheduler</code></a></li>
 <li><a href="/documentation/operators/backpressure.html"><code>onBackpressureBlock</code></a></li>
 <li><a href="/documentation/operators/backpressure.html"><code>onBackpressureBuffer</code></a></li>
@@ -539,7 +829,7 @@ operators.</p>
 <li><a href="/documentation/operators/backpressure.html"><code>pausable</code></a></li>
 <li><a href="/documentation/operators/backpressure.html"><code>pausableBuffered</code></a></li>
 <li><a href="/documentation/operators/map.html"><code>pluck</code></a></li>
-<li><code>product</code></li>
+<li><a href="/documentation/operators/sum.html"><code>product</code></a></li>
 <li><a href="/documentation/operators/publish.html"><strong><code>Publish</code></strong></a></li>
 <li><a href="/documentation/operators/publish.html"><code>PublishLast</code></a></li>
 <li><a href="/documentation/operators/replay.html"><code>publish_synchronized</code></a></li>
@@ -554,20 +844,20 @@ operators.</p>
 <li><a href="/documentation/operators/repeat.html"><code>repeatWhen</code></a></li>
 <li><a href="/documentation/operators/replay.html"><strong><code>Replay</code></strong></a></li>
 <li><a href="/documentation/operators/catch.html"><code>rescue_error</code></a></li>
-<li><code>rest</code></li>
+<li><a href="/documentation/operators/first.html"><code>rest</code></a></li>
 <li><a href="/documentation/operators/retry.html"><strong><code>Retry</code></strong></a></li>
 <li><a href="/documentation/operators/retry.html"><code>retry_infinitely</code></a></li>
 <li><a href="/documentation/operators/retry.html"><code>retryWhen</code></a></li>
 <li><a href="/documentation/operators/just.html"><code>Return</code></a></li>
 <li><a href="/documentation/operators/just.html"><code>returnValue</code></a></li>
-<li><code>runAsync</code></li>
+<li><a href="/documentation/operators/from.html"><code>runAsync</code></a></li>
 <li><a href="/documentation/operators/sample.html"><strong><code>Sample</code></strong></a></li>
 <li><a href="/documentation/operators/scan.html"><strong><code>Scan</code></strong></a></li>
 <li><a href="/documentation/operators/using.html"><code>scope</code></a></li>
 <li><a href="/documentation/operators/map.html"><code>Select</code></a> (alternate name of of <strong><code>Map</code></strong>)</li>
 <li><a href="/documentation/operators/filter.html"><code>select</code></a> (alternate name of <strong><code>Filter</code></strong>)</li>
-<li><a href=""><code>selectConcat</code></a>/documentation/operators/flatmap.html)</li>
-<li><a href=""><code>selectConcatObserver</code></a>/documentation/operators/flatmap.html)</li>
+<li><a href="/documentation/operators/flatmap.html"><code>selectConcat</code></a></li>
+<li><a href="/documentation/operators/flatmap.html"><code>selectConcatObserver</code></a></li>
 <li><a href="/documentation/operators/flatmap.html"><code>SelectMany</code></a></li>
 <li><a href="/documentation/operators/flatmap.html"><code>selectManyObserver</code></a></li>
 <li><a href="/documentation/operators/switch.html"><code>select_switch</code></a></li>
@@ -577,7 +867,7 @@ operators.</p>
 <li><a href="/documentation/operators/sequenceequal.html"><strong><code>SequenceEqual</code></strong></a></li>
 <li><a href="/documentation/operators/sequenceequal.html"><code>sequence_eql?</code></a></li>
 <li><a href="/documentation/operators/sequenceequal.html"><code>SequenceEqualWith</code></a></li>
-<li><code>serialize</code></li>
+<li><a href="/documentation/operators/serialize.html"><strong><code>Serialize</code></strong></a></li>
 <li><a href="/documentation/operators/refcount.html"><code>share</code></a></li>
 <li><a href="/documentation/operators/replay.html"><code>shareReplay</code></a></li>
 <li><a href="/documentation/operators/refcount.html"><code>shareValue</code></a></li>
@@ -597,24 +887,23 @@ operators.</p>
 <li><a href="/documentation/operators/window.html"><code>sliding</code></a></li>
 <li><a href="/documentation/operators/buffer.html"><code>slidingBuffer</code></a></li>
 <li><a href="/documentation/operators/contains.html"><code>some</code></a></li>
-<li><code>sort</code></li>
-<li><code>sort-by</code></li>
+<li><a href="/documentation/operators/to.html"><code>sort</code></a></li>
+<li><a href="/documentation/operators/to.html"><code>sort-by</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>sorted-list-by</code></a></li>
-<li><code>spawn</code></li>
-<li><code>split</code></li>
+<li><a href="/documentation/operators/flatmap.html"><code>split</code></a></li>
 <li><a href="/documentation/operators/groupby.html"><code>split-with</code></a></li>
 <li><a href="/documentation/operators/start.html"><strong><code>Start</code></strong></a></li>
 <li><a href="/documentation/operators/start.html"><code>startAsync</code></a></li>
 <li><a href="/documentation/operators/start.html"><code>startFuture</code></a></li>
 <li><a href="/documentation/operators/startwith.html"><strong><code>StartWith</code></strong></a></li>
-<li><code>stringConcat</code></li>
+<li><a href="/documentation/operators/sum.html"><code>stringConcat</code></a></li>
 <li><a href="/documentation/operators/backpressure.html"><code>stopAndWait</code></a></li>
-<li><code>subscribe</code></li>
+<li><a href="/documentation/operators/subscribe.html"><code>subscribe</code></a></li>
 <li><a href="/documentation/operators/subscribeon.html"><strong><code>SubscribeOn</code></strong></a></li>
 <li><a href="/documentation/operators/subscribeon.html"><code>SubscribeOnDispatcher</code></a></li>
-<li><code>subscribeOnCompleted</code></li>
-<li><code>subscribeOnError</code></li>
-<li><code>subscribeOnNext</code></li>
+<li><a href="/documentation/operators/subscribe.html"><code>subscribeOnCompleted</code></a></li>
+<li><a href="/documentation/operators/subscribe.html"><code>subscribeOnError</code></a></li>
+<li><a href="/documentation/operators/subscribe.html"><code>subscribeOnNext</code></a></li>
 <li><a href="/documentation/operators/sum.html"><strong><code>Sum</code></strong></a></li>
 <li><a href="/documentation/operators/sum.html"><code>sumDouble</code></a></li>
 <li><a href="/documentation/operators/sum.html"><code>sumFloat</code></a></li>
@@ -625,7 +914,7 @@ operators.</p>
 <li><a href="/documentation/operators/switch.html"><code>switchLatest</code></a></li>
 <li><a href="/documentation/operators/flatmap.html"><code>switchMap</code></a></li>
 <li><a href="/documentation/operators/switch.html"><code>switchOnNext</code></a></li>
-<li><code>Synchronize</code></li>
+<li><a href="/documentation/operators/serialize.html"><code>Synchronize</code></a></li>
 <li><a href="/documentation/operators/take.html"><strong><code>Take</code></strong></a></li>
 <li><a href="/documentation/operators/take.html"><code>take_with_time</code></a></li>
 <li><a href="/documentation/operators/first.html"><code>takeFirst</code></a></li>
@@ -638,7 +927,7 @@ operators.</p>
 <li><a href="/documentation/operators/takeuntil.html"><code>takeUntilWithTime</code></a></li>
 <li><a href="/documentation/operators/takewhile.html"><strong><code>TakeWhile</code></strong></a></li>
 <li><a href="/documentation/operators/takewhile.html"><code>take_while_with_index</code></a></li>
-<li><code>tail</code></li>
+<li><a href="/documentation/operators/takelast.html"><code>tail</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>tap</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>tapOnCompleted</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>tapOnError</code></a></li>
@@ -662,12 +951,12 @@ operators.</p>
 <li><a href="/documentation/operators/to.html"><code>to_a</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>ToArray</code></a></li>
 <li><a href="/documentation/operators/start.html"><code>ToAsync</code></a></li>
-<li><code>toBlocking</code></li>
+<li><a href="/documentation/operators/to.html"><code>toBlocking</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>toBuffer</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>to_dict</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>ToDictionary</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>ToEnumerable</code></a></li>
-<li><code>ToEvent</code></li>
+<li><a href="/documentation/operators/to.html"><code>ToEvent</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>ToEventPattern</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>ToFuture</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>to_h</code></a></li>
@@ -682,7 +971,7 @@ operators.</p>
 <li><a href="/documentation/operators/to.html"><code>toSet</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>toSortedList</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>toStream</code></a></li>
-<li><code>ToTask</code></li>
+<li><a href="/documentation/operators/to.html"><code>ToTask</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>toTraversable</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>toVector</code></a></li>
 <li><a href="/documentation/operators/window.html"><code>tumbling</code></a></li>
@@ -691,14 +980,14 @@ operators.</p>
 <li><a href="/documentation/operators/using.html"><strong><code>Using</code></strong></a></li>
 <li><a href="/documentation/operators/and-then-when.html"><strong><code>When</code></strong></a></li>
 <li><a href="/documentation/operators/filter.html"><code>Where</code></a></li>
-<li><code>while</code></li>
-<li><code>whileDo</code></li>
+<li><a href="/documentation/operators/repeat.html"><code>while</code></a></li>
+<li><a href="/documentation/operators/repeat.html"><code>whileDo</code></a></li>
 <li><a href="/documentation/operators/window.html"><strong><code>Window</code></strong></a></li>
 <li><a href="/documentation/operators/window.html"><code>windowWithCount</code></a></li>
 <li><a href="/documentation/operators/window.html"><code>windowWithTime</code></a></li>
 <li><a href="/documentation/operators/window.html"><code>windowWithTimeOrCount</code></a></li>
 <li><a href="/documentation/operators/backpressure.html"><code>windowed</code></a></li>
-<li><code>withFilter</code></li>
+<li><a href="/documentation/operators/filter.html"><code>withFilter</code></a></li>
 <li><a href="/documentation/operators/combinelatest.html"><code>withLatestFrom</code></a></li>
 <li><a href="/documentation/operators/zip.html"><strong><code>Zip</code></strong></a></li>
 <li><a href="/documentation/operators/zip.html"><code>zipArray</code></a></li>
@@ -712,24 +1001,10 @@ operators.</p>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -744,13 +1019,10 @@ operators.</p>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

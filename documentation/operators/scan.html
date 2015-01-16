@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>apply a function to each item emitted by an Observable, sequentially, and emit each successive value</h3>
 
    <figure>
-    <img src="images/scan.c.png" width="640" alt="Scan" />
+    <img src="images/scan.c.png" width="100%" alt="Scan" />
     <figcaption><p>
      The <span class="operator">Scan</span> operator applies a function to the first item emitted
      by the source Observable and then emits the result of that function as its own first emission.
@@ -262,7 +259,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/scan.png" width="640" alt="scan" />
+      <img src="images/scan.png" width="100%" alt="scan" />
       <figcaption><p>
        RxGroovy implements this operator as <code>scan</code>. The following code, for example,
        takes an Observable that emits a consecutive sequence of <i>n</i> integers starting with
@@ -291,7 +288,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.png" width="640" alt="scan" />
+      <img src="images/scanSeed.png" width="100%" alt="scan" />
       <figcaption><p>
        There is also a variant of <code>scan</code> to which you can pass a seed value to pass
        to the accumulator function the first time it is called (for the first emission from the
@@ -305,7 +302,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <p>
-      This operator does not by default operate on any particular scheduler
+      This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
      </p>
   
           </div>
@@ -326,7 +323,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/scan.png" width="640" alt="scan" />
+      <img src="images/scan.png" width="100%" alt="scan" />
       <figcaption><p>
        RxJava implements this operator as <code>scan</code>.
       </p>
@@ -366,7 +363,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.png" width="640" alt="scan" />
+      <img src="images/scanSeed.png" width="100%" alt="scan" />
       <figcaption><p>
        There is also a variant of <code>scan</code> to which you can pass a seed value to pass
        to the accumulator function the first time it is called (for the first emission from the
@@ -380,7 +377,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <p>
-      This operator does not by default operate on any particular scheduler
+      This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
      </p>
   
           </div>
@@ -401,7 +398,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/scan.png" width="640" alt="scan" />
+      <img src="images/scan.png" width="100%" alt="scan" />
       <figcaption><p>
        RxJS implements the <code>scan</code> operator.
       </p>
@@ -425,7 +422,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.js.png" width="640" alt="scan" />
+      <img src="images/scanSeed.js.png" width="100%" alt="scan" />
       <figcaption><p>
        You can optionally pass <code>scan</code> a seed value as a first parameter.
        <code>scan</code> will pass this seed value to the accumulator function the first time it is
@@ -461,7 +458,7 @@ Completed</pre></div></figcaption>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <figure>
-      <img src="images/expand.png" width="640" alt="expand" />
+      <img src="images/expand.png" width="100%" alt="expand" />
       <figcaption><p>
        RxJS also implements the <code>expand</code> operator, which is somewhat similar. Rather than applying
        the function to the previous return value of the function combined with the next item emitted from the
@@ -618,24 +615,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -650,13 +633,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

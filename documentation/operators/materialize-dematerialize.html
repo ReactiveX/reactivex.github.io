@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>represent both the items emitted and the notifications sent as emitted items, or reverse this process</h3>
 
 <figure>
- <img src="images/materialize.c.png" width="640" alt="Materialize" />
+ <img src="images/materialize.c.png" width="100%" alt="Materialize" />
  <figcaption><p>
  A well-formed, finite Observable will invoke its observer’s <code>onNext</code> method zero or more times, and
  then will invoke either the <code>onCompleted</code> or <code>onError</code> method exactly once. The
@@ -195,7 +192,7 @@
  </p></figcaption>
 </figure>
 <figure>
- <img src="images/dematerialize.c.png" width="640" alt="Dematerialize" />
+ <img src="images/dematerialize.c.png" width="100%" alt="Dematerialize" />
  <figcaption><p>
  The <span class="operator">Dematerialize</span> operator reverses this process. It operates on an Observable
  that has previously been transformed by <span class="operator">Materialize</span> and returns it to its
@@ -267,7 +264,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/materialize.png" width="640" alt="materialize" />
+     <img src="images/materialize.png" width="100%" alt="materialize" />
      <figcaption><p>
       In RxGroovy, <code>materialize</code> transforms the notifications from the source Observable into
       <code>Notification</code> objects and emits them as the emissions from the Observable it returns. For
@@ -291,14 +288,15 @@ Next: 3
 Completed
 Sequence complete</pre></div>
      <p>
-      <code>materialize</code> does not by default operate on any particular Scheduler.
+      <code>materialize</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#materialize()"><code>materialize()</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/dematerialize.png" width="640" alt="dematerialize" />
+     <img src="images/dematerialize.png" width="100%" alt="dematerialize" />
      <figcaption><p>
       <code>dematerialize</code> reverses this process: converting the emitted <code>Notification</code>
       objects from the source Observable into notifications from the resulting Observable.
@@ -319,7 +317,8 @@ numbers.materialize().dematerialize().subscribe(
 3
 Sequence complete</pre></div>
      <p>
-      <code>dematerialize</code> does not by default operate on any particular Scheduler.
+      <code>dematerialize</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#dematerialize()"><code>dematerialize()</code></a></li>
@@ -344,26 +343,28 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/materialize.png" width="640" alt="materialize" />
+     <img src="images/materialize.png" width="100%" alt="materialize" />
      <figcaption><p>
       In RxJava, <code>materialize</code> transforms the notifications from the source Observable into
       <code>Notification</code> objects and emits them as the emissions from the Observable it returns.
      </p>
      <p>
-      <code>materialize</code> does not by default operate on any particular Scheduler.
+      <code>materialize</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#materialize()"><code>materialize()</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/dematerialize.png" width="640" alt="dematerialize" />
+     <img src="images/dematerialize.png" width="100%" alt="dematerialize" />
      <figcaption><p>
       <code>dematerialize</code> reverses this process: converting the emitted <code>Notification</code>
       objects from the source Observable into notifications from the resulting Observable.
      </p>
      <p>
-      <code>dematerialize</code> does not by default operate on any particular Scheduler.
+      <code>dematerialize</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#dematerialize()"><code>dematerialize()</code></a></li>
@@ -388,7 +389,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/dematerialize.png" width="640" alt="dematerialize" />
+     <img src="images/dematerialize.png" width="100%" alt="dematerialize" />
      <figcaption><p>
       RxJS only implements the <code>dematerialize</code> operator. If you want a &ldquo;materialized&rdquo;
       Observable, you have to assemble it by hand by manually creating and emitting the
@@ -539,24 +540,10 @@ Error: Error: woops</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -571,13 +558,10 @@ Error: Error: woops</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

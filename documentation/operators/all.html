@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>All</h1>
    <h3>determine whether all items emitted by an Observable meet some criteria</h3>
    <figure>
-    <img src="images/all.C.png" width="640" alt="All" />
+    <img src="images/all.C.png" width="100%" alt="All" />
     <figcaption><p>
     Pass a predicate function to the <span class="operator">All</span> operator that accepts an item
     emitted by the source Observable and returns a boolean value based on an evaluation of that
@@ -259,10 +256,11 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/all.png" width="640" alt="all" />
+      <img src="images/all.png" width="100%" alt="all" />
       <figcaption><p>
        RxGroovy implements this operator as <code>all</code>. It does not by default operate on any
-       particular scheduler. The following example shows how to use this operator:
+       particular <a href="../scheduler.html">Scheduler</a>. The following example shows how to use this
+       operator:
       </p>
       <h4>Sample Code</h4>
       <div class="code groovy"><pre>
@@ -301,10 +299,10 @@ true</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/all.png" width="640" alt="all" />
+      <img src="images/all.png" width="100%" alt="all" />
       <figcaption><p>
        RxJava implements this operator as <code>all</code>. It does not by default operate on any
-       particular scheduler.
+       particular <a href="../scheduler.html">Scheduler</a>.
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#all(rx.functions.Func1)"><code>all(Func1)</code></a></li>
       </ul></figcaption>
@@ -328,7 +326,7 @@ true</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/every.png" width="640" alt="every" />
+      <img src="images/every.png" width="100%" alt="every" />
       <figcaption><p>
        RxJS implements this operator as <code>every</code>. The following example shows how to use
        this operator:
@@ -481,24 +479,10 @@ Completed</pre></div></figcaption>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -513,13 +497,10 @@ Completed</pre></div></figcaption>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

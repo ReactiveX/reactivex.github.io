@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>apply a function to each item emitted by an Observable, sequentially, and emit the final value</h3>
 
    <figure>
-    <img src="images/reduce.c.png" width="640" alt="Reduce" />
+    <img src="images/reduce.c.png" width="100%" alt="Reduce" />
     <figcaption><p>
      The <span class="operator">Reduce</span> operator applies a function to the first item emitted by the
      source Observable and then feeds the result of the function back into the function along with the second
@@ -262,7 +259,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/reduce.png" width="640" alt="reduce" />
+      <img src="images/reduce.png" width="100%" alt="reduce" />
       <figcaption><p>
        The <code>reduce</code> operator returns an Observable that applies a function of your choosing to the
        first item emitted by a source Observable, then feeds the result of that function along with the second
@@ -290,14 +287,15 @@ numbers.reduce({ a, b -> a+b }).subscribe(
 15
 Sequence complete</pre></div>
       <p>
-       <code>reduce</code> does not by default operate on any particular Scheduler.
+       <code>reduce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#reduce(rx.functions.Func2)"><code>reduce(Func2)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/reduceSeed.png" width="640" alt="reduce" />
+      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
       <figcaption><p>
        There is also a version of <code>reduce</code> to which you can pass a seed item in addition to an
        accumulator function. Note that passing a <code>null</code> seed is not the same as not passing a seed.
@@ -305,7 +303,8 @@ Sequence complete</pre></div>
        reduction with the item <code>null</code>. Note also that if you do pass in a seed, and the source
        Observable emits no items, reduce will emit the seed and complete normally without error.
       </p><p>
-       <code>reduce</code> does not by default operate on any particular Scheduler.
+       <code>reduce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#reduce(R,%20rx.functions.Func2)"><code>reduce(R,Func2)</code></a></li>
@@ -316,7 +315,7 @@ Sequence complete</pre></div>
       Instead, use <code>collect</code> for that purpose.
      </p>
      <figure>
-      <img src="images/collect.png" width="640" alt="collect" />
+      <img src="images/collect.png" width="100%" alt="collect" />
       <figcaption><p>
        The <code>collect</code> operator is similar to <code>reduce</code> but is specialized for the purpose
        of collecting the whole set of items emitted by the source Observable into a single mutable data
@@ -327,7 +326,8 @@ Sequence complete</pre></div>
        <li>a function that, when given the data structure and an item emitted by the source Observable, modifies the data structure appropriately</li>
       </ol>
       <p>
-       <code>collect</code> does not by default operate on any particular Scheduler.
+       <code>collect</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#collect(rx.functions.Func0,%20rx.functions.Action2)"><code>collect(Func0,Action2)</code></a></li>
@@ -352,7 +352,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/reduce.png" width="640" alt="reduce" />
+      <img src="images/reduce.png" width="100%" alt="reduce" />
       <figcaption><p>
        The <code>reduce</code> operator returns an Observable that applies a function of your choosing to the
        first item emitted by a source Observable, then feeds the result of that function along with the second
@@ -364,14 +364,15 @@ Sequence complete</pre></div>
        Note that if the source Observable does not emit any items, <code>reduce</code> will fail with an
        <code>IllegalArgumentException</code>.
       </p><p>
-       <code>reduce</code> does not by default operate on any particular Scheduler.
+       <code>reduce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#reduce(rx.functions.Func2)"><code>reduce(Func2)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/reduceSeed.png" width="640" alt="reduce" />
+      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
       <figcaption><p>
        There is also a version of <code>reduce</code> to which you can pass a seed item in addition to an
        accumulator function. Note that passing a <code>null</code> seed is not the same as not passing a seed.
@@ -379,7 +380,8 @@ Sequence complete</pre></div>
        reduction with the item <code>null</code>. Note also that if you do pass in a seed, and the source
        Observable emits no items, reduce will emit the seed and complete normally without error.
       </p><p>
-       <code>reduce</code> does not by default operate on any particular Scheduler.
+       <code>reduce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#reduce(R,%20rx.functions.Func2)"><code>reduce(R,Func2)</code></a></li>
@@ -390,7 +392,7 @@ Sequence complete</pre></div>
       Instead, use <code>collect</code> for that purpose.
      </p>
      <figure>
-      <img src="images/collect.png" width="640" alt="collect" />
+      <img src="images/collect.png" width="100%" alt="collect" />
       <figcaption><p>
        The <code>collect</code> operator is similar to <code>reduce</code> but is specialized for the purpose
        of collecting the whole set of items emitted by the source Observable into a single mutable data
@@ -401,7 +403,8 @@ Sequence complete</pre></div>
        <li>a function that, when given the data structure and an item emitted by the source Observable, modifies the data structure appropriately</li>
       </ol>
       <p>
-       <code>collect</code> does not by default operate on any particular Scheduler.
+       <code>collect</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#collect(rx.functions.Func0,%20rx.functions.Action2)"><code>collect(Func0,Action2)</code></a></li>
@@ -426,7 +429,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/reduceSeed.png" width="640" alt="reduce" />
+      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
       <figcaption><p>
        RxJS implements the <code>reduce</code> operator. Pass it an accumulator function, and, optionally, a
        seed value to pass into the accumulator function with the first item emitted by the source Observable.
@@ -576,24 +579,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -608,13 +597,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

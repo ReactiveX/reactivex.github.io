@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>emit only the first <i>n</i> items emitted by an Observable</h3>
 
    <figure>
-    <img src="images/take.c.png" width="640" alt="Take" />
+    <img src="images/take.c.png" width="100%" alt="Take" />
     <figcaption><p>
      You can emit only the first <i>n</i> items emitted by an Observable and then complete while ignoring the
      remainder, by modifying the Observable with the <span class="operator">Take</span> operator.
@@ -255,7 +252,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>take</code>
+              RxGroovy <code>limit take</code>
             </a>
           </h4>
         </div>
@@ -263,14 +260,14 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/take.png" width="640" alt="take" />
+      <img src="images/take.png" width="100%" alt="take" />
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>take</code>.
       </p><p>
-       If you use the <code>take(<i>n</i>)</code> operator on an Observable, and that Observable emits fewer
-       than <i>n</i> items before completing, the new, <code>take</code>-modified Observable will not throw an
-       exception or invoke <code>onError</code>, but will merely emit this same fewer number of items before it
-       completes.
+       If you use the <code>take(<i>n</i>)</code> operator (or its synonym, <code>limit(<i>n</i>)</code>) on an
+       Observable, and that Observable emits fewer than <i>n</i> items before completing, the new,
+       <code>take</code>-modified Observable will not throw an exception or invoke <code>onError</code>, but
+       will merely emit this same fewer number of items before it completes.
       </p>
      <h4>Sample Code</h4>
       <div class="code groovy"><pre>
@@ -287,22 +284,24 @@ numbers.take(3).subscribe(
 3
 Sequence complete</pre></div>
       <p>
-       This variant of <code>take</code> does not by default operate on any particular Scheduler.
+       This variant of <code>take</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(int)"><code>take(int)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/take.t.png" width="640" alt="take" />
+      <img src="images/take.t.png" width="100%" alt="take" />
       <figcaption><p>
        There is also a variant of <code>take</code> that takes a temporal duration rather than a quantity of
        items. It results in an Observable that emits only those items that are emitted during that initial
        duration of the source Observable&#8217;s lifespan. You set this duration by passing in a length of time
        and the time units this length is denominated in as parameters to <code>take</code>.
       </p><p>
-       This variant of <code>take</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>take</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(long,%20java.util.concurrent.TimeUnit)"><code>take(long,TimeUnit)</code></a></li>
@@ -320,7 +319,7 @@ Sequence complete</pre></div>
         <div class="panel-heading" role="tab" id="headingRxJava">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>take</code>
+              RxJava <code>limit take</code>
             </a>
           </h4>
         </div>
@@ -328,14 +327,14 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/take.png" width="640" alt="take" />
+      <img src="images/take.png" width="100%" alt="take" />
       <figcaption><p>
        In RxJava, this operator is implemented as <code>take</code>.
       </p><p>
-       If you use the <code>take(<i>n</i>)</code> operator on an Observable, and that Observable emits fewer
-       than <i>n</i> items before completing, the new, <code>take</code>-modified Observable will not throw an
-       exception or invoke <code>onError</code>, but will merely emit this same fewer number of items before it
-       completes.
+       If you use the <code>take(<i>n</i>)</code> operator (or its synonym, <code>limit(<i>n</i>)</code>) on an
+       Observable, and that Observable emits fewer than <i>n</i> items before completing, the new,
+       <code>take</code>-modified Observable will not throw an exception or invoke <code>onError</code>, but
+       will merely emit this same fewer number of items before it completes.
       </p>
      <h4>Sample Code</h4>
      <div class="code java"><pre>
@@ -364,22 +363,24 @@ Next: 3
 Next: 4
 Sequence complete.</pre></div>
       <p>
-       This variant of <code>take</code> does not by default operate on any particular Scheduler.
+       This variant of <code>take</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(int)"><code>take(int)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/take.t.png" width="640" alt="take" />
+      <img src="images/take.t.png" width="100%" alt="take" />
       <figcaption><p>
        There is also a variant of <code>take</code> that takes a temporal duration rather than a quantity of
        items. It results in an Observable that emits only those items that are emitted during that initial
        duration of the source Observable&#8217;s lifespan. You set this duration by passing in a length of time
        and the time units this length is denominated in as parameters to <code>take</code>.
       </p><p>
-       This variant of <code>take</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>take</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(long,%20java.util.concurrent.TimeUnit)"><code>take(long,TimeUnit)</code></a></li>
@@ -405,7 +406,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/take.png" width="640" alt="take" />
+      <img src="images/take.png" width="100%" alt="take" />
       <figcaption><p>
        RxJS implements the <code>take</code> operator.
       </p>
@@ -426,10 +427,11 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/take.0.png" width="640" alt="take" />
+      <img src="images/take.0.png" width="100%" alt="take" />
       <figcaption><p>
-       For the special case of <code>take(0)</code> you can also pass as a second parameter a Scheduler that
-       <code>take</code> will use to immediately schedule a call to <code>onCompleted</code>.
+       For the special case of <code>take(0)</code> you can also pass as a second parameter a
+       <a href="../scheduler.html">Scheduler</a> that <code>take</code> will use to immediately schedule a call
+       to <code>onCompleted</code>.
       </p>
       </figcaption>
      </figure>
@@ -445,7 +447,7 @@ Completed</pre></div>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <figure>
-      <img src="images/takeUntilWithTime.png" width="640" alt="takeUntilWithTime" />
+      <img src="images/takeUntilWithTime.png" width="100%" alt="takeUntilWithTime" />
       <figcaption><p>
        RxJS also implements a <code>takeUntilWithTime</code> operator, which is like <code>take</code>
        except that rather than taking a particular quantity of items, it takes all of the items that are
@@ -459,8 +461,9 @@ Completed</pre></div>
         <dd>mirrors items from the source Observable until this absolute time</dd>
       </dl>
       <p>
-       You may also, optionally, pass in a Scheduler as a second parameter, and the timer will operate on that
-       Scheduler (<code>takeUntilWithTime</code> uses the <code>timeout</code> Scheduler by default).
+       You may also, optionally, pass in a <a href="../scheduler.html">Scheduler</a> as a second parameter, and
+       the timer will operate on that Scheduler (<code>takeUntilWithTime</code> uses the <code>timeout</code>
+       Scheduler by default).
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
@@ -606,24 +609,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -638,13 +627,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

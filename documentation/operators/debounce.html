@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>only emit an item from an Observable if a particular timespan has passed without it emitting another item</h3>
 
    <figure>
-    <img src="images/debounce.c.png" width="640" alt="Debounce" />
+    <img src="images/debounce.c.png" width="100%" alt="Debounce" />
     <figcaption><p>
      The <span class="operator">Debounce</span> operator filters out items emitted by the source Observable that
      are rapidly followed by another emitted item.
@@ -266,14 +263,15 @@
       not trigger a throttle.
      </p>
      <figure>
-      <img src="images/debounce.png" width="640" alt="debounce" />
+      <img src="images/debounce.png" width="100%" alt="debounce" />
       <figcaption><p>
        One variant of <code>throtleWithTimeout</code>/<code>debounce</code> (two names for the same operator
        variant) throttles at a periodic time interval that you choose by passing in a <code>TimeUnit</code> and
        a quantity of such units as parameters to the operator.
       </p><p>
-       This variant operates by default on the <code>computation</code> Scheduler, but you can optionally pass
-       in a Scheduler of your choosing as a third parameter.
+       This variant operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleWithTimeout(long,%20java.util.concurrent.TimeUnit)"><code>throttleWithTimeout(long,TimeUnit)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(long,%20java.util.concurrent.TimeUnit)"><code>debounce(long,TimeUnit)</code></a></li>
@@ -281,14 +279,15 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/debounce.f.png" width="640" alt="debounce" />
+      <img src="images/debounce.f.png" width="100%" alt="debounce" />
       <figcaption><p>
        There ia also a variant of <code>debounce</code> (that does not have a <code>throttleWithTimeout</code>
        alias) that throttles the source Observable by applying a function to each item it emits, this function
        generating an Observable. If the source Observable emits another item before this newly-generated
        Observable terminates, <code>debounce</code> will suppress the item.
       </p><p>
-       This variant of <code>debounce</code> does not by default operate on any particular Scheduler.
+       This variant of <code>debounce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(rx.functions.Func1)">debounce(Func1)</code></a></li>
@@ -321,14 +320,15 @@
       not trigger a throttle.
      </p>
      <figure>
-      <img src="images/debounce.png" width="640" alt="debounce" />
+      <img src="images/debounce.png" width="100%" alt="debounce" />
       <figcaption><p>
        One variant of <code>throtleWithTimeout</code>/<code>debounce</code> (two names for the same operator
        variant) throttles at a periodic time interval that you choose by passing in a <code>TimeUnit</code> and
        a quantity of such units as parameters to the operator.
       </p><p>
-       This variant operates by default on the <code>computation</code> Scheduler, but you can optionally pass
-       in a Scheduler of your choosing as a third parameter.
+       This variant operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleWithTimeout(long,%20java.util.concurrent.TimeUnit)"><code>throttleWithTimeout(long,TimeUnit)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(long,%20java.util.concurrent.TimeUnit)"><code>debounce(long,TimeUnit)</code></a></li>
@@ -336,14 +336,15 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/debounce.f.png" width="640" alt="debounce" />
+      <img src="images/debounce.f.png" width="100%" alt="debounce" />
       <figcaption><p>
        There ia also a variant of <code>debounce</code> (that does not have a <code>throttleWithTimeout</code>
        alias) that throttles the source Observable by applying a function to each item it emits, this function
        generating an Observable. If the source Observable emits another item before this newly-generated
        Observable terminates, <code>debounce</code> will suppress the item.
       </p><p>
-       This variant of <code>debounce</code> does not by default operate on any particular Scheduler.
+       This variant of <code>debounce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(rx.functions.Func1)">debounce(Func1)</code></a></li>
@@ -368,7 +369,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/debounce.png" width="640" alt="debounce" />
+      <img src="images/debounce.png" width="100%" alt="debounce" />
       <figcaption><p>
        The first variant &mdash; called either <code>debounce</code> or <code>throttleWithTimeout</code> &mdash;
        accepts as its parameter a duration, defined as an integer number of milliseconds, and it suppresses any
@@ -412,7 +413,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/debounceWithSelector.png" width="640" alt="debounceWithSelector" />
+      <img src="images/debounceWithSelector.png" width="100%" alt="debounceWithSelector" />
       <figcaption><p>
        The <code>debounceWithSelector</code> operator throttles the source Observable by applying a function to
        each item it emits, this function generating an Observable. If the source Observable emits another item
@@ -580,24 +581,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -612,13 +599,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

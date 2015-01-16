@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>TimeInterval</h1>
    <h3>convert an Observable that emits items into one that emits indications of the amount of time elapsed between those emissions</h3>
    <figure>
-    <img src="images/timeInterval.c.png" width="640" alt="TimeInterval" />
+    <img src="images/timeInterval.c.png" width="100%" alt="TimeInterval" />
     <figcaption><p>
      The <span class="operator">TimeInterval</span> operator intercepts the items from the source Observable
      and emits in their place objects that indicate the amount of time that elapsed between pairs of emissions.
@@ -255,7 +252,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/timeInterval.png" width="640" alt="timeInterval" />
+      <img src="images/timeInterval.png" width="100%" alt="timeInterval" />
       <figcaption><p>
        The <cite>timeInterval</cite> operator converts a source Observable into an Observable that emits
        indications of the amount of time lapsed between consecutive emissions of the source Observable. The
@@ -264,8 +261,9 @@
        There is no corresponding emission marking the amount of time lapsed between the last emission of the
        source Observable and the subsequent call to <code>onCompleted</code>.
       </p><p>
-       <code>timeInterval</code> by default operates on the <code>immediate</code> Scheduler, but also has a
-       variant that allows you to specify the Scheduler by passing it in as a parameter.
+       <code>timeInterval</code> by default operates on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>, but also has a variant that allows you to specify the
+       Scheduler by passing it in as a parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeInterval()"><code>timeInterval()</code></a></li>
@@ -291,7 +289,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/timeInterval.png" width="640" alt="timeInterval" />
+      <img src="images/timeInterval.png" width="100%" alt="timeInterval" />
       <figcaption><p>
        The <cite>timeInterval</cite> operator converts a source Observable into an Observable that emits
        indications of the amount of time lapsed between consecutive emissions of the source Observable. The
@@ -300,8 +298,9 @@
        There is no corresponding emission marking the amount of time lapsed between the last emission of the
        source Observable and the subsequent call to <code>onCompleted</code>.
       </p><p>
-       <code>timeInterval</code> by default operates on the <code>immediate</code> Scheduler, but also has a
-       variant that allows you to specify the Scheduler by passing it in as a parameter.
+       <code>timeInterval</code> by default operates on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>, but also has a variant that allows you to specify the
+       Scheduler by passing it in as a parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeInterval()"><code>timeInterval()</code></a></li>
@@ -327,7 +326,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/timeInterval.png" width="640" alt="timeInterval" />
+      <img src="images/timeInterval.png" width="100%" alt="timeInterval" />
       <figcaption><p>
        The <code>timeInterval</code> operator converts a source Observable into an Observable that emits
        indications of the amount of time lapsed between consecutive emissions of the source Observable. The
@@ -355,8 +354,9 @@ Next: 3:1000
 Next: 4:1000
 Completed</pre></div>
       <p>
-       <code>timeInterval</code> by default operates on the <code>timeout</code> Scheduler, but also has a
-       variant that allows you to specify the Scheduler by passing it in as a parameter.
+       <code>timeInterval</code> by default operates on the <code>timeout</code>
+       <a href="../scheduler.html">Scheduler</a>, but also has a variant that allows you to specify the
+       Scheduler by passing it in as a parameter.
       </p><p>
        <code>timeInterval</code> is found in each of the following distributions:
       </p>
@@ -484,24 +484,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -516,13 +502,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

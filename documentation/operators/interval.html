@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>create an Observable that emits a sequence of integers spaced by a given time interval</h3>
 
 <figure>
- <img src="images/interval.c.png" width="640" alt="Interval" />
+ <img src="images/interval.c.png" width="100%" alt="Interval" />
  <figcaption><p>
   The <span class="operator">Interval</span> operator returns an Observable that emits an infinite sequence of
   ascending integers, with a constant interval of time of your choosing between emissions.
@@ -259,14 +256,15 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/interval.png" width="640" alt="interval" />
+     <img src="images/interval.png" width="100%" alt="interval" />
      <figcaption><p>
       RxGroovy implements this operator as <code>interval</code>. It accepts as its parameters a
       span of time to wait between subsequent emissions and the <code>TimeUnit</code> in which this
       span is measured.
      </p><p>
-      <code>interval</code> operates by default on the <code>computation</code> Scheduler. There is
-      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>interval</code> operates by default on the <code>computation</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit)"><code>interval(long,TimeUnit)</code></a></li>
@@ -298,14 +296,15 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/interval.png" width="640" alt="interval" />
+     <img src="images/interval.png" width="100%" alt="interval" />
      <figcaption><p>
       RxJava implements this operator as <code>interval</code>. It accepts as its parameters a
       span of time to wait between subsequent emissions and the <code>TimeUnit</code> in which this
       span is measured.
      </p><p>
-      <code>interval</code> operates by default on the <code>computation</code> Scheduler. There is
-      also a variant that allows you to set the Scheduler by passing one in as a parameter.
+      <code>interval</code> operates by default on the <code>computation</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit)"><code>interval(long,TimeUnit)</code></a></li>
@@ -337,14 +336,14 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/interval.png" width="640" alt="interval" />
+     <img src="images/interval.png" width="100%" alt="interval" />
      <figcaption><p>
       RxJS implements this operator as <code>interval</code>. It accepts as its parameter the number
       of milliseconds to wait between subsequent emissions.
      </p><p>
-      <code>interval</code> operates by default on the <code>timeout</code> Scheduler, or you can
-      optionally pass in a different Scheduler as a second parameter, and <code>interval</code> will
-      operate on that Scheduler instead.
+      <code>interval</code> operates by default on the <code>timeout</code>
+      <a href="../scheduler.html">Scheduler</a>, or you can optionally pass in a different Scheduler as a second
+      parameter, and <code>interval</code> will operate on that Scheduler instead.
      </p>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>
@@ -493,24 +492,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -525,13 +510,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

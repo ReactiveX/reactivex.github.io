@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>create an Observable that emits a particular item after a given delay</h3>
 
 <figure>
- <img src="images/timer.c.png" width="640" alt="Timer" />
+ <img src="images/timer.c.png" width="100%" alt="Timer" />
  <figcaption><p>
   The <span class="operator">Timer</span> operator creates an Observable that emits one particular
   item after a span of time that you specify.
@@ -260,7 +257,7 @@
             
     <p>In RxGroovy there are two versions of the <code>timer</code> operator.</p>
     <figure class="variant">
-     <img src="images/timer.png" width="640" alt="timer" />
+     <img src="images/timer.png" width="100%" alt="timer" />
      <figcaption><p>
       The first version of <code>timer</code> returns an Observable that emits a single number zero
       after a delay period you specify.
@@ -271,7 +268,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/timer.p.png" width="640" alt="timer" />
+     <img src="images/timer.p.png" width="100%" alt="timer" />
      <figcaption><p>
       There is also a version of <code>timer</code> that returns an Observable that emits a single
       zero after a specified delay, and then emits incrementally increasing numbers periodically
@@ -284,8 +281,9 @@
      </ul></figcaption>
     </figure>
     <p>
-     <code>timer</code> by default operates on the <code>computation</code> scheduler, or you can
-     override this by passing in a Scheduler as a final parameter.
+     <code>timer</code> by default operates on the <code>computation</code>
+     <a href="../scheduler.html">Scheduler</a>, or you can override this by passing in a Scheduler as a final
+     parameter.
     </p>
   
           </div>
@@ -307,7 +305,7 @@
             
     <p>In RxJava there are two versions of the <code>timer</code> operator.</p>
     <figure class="variant">
-     <img src="images/timer.png" width="640" alt="timer" />
+     <img src="images/timer.png" width="100%" alt="timer" />
      <figcaption><p>
       The first version of <code>timer</code> returns an Observable that emits a single number zero
       after a delay period you specify.
@@ -318,7 +316,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/timer.p.png" width="640" alt="timer" />
+     <img src="images/timer.p.png" width="100%" alt="timer" />
      <figcaption><p>
       There is also a version of <code>timer</code> that returns an Observable that emits a single
       zero after a specified delay, and then emits incrementally increasing numbers periodically
@@ -331,8 +329,9 @@
      </ul></figcaption>
     </figure>
     <p>
-     <code>timer</code> by default operates on the <code>computation</code> scheduler, or you can
-     override this by passing in a Scheduler as a final parameter.
+     <code>timer</code> by default operates on the <code>computation</code>
+     <a href="../scheduler.html">Scheduler</a>, or you can override this by passing in a Scheduler as a final
+     parameter.
     </p>
   
           </div>
@@ -354,7 +353,7 @@
             
     <p>In RxJS there are two versions of the <code>timer</code> operator.</p>
     <figure class="variant">
-     <img src="images/timer.j1.png" width="640" alt="timer" />
+     <img src="images/timer.j1.png" width="100%" alt="timer" />
      <figcaption><p>
       The first version of <code>timer</code> returns an Observable that emits a single item
       after a delay period you specify. You can specify the delay either as a <code>Date</code>
@@ -364,7 +363,7 @@
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/timer.j2.png" width="640" alt="timer" />
+     <img src="images/timer.j2.png" width="100%" alt="timer" />
      <figcaption><p>
       There is also a version of <code>timer</code> that returns an Observable that emits a single
       item after a specified delay, and then emits items periodically thereafter on a specified
@@ -395,8 +394,9 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <p>
-     <code>timer</code> by default operates on the <code>timeout</code> scheduler, or you can
-     override this by passing in a Scheduler as a final parameter.
+     <code>timer</code> by default operates on the <code>timeout</code>
+     <a href="../scheduler.html">Scheduler</a>, or you can override this by passing in a Scheduler as a final
+     parameter.
     </p><p>
      <code>timer</code> is found in each of the following distributions:
     </p>
@@ -523,24 +523,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -555,13 +541,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

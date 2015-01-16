@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>mirror items emitted by an Observable until a specified condition becomes false</h3>
 
    <figure>
-    <img src="images/takeWhile.c.png" width="640" alt="TakeWhile" />
+    <img src="images/takeWhile.c.png" width="100%" alt="TakeWhile" />
     <figcaption><p>
      The <span class="operator">TakeWhile</span> mirrors the source Observable until such time as some condition
      you specify becomes false, at which point <span class="operator">TakeWhile</span> stops mirroring the
@@ -263,7 +260,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeWhile.png" width="640" alt="takeWhile" />
+      <img src="images/takeWhile.png" width="100%" alt="takeWhile" />
       <figcaption><p>
        The <code>takeWhile</code> operator returns an Observable that mirrors the behavior of the source
        Observable until such time as a function, applied to an item emitted by that Observable, returns
@@ -287,7 +284,8 @@ numbers.takeWhile({ ((it < 6) || (0 == (it % 2))) }).subscribe(
 6
 Sequence complete</pre></div>
       <p>
-       <code>takeWhile</code> does not by default operate on any particular Scheduler.
+       <code>takeWhile</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeWhile(rx.functions.Func1)"><code>takeWhile(Func1)</code></a></li>
@@ -312,14 +310,15 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeWhile.png" width="640" alt="takeWhile" />
+      <img src="images/takeWhile.png" width="100%" alt="takeWhile" />
       <figcaption><p>
        The <code>takeWhile</code> operator returns an Observable that mirrors the behavior of the source
        Observable until such time as a function, applied to an item emitted by that Observable, returns
        <code>false</code>, whereupon the new Observable terminates with an <code>onCompleted</code>
        notification.
       </p><p>
-       <code>takeWhile</code> does not by default operate on any particular Scheduler.
+       <code>takeWhile</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeWhile(rx.functions.Func1)"><code>takeWhile(Func1)</code></a></li>
@@ -344,7 +343,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeWhile.png" width="640" alt="takeWhile" />
+      <img src="images/takeWhile.png" width="100%" alt="takeWhile" />
       <figcaption><p>
        RxJS implements the <code>takeWhile</code> operator. You pass it a function that governs the takeping
        process. <code>takeWhile</code> calls that function for each item emitted by the source Observable
@@ -504,24 +503,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -536,13 +521,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

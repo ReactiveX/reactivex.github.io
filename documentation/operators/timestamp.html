@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>Timestamp</h1>
    <h3>attach a timestamp to each item emitted by an Observable indicating when it was emitted</h3>
    <figure>
-    <img src="images/timestamp.c.png" width="640" alt="Timestamp" />
+    <img src="images/timestamp.c.png" width="100%" alt="Timestamp" />
     <figcaption><p>
      The <span class="operator">Timestamp</span> operator attaches a timestamp to each item emitted by the
      source Observable before reemitting that item in its own sequence. The timestamp indicates at what time
@@ -256,7 +253,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/timestamp.png" width="640" alt="timestamp" />
+      <img src="images/timestamp.png" width="100%" alt="timestamp" />
       <figcaption><p>
        The <code>timestamp</code> method converts an Observable that emits items of type <i>T</i> into one that
        emits objects of type <code>Timestamped&lt;<i>T</i>&gt;</code>, where each such object is stamped with
@@ -278,7 +275,8 @@ Timestamped(timestampMillis = 1369252582823, value = 800000)
 Timestamped(timestampMillis = 1369252582864, value = 1000000)
 Sequence complete</pre></div>
       <p>
-       <code>timestamp</code> by default operates on the <code>immediate</code> Scheduler but also has a variant
+       <code>timestamp</code> by default operates on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a> but also has a variant
        that allows you to choose the Scheduler by passing it in as a parameter.
       </p>
       <ul>
@@ -305,13 +303,14 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/timestamp.png" width="640" alt="timestamp" />
+      <img src="images/timestamp.png" width="100%" alt="timestamp" />
       <figcaption><p>
        The <code>timestamp</code> method converts an Observable that emits items of type <i>T</i> into one that
        emits objects of type <code>Timestamped&lt;<i>T</i>&gt;</code>, where each such object is stamped with
        the time at which it was originally emitted.
       </p><p>
-       <code>timestamp</code> by default operates on the <code>immediate</code> Scheduler but also has a variant
+       <code>timestamp</code> by default operates on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a> but also has a variant
        that allows you to choose the Scheduler by passing it in as a parameter.
       </p>
       <ul>
@@ -338,7 +337,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/timestamp.png" width="640" alt="timestamp" />
+      <img src="images/timestamp.png" width="100%" alt="timestamp" />
       <figcaption><p>
        The <code>timestamp</code> method attaches a timestamp to each item emitted by the source Observable
        before emitting that item as part of its own sequence. The timestamp indicates when the item was
@@ -363,7 +362,8 @@ Next: 3:1378690779317
 Next: 4:1378690780319
 Completed</pre></div>
       <p>
-       <code>timestamp</code> by default operates on the <code>timeout</code> Scheduler, but also has a
+       <code>timestamp</code> by default operates on the <code>timeout</code>
+       <a href="../scheduler.html">Scheduler</a>, but also has a
        variant that allows you to specify the Scheduler by passing it in as a parameter.
       </p><p>
        <code>timestamp</code> is found in each of the following distributions:
@@ -492,24 +492,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -524,13 +510,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>suppress the final <i>n</i> items emitted by an Observable</h3>
 
    <figure>
-    <img src="images/skipLast.c.png" width="640" alt="SkipLast" />
+    <img src="images/skipLast.c.png" width="100%" alt="SkipLast" />
     <figcaption><p>
      You can ignore the final <i>n</i> items emitted by an Observable and attend only to those items that come
      before them, by modifying the Observable with the <span class="operator">SkipLast</span> operator.
@@ -263,21 +260,22 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipLast.png" width="640" alt="skipLast" />
+      <img src="images/skipLast.png" width="100%" alt="skipLast" />
       <figcaption><p>
        You can ignore the final <i>n</i> items emitted by an Observable and attend only to those items that
        precede them, by modifying the Observable with the <code>skipLast(<i>n</i>)</code> operator. Note that
        the mechanism by which this is implemented will delay the emission of any item from the source Observable
        until <i>n</i> additional items have been emitted by that Observable.
       </p><p>
-       This variant of <code>skipLast</code> does not by default operate on any particular Scheduler.
+       This variant of <code>skipLast</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skipLast(int)"><code>skipLast(int)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/skipLast.t.png" width="640" alt="skipLast" />
+      <img src="images/skipLast.t.png" width="100%" alt="skipLast" />
       <figcaption><p>
        There is also a variant of <code>skipLast</code> that takes a temporal duration rather than a quantity of
        items. It drops those items that are emitted during that final duration of the source
@@ -287,8 +285,9 @@
        Note that the mechanism by which this is implemented will delay the emission of any item from the source
        Observable until the given duration passes since its emission.
       </p><p>
-       This variant of <code>skipLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>skipLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skipLast(long,%20java.util.concurrent.TimeUnit)"><code>skipLast(long,TimeUnit)</code></a></li>
@@ -314,21 +313,22 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipLast.png" width="640" alt="skipLast" />
+      <img src="images/skipLast.png" width="100%" alt="skipLast" />
       <figcaption><p>
        You can ignore the final <i>n</i> items emitted by an Observable and attend only to those items that
        precede them, by modifying the Observable with the <code>skipLast(<i>n</i>)</code> operator. Note that
        the mechanism by which this is implemented will delay the emission of any item from the source Observable
        until <i>n</i> additional items have been emitted by that Observable.
       </p><p>
-       This variant of <code>skipLast</code> does not by default operate on any particular Scheduler.
+       This variant of <code>skipLast</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skipLast(int)"><code>skipLast(int)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/skipLast.t.png" width="640" alt="skipLast" />
+      <img src="images/skipLast.t.png" width="100%" alt="skipLast" />
       <figcaption><p>
        There is also a variant of <code>skipLast</code> that takes a temporal duration rather than a quantity of
        items. It drops those items that are emitted during that final duration of the source
@@ -338,8 +338,9 @@
        Note that the mechanism by which this is implemented will delay the emission of any item from the source
        Observable until the given duration passes since its emission.
       </p><p>
-       This variant of <code>skipLast</code> by default operates on the <code>computation</code> Scheduler, but
-       you may also pass in a Scheduler of your choosing as an optional third parameter.
+       This variant of <code>skipLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skipLast(long,%20java.util.concurrent.TimeUnit)"><code>skipLast(long,TimeUnit)</code></a></li>
@@ -365,7 +366,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipLast.png" width="640" alt="skipLast" />
+      <img src="images/skipLast.png" width="100%" alt="skipLast" />
       <figcaption><p>
        You can ignore the final <i>n</i> items emitted by an Observable and attend only to those items that
        precede them, by modifying the Observable with the <code>skipLast(<i>n</i>)</code> operator. Note that
@@ -399,7 +400,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/skipLastWithTime.png" width="640" alt="skipLastWithTime" />
+      <img src="images/skipLastWithTime.png" width="100%" alt="skipLastWithTime" />
       <figcaption><p>
        The <code>skipLastWithTime</code> operator takes a temporal duration rather than a quantity of
        items. It drops those items that are emitted during that final duration of the source
@@ -409,8 +410,9 @@ Completed</pre></div>
        Note that the mechanism by which this is implemented will delay the emission of any item from the source
        Observable until the given duration passes since its emission.
       </p><p>
-       <code>skipLastWithTime</code> by default operates on the <code>timeout</code> Scheduler, but you may also
-       pass in a Scheduler of your choosing as an optional second parameter.
+       <code>skipLastWithTime</code> by default operates on the <code>timeout</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional second parameter.
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
@@ -557,24 +559,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -589,13 +577,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

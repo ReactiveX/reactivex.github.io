@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,17 +181,17 @@
 <h1>Empty</h1>
 <h3>create an Observable that emits no items but terminates normally</h3>
 <figure>
-  <img src="images/empty.c.png" width="640" alt="Empty" />
+  <img src="images/empty.c.png" width="100%" alt="Empty" />
 </figure>
 <h1>Never</h1>
 <h3>create an Observable that emits no items and does not terminate</h3>
 <figure>
-  <img src="images/never.c.png" width="640" alt="Never" />
+  <img src="images/never.c.png" width="100%" alt="Never" />
 </figure>
 <h1>Throw</h1>
 <h3>create an Observable that emits no items and terminates with an error</h3>
 <figure>
-  <img src="images/throw.c.png" width="640" alt="Throw" />
+  <img src="images/throw.c.png" width="100%" alt="Throw" />
 </figure>
 
 <p>
@@ -272,7 +269,7 @@
       <code>error</code>. The <code>error</code> operator takes as a parameter the
       <code>Throwable</code> with which you want the Observable to terminate.
      </p><p>
-      These operators do not operate by default on any particular scheduler.
+      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>.
      </p>
      <h4>Sample Code</h4>
      <div class="code groovy"><pre>
@@ -332,7 +329,7 @@ error: error - badness
       <code>error</code>. The <code>error</code> operator takes as a parameter the
       <code>Error</code> with which you want the Observable to terminate.
      </p><p>
-      These operators do not operate by default on any particular Scheduler, but
+      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>, but
       <code>empty</code> and <code>throw</code> optionally take a Scheduler as a parameter, and if
       you pass it a Scheduler it will issue its termination notification on that Scheduler.
      </p>
@@ -539,24 +536,10 @@ Error: Error: error!</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -571,13 +554,10 @@ Error: Error: error!</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

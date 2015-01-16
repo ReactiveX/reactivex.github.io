@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>Amb</h1>
    <h3>given two or more source Observables, emit all of the items from only the first of these Observables to emit an item</h3>
    <figure>
-    <img src="images/amb.C.png" width="640" alt="Amb" />
+    <img src="images/amb.C.png" width="100%" alt="Amb" />
    <figcaption><p>
     When you pass a number of source Observables to <span class="operator">Amb</span>, it will pass
     through the emissions and notifications of exactly one of these Observables: the first one that
@@ -251,7 +248,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/amb.png" width="640" alt="amb" />
+      <img src="images/amb.png" width="100%" alt="amb" />
       <figcaption><p>
        RxGroovy implements this operator as <code>amb</code>. It takes up to nine Observables
        as individual parameters, or a single Iterable of Observables. There is also an instance
@@ -259,7 +256,7 @@
        <code>Observable.amb(o1,o2)</code> you could also write <code>o1.ambWith(o2)</code> for the
        same effect.
       </p><p>
-       This operator does not by default operate on any particular scheduler
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p><ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(java.lang.Iterable)"><code>amb(Iterable)</code></a></li>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable)"><code>amb(Observable,Observable)</code></a> (there are also versions that take up to nine Observable parameters)</li>
@@ -285,7 +282,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/amb.png" width="640" alt="amb" />
+      <img src="images/amb.png" width="100%" alt="amb" />
       <figcaption><p>
        RxJava implements this operator as <code>amb</code>. It takes up to nine Observables as
        individual parameters, or a single Iterable of Observables. There is also an instance
@@ -293,7 +290,7 @@
        <code>Observable.amb(o1,o2)</code> you could also write <code>o1.ambWith(o2)</code> for the
        same effect.
       </p><p>
-       This operator does not by default operate on any particular scheduler
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p><ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(java.lang.Iterable)"><code>amb(Iterable)</code></a></li>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable, rx.Observable)"><code>amb(Observable,Observable)</code></a> (there are also versions that take up to nine Observable parameters)</li>
@@ -319,7 +316,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/amb.png" width="640" alt="amb" />
+      <img src="images/amb.png" width="100%" alt="amb" />
       <figcaption><p>
        RxJS implements this operator as <code>amb</code>. It takes a variable number of parameters,
        which may be either Observables or Promises (or combinations of the two).
@@ -470,24 +467,10 @@ Completed</pre></div></figcaption>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -502,13 +485,10 @@ Completed</pre></div></figcaption>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

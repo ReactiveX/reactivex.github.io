@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
    <h3>discard any items emitted by an Observable after a second Observable emits an item or terminates</h3>
 
    <figure>
-    <img src="images/takeUntil.c.png" width="640" alt="TakeUntil" />
+    <img src="images/takeUntil.c.png" width="100%" alt="TakeUntil" />
     <figcaption><p>
      The <span class="operator">TakeUntil</span> subscribes and begins mirroring the source Observable. It also
      monitors a second Observable that you provide. If this second Observable emits an item or sends a
@@ -264,13 +261,14 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeUntil.png" width="640" alt="takeUntil" />
+      <img src="images/takeUntil.png" width="100%" alt="takeUntil" />
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>takeUntil</code>. Note that the second Observable can
        cause <code>takeUntil</code> to quit emitting items either by emitting an item or by issuing an
        <code>onError</code> or <code>onCompleted</code> notification.
       </p><p>
-       <code>takeUntil</code> does not by default operate on any particular Scheduler.
+       <code>takeUntil</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.Observable)"><code>takeUntil(Observable)</code></a></li>
@@ -295,13 +293,14 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeUntil.png" width="640" alt="takeUntil" />
+      <img src="images/takeUntil.png" width="100%" alt="takeUntil" />
       <figcaption><p>
        In RxJava, this operator is implemented as <code>takeUntil</code>. Note that the second Observable can
        cause <code>takeUntil</code> to quit emitting items either by emitting an item or by issuing an
        <code>onError</code> or <code>onCompleted</code> notification.
       </p><p>
-       <code>takeUntil</code> does not by default operate on any particular Scheduler.
+       <code>takeUntil</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.Observable)"><code>takeUntil(Observable)</code></a></li>
@@ -326,7 +325,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeUntil.png" width="640" alt="takeUntil" />
+      <img src="images/takeUntil.png" width="100%" alt="takeUntil" />
       <figcaption><p>
        RxJS implements the <code>takeUntil</code> operator. You can pass it either an Observable or a
        <code>Promise</code> that it will monitor for an item that triggers <code>takeUntil</code> to stop
@@ -482,24 +481,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -514,13 +499,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

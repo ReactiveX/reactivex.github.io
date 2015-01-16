@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -277,7 +274,7 @@
      backpressure. It also has three operators that you can apply to Observables that have not been
      written to support backpressure:
     <figure class="variant">
-     <img src="images/bp.obp.block.png" width="640" alt="onBackpressureBlock" />
+     <img src="images/bp.obp.block.png" width="100%" alt="onBackpressureBlock" />
      <figcaption><p>
       <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0) blocks the thread
       on which the source Observable is operating until such time as an observer issues a request
@@ -288,7 +285,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.obp.buffer.png" width="640" alt="onBackpressureBuffer" />
+     <img src="images/bp.obp.buffer.png" width="100%" alt="onBackpressureBuffer" />
      <figcaption><p>
       <code>onBackpressureBuffer</code> maintains a buffer of all unobserved emissions from the
       source Observable and emits them to downstream observers according to the requests they
@@ -302,7 +299,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.obp.drop.png" width="640" alt="onBackpressureDrop" />
+     <img src="images/bp.obp.drop.png" width="100%" alt="onBackpressureDrop" />
      <figcaption><p>
       <code>onBackpressureDrop</code> drops emissions from the source Observable unless there is a
       pending request from a downstream observer, in which case it will emit enough items to fulfill
@@ -334,7 +331,7 @@
      backpressure. It also has three operators that you can apply to Observables that have not been
      written to support backpressure:
     <figure class="variant">
-     <img src="images/bp.obp.block.png" width="640" alt="onBackpressureBlock" />
+     <img src="images/bp.obp.block.png" width="100%" alt="onBackpressureBlock" />
      <figcaption><p>
       <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0) blocks the thread
       on which the source Observable is operating until such time as an observer issues a request
@@ -345,7 +342,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.obp.buffer.png" width="640" alt="onBackpressureBuffer" />
+     <img src="images/bp.obp.buffer.png" width="100%" alt="onBackpressureBuffer" />
      <figcaption><p>
       <code>onBackpressureBuffer</code> maintains a buffer of all unobserved emissions from the
       source Observable and emits them to downstream observers according to the requests they
@@ -359,7 +356,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.obp.drop.png" width="640" alt="onBackpressureDrop" />
+     <img src="images/bp.obp.drop.png" width="100%" alt="onBackpressureDrop" />
      <figcaption><p>
       <code>onBackpressureDrop</code> drops emissions from the source Observable unless there is a
       pending request from a downstream observer, in which case it will emit enough items to fulfill
@@ -393,7 +390,7 @@
      its own initiative.
     </p>
     <figure class="variant">
-     <img src="images/bp.stopAndWait.png" width="640" alt="stopAndWait" />
+     <img src="images/bp.stopAndWait.png" width="100%" alt="stopAndWait" />
      <figcaption><p>
       As an alternative to using <code>request</code> to pull items from a
       <code>ControlledObservable</code>, you may apply the <code>stopAndWait</code> operator to it.
@@ -402,7 +399,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.windowed.png" width="640" alt="windowed" />
+     <img src="images/bp.windowed.png" width="100%" alt="windowed" />
      <figcaption><p>
       A second possibility is to use the <code>windowed(</code><i>n</i><code>)</code>. This behaves
       similarly to <code>stopAndWait</code> but has an internal buffer of <i>n</i> items, which
@@ -415,7 +412,7 @@
      <code>PausableObservable</code>.
     </p>
     <figure class="variant">
-     <img src="images/bp.pausable.png" width="640" alt="pausable" />
+     <img src="images/bp.pausable.png" width="100%" alt="pausable" />
      <figcaption><p>
       If you call the <code>pause</code> method of a <code>PausableObservable</code> created with
       the <code>pausable</code> operator, it will drop (ignore) any items emitted by the underlying
@@ -424,7 +421,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.pausableBuffered.png" width="640" alt="pausableBuffered" />
+     <img src="images/bp.pausableBuffered.png" width="100%" alt="pausableBuffered" />
      <figcaption><p>
       If you call the <code>pause</code> method of a <code>PausableObservable</code> created with
       the <code>pausableBuffered</code> operator, it will buffer any items emitted by the underlying
@@ -549,24 +546,10 @@
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -581,13 +564,10 @@
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

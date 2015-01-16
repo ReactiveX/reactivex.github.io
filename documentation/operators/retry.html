@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -186,7 +183,7 @@
        without error</h3>
 
    <figure>
-    <img src="images/retry.C.png" width="640" alt="Retry" />
+    <img src="images/retry.C.png" width="100%" alt="Retry" />
     <figcaption><p>
      The <span class="operator">Retry</span> operator responds to an <code>onError</code>
      notification from the source Observable by not passing that call through to its observers, but
@@ -243,7 +240,7 @@
       RxCpp implements this operator as <code>retry</code>:
      </p>
      <figure>
-      <img src="images/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="100%" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single argument, a count of the number of times it should try
        resubscribing to the source Observable when it encounters errors. If this count is exceeded,
@@ -273,7 +270,7 @@
       RxGroovy has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="100%" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -291,7 +288,8 @@
        should resubscribe to and mirror the source Observable. If it does not, then
        <code>retry</code> passes the latest <code>onError</code> notification to its observers.
       </p><p>
-       <code>retry</code> by default operates on the <code>trampoline</code> Scheduler.
+       <code>retry</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry()"><code>retry()</code></a></li>
@@ -300,7 +298,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/retryWhen.f.png" width="640" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" width="100%" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -310,8 +308,9 @@
        that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
        notification on to its observers and terminates.
       </p><p>
-       <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and
-       there is also a version that accepts a Scheduler as a parameter.
+       <code>retryWhen</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>, and there is also a version that accepts a Scheduler as a
+       parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1)"><code>retryWhen(Func1)</code></a></li>
@@ -340,7 +339,7 @@
       RxJava has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="100%" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -358,7 +357,8 @@
        should resubscribe to and mirror the source Observable. If it does not, then
        <code>retry</code> passes the latest <code>onError</code> notification to its observers.
       </p><p>
-       <code>retry</code> by default operates on the <code>trampoline</code> Scheduler.
+       <code>retry</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry()"><code>retry()</code></a></li>
@@ -367,7 +367,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/retryWhen.f.png" width="640" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" width="100%" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -377,8 +377,9 @@
        result is an <code>onError</code> notification, <code>retryWhen</code> passes this
        notification on to its observers and terminates.
       </p><p>
-       <code>retryWhen</code> by default operates on the <code>trampoline</code> Scheduler, and there
-       is also a version that accepts a Scheduler as a parameter.
+       <code>retryWhen</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>, and there is also a version that accepts a Scheduler as a
+       parameter.
       </p>
       <h4>Sample Code</h4>
       <div class="code java"><pre>
@@ -426,7 +427,7 @@ subscribing</pre></div>
       RxJS implements this operator as <code>retry</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="100%" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -473,7 +474,7 @@ subscribing</pre></div>
       RxKotlin has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="100%" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -493,7 +494,7 @@ subscribing</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/retryWhen.f.png" width="640" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" width="100%" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -526,7 +527,7 @@ subscribing</pre></div>
       Rx.NET implements this operator as <code>Retry</code>.
      </p>
      <figure>
-      <img src="images/retry.C.png" width="640" alt="Retry" />
+      <img src="images/retry.C.png" width="100%" alt="Retry" />
       <figcaption><p>
        One variant of <code>Retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -562,7 +563,7 @@ subscribing</pre></div>
       RxPY implements this operator as <code>retry</code>:
      </p>
      <figure>
-      <img src="images/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="100%" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single optional parameter, a count of the number of times it
        should try resubscribing to and mirroring the source Observable when it encounters errors. If
@@ -594,7 +595,7 @@ subscribing</pre></div>
       Rx.rb has two versions of this operator: <code>retry</code> and <code>retry_infinitely</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="100%" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single optional parameter, a count of the number of times it
        should try resubscribing to and mirroring the source Observable when it encounters errors. If
@@ -629,7 +630,7 @@ subscribing</pre></div>
       RxScala has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="640" alt="retry" />
+      <img src="images/retry.png" width="100%" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -649,7 +650,7 @@ subscribing</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/retryWhen.f.png" width="640" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" width="100%" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -671,24 +672,10 @@ subscribing</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -703,13 +690,10 @@ subscribing</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>Using</h1>
    <h3>create a disposable resource that has the same lifespan as the Observable</h3>
    <figure>
-    <img src="images/using.c.png" width="640" alt="Using" />
+    <img src="images/using.c.png" width="100%" alt="Using" />
     <figcaption><p>
      The <span class="operator">Using</span> operator is a way you can instruct an Observable to create a
      resource that exists only during the lifespan of the Observable and is disposed of when the Observable
@@ -255,7 +252,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/using.png" width="640" alt="using" />
+      <img src="images/using.png" width="100%" alt="using" />
       <figcaption><p>
        You pass the <code>using</code> operator three parameters:
       </p><ol>
@@ -269,7 +266,8 @@
        the observer unsubscribes from the Observable, or when the Observable terminates (normally or with an
        error), <code>using</code> will call the third function to dispose of the resource it created.
       </p><p>
-       <code>using</code> does not by default operates on any particular Scheduler.
+       <code>using</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#using(rx.functions.Func0,%20rx.functions.Func1,%20rx.functions.Action1)"><code>using(Func0,Func1,Action1)</code></a></li>
@@ -294,7 +292,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/using.png" width="640" alt="using" />
+      <img src="images/using.png" width="100%" alt="using" />
       <figcaption><p>
        You pass the <code>using</code> operator three parameters:
       </p><ol>
@@ -308,7 +306,8 @@
        the observer unsubscribes from the Observable, or when the Observable terminates (normally or with an
        error), <code>using</code> will call the third function to dispose of the resource it created.
       </p><p>
-       <code>using</code> does not by default operates on any particular Scheduler.
+       <code>using</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#using(rx.functions.Func0,%20rx.functions.Func1,%20rx.functions.Action1)"><code>using(Func0,Func1,Action1)</code></a></li>
@@ -333,7 +332,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/using.js.png" width="640" alt="using" />
+      <img src="images/using.js.png" width="100%" alt="using" />
       <figcaption><p>
        You pass the <code>using</code> operator two parameters:
       </p><ol>
@@ -515,24 +514,10 @@ Disposed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -547,13 +532,10 @@ Disposed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

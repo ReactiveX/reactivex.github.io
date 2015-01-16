@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>convert an Observable that emits Observables into a single Observable that emits the items emitted by the most-recently-emitted of those Observables</h3>
 
 <figure>
- <img src="images/switch.c.png" width="640" alt="Switch" />
+ <img src="images/switch.c.png" width="100%" alt="Switch" />
  <figcaption><p>
   <span class="operator">Switch</span> subscribes to an Observable that emits Observables. Each time it observes
   one of these emitted Observables, the Observable returned by <span class="operator">Switch</span> unsubscribes
@@ -265,10 +262,10 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/switchDo.png" width="640" alt="switch" />
+     <img src="images/switchDo.png" width="100%" alt="switch" />
      <figcaption><p>
       RxGroovy implements this operator as <code>switchOnNext</code>. It does not by default operate on any
-      particular Scheduler.
+      particular <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchOnNext(rx.Observable)"><code>switchOnNext(Observable)</code></a></li>
@@ -293,10 +290,10 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/switchDo.png" width="640" alt="switch" />
+     <img src="images/switchDo.png" width="100%" alt="switch" />
      <figcaption><p>
       RxGroovy implements this operator as <code>switchOnNext</code>. It does not by default operate on any
-      particular Scheduler.
+      particular <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchOnNext(rx.Observable)"><code>switchOnNext(Observable)</code></a></li>
@@ -321,7 +318,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/switch.png" width="640" alt="switch" />
+     <img src="images/switch.png" width="100%" alt="switch" />
      <figcaption><p>
       RxJS implements this operator as <code>switch</code>
      </p>
@@ -468,24 +465,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -500,13 +483,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

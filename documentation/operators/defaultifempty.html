@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>DefaultIfEmpty</h1>
    <h3>emit items from the source Observable, or a default item if the source Observable emits nothing</h3>
    <figure>
-    <img src="images/defaultIfEmpty.c.png" width="640" alt="DefaultIfEmpty" />
+    <img src="images/defaultIfEmpty.c.png" width="100%" alt="DefaultIfEmpty" />
     <figcaption><p>
      The <span class="operator">DefaultIfEmpty</span> operator simply mirrors the source Observable exactly
      if the source Observable emits any items. If the source Observable terminates normally (with an
@@ -257,11 +254,11 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/defaultIfEmpty.png" width="640" alt="defaultIfEmpty" />
+      <img src="images/defaultIfEmpty.png" width="100%" alt="defaultIfEmpty" />
       <figcaption><p>
        RxGroovy implements this operator as <code>defaultIfEmpty</code>.
       </p><p>
-       This operator does not by default operate on any particular scheduler
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p><ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
       </ul></figcaption>
@@ -285,11 +282,11 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/defaultIfEmpty.png" width="640" alt="defaultIfEmpty" />
+      <img src="images/defaultIfEmpty.png" width="100%" alt="defaultIfEmpty" />
       <figcaption><p>
        RxJava implements this operator as <code>defaultIfEmpty</code>.
       </p><p>
-       This operator does not by default operate on any particular scheduler
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p><ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
       </ul></figcaption>
@@ -313,7 +310,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/defaultIfEmpty.png" width="640" alt="defaultIfEmpty" />
+      <img src="images/defaultIfEmpty.png" width="100%" alt="defaultIfEmpty" />
       <figcaption><p>
        RxJS implements <code>defaultIfEmpty</code>, but the parameter that sets the default value is optional.
        If you do not pass this default value, <code>defaultIfEmpty</code> will emit a
@@ -472,24 +469,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -504,13 +487,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

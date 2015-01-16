@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>create an Observable that emits the return value of a function-like directive</h3>
 
 <figure>
- <img src="images/start.c.png" width="640" alt="Start" />
+ <img src="images/start.c.png" width="100%" alt="Start" />
  <figcaption><p>
   There are a number of ways that programming languages have for obtaining values as the result of
   calculations, with names like functions, futures, actions, callables, runnables, and so forth.
@@ -264,7 +261,7 @@
      optional <code>rxjava-async</code> module.
     </p>
     <figure class="variant">
-     <img src="images/start.png" width="640" alt="start" />
+     <img src="images/start.png" width="100%" alt="start" />
      <figcaption><p>
       The <code>rxjava-async</code> module includes the <code>start</code> operator, which accepts
       a function as its parameter, calls that function to retrieve a value, and then returns an
@@ -275,7 +272,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toAsync.png" width="640" alt="toAsync" />
+     <img src="images/toAsync.png" width="100%" alt="toAsync" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>toAsync</code>,
       <code>asyncAction</code>, and <code>asyncFunc</code> operators. These accept a function or
@@ -291,7 +288,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/startFuture.png" width="640" alt="startFuture" />
+     <img src="images/startFuture.png" width="100%" alt="startFuture" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>startFuture</code> operator.
       You pass it a function that returns a <code>Future</code>. <code>startFuture</code> calls this
@@ -301,7 +298,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/deferFuture.png" width="640" alt="deferFuture" />
+     <img src="images/deferFuture.png" width="100%" alt="deferFuture" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>deferFuture</code> operator.
       You pass it a function that returns a <code>Future</code> that returns an Observable.
@@ -315,7 +312,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromAction.png" width="640" alt="fromAction" />
+     <img src="images/fromAction.png" width="100%" alt="fromAction" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>fromAction</code> operator.
       It accepts an <code>Action</code> as its parameter, and returns an Observable that emits the
@@ -323,7 +320,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromCallable.png" width="640" alt="fromCallable" />
+     <img src="images/fromCallable.png" width="100%" alt="fromCallable" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>fromCallable</code> operator.
       It accepts a <code>Callable</code> as its parameter, and returns an Observable that emits the
@@ -331,7 +328,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromRunnable.png" width="640" alt="fromRunnable" />
+     <img src="images/fromRunnable.png" width="100%" alt="fromRunnable" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>fromRunnable</code> operator.
       It accepts a <code>Runnable</code> as its parameter, and returns an Observable that emits the
@@ -339,7 +336,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/forEachFuture.png" width="640" alt="forEachFuture" />
+     <img src="images/forEachFuture.png" width="100%" alt="forEachFuture" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>forEachFuture</code> operator.
       It is not really a variant of the <span class="operator">Start</span> operator, but something
@@ -357,7 +354,8 @@
      peculiar in that it creates a specialization of an Observable called a
      <code>StoppableObservable</code>.
     </p><p>
-     Pass <code>runAsync</code> an <code>Action</code> and a <code>Scheduler</code>, and it will
+     Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will
      return a <code>StoppableObservable</code> that uses the specified <code>Action</code> to
      generate items that it emits. The <code>Action</code> accepts an <code>Observer</code> and a
      <code>Subscription</code>. It uses the <code>Subscription</code> to check for the
@@ -402,7 +400,7 @@
      optional <code>rxjava-async</code> module.
     </p>
     <figure class="variant">
-     <img src="images/start.png" width="640" alt="start" />
+     <img src="images/start.png" width="100%" alt="start" />
      <figcaption><p>
       The <code>rxjava-async</code> module includes the <code>start</code> operator, which accepts
       a function as its parameter, calls that function to retrieve a value, and then returns an
@@ -413,7 +411,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/toAsync.png" width="640" alt="toAsync" />
+     <img src="images/toAsync.png" width="100%" alt="toAsync" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>toAsync</code>,
       <code>asyncAction</code>, and <code>asyncFunc</code> operators. These accept a function or
@@ -429,7 +427,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/startFuture.png" width="640" alt="startFuture" />
+     <img src="images/startFuture.png" width="100%" alt="startFuture" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>startFuture</code> operator.
       You pass it a function that returns a <code>Future</code>. <code>startFuture</code> calls this
@@ -439,7 +437,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/deferFuture.png" width="640" alt="deferFuture" />
+     <img src="images/deferFuture.png" width="100%" alt="deferFuture" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>deferFuture</code> operator.
       You pass it a function that returns a <code>Future</code> that returns an Observable.
@@ -453,7 +451,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromAction.png" width="640" alt="fromAction" />
+     <img src="images/fromAction.png" width="100%" alt="fromAction" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>fromAction</code> operator.
       It accepts an <code>Action</code> as its parameter, and returns an Observable that emits the
@@ -461,7 +459,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromCallable.png" width="640" alt="fromCallable" />
+     <img src="images/fromCallable.png" width="100%" alt="fromCallable" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>fromCallable</code> operator.
       It accepts a <code>Callable</code> as its parameter, and returns an Observable that emits the
@@ -469,7 +467,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromRunnable.png" width="640" alt="fromRunnable" />
+     <img src="images/fromRunnable.png" width="100%" alt="fromRunnable" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>fromRunnable</code> operator.
       It accepts a <code>Runnable</code> as its parameter, and returns an Observable that emits the
@@ -477,7 +475,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/forEachFuture.png" width="640" alt="forEachFuture" />
+     <img src="images/forEachFuture.png" width="100%" alt="forEachFuture" />
      <figcaption><p>
       The <code>rxjava-async</code> module also includes the <code>forEachFuture</code> operator.
       It is not really a variant of the <span class="operator">Start</span> operator, but something
@@ -495,7 +493,8 @@
      peculiar in that it creates a specialization of an Observable called a
      <code>StoppableObservable</code>.
     </p><p>
-     Pass <code>runAsync</code> an <code>Action</code> and a <code>Scheduler</code>, and it will
+     Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will
      return a <code>StoppableObservable</code> that uses the specified <code>Action</code> to
      generate items that it emits. The <code>Action</code> accepts an <code>Observer</code> and a
      <code>Subscription</code>. It uses the <code>Subscription</code> to check for the
@@ -536,11 +535,12 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/start.png" width="640" alt="start" />
+     <img src="images/start.png" width="100%" alt="start" />
      <figcaption><p>
       RxJS implements the <code>start</code> operator. It takes as its parameters a function whose
       return value will be the emission from the resulting Observable, and, optionally, any
-      additional parameter to that function and a Scheduler on which to run the function.
+      additional parameter to that function and a <a href="../scheduler.html">Scheduler</a> on which to run the
+      function.
      </p>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>
@@ -579,15 +579,15 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/startAsync.png" width="640" alt="start" />
+     <img src="images/startAsync.png" width="100%" alt="start" />
      <figcaption><p>
       RxJS also implements the <code>startAsync</code> operator. It takes as its parameters an
       asynchronous function whose return value will be the emission from the resulting Observable.
      </p><p>
       You can convert a function into an asynchronous function with the <code>toAsync</code>
-      method. It takes a function, function parameter, and Scheduler as parameters, and returns
-      an asynchronous function that will be invoked on the specified Scheduler. The last two
-      parameters are optional; if you do not specify a Scheduler, the <code>timeout</code> Scheduler
+      method. It takes a function, function parameter, and <a href="../scheduler.html">Scheduler</a> as
+      parameters, and returns an asynchronous function that will be invoked on the specified Scheduler. The
+      last two parameters are optional; if you do not specify a Scheduler, the <code>timeout</code> Scheduler
       will be used by default.
      </p>
      <h4>Sample Code</h4>
@@ -743,24 +743,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -775,13 +761,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

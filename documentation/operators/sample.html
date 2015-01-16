@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -184,7 +181,7 @@
    <h1>Sample</h1>
    <h3>emit the most recent items emitted by an Observable within periodic time intervals</h3>
    <figure>
-    <img src="images/sample.c.png" width="640" alt="Sample" />
+    <img src="images/sample.c.png" width="100%" alt="Sample" />
     <figcaption><p>
      The <span class="operator">Sample</span> operator periodically looks at an Observable and emits whichever
      item it has most recently emitted since the previous sampling.
@@ -267,7 +264,7 @@
       Observable that results from this operator will emit no item for that sampling period.
      </p>
      <figure>
-      <img src="images/sample.png" width="640" alt="sample" />
+      <img src="images/sample.png" width="100%" alt="sample" />
       <figcaption><p>
        One variant of <code>sample</code> (or its alias, <code>throttleLast</code>) samples at a periodic time
        interval that you choose by passing in a <code>TimeUnit</code> and a quantity of such units as parameters
@@ -291,8 +288,9 @@ numbers.sample(10, java.util.concurrent.TimeUnit.MILLISECONDS).subscribe(
 891282
 Sequence complete</pre></div>
       <p>
-       This variant of <code>sample</code> operates by default on the <code>computation</code> Scheduler, but
-       you can optionally pass in a Scheduler of your choosing as a third parameter.
+       This variant of <code>sample</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(long,%20java.util.concurrent.TimeUnit)"><code>sample(long,TimeUnit)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleLast(long,%20java.util.concurrent.TimeUnit)"><code>throttleLast(long,TimeUnit)</code></a></li>
@@ -300,20 +298,21 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/sample.o.png" width="640" alt="sample" />
+      <img src="images/sample.o.png" width="100%" alt="sample" />
       <figcaption><p>
        There ia also a variant of <code>sample</code> (that does not have a <code>throttleLast</code> alias)
        that samples the source Observable each time a second Observable emits an item (or when it terminates).
        You pass in that second Observable as the parameter to <code>sample</code>.
       </p><p>
-       This variant of <code>sample</code> does not by default operate on any particular Scheduler.
+       This variant of <code>sample</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(rx.Observable)"><code>sample(Observable)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/throttleFirst.png" width="640" alt="throttleFirst" />
+      <img src="images/throttleFirst.png" width="100%" alt="throttleFirst" />
       <figcaption><p>
        There is also a <code>throttleFirst</code> operator, which differs from
        <code>throttleLast</code>/<code>sample</code> in that it emits the <em>first</em> item emitted by the
@@ -349,8 +348,9 @@ o.onCompleted();</pre></div>
 7
 Sequence complete</pre></div>
       <p>
-       <code>throttleFirst</code> operates by default on the <code>computation</code> Scheduler, but
-       you can optionally pass in a Scheduler of your choosing as a third parameter.
+       <code>throttleFirst</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
       </p>
       <ul>
        <li><a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleFirst(long,%20java.util.concurrent.TimeUnit)"><code>throttleFirst(long,TimeUnit)</code></a></li>
@@ -382,14 +382,15 @@ Sequence complete</pre></div>
       Observable that results from this operator will emit no item for that sampling period.
      </p>
      <figure>
-      <img src="images/sample.png" width="640" alt="sample" />
+      <img src="images/sample.png" width="100%" alt="sample" />
       <figcaption><p>
        One variant of <code>sample</code> (or its alias, <code>throttleLast</code>) samples at a periodic time
        interval that you choose by passing in a <code>TimeUnit</code> and a quantity of such units as parameters
        to <code>sample</code>.
       </p><p>
-       This variant of <code>sample</code> operates by default on the <code>computation</code> Scheduler, but
-       you can optionally pass in a Scheduler of your choosing as a third parameter.
+       This variant of <code>sample</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(long,%20java.util.concurrent.TimeUnit)"><code>sample(long,TimeUnit)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleLast(long,%20java.util.concurrent.TimeUnit)"><code>throttleLast(long,TimeUnit)</code></a></li>
@@ -397,27 +398,29 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/sample.o.png" width="640" alt="sample" />
+      <img src="images/sample.o.png" width="100%" alt="sample" />
       <figcaption><p>
        There ia also a variant of <code>sample</code> (that does not have a <code>throttleLast</code> alias)
        that samples the source Observable each time a second Observable emits an item (or when it terminates).
        You pass in that second Observable as the parameter to <code>sample</code>.
       </p><p>
-       This variant of <code>sample</code> does not by default operate on any particular Scheduler.
+       This variant of <code>sample</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(rx.Observable)"><code>sample(Observable)</code></a></li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/throttleFirst.png" width="640" alt="throttleFirst" />
+      <img src="images/throttleFirst.png" width="100%" alt="throttleFirst" />
       <figcaption><p>
        There is also a <code>throttleFirst</code> operator, which differs from
        <code>throttleLast</code>/<code>sample</code> in that it emits the <em>first</em> item emitted by the
        source Observable in each sampling period rather than the <em>most recently emitted</em> item.
       </p><p>
-       <code>throttleFirst</code> operates by default on the <code>computation</code> Scheduler, but
-       you can optionally pass in a Scheduler of your choosing as a third parameter.
+       <code>throttleFirst</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
       </p>
       <ul>
        <li><a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleFirst(long,%20java.util.concurrent.TimeUnit)"><code>throttleFirst(long,TimeUnit)</code></a></li>
@@ -446,7 +449,7 @@ Sequence complete</pre></div>
       RxJS implements this operator with two variants of <code>sample</code>.
      </p>
      <figure>
-      <img src="images/sample.png" width="640" alt="sample" />
+      <img src="images/sample.png" width="100%" alt="sample" />
       <figcaption><p>
        The first variant accepts as its parameter a periodicity, defined as an integer number of milliseconds,
        and it samples the source Observable periodically at that frequency.
@@ -468,7 +471,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/sample.o.png" width="640" alt="sample" />
+      <img src="images/sample.o.png" width="100%" alt="sample" />
       <figcaption><p>
        The second variant accepts as its parameter an Observable, and it samples the source Observable whenever
        this second Observable emits an item.
@@ -490,7 +493,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/throttleFirst.png" width="640" alt="throttleFirst" />
+      <img src="images/throttleFirst.png" width="100%" alt="throttleFirst" />
       <figcaption><p>
        There is also a <code>throttleFirst</code> operator, which differs from <code>sample</code> in that it
        emits the <em>first</em> item emitted by the source Observable in each sampling period rather than the
@@ -531,7 +534,7 @@ Completed</pre></div>
      </figure>
      <p>
       <code>sample</code> and <code>throttleFirst</code> operate by default on the <code>timeout</code>
-      Scheduler. They are found in each of the following distributions:
+      <a href="../scheduler.html">Scheduler</a>. They are found in each of the following distributions:
      </p>
      <ul>
       <li><code>rx.all.js</code></li>
@@ -656,24 +659,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -688,13 +677,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

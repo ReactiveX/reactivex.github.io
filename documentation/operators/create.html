@@ -96,13 +96,10 @@
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+                <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
               </ul>
             </li>
@@ -185,7 +182,7 @@
 <h3>create an Observable from scratch by means of a function</h3>
 
 <figure>
- <img src="images/create.c.png" width="640" alt="Create" />
+ <img src="images/create.c.png" width="100%" alt="Create" />
  <figcaption><p>
   You can create an Observable from scratch by using the <span class="operator">Create</span>
   operator. You pass this operator a function that accepts the observer as its parameter. Write this
@@ -201,6 +198,7 @@
 <h4>See Also</h4>
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableCreate"><cite>Introduction to Rx</cite>: Create</a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableGenerate"><cite>Introduction to Rx</cite>: Generate</a></li>
 </ul>
 
 <h2>Language-Specific Information:</h2>
@@ -212,7 +210,7 @@
         <div class="panel-heading" role="tab" id="headingRxClojure">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
-              RxClojure <code></code>
+              RxClojure <code>generator</code>
             </a>
           </h4>
         </div>
@@ -262,7 +260,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/create.png" width="640" alt="create" />
+     <img src="images/create.png" width="100%" alt="create" />
      <figcaption><p>
       RxGroovy implements this operator as <code>create</code>.
      </p>
@@ -290,7 +288,8 @@ def myObservable = Observable.create({ aSubscriber ->
       Observable can stop emitting items or doing expensive calculations when there is no longer an
       interested observer.
      </p><p>
-      <code>create</code> does not by default operate on any particular Scheduler.
+      <code>create</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#create(rx.Observable.OnSubscribe)"><code>create(OnSubscribe)</code></a></li>
@@ -315,7 +314,7 @@ def myObservable = Observable.create({ aSubscriber ->
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/create.png" width="640" alt="create" />
+     <img src="images/create.png" width="100%" alt="create" />
      <figcaption><p>
       RxJava implements this operator as <code>create</code>.
      </p><p>
@@ -362,7 +361,8 @@ Next: 3
 Next: 4
 Sequence complete.</pre></div>
      <p>
-      <code>create</code> does not by default operate on any particular Scheduler.
+      <code>create</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#create(rx.Observable.OnSubscribe)"><code>create(OnSubscribe)</code></a></li>
@@ -379,7 +379,7 @@ Sequence complete.</pre></div>
         <div class="panel-heading" role="tab" id="headingRxJS">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code>create createWithDisposable</code>
+              RxJS <code>create createWithDisposable generate generateWithAbsoluteTime generateWithRelativeTime</code>
             </a>
           </h4>
         </div>
@@ -387,7 +387,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/create.png" width="640" alt="create" />
+     <img src="images/create.png" width="100%" alt="create" />
      <figcaption><p>
       RxJS implements this operator as <code>create</code> (there is also an alternate name for the
       same operator: <code>createWithDisposable</code>).
@@ -440,6 +440,146 @@ Completed</pre></div>
      </ul>
      </figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/generate.png" width="100%" alt="generate" />
+     <figcaption><p>
+      You can use the <code>generate</code> operator to create simple Observables that can generate their
+      next emissions, and can determine when to terminate, based on the value of the previous emission. The
+      basic form of <code>generate</code> takes four parameters:
+     </p><ol>
+      <li>the first item to emit</li>
+      <li>a function to test an item to determine whether to emit it (<code>true</code>) or terminate the
+          Observable (<code>false</code>)</li>
+      <li>a function to generate the next item to test and emit based on the value of the previous item</li>
+      <li>a function to transform items before emitting them</li>
+     </ol><p>
+      You can also pass in as an optional fifth parameter a <a href="../scheduler.html">Scheduler</a> that
+      <code>generate</code> will use to create and emit its sequence (it uses <code>currentThread</code> by
+      default).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.generate(
+    0,
+    function (x) { return x < 3; },
+    function (x) { return x + 1; },
+    function (x) { return x; }
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+     <p>
+      <code>generate</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/generateWithRelativeTime.png" width="100%" alt="generateWithRelativeTime" />
+     <figcaption><p>
+      You can use the <code>generateWithRelativeTime</code> operator to create simple Observables that can
+      generate their next emissions, and can determine when to terminate, based on the value of the previous
+      emission. The basic form of <code>generateWithRelativeTime</code> takes five parameters:
+     </p><ol>
+      <li>the first item to emit</li>
+      <li>a function to test an item to determine whether to emit it (<code>true</code>) or terminate the
+          Observable (<code>false</code>)</li>
+      <li>a function to generate the next item to test and emit based on the value of the previous item</li>
+      <li>a function to transform items before emitting them</li>
+      <li>a function to indicate how long, in milliseconds, the generator should wait after the emission of
+          the previous item before emitting this item</li>
+     </ol><p>
+      You can also pass in as an optional sixth parameter a <a href="../scheduler.html">Scheduler</a> that
+      <code>generate</code> will use to create and emit its sequence (it uses <code>currentThread</code> by
+      default).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.generateWithRelativeTime(
+    1,
+    function (x) { return x < 4; },
+    function (x) { return x + 1; },
+    function (x) { return x; },
+    function (x) { return 100 * x; }
+).timeInterval();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: {value: 1, interval: 100}
+Next: {value: 2, interval: 200}
+Next: {value: 3, interval: 300}
+Completed</pre></div>
+     <p>
+      <code>generateWithRelativeTime</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+      <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/generateWithAbsoluteTime.png" width="100%" alt="generateWithAbsoluteTime" />
+     <figcaption><p>
+      You can use the <code>generateWithAbsoluteTime</code> operator to create simple Observables that can
+      generate their next emissions, and can determine when to terminate, based on the value of the previous
+      emission. The basic form of <code>generateWithAbsoluteTime</code> takes five parameters:
+     </p><ol>
+      <li>the first item to emit</li>
+      <li>a function to test an item to determine whether to emit it (<code>true</code>) or terminate the
+          Observable (<code>false</code>)</li>
+      <li>a function to generate the next item to test and emit based on the value of the previous item</li>
+      <li>a function to transform items before emitting them</li>
+      <li>a function to indicate at what time (expressed as a <code>Date</code>) the generator should emit the
+          the new item</li>
+     </ol><p>
+      You can also pass in as an optional sixth parameter a <a href="../scheduler.html">Scheduler</a> that
+      <code>generate</code> will use to create and emit its sequence (it uses <code>currentThread</code> by
+      default).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.generate(
+    1,
+    function (x) { return x < 4; },
+    function (x) { return x + 1; },
+    function (x) { return x; },
+    function (x) { return Date.now() + (100 * x); }
+).timeInterval();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: {value: 1, interval: 100}
+Next: {value: 2, interval: 200}
+Next: {value: 3, interval: 300}
+Completed</pre></div>
+     <p>
+      <code>generateWithAbsoluteTime</code> is found in the following distribution:
+     </p>
+     <ul>
+      <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
   
           </div>
         </div>
@@ -472,7 +612,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxNET">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
-              RxNET <code>Create</code>
+              RxNET <code>Create Generate</code>
             </a>
           </h4>
         </div>
@@ -493,7 +633,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
-              RxPY <code>create</code>
+              RxPY <code>create generate generate_with_relative_time</code>
             </a>
           </h4>
         </div>
@@ -514,7 +654,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxrb">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
-              Rxrb <code>create</code>
+              Rxrb <code>create generate</code>
             </a>
           </h4>
         </div>
@@ -556,24 +696,10 @@ Completed</pre></div>
     </div>
     <div class="col-sm-4">
     <ul class="side-menu">
-      <li><a href="/documentation.html">Getting Started</a></li>
       <li><a href="/documentation/observable.html">Observable</a></li>
       <li><a href="/documentation/operators.html">Operators</a></li>
       <li><a href="/documentation/subject.html">Subject</a></li>
       <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-      <li><a href="/documentation/plugins.html">Plugins</a></li>
-      <li>
-        <a href="#">Language Adapters</a>
-        <ul>
-            <li><a href="#">Groovy</a></li>
-            <li><a href="#">Clojure</a></li>
-            <li><a href="#">Scala</a></li>
-            <li><a href="#">JRuby</a></li>
-            <li><a href="#">Kotlin</a></li>
-          </ul>
-      </li>
-      <li><a href="/contribute.html">How to Contribute</a></li>
-      <li><a href="http://netflix.github.io/RxJava/javadoc/rx/Observable.html" target="_BLANK">Javadoc</a></li>
     </ul>
     </div>
   </div>
@@ -588,13 +714,10 @@ Completed</pre></div>
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation.html">Getting Started</a></li>
-<li><a href="/documentation/observable.html">Observable</a></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
 <li><a href="/documentation/operators.html">Operators</a></li>
 <li><a href="/documentation/subject.html">Subject</a></li>
 <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-<li><a href="/documentation/backpressure.html">Backpressure</a></li>
-<li><a href="/documentation/errors.html">Error handling</a></li>
 
             </ul>
           </div>

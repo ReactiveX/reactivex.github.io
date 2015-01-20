@@ -19,6 +19,7 @@ id: subject
 <h4>See Also</h4>
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/02_KeyTypes.html#Subject"><cite>Introduction to Rx</cite>: Subject</a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc44"><cite>101 Rx Samples</cite>: ISubject&lt;T&gt; and ISubject&lt;T1,T2&gt;</a></li>
 </ul>
 <h2>Varieties of Subject</h2>
 <p>

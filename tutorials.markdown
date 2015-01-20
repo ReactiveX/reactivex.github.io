@@ -14,6 +14,7 @@ id: tutorials
 * Wikipedia: [Reactive Programming](http://en.wikipedia.org/wiki/Reactive_programming) and [Functional Reactive Programming](http://en.wikipedia.org/wiki/Functional_reactive_programming)
 * [Be Reactive](http://colintheshots.com/blog/?p=85) by ColinTheShots
 * [Collection Pipeline](http://martinfowler.com/articles/collection-pipeline/) by Martin Fowler
+* [Rx for .NET and RxJava for Android](http://futurice.com/blog/tech-pick-of-the-week-rx-for-net-and-rxjava-for-android) by Olli Salonen
 
 ## Tutorials
 * [Learn RxJS](http://reactive-extensions.github.io/learnrx/) by Jafar Husain
@@ -61,8 +62,11 @@ id: tutorials
 
 ## Android
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall
+* [Grokking RxJava, Part 4: Reactive Android](http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/) &mdash; by Dan Lew
 * [RxJava on Android: PopupMenus and Dialogs](http://adelnizamutdinov.github.io/blog/2014/11/23/advanced-rxjava-on-android-popupmenus-and-dialogs/) by Adel Nizamutdinov
 * [Tackling Complexity in Android Apps with RxJava at SoundCloud](http://www.infoq.com/news/2014/11/android-rxjava-at-soundcloud): Matt McComb interviews Matthias Käppler
+* [Resources for Learning RxJava for Android](http://gregloesch.com/dev/2014/10/20/resources-for-learning-rxjava-android.html) by Greg Loesch
+* [Top 7 Tips for RxJava on Android](http://futurice.com/blog/top-7-tips-for-rxjava-on-android)
 * [RxBinding](https://android-arsenal.com/details/1/1259) &mdash; easy one-way binding support for Android, based on RxJava
 * [G-Rex](https://github.com/Naturally-Being/G-Rex) &mdash; a tiny library that assists in saving and restoring objects to and from disk using RxJava on Android
 

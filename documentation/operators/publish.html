@@ -30,6 +30,7 @@ id: publish
  <li><a href="replay.html"><span class="operator">Replay</span></a></li>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/14_HotAndColdObservables.html#PublishAndConnect"><cite>Introduction to Rx</cite>: Publish &amp; Connect</a></li>
  <li><a href="http://rxwiki.wikidot.com/101samples#toc48"><cite>101 Rx Samples</cite>: Publish &mdash; Sharing a subscription with multiple Observers</a></li>
+ <li><a href="http://nerds.weddingpartyapp.com/tech/2015/01/21/rxjava-share-publish-refcount-and-all-that-jazz/"><cite>Wedding Party</cite>: Share, Publish, Refcount, and All That Jazz</a> by Kaushik Gopal</li>
 </ul>
 
 <h2>Language-Specific Information:</h2>
@@ -124,14 +125,14 @@ function createObserver(tag) {
         function (x) { console.log('Next: ' + tag + x); },
         function (err) { console.log('Error: ' + err); },
         function () { console.log('Completed'); });
-}</pre></code><div class="output"><pre>
+}</pre></div><div class="output"><pre>
 Side effect
 Next: SourceA0
 Next: SourceB0
 Side effect
 Next: SourceA1
 Next: SourceB1
-Completed</pre></code>
+Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
@@ -165,7 +166,7 @@ function createObserver(tag) {
         function (x) { console.log('Next: ' + tag + x); },
         function (err) { console.log('Error: ' + err); },
         function () { console.log('Completed'); });
-}</pre></code><div class="output"><pre>
+}</pre></div><div class="output"><pre>
 Next: SourceA42
 Next: SourceB42
 Side effect
@@ -175,7 +176,7 @@ Side effect
 Next: SourceA1
 Next: SourceB1
 Completed
-Completed</pre></code>
+Completed</pre></div>
     </figure>
     <figure class="variant">
      <img src="images/publishLast.png" width="100%" alt="publishLast" />
@@ -209,13 +210,13 @@ function createObserver(tag) {
         function (x) { console.log('Next: ' + tag + x); },
         function (err) { console.log('Error: ' + err); },
         function () { console.log('Completed'); });
-}</pre></code><div class="output"><pre>
+}</pre></div><div class="output"><pre>
 Side effect
 Side effect
 Next: SourceA1
 Completed
 Next: SourceB1
-Completed</pre></code>
+Completed</pre></div>
      </figcaption>
     </figure>
     <p>
@@ -252,14 +253,14 @@ subject.subscribe(observer);
 
 var connected = source.connect();
 
-subscription.dispose();</pre></code><div class="output"><pre>
+subscription.dispose();</pre></div><div class="output"><pre>
 Next: 0
 Next: 0
 Next: 1
 Next: 1
 Next: 2
 Next: 2
-Completed</pre></code>
+Completed</pre></div>
     <p>
      The <code>multicast</code> operator is available in the following packages:
     </p>
@@ -290,14 +291,14 @@ var subscription = source.subscribe(
 var subscription = source.subscribe(
     function (x) { console.log('Next: ' + x); },
     function (err) { console.log('Error: ' + err); },
-    function () { console.log('Completed'); });</pre></code><div class="output"><pre>
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
 Next: 1
 Next: 2
 Next: 3
 Next: 1
 Next: 2
 Next: 3
-Completed</pre></code>
+Completed</pre></div>
     <p>
      The <code>let</code> (or <code>letBind</code>) operator is available in the following packages:
     </p>

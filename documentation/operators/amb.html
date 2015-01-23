@@ -19,6 +19,9 @@ id: amb
     through the emissions and notifications of exactly one of these Observables: the first one that
     emits an item to <span class="operator">Amb</span>. It will ignore and discard the emissions of
     all of the other source Observables.
+    </p><p>
+    If <em>all</em> of the source Observables complete without emitting an item, the Observable
+    returned from <span class="operator">Amb</span> will also complete normally without emitting anything.
     </p></figcaption>
    </figure>
    <h4>See Also</h4>

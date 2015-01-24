@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -181,7 +181,7 @@
    <h1>Concat</h1>
    <h3>emit the emissions from two or more Observables without interleaving them</h3>
    <figure>
-    <img src="images/concat.C.png" width="100%" alt="Concat" />
+    <img src="images/concat.C.png" style="width:100%;" alt="Concat" />
     <figcaption><p>
      The <span class="operator">Concat</span> operator concatenates the output of multiple
      Observables so that they act like a single Observable, with all of the items emitted by the
@@ -213,6 +213,9 @@
     <li><a href="merge.html"><span class="operator">Merge</span></a></li>
     <li><a href="startwith.html"><span class="operator">StartWith</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#Concat"><cite>Introduction to Rx</cite>: Concat</a></li>
+    <li><a href="http://rxmarbles.com/#concat">RxMarbles: <code>concat</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc51"><cite>101 Rx Samples</cite>: Concat &mdash; cold observable</a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc52"><cite>101 Rx Samples</cite>: Concat &mdash; hot observable</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -231,14 +234,14 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/concat.png" width="100%" alt="concat" />
+      <img src="images/concat.png" style="width:100%;" alt="concat" />
       <figcaption><p>
        In RxClojure <code>concat</code> concatenates some number of individual Observables together
        in the order in which they are given.
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/concatX.png" width="100%" alt="concat*" />
+      <img src="images/concatX.png" style="width:100%;" alt="concat*" />
       <figcaption><p>
        The <code>concat*</code> operator concatenates the Observables emitted by an Observable
        together, in the order in which they are emitted.
@@ -266,7 +269,7 @@
       RxCpp implements this operator as <code>concat</code>:
      </p>
      <figure>
-      <img src="images/concat.png" width="100%" alt="concat" />
+      <img src="images/concat.png" style="width:100%;" alt="concat" />
      </figure>
   
           </div>
@@ -287,7 +290,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/concat.png" width="100%" alt="concat" />
+      <img src="images/concat.png" style="width:100%;" alt="concat" />
       <figcaption><p>
        RxGroovy implements this operator as <code>concat</code>. There are variants of this operator
        that take between two and nine Observables as parameters, and that concatenate them in the
@@ -315,8 +318,8 @@ Observable.concat(odds, evens).subscribe(
 6
 Sequence complete</pre></div>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable)"><code>concat(Observable&lt;Observable&gt)</code></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable, rx.Observable)"><code>concat(Observable,Observable)</code> (there are also versions that take up to nine Observables)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable)"><code>concat(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable,%20rx.Observable)"><code>concat(Observable,Observable)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
      <p>
@@ -324,7 +327,7 @@ Sequence complete</pre></div>
       <code>Observable.concat(a,b)</code> is equivalent to <code>a.concatWith(b)</code>.
      </p>
      <ul>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatWith(rx.Observable)"><code>concatWith(Observable)</code></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatWith(rx.Observable)"><code>concatWith(Observable)</code></a></li>
      </ul>
   
           </div>
@@ -345,7 +348,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/concat.png" width="100%" alt="concat" />
+      <img src="images/concat.png" style="width:100%;" alt="concat" />
       <figcaption><p>
        RxJava implements this operator as <code>concat</code>. There are variants of this operator
        that take between two and nine Observables as parameters, and that concatenate them in the
@@ -354,8 +357,8 @@ Sequence complete</pre></div>
        are emitted.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable)"><code>concat(Observable&lt;Observable&gt)</code></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable, rx.Observable)"><code>concat(Observable,Observable)</code> (there are also versions that take up to nine Observables)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable)"><code>concat(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concat(rx.Observable,%20rx.Observable)"><code>concat(Observable,Observable)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
      <p>
@@ -363,7 +366,7 @@ Sequence complete</pre></div>
       <code>Observable.concat(a,b)</code> is equivalent to <code>a.concatWith(b)</code>.
      </p>
      <ul>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatWith(rx.Observable)"><code>concatWith(Observable)</code></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatWith(rx.Observable)"><code>concatWith(Observable)</code></a></li>
      </ul>
   
           </div>
@@ -387,7 +390,7 @@ Sequence complete</pre></div>
       RxJS implements this operator as <code>concat</code> and <code>concatAll</code>.
      </p>
      <figure>
-      <img src="images/concat.png" width="100%" alt="concat" />
+      <img src="images/concat.png" style="width:100%;" alt="concat" />
       <figcaption><p>
        <code>concat</code> takes a variable number of Observables (or Promises) as parameters (or a
        single array of Observables or Promises), and concatenates them in the order they appear in
@@ -396,7 +399,7 @@ Sequence complete</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/concatAll.png" width="100%" alt="concatAll" />
+      <img src="images/concatAll.png" style="width:100%;" alt="concatAll" />
       <figcaption><p>
        <code>concatAll</code> is an instance method that operates on an Observable of Observables,
        concatinating each of these Observables in the order they are emitted.
@@ -433,7 +436,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/concat.png" width="100%" alt="concat" />
+      <img src="images/concat.png" style="width:100%;" alt="concat" />
       <figcaption><p>
        RxKotlin implements this operator as <code>concat</code>. There are variants of this operator
        that take between two and nine Observables as parameters, and that concatenate them in the
@@ -465,7 +468,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/concat.C.png" width="100%" alt="Concat" />
+      <img src="images/concat.C.png" style="width:100%;" alt="Concat" />
       <figcaption><p>
        Rx.NET implements this operator as <code>Concat</code>. It accepts either an enumerable of
        Observables, an Observable of Observables, or two Observables as parameters, and concatenates
@@ -491,7 +494,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/concat.png" width="100%" alt="concat" />
+      <img src="images/concat.png" style="width:100%;" alt="concat" />
       <figcaption><p>
        In RxPY <code>concat</code> takes a variable number of Observables as parameters (or an
        array of Observables), and concatenates them in the order they appear in the parameter list
@@ -499,7 +502,7 @@ Sequence complete</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/concat_all.png" width="100%" alt="concat_all" />
+      <img src="images/concat_all.png" style="width:100%;" alt="concat_all" />
       <figcaption><p>
        <code>concatAll</code> operates on an Observable of Observables, concatinating each of these
        Observables in the order they are emitted.
@@ -524,14 +527,14 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/concat.png" width="100%" alt="concat" />
+      <img src="images/concat.png" style="width:100%;" alt="concat" />
       <figcaption><p>
        In Rx.rb, the <code>concat</code> operator operates on two Observables as an instance
        operator, or on an array of Observables as a class method.
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/merge_all.png" width="100%" alt="merge_all" />
+      <img src="images/merge_all.png" style="width:100%;" alt="merge_all" />
       <figcaption><p>
        The <code>merge_all</code> operator, despite its name, really behaves like a
        <span class="operator">Concat</span> variant in Rx.rb. It accepts an Observable of
@@ -563,7 +566,7 @@ Sequence complete</pre></div>
       concatenates one Observable to another.
      </p>
      <figure>
-      <img src="images/plusplus.png" width="100%" alt="plus-plus" />
+      <img src="images/plusplus.png" style="width:100%;" alt="plus-plus" />
      </figure>
   
           </div>
@@ -663,11 +666,11 @@ Sequence complete</pre></div>
     <script>$("#menu-concat").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

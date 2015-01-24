@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>apply a function to each item emitted by an Observable, sequentially, and emit each successive value</h3>
 
    <figure>
-    <img src="images/scan.c.png" width="100%" alt="Scan" />
+    <img src="images/scan.c.png" style="width:100%;" alt="Scan" />
     <figcaption><p>
      The <span class="operator">Scan</span> operator applies a function to the first item emitted
      by the source Observable and then emits the result of that function as its own first emission.
@@ -198,7 +198,8 @@
    <h4>See Also</h4>
    <ul>
     <li><a href="reduce.html"><span class="operator">Reduce</span></a></li>
-    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Scan"><cite>Introduction to Rx</cite>: Scan</li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Scan"><cite>Introduction to Rx</cite>: Scan</a></li>
+    <li><a href="http://rxmarbles.com/#scan">RxMarbles: <code>scan</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -259,7 +260,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/scan.png" width="100%" alt="scan" />
+      <img src="images/scan.png" style="width:100%;" alt="scan" />
       <figcaption><p>
        RxGroovy implements this operator as <code>scan</code>. The following code, for example,
        takes an Observable that emits a consecutive sequence of <i>n</i> integers starting with
@@ -288,7 +289,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.png" width="100%" alt="scan" />
+      <img src="images/scanSeed.png" style="width:100%;" alt="scan" />
       <figcaption><p>
        There is also a variant of <code>scan</code> to which you can pass a seed value to pass
        to the accumulator function the first time it is called (for the first emission from the
@@ -323,7 +324,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/scan.png" width="100%" alt="scan" />
+      <img src="images/scan.png" style="width:100%;" alt="scan" />
       <figcaption><p>
        RxJava implements this operator as <code>scan</code>.
       </p>
@@ -363,7 +364,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.png" width="100%" alt="scan" />
+      <img src="images/scanSeed.png" style="width:100%;" alt="scan" />
       <figcaption><p>
        There is also a variant of <code>scan</code> to which you can pass a seed value to pass
        to the accumulator function the first time it is called (for the first emission from the
@@ -398,7 +399,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/scan.png" width="100%" alt="scan" />
+      <img src="images/scan.png" style="width:100%;" alt="scan" />
       <figcaption><p>
        RxJS implements the <code>scan</code> operator.
       </p>
@@ -422,7 +423,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/scanSeed.js.png" width="100%" alt="scan" />
+      <img src="images/scanSeed.js.png" style="width:100%;" alt="scan" />
       <figcaption><p>
        You can optionally pass <code>scan</code> a seed value as a first parameter.
        <code>scan</code> will pass this seed value to the accumulator function the first time it is
@@ -458,7 +459,7 @@ Completed</pre></div></figcaption>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <figure>
-      <img src="images/expand.png" width="100%" alt="expand" />
+      <img src="images/expand.png" style="width:100%;" alt="expand" />
       <figcaption><p>
        RxJS also implements the <code>expand</code> operator, which is somewhat similar. Rather than applying
        the function to the previous return value of the function combined with the next item emitted from the
@@ -702,11 +703,11 @@ Completed</pre></div>
     <script>$("#menu-scan").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

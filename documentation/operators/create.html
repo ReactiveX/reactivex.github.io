@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
 <h3>create an Observable from scratch by means of a function</h3>
 
 <figure>
- <img src="images/create.c.png" width="100%" alt="Create" />
+ <img src="images/create.c.png" style="width:100%;" alt="Create" />
  <figcaption><p>
   You can create an Observable from scratch by using the <span class="operator">Create</span>
   operator. You pass this operator a function that accepts the observer as its parameter. Write this
@@ -199,6 +199,7 @@
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableCreate"><cite>Introduction to Rx</cite>: Create</a></li>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableGenerate"><cite>Introduction to Rx</cite>: Generate</a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc42"><cite>101 Rx Samples</cite>: Generate</a></li>
 </ul>
 
 <h2>Language-Specific Information:</h2>
@@ -260,7 +261,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/create.png" width="100%" alt="create" />
+     <img src="images/create.png" style="width:100%;" alt="create" />
      <figcaption><p>
       RxGroovy implements this operator as <code>create</code>.
      </p>
@@ -268,7 +269,7 @@
      <div class="code groovy"><pre>
 def myObservable = Observable.create({ aSubscriber ->
   try {
-    for (int i = 1; i < 1000000; i++) {
+    for (int i = 1; i &lt; 1000000; i++) {
       if (aSubscriber.isUnsubscribed()) {
         return;
       }
@@ -314,7 +315,7 @@ def myObservable = Observable.create({ aSubscriber ->
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/create.png" width="100%" alt="create" />
+     <img src="images/create.png" style="width:100%;" alt="create" />
      <figcaption><p>
       RxJava implements this operator as <code>create</code>.
      </p><p>
@@ -324,12 +325,12 @@ def myObservable = Observable.create({ aSubscriber ->
      </p>
      <h4>Sample Code</h4>
      <div class="code java"><pre>
-Observable.create(new Observable.OnSubscribe<Integer>() {
+Observable.create(new Observable.OnSubscribe&lt;Integer&gt;() {
     @Override
-    public void call(Subscriber<? super Integer> observer) {
+    public void call(Subscriber&lt;? super Integer&gt; observer) {
         try {
             if (!observer.isUnsubscribed()) {
-                for (int i = 1; i < 5; i++) {
+                for (int i = 1; i &lt; 5; i++) {
                     observer.onNext(i);
                 }
                 observer.onCompleted();
@@ -338,7 +339,7 @@ Observable.create(new Observable.OnSubscribe<Integer>() {
             observer.onError(e);
         }
     }
- } ).subscribe(new Subscriber<Integer>() {
+ } ).subscribe(new Subscriber&lt;Integer&gt;() {
         @Override
         public void onNext(Integer item) {
             System.out.println("Next: " + item);
@@ -387,7 +388,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/create.png" width="100%" alt="create" />
+     <img src="images/create.png" style="width:100%;" alt="create" />
      <figcaption><p>
       RxJS implements this operator as <code>create</code> (there is also an alternate name for the
       same operator: <code>createWithDisposable</code>).
@@ -441,7 +442,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/generate.png" width="100%" alt="generate" />
+     <img src="images/generate.png" style="width:100%;" alt="generate" />
      <figcaption><p>
       You can use the <code>generate</code> operator to create simple Observables that can generate their
       next emissions, and can determine when to terminate, based on the value of the previous emission. The
@@ -461,7 +462,7 @@ Completed</pre></div>
      <div class="code javascript"><pre>
 var source = Rx.Observable.generate(
     0,
-    function (x) { return x < 3; },
+    function (x) { return x &lt; 3; },
     function (x) { return x + 1; },
     function (x) { return x; }
 );
@@ -487,7 +488,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/generateWithRelativeTime.png" width="100%" alt="generateWithRelativeTime" />
+     <img src="images/generateWithRelativeTime.png" style="width:100%;" alt="generateWithRelativeTime" />
      <figcaption><p>
       You can use the <code>generateWithRelativeTime</code> operator to create simple Observables that can
       generate their next emissions, and can determine when to terminate, based on the value of the previous
@@ -509,7 +510,7 @@ Completed</pre></div>
      <div class="code javascript"><pre>
 var source = Rx.Observable.generateWithRelativeTime(
     1,
-    function (x) { return x < 4; },
+    function (x) { return x &lt; 4; },
     function (x) { return x + 1; },
     function (x) { return x; },
     function (x) { return 100 * x; }
@@ -535,7 +536,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/generateWithAbsoluteTime.png" width="100%" alt="generateWithAbsoluteTime" />
+     <img src="images/generateWithAbsoluteTime.png" style="width:100%;" alt="generateWithAbsoluteTime" />
      <figcaption><p>
       You can use the <code>generateWithAbsoluteTime</code> operator to create simple Observables that can
       generate their next emissions, and can determine when to terminate, based on the value of the previous
@@ -557,7 +558,7 @@ Completed</pre></div>
      <div class="code javascript"><pre>
 var source = Rx.Observable.generate(
     1,
-    function (x) { return x < 4; },
+    function (x) { return x &lt; 4; },
     function (x) { return x + 1; },
     function (x) { return x; },
     function (x) { return Date.now() + (100 * x); }
@@ -783,11 +784,11 @@ Completed</pre></div>
     <script>$("#menu-create").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>suppress the first <i>n</i> items emitted by an Observable</h3>
 
    <figure>
-    <img src="images/skip.c.png" width="100%" alt="Skip" />
+    <img src="images/skip.c.png" style="width:100%;" alt="Skip" />
     <figcaption><p>
      You can ignore the first <i>n</i> items emitted by an Observable and attend only to those items that come
      after, by modifying the Observable with the <span class="operator">Skip</span> operator.
@@ -200,6 +200,7 @@
     <li><a href="takeuntil.html"><span class="operator">TakeUntil</span></a></li>
     <li><a href="takewhile.html"><span class="operator">TakeWhile</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipAndTake"><cite>Introduction to Rx</cite>: Skip and Take</a></li>
+    <li><a href="http://rxmarbles.com/#skip">RxMarbles: <code>skip</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -260,7 +261,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skip.png" width="100%" alt="skip" />
+      <img src="images/skip.png" style="width:100%;" alt="skip" />
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>skip</code>.
       </p>
@@ -289,7 +290,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/skip.t.png" width="100%" alt="skip" />
+      <img src="images/skip.t.png" style="width:100%;" alt="skip" />
       <figcaption><p>
        There is also a variant of <code>skip</code> that takes a temporal duration rather than a quantity of
        items. It drops those items that are emitted during that initial duration of the source
@@ -324,7 +325,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/skip.png" width="100%" alt="skip" />
+      <img src="images/skip.png" style="width:100%;" alt="skip" />
       <figcaption><p>
        In RxJava, this operator is implemented as <code>skip</code>.
       </p><p>
@@ -336,7 +337,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/skip.t.png" width="100%" alt="skip" />
+      <img src="images/skip.t.png" style="width:100%;" alt="skip" />
       <figcaption><p>
        There is also a variant of <code>skip</code> that takes a temporal duration rather than a quantity of
        items. It drops those items that are emitted during that initial duration of the source
@@ -371,7 +372,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/skip.png" width="100%" alt="skip" />
+      <img src="images/skip.png" style="width:100%;" alt="skip" />
       <figcaption><p>
        RxJS implements the <code>skip</code> operator.
       </p>
@@ -402,7 +403,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/skipUntilWithTime.png" width="100%" alt="skipUntilWithTime" />
+      <img src="images/skipUntilWithTime.png" style="width:100%;" alt="skipUntilWithTime" />
       <figcaption><p>
        RxJS also implements a <code>skipUntilWithTime</code> operator that does not skip a particular quantity
        of items from the source Observable, but skips items based on chronology. You set this skip period by
@@ -648,11 +649,11 @@ Completed</pre></div>
     <script>$("#menu-skip").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

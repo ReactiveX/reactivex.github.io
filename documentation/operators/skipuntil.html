@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>discard items emitted by an Observable until a second Observable emits an item</h3>
 
    <figure>
-    <img src="images/skipUntil.c.png" width="100%" alt="SkipUntil" />
+    <img src="images/skipUntil.c.png" style="width:100%;" alt="SkipUntil" />
     <figcaption><p>
      The <span class="operator">SkipUntil</span> subscribes to the source Observable, but ignores its emissions
      until such time as a second Observable emits an item, at which point
@@ -200,6 +200,7 @@
     <li><a href="takeuntil.html"><span class="operator">TakeUntil</span></a></li>
     <li><a href="takewhile.html"><span class="operator">TakeWhile</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipUntilTakeUntil"><cite>Introduction to Rx</cite>: SkipUntil and TakeUntil</a></li>
+    <li><a href="http://rxmarbles.com/#skipUntil">RxMarbles: <code>skipUntil</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -260,7 +261,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipUntil.png" width="100%" alt="skipUntil" />
+      <img src="images/skipUntil.png" style="width:100%;" alt="skipUntil" />
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>skipUntil</code>.
       </p><p>
@@ -290,7 +291,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipUntil.png" width="100%" alt="skipUntil" />
+      <img src="images/skipUntil.png" style="width:100%;" alt="skipUntil" />
       <figcaption><p>
        In RxJava, this operator is implemented as <code>skipUntil</code>.
       </p><p>
@@ -320,7 +321,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipUntil.png" width="100%" alt="skipUntil" />
+      <img src="images/skipUntil.png" style="width:100%;" alt="skipUntil" />
       <figcaption><p>
        RxJS implements the <code>skipUntil</code> operator. You can pass it either an Observable or a
        <code>Promise</code> that it will monitor for an item that triggers <code>skipUntil</code> to begin
@@ -561,11 +562,11 @@ Completed</pre></div>
     <script>$("#menu-skipUntil").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

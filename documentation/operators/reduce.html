@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>apply a function to each item emitted by an Observable, sequentially, and emit the final value</h3>
 
    <figure>
-    <img src="images/reduce.c.png" width="100%" alt="Reduce" />
+    <img src="images/reduce.c.png" style="width:100%;" alt="Reduce" />
     <figcaption><p>
      The <span class="operator">Reduce</span> operator applies a function to the first item emitted by the
      source Observable and then feeds the result of the function back into the function along with the second
@@ -198,7 +198,8 @@
    <h4>See Also</h4>
    <ul>
     <li><a href="scan.html"><span class="operator">Scan</span></a></li>
-    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Aggregate"><cite>Introduction to Rx</cite>: Aggregate</li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Aggregate"><cite>Introduction to Rx</cite>: Aggregate</a></li>
+    <li><a href="http://rxmarbles.com/#reduce">RxMarbles: <code>reduce</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -259,7 +260,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/reduce.png" width="100%" alt="reduce" />
+      <img src="images/reduce.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        The <code>reduce</code> operator returns an Observable that applies a function of your choosing to the
        first item emitted by a source Observable, then feeds the result of that function along with the second
@@ -295,7 +296,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        There is also a version of <code>reduce</code> to which you can pass a seed item in addition to an
        accumulator function. Note that passing a <code>null</code> seed is not the same as not passing a seed.
@@ -315,7 +316,7 @@ Sequence complete</pre></div>
       Instead, use <code>collect</code> for that purpose.
      </p>
      <figure>
-      <img src="images/collect.png" width="100%" alt="collect" />
+      <img src="images/collect.png" style="width:100%;" alt="collect" />
       <figcaption><p>
        The <code>collect</code> operator is similar to <code>reduce</code> but is specialized for the purpose
        of collecting the whole set of items emitted by the source Observable into a single mutable data
@@ -352,7 +353,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/reduce.png" width="100%" alt="reduce" />
+      <img src="images/reduce.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        The <code>reduce</code> operator returns an Observable that applies a function of your choosing to the
        first item emitted by a source Observable, then feeds the result of that function along with the second
@@ -372,7 +373,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        There is also a version of <code>reduce</code> to which you can pass a seed item in addition to an
        accumulator function. Note that passing a <code>null</code> seed is not the same as not passing a seed.
@@ -392,7 +393,7 @@ Sequence complete</pre></div>
       Instead, use <code>collect</code> for that purpose.
      </p>
      <figure>
-      <img src="images/collect.png" width="100%" alt="collect" />
+      <img src="images/collect.png" style="width:100%;" alt="collect" />
       <figcaption><p>
        The <code>collect</code> operator is similar to <code>reduce</code> but is specialized for the purpose
        of collecting the whole set of items emitted by the source Observable into a single mutable data
@@ -429,7 +430,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        RxJS implements the <code>reduce</code> operator. Pass it an accumulator function, and, optionally, a
        seed value to pass into the accumulator function with the first item emitted by the source Observable.
@@ -666,11 +667,11 @@ Completed</pre></div>
     <script>$("#menu-reduce").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

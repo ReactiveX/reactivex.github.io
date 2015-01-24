@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -181,7 +181,7 @@
    <h1>Filter</h1>
    <h3>emit only those items from an Observable that pass a predicate test</h3>
    <figure>
-    <img src="images/filter.c.png" width="100%" alt="Filter" />
+    <img src="images/filter.c.png" style="width:100%;" alt="Filter" />
     <figcaption><p>
      The <span class="operator">Filter</span> operator filters an Observable by only allowing items through
      that pass a test that you specify in the form of a predicate function.
@@ -192,6 +192,7 @@
    <ul>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Where"><cite>Introduction to Rx</cite>: Where</a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#CastAndOfType"><cite>Introduction to Rx</cite>: Cast and OfType</a></li>
+    <li><a href="http://rxmarbles.com/#filter">RxMarbles: <code>filter</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -252,7 +253,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/filter.png" width="100%" alt="filter" />
+      <img src="images/filter.png" style="width:100%;" alt="filter" />
       <figcaption><p>
        RxGroovy implements this operator as <code>filter</code>. You can filter an Observable, discarding any
        items that do not meet some test, by passing a filtering function into the <code>filter</code> operator.
@@ -273,7 +274,7 @@ numbers.filter({ 0 == (it % 2) }).subscribe(
 4
 6
 8
-Sequence complete</pre></div></figcaption>
+Sequence complete</pre></div>
       <p>
        <code>filter</code> does not by default operate on any particular
        <a href="../scheduler.html">Scheduler</a>.
@@ -283,7 +284,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/ofClass.png" width="100%" alt="ofType" />
+      <img src="images/ofClass.png" style="width:100%;" alt="ofType" />
       <figcaption><p>
        There is also a specialized form of the <span class="operator">Filter</span> operator in RxGroovy that
        filters an Observable so that it only emits items of a particular class.
@@ -314,19 +315,19 @@ Sequence complete</pre></div></figcaption>
           <div class="panel-body">
             
      <figure>
-      <img src="images/filter.png" width="100%" alt="filter" />
+      <img src="images/filter.png" style="width:100%;" alt="filter" />
       <figcaption><p>
        RxJava implements this operator as <code>filter</code>.
       </p>
      <h4>Sample Code</h4>
      <div class="code java"><pre>
 Observable.just(1, 2, 3, 4, 5)
-          .filter(new Func1<Integer, Boolean>() {
+          .filter(new Func1&lt;Integer, Boolean&gt;() {
               @Override
               public Boolean call(Integer item) {
-                return( item < 4 );
+                return( item &lt; 4 );
               }
-          }).subscribe(new Subscriber<Integer>() {
+          }).subscribe(new Subscriber&lt;Integer&gt;() {
         @Override
         public void onNext(Integer item) {
             System.out.println("Next: " + item);
@@ -356,7 +357,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/ofClass.png" width="100%" alt="ofType" />
+      <img src="images/ofClass.png" style="width:100%;" alt="ofType" />
       <figcaption><p>
        There is also a specialized form of the <span class="operator">Filter</span> operator in RxGroovy that
        filters an Observable so that it only emits items of a particular class.
@@ -387,7 +388,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/filter.png" width="100%" alt="filter" />
+      <img src="images/filter.png" style="width:100%;" alt="filter" />
       <figcaption><p>
        RxJS implements this operator under two names, but with identical behavior: <code>filter</code> and
        <code>where</code>. This operator takes two parameters: the predicate function, and an optional object
@@ -636,11 +637,11 @@ Completed</pre></div></figcaption>
     <script>$("#menu-filter").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

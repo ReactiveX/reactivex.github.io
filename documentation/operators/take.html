@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>emit only the first <i>n</i> items emitted by an Observable</h3>
 
    <figure>
-    <img src="images/take.c.png" width="100%" alt="Take" />
+    <img src="images/take.c.png" style="width:100%;" alt="Take" />
     <figcaption><p>
      You can emit only the first <i>n</i> items emitted by an Observable and then complete while ignoring the
      remainder, by modifying the Observable with the <span class="operator">Take</span> operator.
@@ -200,6 +200,7 @@
     <li><a href="takeuntil.html"><span class="operator">TakeUntil</span></a></li>
     <li><a href="takewhile.html"><span class="operator">TakeWhile</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipAndTake"><cite>Introduction to Rx</cite>: Skip and Take</a></li>
+    <li><a href="http://rxmarbles.com/#take">RxMarbles: <code>take</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -260,7 +261,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/take.png" width="100%" alt="take" />
+      <img src="images/take.png" style="width:100%;" alt="take" />
       <figcaption><p>
        In RxGroovy, this operator is implemented as <code>take</code>.
       </p><p>
@@ -292,7 +293,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/take.t.png" width="100%" alt="take" />
+      <img src="images/take.t.png" style="width:100%;" alt="take" />
       <figcaption><p>
        There is also a variant of <code>take</code> that takes a temporal duration rather than a quantity of
        items. It results in an Observable that emits only those items that are emitted during that initial
@@ -327,7 +328,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/take.png" width="100%" alt="take" />
+      <img src="images/take.png" style="width:100%;" alt="take" />
       <figcaption><p>
        In RxJava, this operator is implemented as <code>take</code>.
       </p><p>
@@ -340,7 +341,7 @@ Sequence complete</pre></div>
      <div class="code java"><pre>
 Observable.just(1, 2, 3, 4, 5, 6, 7, 8)
           .take(4)
-          .subscribe(new Subscriber<Integer>() {
+          .subscribe(new Subscriber&lt;Integer&gt;() {
         @Override
         public void onNext(Integer item) {
             System.out.println("Next: " + item);
@@ -371,7 +372,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/take.t.png" width="100%" alt="take" />
+      <img src="images/take.t.png" style="width:100%;" alt="take" />
       <figcaption><p>
        There is also a variant of <code>take</code> that takes a temporal duration rather than a quantity of
        items. It results in an Observable that emits only those items that are emitted during that initial
@@ -406,7 +407,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/take.png" width="100%" alt="take" />
+      <img src="images/take.png" style="width:100%;" alt="take" />
       <figcaption><p>
        RxJS implements the <code>take</code> operator.
       </p>
@@ -427,7 +428,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/take.0.png" width="100%" alt="take" />
+      <img src="images/take.0.png" style="width:100%;" alt="take" />
       <figcaption><p>
        For the special case of <code>take(0)</code> you can also pass as a second parameter a
        <a href="../scheduler.html">Scheduler</a> that <code>take</code> will use to immediately schedule a call
@@ -447,7 +448,7 @@ Completed</pre></div>
       <li><code>rx.lite.compat.js</code></li>
      </ul>
      <figure>
-      <img src="images/takeUntilWithTime.png" width="100%" alt="takeUntilWithTime" />
+      <img src="images/takeUntilWithTime.png" style="width:100%;" alt="takeUntilWithTime" />
       <figcaption><p>
        RxJS also implements a <code>takeUntilWithTime</code> operator, which is like <code>take</code>
        except that rather than taking a particular quantity of items, it takes all of the items that are
@@ -696,11 +697,11 @@ Completed</pre></div>
     <script>$("#menu-take").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

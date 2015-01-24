@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>emit only the final <i>n</i> items emitted by an Observable</h3>
 
    <figure>
-    <img src="images/takeLast.c.png" width="100%" alt="TakeLast" />
+    <img src="images/takeLast.c.png" style="width:100%;" alt="TakeLast" />
     <figcaption><p>
      You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that come
      before them, by modifying the Observable with the <span class="operator">TakeLast</span> operator.
@@ -200,6 +200,7 @@
     <li><a href="takeuntil.html"><span class="operator">TakeUntil</span></a></li>
     <li><a href="takewhile.html"><span class="operator">TakeWhile</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipLastTakeLast"><cite>Introduction to Rx</cite>: SkipLast and TakeLast</a></li>
+    <li><a href="http://rxmarbles.com/#takeLast">RxMarbles: <code>takeLast</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -260,7 +261,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeLast.n.png" width="100%" alt="takeLast" />
+      <img src="images/takeLast.n.png" style="width:100%;" alt="takeLast" />
       <figcaption><p>
        You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
@@ -288,7 +289,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLast.t.png" width="100%" alt="takeLast" />
+      <img src="images/takeLast.t.png" style="width:100%;" alt="takeLast" />
       <figcaption><p>
        There is also a variant of <code>takeLast</code> that takes a temporal duration rather than a quantity of
        items. It emits only those items that are emitted during that final duration of the source
@@ -308,7 +309,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLast.tn.png" width="100%" alt="takeLast" />
+      <img src="images/takeLast.tn.png" style="width:100%;" alt="takeLast" />
       <figcaption><p>
        There is also a variant that combines the two methods. It emits the minimum of the number of items
        emitted during a specified time window <em>or</em> a particular count of items.
@@ -323,7 +324,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastBuffer.png" width="100%" alt="takeLastBuffer" />
+      <img src="images/takeLastBuffer.png" style="width:100%;" alt="takeLastBuffer" />
       <figcaption><p>
        There is also an operator called <code>takeLastBuffer</code>. It exists in the same set of variants
        as described above for <code>takeLast</code>, and only differs in behavior by emitting its items not
@@ -356,7 +357,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeLast.n.png" width="100%" alt="takeLast" />
+      <img src="images/takeLast.n.png" style="width:100%;" alt="takeLast" />
       <figcaption><p>
        You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
@@ -370,7 +371,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLast.t.png" width="100%" alt="takeLast" />
+      <img src="images/takeLast.t.png" style="width:100%;" alt="takeLast" />
       <figcaption><p>
        There is also a variant of <code>takeLast</code> that takes a temporal duration rather than a quantity of
        items. It emits only those items that are emitted during that final duration of the source
@@ -390,7 +391,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLast.tn.png" width="100%" alt="takeLast" />
+      <img src="images/takeLast.tn.png" style="width:100%;" alt="takeLast" />
       <figcaption><p>
        There is also a variant that combines the two methods. It emits the minimum of the number of items
        emitted during a specified time window <em>or</em> a particular count of items.
@@ -405,7 +406,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastBuffer.png" width="100%" alt="takeLastBuffer" />
+      <img src="images/takeLastBuffer.png" style="width:100%;" alt="takeLastBuffer" />
       <figcaption><p>
        There is also an operator called <code>takeLastBuffer</code>. It exists in the same set of variants
        as described above for <code>takeLast</code>, and only differs in behavior by emitting its items not
@@ -438,7 +439,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeLast.n.png" width="100%" alt="takeLast" />
+      <img src="images/takeLast.n.png" style="width:100%;" alt="takeLast" />
       <figcaption><p>
        You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
        them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
@@ -472,7 +473,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastWithTime.png" width="100%" alt="takeLastWithTime" />
+      <img src="images/takeLastWithTime.png" style="width:100%;" alt="takeLastWithTime" />
       <figcaption><p>
        The <code>takeLastWithTime</code> operator takes a temporal duration rather than a quantity of items. It
        emits only those items that are emitted during that final duration of the source Observable&#8217;s
@@ -517,7 +518,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastBuffer.png" width="100%" alt="takeLastBuffer" />
+      <img src="images/takeLastBuffer.png" style="width:100%;" alt="takeLastBuffer" />
       <figcaption><p>
        There is also an operator called <code>takeLastBuffer</code>. It differs in behavior from
        <code>takeLast</code> by emitting its items not individually but collected into a single array of items
@@ -548,7 +549,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/takeLastBufferWithTime.png" width="100%" alt="takeLastBufferWithTime" />
+      <img src="images/takeLastBufferWithTime.png" style="width:100%;" alt="takeLastBufferWithTime" />
       <figcaption><p>
        <code>takeLastBuffer</code> also has its duration-based variant, <code>takeLastBufferWithTime</code>,
        which is similar to <code>takeLastWithTime</code> except that it emits its items not individually but
@@ -784,11 +785,11 @@ Completed</pre></div>
     <script>$("#menu-takeLast").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

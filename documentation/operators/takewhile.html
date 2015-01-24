@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>mirror items emitted by an Observable until a specified condition becomes false</h3>
 
    <figure>
-    <img src="images/takeWhile.c.png" width="100%" alt="TakeWhile" />
+    <img src="images/takeWhile.c.png" style="width:100%;" alt="TakeWhile" />
     <figcaption><p>
      The <span class="operator">TakeWhile</span> mirrors the source Observable until such time as some condition
      you specify becomes false, at which point <span class="operator">TakeWhile</span> stops mirroring the
@@ -260,7 +260,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeWhile.png" width="100%" alt="takeWhile" />
+      <img src="images/takeWhile.png" style="width:100%;" alt="takeWhile" />
       <figcaption><p>
        The <code>takeWhile</code> operator returns an Observable that mirrors the behavior of the source
        Observable until such time as a function, applied to an item emitted by that Observable, returns
@@ -270,7 +270,7 @@
       <div class="code groovy"><pre>
 numbers = Observable.from( [1, 2, 3, 4, 5, 6, 7, 8, 9] );
 
-numbers.takeWhile({ ((it < 6) || (0 == (it % 2))) }).subscribe(
+numbers.takeWhile({ ((it &lt; 6) || (0 == (it % 2))) }).subscribe(
   { println(it); },                          // onNext
   { println("Error: " + it.getMessage()); }, // onError
   { println("Sequence complete"); }          // onCompleted
@@ -310,7 +310,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeWhile.png" width="100%" alt="takeWhile" />
+      <img src="images/takeWhile.png" style="width:100%;" alt="takeWhile" />
       <figcaption><p>
        The <code>takeWhile</code> operator returns an Observable that mirrors the behavior of the source
        Observable until such time as a function, applied to an item emitted by that Observable, returns
@@ -343,7 +343,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/takeWhile.png" width="100%" alt="takeWhile" />
+      <img src="images/takeWhile.png" style="width:100%;" alt="takeWhile" />
       <figcaption><p>
        RxJS implements the <code>takeWhile</code> operator. You pass it a function that governs the takeping
        process. <code>takeWhile</code> calls that function for each item emitted by the source Observable
@@ -363,7 +363,7 @@ Sequence complete</pre></div>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(1, 5)
-    .takeWhile(function (x) { return x < 3; });
+    .takeWhile(function (x) { return x &lt; 3; });
 
 var subscription = source.subscribe(
     function (x) { console.log('Next: ' + x); },
@@ -590,11 +590,11 @@ Completed</pre></div>
     <script>$("#menu-takeWhile").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

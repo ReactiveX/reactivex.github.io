@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
 <h3>register an action to take upon a variety of Observable lifecycle events</h3>
 
 <figure>
- <img src="images/do.c.png" width="100%" alt="Do" />
+ <img src="images/do.c.png" style="width:100%;" alt="Do" />
  <figcaption><p>
   You can register callbacks that ReactiveX will call when certain events take place on an Observable, where
   those callbacks will be called independently from the normal set of notifications associated with an
@@ -260,7 +260,7 @@
      RxGroovy has several <span class="operator">Do</span> variants.
     </p>
     <figure class="variant">
-     <img src="images/doOnEach.png" width="100%" alt="doOnEach" />
+     <img src="images/doOnEach.png" style="width:100%;" alt="doOnEach" />
      <figcaption><p>
       The <code>doOnEach</code> operator allows you to establish a callback that the resulting Observable will
       call each time it emits an item. You can pass this callback either in the form of an <code>Action</code>
@@ -274,7 +274,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnNext.png" width="100%" alt="doOnNext" />
+     <img src="images/doOnNext.png" style="width:100%;" alt="doOnNext" />
      <figcaption><p>
       The <code>doOnNext</code> operator is much like <code>doOnEach(Action1)</code> except that the
       <code>Action</code> that you pass it as a parameter does not accept a <code>Notification</code> but
@@ -285,7 +285,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnSubscribe.png" width="100%" alt="doOnSubscribe" />
+     <img src="images/doOnSubscribe.png" style="width:100%;" alt="doOnSubscribe" />
      <figcaption><p>
       The <code>doOnSubscribe</code> operator registers an <code>Action</code> which will be called whenever
       an observer subscribes to the resulting Observable.
@@ -295,7 +295,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnUnsubscribe.png" width="100%" alt="doOnUnsubscribe" />
+     <img src="images/doOnUnsubscribe.png" style="width:100%;" alt="doOnUnsubscribe" />
      <figcaption><p>
       The <code>doOnUnsubscribe</code> operator registers an <code>Action</code> which will be called whenever
       an observer unsubscribes from the resulting Observable.
@@ -305,7 +305,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnCompleted.png" width="100%" alt="doOnCompleted" />
+     <img src="images/doOnCompleted.png" style="width:100%;" alt="doOnCompleted" />
      <figcaption><p>
       The <code>doOnCompleted</code> operator registers an <code>Action</code> which will be called if the
       resulting Observable terminates normally, calling <code>onCompleted</code>.
@@ -315,7 +315,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnError.png" width="100%" alt="doOnError" />
+     <img src="images/doOnError.png" style="width:100%;" alt="doOnError" />
      <figcaption><p>
       The <code>doOnError</code> operator registers an <code>Action</code> which will be called if the
       resulting Observable terminates abnormally, calling <code>onError</code>. This <code>Action</code> will
@@ -326,7 +326,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnTerminate.png" width="100%" alt="doOnTerminate" />
+     <img src="images/doOnTerminate.png" style="width:100%;" alt="doOnTerminate" />
      <figcaption><p>
       The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
       <em>before</em> the resulting Observable terminates, whether normally or with an error.
@@ -336,7 +336,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/finallyDo.png" width="100%" alt="finallyDo" />
+     <img src="images/finallyDo.png" style="width:100%;" alt="finallyDo" />
      <figcaption><p>
       The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
       <em>after</em> the resulting Observable terminates, whether normally or with an error.
@@ -349,7 +349,7 @@ numbers.finallyDo({ println('Finally'); }).subscribe(
    { println(it); },                          // onNext
    { println("Error: " + it.getMessage()); }, // onError
    { println("Sequence complete"); }          // onCompleted
-);</pre></code>
+);</pre></div>
      <div class="output"><pre>
 1
 2
@@ -384,7 +384,7 @@ Finally</pre></div>
      RxJava has several <span class="operator">Do</span> variants.
     </p>
     <figure class="variant">
-     <img src="images/doOnEach.png" width="100%" alt="doOnEach" />
+     <img src="images/doOnEach.png" style="width:100%;" alt="doOnEach" />
      <figcaption><p>
       The <code>doOnEach</code> operator allows you to establish a callback that the resulting Observable will
       call each time it emits an item. You can pass this callback either in the form of an <code>Action</code>
@@ -398,7 +398,7 @@ Finally</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnNext.png" width="100%" alt="doOnNext" />
+     <img src="images/doOnNext.png" style="width:100%;" alt="doOnNext" />
      <figcaption><p>
       The <code>doOnNext</code> operator is much like <code>doOnEach(Action1)</code> except that the
       <code>Action</code> that you pass it as a parameter does not accept a <code>Notification</code> but
@@ -407,14 +407,14 @@ Finally</pre></div>
      <h4>Sample Code</h4>
      <div class="code java"><pre>
 Observable.just(1, 2, 3)
-          .doOnNext(new Action1<Integer>() {
+          .doOnNext(new Action1&lt;Integer&gt;() {
           @Override
           public void call(Integer item) {
             if( item > 1 ) {
               throw new RuntimeException( "Item exceeds maximum value" );
             }
           }
-        }).subscribe(new Subscriber<Integer>() {
+        }).subscribe(new Subscriber&lt;Integer&gt;() {
         @Override
         public void onNext(Integer item) {
             System.out.println("Next: " + item);
@@ -438,7 +438,7 @@ Error: Item exceeds maximum value</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnSubscribe.png" width="100%" alt="doOnSubscribe" />
+     <img src="images/doOnSubscribe.png" style="width:100%;" alt="doOnSubscribe" />
      <figcaption><p>
       The <code>doOnSubscribe</code> operator registers an <code>Action</code> which will be called whenever
       an observer subscribes to the resulting Observable.
@@ -448,7 +448,7 @@ Error: Item exceeds maximum value</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnUnsubscribe.png" width="100%" alt="doOnUnsubscribe" />
+     <img src="images/doOnUnsubscribe.png" style="width:100%;" alt="doOnUnsubscribe" />
      <figcaption><p>
       The <code>doOnUnsubscribe</code> operator registers an <code>Action</code> which will be called whenever
       an observer unsubscribes from the resulting Observable.
@@ -458,7 +458,7 @@ Error: Item exceeds maximum value</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnCompleted.png" width="100%" alt="doOnCompleted" />
+     <img src="images/doOnCompleted.png" style="width:100%;" alt="doOnCompleted" />
      <figcaption><p>
       The <code>doOnCompleted</code> operator registers an <code>Action</code> which will be called if the
       resulting Observable terminates normally, calling <code>onCompleted</code>.
@@ -468,7 +468,7 @@ Error: Item exceeds maximum value</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnError.png" width="100%" alt="doOnError" />
+     <img src="images/doOnError.png" style="width:100%;" alt="doOnError" />
      <figcaption><p>
       The <code>doOnError</code> operator registers an <code>Action</code> which will be called if the
       resulting Observable terminates abnormally, calling <code>onError</code>. This <code>Action</code> will
@@ -479,7 +479,7 @@ Error: Item exceeds maximum value</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnTerminate.png" width="100%" alt="doOnTerminate" />
+     <img src="images/doOnTerminate.png" style="width:100%;" alt="doOnTerminate" />
      <figcaption><p>
       The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
       <em>before</em> the resulting Observable terminates, whether normally or with an error.
@@ -489,7 +489,7 @@ Error: Item exceeds maximum value</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/finallyDo.png" width="100%" alt="finallyDo" />
+     <img src="images/finallyDo.png" style="width:100%;" alt="finallyDo" />
      <figcaption><p>
       The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
       <em>after</em> the resulting Observable terminates, whether normally or with an error.
@@ -517,7 +517,7 @@ Error: Item exceeds maximum value</pre></div>
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/do.png" width="100%" alt="do" />
+     <img src="images/do.png" style="width:100%;" alt="do" />
      <figcaption><p>
       RxJS implements the basic <span class="operator">Do</span> operator as <code>do</code> or <code>tap</code>
       (two names for the same operator). You have two choices for how to use this operator:
@@ -579,7 +579,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnNext.png" width="100%" alt="doOnNext" />
+     <img src="images/doOnNext.png" style="width:100%;" alt="doOnNext" />
      <figcaption><p>
       RxJS also implements <code>doOnNext</code> or <code>tapOnNext</code> (two names for the same operator).
       It is a specialized form of <span class="operator">Do</span> that responds only to the
@@ -610,7 +610,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnError.png" width="100%" alt="doOnError" />
+     <img src="images/doOnError.png" style="width:100%;" alt="doOnError" />
      <figcaption><p>
       RxJS also implements <code>doOnError</code> or <code>tapOnError</code> (two names for the same operator).
       It is a specialized form of <span class="operator">Do</span> that responds only to the
@@ -636,7 +636,7 @@ Error: Error</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/doOnCompleted.png" width="100%" alt="doOnCompleted" />
+     <img src="images/doOnCompleted.png" style="width:100%;" alt="doOnCompleted" />
      <figcaption><p>
       RxJS also implements <code>doOnCompleted</code> or <code>tapOnCompleted</code> (two names for the same
       operator). It is a specialized form of <span class="operator">Do</span> that responds only to the
@@ -665,7 +665,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/finally.png" width="100%" alt="finally" />
+     <img src="images/finally.png" style="width:100%;" alt="finally" />
      <figcaption><p>
       RxJS also implements a <code>finally</code> operator. It takes a function that will be called after the
       resulting Observable terminates, whether normally (<code>onCompleted</code>) or abnormally
@@ -903,11 +903,11 @@ Finally</pre></div>
     <script>$("#menu-do").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

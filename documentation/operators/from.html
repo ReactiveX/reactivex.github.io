@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
 <h3>convert various other objects and data types into Observables</h3>
 
 <figure>
- <img src="images/from.c.png" width="100%" alt="From" />
+ <img src="images/from.c.png" style="width:100%;" alt="From" />
  <figcaption><p>
   When you work with Observables, it can be more convenient if all of the data you mean to work with
   can be represented as Observables, rather than as a mixture of Observables and other types. This
@@ -201,6 +201,7 @@
 <ul>
  <li><a href="just.html"><span class="operator">Just</span></a></li>
  <li><a href="start.html"><span class="operator">Start</span></a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc5"><cite>101 Rx Samples</cite>: Observation Operators</a></li>
 </ul>
 
 <h2>Language-Specific Information:</h2>
@@ -262,7 +263,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/from.Future.png" width="100%" alt="from" />
+     <img src="images/from.Future.png" style="width:100%;" alt="from" />
      <figcaption><p>
       In RxGroovy, the <code>from</code> operator can convert a Future, an Iterable, or an Array.
       In the case of an Iterable or an Array, the resulting Observable will emit each item contained
@@ -279,15 +280,15 @@
       it will use that Scheduler to govern the Future.
      </p>
      <ul>
-      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T[])"><code>from(array)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T%5B%5D)"><code>from(array)</code></a></li>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.lang.Iterable)"><code>from(Iterable)</code></a></li>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future)"><code>from(Future)</code></a></li>
-      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future, rx.Scheduler)"><code>from(Future,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future, long, java.util.concurrent.TimeUnit)"><code>from(Future,timout,timeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future,%20rx.Scheduler)"><code>from(Future,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future,%20long,%20java.util.concurrent.TimeUnit)"><code>from(Future,timout,timeUnit)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromFunc0.png" width="100%" alt="fromFunc0" />
+     <img src="images/fromFunc0.png" style="width:100%;" alt="fromFunc0" />
      <figcaption><p>
       In addition, in the <code>RxJavaAsyncUtil</code> package, you have available to you the
       following operators that convert actions, callables, functions, and runnables into
@@ -306,7 +307,7 @@
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/St.from.png" width="100%" alt="from" />
+     <img src="images/St.from.png" style="width:100%;" alt="from" />
      <figcaption><p>
       Note that there is also a <code>from</code> operator that is a method of the optional
       <code>StringObservable</code> class. It converts a stream of characters or a
@@ -334,7 +335,7 @@
      retrieve the otherwise-missing items.
     </p>
     <figure>
-     <img src="images/St.decode.png" width="100%" alt="decode" />
+     <img src="images/St.decode.png" style="width:100%;" alt="decode" />
      <figcaption><p>
       The <code>StringObservable</code> class, which is not a default part of RxGroovy, also includes the
       <code>decode</code> operator which converts a stream of multibyte characters into an Observable that
@@ -360,7 +361,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/from.Future.png" width="100%" alt="from" />
+     <img src="images/from.Future.png" style="width:100%;" alt="from" />
      <figcaption><p>
       In RxJava, the <code>from</code> operator can convert a Future, an Iterable, or an Array.
       In the case of an Iterable or an Array, the resulting Observable will emit each item contained
@@ -372,13 +373,13 @@ Integer[] items = { 0, 1, 2, 3, 4, 5 };
 Observable myObservable = Observable.from(items);
 
 myObservable.subscribe(
-    new Action1<Integer>() {
+    new Action1&lt;Integer&gt;() {
         @Override
         public void call(Integer item) {
             System.out.println(item);
         }
     },
-    new Action1<Throwable>() {
+    new Action1&lt;Throwable&gt;() {
         @Override
         public void call(Throwable error) {
             System.out.println("Error encountered: " + error.getMessage());
@@ -412,15 +413,15 @@ Sequence complete</pre></div>
       it will use that Scheduler to govern the Future.
      </p>
      <ul>
-      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T[])"><code>from(array)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(T%5B%5D)"><code>from(array)</code></a></li>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.lang.Iterable)"><code>from(Iterable)</code></a></li>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future)"><code>from(Future)</code></a></li>
-      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future, rx.Scheduler)"><code>from(Future,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future, long, java.util.concurrent.TimeUnit)"><code>from(Future,timout,timeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future,%20rx.Scheduler)"><code>from(Future,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#from(java.util.concurrent.Future,%20long,%20java.util.concurrent.TimeUnit)"><code>from(Future,timout,timeUnit)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromFunc0.png" width="100%" alt="fromFunc0" />
+     <img src="images/fromFunc0.png" style="width:100%;" alt="fromFunc0" />
      <figcaption><p>
       In addition, in the <code>RxJavaAsyncUtil</code> package, you have available to you the
       following operators that convert actions, callables, functions, and runnables into
@@ -439,7 +440,7 @@ Sequence complete</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/St.from.png" width="100%" alt="from" />
+     <img src="images/St.from.png" style="width:100%;" alt="from" />
      <figcaption><p>
       Note that there is also a <code>from</code> operator that is a method of the optional
       <code>StringObservable</code> class. It converts a stream of characters or a
@@ -467,7 +468,7 @@ Sequence complete</pre></div>
      retrieve the otherwise-missing items.
     </p>
     <figure>
-     <img src="images/St.decode.png" width="100%" alt="decode" />
+     <img src="images/St.decode.png" style="width:100%;" alt="decode" />
      <figcaption><p>
       The <code>StringObservable</code> class, which is not a default part of RxGroovy, also includes the
       <code>decode</code> operator which converts a stream of multibyte characters into an Observable that
@@ -496,7 +497,7 @@ Sequence complete</pre></div>
      There are several, specialized <span class="operator">From</span> variants in RxJS:
     </p>
     <figure class="variant">
-     <img src="images/from.png" width="100%" alt="from" />
+     <img src="images/from.png" style="width:100%;" alt="from" />
      <figcaption><p>
       In RxJS, the <code>from</code> operator converts an array-like or iterable object into an
       Observable that emits the items in that array or iterable. A String, in this context, is
@@ -596,7 +597,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromCallback.png" width="100%" alt="fromCallback" />
+     <img src="images/fromCallback.png" style="width:100%;" alt="fromCallback" />
      <figcaption><p>
       The <code>fromCallback</code> operator takes a function as a parameter, calls this
       function, and emits the value returned from it as its single emission.
@@ -677,7 +678,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/fromEvent.png" width="100%" alt="fromEvent" />
+     <img src="images/fromEvent.png" style="width:100%;" alt="fromEvent" />
      <figcaption><p>
       The <code>fromEvent</code> operator takes an &ldquo;element&rdquo; and an event name as
       parameters, and it then listens for events of that name taking place on that element. It
@@ -766,7 +767,7 @@ input.trigger('click');</pre></div>
      <div class="output"><pre>
 Next: Clicked!</pre></div>
     <figure class="variant">
-     <img src="images/of.png" width="100%" alt="of" />
+     <img src="images/of.png" style="width:100%;" alt="of" />
      <figcaption><p>
       The <code>of</code> operator accepts a number of items as parameters, and returns an
       Observable that emits each of these parameters, in order, as its emitted sequence.
@@ -1020,11 +1021,11 @@ Completed</pre></div>
     <script>$("#menu-from").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>emits the item from the source Observable that had the maximum value</h3>
 
    <figure>
-    <img src="images/max.c.png" width="100%" alt="Max" />
+    <img src="images/max.c.png" style="width:100%;" alt="Max" />
     <figcaption><p>
      The <span class="operator">Max</span> operator operates on an Observable that emits numbers
      (or items that can be evaluated as numbers), and emits a single item: the item with the largest
@@ -194,6 +194,7 @@
    <ul>
     <li><a href="min.html"><span class="operator">Min</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#MaxAndMin"><cite>Introduction to Rx</cite>: Min, Max, Sum, and Average</a></li>
+    <li><a href="http://rxmarbles.com/#max">RxMarbles: <code>max</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -258,7 +259,7 @@
       <code>rxjava-math</code> module.
      </p>
      <figure>
-      <img src="images/max.png" width="100%" alt="max" />
+      <img src="images/max.png" style="width:100%;" alt="max" />
       <figcaption><p>
        RxGroovy implements a <code>max</code> operator. It takes an optional comparator that it
        will use instead of its default to compare the value of two items. If more than one item
@@ -267,7 +268,7 @@
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/maxBy.png" width="100%" alt="maxBy" />
+      <img src="images/maxBy.png" style="width:100%;" alt="maxBy" />
       <figcaption><p>
        The <code>maxBy</code> operator is similar to <code>max</code>, but instead of emitting the
        item with the maximum value, it emits the item with the maximum <em>key</em>, where that
@@ -297,7 +298,7 @@
       <code>rxjava-math</code> module.
      </p>
      <figure>
-      <img src="images/max.png" width="100%" alt="max" />
+      <img src="images/max.png" style="width:100%;" alt="max" />
       <figcaption><p>
        RxJava implements a <code>max</code> operator. It takes an optional comparator that it
        will use instead of its default to compare the value of two items. If more than one item
@@ -306,7 +307,7 @@
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/maxBy.png" width="100%" alt="maxBy" />
+      <img src="images/maxBy.png" style="width:100%;" alt="maxBy" />
       <figcaption><p>
        The <code>maxBy</code> operator is similar to <code>max</code>, but instead of emitting the
        item with the maximum value, it emits the item with the maximum <em>key</em>, where that
@@ -332,7 +333,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/max.png" width="100%" alt="max" />
+      <img src="images/max.png" style="width:100%;" alt="max" />
       <figcaption><p>
        RxJS implements the <code>max</code> operator. It takes an optional comparer function that it
        will use instead of its default to compare the value of two items.</p>
@@ -349,7 +350,7 @@ Next: 9
 Completed</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="images/maxBy.png" width="100%" alt="maxBy" />
+      <img src="images/maxBy.png" style="width:100%;" alt="maxBy" />
       <figcaption><p>
        The <code>maxBy</code> operator is similar to <code>max</code>, but instead of emitting the
        item with the maximum value, it emits the item with the maximum <em>key</em>, where that
@@ -372,6 +373,7 @@ var subscription = source.subscribe(
        <div class="output"><pre>
 Next: 9,9
 Completed</pre></div></figcaption>
+     </figure>
      <p>
       <code>max</code> and <code>maxBy</code> are found in the following distributions:
      </p>
@@ -592,11 +594,11 @@ Completed</pre></div></figcaption>
     <script>$("#menu-max").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

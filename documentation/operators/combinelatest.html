@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>when an item is emitted by either of two Observables, combine the latest item emitted by each Observable via a specified function and emit items based on the results of this function</h3>
 
    <figure>
-    <img src="images/combineLatest.c.png" width="100%" alt="CombineLatest" />
+    <img src="images/combineLatest.c.png" style="width:100%;" alt="CombineLatest" />
     <figcaption><p>
      The <span class="operator">CombineLatest</span> operator behaves in a similar way to
      <span class="operator">Zip</span>, but while <span class="operator">Zip</span> emits items only
@@ -200,6 +200,9 @@
    <ul>
     <li><a href="zip.html"><span class="operator">Zip</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#CombineLatest"><cite>Introduction to Rx</cite>: CombineLatest</a></li>
+    <li><a href="http://rxmarbles.com/#combineLatest">RxMarbles: <code>combineLatest</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc3"><cite>101 Rx Samples</cite>: CombineLatest &mdash; Parallel Execution</a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc50"><cite>101 Rx Samples</cite>: CombineLatest</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -260,7 +263,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
       <figcaption><p>
        RxGroovy implements this operator as <code>combineLatest</code>. It may take between two and
        nine Observables (as well as the combining function) as parameters, or a single
@@ -268,8 +271,8 @@
        operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List, rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable, rx.Observable, rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List,%20rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
   
@@ -291,7 +294,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
       <figcaption><p>
        RxJava implements this operator as <code>combineLatest</code>. It may take between two and
        nine Observables (as well as the combining function) as parameters, or a single
@@ -299,8 +302,8 @@
        operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List, rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable, rx.Observable, rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List,%20rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
   
@@ -322,7 +325,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
       <figcaption><p>
        RxJS implements this operator as <code>combineLatest</code>. It may take a variable number
        of individual Observables (as well as the combining function) as parameters, or a single
@@ -362,7 +365,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/withLatestFrom.png" width="100%" alt="withLatestFrom" />
+      <img src="images/withLatestFrom.png" style="width:100%;" alt="withLatestFrom" />
       <figcaption><p>
        RxJS also has a <code>withLatestFrom</code> operator. It is similar to <code>combineLatest</code>, but
        only emits items when the single source Observable emits an item (not when <em>any</em> of the
@@ -613,11 +616,11 @@ Completed</pre></div>
     <script>$("#menu-combinelatest").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -183,7 +183,7 @@
        without error</h3>
 
    <figure>
-    <img src="images/retry.C.png" width="100%" alt="Retry" />
+    <img src="images/retry.C.png" style="width:100%;" alt="Retry" />
     <figcaption><p>
      The <span class="operator">Retry</span> operator responds to an <code>onError</code>
      notification from the source Observable by not passing that call through to its observers, but
@@ -240,7 +240,7 @@
       RxCpp implements this operator as <code>retry</code>:
      </p>
      <figure>
-      <img src="images/retry.png" width="100%" alt="retry" />
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single argument, a count of the number of times it should try
        resubscribing to the source Observable when it encounters errors. If this count is exceeded,
@@ -270,7 +270,7 @@
       RxGroovy has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="100%" alt="retry" />
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -298,7 +298,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/retryWhen.f.png" width="100%" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" style="width:100%;" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -314,7 +314,7 @@
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1)"><code>retryWhen(Func1)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1, rx.Scheduler)"><code>retryWhen(Func1,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1,%20rx.Scheduler)"><code>retryWhen(Func1,Scheduler)</code></a></li>
       </ul></figcaption>
      </figure>
   
@@ -339,7 +339,7 @@
       RxJava has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="100%" alt="retry" />
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -367,7 +367,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/retryWhen.f.png" width="100%" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" style="width:100%;" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -402,7 +402,7 @@ delay retry by 3 second(s)
 subscribing</pre></div>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1)"><code>retryWhen(Func1)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1, rx.Scheduler)"><code>retryWhen(Func1,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1,%20rx.Scheduler)"><code>retryWhen(Func1,Scheduler)</code></a></li>
       </ul></figcaption>
      </figure>
   
@@ -427,7 +427,7 @@ subscribing</pre></div>
       RxJS implements this operator as <code>retry</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="100%" alt="retry" />
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -474,7 +474,7 @@ subscribing</pre></div>
       RxKotlin has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="100%" alt="retry" />
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -494,7 +494,7 @@ subscribing</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/retryWhen.f.png" width="100%" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" style="width:100%;" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -503,7 +503,7 @@ subscribing</pre></div>
        <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if
        that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
        notification on to its observers and terminates.
-      </p>
+      </p></figcaption>
      </figure>
   
           </div>
@@ -527,7 +527,7 @@ subscribing</pre></div>
       Rx.NET implements this operator as <code>Retry</code>.
      </p>
      <figure>
-      <img src="images/retry.C.png" width="100%" alt="Retry" />
+      <img src="images/retry.C.png" style="width:100%;" alt="Retry" />
       <figcaption><p>
        One variant of <code>Retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -563,7 +563,7 @@ subscribing</pre></div>
       RxPY implements this operator as <code>retry</code>:
      </p>
      <figure>
-      <img src="images/retry.png" width="100%" alt="retry" />
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single optional parameter, a count of the number of times it
        should try resubscribing to and mirroring the source Observable when it encounters errors. If
@@ -595,7 +595,7 @@ subscribing</pre></div>
       Rx.rb has two versions of this operator: <code>retry</code> and <code>retry_infinitely</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="100%" alt="retry" />
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
       <figcaption><p>
        <code>retry</code> takes a single optional parameter, a count of the number of times it
        should try resubscribing to and mirroring the source Observable when it encounters errors. If
@@ -630,7 +630,7 @@ subscribing</pre></div>
       RxScala has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
      </p>
      <figure>
-      <img src="images/retry.png" width="100%" alt="retry" />
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
       <figcaption><p>
        One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
        mirror the source Observable no matter how many <code>onError</code> notifications it
@@ -650,7 +650,7 @@ subscribing</pre></div>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/retryWhen.f.png" width="100%" alt="retryWhen" />
+      <img src="images/retryWhen.f.png" style="width:100%;" alt="retryWhen" />
       <figcaption><p>
        The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
        not to resubscribe to and mirror the source Observable by passing the Throwable from the
@@ -759,11 +759,11 @@ subscribing</pre></div>
     <script>$("#menu-retry").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

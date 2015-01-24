@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items</h3>
 
    <figure>
-    <img src="images/timeout.c.png" width="100%" alt="Timeout" />
+    <img src="images/timeout.c.png" style="width:100%;" alt="Timeout" />
     <figcaption><p>
      The <span class="operator">Timeout</span> operator allows you to abort an Observable with an
      <code>onError</code> termination if that Observable fails to emit any items during a specified span of
@@ -194,6 +194,7 @@
    <ul>
     <li><a href="debounce.html"><span class="operator">Debounce</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Timeout"><cite>Introduction to Rx</cite>: Timeout</a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc33"><cite>101 Rx Samples</cite>: Timeout &mdash; Simple</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -257,7 +258,7 @@
       RxGroovy implements this operator as <code>timeout</code>, but in several variants.
      </p>
      <figure>
-      <img src="images/timeout.1.png" width="100%" alt="timeout" />
+      <img src="images/timeout.1.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        The first variant accepts parameters that define a duration of time (a quantity of time, and a
        <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable emits an
@@ -275,7 +276,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout.2.png" width="100%" alt="timeout" />
+      <img src="images/timeout.2.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        A second variant of <code>timeout</code> differs from the first in that instead of issuing an error
        notification in case of a timeout condition, it instead immediately switches to a backup Observable that
@@ -291,7 +292,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout3.png" width="100%" alt="timeout" />
+      <img src="images/timeout3.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        A third variant of <code>timeout</code> does not use a constant timeout duration, but sets its timeout
        duration on a per-item basis by passing each item from the source Observable into a function that returns
@@ -308,7 +309,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout4.png" width="100%" alt="timeout" />
+      <img src="images/timeout4.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        There is also a variant of <code>timeout</code> that both uses a per-item Observable to set the timeout
        duration and switches to a backup Observable in case of a timeout.
@@ -321,7 +322,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout5.png" width="100%" alt="timeout" />
+      <img src="images/timeout5.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        The variant of <code>timeout</code> that uses a per-item Observable to set the timeout has a variant
        that allows you to pass in a function that returns an Observable that acts as a timeout timer for the
@@ -336,7 +337,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout6.png" width="100%" alt="timeout" />
+      <img src="images/timeout6.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
        an error upon hitting a timeout condition.
@@ -370,7 +371,7 @@
       RxJava implements this operator as <code>timeout</code>, but in several variants.
      </p>
      <figure>
-      <img src="images/timeout.1.png" width="100%" alt="timeout" />
+      <img src="images/timeout.1.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        The first variant accepts parameters that define a duration of time (a quantity of time, and a
        <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable emits an
@@ -388,7 +389,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout.2.png" width="100%" alt="timeout" />
+      <img src="images/timeout.2.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        A second variant of <code>timeout</code> differs from the first in that instead of issuing an error
        notification in case of a timeout condition, it instead immediately switches to a backup Observable that
@@ -404,7 +405,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout3.png" width="100%" alt="timeout" />
+      <img src="images/timeout3.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        A third variant of <code>timeout</code> does not use a constant timeout duration, but sets its timeout
        duration on a per-item basis by passing each item from the source Observable into a function that returns
@@ -421,7 +422,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout4.png" width="100%" alt="timeout" />
+      <img src="images/timeout4.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        There is also a variant of <code>timeout</code> that both uses a per-item Observable to set the timeout
        duration and switches to a backup Observable in case of a timeout.
@@ -434,7 +435,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout5.png" width="100%" alt="timeout" />
+      <img src="images/timeout5.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        The variant of <code>timeout</code> that uses a per-item Observable to set the timeout has a variant
        that allows you to pass in a function that returns an Observable that acts as a timeout timer for the
@@ -449,7 +450,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout6.png" width="100%" alt="timeout" />
+      <img src="images/timeout6.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
        an error upon hitting a timeout condition.
@@ -483,7 +484,7 @@
       RxJS implements this operator as <code>timeout</code> and <code>timeoutWithSelector</code>:
      </p>
      <figure>
-      <img src="images/timeout.1.png" width="100%" alt="timeout" />
+      <img src="images/timeout.1.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        One variant of <code>timeout</code> accepts a duration of time (in milliseconds). Each time the source
        Observable emits an item, <code>timeout</code> starts a timer, and if that timer exceeds the duration
@@ -503,10 +504,10 @@ var subscription = source.subscribe(
   function (err) { console.log('Error: %s', err); },
   function () { console.log('Completed'); });</pre></div>
       <div class="output"><pre>
-Error: Timeout has occurred.</pre></div>
+Error: Timeout has occurred.</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="images/timeout.2.png" width="100%" alt="timeout" />
+      <img src="images/timeout.2.png" style="width:100%;" alt="timeout" />
       <figcaption><p>
        Another variant allows you to instruct <code>timeout</code> to switch to a backup Observable that you
        specify, rather than terminating with an error, if the timeout condition is triggered. To use this
@@ -526,10 +527,10 @@ var subscription = source.subscribe(
   function () { console.log('Completed'); });</pre></div>
       <div class="output"><pre>
 Next: 42
-Completed</pre></div>
+Completed</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="images/timeoutWithSelector3.png" width="100%" alt="timeoutWithSelector" />
+      <img src="images/timeoutWithSelector3.png" style="width:100%;" alt="timeoutWithSelector" />
       <figcaption><p>
        <code>timeoutWithSelector</code> does not use a constant timeout duration, but sets its timeout duration
        on a per-item basis by passing each item from the source Observable into a function that returns
@@ -568,7 +569,7 @@ Error: Error: Timeout</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/timeoutWithSelector4.png" width="100%" alt="timeoutWithSelector" />
+      <img src="images/timeoutWithSelector4.png" style="width:100%;" alt="timeoutWithSelector" />
       <figcaption><p>
        There is also a variant of <code>timeoutWithSelector</code> that both uses a per-item Observable to set
        the timeout duration and switches to a backup Observable in case of a timeout.
@@ -604,7 +605,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/timeoutWithSelector5.png" width="100%" alt="timeoutWithSelector" />
+      <img src="images/timeoutWithSelector5.png" style="width:100%;" alt="timeoutWithSelector" />
       <figcaption><p>
        The variant of <code>timeoutWithSelector</code> that uses a per-item Observable to set the timeout has a
        variant that allows you to pass in an Observable that acts as a timeout timer for the very first item
@@ -642,7 +643,7 @@ Error: Error: Timeout</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/timeoutWithSelector6.png" width="100%" alt="timeoutWithSelector" />
+      <img src="images/timeoutWithSelector6.png" style="width:100%;" alt="timeoutWithSelector" />
       <figcaption><p>
        And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
        an error upon hitting a timeout condition.
@@ -900,11 +901,11 @@ Completed</pre></div>
     <script>$("#menu-timeout").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

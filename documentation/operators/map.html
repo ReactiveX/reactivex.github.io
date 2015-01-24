@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>transform the items emitted by an Observable by applying a function to each item</h3>
 
    <figure>
-    <img src="images/map.c.png" width="100%" alt="Map" />
+    <img src="images/map.c.png" style="width:100%;" alt="Map" />
     <figcaption><p>
      The <span class="operator">Map</span> operator applies a function of your choosing to each item
      emitted by the source Observable, and returns an Observable that emits the results of these
@@ -193,7 +193,9 @@
    <h4>See Also</h4>
    <ul>
     <li><a href="flatmap"><span class="operator">FlatMap</span></a></li>
-    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#Select"><cite>Introduction to Rx</cite>: Select</li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#Select"><cite>Introduction to Rx</cite>: Select</a></li>
+    <li><a href="http://rxmarbles.com/#map">RxMarbles: <code>map</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc22"><cite>101 Rx Samples</cite>: Select &mdash; Indexed</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -254,7 +256,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/map.png" width="100%" alt="map" />
+      <img src="images/map.png" style="width:100%;" alt="map" />
       <figcaption><p>
        RxGroovy implements this operator as <code>map</code>. For example, the following code maps a
        function that squares the incoming value onto the values in <code>numbers</code>:
@@ -282,7 +284,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/cast.png" width="100%" alt="cast" />
+      <img src="images/cast.png" style="width:100%;" alt="cast" />
       <figcaption><p>
        The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
        transforms each item from the source Observable by casting it into a particular Class before reemitting
@@ -292,7 +294,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/St.encode.png" width="100%" alt="encode" />
+      <img src="images/St.encode.png" style="width:100%;" alt="encode" />
       <figcaption><p>
        In the <code>StringObservable</code> class that is not part of the RxGroovy core there is also a
        specialty mapping operator, <code>encode</code>, that transforms an Observable that emits strings into
@@ -301,7 +303,7 @@ Sequence complete</pre></div></figcaption>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/St.byLine.png" width="100%" alt="byLine" />
+      <img src="images/St.byLine.png" style="width:100%;" alt="byLine" />
       <figcaption><p>
        Also in the <code>StringObservable</code> class that is not part of the RxGroovy core there is a
        specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
@@ -328,7 +330,7 @@ Sequence complete</pre></div></figcaption>
           <div class="panel-body">
             
      <figure>
-      <img src="images/map.png" width="100%" alt="map" />
+      <img src="images/map.png" style="width:100%;" alt="map" />
       <figcaption><p>
        RxJava implements this operator as <code>map</code>.
       </p><p>
@@ -338,7 +340,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/cast.png" width="100%" alt="cast" />
+      <img src="images/cast.png" style="width:100%;" alt="cast" />
       <figcaption><p>
        The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
        transforms each item from the source Observable by casting it into a particular Class before reemitting
@@ -348,7 +350,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/St.encode.png" width="100%" alt="encode" />
+      <img src="images/St.encode.png" style="width:100%;" alt="encode" />
       <figcaption><p>
        In the <code>StringObservable</code> class that is not part of the RxJava core there is also a specialty
        mapping operator, <code>encode</code>, that transforms an Observable that emits strings into an
@@ -357,7 +359,7 @@ Sequence complete</pre></div></figcaption>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/St.byLine.png" width="100%" alt="byLine" />
+      <img src="images/St.byLine.png" style="width:100%;" alt="byLine" />
       <figcaption><p>
        Also in the <code>StringObservable</code> class that is not part of the RxJava core there is a
        specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
@@ -384,7 +386,7 @@ Sequence complete</pre></div></figcaption>
           <div class="panel-body">
             
      <figure>
-      <img src="images/map.i.png" width="100%" alt="map" />
+      <img src="images/map.i.png" style="width:100%;" alt="map" />
       <figcaption><p>
        RxJS implements this operator as <code>map</code> or <code>select</code> (the two are
        synonymous). In addition to the transforming function, you may pass this operator an optional
@@ -422,7 +424,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/pluck.png" width="100%" alt="pluck" />
+      <img src="images/pluck.png" style="width:100%;" alt="pluck" />
       <figcaption><p>
        There is also an operator called <code>pluck</code> which is a simpler version of this
        operator. It transforms the elements emitted by the source Observable by extracting a
@@ -661,11 +663,11 @@ Completed</pre></div></figcaption>
     <script>$("#menu-map").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

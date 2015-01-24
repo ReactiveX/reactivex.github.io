@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>periodically subdivide items from an Observable into Observable windows and emit these
        windows rather than emitting the items one at a time</h3>
    <figure>
-    <img src="images/window.C.png" width="100%" alt="Window" />
+    <img src="images/window.C.png" style="width:100%;" alt="Window" />
     <figcaption><p>
      <span class="operator">Window</span> is similar to
      <a href="buffer.html"><span class="operator">Buffer</span></a>, but rather than emitting packets
@@ -205,6 +205,7 @@
    <ul>
     <li><a href="buffer.html"><span class="operator">Buffer</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/17_SequencesOfCoincidence.html#Window"><cite>Introduction to Rx</cite>: Window</a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc38"><cite>101 Rx Samples</cite>: Window</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -226,7 +227,7 @@
       RxClojure implements this operator as <code>partition-all</code>:
      </p>
      <figure>
-      <img src="images/partition-all.png" width="100%" alt="partition-all" />
+      <img src="images/partition-all.png" style="width:100%;" alt="partition-all" />
       <figcaption><p>
        <code>partition-all</code> opens its first window immediately. It opens a new window
        beginning with every <code>step</code> item from the source Observable (so, for example, if
@@ -237,7 +238,7 @@
        parameter) then the window size is the same as the step size and there will be a one-to-one
        correspondence between the items emitted by the source Observable and the items emitted by
        the collection of window Observables. If <code>step&nbsp;&lt;&nbsp;n</code> the windows will
-       overlap by <code>n&nbsp;&minus;&nbsp;step</code> items; if <code>step&nbsp&gt;&nbsp;n</code>
+       overlap by <code>n&nbsp;&minus;&nbsp;step</code> items; if <code>step&nbsp;&gt;&nbsp;n</code>
        the windows will drop <code>step&nbsp;&minus;&nbsp;n</code> items from the source Observable
        between every window.
       </p></figcaption>
@@ -266,7 +267,7 @@
      </p>
      <h4><code>window(count)</code></h4>
      <figure>
-      <img src="images/window3.png" width="100%" alt="window(count)" />
+      <img src="images/window3.png" style="width:100%;" alt="window(count)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one whenever the current window has emitted
@@ -278,7 +279,7 @@
      </figure>
      <h4><code>window(count, skip)</code></h4>
      <figure>
-      <img src="images/window4.png" width="100%" alt="window(count, skip)" />
+      <img src="images/window4.png" style="width:100%;" alt="window(count, skip)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It opens a new window
        beginning with every <code>skip</code> item from the source Observable (so, for example, if
@@ -288,14 +289,14 @@
        <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
        <code>window(source,&nbsp;count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
        emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
-       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
       </p></figcaption>
      </figure>
      <h4><code>window_with_time(period</code>[<code>, coordination</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window_with_time5.png" width="100%" alt="window_with_time(period[,coordination])" />
+      <img src="images/window_with_time5.png" style="width:100%;" alt="window_with_time(period[,coordination])" />
       <figcaption><p>
        This variant of <code>window_with_time</code> opens its first window immediately. It closes
        the currently open window and opens another one every <code>period</code> of time (a
@@ -308,7 +309,7 @@
      </figure>
      <h4><code>window_with_time(period, skip</code>[<code>, coordination</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window_with_time7.png" width="100%" alt="window_with_time(period,skip[,coordination])" />
+      <img src="images/window_with_time7.png" style="width:100%;" alt="window_with_time(period,skip[,coordination])" />
       <figcaption><p>
        This variant of <code>window_with_time</code> opens its first window immediately. It closes
        the currently open window after <code>period</code> amount of time has passed since it was
@@ -323,7 +324,7 @@
      </figure>
      <h4><code>window_with_time_or_count(period, count</code>[<code>, coordination</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window_with_time_or_count.png" width="100%" alt="window_with_time_or_count(period,count[,coordination])" />
+      <img src="images/window_with_time_or_count.png" style="width:100%;" alt="window_with_time_or_count(period,count[,coordination])" />
       <figcaption><p>
        <code>window_with_time_or_count</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>period</code> of time (optionally
@@ -357,7 +358,7 @@
      </p>
      <h4><code>window(closingSelector)</code></h4>
      <figure>
-      <img src="images/window1.png" width="100%" alt="window(closingSelector)" />
+      <img src="images/window1.png" style="width:100%;" alt="window(closingSelector)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one each time it observes an object emitted
@@ -371,7 +372,7 @@
      </figure>
      <h4><code>window(windowOpenings, closingSelector)</code></h4>
      <figure>
-      <img src="images/window2.png" width="100%" alt="window(windowOpenings, closingSelector)" />
+      <img src="images/window2.png" style="width:100%;" alt="window(windowOpenings, closingSelector)" />
       <figcaption><p>
        This variant of <code>window</code> opens a window whenever it observes the
        <code>windowOpenings</code> Observable emit an <code>Opening</code> object and at the same
@@ -383,12 +384,12 @@
        (discarding items from the source Observable).
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(rx.Observable, rx.functions.Func1)"><code>window(Observable,Func1)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(rx.Observable,%20rx.functions.Func1)"><code>window(Observable,Func1)</code></a></li>
       </ul></figcaption>
      </figure>
      <h4><code>window(count)</code></h4>
      <figure>
-      <img src="images/window3.png" width="100%" alt="window(count)" />
+      <img src="images/window3.png" style="width:100%;" alt="window(count)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one whenever the current window has emitted
@@ -403,7 +404,7 @@
      </figure>
      <h4><code>window(count, skip)</code></h4>
      <figure>
-      <img src="images/window4.png" width="100%" alt="window(count, skip)" />
+      <img src="images/window4.png" style="width:100%;" alt="window(count, skip)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It opens a new window
        beginning with every <code>skip</code> item from the source Observable (so, for example, if
@@ -413,17 +414,17 @@
        <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
        <code>window(source,&nbsp;count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
        emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
-       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(int, int)"><code>window(int,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(int,%20int)"><code>window(int,int)</code></a></li>
       </ul></figcaption>
      </figure>
      <h4><code>window(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window5.png" width="100%" alt="window(timespan, unit[, scheduler])" />
+      <img src="images/window5.png" style="width:100%;" alt="window(timespan, unit[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
@@ -438,13 +439,13 @@
        <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit)"><code>window(long,TimeUnit)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>window(long,TimeUnit,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20java.util.concurrent.TimeUnit)"><code>window(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>window(long,TimeUnit,Scheduler)</code></a></li>
       </ul></figcaption>
      </figure>
      <h4><code>window(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window6.png" width="100%" alt="window(timespan, unit, count[, scheduler])" />
+      <img src="images/window6.png" style="width:100%;" alt="window(timespan, unit, count[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
@@ -460,13 +461,13 @@
        <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int)"><code>window(long,TimeUnit,int)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>window(long,TimeUnit,int,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20java.util.concurrent.TimeUnit, int)"><code>window(long,TimeUnit,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20java.util.concurrent.TimeUnit, int,%20rx.Scheduler)"><code>window(long,TimeUnit,int,Scheduler)</code></a></li>
       </ul></figcaption>
      </figure>
      <h4><code>window(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window7.png" width="100%" alt="window(timespan, timeshift, unit[, scheduler])" />
+      <img src="images/window7.png" style="width:100%;" alt="window(timespan, timeshift, unit[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeshift</code> period of time (measured in <code>unit</code>, and
@@ -481,8 +482,8 @@
        <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit)"><code>window(long,long,TimeUnit)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>window(long,long,TimeUnit,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20long,%20java.util.concurrent.TimeUnit)"><code>window(long,long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>window(long,long,TimeUnit,Scheduler)</code></a></li>
       </ul></figcaption>
      </figure>
     <p>
@@ -490,7 +491,7 @@
      is, to cope with an Observable that may produce items too quickly for its observer to consume).
     </p>
     <figure class="variant">
-     <img src="images/bp.window1.png" width="100%" alt="Window as a backpressure strategy" />
+     <img src="images/bp.window1.png" style="width:100%;" alt="Window as a backpressure strategy" />
      <figcaption><p>
       Window can reduce a sequence of many items to a sequence of fewer windows-of-items, making
       them more manageable. You could, for example, emit a window of items from a bursty Observable
@@ -501,7 +502,7 @@
 Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, TimeUnit.MILLISECONDS);</pre></div></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.window2.png" width="100%" alt="Window as a backpressure strategy" />
+     <img src="images/bp.window2.png" style="width:100%;" alt="Window as a backpressure strategy" />
      <figcaption><p>
       Or you could choose to emit a new window of items for every <i>n</i> items emitted by the
       bursty Observable.
@@ -534,7 +535,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </p>
      <h4><code>window(closingSelector)</code></h4>
      <figure>
-      <img src="images/window1.png" width="100%" alt="window(closingSelector)" />
+      <img src="images/window1.png" style="width:100%;" alt="window(closingSelector)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one each time it observes an object emitted
@@ -548,7 +549,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(windowOpenings, closingSelector)</code></h4>
      <figure>
-      <img src="images/window2.png" width="100%" alt="window(windowOpenings, closingSelector)" />
+      <img src="images/window2.png" style="width:100%;" alt="window(windowOpenings, closingSelector)" />
       <figcaption><p>
        This variant of <code>window</code> opens a window whenever it observes the
        <code>windowOpenings</code> Observable emit an <code>Opening</code> object and at the same
@@ -560,12 +561,12 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        (discarding items from the source Observable).
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(rx.Observable, rx.functions.Func1)"><code>window(Observable,Func1)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(rx.Observable,%20rx.functions.Func1)"><code>window(Observable,Func1)</code></a></li>
       </ul></figcaption>
      </figure>
      <h4><code>window(count)</code></h4>
      <figure>
-      <img src="images/window3.png" width="100%" alt="window(count)" />
+      <img src="images/window3.png" style="width:100%;" alt="window(count)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one whenever the current window has emitted
@@ -580,7 +581,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(count, skip)</code></h4>
      <figure>
-      <img src="images/window4.png" width="100%" alt="window(count, skip)" />
+      <img src="images/window4.png" style="width:100%;" alt="window(count, skip)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It opens a new window
        beginning with every <code>skip</code> item from the source Observable (so, for example, if
@@ -590,17 +591,17 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
        <code>window(source,&nbsp;count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
        emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
-       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(int, int)"><code>window(int,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(int,%20int)"><code>window(int,int)</code></a></li>
       </ul></figcaption>
      </figure>
      <h4><code>window(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window5.png" width="100%" alt="window(timespan, unit[, scheduler])" />
+      <img src="images/window5.png" style="width:100%;" alt="window(timespan, unit[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
@@ -615,13 +616,13 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit)"><code>window(long,TimeUnit)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>window(long,TimeUnit,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20java.util.concurrent.TimeUnit)"><code>window(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>window(long,TimeUnit,Scheduler)</code></a></li>
       </ul></figcaption>
      </figure>
      <h4><code>window(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window6.png" width="100%" alt="window(timespan, unit, count[, scheduler])" />
+      <img src="images/window6.png" style="width:100%;" alt="window(timespan, unit, count[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
@@ -637,13 +638,13 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int)"><code>window(long,TimeUnit,int)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, java.util.concurrent.TimeUnit, int, rx.Scheduler)"><code>window(long,TimeUnit,int,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20java.util.concurrent.TimeUnit, int)"><code>window(long,TimeUnit,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20java.util.concurrent.TimeUnit, int,%20rx.Scheduler)"><code>window(long,TimeUnit,int,Scheduler)</code></a></li>
       </ul></figcaption>
      </figure>
      <h4><code>window(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window7.png" width="100%" alt="window(timespan, timeshift, unit[, scheduler])" />
+      <img src="images/window7.png" style="width:100%;" alt="window(timespan, timeshift, unit[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeshift</code> period of time (measured in <code>unit</code>, and
@@ -658,8 +659,8 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>computation</code> Scheduler for its timer by default.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit)"><code>window(long,long,TimeUnit)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>window(long,long,TimeUnit,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20long,%20java.util.concurrent.TimeUnit)"><code>window(long,long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#window(long,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>window(long,long,TimeUnit,Scheduler)</code></a></li>
       </ul></figcaption>
      </figure>
     <p>
@@ -667,7 +668,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      is, to cope with an Observable that may produce items too quickly for its observer to consume).
     </p>
     <figure class="variant">
-     <img src="images/bp.window1.png" width="100%" alt="Window as a backpressure strategy" />
+     <img src="images/bp.window1.png" style="width:100%;" alt="Window as a backpressure strategy" />
      <figcaption><p>
       Window can reduce a sequence of many items to a sequence of fewer windows-of-items, making
       them more manageable. You could, for example, emit a window of items from a bursty Observable
@@ -678,7 +679,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
 Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(500, TimeUnit.MILLISECONDS);</pre></div></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.window2.png" width="100%" alt="Window as a backpressure strategy" />
+     <img src="images/bp.window2.png" style="width:100%;" alt="Window as a backpressure strategy" />
      <figcaption><p>
       Or you could choose to emit a new window of items for every <i>n</i> items emitted by the
       bursty Observable.
@@ -708,7 +709,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
             
      <h4><code>window(windowClosingSelector)</code></h4>
      <figure>
-      <img src="images/window1.cs.png" width="100%" alt="window(windowClosingSelector)" />
+      <img src="images/window1.cs.png" style="width:100%;" alt="window(windowClosingSelector)" />
       <figcaption>
        <p>
 <!-- https://github.com/Reactive-Extensions/RxJS/issues/427
@@ -719,7 +720,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(windowOpenings, windowClosingSelector)</code></h4>
      <figure>
-      <img src="images/window2.ocs.png" width="100%" alt="window(windowOpenings,windowClosingSelector)" />
+      <img src="images/window2.ocs.png" style="width:100%;" alt="window(windowOpenings,windowClosingSelector)" />
       <figcaption>
        <p>
 <!-- https://github.com/Reactive-Extensions/RxJS/issues/427
@@ -730,7 +731,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(windowBoundaries)</code></h4>
      <figure>
-      <img src="images/window8.b.png" width="100%" alt="window(windowBoundaries)" />
+      <img src="images/window8.b.png" style="width:100%;" alt="window(windowBoundaries)" />
       <figcaption>
        <p>
         This variant of <code>window</code> takes a second Observable as a parameter. Whenever this
@@ -741,7 +742,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>windowWithCount(count)</code></h4>
      <figure>
-      <img src="images/windowWithCount3.png" width="100%" alt="windowWithCount(count)" />
+      <img src="images/windowWithCount3.png" style="width:100%;" alt="windowWithCount(count)" />
       <figcaption>
        <p>
         This variant of <code>windowWithCount</code> opens its first window immediately. It closes
@@ -756,7 +757,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>windowWithCount(count, skip)</code></h4>
      <figure>
-      <img src="images/windowWithCount4.png" width="100%" alt="windowWithCount(count,skip)" />
+      <img src="images/windowWithCount4.png" style="width:100%;" alt="windowWithCount(count,skip)" />
       <figcaption>
        <p>
         This variant of <code>windowWithCount</code> opens its first window immediately. It opens a
@@ -767,7 +768,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
         Observable. If <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
         <code>windowWithCount(count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
         emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
-        <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+        <code>skip&nbsp;&gt;&nbsp;count</code> this will emit windows that drop
         <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
         window.
        </p>
@@ -775,7 +776,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>windowWithTime(timeSpan</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/windowWithTime5.png" width="100%" alt="windowWithTime(timeSpan)" />
+      <img src="images/windowWithTime5.png" style="width:100%;" alt="windowWithTime(timeSpan)" />
       <figcaption><p>
        This variant of <code>windowWithTime</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time (in
@@ -791,7 +792,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>windowWithTime(timeSpan,timeShift</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/windowWithTime7.png" width="100%" alt="windowWithTime(timeSpan,timeShift)" />
+      <img src="images/windowWithTime7.png" style="width:100%;" alt="windowWithTime(timeSpan,timeShift)" />
       <figcaption><p>
        This variant of <code>windowWithTime</code> opens its first window immediately, and
        thereafter opens a new window every <code>timeshift</code> milliseconds (optionally measured
@@ -808,7 +809,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>windowWithTimeOrCount(timeSpan,count</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/windowWithTimeOrCount6.png" width="100%" alt="windowWithTimeOrCount(timeSpan,count)" />
+      <img src="images/windowWithTimeOrCount6.png" style="width:100%;" alt="windowWithTimeOrCount(timeSpan,count)" />
       <figcaption><p>
        <code>windowWithTimeOrCount</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> milliseconds (optionally
@@ -845,7 +846,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </p>
      <h4><code>window(closingSelector)</code></h4>
      <figure>
-      <img src="images/window1.png" width="100%" alt="window(closingSelector)" />
+      <img src="images/window1.png" style="width:100%;" alt="window(closingSelector)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one each time it observes an object emitted
@@ -856,7 +857,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(windowOpenings, closingSelector)</code></h4>
      <figure>
-      <img src="images/window2.png" width="100%" alt="window(windowOpenings, closingSelector)" />
+      <img src="images/window2.png" style="width:100%;" alt="window(windowOpenings, closingSelector)" />
       <figcaption><p>
        This variant of <code>window</code> opens a window whenever it observes the
        <code>windowOpenings</code> Observable emit an <code>Opening</code> object and at the same
@@ -870,7 +871,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(count)</code></h4>
      <figure>
-      <img src="images/window3.png" width="100%" alt="window(count)" />
+      <img src="images/window3.png" style="width:100%;" alt="window(count)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one whenever the current window has emitted
@@ -882,7 +883,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(count, skip)</code></h4>
      <figure>
-      <img src="images/window4.png" width="100%" alt="window(count, skip)" />
+      <img src="images/window4.png" style="width:100%;" alt="window(count, skip)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It opens a new window
        beginning with every <code>skip</code> item from the source Observable (so, for example, if
@@ -892,14 +893,14 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
        <code>window(source,&nbsp;count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
        emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
-       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
       </p></figcaption>
      </figure>
      <h4><code>window(timespan, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window5.png" width="100%" alt="window(timespan, unit[, scheduler])" />
+      <img src="images/window5.png" style="width:100%;" alt="window(timespan, unit[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
@@ -916,7 +917,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(timespan, unit, count</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window6.png" width="100%" alt="window(timespan, unit, count[, scheduler])" />
+      <img src="images/window6.png" style="width:100%;" alt="window(timespan, unit, count[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
@@ -934,7 +935,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(timespan, timeshift, unit</code>[<code>, scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window7.png" width="100%" alt="window(timespan, timeshift, unit[, scheduler])" />
+      <img src="images/window7.png" style="width:100%;" alt="window(timespan, timeshift, unit[, scheduler])" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeshift</code> period of time (measured in <code>unit</code>, and
@@ -972,7 +973,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </p>
      <h4><code>Window(windowClosingSelector)</code></h4>
      <figure>
-      <img src="images/window1.net.png" width="100%" alt="window(windowClosingSelector)" />
+      <img src="images/window1.net.png" style="width:100%;" alt="window(windowClosingSelector)" />
       <figcaption><p>
        This variant of <code>Window</code> opens its first window immediately and calls the
        <code>windowClosingSelector</code> function to obtain a second Observable. When this second
@@ -986,7 +987,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>Window(count)</code></h4>
      <figure>
-      <img src="images/window3.net.png" width="100%" alt="window(count)" />
+      <img src="images/window3.net.png" style="width:100%;" alt="window(count)" />
       <figcaption><p>
        This variant of <code>Window</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one whenever the current window has emitted
@@ -996,9 +997,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        collective emissions correspond one-to-one with those of the source Observable.
       </p></figcaption>
      </figure>
-     <h4><code>Window(timeSpan</code>[<code>,scheduler</code>]</code>)</code></h4>
+     <h4><code>Window(timeSpan</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window5.net.png" width="100%" alt="window(timeSpan)" />
+      <img src="images/window5.net.png" style="width:100%;" alt="window(timeSpan)" />
       <figcaption><p>
        This variant of <code>Window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> period of time
@@ -1011,7 +1012,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>Window(count,skip)</code></h4>
      <figure>
-      <img src="images/window4.net.png" width="100%" alt="window(count,skip)" />
+      <img src="images/window4.net.png" style="width:100%;" alt="window(count,skip)" />
       <figcaption><p>
        This variant of <code>Window</code> opens its first window immediately. It opens a new window
        beginning with every <code>skip</code> item from the source Observable (so, for example, if
@@ -1021,14 +1022,14 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
        <code>Window(source,&nbsp;count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
        emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
-       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
       </p></figcaption>
      </figure>
      <h4><code>Window(windowOpenings,windowClosingSelector)</code></h4>
      <figure>
-      <img src="images/window2.net.png" width="100%" alt="window(windowOpenings,windowClosingSelector)" />
+      <img src="images/window2.net.png" style="width:100%;" alt="window(windowOpenings,windowClosingSelector)" />
       <figcaption><p>
        This variant of <code>Window</code> opens a window whenever it observes the
        <code>windowOpenings</code> Observable emit an <code>TWindowOpening</code> object and at the
@@ -1043,7 +1044,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>Window(timeSpan,count</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window6.net.png" width="100%" alt="window(timeSpan,count)" />
+      <img src="images/window6.net.png" style="width:100%;" alt="window(timeSpan,count)" />
       <figcaption><p>
        This variant of <code>Window</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timeSpan</code> period of time
@@ -1057,7 +1058,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>Window(timeSpan,timeShift</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window7.net.png" width="100%" alt="window(timeSpan,timeShift)" />
+      <img src="images/window7.net.png" style="width:100%;" alt="window(timeSpan,timeShift)" />
       <figcaption><p>
        This variant of <code>Window</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeShift</code> period of time (in the form of a
@@ -1093,7 +1094,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </p>
      <h4><code>window(window_closing_selector)</code></h4>
      <figure>
-      <img src="images/window1.net.png" width="100%" alt="window(window_closing_selector)" />
+      <img src="images/window1.net.png" style="width:100%;" alt="window(window_closing_selector)" />
       <figcaption><p>
        This variant of <code>window</code> opens its first window immediately and calls the
        <code>closing_selector</code> function to obtain a second Observable. When this second
@@ -1106,7 +1107,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(window_openings,window_closing_selector)</code></h4>
      <figure>
-      <img src="images/window2.png" width="100%" alt="window(window_openings,window_closing_selector)" />
+      <img src="images/window2.png" style="width:100%;" alt="window(window_openings,window_closing_selector)" />
       <figcaption><p>
        This variant of <code>window</code> opens a window whenever it observes the
        <code>window_openings</code> Observable emit an item, and at the same time calls
@@ -1120,7 +1121,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window(window_openings)</code></h4>
      <figure>
-      <img src="images/window8.png" width="100%" alt="window(window_openings)" />
+      <img src="images/window8.png" style="width:100%;" alt="window(window_openings)" />
       <figcaption><p>
        This variant of <code>window</code> takes a second Observable as a parameter. Whenever this
        second Observable emits an item, <code>window</code> closes the current Observable window
@@ -1129,7 +1130,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window_with_count(count)</code></h4>
      <figure>
-      <img src="images/window_with_count3.png" width="100%" alt="window_with_count(count)" />
+      <img src="images/window_with_count3.png" style="width:100%;" alt="window_with_count(count)" />
       <figcaption><p>
        This variant of <code>window_with_count</code> opens its first window immediately. It closes
        the currently open window and immediately opens a new one whenever the current window has
@@ -1141,7 +1142,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>window_with_count(count,skip)</code></h4>
      <figure>
-      <img src="images/window_with_count4.png" width="100%" alt="window_with_count(count,skip)" />
+      <img src="images/window_with_count4.png" style="width:100%;" alt="window_with_count(count,skip)" />
       <figcaption><p>
        This variant of <code>window_with_count</code> opens its first window immediately. It opens
        a new window beginning with every <code>skip</code> item from the source Observable (so, for
@@ -1151,20 +1152,20 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        Observable. If <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
        <code>window_with_count(count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
        emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
-       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
       </p></figcaption>
      </figure>
-     <h4><code>window_with_time(timespan</code>[<code>,scheduler</code>]</code>)</code></h4>
+     <h4><code>window_with_time(timespan</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window_with_time5.py.png" width="100%" alt="window_with_time(timespan)" />
+      <img src="images/window_with_time5.py.png" style="width:100%;" alt="window_with_time(timespan)" />
       <figcaption><p>
       </p></figcaption>
      </figure>
-     <h4><code>window_with_time(timespan,timeshift</code>[<code>,scheduler</code>]</code>)</code></h4>
+     <h4><code>window_with_time(timespan,timeshift</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window_with_time7.py.png" width="100%" alt="window_with_time(timespan,timeshift)" />
+      <img src="images/window_with_time7.py.png" style="width:100%;" alt="window_with_time(timespan,timeshift)" />
       <figcaption><p>
        This variant of <code>window_with_time</code> opens its first window immediately. It closes
        the currently open window and opens another one every <code>timespan</code> milliseconds (optionally
@@ -1178,9 +1179,9 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>timeout</code> Scheduler for its timer by default.
       </p></figcaption>
      </figure>
-     <h4><code>window_with_time_or_count(timespan,count</code>[<code>,scheduler</code>]</code>)</code></h4>
+     <h4><code>window_with_time_or_count(timespan,count</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/window_with_time_or_count.py.png" width="100%" alt="window_with_time_or_count(timespan,count)" />
+      <img src="images/window_with_time_or_count.py.png" style="width:100%;" alt="window_with_time_or_count(timespan,count)" />
       <figcaption><p>
        <code>window_with_time_or_count</code> opens its first window immediately. It closes the
        currently open window and opens another one every <code>timespan</code> milliseconds (optionally measured
@@ -1214,7 +1215,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
             
      <h4><code>window_with_count(count,skip)</code></h4>
      <figure>
-      <img src="images/window_with_count4.png" width="100%" alt="window_with_count(count,skip)" />
+      <img src="images/window_with_count4.png" style="width:100%;" alt="window_with_count(count,skip)" />
       <figcaption><p>
        Rx.rb implements this operator as <code>window_with_count</code>. It opens its first window
        immediately. It then opens a new window beginning with every <code>skip</code> item from the
@@ -1225,7 +1226,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        <code>skip&nbsp;=&nbsp;count</code> then there is a one-to-one correspondence between the
        items emitted by the source Observable and those emitted by the window Observables; if
        <code>skip&nbsp;&lt;&nbsp;count</code> the windows will overlap by
-       <code>count&nbsp;&minus;&nbsp;skip</code> items; if <code>skip&nbsp&gt;&nbsp;count</code> the
+       <code>count&nbsp;&minus;&nbsp;skip</code> items; if <code>skip&nbsp;&gt;&nbsp;count</code> the
        windows will drop <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable
        between every window.
       </p></figcaption>
@@ -1255,7 +1256,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </p>
      <h4><code>sliding(timespan,timeshift,count</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/sliding9.png" width="100%" alt="sliding(timespan,timeshift,count)" />
+      <img src="images/sliding9.png" style="width:100%;" alt="sliding(timespan,timeshift,count)" />
       <figcaption><p>
        This variant of <code>sliding</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeshift</code> period of time (in the form of a <code>Duration</code> object,
@@ -1268,7 +1269,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>sliding(timespan,timeshift</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/sliding7.png" width="100%" alt="sliding(timespan,timeshift)" />
+      <img src="images/sliding7.png" style="width:100%;" alt="sliding(timespan,timeshift)" />
       <figcaption><p>
        This variant of <code>sliding</code> opens its first window immediately, and thereafter opens
        a new window every <code>timeshift</code> period of time (in the form of a <code>Duration</code> object,
@@ -1280,7 +1281,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>sliding(count,skip)</code></h4>
      <figure>
-      <img src="images/sliding4.png" width="100%" alt="sliding(count,skip)" />
+      <img src="images/sliding4.png" style="width:100%;" alt="sliding(count,skip)" />
       <figcaption><p>
        This variant of <code>sliding</code> opens its first window immediately. It opens a new
        window beginning with every <code>skip</code> item from the source Observable (so, for
@@ -1290,14 +1291,14 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
        Observable. If <code>skip&nbsp;=&nbsp;count</code> then this behaves the same as
        <code>tumbling(count)</code>; if <code>skip&nbsp;&lt;&nbsp;count</code> this will
        emit windows that overlap by <code>count&nbsp;&minus;&nbsp;skip</code> items; if
-       <code>skip&nbsp&gt;&nbsp;count</code> this will emit windows that drop
+       <code>skip&nbsp;&gt;&nbsp;count</code> this will emit windows that drop
        <code>skip&nbsp;&minus;&nbsp;count</code> items from the source Observable between every
        window.
       </p></figcaption>
      </figure>
      <h4><code>sliding(openings,closings)</code></h4>
      <figure>
-      <img src="images/sliding2.png" width="100%" alt="sliding(openings,closings)" />
+      <img src="images/sliding2.png" style="width:100%;" alt="sliding(openings,closings)" />
       <figcaption><p>
        This variant of <code>sliding</code> opens a window whenever it observes the
        <code>openings</code> Observable emit an <code>Opening</code> object and at the same
@@ -1307,7 +1308,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>tumbling(timespan,count</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/tumbling6.png" width="100%" alt="tumbling(timespan,count)" />
+      <img src="images/tumbling6.png" style="width:100%;" alt="tumbling(timespan,count)" />
       <figcaption><p>
        This variant of <code>tumbling</code> opens its first window immediately. It closes the currently open
        window and opens another one every <code>timespan</code> period of time (a <code>Duration</code>,
@@ -1319,7 +1320,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>tumbling(timespan</code>[<code>,scheduler</code>]<code>)</code></h4>
      <figure>
-      <img src="images/tumbling5.png" width="100%" alt="tumbling(timespan)" />
+      <img src="images/tumbling5.png" style="width:100%;" alt="tumbling(timespan)" />
       <figcaption><p>
        This variant of <code>tumbling</code> opens its first window immediately. It closes the currently open
        window and opens another one every <code>timespan</code> period of time (a <code>Duration</code>,
@@ -1330,7 +1331,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>tumbling(count)</code></h4>
      <figure>
-      <img src="images/tumbling3.png" width="100%" alt="tumbling(count)" />
+      <img src="images/tumbling3.png" style="width:100%;" alt="tumbling(count)" />
       <figcaption><p>
        This variant of <code>tumbling</code> opens its first window immediately. It closes the
        currently open window and immediately opens a new one whenever the current window has emitted
@@ -1340,7 +1341,7 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
      </figure>
      <h4><code>tumbling(boundary)</code></h4>
      <figure>
-      <img src="images/tumbling8.png" width="100%" alt="tumbling(boundary)" />
+      <img src="images/tumbling8.png" style="width:100%;" alt="tumbling(boundary)" />
       <figcaption><p>
        This variant of <code>tumbling</code> takes a second Observable as a parameter. Whenever this
        second Observable emits an item, <code>tumbling</code> closes the current Observable window
@@ -1445,11 +1446,11 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
     <script>$("#menu-window").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -181,7 +181,7 @@
    <h1>Average</h1>
    <h3>calculates the average of numbers emitted by an Observable and emits this average</h3>
    <figure>
-    <img src="images/average.c.png" width="100%" alt="Average" />
+    <img src="images/average.c.png" style="width:100%;" alt="Average" />
     <figcaption><p>
      The <span class="operator">Average</span> operator operates on an Observable that emits numbers
      (or items that can be evaluated as numbers), and emits a single value: the average of all of
@@ -193,6 +193,7 @@
    <ul>
     <li><a href="sum.html"><span class="operator">Sum</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#MaxAndMin"><cite>Introduction to Rx</cite>: Min, Max, Sum, and Average</a></li>
+    <li><a href="http://rxmarbles.com/#average">RxMarbles: <code>average</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -277,7 +278,7 @@ Observable.averageInteger(myObservable).subscribe(
 2
 Sequence complete</pre></div>
      <figure>
-      <img src="images/average.f.png" width="100%" alt="average" />
+      <img src="images/average.f.png" style="width:100%;" alt="average" />
       <figcaption><p>
        You can also average not the items themselves but the results of a function applied to each
        item, as in the illustration above, which emits the average number of sides on the figures
@@ -312,7 +313,7 @@ Sequence complete</pre></div>
       <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code>.
      </p>
      <figure>
-      <img src="images/average.f.png" width="100%" alt="average" />
+      <img src="images/average.f.png" style="width:100%;" alt="average" />
       <figcaption><p>
        You can also average not the items themselves but the results of a function applied to each
        item, as in the illustration above, which emits the average number of sides on the figures
@@ -342,7 +343,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/average.png" width="100%" alt="average" />
+      <img src="images/average.png" style="width:100%;" alt="average" />
       <figcaption><p>
        RxJS implements this operator as <code>average</code>. The following code sample shows how
        to use it:
@@ -366,7 +367,7 @@ Next: 4
 Completed</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="images/average.f.png" width="100%" alt="average" />
+      <img src="images/average.f.png" style="width:100%;" alt="average" />
       <figcaption><p>
        You can also average not the items themselves but the results of a function applied to each
        item, as in the illustration above, which emits the average number of sides on the figures
@@ -618,11 +619,11 @@ Completed</pre></div></figcaption>
     <script>$("#menu-average").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

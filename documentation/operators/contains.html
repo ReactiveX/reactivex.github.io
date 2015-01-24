@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -181,7 +181,7 @@
    <h1>Contains</h1>
    <h3>determine whether an Observable emits a particular item or not</h3>
    <figure>
-    <img src="images/contains.C.png" width="100%" alt="Contains" />
+    <img src="images/contains.C.png" style="width:100%;" alt="Contains" />
     <figcaption><p>
      Pass the <span class="operator">Contains</span> operator a particular item, and the Observable it returns
      will emit <code>true</code> if that item is emitted by the source Observable, or <code>false</code> if the
@@ -198,6 +198,8 @@
    <ul>
     <li><a href="all.html"><span class="operator">All</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#Contains"><cite>Introduction to Rx</cite>: Contains</a></li>
+    <li><a href="http://rxmarbles.com/#any">RxMarbles: <code>any</code></a></li>
+    <li><a href="http://rxmarbles.com/#contains">RxMarbles: <code>contains</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -258,7 +260,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/contains.png" width="100%" alt="contains" />
+      <img src="images/contains.png" style="width:100%;" alt="contains" />
       <figcaption><p>
        RxGroovy implements this operator as <code>contains</code>. It does not by default operate on any
        particular <a href="../scheduler.html">Scheduler</a>.
@@ -268,7 +270,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/exists.png" width="100%" alt="exists" />
+      <img src="images/exists.png" style="width:100%;" alt="exists" />
       <figcaption><p>
        RxGroovy also implements the <code>exists</code> operator. It is similar to <code>contains</code> but
        tests items emitted by the source Observable against a predicate function you supply, rather than testing
@@ -283,7 +285,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/isEmpty.png" width="100%" alt="isEmpty" />
+      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
       <figcaption><p>
        RxGroovy also implements the <code>isEmpty</code> operator. The Observable returned from
        <code>isEmpty</code> will return <code>false</code> if the source Observable emits an item, and
@@ -314,7 +316,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/contains.png" width="100%" alt="contains" />
+      <img src="images/contains.png" style="width:100%;" alt="contains" />
       <figcaption><p>
        RxJava implements this operator as <code>contains</code>. It does not by default operate on any
        particular <a href="../scheduler.html">Scheduler</a>.
@@ -324,7 +326,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/exists.png" width="100%" alt="exists" />
+      <img src="images/exists.png" style="width:100%;" alt="exists" />
       <figcaption><p>
        RxJava also implements the <code>exists</code> operator. It is similar to <code>contains</code> but
        tests items emitted by the source Observable against a predicate function you supply, rather than testing
@@ -339,7 +341,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/isEmpty.png" width="100%" alt="isEmpty" />
+      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
       <figcaption><p>
        RxJava also implements the <code>isEmpty</code> operator. The Observable returned from
        <code>isEmpty</code> will return <code>false</code> if the source Observable emits an item, and
@@ -370,7 +372,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/contains.png" width="100%" alt="contains" />
+      <img src="images/contains.png" style="width:100%;" alt="contains" />
       <figcaption><p>
        The <code>contains</code> operator in RxJS takes an optional second parameter: a zero-based index
        into the source Observable&#8217;s sequence at which to start searching for the item.
@@ -420,7 +422,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/indexOf.png" width="100%" alt="indexOf" />
+      <img src="images/indexOf.png" style="width:100%;" alt="indexOf" />
       <figcaption><p>
        The <code>indexOf</code> operator in RxJS is similar to <code>contains</code> but rather than
        returning an Observable that emits <code>true</code> or <code>false</code> it returns an Observable
@@ -476,7 +478,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/findIndex.png" width="100%" alt="findIndex" />
+      <img src="images/findIndex.png" style="width:100%;" alt="findIndex" />
       <figcaption><p>
        The <code>findIndex</code> operator in RxJS takes as its parameter a predicate function. It returns
        an Observable that emits either a single number &mdash; the zero-based index of the first item in the
@@ -545,13 +547,12 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/isEmpty.png" width="100%" alt="isEmpty" />
+      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
       <figcaption><p>
        RxJS also implements the <code>isEmpty</code> operator. The Observable returned from <code>isEmpty</code>
        will return <code>false</code> if the source Observable emits an item, and <code>true</code> if it
        completes without emitting an item.
       </p>
-      </figcaption>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 /* Not empty */
@@ -594,6 +595,7 @@ Completed</pre></div>
        <li><code>rx.lite.js</code></li>
        <li><code>rx.lite.compat.js</code></li>
       </ul>
+      </figcaption>
      </figure>
   
           </div>
@@ -798,11 +800,11 @@ Completed</pre></div>
     <script>$("#menu-contains").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

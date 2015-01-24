@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -181,7 +181,7 @@
    <h1>Last</h1>
    <h3>emit only the last item (or the last item that meets some condition) emitted by an Observable</h3>
    <figure>
-    <img src="images/last.c.png" width="100%" alt="Last" />
+    <img src="images/last.c.png" style="width:100%;" alt="Last" />
     <figcaption><p>
      If you are only interested in the last item emitted by an Observable, or the last item that meets some
      criteria, you can filter the Observable with the <span class="operator">Last</span> operator.
@@ -200,6 +200,7 @@
     <li><a href="take.html"><span class="operator">Take</span></a></li>
     <li><a href="takeLast.html"><span class="operator">TakeLast</span></a></li>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Last"><cite>Introduction to Rx</cite>: Last</a></li>
+    <li><a href="http://rxmarbles.com/#last">RxMarbles: <code>last</code></a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -268,7 +269,7 @@
      </p>
      <h3>The Filtering Operators</h3>
      <figure>
-      <img src="images/last.png" width="100%" alt="last" />
+      <img src="images/last.png" style="width:100%;" alt="last" />
       <figcaption><p>
        To filter an Observable so that only its last emission is emitted, use the
        <code>last</code> operator with no parameters. 
@@ -278,7 +279,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/last.p.png" width="100%" alt="last" />
+      <img src="images/last.p.png" style="width:100%;" alt="last" />
       <figcaption><p>
        You can also pass a predicate function to <code>last</code>, in which case it will produce an
        Observable that emits only the last item from the source Observable that the predicate evaluates as
@@ -289,7 +290,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/lastOrDefault.png" width="100%" alt="lastOrDefault" />
+      <img src="images/lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        The <code>lastOrDefault</code> operator is similar to <code>last</code>, but you pass it a default item
        that it can emit if the source Observable fails to emit any items.
@@ -299,7 +300,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/lastOrDefault.p.png" width="100%" alt="lastOrDefault" />
+      <img src="images/lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        <code>lastOrDefault</code> also has a variant to which you can pass a predicate function, so that its
        Observable will emit the last item from the source Observable that the predicate evaluates as
@@ -327,7 +328,7 @@
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
      </ul>
      <figure>
-      <img src="images/B.last.png" width="100%" alt="last" />
+      <img src="images/B.last.png" style="width:100%;" alt="last" />
       <figcaption><p>
        To retrieve the last emission from a <code>BlockingObservable</code>, use the <code>last</code> method
        with no parameters. 
@@ -337,7 +338,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.last.p.png" width="100%" alt="last" />
+      <img src="images/B.last.p.png" style="width:100%;" alt="last" />
       <figcaption><p>
        You can also pass a predicate function to the <code>last</code> method to retrieve the last emission
        from a <code>BlockingObservable</code> that satisfies the predicate.
@@ -347,7 +348,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.lastOrDefault.png" width="100%" alt="lastOrDefault" />
+      <img src="images/B.lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        As with the filtering operators, the <code>last</code> method of <code>BlockingObservable</code> will
        throw a <code>NoSuchElementException</code> if there is no last element in the source
@@ -359,7 +360,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.lastOrDefault.p.png" width="100%" alt="lastOrDefault" />
+      <img src="images/B.lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        And, as with <code>last</code>, there is a <code>lastOrDefault</code> variant that takes a predicate
        function as an argument and retrieves the last item from the source <code>BlockingObservable</code>
@@ -396,7 +397,7 @@
      </p>
      <h3>The Filtering Operators</h3>
      <figure>
-      <img src="images/last.png" width="100%" alt="last" />
+      <img src="images/last.png" style="width:100%;" alt="last" />
       <figcaption><p>
        To filter an Observable so that only its last emission is emitted, use the
        <code>last</code> operator with no parameters. 
@@ -405,7 +406,7 @@
      <div class="code java"><pre>
 Observable.just(1, 2, 3)
           .last()
-          .subscribe(new Subscriber<Integer>() {
+          .subscribe(new Subscriber&lt;Integer&gt;() {
         @Override
         public void onNext(Integer item) {
             System.out.println("Next: " + item);
@@ -429,7 +430,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/last.p.png" width="100%" alt="last" />
+      <img src="images/last.p.png" style="width:100%;" alt="last" />
       <figcaption><p>
        You can also pass a predicate function to <code>last</code>, in which case it will produce an
        Observable that emits only the last item from the source Observable that the predicate evaluates as
@@ -440,7 +441,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/lastOrDefault.png" width="100%" alt="lastOrDefault" />
+      <img src="images/lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        The <code>lastOrDefault</code> operator is similar to <code>last</code>, but you pass it a default item
        that it can emit if the source Observable fails to emit any items.
@@ -450,7 +451,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/lastOrDefault.p.png" width="100%" alt="lastOrDefault" />
+      <img src="images/lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        <code>lastOrDefault</code> also has a variant to which you can pass a predicate function, so that its
        Observable will emit the last item from the source Observable that the predicate evaluates as
@@ -478,7 +479,7 @@ Sequence complete.</pre></div>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
      </ul>
      <figure>
-      <img src="images/B.last.png" width="100%" alt="last" />
+      <img src="images/B.last.png" style="width:100%;" alt="last" />
       <figcaption><p>
        To retrieve the last emission from a <code>BlockingObservable</code>, use the <code>last</code> method
        with no parameters. 
@@ -488,7 +489,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.last.p.png" width="100%" alt="last" />
+      <img src="images/B.last.p.png" style="width:100%;" alt="last" />
       <figcaption><p>
        You can also pass a predicate function to the <code>last</code> method to retrieve the last emission
        from a <code>BlockingObservable</code> that satisfies the predicate.
@@ -498,7 +499,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.lastOrDefault.png" width="100%" alt="lastOrDefault" />
+      <img src="images/B.lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        As with the filtering operators, the <code>last</code> method of <code>BlockingObservable</code> will
        throw a <code>NoSuchElementException</code> if there is no last element in the source
@@ -510,7 +511,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/B.lastOrDefault.p.png" width="100%" alt="lastOrDefault" />
+      <img src="images/B.lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        And, as with <code>last</code>, there is a <code>lastOrDefault</code> variant that takes a predicate
        function as an argument and retrieves the last item from the source <code>BlockingObservable</code>
@@ -539,7 +540,7 @@ Sequence complete.</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/last.p.png" width="100%" alt="last" />
+      <img src="images/last.p.png" style="width:100%;" alt="last" />
       <figcaption><p>
        RxJS implements the <code>last</code> operator. It optionally takes a predicate function as a parameter,
        in which case, rather than emitting the last item from the source Observable, the resulting Observable
@@ -572,7 +573,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/lastOrDefault.p.png" width="100%" alt="lastOrDefault" />
+      <img src="images/lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
       <figcaption><p>
        RxJS also implements the <code>lastOrDefault</code> operator. It is similar to <code>last</code>
        except that if the source Observable emits no items (or no items that match the predicate),
@@ -814,11 +815,11 @@ Completed
     <script>$("#menu-last").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

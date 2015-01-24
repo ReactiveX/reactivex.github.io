@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
 <h3>do not create the Observable until the observer subscribes, and create a fresh Observable for each observer</h3>
 
 <figure>
- <img src="images/defer.c.png" width="100%" alt="Defer" />
+ <img src="images/defer.c.png" style="width:100%;" alt="Defer" />
  <figcaption><p>
   The <span class="operator">Defer</span> operator waits until an observer subscribes to it, and
   then it generates an Observable, typically with an Observable factory function. It does this
@@ -253,7 +253,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/defer.png" width="100%" alt="defer" />
+     <img src="images/defer.png" style="width:100%;" alt="defer" />
      <figcaption><p>
       RxGroovy implements this operator as <code>defer</code>. This operator takes as its sole
       parameter an Observable factory function of your choosing. This function takes no parameters
@@ -266,7 +266,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/switchCase.png" width="100%" alt="switchCase" />
+     <img src="images/switchCase.png" style="width:100%;" alt="switchCase" />
      <figcaption><p>
       There is a somewhat similar operator in the optional <code>rxjava-computation-expressions</code>
       package (it is not part of the standard RxGroovy set of operators). The <code>switchCase</code> operator
@@ -274,7 +274,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/ifThen.png" width="100%" alt="ifThen" />
+     <img src="images/ifThen.png" style="width:100%;" alt="ifThen" />
      <figcaption><p>
       An even simpler operator in the optional <code>rxjava-computation-expressions</code> package (also not
       part of the standard RxGroovy set of operators) is <code>ifThen</code>. This operator checks a condition
@@ -300,7 +300,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/defer.png" width="100%" alt="defer" />
+     <img src="images/defer.png" style="width:100%;" alt="defer" />
      <figcaption><p>
       RxJava implements this operator as <code>defer</code>. This operator takes as its sole
       parameter an Observable factory function of your choosing. This function takes no parameters
@@ -313,7 +313,7 @@
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/switchCase.png" width="100%" alt="switchCase" />
+     <img src="images/switchCase.png" style="width:100%;" alt="switchCase" />
      <figcaption><p>
       There is a somewhat similar operator in the optional <code>rxjava-computation-expressions</code>
       package (it is not part of the standard RxJava set of operators). The <code>switchCase</code> operator
@@ -321,7 +321,7 @@
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/ifThen.png" width="100%" alt="ifThen" />
+     <img src="images/ifThen.png" style="width:100%;" alt="ifThen" />
      <figcaption><p>
       An even simpler operator in the optional <code>rxjava-computation-expressions</code> package (also not
       part of the standard RxGroovy set of operators) is <code>ifThen</code>. This operator checks a condition
@@ -347,7 +347,7 @@
           <div class="panel-body">
             
     <figure class="variant">
-     <img src="images/defer.png" width="100%" alt="defer" />
+     <img src="images/defer.png" style="width:100%;" alt="defer" />
      <figcaption><p>
       RxJS implements this operator as <code>defer</code>. This operator takes as its sole parameter
       an Observable factory function of your choosing. This function takes no parameters and returns
@@ -393,7 +393,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/if.png" width="100%" alt="if" />
+     <img src="images/if.png" style="width:100%;" alt="if" />
      <figcaption><p>
       RxJS also implements the <code>if</code> operator. It takes as parameters a function that returns a
       boolean, an Observable to mirror if that function returns a true value, and optionally a second
@@ -426,7 +426,7 @@ Completed</pre></div>
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/case.png" width="100%" alt="case" />
+     <img src="images/case.png" style="width:100%;" alt="case" />
      <figcaption><p>
       RxJS implements a somewhat similar operator called <code>case</code> (or
       &ldquo;<code>switchCase</code>&rdquo;). This operator conditionally creates and returns one of a set of
@@ -678,11 +678,11 @@ Completed</pre></div>
     <script>$("#menu-defer").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

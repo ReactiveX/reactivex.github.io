@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -182,7 +182,7 @@
    <h3>discard items emitted by an Observable until a specified condition becomes false</h3>
 
    <figure>
-    <img src="images/skipWhile.c.png" width="100%" alt="SkipWhile" />
+    <img src="images/skipWhile.c.png" style="width:100%;" alt="SkipWhile" />
     <figcaption><p>
      The <span class="operator">SkipWhile</span> subscribes to the source Observable, but ignores its emissions
      until such time as some condition you specify becomes false, at which point
@@ -260,7 +260,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipWhile.png" width="100%" alt="skipWhile" />
+      <img src="images/skipWhile.png" style="width:100%;" alt="skipWhile" />
       <figcaption><p>
        The <code>skipWhile</code> operator returns an Observable that discards items emitted by the source
        Observable until such time as a function, applied to an item emitted by that Observable, returns
@@ -309,7 +309,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipWhile.png" width="100%" alt="skipWhile" />
+      <img src="images/skipWhile.png" style="width:100%;" alt="skipWhile" />
       <figcaption><p>
        The <code>skipWhile</code> operator returns an Observable that discards items emitted by the source
        Observable until such time as a function, applied to an item emitted by that Observable, returns
@@ -342,7 +342,7 @@ Sequence complete</pre></div>
           <div class="panel-body">
             
      <figure>
-      <img src="images/skipWhile.png" width="100%" alt="skipWhile" />
+      <img src="images/skipWhile.png" style="width:100%;" alt="skipWhile" />
       <figcaption><p>
        RxJS implements the <code>skipWhile</code> operator. You pass it a function that governs the skipping
        process. <code>skipWhile</code> calls that function for each item emitted by the source Observable
@@ -361,7 +361,7 @@ Sequence complete</pre></div>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(1, 5)
-    .skipWhile(function (x) { return x < 3; });
+    .skipWhile(function (x) { return x &lt; 3; });
 
 var subscription = source.subscribe(
     function (x) { console.log('Next: ' + x); },
@@ -588,11 +588,11 @@ Completed</pre></div>
     <script>$("#menu-skipWhile").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

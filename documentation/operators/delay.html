@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -181,7 +181,7 @@
    <h1>Delay</h1>
    <h3>shift the emissions from an Observable forward in time by a particular amount</h3>
    <figure>
-    <img src="images/delay.c.png" width="100%" alt="Delay" />
+    <img src="images/delay.c.png" style="width:100%;" alt="Delay" />
     <figcaption><p>
      The <span class="operator">Delay</span> operator modifies its source Observable by pausing for a particular
      increment of time (that you specify) before emitting each of the source Observable&#8217;s items. This has
@@ -193,6 +193,9 @@
    <h4>See Also</h4>
    <ul>
     <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Delay"><cite>Introduction to Rx</cite>: Delay</a></li>
+    <li><a href="http://rxmarbles.com/#delay">RxMarbles: <code>delay</code></a></li>
+    <li><a href="http://rxmarbles.com/#delayWithSelector">RxMarbles: <code>delayWithSelector</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc27"><cite>101 Rx Samples</cite>: Delay &mdash; Simple</a></li>
    </ul>
 
    <h2>Language-Specific Information:</h2>
@@ -256,7 +259,7 @@
       RxGroovy implements this operator as variants of <code>delay</code> and <code>delaySubscription</code>.
      </p>
      <figure>
-      <img src="images/delay.png" width="100%" alt="delay" />
+      <img src="images/delay.png" style="width:100%;" alt="delay" />
       <figcaption><p>
        The first variant of <code>delay</code> accepts parameters that define a duration of time (a quantity of
        time, and a <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable
@@ -277,7 +280,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/delay.o.png" width="100%" alt="delay" />
+      <img src="images/delay.o.png" style="width:100%;" alt="delay" />
       <figcaption><p>
        Another variant of <code>delay</code> does not use a constant delay duration, but sets its delay
        duration on a per-item basis by passing each item from the source Observable into a function that returns
@@ -292,7 +295,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/delay.oo.png" width="100%" alt="delay" />
+      <img src="images/delay.oo.png" style="width:100%;" alt="delay" />
       <figcaption><p>
        The variant of <code>delay</code> that uses a per-item Observable to set the delay has a variant
        that allows you to pass in a function that returns an Observable that acts as a delay timer for the
@@ -307,7 +310,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/delaySubscription.png" width="100%" alt="delaySubscription" />
+      <img src="images/delaySubscription.png" style="width:100%;" alt="delaySubscription" />
       <figcaption><p>
        There is also an operator with which you can delay the subscription to the source Observable:
        <code>delaySubscription</code>. It accepts parameters that define the amount of time to delay (a quantity
@@ -323,7 +326,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/delaySubscription.o.png" width="100%" alt="delaySubscription" />
+      <img src="images/delaySubscription.o.png" style="width:100%;" alt="delaySubscription" />
       <figcaption><p>
        And there is a variant of <code>delaySubscription</code> that uses an Observable (returned by a function
        you supply) rather than a fixed duration in order to set the subscription delay.
@@ -357,7 +360,7 @@
       RxJava implements this operator as variants of <code>delay</code> and <code>delaySubscription</code>.
      </p>
      <figure>
-      <img src="images/delay.png" width="100%" alt="delay" />
+      <img src="images/delay.png" style="width:100%;" alt="delay" />
       <figcaption><p>
        The first variant of <code>delay</code> accepts parameters that define a duration of time (a quantity of
        time, and a <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable
@@ -378,7 +381,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/delay.o.png" width="100%" alt="delay" />
+      <img src="images/delay.o.png" style="width:100%;" alt="delay" />
       <figcaption><p>
        Another variant of <code>delay</code> does not use a constant delay duration, but sets its delay
        duration on a per-item basis by passing each item from the source Observable into a function that returns
@@ -393,7 +396,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/delay.oo.png" width="100%" alt="delay" />
+      <img src="images/delay.oo.png" style="width:100%;" alt="delay" />
       <figcaption><p>
        The variant of <code>delay</code> that uses a per-item Observable to set the delay has a variant
        that allows you to pass in a function that returns an Observable that acts as a delay timer for the
@@ -408,7 +411,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/delaySubscription.png" width="100%" alt="delaySubscription" />
+      <img src="images/delaySubscription.png" style="width:100%;" alt="delaySubscription" />
       <figcaption><p>
        There is also an operator with which you can delay the subscription to the source Observable:
        <code>delaySubscription</code>. It accepts parameters that define the amount of time to delay (a quantity
@@ -424,7 +427,7 @@
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/delaySubscription.o.png" width="100%" alt="delaySubscription" />
+      <img src="images/delaySubscription.o.png" style="width:100%;" alt="delaySubscription" />
       <figcaption><p>
        And there is a variant of <code>delaySubscription</code> that uses an Observable (returned by a function
        you supply) rather than a fixed duration in order to set the subscription delay.
@@ -455,7 +458,7 @@
           <div class="panel-body">
             
      <figure>
-      <img src="images/delay.png" width="100%" alt="delay" />
+      <img src="images/delay.png" style="width:100%;" alt="delay" />
       <figcaption><p>
        In RxJS you can set the per-item delay in two ways: by passing a number of milliseconds into the
        <code>delay</code> operator (which will delay each emission by that amount of time), or by passing in
@@ -491,10 +494,10 @@ var subscription = source.subscribe(
 Next: 0
 Next: 1
 Next: 2
-Completed</pre></div>
+Completed</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="images/delayWithSelector.png" width="100%" alt="delayWithSelector" />
+      <img src="images/delayWithSelector.png" style="width:100%;" alt="delayWithSelector" />
       <figcaption><p>
        <code>delayWithSelector</code> is like <code>delay</code> but does not use a constant delay duration (or
        absolute time), but sets its delay duration on a per-item basis by passing each item from the source
@@ -520,10 +523,10 @@ var subscription = source.subscribe(
 Next: 0:0
 Next: 1:400
 Next: 2:400
-Completed</pre></div>
+Completed</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="images/delayWithSelector.o.png" width="100%" alt="delayWithSelector" />
+      <img src="images/delayWithSelector.o.png" style="width:100%;" alt="delayWithSelector" />
       <figcaption><p>
        There is also a version of <code>delayWithSelector</code> that takes an additional (first) argument:
        an Observable that sets a delay before <code>delayWithSelector</code> subscribes to the source
@@ -550,7 +553,7 @@ var subscription = source.subscribe(
 Next: 0:300
 Next: 1:400
 Next: 2:400
-Completed</pre></div>
+Completed</pre></div></figcaption>
      </figure>
      <p>
       <code>delay</code> and <code>delayWithSelector</code> require <code>rx.lite.js</code> or
@@ -764,11 +767,11 @@ Completed</pre></div>
     <script>$("#menu-delay").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

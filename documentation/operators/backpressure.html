@@ -80,7 +80,7 @@ id: backpressure
      backpressure. It also has three operators that you can apply to Observables that have not been
      written to support backpressure:
     <figure class="variant">
-     <img src="images/bp.obp.block.png" width="100%" alt="onBackpressureBlock" />
+     <img src="images/bp.obp.block.png" style="width:100%;" alt="onBackpressureBlock" />
      <figcaption><p>
       <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0) blocks the thread
       on which the source Observable is operating until such time as an observer issues a request
@@ -91,7 +91,7 @@ id: backpressure
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.obp.buffer.png" width="100%" alt="onBackpressureBuffer" />
+     <img src="images/bp.obp.buffer.png" style="width:100%;" alt="onBackpressureBuffer" />
      <figcaption><p>
       <code>onBackpressureBuffer</code> maintains a buffer of all unobserved emissions from the
       source Observable and emits them to downstream observers according to the requests they
@@ -105,7 +105,7 @@ id: backpressure
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.obp.drop.png" width="100%" alt="onBackpressureDrop" />
+     <img src="images/bp.obp.drop.png" style="width:100%;" alt="onBackpressureDrop" />
      <figcaption><p>
       <code>onBackpressureDrop</code> drops emissions from the source Observable unless there is a
       pending request from a downstream observer, in which case it will emit enough items to fulfill
@@ -122,7 +122,7 @@ id: backpressure
      backpressure. It also has three operators that you can apply to Observables that have not been
      written to support backpressure:
     <figure class="variant">
-     <img src="images/bp.obp.block.png" width="100%" alt="onBackpressureBlock" />
+     <img src="images/bp.obp.block.png" style="width:100%;" alt="onBackpressureBlock" />
      <figcaption><p>
       <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0) blocks the thread
       on which the source Observable is operating until such time as an observer issues a request
@@ -133,7 +133,7 @@ id: backpressure
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.obp.buffer.png" width="100%" alt="onBackpressureBuffer" />
+     <img src="images/bp.obp.buffer.png" style="width:100%;" alt="onBackpressureBuffer" />
      <figcaption><p>
       <code>onBackpressureBuffer</code> maintains a buffer of all unobserved emissions from the
       source Observable and emits them to downstream observers according to the requests they
@@ -147,7 +147,7 @@ id: backpressure
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.obp.drop.png" width="100%" alt="onBackpressureDrop" />
+     <img src="images/bp.obp.drop.png" style="width:100%;" alt="onBackpressureDrop" />
      <figcaption><p>
       <code>onBackpressureDrop</code> drops emissions from the source Observable unless there is a
       pending request from a downstream observer, in which case it will emit enough items to fulfill
@@ -166,7 +166,7 @@ id: backpressure
      its own initiative.
     </p>
     <figure class="variant">
-     <img src="images/bp.stopAndWait.png" width="100%" alt="stopAndWait" />
+     <img src="images/bp.stopAndWait.png" style="width:100%;" alt="stopAndWait" />
      <figcaption><p>
       As an alternative to using <code>request</code> to pull items from a
       <code>ControlledObservable</code>, you may apply the <code>stopAndWait</code> operator to it.
@@ -175,7 +175,7 @@ id: backpressure
      </p></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.windowed.png" width="100%" alt="windowed" />
+     <img src="images/bp.windowed.png" style="width:100%;" alt="windowed" />
      <figcaption><p>
       A second possibility is to use the <code>windowed(</code><i>n</i><code>)</code>. This behaves
       similarly to <code>stopAndWait</code> but has an internal buffer of <i>n</i> items, which
@@ -188,7 +188,7 @@ id: backpressure
      <code>PausableObservable</code>.
     </p>
     <figure class="variant">
-     <img src="images/bp.pausable.png" width="100%" alt="pausable" />
+     <img src="images/bp.pausable.png" style="width:100%;" alt="pausable" />
      <figcaption><p>
       If you call the <code>pause</code> method of a <code>PausableObservable</code> created with
       the <code>pausable</code> operator, it will drop (ignore) any items emitted by the underlying
@@ -202,7 +202,7 @@ id: backpressure
      </figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/bp.pausableBuffered.png" width="100%" alt="pausableBuffered" />
+     <img src="images/bp.pausableBuffered.png" style="width:100%;" alt="pausableBuffered" />
      <figcaption><p>
       If you call the <code>pause</code> method of a <code>PausableObservable</code> created with
       the <code>pausableBuffered</code> operator, it will buffer any items emitted by the underlying

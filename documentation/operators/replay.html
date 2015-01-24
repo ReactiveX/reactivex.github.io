@@ -14,7 +14,7 @@ id: replay
 <h3>ensure that all observers see the same sequence of emitted items, even if they subscribe after the Observable has begun emitting items</h3>
 
 <figure>
- <img src="images/replay.c.png" width="100%" alt="Replay" />
+ <img src="images/replay.c.png" style="width:100%;" alt="Replay" />
  <figcaption><p>
   A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
   emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
@@ -54,7 +54,7 @@ id: replay
  
   {% lang_operator RxGroovy replay cache %}
     <figure class="variant">
-     <img src="images/replay.png" width="100%" alt="replay" />
+     <img src="images/replay.png" style="width:100%;" alt="replay" />
      <figcaption><p>
       In RxGroovy there is a variety of the <code>replay</code> operator that returns a connectable
       Observable. You must <a href="publish.html"><span class="operator">Publish</span></a> this
@@ -71,15 +71,15 @@ id: replay
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay()"><code>replay()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.Scheduler)"><code>replay(Scheduler)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int)"><code>replay(int)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int, rx.Scheduler)"><code>replay(int,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long, java.util.concurrent.TimeUnit)"><code>replay(long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>replay(long,TimeUnit,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int, long, java.util.concurrent.TimeUnit)"><code>replay(int,long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>replay(int,long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20rx.Scheduler)"><code>replay(int,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long,%20java.util.concurrent.TimeUnit)"><code>replay(long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(int,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(int,long,TimeUnit,Scheduler)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/replay.f.png" width="100%" alt="replay" />
+     <img src="images/replay.f.png" style="width:100%;" alt="replay" />
      <figcaption><p>
       There is also a variety of <code>replay</code> that returns an ordinary Observable. These
       variants take as a parameter a transformative function; this function accepts an item emitted
@@ -94,20 +94,20 @@ id: replay
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1)"><code>replay(Func1)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, rx.Scheduler)"><code>replay(Func1,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, int)"><code>replay(Func1,int)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, int, rx.Scheduler)"><code>replay(Func1,int,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, long, java.util.concurrent.TimeUnit)"><code>replay(Func1,long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>replay(Func1,long,TimeUnit,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, int, long, java.util.concurrent.TimeUnit)"><code>replay(Func1,int,long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, int, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>replay(Func1,int,long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20rx.Scheduler)"><code>replay(Func1,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int)"><code>replay(Func1,int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20rx.Scheduler)"><code>replay(Func1,int,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(Func1,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(Func1,long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(Func1,int,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(Func1,int,long,TimeUnit,Scheduler)</code></a></li>
      </ul></figcaption>
     </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJava replay cache %}
     <figure class="variant">
-     <img src="images/replay.png" width="100%" alt="replay" />
+     <img src="images/replay.png" style="width:100%;" alt="replay" />
      <figcaption><p>
       In RxJava there is a variety of the <code>replay</code> operator that returns a connectable
       Observable. You must <a href="publish.html"><span class="operator">Publish</span></a> this
@@ -124,15 +124,15 @@ id: replay
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay()"><code>replay()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.Scheduler)"><code>replay(Scheduler)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int)"><code>replay(int)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int, rx.Scheduler)"><code>replay(int,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long, java.util.concurrent.TimeUnit)"><code>replay(long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>replay(long,TimeUnit,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int, long, java.util.concurrent.TimeUnit)"><code>replay(int,long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>replay(int,long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20rx.Scheduler)"><code>replay(int,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long,%20java.util.concurrent.TimeUnit)"><code>replay(long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(int,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(int,long,TimeUnit,Scheduler)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/replay.f.png" width="100%" alt="replay" />
+     <img src="images/replay.f.png" style="width:100%;" alt="replay" />
      <figcaption><p>
       There is also a variety of <code>replay</code> that returns an ordinary Observable. These
       variants take as a parameter a transformative function; this function accepts an item emitted
@@ -147,20 +147,20 @@ id: replay
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1)"><code>replay(Func1)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, rx.Scheduler)"><code>replay(Func1,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, int)"><code>replay(Func1,int)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, int, rx.Scheduler)"><code>replay(Func1,int,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, long, java.util.concurrent.TimeUnit)"><code>replay(Func1,long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>replay(Func1,long,TimeUnit,Scheduler)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, int, long, java.util.concurrent.TimeUnit)"><code>replay(Func1,int,long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1, int, long, java.util.concurrent.TimeUnit, rx.Scheduler)"><code>replay(Func1,int,long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20rx.Scheduler)"><code>replay(Func1,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int)"><code>replay(Func1,int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20rx.Scheduler)"><code>replay(Func1,int,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(Func1,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(Func1,long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(Func1,int,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(Func1,int,long,TimeUnit,Scheduler)</code></a></li>
      </ul></figcaption>
     </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJS replay shareReplay %}
     <figure class="variant">
-     <img src="images/replay.fnts.png" width="100%" alt="replay" />
+     <img src="images/replay.fnts.png" style="width:100%;" alt="replay" />
      <figcaption><p>
       In RxJs the <code>replay</code> operator takes four optional parameters and returns an
       ordinary Observable:
@@ -174,7 +174,7 @@ id: replay
       <dt><code>window</code></dt><dd>the age, in milliseconds, at which items in this buffer may be
           discarded without being emitted to subsequent observers</dd>
       <dt><code>scheduler</code></dt><dd>the <a href="../scheduler.html">Scheduler</a> on which this operator
-          will operate</dd></dt>
+          will operate</dd>
      </dl>
      <h4>Sample Code</h4>
      <div class="code javascript"><pre>
@@ -227,9 +227,8 @@ Completed</pre></div>
       <dt><code>window</code></dt><dd>the age, in milliseconds, at which items in this buffer may be
           discarded without being emitted to subsequent observers</dd>
       <dt><code>scheduler</code></dt><dd>the <a href="../scheduler.html">Scheduler</a> on which this operator
-          will operate</dd></dt>
+          will operate</dd>
      </dl>
-    </p>
     <h4>Sample Code</h4>
      <div class="code javascript"><pre>
 var interval = Rx.Observable.interval(1000);

@@ -14,7 +14,7 @@ id: combinelatest
    <h3>when an item is emitted by either of two Observables, combine the latest item emitted by each Observable via a specified function and emit items based on the results of this function</h3>
 
    <figure>
-    <img src="images/combineLatest.c.png" width="100%" alt="CombineLatest" />
+    <img src="images/combineLatest.c.png" style="width:100%;" alt="CombineLatest" />
     <figcaption><p>
      The <span class="operator">CombineLatest</span> operator behaves in a similar way to
      <span class="operator">Zip</span>, but while <span class="operator">Zip</span> emits items only
@@ -54,7 +54,7 @@ id: combinelatest
 
   {% lang_operator RxGroovy combineLatest %}
      <figure>
-      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
       <figcaption><p>
        RxGroovy implements this operator as <code>combineLatest</code>. It may take between two and
        nine Observables (as well as the combining function) as parameters, or a single
@@ -62,15 +62,15 @@ id: combinelatest
        operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List, rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable, rx.Observable, rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List,%20rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJava combineLatest %}
      <figure>
-      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
       <figcaption><p>
        RxJava implements this operator as <code>combineLatest</code>. It may take between two and
        nine Observables (as well as the combining function) as parameters, or a single
@@ -78,15 +78,15 @@ id: combinelatest
        operate on any particular <a href="../scheduler.html">Scheduler</a>.
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List, rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable, rx.Observable, rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List,%20rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
   {% endlang_operator %}
 
   {% lang_operator RxJS combineLatest withLatestFrom %}
      <figure>
-      <img src="images/combineLatest.png" width="100%" alt="combineLatest" />
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
       <figcaption><p>
        RxJS implements this operator as <code>combineLatest</code>. It may take a variable number
        of individual Observables (as well as the combining function) as parameters, or a single
@@ -126,7 +126,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/withLatestFrom.png" width="100%" alt="withLatestFrom" />
+      <img src="images/withLatestFrom.png" style="width:100%;" alt="withLatestFrom" />
       <figcaption><p>
        RxJS also has a <code>withLatestFrom</code> operator. It is similar to <code>combineLatest</code>, but
        only emits items when the single source Observable emits an item (not when <em>any</em> of the

@@ -14,7 +14,7 @@ id: reduce
    <h3>apply a function to each item emitted by an Observable, sequentially, and emit the final value</h3>
 
    <figure>
-    <img src="images/reduce.c.png" width="100%" alt="Reduce" />
+    <img src="images/reduce.c.png" style="width:100%;" alt="Reduce" />
     <figcaption><p>
      The <span class="operator">Reduce</span> operator applies a function to the first item emitted by the
      source Observable and then feeds the result of the function back into the function along with the second
@@ -30,7 +30,7 @@ id: reduce
    <h4>See Also</h4>
    <ul>
     <li><a href="scan.html"><span class="operator">Scan</span></a></li>
-    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Aggregate"><cite>Introduction to Rx</cite>: Aggregate</li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Aggregate"><cite>Introduction to Rx</cite>: Aggregate</a></li>
     <li><a href="http://rxmarbles.com/#reduce">RxMarbles: <code>reduce</code></a></li>
    </ul>
 
@@ -51,7 +51,7 @@ id: reduce
 
   {% lang_operator RxGroovy collect reduce %}
      <figure>
-      <img src="images/reduce.png" width="100%" alt="reduce" />
+      <img src="images/reduce.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        The <code>reduce</code> operator returns an Observable that applies a function of your choosing to the
        first item emitted by a source Observable, then feeds the result of that function along with the second
@@ -87,7 +87,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        There is also a version of <code>reduce</code> to which you can pass a seed item in addition to an
        accumulator function. Note that passing a <code>null</code> seed is not the same as not passing a seed.
@@ -107,7 +107,7 @@ Sequence complete</pre></div>
       Instead, use <code>collect</code> for that purpose.
      </p>
      <figure>
-      <img src="images/collect.png" width="100%" alt="collect" />
+      <img src="images/collect.png" style="width:100%;" alt="collect" />
       <figcaption><p>
        The <code>collect</code> operator is similar to <code>reduce</code> but is specialized for the purpose
        of collecting the whole set of items emitted by the source Observable into a single mutable data
@@ -129,7 +129,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJava collect reduce %}
      <figure>
-      <img src="images/reduce.png" width="100%" alt="reduce" />
+      <img src="images/reduce.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        The <code>reduce</code> operator returns an Observable that applies a function of your choosing to the
        first item emitted by a source Observable, then feeds the result of that function along with the second
@@ -149,7 +149,7 @@ Sequence complete</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        There is also a version of <code>reduce</code> to which you can pass a seed item in addition to an
        accumulator function. Note that passing a <code>null</code> seed is not the same as not passing a seed.
@@ -169,7 +169,7 @@ Sequence complete</pre></div>
       Instead, use <code>collect</code> for that purpose.
      </p>
      <figure>
-      <img src="images/collect.png" width="100%" alt="collect" />
+      <img src="images/collect.png" style="width:100%;" alt="collect" />
       <figcaption><p>
        The <code>collect</code> operator is similar to <code>reduce</code> but is specialized for the purpose
        of collecting the whole set of items emitted by the source Observable into a single mutable data
@@ -191,7 +191,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJS reduce %}
      <figure>
-      <img src="images/reduceSeed.png" width="100%" alt="reduce" />
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
       <figcaption><p>
        RxJS implements the <code>reduce</code> operator. Pass it an accumulator function, and, optionally, a
        seed value to pass into the accumulator function with the first item emitted by the source Observable.

@@ -14,7 +14,7 @@ id: map
    <h3>transform the items emitted by an Observable by applying a function to each item</h3>
 
    <figure>
-    <img src="images/map.c.png" width="100%" alt="Map" />
+    <img src="images/map.c.png" style="width:100%;" alt="Map" />
     <figcaption><p>
      The <span class="operator">Map</span> operator applies a function of your choosing to each item
      emitted by the source Observable, and returns an Observable that emits the results of these
@@ -25,7 +25,7 @@ id: map
    <h4>See Also</h4>
    <ul>
     <li><a href="flatmap"><span class="operator">FlatMap</span></a></li>
-    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#Select"><cite>Introduction to Rx</cite>: Select</li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#Select"><cite>Introduction to Rx</cite>: Select</a></li>
     <li><a href="http://rxmarbles.com/#map">RxMarbles: <code>map</code></a></li>
     <li><a href="http://rxwiki.wikidot.com/101samples#toc22"><cite>101 Rx Samples</cite>: Select &mdash; Indexed</a></li>
    </ul>
@@ -47,7 +47,7 @@ id: map
 
   {% lang_operator RxGroovy byLine cast encode map %}
      <figure>
-      <img src="images/map.png" width="100%" alt="map" />
+      <img src="images/map.png" style="width:100%;" alt="map" />
       <figcaption><p>
        RxGroovy implements this operator as <code>map</code>. For example, the following code maps a
        function that squares the incoming value onto the values in <code>numbers</code>:
@@ -75,7 +75,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/cast.png" width="100%" alt="cast" />
+      <img src="images/cast.png" style="width:100%;" alt="cast" />
       <figcaption><p>
        The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
        transforms each item from the source Observable by casting it into a particular Class before reemitting
@@ -85,7 +85,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/St.encode.png" width="100%" alt="encode" />
+      <img src="images/St.encode.png" style="width:100%;" alt="encode" />
       <figcaption><p>
        In the <code>StringObservable</code> class that is not part of the RxGroovy core there is also a
        specialty mapping operator, <code>encode</code>, that transforms an Observable that emits strings into
@@ -94,7 +94,7 @@ Sequence complete</pre></div></figcaption>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/St.byLine.png" width="100%" alt="byLine" />
+      <img src="images/St.byLine.png" style="width:100%;" alt="byLine" />
       <figcaption><p>
        Also in the <code>StringObservable</code> class that is not part of the RxGroovy core there is a
        specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
@@ -106,7 +106,7 @@ Sequence complete</pre></div></figcaption>
 
   {% lang_operator RxJava byLine cast encode map %}
      <figure>
-      <img src="images/map.png" width="100%" alt="map" />
+      <img src="images/map.png" style="width:100%;" alt="map" />
       <figcaption><p>
        RxJava implements this operator as <code>map</code>.
       </p><p>
@@ -116,7 +116,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/cast.png" width="100%" alt="cast" />
+      <img src="images/cast.png" style="width:100%;" alt="cast" />
       <figcaption><p>
        The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
        transforms each item from the source Observable by casting it into a particular Class before reemitting
@@ -126,7 +126,7 @@ Sequence complete</pre></div></figcaption>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/St.encode.png" width="100%" alt="encode" />
+      <img src="images/St.encode.png" style="width:100%;" alt="encode" />
       <figcaption><p>
        In the <code>StringObservable</code> class that is not part of the RxJava core there is also a specialty
        mapping operator, <code>encode</code>, that transforms an Observable that emits strings into an
@@ -135,7 +135,7 @@ Sequence complete</pre></div></figcaption>
       </p></figcaption>
      </figure>
      <figure>
-      <img src="images/St.byLine.png" width="100%" alt="byLine" />
+      <img src="images/St.byLine.png" style="width:100%;" alt="byLine" />
       <figcaption><p>
        Also in the <code>StringObservable</code> class that is not part of the RxJava core there is a
        specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
@@ -147,7 +147,7 @@ Sequence complete</pre></div></figcaption>
 
   {% lang_operator RxJS map pluck select %}
      <figure>
-      <img src="images/map.i.png" width="100%" alt="map" />
+      <img src="images/map.i.png" style="width:100%;" alt="map" />
       <figcaption><p>
        RxJS implements this operator as <code>map</code> or <code>select</code> (the two are
        synonymous). In addition to the transforming function, you may pass this operator an optional
@@ -185,7 +185,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/pluck.png" width="100%" alt="pluck" />
+      <img src="images/pluck.png" style="width:100%;" alt="pluck" />
       <figcaption><p>
        There is also an operator called <code>pluck</code> which is a simpler version of this
        operator. It transforms the elements emitted by the source Observable by extracting a

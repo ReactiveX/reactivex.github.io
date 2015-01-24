@@ -14,7 +14,7 @@ id: skipWhile
    <h3>discard items emitted by an Observable until a specified condition becomes false</h3>
 
    <figure>
-    <img src="images/skipWhile.c.png" width="100%" alt="SkipWhile" />
+    <img src="images/skipWhile.c.png" style="width:100%;" alt="SkipWhile" />
     <figcaption><p>
      The <span class="operator">SkipWhile</span> subscribes to the source Observable, but ignores its emissions
      until such time as some condition you specify becomes false, at which point
@@ -51,7 +51,7 @@ id: skipWhile
 
   {% lang_operator RxGroovy skipWhile %}
      <figure>
-      <img src="images/skipWhile.png" width="100%" alt="skipWhile" />
+      <img src="images/skipWhile.png" style="width:100%;" alt="skipWhile" />
       <figcaption><p>
        The <code>skipWhile</code> operator returns an Observable that discards items emitted by the source
        Observable until such time as a function, applied to an item emitted by that Observable, returns
@@ -85,7 +85,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJava skipWhile %}
      <figure>
-      <img src="images/skipWhile.png" width="100%" alt="skipWhile" />
+      <img src="images/skipWhile.png" style="width:100%;" alt="skipWhile" />
       <figcaption><p>
        The <code>skipWhile</code> operator returns an Observable that discards items emitted by the source
        Observable until such time as a function, applied to an item emitted by that Observable, returns
@@ -103,7 +103,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJS skipWhile %}
      <figure>
-      <img src="images/skipWhile.png" width="100%" alt="skipWhile" />
+      <img src="images/skipWhile.png" style="width:100%;" alt="skipWhile" />
       <figcaption><p>
        RxJS implements the <code>skipWhile</code> operator. You pass it a function that governs the skipping
        process. <code>skipWhile</code> calls that function for each item emitted by the source Observable
@@ -122,7 +122,7 @@ Sequence complete</pre></div>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(1, 5)
-    .skipWhile(function (x) { return x < 3; });
+    .skipWhile(function (x) { return x &lt; 3; });
 
 var subscription = source.subscribe(
     function (x) { console.log('Next: ' + x); },

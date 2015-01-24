@@ -13,7 +13,7 @@ id: distinct
    <h1>Distinct</h1>
    <h3>suppress duplicate items emitted by an Observable</h3>
    <figure>
-    <img src="images/distinct.c.png" width="100%" alt="Distinct" />
+    <img src="images/distinct.c.png" style="width:100%;" alt="Distinct" />
     <figcaption><p>
      The <span class="operator">Distinct</span> operator filters an Observable by only allowing items through
      that have not already been emitted.
@@ -50,7 +50,7 @@ id: distinct
 
   {% lang_operator RxGroovy distinct distinctUntilChanged %}
      <figure>
-      <img src="images/distinct.png" width="100%" alt="distinct" />
+      <img src="images/distinct.png" style="width:100%;" alt="distinct" />
       <figcaption><p>
        RxGroovy implements this operator as <code>distinct</code>.
       </p>
@@ -59,7 +59,7 @@ id: distinct
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinct.key.png" width="100%" alt="distinct" />
+      <img src="images/distinct.key.png" style="width:100%;" alt="distinct" />
       <figcaption><p>
        There is also a variant of this operator that takes a function as a parameter. This function
        operates on items emitted by the source Observable to generate a &ldquo;key.&rdquo; It is
@@ -71,7 +71,7 @@ id: distinct
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.png" width="100%" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.png" style="width:100%;" alt="distinctUntilChanged" />
       <figcaption><p>
        RxGroovy also implements the <code>distinctUntilChanged</code> operator. It only compares
        emitted items from the source Observable against their immediate predecessors in order to
@@ -82,7 +82,7 @@ id: distinct
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.key.png" width="100%" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.key.png" style="width:100%;" alt="distinctUntilChanged" />
       <figcaption><p>
        As with <code>distinct</code>, there is also a version of <code>distinctUntilChanged</code>
        that accepts a key selector function and that uses the resulting key to determine whether or
@@ -100,7 +100,7 @@ id: distinct
 
   {% lang_operator RxJava distinct distinctUntilChanged %}
      <figure>
-      <img src="images/distinct.png" width="100%" alt="distinct" />
+      <img src="images/distinct.png" style="width:100%;" alt="distinct" />
       <figcaption><p>
        RxJava implements this operator as <code>distinct</code>.
       </p>
@@ -108,7 +108,7 @@ id: distinct
      <div class="code java"><pre>
 Observable.just(1, 2, 1, 1, 2, 3)
           .distinct()
-          .subscribe(new Subscriber<Integer>() {
+          .subscribe(new Subscriber&lt;Integer&gt;() {
         @Override
         public void onNext(Integer item) {
             System.out.println("Next: " + item);
@@ -134,7 +134,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinct.key.png" width="100%" alt="distinct" />
+      <img src="images/distinct.key.png" style="width:100%;" alt="distinct" />
       <figcaption><p>
        There is also a variant of this operator that takes a function as a parameter. This function
        operates on items emitted by the source Observable to generate a &ldquo;key.&rdquo; It is
@@ -146,7 +146,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.png" width="100%" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.png" style="width:100%;" alt="distinctUntilChanged" />
       <figcaption><p>
        RxJava also implements the <code>distinctUntilChanged</code> operator. It only compares
        emitted items from the source Observable against their immediate predecessors in order to
@@ -157,7 +157,7 @@ Sequence complete.</pre></div>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.key.png" width="100%" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.key.png" style="width:100%;" alt="distinctUntilChanged" />
       <figcaption><p>
        As with <code>distinct</code>, there is also a version of <code>distinctUntilChanged</code>
        that accepts a key selector function and that uses the resulting key to determine whether or
@@ -175,7 +175,7 @@ Sequence complete.</pre></div>
 
   {% lang_operator RxJS distinct distinctUntilChanged %}
      <figure>
-      <img src="images/distinct.png" width="100%" alt="distinct" />
+      <img src="images/distinct.png" style="width:100%;" alt="distinct" />
       <figcaption><p>
        In RxJS, the <code>distinct</code> operator has two optional parameters:
       </p>
@@ -222,7 +222,7 @@ Next: { value: 24 }
 Completed</pre></div></figcaption>
      </figure>
      <figure>
-      <img src="images/distinctUntilChanged.png" width="100%" alt="distinctUntilChanged" />
+      <img src="images/distinctUntilChanged.png" style="width:100%;" alt="distinctUntilChanged" />
       <figcaption><p>
        RxJS also has a <code>distinctUntilChanged</code> operator. It only compares emitted items
        from the source Observable against their immediate predecessors in order to determine whether

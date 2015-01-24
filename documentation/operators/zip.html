@@ -13,7 +13,7 @@ id: zip
    <h1>Zip</h1>
    <h3>combine the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function</h3>
    <figure>
-    <img src="images/zip.c.png" width="100%" alt="Zip" />
+    <img src="images/zip.c.png" style="width:100%;" alt="Zip" />
     <figcaption><p>
      The <code>Zip</code> method returns an Observable that applies a function of your choosing to
      the combination of items emitted, in sequence, by two (or more) other Observables, with the
@@ -57,7 +57,7 @@ id: zip
       <code>zipWith</code>, an instance function version of the operator.
      </p>
      <figure>
-      <img src="images/zip.o.png" width="100%" alt="zip" />
+      <img src="images/zip.o.png" style="width:100%;" alt="zip" />
       <figcaption><p>
        The last argument to <code>zip</code> is a function that accepts an item from each of the
        Observables being zipped and emits an item to be emitted in response by the Observable
@@ -87,21 +87,21 @@ Sequence complete</pre></div>
        (<code>evens</code>, which emits three items).
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable, rx.functions.FuncN)"><code>zip(Iterable&lt;Observable&gt;,FuncN)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable, rx.functions.FuncN)"><code>zip(Observable&lt;Observable&gt;,FuncN)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable, rx.Observable, rx.functions.Func2)"><code>zip(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable,%20rx.functions.FuncN)"><code>zip(Iterable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable,%20rx.functions.FuncN)"><code>zip(Observable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>zip(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/zip.i.png" width="100%" alt="zipWith" />
+      <img src="images/zip.i.png" style="width:100%;" alt="zipWith" />
       <figcaption><p>
        The <code>zipWith</code> instance version of this operator always takes two parameters.
        The first parameter may be either a simple Observable, or an iterable (as in the illustration
        above).
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(rx.Observable, rx.functions.Func2)"><code>zipWith(Observable,Func2)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(java.lang.Iterable, rx.functions.Func2)"><code>zipWith(Iterable,Func2)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(rx.Observable,%20rx.functions.Func2)"><code>zipWith(Observable,Func2)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(java.lang.Iterable,%20rx.functions.Func2)"><code>zipWith(Iterable,Func2)</code></a></li>
       </ul></figcaption>
      </figure>
      <p>
@@ -116,7 +116,7 @@ Sequence complete</pre></div>
       <code>zipWith</code>, an instance function version of the operator.
      </p>
      <figure>
-      <img src="images/zip.o.png" width="100%" alt="zip" />
+      <img src="images/zip.o.png" style="width:100%;" alt="zip" />
       <figcaption><p>
        The last argument to <code>zip</code> is a function that accepts an item from each of the
        Observables being zipped and emits an item to be emitted in response by the Observable
@@ -126,21 +126,21 @@ Sequence complete</pre></div>
        in the illustration above).
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable, rx.functions.FuncN)"><code>zip(Iterable&lt;Observable&gt;,FuncN)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable, rx.functions.FuncN)"><code>zip(Observable&lt;Observable&gt;,FuncN)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable, rx.Observable, rx.functions.Func2)"><code>zip(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable,%20rx.functions.FuncN)"><code>zip(Iterable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable,%20rx.functions.FuncN)"><code>zip(Observable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>zip(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/zip.i.png" width="100%" alt="zipWith" />
+      <img src="images/zip.i.png" style="width:100%;" alt="zipWith" />
       <figcaption><p>
        The <code>zipWith</code> instance version of this operator always takes two parameters.
        The first parameter may be either a simple Observable, or an iterable (as in the illustration
        above).
       </p>
       <ul>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(rx.Observable, rx.functions.Func2)"><code>zipWith(Observable,Func2)</code></a></li>
-       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(java.lang.Iterable, rx.functions.Func2)"><code>zipWith(Iterable,Func2)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(rx.Observable,%20rx.functions.Func2)"><code>zipWith(Observable,Func2)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(java.lang.Iterable,%20rx.functions.Func2)"><code>zipWith(Iterable,Func2)</code></a></li>
       </ul></figcaption>
      </figure>
      <p>
@@ -154,7 +154,7 @@ Sequence complete</pre></div>
       RxJS implements this operator as <code>zip</code> and <code>zipArray</code>.
      </p>
      <figure>
-      <img src="images/zip.png" width="100%" alt="zip" />
+      <img src="images/zip.png" style="width:100%;" alt="zip" />
       <figcaption><p>
        <code>zip</code> accepts a variable number of Observables or Promises as parameters, followed
        by a function that accepts one item emitted by each of those Observables or resolved by those
@@ -218,7 +218,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/zipArray.png" width="100%" alt="zipArray" />
+      <img src="images/zipArray.png" style="width:100%;" alt="zipArray" />
       <figcaption><p>
        <code>zipArray</code> accepts a variable number of Observables as parameters and returns an
        Observable that emits arrays, each one containing the <i>n</i><sup>th</sup> item from each
@@ -252,7 +252,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/forkJoin.png" width="100%" alt="forkJoin" />
+      <img src="images/forkJoin.png" style="width:100%;" alt="forkJoin" />
       <figcaption><p>
        RxJS also implements a similar operator, <code>forkJoin</code>. There are two varities of this
        operator. The first collects the last element emitted by each of the source Observables into an array and
@@ -277,7 +277,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/forkJoin.p.png" width="100%" alt="forkJoin" />
+      <img src="images/forkJoin.p.png" style="width:100%;" alt="forkJoin" />
       <figcaption><p>
       <p>
        A second variant of <code>forkJoin</code> exists as a prototype function, and you call it on an instance

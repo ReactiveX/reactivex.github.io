@@ -36,7 +36,7 @@ id: subscribe
   <dt><code>onCompleted</code></dt>
    <dd>An Observable calls this method after it has called <code>onNext</code> for the final time, if it has not
        encountered any errors.</dd>
- </p>
+ </dl>
  <p>
   An Observable is called a &ldquo;cold&rdquo; Observable if it does not begin to emit items until an observer
   has subscribed to it; an Observable is called a &ldquo;hot&rdquo; Observable if it may begin emitting items
@@ -124,7 +124,7 @@ id: subscribe
     </ul>
 
     <figure>
-     <img src="images/B.forEach.png" width="100%" alt="forEach">
+     <img src="images/B.forEach.png" style="width:100%;" alt="forEach">
      <figcaption><p>
       There is also a <code>BlockingObservable</code> method called <code>forEach</code> that is somewhat
       similar. In order to use it, you must first convert your source Observable into a
@@ -201,7 +201,7 @@ id: subscribe
     </ul>
 
     <figure>
-     <img src="images/B.forEach.png" width="100%" alt="forEach">
+     <img src="images/B.forEach.png" style="width:100%;" alt="forEach">
      <figcaption><p>
       There is also a <code>BlockingObservable</code> method called <code>forEach</code> that is somewhat
       similar. In order to use it, you must first convert your source Observable into a

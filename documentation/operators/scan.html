@@ -107,12 +107,12 @@ Sequence complete</pre></div>
       <h4>Sample Code</h4>
       <div class="code java"><pre>
 Observable.just(1, 2, 3, 4, 5)
-    .scan(new Func2<Integer, Integer, Integer>() {
+    .scan(new Func2&lt;Integer, Integer, Integer&gt;() {
         @Override
         public Integer call(Integer sum, Integer item) {
             return sum + item;
         }
-    }).subscribe(new Subscriber<Integer>() {
+    }).subscribe(new Subscriber&lt;Integer&gt;() {
         @Override
         public void onNext(Integer item) {
             System.out.println("Next: " + item);

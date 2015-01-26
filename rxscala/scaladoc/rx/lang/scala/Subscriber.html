@@ -47,10 +47,13 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An extension of the <code>Observer</code> trait which adds subscription handling
-(<code>unsubscribe</code>, <code>isUnsubscribed</code>, and <code>add</code> methods) and backpressure handling
-(<code>onStart</code> and <code>request</code> methods).</p><p>Similarly to the RxJava Subscriber, this class has two constructors:</p><p>The first constructor takes as argument the child Subscriber from further down the pipeline
-and is usually only needed together with <code>lift</code>:</p><pre>myObservable.lift((subscriber: Subscriber[T]) <span class="kw">=&gt;</span> <span class="kw">new</span> Subscriber[T](subscriber) {
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An extension of the <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> trait which adds subscription handling
+(<a href="#unsubscribe():Unit" class="extmbr" name="rx.lang.scala.Subscriber#unsubscribe">unsubscribe</a>, <a href="#isUnsubscribed:Boolean" class="extmbr" name="rx.lang.scala.Subscriber#isUnsubscribed">isUnsubscribed</a>, and <code>add</code> methods) and backpressure handling
+(<a href="#onStart():Unit" class="extmbr" name="rx.lang.scala.Subscriber#onStart">onStart</a> and <a href="#request(n:Long):Unit" class="extmbr" name="rx.lang.scala.Subscriber#request">request</a> methods).</p><p>After a <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> calls an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>'s <code>subscribe</code> method, the
+<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> calls the <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>'s <a href="#onNext(value:T):Unit" class="extmbr" name="rx.lang.scala.Subscriber#onNext">onNext</a> method to emit items. A well-behaved
+<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will call a <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>'s <a href="#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Subscriber#onCompleted">onCompleted</a> method exactly once or the <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>'s
+<a href="#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Subscriber#onError">onError</a> method exactly once.</p><p>Similarly to the RxJava <code>Subscriber</code>, this class has two constructors:</p><p>The first constructor takes as argument the child <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> from further down the pipeline
+and is usually only needed together with <a href="Observable.html#lift[R](operator:rx.lang.scala.Subscriber[R]=&gt;rx.lang.scala.Subscriber[T]):rx.lang.scala.Observable[R]" class="extmbr" name="rx.lang.scala.Observable#lift">lift</a>:</p><pre>myObservable.lift((subscriber: Subscriber[T]) <span class="kw">=&gt;</span> <span class="kw">new</span> Subscriber[T](subscriber) {
   <span class="kw">override</span> <span class="kw">def</span> onStart(): <span class="std">Unit</span> = ...
   <span class="kw">override</span> <span class="kw">def</span> onNext(n: T): <span class="std">Unit</span> = ...
   <span class="kw">override</span> <span class="kw">def</span> onError(e: Throwable): <span class="std">Unit</span> = ...
@@ -215,11 +218,12 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Register a callback to be run when Subscriber is unsubscribed
-</p><div class="fullcomment"><div class="comment cmt"><p>Register a callback to be run when Subscriber is unsubscribed
+      <p class="shortcomment cmt">Create a <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a> using <code>u</code> and add it to this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>'s list of <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s if this list
+is not marked as unsubscribed.</p><div class="fullcomment"><div class="comment cmt"><p>Create a <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a> using <code>u</code> and add it to this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>'s list of <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s if this list
+is not marked as unsubscribed. If the list **is** marked as unsubscribed, it will call <code>u</code>.
 </p></div><dl class="paramcmts block"><dt class="param">u</dt><dd class="cmt"><p>callback to run when unsubscribed
 </p></dd></dl></div>
-    </li><li name="rx.lang.scala.Subscriber#add" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="rx.lang.scala.Subscriber#add" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="add(s:rx.lang.scala.Subscription):Unit"></a>
       <a id="add(Subscription):Unit"></a>
       <h4 class="signature">
@@ -235,7 +239,11 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Used to register an unsubscribe callback.</p>
+      <p class="shortcomment cmt">Add a <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a> to this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>'s list of <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s if this list is not marked as
+unsubscribed.</p><div class="fullcomment"><div class="comment cmt"><p>Add a <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a> to this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>'s list of <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s if this list is not marked as
+unsubscribed. If the list **is** marked as unsubscribed, it will unsubscribe the new <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a> as well.
+</p></div><dl class="paramcmts block"><dt class="param">s</dt><dd class="cmt"><p>the <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a> to add
+</p></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -400,8 +408,9 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Checks if the subscription is unsubscribed.</p><div class="fullcomment"><div class="comment cmt"><p>Checks if the subscription is unsubscribed.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> → <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a></dd></dl></div>
+      <p class="shortcomment cmt">Indicates whether this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> has unsubscribed from its list of <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s.</p><div class="fullcomment"><div class="comment cmt"><p>Indicates whether this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> has unsubscribed from its list of <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> has unsubscribed from its <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s, <code>false</code> otherwise
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> → <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -507,7 +516,7 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
     </span>
       <p class="shortcomment cmt">Provides the Observer with new data.</p><div class="fullcomment"><div class="comment cmt"><p>Provides the Observer with new data.</p><p>The <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">rx.lang.scala.Observable</a> calls this closure 0 or more times.</p><p>The <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">rx.lang.scala.Observable</a> will not call this method again after it calls either <code>onCompleted</code> or <code>onError</code>.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a></dd></dl></div>
-    </li><li name="rx.lang.scala.Subscriber#onStart" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="rx.lang.scala.Subscriber#onStart" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="onStart():Unit"></a>
       <a id="onStart():Unit"></a>
       <h4 class="signature">
@@ -523,7 +532,18 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">This method is invoked when the <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> and <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> have been connected but the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> has
+not yet begun to emit items or send notifications to the <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>.</p><div class="fullcomment"><div class="comment cmt"><p>This method is invoked when the <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> and <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> have been connected but the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> has
+not yet begun to emit items or send notifications to the <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>. Override this method to add any
+useful initialization to your subscription, for instance to initiate backpressure.</p><pre>Observable.just(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>).subscribe(<span class="kw">new</span> Subscriber[<span class="std">Int</span>]() {
+  <span class="kw">override</span> <span class="kw">def</span> onStart(): <span class="std">Unit</span> = request(<span class="num">1</span>)
+  <span class="kw">override</span> <span class="kw">def</span> onNext(v: <span class="std">Int</span>): <span class="std">Unit</span> = {
+    println(v)
+    request(<span class="num">1</span>)
+  }
+  <span class="kw">override</span> <span class="kw">def</span> onError(e: Throwable): <span class="std">Unit</span> = e.printStackTrace()
+  <span class="kw">override</span> <span class="kw">def</span> onCompleted(): <span class="std">Unit</span> = {}
+})</pre></div></div>
     </li><li name="rx.lang.scala.Subscriber#request" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="request(n:Long):Unit"></a>
       <a id="request(Long):Unit"></a>
@@ -540,7 +560,11 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd></dl></div>
+      <p class="shortcomment cmt">Request a certain maximum number of emitted items from the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> is subscribed to.</p><div class="fullcomment"><div class="comment cmt"><p>Request a certain maximum number of emitted items from the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> this <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> is subscribed to.
+This is a way of requesting backpressure. To disable backpressure, pass <code>Long.MaxValue</code> to this method.
+</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>the maximum number of items you want the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to emit to the <a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> at this time, or
+         <code>Long.MaxValue</code> if you want the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to emit items at its own pace
+</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd></dl></div>
     </li><li name="rx.lang.scala.Subscriber#setProducer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="setProducer(producer:Long=&gt;Unit):Unit"></a>
       <a id="setProducer((Long)⇒Unit):Unit"></a>
@@ -625,9 +649,7 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Call this method to stop receiving notifications on the Observer that was registered when
-this Subscription was received.</p><div class="fullcomment"><div class="comment cmt"><p>Call this method to stop receiving notifications on the Observer that was registered when
-this Subscription was received.
+      <p class="shortcomment cmt">Unsubscribe all <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s added to this Subscriber's .</p><div class="fullcomment"><div class="comment cmt"><p>Unsubscribe all <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s added to this Subscriber's .
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a> → <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>

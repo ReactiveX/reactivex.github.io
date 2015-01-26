@@ -256,7 +256,7 @@ aggregation is defined by a specified function.
         Observables by means of the given aggregation function
 </p></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#create" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="create[T](func:rx.lang.scala.Observer[T]=&gt;rx.lang.scala.Subscription):rx.lang.scala.Observable[T]"></a>
+      <a id="create[T](f:rx.lang.scala.Observer[T]=&gt;rx.lang.scala.Subscription):rx.lang.scala.Observable[T]"></a>
       <a id="create[T]((Observer[T])⇒Subscription):Observable[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -264,10 +264,10 @@ aggregation is defined by a specified function.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">create</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="func">func: (<a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a>[<span class="extype" name="rx.lang.scala.Observable.create.T">T</span>]) ⇒ <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.create.T">T</span>]</span>
+        <span class="name">create</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="f">f: (<a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a>[<span class="extype" name="rx.lang.scala.Observable.create.T">T</span>]) ⇒ <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.create.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.Observable$@create[T](func:rx.lang.scala.Observer[T]=&gt;rx.lang.scala.Subscription):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#rx.lang.scala.Observable$@create[T](f:rx.lang.scala.Observer[T]=&gt;rx.lang.scala.Subscription):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
@@ -275,10 +275,7 @@ aggregation is defined by a specified function.
 should invoke the Observer's <a href="Observer.html#onNext(value:T):Unit" class="extmbr" name="rx.lang.scala.Observer#onNext">onNext</a>, <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a>, and <a href="Observer.html#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Observer#onCompleted">onCompleted</a> methods
 appropriately.</p><p>See <a href="http://go.microsoft.com/fwlink/?LinkID=205219">Rx Design Guidelines (PDF)</a>
 for detailed information.</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>
-           the type of the items that this Observable emits.</p></dd><dt class="param">func</dt><dd class="cmt"><p>
-           a function that accepts an <code>Observer[T]</code>, invokes its <code>onNext</code>, <code>onError</code>, and <code>onCompleted</code> methods
-           as appropriate, and returns a <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> to allow the Observer to
-           canceling the subscription.</p></dd><dt>returns</dt><dd class="cmt"><p>
+           the type of the items that this Observable emits.</p></dd><dt>returns</dt><dd class="cmt"><p>
         an Observable that, when an <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a> subscribes to it, will execute the given function.
 </p></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#defer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">

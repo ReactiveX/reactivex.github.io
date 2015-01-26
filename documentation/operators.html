@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,10 @@
     <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Prism -->
-    <link href="/css/prism.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- syntax highlighting CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/syntax.css" />
 
     <style shim-shadowdom>
         /* This is overriding our styles for body, and it shouldn't.
@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt=""/> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -172,14 +172,25 @@
 <div class="full-page-container">
   <div class="row">
     <div class="col-sm-8">
-      <p>Each language-specific version of ReactiveX implements a set of operators, and, although there is
-much overlap, there are also some operators that are only implemented by certain versions, and
-also each language tends to name its operators to conform to those of other similar operators that
-are already familiar in other contexts in that language.</p>
+      <p>Each language-specific implementation of ReactiveX implements a set of operators. Although there is much overlap
+between implementations, there are also some operators that are only implemented in certain implementations.
+Also, each implementation tends to name its operators to resemble those of similar methods that are already
+familiar from other contexts in that language.</p>
 
-<p>This page lists what could be considered the &ldquo;core&rdquo; operators in the ReactiveX set,
-and links to pages that have more in-depth information on how these operators work and how
-particular language-specific ReactiveX versions have implemented these operators.</p>
+<p>This page first lists what could be considered the &ldquo;core&rdquo; operators in ReactiveX, and links to
+pages that have more in-depth information on how these operators work and how particular language-specific
+ReactiveX versions have implemented these operators.</p>
+
+<p>Next is a &ldquo;decision tree&rdquo; that may help you choose the operator that is most appropriate to your use
+case.</p>
+
+<p>Finally, there is an alphabetical list of most of the operators available in the many language-specific
+implementations of ReactiveX. These link to the page that documents the core operator that most closely
+resembles the language-specific operator (so, for instance, the Rx.NET &ldquo;SelectMany&rdquo; operator links
+to the documentation of the <span class="operator">FlatMap</span> ReactiveX operator, of which
+&ldquo;SelectMany&rdquo; is the Rx.NET implementation).</p>
+
+<h4>Contents</h4> 
 
 <ol>
  <li><a href="#categorized">Operators By Category</a></li>
@@ -1088,11 +1099,11 @@ operators.</p>
     <script>$("#menu-operators").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
-    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
     <!-- Polymer Code Snippet Element-->
-    <link rel="import" href="/polymer/elements/code-snippet.html">
-    <link rel="import" href="/polymer/elements/tabs-panel.html">
-    <link rel="import" href="/polymer/elements/tab-code.html">
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>

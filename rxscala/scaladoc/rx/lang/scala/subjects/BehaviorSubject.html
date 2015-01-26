@@ -362,8 +362,8 @@ assumptions about the order in which multiple Observers will receive their notif
       </a>
     </span>
       <p class="shortcomment cmt">Caches emissions from the source Observable and replays them in order to any subsequent Subscribers.</p><div class="fullcomment"><div class="comment cmt"><p>Caches emissions from the source Observable and replays them in order to any subsequent Subscribers.
-This method has similar behavior to <a href="../Observable.html#replay(scheduler:rx.lang.scala.Scheduler):rx.lang.scala.observables.ConnectableObservable[T]" class="extmbr" name="rx.lang.scala.Observable#replay">Observable.replay</a> except that this auto-subscribes to the source
-Observable rather than returning a <span class="extype" name="ConnectableObservable">ConnectableObservable</span> for which you must call
+This method has similar behavior to <code>Observable.replay</code> except that this auto-subscribes to the source
+Observable rather than returning a <a href="../observables/ConnectableObservable.html" class="extype" name="rx.lang.scala.observables.ConnectableObservable">ConnectableObservable</a> for which you must call
 <code>connect</code> to activate the subscription.</p><p><img width="640" height="410" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/cache.png" alt="" /></p><p>This is useful when you want an Observable to cache responses and you can't control the
 <code>subscribe/unsubscribe</code> behavior of all the <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s.</p><p>When you call <code>cache</code>, it does not yet subscribe to the source Observable and so does not yet
 begin cacheing items. This only happens when the first Subscriber calls the resulting Observable's
@@ -389,12 +389,12 @@ of items that will use up memory.</p><h5>Backpressure Support:</h5><p>This opera
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">This method has similar behavior to <a href="../Observable.html#replay(scheduler:rx.lang.scala.Scheduler):rx.lang.scala.observables.ConnectableObservable[T]" class="extmbr" name="rx.lang.scala.Observable#replay">rx.lang.scala.Observable.replay</a> except that this auto-subscribes to
-the source Observable rather than returning a start function and an Observable.</p><div class="fullcomment"><div class="comment cmt"><p>This method has similar behavior to <a href="../Observable.html#replay(scheduler:rx.lang.scala.Scheduler):rx.lang.scala.observables.ConnectableObservable[T]" class="extmbr" name="rx.lang.scala.Observable#replay">rx.lang.scala.Observable.replay</a> except that this auto-subscribes to
+      <p class="shortcomment cmt">This method has similar behavior to <code>Observable.replay</code> except that this auto-subscribes to
+the source Observable rather than returning a start function and an Observable.</p><div class="fullcomment"><div class="comment cmt"><p>This method has similar behavior to <code>Observable.replay</code> except that this auto-subscribes to
 the source Observable rather than returning a start function and an Observable.</p><p><img width="640" height="410" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/cache.png" alt="" /></p><p>This is useful when you want an Observable to cache responses and you can't control the
 subscribe/unsubscribe behavior of all the <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a>s.</p><p>When you call <code>cache</code>, it does not yet subscribe to the
 source Observable. This only happens when <code>subscribe</code> is called
-the first time on the Observable returned by <code>cache()</code>.</p><p>Note: You sacrifice the ability to unsubscribe from the origin when you use the
+the first time on the Observable returned by <code>cache</code>.</p><p>Note: You sacrifice the ability to unsubscribe from the origin when you use the
 <code>cache()</code> operator so be careful not to use this operator on Observables that
 emit an infinite or very large number of items that will use up memory.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an Observable that when first subscribed to, caches all of its notifications for
@@ -2954,7 +2954,7 @@ on a particular Scheduler.</p><p><img width="640" height="310" src="https://raw.
       <p class="shortcomment cmt">Returns an Observable that emits the same values as the source Observable with the exception of an
 <code>onCompleted</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an Observable that emits the same values as the source Observable with the exception of an
 <code>onCompleted</code>. An <code>onCompleted</code> notification from the source will result in the emission of
-a <span class="extype" name="scala.Unit">scala.Unit</span> to the Observable provided as an argument to the <code>notificationHandler</code>
+a <code>scala.Unit</code> to the Observable provided as an argument to the <code>notificationHandler</code>
 function. If the Observable returned <code>onCompletes</code> or <code>onErrors</code> then <code>repeatWhen</code> will
 call <code>onCompleted</code> or <code>onError</code> on the child subscription. Otherwise, this Observable will
 resubscribe to the source observable.</p><p><img width="640" height="430" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/repeatWhen.f.png" alt="" />
@@ -2999,7 +2999,7 @@ subscribing</pre><p>&lt;dl&gt;
       <p class="shortcomment cmt">Returns an Observable that emits the same values as the source Observable with the exception of an
 <code>onCompleted</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an Observable that emits the same values as the source Observable with the exception of an
 <code>onCompleted</code>. An <code>onCompleted</code> notification from the source will result in the emission of
-a <span class="extype" name="scala.Unit">scala.Unit</span> to the Observable provided as an argument to the <code>notificationHandler</code>
+a <code>scala.Unit</code> to the Observable provided as an argument to the <code>notificationHandler</code>
 function. If the Observable returned <code>onCompletes</code> or <code>onErrors</code> then <code>repeatWhen</code> will
 call <code>onCompleted</code> or <code>onError</code> on the child subscription. Otherwise, this Observable will
 resubscribe to the source Observable, on a particular Scheduler.</p><p><img width="640" height="430" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/repeatWhen.f.png" alt="" />
@@ -3466,8 +3466,8 @@ emits [1, 2, 3, 4, 5] then the complete output would be [1, 2, 1, 2, 3, 4, 5, on
       </a>
     </span>
       <p class="shortcomment cmt">Returns an Observable that emits the same values as the source observable with the exception of an <code>onError</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an Observable that emits the same values as the source observable with the exception of an <code>onError</code>.
-An onError will emit a <span class="extype" name="Throwable">Throwable</span> to the Observable provided as an argument to the notificationHandler
-func. If the Observable returned <code>onCompletes</code> or <code>onErrors</code> then retry will call <code>onCompleted</code>
+An onError will emit a <code>Throwable</code> to the Observable provided as an argument to the <code>notificationHandler</code>
+function. If the Observable returned <code>onCompletes</code> or <code>onErrors</code> then retry will call <code>onCompleted</code>
 or <code>onError</code> on the child subscription. Otherwise, this observable will resubscribe to the source observable, on a particular Scheduler.</p><p><img width="640" height="430" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/retryWhen.f.png" alt="" /></p><p>&lt;dl&gt;
  &lt;dt&gt;<b>Scheduler:</b>&lt;/dt&gt;
  <dd>you specify which [[Scheduler]] this operator will use</dd>
@@ -3494,8 +3494,8 @@ or <code>onError</code> on the child subscription. Otherwise, this observable wi
       <p class="shortcomment cmt">Returns an Observable that emits the same values as the source observable with the exception of an
 <code>onError</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an Observable that emits the same values as the source observable with the exception of an
 <code>onError</code>. An <code>onError</code> notification from the source will result in the emission of a
-<span class="extype" name="Throwable">Throwable</span> to the Observable provided as an argument to the <code>notificationHandler</code>
-function. If the Observable returned <code>onCompletes</code> or <code>onErrors</code> then <code>retry</code> will call
+<code>Throwable</code> to the Observable provided as an argument to the <code>notificationHandler</code>
+ function. If the Observable returned <code>onCompletes</code> or <code>onErrors</code> then <code>retry</code> will call
 <code>onCompleted</code> or <code>onError</code> on the child subscription. Otherwise, this Observable will
 resubscribe to the source Observable.</p><p><img width="640" height="430" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/retryWhen.f.png" alt="" /></p><p>Example:</p><p>This retries 3 times, each time incrementing the number of seconds it waits.
 </p></div><dl class="paramcmts block"><dt class="param">notificationHandler</dt><dd class="cmt"><p>receives an Observable of a Throwable with which a user can complete or error, aborting the
@@ -5086,10 +5086,10 @@ of items, as you do not have the option to unsubscribe.
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Converts an Observable into a <span class="extype" name="BlockingObservable">BlockingObservable</span> (an Observable with blocking
-operators).</p><div class="fullcomment"><div class="comment cmt"><p>Converts an Observable into a <span class="extype" name="BlockingObservable">BlockingObservable</span> (an Observable with blocking
+      <p class="shortcomment cmt">Converts an Observable into a <a href="../observables/BlockingObservable.html" class="extype" name="rx.lang.scala.observables.BlockingObservable">BlockingObservable</a> (an Observable with blocking
+operators).</p><div class="fullcomment"><div class="comment cmt"><p>Converts an Observable into a <a href="../observables/BlockingObservable.html" class="extype" name="rx.lang.scala.observables.BlockingObservable">BlockingObservable</a> (an Observable with blocking
 operators).
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a <span class="extype" name="BlockingObservable">BlockingObservable</span> version of this Observable</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.19
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a <a href="../observables/BlockingObservable.html" class="extype" name="rx.lang.scala.observables.BlockingObservable">BlockingObservable</a> version of this Observable</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.19
 </p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="https://github.com/ReactiveX/RxJava/wiki/Blocking-Observable-Operators">Blocking Observable Operators</a></p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#toBuffer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toBuffer[U&gt;:T]:rx.lang.scala.Observable[scala.collection.mutable.Buffer[U]]"></a>
@@ -5370,6 +5370,28 @@ of items, as you do not have the option to unsubscribe.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an Observable that emits a single item: a List containing all of the items emitted by
         the source Observable.
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+    </li><li name="rx.lang.scala.Subject#toSerialized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toSerialized:rx.lang.scala.subjects.SerializedSubject[T]"></a>
+      <a id="toSerialized:SerializedSubject[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toSerialized</span><span class="result">: <a href="SerializedSubject.html" class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</a>[<span class="extype" name="rx.lang.scala.subjects.BehaviorSubject.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.subjects.BehaviorSubject@toSerialized:rx.lang.scala.subjects.SerializedSubject[T]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Wraps a <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a> so that it is safe to call its various <code>on</code> methods from different threads.</p><div class="fullcomment"><div class="comment cmt"><p>Wraps a <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a> so that it is safe to call its various <code>on</code> methods from different threads.</p><p>When you use an ordinary <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a> as a <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>, you must take care not to call its
+<a href="../Subscriber.html#onNext(value:T):Unit" class="extmbr" name="rx.lang.scala.Subscriber#onNext">Subscriber.onNext</a> method (or its other <code>on</code> methods) from multiple threads, as this could
+lead to non-serialized calls, which violates the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> contract and creates an ambiguity
+in the resulting <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a>.</p><p>To protect a <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a> from this danger, you can convert it into a <a href="SerializedSubject.html" class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</a>
+with code like the following:</p><pre>mySafeSubject = myUnsafeSubject.toSerialized</pre></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><a href="SerializedSubject.html" class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</a> wrapping the current <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#toSet" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toSet[U&gt;:T]:rx.lang.scala.Observable[scala.collection.immutable.Set[U]]"></a>
       <a id="toSet[U&gt;:T]:Observable[Set[U]]"></a>
@@ -5823,7 +5845,7 @@ buffer is emitted, and the event is propagated.
     </span>
       <p class="shortcomment cmt">Subscribe to Observable and invoke <code>OnSubscribe</code> function without any
 contract protection, error handling, unsubscribe, or execution hooks.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribe to Observable and invoke <code>OnSubscribe</code> function without any
-contract protection, error handling, unsubscribe, or execution hooks.</p><p>This should only be used for implementing an <code>Operator</code> that requires nested subscriptions.</p><p>Normal use should use <a href="../Observable.html#subscribe(onNext:T=&gt;Unit,onError:Throwable=&gt;Unit,onCompleted:()=&gt;Unit):rx.lang.scala.Subscription" class="extmbr" name="rx.lang.scala.Observable#subscribe">Observable.subscribe</a> which ensures the Rx contract and other functionality.
+contract protection, error handling, unsubscribe, or execution hooks.</p><p>This should only be used for implementing an <code>Operator</code> that requires nested subscriptions.</p><p>Normal use should use <code>Observable.subscribe</code> which ensures the Rx contract and other functionality.
 </p></div><dl class="paramcmts block"><dt class="param">subscriber</dt><dd class="cmt"></dd><dt>returns</dt><dd class="cmt"><p><a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a> which is the Subscriber passed in</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.17
 </p></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#unsubscribeOn" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">

@@ -28,9 +28,9 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../../../lib/object_big.png" />
+        <a href="SerializedSubject.html" title="Go to companion"><img src="../../../../lib/object_to_class_big.png" /></a>
         <p id="owner"><a href="../../../package.html" class="extype" name="rx">rx</a>.<a href="../../package.html" class="extype" name="rx.lang">lang</a>.<a href="../package.html" class="extype" name="rx.lang.scala">scala</a>.<a href="package.html" class="extype" name="rx.lang.scala.subjects">subjects</a></p>
-        <h1>SerializedSubject</h1> <span class="permalink">
+        <h1><a href="SerializedSubject.html" title="Go to companion">SerializedSubject</a></h1> <span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.SerializedSubject$" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" />
       </a>
@@ -50,7 +50,7 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Wraps a Subject to ensure that the resulting Subject is chronologically well-behaved.</p><p>A well-behaved Subject does not interleave its invocations of the <a href="../Subject.html#onNext(value:T):Unit" class="extmbr" name="rx.lang.scala.Subject#onNext">onNext</a>,
 <a href="../Subject.html#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Subject#onCompleted">onCompleted</a>, and <a href="../Subject.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Subject#onError">onError</a> methods of
 its <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">rx.lang.scala.Subject</a>s; it invokes <code>onCompleted</code> or <code>onError</code> only once; and it never invokes <code>onNext</code>
-after invoking either <code>onCompleted</code> or <code>onError</code>.</p><p><span class="extype" name="rx.lang.scala.subjects.SerializedSubject">rx.lang.scala.subjects.SerializedSubject</span> enforces this, and the Subject it returns invokes <code>onNext</code> and
+after invoking either <code>onCompleted</code> or <code>onError</code>.</p><p><a href="SerializedSubject.html" class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</a> enforces this, and the Subject it returns invokes <code>onNext</code> and
 <code>onCompleted</code> or <code>onError</code> synchronously on the wrapped Subject.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
@@ -158,16 +158,16 @@ after invoking either <code>onCompleted</code> or <code>onError</code>.</p><p><s
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">apply</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="actual">actual: <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a>[<span class="extype" name="rx.lang.scala.subjects.SerializedSubject.apply.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</span>[<span class="extype" name="rx.lang.scala.subjects.SerializedSubject.apply.T">T</span>]</span>
+        <span class="name">apply</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="actual">actual: <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a>[<span class="extype" name="rx.lang.scala.subjects.SerializedSubject.apply.T">T</span>]</span>)</span><span class="result">: <a href="SerializedSubject.html" class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</a>[<span class="extype" name="rx.lang.scala.subjects.SerializedSubject.apply.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.SerializedSubject$@apply[T](actual:rx.lang.scala.Subject[T]):rx.lang.scala.subjects.SerializedSubject[T]" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Creates and returns a new <code>SerializedSubject</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Creates and returns a new <code>SerializedSubject</code>.
-</p></div><dl class="paramcmts block"><dt class="param">actual</dt><dd class="cmt"><p>actual <code>Subject</code> to wrap and synchronously notify</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>SerializedSubject</code> that is a chronologically well-behaved version of the actual
-        Subject, and that synchronously notifies the wrapped <code>Subject</code></p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p>RxScalaDemo.eventBusExample for example usage
+      <p class="shortcomment cmt">Creates and returns a new <a href="SerializedSubject.html" class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Creates and returns a new <a href="SerializedSubject.html" class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</a>.
+</p></div><dl class="paramcmts block"><dt class="param">actual</dt><dd class="cmt"><p>actual <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a> to wrap and synchronously notify</p></dd><dt>returns</dt><dd class="cmt"><p>a <a href="SerializedSubject.html" class="extype" name="rx.lang.scala.subjects.SerializedSubject">SerializedSubject</a> that is a chronologically well-behaved version of the actual
+        Subject, and that synchronously notifies the wrapped <a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a></p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p>RxScalaDemo.eventBusExample for example usage
 </p></span></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>

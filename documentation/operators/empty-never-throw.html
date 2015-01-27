@@ -60,7 +60,9 @@ id: empty-never-throw
       <code>error</code>. The <code>error</code> operator takes as a parameter the
       <code>Throwable</code> with which you want the Observable to terminate.
      </p><p>
-      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>.
+      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>, but
+      <code>empty</code> and <code>error</code> optionally take a Scheduler as a parameter, and if
+      you pass them a Scheduler they will issue their termination notifications on that Scheduler.
      </p>
      <h4>Sample Code</h4>
      <div class="code groovy"><pre>
@@ -103,11 +105,11 @@ error: error - badness
      <p>
       RxJava implements these operators as <code>empty</code>, <code>never</code>, and
       <code>error</code>. The <code>error</code> operator takes as a parameter the
-      <code>Error</code> with which you want the Observable to terminate.
+      <code>Throwable</code> with which you want the Observable to terminate.
      </p><p>
       These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>, but
-      <code>empty</code> and <code>throw</code> optionally take a Scheduler as a parameter, and if
-      you pass it a Scheduler it will issue its termination notification on that Scheduler.
+      <code>empty</code> and <code>error</code> optionally take a Scheduler as a parameter, and if
+      you pass them a Scheduler they will issue their termination notifications on that Scheduler.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactive.io/RxJava/javadoc/rx/Observable.html#empty()"><code>empty()</code></a></li>

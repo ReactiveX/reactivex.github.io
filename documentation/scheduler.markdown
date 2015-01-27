@@ -316,6 +316,10 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
       <tr><td><code>Rx.Scheduler.timeout</code></td><td>schedules work by means of a timed callback</td></tr>
      </tbody>
     </table>
+    <h4>See Also</h4>
+    <ul>
+     <li><a href="http://stackoverflow.com/questions/28145890/what-is-a-scheduler-in-rxjs"><cite>StackOverflow</cite>: What is a &ldquo;Scheduler&rdquo; in RxJS</a></li>
+    </ul>
   {% endlang_operator %}
 
   {% lang_operator RxKotlin %}

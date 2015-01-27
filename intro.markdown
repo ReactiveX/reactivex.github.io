@@ -18,8 +18,8 @@ id: intro
   <tr><th colspan="3">Observables fill the gap by being the ideal way to access asynchronous sequences of multiple items</th></tr>
  </thead><tbody>
   <tr><th></th><th>single items</th><th>multiple items</th></tr>
-  <tr><th>synchronous</th><td><code>T getData()</code></td><td><code>Iterable<T> getData()</code></td></tr>
-  <tr><th>asynchronous</th><td><code>Future<T> getData()</code></td><td><code>Observable<T> getData()</code></td></tr>
+  <tr><th>synchronous</th><td><code>T getData()</code></td><td><code>Iterable&lt;T&gt; getData()</code></td></tr>
+  <tr><th>asynchronous</th><td><code>Future&lt;T&gt; getData()</code></td><td><code>Observable&lt;T&gt; getData()</code></td></tr>
  </tbody>
 </table></center>
 
@@ -53,7 +53,7 @@ id: intro
  for any of these use cases. An Observable has all of the flexibility and elegance associated with its
  mirror-image cousin the Iterable.
 </p>
-<center><table class="table table-striped">
+<table class="table table-striped">
  <thead>
   <tr><th colspan="3">An Observable is the asynchronous/push <a href="http://en.wikipedia.org/wiki/Dual_(category_theory)">&ldquo;dual&rdquo;</a> to the synchronous/pull Iterable</th></tr>
   <tr><th>event</th><th>Iterable (pull)</th><th>Observable (push)</th></tr>
@@ -63,7 +63,7 @@ id: intro
   <tr><td>discover error</td><td>throws <code>Exception</code></td><td><code>onError(Exception)</code></td></tr>
   <tr><td>complete</td><td><code>!hasNext()</code></td><td><code>onCompleted()</code></td></tr>
  <tbody>
-</table></center>
+</table>
 <h2>Observables Are Less Opinionated</h2>
 <p>
  ReactiveX is not biased toward some particular source of concurrency or asynchronicity. Observables can be
@@ -75,7 +75,7 @@ id: intro
 <center><table class="table table-striped">
  <thead>
   <tr><th>How is this Observable implemented?</th></tr>
-  <tr><th><code>public Observable<data> getData();</code></th></tr>
+  <tr><th><code>public Observable&lt;data&gt; getData();</code></th></tr>
  </thead>
  <tfoot>
   <tr><th>From the Observer&#8217;s point of view, it doesn&#8217;t matter!</th></tr>

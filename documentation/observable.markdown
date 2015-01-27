@@ -18,7 +18,7 @@ id: observable
 </p>
 <figure>
  <figcaption><p>This documentation accompanies its explanations with &ldquo;marble diagrams.&rdquo; Here is how marble diagrams represent Observables and transformations of Observables:</p></figcaption>
- <img src="{{ site.url }}/assets/operators/legend.png" width="100%" />
+ <img src="{{ site.url }}/assets/operators/legend.png" style="width:100%;" />
 </figure>
 <h4>See Also</h4>
 <ul>
@@ -215,6 +215,7 @@ myObservable.subscribe(myOnNext, myError, myComplete);
  <dt><a href="operators.html#connectable">Connectable Observable Operatorss</a></dt>
   <dd><code>Connect</code>, <code>Publish</code>, <code>RefCount</code>, and <code>Replay</code></dd>
  <dt><a href="operators/backpressure.html">Backpressure Operators</a></dt>
+  <dd>a variety of oprators that enforce particular flow-control policies</dd>
 </dl>
 <p>
  These pages include information about some operators that are not part of the core of ReactiveX but are

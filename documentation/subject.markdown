@@ -29,7 +29,7 @@ id: subject
 </p>
 <h3>AsyncSubject</h3>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.png" width="100%" />
+ <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.png" style="width:100%;" />
  <figcaption><p>
   An <code>AsyncSubject</code> emits the last value (and only the last value) emitted by the source Observable,
   and only after that source Observable completes. (If the source Observable does not emit any values, the
@@ -37,7 +37,7 @@ id: subject
  </p></figcaption>
 </figure>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.e.png" width="100%" />
+ <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.e.png" style="width:100%;" />
  <figcaption><p>
   It will also emit this same final value to any subsequent observers. However, if the source Observable
   terminates with an error, the <code>AsyncSubject</code> will not emit any items, but will simply pass along
@@ -50,7 +50,7 @@ id: subject
 </ul>
 <h3>BehaviorSubject</h3>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.png" width="100%" />
+ <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.png" style="width:100%;" />
  <figcaption><p>
   When an observer subscribes to a <code>BehaviorSubject</code>, it begins by emitting the item most recently
   emitted by the source Observable (or a seed/default value if none has yet been emitted) and then continues to
@@ -58,7 +58,7 @@ id: subject
  </p></figcaption>
 </figure>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.e.png" width="100%" />
+ <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.e.png" style="width:100%;" />
  <figcaption><p>
   However, if the source Observable terminates with an error, the <code>BehaviorSubject</code> will not emit any
   items to subsequent observers, but will simply pass along the error notification from the source Observable.
@@ -70,12 +70,12 @@ id: subject
 </ul>
 <h3>PublishSubject</h3>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.png" width="100%" />
+ <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.png" style="width:100%;" />
  <figcaption><p>
   <code>PublishSubject</code> emits to an observer only those items that are emitted by the source Observable(s)
   subsequent to the time of the subscription.
  </p><p>
-  Note that a <codePublishSubject</code> may begin emitting items immediately upon creation (unless you have
+  Note that a <code>PublishSubject</code> may begin emitting items immediately upon creation (unless you have
   taken steps to prevent this), and so there is a risk that one or more items may be lost between the time the
   Subject is created and the observer subscribes to it. If you need to guarantee delivery of all items from the
   source Observable, you&#8217;ll need either to form that Observable with
@@ -85,7 +85,7 @@ id: subject
  </p></figcaption>
 </figure>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.e.png" width="100%" />
+ <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.e.png" style="width:100%;" />
  <figcaption><p>
   If the source Observable terminates with an error, the <code>PublishSubject</code> will not emit any items to
   subsequent observers, but will simply pass along the error notification from the source Observable.
@@ -93,7 +93,7 @@ id: subject
 </figure>
 <h3>ReplaySubject</h3>
 <figure>
- <img src="{{ site.url }}/documentation/operators/images/S.ReplaySubject.png" width="100%" />
+ <img src="{{ site.url }}/documentation/operators/images/S.ReplaySubject.png" style="width:100%;" />
  <figcaption><p>
   <code>ReplaySubject</code> emits to any observer all of the items that were emitted by the source
   Observable(s), regardless of when the observer subscribes.

@@ -11,17 +11,15 @@ id: amb
 </ol>
 
    <h1>Amb</h1>
-   <h3>given two or more source Observables, emit all of the items from only the first of these Observables to emit an item</h3>
+   <h3>given two or more source Observables, emit all of the items from only the first of these Observables to emit an item or notification</h3>
    <figure>
     <img src="images/amb.C.png" style="width:100%;" alt="Amb" />
-   <figcaption><p>
-    When you pass a number of source Observables to <span class="operator">Amb</span>, it will pass
-    through the emissions and notifications of exactly one of these Observables: the first one that
-    emits an item to <span class="operator">Amb</span>. It will ignore and discard the emissions of
-    all of the other source Observables.
-    </p><p>
-    If <em>all</em> of the source Observables complete without emitting an item, the Observable
-    returned from <span class="operator">Amb</span> will also complete normally without emitting anything.
+    <figcaption><p>
+     When you pass a number of source Observables to <span class="operator">Amb</span>, it will pass
+     through the emissions and notifications of exactly one of these Observables: the first one that
+     sends a notification to <span class="operator">Amb</span>, either by emitting an item or completing.
+     <span class="operator">Amb</span> will ignore and discard the emissions of all of the other source
+     Observables.
     </p></figcaption>
    </figure>
    <h4>See Also</h4>

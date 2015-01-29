@@ -15,11 +15,11 @@ id: amb
    <figure>
     <img src="images/amb.C.png" style="width:100%;" alt="Amb" />
     <figcaption><p>
-     When you pass a number of source Observables to <span class="operator">Amb</span>, it will pass
-     through the emissions and notifications of exactly one of these Observables: the first one that
-     sends a notification to <span class="operator">Amb</span>, either by emitting an item or completing.
-     <span class="operator">Amb</span> will ignore and discard the emissions of all of the other source
-     Observables.
+     When you pass a number of source Observables to <span class="operator">Amb</span>, it will pass through the
+     emissions and notifications of exactly one of these Observables: the first one that sends a notification to
+     <span class="operator">Amb</span>, either by emitting an item or sending an <code>onError</code> or
+     <code>onCompleted</code> notification. <span class="operator">Amb</span> will ignore and discard the
+     emissions and notifications of all of the other source Observables.
     </p></figcaption>
    </figure>
    <h4>See Also</h4>

@@ -7,7 +7,7 @@ id: observable
 <h1>Observable</h1>
 <p>
  In ReactiveX an <dfn>observer</dfn> <dfn>subscribes</dfn> to an <dfn>Observable</dfn>. Then that observer
- reacts to whatever item or sequence of items the Observable object <dfn>emits</dfn>. This pattern facilitates
+ reacts to whatever item or sequence of items the Observable <dfn>emits</dfn>. This pattern facilitates
  concurrent operations because it does not need to block while waiting for the Observable to emit objects, but
  instead it creates a sentry in the form of an observer that stands ready to react appropriately at whatever
  future time the Observable does so.
@@ -52,7 +52,7 @@ id: observable
 </p>
 <h1>Establishing Observers</h1>
 <p>
- This page uses the Groovy language for its code examples, but there are ReactiveX implementations in many
+ This page uses Groovy-like pseudocode for its examples, but there are ReactiveX implementations in many
  languages.
 </p><p>
  In an ordinary method call — that is, <em>not</em> the sort of asynchronous, parallel calls typical in
@@ -73,12 +73,12 @@ returnVal = someMethod(itsParameters);
  In the asynchronous model the flow goes more like this:
 </p><ol>
  <li>Define a method that does something useful with the return value from the asynchronous call; this method is
-     part of the <em>observer</em>.</li>
- <li>Define the asynchronous call itself as an <em>Observable</em>.</li>
- <li>Attach the observer to that Observable by <em>subscribing</em> it (this also initiates the actions of the
+     part of the <i>observer</i>.</li>
+ <li>Define the asynchronous call itself as an <i>Observable</i>.</li>
+ <li>Attach the observer to that Observable by <i>subscribing</i> it (this also initiates the actions of the
      Observable).</li>
  <li>Go on with your business; whenever the call returns, the observer’s method will begin to operate on its
-     return value or values — the <em>items</em> emitted by the Observable.</li>
+     return value or values — the <i>items</i> emitted by the Observable.</li>
 </ol>
 <p>
  Which looks something like this:
@@ -157,7 +157,7 @@ myObservable.subscribe(myOnNext, myError, myComplete);
 <h1>&ldquo;Hot&rdquo; and &ldquo;Cold&rdquo; Observables</h1>
 <p>
  When does an Observable begin emitting its sequence of items? It depends on the Observable. A &ldquo;hot&rdquo;
- Observable may begin emitting items as soon as it is created, and so any observer who subscribes to that
+ Observable may begin emitting items as soon as it is created, and so any observer who later subscribes to that
  Observable may start observing the sequence somewhere in the middle. A &ldquo;cold&rdquo; Observable, on the
  other hand, waits until an observer subscribes to it before it begins to emit items, and so such an observer is
  guaranteed to see the whole sequence from the beginning.
@@ -212,10 +212,10 @@ myObservable.subscribe(myOnNext, myError, myComplete);
       <code>Reduce</code>, and <code>Sum</code></dd>
  <dt><a href="operators.html#conversion">Converting Observables</a></dt>
   <dd><code>To</code></dd>
- <dt><a href="operators.html#connectable">Connectable Observable Operatorss</a></dt>
+ <dt><a href="operators.html#connectable">Connectable Observable Operators</a></dt>
   <dd><code>Connect</code>, <code>Publish</code>, <code>RefCount</code>, and <code>Replay</code></dd>
  <dt><a href="operators/backpressure.html">Backpressure Operators</a></dt>
-  <dd>a variety of oprators that enforce particular flow-control policies</dd>
+  <dd>a variety of operators that enforce particular flow-control policies</dd>
 </dl>
 <p>
  These pages include information about some operators that are not part of the core of ReactiveX but are

@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ReactiveX - Intro</title>
 
-    <!-- Polymer -->
-    <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,55 +23,10 @@
     <!-- syntax highlighting CSS -->
     <link rel="stylesheet" href="/css/syntax.css" />
 
-    <style shim-shadowdom>
-        /* This is overriding our styles for body, and it shouldn't.
-        body {
-          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-          color: #333;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          -webkit-tap-highlight-color: rgba(0,0,0,0);
-          -webkit-touch-callout: none;
-        }
-        */
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
 
-        paper-tabs, core-toolbar {
-          background-color: #00bcd4;
-          color: #fff;
-          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        core-toolbar paper-tabs {
-          box-shadow: none;
-        }
-
-        paper-tabs[noink][nobar] paper-tab.core-selected {
-          color: #ffff8d;
-        }
-
-        paper-tabs.transparent-teal {
-          background-color: transparent;
-          color: #00bcd4;
-          box-shadow: none;
-        }
-
-        paper-tabs.transparent-teal::shadow #selectionBar {
-          background-color: #00bcd4;
-        }
-
-        paper-tabs.transparent-teal paper-tab::shadow #ink {
-          color: #00bcd4;
-        }
-
-        /* This is overriding our custom styles, and it shouldn't.
-        h3 {
-          font-size: 16px;
-          font-weight: 400;
-        }
-        */
-    </style>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -174,8 +127,8 @@
   <tr><th colspan="3">Observables fill the gap by being the ideal way to access asynchronous sequences of multiple items</th></tr>
  </thead><tbody>
   <tr><th></th><th>single items</th><th>multiple items</th></tr>
-  <tr><th>synchronous</th><td><code>T getData()</code></td><td><code>Iterable<T> getData()</code></td></tr>
-  <tr><th>asynchronous</th><td><code>Future<T> getData()</code></td><td><code>Observable<T> getData()</code></td></tr>
+  <tr><th>synchronous</th><td><code>T getData()</code></td><td><code>Iterable&lt;T&gt; getData()</code></td></tr>
+  <tr><th>asynchronous</th><td><code>Future&lt;T&gt; getData()</code></td><td><code>Observable&lt;T&gt; getData()</code></td></tr>
  </tbody>
 </table></center></p>
 
@@ -215,7 +168,7 @@
  mirror-image cousin the Iterable.
 </p>
 
-<p><center><table class="table table-striped">
+<table class="table table-striped">
  <thead>
   <tr><th colspan="3">An Observable is the asynchronous/push <a href="http://en.wikipedia.org/wiki/Dual_(category_theory)">&ldquo;dual&rdquo;</a> to the synchronous/pull Iterable</th></tr>
   <tr><th>event</th><th>Iterable (pull)</th><th>Observable (push)</th></tr>
@@ -225,8 +178,10 @@
   <tr><td>discover error</td><td>throws <code>Exception</code></td><td><code>onError(Exception)</code></td></tr>
   <tr><td>complete</td><td><code>!hasNext()</code></td><td><code>onCompleted()</code></td></tr>
  <tbody>
-</table></center>
+</table>
+
 <h2>Observables Are Less Opinionated</h2>
+
 <p>
  ReactiveX is not biased toward some particular source of concurrency or asynchronicity. Observables can be
  implemented using thread-pools, event loops, non-blocking I/O, actors (such as from Akka), or whatever
@@ -234,10 +189,11 @@
  Observables as asynchronous, whether your underlying implementation is blocking or non-blocking and however you
  choose to implement it.
 </p>
-<center><table class="table table-striped">
+
+<p><center><table class="table table-striped">
  <thead>
   <tr><th>How is this Observable implemented?</th></tr>
-  <tr><th><code>public Observable<data> getData();</code></th></tr>
+  <tr><th><code>public Observable&lt;data&gt; getData();</code></th></tr>
  </thead>
  <tfoot>
   <tr><th>From the Observer&#8217;s point of view, it doesn&#8217;t matter!</th></tr>

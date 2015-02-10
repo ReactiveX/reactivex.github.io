@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ReactiveX - FlatMap operator</title>
 
-    <!-- Polymer -->
-    <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,55 +23,10 @@
     <!-- syntax highlighting CSS -->
     <link rel="stylesheet" href="/css/syntax.css" />
 
-    <style shim-shadowdom>
-        /* This is overriding our styles for body, and it shouldn't.
-        body {
-          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-          color: #333;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          -webkit-tap-highlight-color: rgba(0,0,0,0);
-          -webkit-touch-callout: none;
-        }
-        */
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
 
-        paper-tabs, core-toolbar {
-          background-color: #00bcd4;
-          color: #fff;
-          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        core-toolbar paper-tabs {
-          box-shadow: none;
-        }
-
-        paper-tabs[noink][nobar] paper-tab.core-selected {
-          color: #ffff8d;
-        }
-
-        paper-tabs.transparent-teal {
-          background-color: transparent;
-          color: #00bcd4;
-          box-shadow: none;
-        }
-
-        paper-tabs.transparent-teal::shadow #selectionBar {
-          background-color: #00bcd4;
-        }
-
-        paper-tabs.transparent-teal paper-tab::shadow #ink {
-          color: #00bcd4;
-        }
-
-        /* This is overriding our custom styles, and it shouldn't.
-        h3 {
-          font-size: 16px;
-          font-weight: 400;
-        }
-        */
-    </style>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

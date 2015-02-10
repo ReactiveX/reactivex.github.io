@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ReactiveX - TakeUntil operator</title>
 
-    <!-- Polymer -->
-    <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,55 +23,10 @@
     <!-- syntax highlighting CSS -->
     <link rel="stylesheet" href="/css/syntax.css" />
 
-    <style shim-shadowdom>
-        /* This is overriding our styles for body, and it shouldn't.
-        body {
-          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-          color: #333;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          -webkit-tap-highlight-color: rgba(0,0,0,0);
-          -webkit-touch-callout: none;
-        }
-        */
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
 
-        paper-tabs, core-toolbar {
-          background-color: #00bcd4;
-          color: #fff;
-          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        core-toolbar paper-tabs {
-          box-shadow: none;
-        }
-
-        paper-tabs[noink][nobar] paper-tab.core-selected {
-          color: #ffff8d;
-        }
-
-        paper-tabs.transparent-teal {
-          background-color: transparent;
-          color: #00bcd4;
-          box-shadow: none;
-        }
-
-        paper-tabs.transparent-teal::shadow #selectionBar {
-          background-color: #00bcd4;
-        }
-
-        paper-tabs.transparent-teal paper-tab::shadow #ink {
-          color: #00bcd4;
-        }
-
-        /* This is overriding our custom styles, and it shouldn't.
-        h3 {
-          font-size: 16px;
-          font-weight: 400;
-        }
-        */
-    </style>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -181,8 +134,8 @@
    <h1>TakeUntil</h1>
    <h3>discard any items emitted by an Observable after a second Observable emits an item or terminates</h3>
 
-   <figure>
-    <img src="images/takeUntil.c.png" style="width:100%;" alt="TakeUntil" />
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="takeUntil"></rx-marbles>
     <figcaption><p>
      The <span class="operator">TakeUntil</span> subscribes and begins mirroring the source Observable. It also
      monitors a second Observable that you provide. If this second Observable emits an item or sends a
@@ -275,6 +228,18 @@
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.Observable)"><code>takeUntil(Observable)</code></a></li>
       </ul></figcaption>
      </figure>
+     <figure>
+      <img src="images/takeUntil.p.png" style="width:100%;" alt="takeUntil" />
+      <figcaption><p>
+       There is a second form of this operator under development (it did not make it into the 1.0 release) that
+       uses a predicate function that evaluates the items emitted by the source Observable, rather than a second
+       Observable, to terminate the resulting Observable sequence. In this way, it behaves in a similar way to
+       <a href="takewhile.html"><span class="operator">TakeWhile</span></a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.functions.Func1)"><code>takeUntil(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
   
           </div>
         </div>
@@ -305,6 +270,18 @@
       </p>
       <ul>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.Observable)"><code>takeUntil(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeUntil.p.png" style="width:100%;" alt="takeUntil" />
+      <figcaption><p>
+       There is a second form of this operator under development (it did not make it into the 1.0 release) that
+       uses a predicate function that evaluates the items emitted by the source Observable, rather than a second
+       Observable, to terminate the resulting Observable sequence. In this way, it behaves in a similar way to
+       <a href="takewhile.html"><span class="operator">TakeWhile</span></a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.functions.Func1)"><code>takeUntil(Func1)</code></a></li>
       </ul></figcaption>
      </figure>
   

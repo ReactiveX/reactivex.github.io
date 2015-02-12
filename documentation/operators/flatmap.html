@@ -90,9 +90,16 @@ Sequence complete</pre></div>
       Note that if any of the individual Observables mapped to the items from the source Observable
       by <code>flatMap</code> aborts by invoking <code>onError</code>, the Observable produced by
       <code>flatMap</code> will itself immediately abort and invoke <code>onError</code>.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1)"><code>flatMap(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20int)"><code>flatMap(Func1,int)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
@@ -100,19 +107,33 @@ Sequence complete</pre></div>
      <figcaption><p>
       Another version of <code>flatMap</code> creates (and flattens) a new Observable for each item
       <em>and notification</em> from the source Observable.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0)"><code>flatMap(Func1,Func1,Func0)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0,%20int)"><code>flatMap(Func1,Func1,Func0,int)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
      <img src="images/mergeMap.r.png" style="width:100%;" alt="flatMap" />
      <figcaption><p>
       Another version combines items from the source Observable with the Observable triggered by
-      those source items, and emits these combinations:
+      those source items, and emits these combinations.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func2)"><code>flatMap(Func1,Func2)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func2,%20int)"><code>flatMap(Func1,Func2,int)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
@@ -175,9 +196,16 @@ Sequence complete</pre></div>
       Note that if any of the individual Observables mapped to the items from the source Observable
       by <code>flatMap</code> aborts by invoking <code>onError</code>, the Observable produced by
       <code>flatMap</code> will itself immediately abort and invoke <code>onError</code>.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1)"><code>flatMap(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20int)"><code>flatMap(Func1,int)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
@@ -185,19 +213,33 @@ Sequence complete</pre></div>
      <figcaption><p>
       Another version of <code>flatMap</code> creates (and flattens) a new Observable for each item
       <em>and notification</em> from the source Observable.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0)"><code>flatMap(Func1,Func1,Func0)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0,%20int)"><code>flatMap(Func1,Func1,Func0,int)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
      <img src="images/mergeMap.r.png" style="width:100%;" alt="flatMap" />
      <figcaption><p>
       Another version combines items from the source Observable with the Observable triggered by
-      those source items, and emits these combinations:
+      those source items, and emits these combinations.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func2)"><code>flatMap(Func1,Func2)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func2,%20int)"><code>flatMap(Func1,Func2,int)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">

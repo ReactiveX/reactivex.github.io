@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ReactiveX - Observable</title>
 
-    <!-- Polymer -->
-    <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,55 +23,10 @@
     <!-- syntax highlighting CSS -->
     <link rel="stylesheet" href="/css/syntax.css" />
 
-    <style shim-shadowdom>
-        /* This is overriding our styles for body, and it shouldn't.
-        body {
-          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-          color: #333;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          -webkit-tap-highlight-color: rgba(0,0,0,0);
-          -webkit-touch-callout: none;
-        }
-        */
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
 
-        paper-tabs, core-toolbar {
-          background-color: #00bcd4;
-          color: #fff;
-          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        core-toolbar paper-tabs {
-          box-shadow: none;
-        }
-
-        paper-tabs[noink][nobar] paper-tab.core-selected {
-          color: #ffff8d;
-        }
-
-        paper-tabs.transparent-teal {
-          background-color: transparent;
-          color: #00bcd4;
-          box-shadow: none;
-        }
-
-        paper-tabs.transparent-teal::shadow #selectionBar {
-          background-color: #00bcd4;
-        }
-
-        paper-tabs.transparent-teal paper-tab::shadow #ink {
-          color: #00bcd4;
-        }
-
-        /* This is overriding our custom styles, and it shouldn't.
-        h3 {
-          font-size: 16px;
-          font-weight: 400;
-        }
-        */
-    </style>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -176,7 +129,7 @@
 
 <p>
  In ReactiveX an <dfn>observer</dfn> <dfn>subscribes</dfn> to an <dfn>Observable</dfn>. Then that observer
- reacts to whatever item or sequence of items the Observable object <dfn>emits</dfn>. This pattern facilitates
+ reacts to whatever item or sequence of items the Observable <dfn>emits</dfn>. This pattern facilitates
  concurrent operations because it does not need to block while waiting for the Observable to emit objects, but
  instead it creates a sentry in the form of an observer that stands ready to react appropriately at whatever
  future time the Observable does so.
@@ -188,7 +141,7 @@
 
 <figure>
  <figcaption><p>This documentation accompanies its explanations with &ldquo;marble diagrams.&rdquo; Here is how marble diagrams represent Observables and transformations of Observables:</p></figcaption>
- <img src="/assets/operators/legend.png" width="100%" />
+ <img src="/assets/operators/legend.png" style="width:100%;" />
 </figure>
 
 <h4>See Also</h4>
@@ -228,7 +181,7 @@
 <h1>Establishing Observers</h1>
 
 <p>
- This page uses the Groovy language for its code examples, but there are ReactiveX implementations in many
+ This page uses Groovy-like pseudocode for its examples, but there are ReactiveX implementations in many
  languages.
 </p><p>
  In an ordinary method call — that is, <em>not</em> the sort of asynchronous, parallel calls typical in
@@ -251,12 +204,12 @@ returnVal = someMethod(itsParameters);
  In the asynchronous model the flow goes more like this:
 </p><ol>
  <li>Define a method that does something useful with the return value from the asynchronous call; this method is
-     part of the <em>observer</em>.</li>
- <li>Define the asynchronous call itself as an <em>Observable</em>.</li>
- <li>Attach the observer to that Observable by <em>subscribing</em> it (this also initiates the actions of the
+     part of the <i>observer</i>.</li>
+ <li>Define the asynchronous call itself as an <i>Observable</i>.</li>
+ <li>Attach the observer to that Observable by <i>subscribing</i> it (this also initiates the actions of the
      Observable).</li>
  <li>Go on with your business; whenever the call returns, the observer’s method will begin to operate on its
-     return value or values — the <em>items</em> emitted by the Observable.</li>
+     return value or values — the <i>items</i> emitted by the Observable.</li>
 </ol>
 <p>
  Which looks something like this:
@@ -349,7 +302,7 @@ myObservable.subscribe(myOnNext, myError, myComplete);
 
 <p>
  When does an Observable begin emitting its sequence of items? It depends on the Observable. A &ldquo;hot&rdquo;
- Observable may begin emitting items as soon as it is created, and so any observer who subscribes to that
+ Observable may begin emitting items as soon as it is created, and so any observer who later subscribes to that
  Observable may start observing the sequence somewhere in the middle. A &ldquo;cold&rdquo; Observable, on the
  other hand, waits until an observer subscribes to it before it begins to emit items, and so such an observer is
  guaranteed to see the whole sequence from the beginning.
@@ -406,9 +359,10 @@ myObservable.subscribe(myOnNext, myError, myComplete);
       <code>Reduce</code>, and <code>Sum</code></dd>
  <dt><a href="operators.html#conversion">Converting Observables</a></dt>
   <dd><code>To</code></dd>
- <dt><a href="operators.html#connectable">Connectable Observable Operatorss</a></dt>
+ <dt><a href="operators.html#connectable">Connectable Observable Operators</a></dt>
   <dd><code>Connect</code>, <code>Publish</code>, <code>RefCount</code>, and <code>Replay</code></dd>
  <dt><a href="operators/backpressure.html">Backpressure Operators</a></dt>
+  <dd>a variety of operators that enforce particular flow-control policies</dd>
 </dl>
 <p>
  These pages include information about some operators that are not part of the core of ReactiveX but are

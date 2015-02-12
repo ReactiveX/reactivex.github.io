@@ -142,6 +142,17 @@
      so forth, if there are more than two).
     </p></figcaption>
    </figure>
+   <figure>
+    <img src="images/concat.hot.png"  style="width:100%;" alt="Concat" />
+    <figcaption><p>
+     Note that if the source Observables are &ldquo;hot&rdquo; and are therefore sending their emissions and
+     notifications to the <span class="operator">Concat</span> concurrently, an <code>onError</code>
+     notification from <em>any</em> of the source Observables may &ldquo;jump the queue&rdquo; and trigger an
+     <code>onError</code> notification from the Observable that results from the
+     <span class="operator">Concat</span> operation &mdash; even if the source Observable that was the source
+     of the error notification has not yet begun to be concatenated to that resulting Observable.
+    </p></figcaption>
+   </figure>
    <p>
     In some ReactiveX implementations there is also a <span class="operator">ConcatMap</span>
     operator (a.k.a. <code>concat_all</code>, <code>concat_map</code>,

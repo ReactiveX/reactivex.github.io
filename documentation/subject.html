@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ReactiveX - Subject</title>
 
-    <!-- Polymer -->
-    <script src="/polymer/components/platform/platform.js"></script>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,55 +23,10 @@
     <!-- syntax highlighting CSS -->
     <link rel="stylesheet" href="/css/syntax.css" />
 
-    <style shim-shadowdom>
-        /* This is overriding our styles for body, and it shouldn't.
-        body {
-          font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-          color: #333;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          -webkit-tap-highlight-color: rgba(0,0,0,0);
-          -webkit-touch-callout: none;
-        }
-        */
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
 
-        paper-tabs, core-toolbar {
-          background-color: #00bcd4;
-          color: #fff;
-          box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        core-toolbar paper-tabs {
-          box-shadow: none;
-        }
-
-        paper-tabs[noink][nobar] paper-tab.core-selected {
-          color: #ffff8d;
-        }
-
-        paper-tabs.transparent-teal {
-          background-color: transparent;
-          color: #00bcd4;
-          box-shadow: none;
-        }
-
-        paper-tabs.transparent-teal::shadow #selectionBar {
-          background-color: #00bcd4;
-        }
-
-        paper-tabs.transparent-teal paper-tab::shadow #ink {
-          color: #00bcd4;
-        }
-
-        /* This is overriding our custom styles, and it shouldn't.
-        h3 {
-          font-size: 16px;
-          font-weight: 400;
-        }
-        */
-    </style>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -204,7 +157,7 @@
 <h3>AsyncSubject</h3>
 
 <figure>
- <img src="/documentation/operators/images/S.AsyncSubject.png" width="100%" />
+ <img src="/documentation/operators/images/S.AsyncSubject.png" style="width:100%;" />
  <figcaption><p>
   An <code>AsyncSubject</code> emits the last value (and only the last value) emitted by the source Observable,
   and only after that source Observable completes. (If the source Observable does not emit any values, the
@@ -213,7 +166,7 @@
 </figure>
 
 <figure>
- <img src="/documentation/operators/images/S.AsyncSubject.e.png" width="100%" />
+ <img src="/documentation/operators/images/S.AsyncSubject.e.png" style="width:100%;" />
  <figcaption><p>
   It will also emit this same final value to any subsequent observers. However, if the source Observable
   terminates with an error, the <code>AsyncSubject</code> will not emit any items, but will simply pass along
@@ -230,7 +183,7 @@
 <h3>BehaviorSubject</h3>
 
 <figure>
- <img src="/documentation/operators/images/S.BehaviorSubject.png" width="100%" />
+ <img src="/documentation/operators/images/S.BehaviorSubject.png" style="width:100%;" />
  <figcaption><p>
   When an observer subscribes to a <code>BehaviorSubject</code>, it begins by emitting the item most recently
   emitted by the source Observable (or a seed/default value if none has yet been emitted) and then continues to
@@ -239,7 +192,7 @@
 </figure>
 
 <figure>
- <img src="/documentation/operators/images/S.BehaviorSubject.e.png" width="100%" />
+ <img src="/documentation/operators/images/S.BehaviorSubject.e.png" style="width:100%;" />
  <figcaption><p>
   However, if the source Observable terminates with an error, the <code>BehaviorSubject</code> will not emit any
   items to subsequent observers, but will simply pass along the error notification from the source Observable.
@@ -255,12 +208,12 @@
 <h3>PublishSubject</h3>
 
 <figure>
- <img src="/documentation/operators/images/S.PublishSubject.png" width="100%" />
+ <img src="/documentation/operators/images/S.PublishSubject.png" style="width:100%;" />
  <figcaption><p>
   <code>PublishSubject</code> emits to an observer only those items that are emitted by the source Observable(s)
   subsequent to the time of the subscription.
  </p><p>
-  Note that a <codePublishSubject</code> may begin emitting items immediately upon creation (unless you have
+  Note that a <code>PublishSubject</code> may begin emitting items immediately upon creation (unless you have
   taken steps to prevent this), and so there is a risk that one or more items may be lost between the time the
   Subject is created and the observer subscribes to it. If you need to guarantee delivery of all items from the
   source Observable, you&#8217;ll need either to form that Observable with
@@ -271,7 +224,7 @@
 </figure>
 
 <figure>
- <img src="/documentation/operators/images/S.PublishSubject.e.png" width="100%" />
+ <img src="/documentation/operators/images/S.PublishSubject.e.png" style="width:100%;" />
  <figcaption><p>
   If the source Observable terminates with an error, the <code>PublishSubject</code> will not emit any items to
   subsequent observers, but will simply pass along the error notification from the source Observable.
@@ -281,7 +234,7 @@
 <h3>ReplaySubject</h3>
 
 <figure>
- <img src="/documentation/operators/images/S.ReplaySubject.png" width="100%" />
+ <img src="/documentation/operators/images/S.ReplaySubject.png" style="width:100%;" />
  <figcaption><p>
   <code>ReplaySubject</code> emits to any observer all of the items that were emitted by the source
   Observable(s), regardless of when the observer subscribes.

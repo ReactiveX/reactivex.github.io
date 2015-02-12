@@ -22,6 +22,15 @@ id: observeOn
   <span class="operator">ObserveOn</span> operator.
  </p></figcaption>
 </figure>
+<figure>
+ <img src="images/observeOn.e.png" style="width:100%;" alt="ObserveOn" />
+ <figcaption><p>
+  Note that <span class="operator">ObserveOn</span> will forward an <code>onError</code> termination
+  notification immediately if it receives one, and will not wait for a slow-consuming observer to receive any
+  not-yet-emitted items that it is aware of first. This may mean that the <code>onError</code> notification
+  jumps ahead of (and swallows) items emitted by the source Observable, as in the diagram above.
+ </p></figcaption>
+</figure>
  <p>
   The <a href="subscribeon.html"><span class="operator">SubscribeOn</span></a> operator is similar, but it
   instructs the Observable to <em>itself</em> operate on the specified Scheduler, as well as notifying its

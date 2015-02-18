@@ -316,10 +316,7 @@ Sequence complete.</pre></div>
      </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJS merge mergeAll %}
-     <p>
-      RxJS implements this operator as <code>merge</code> (two variants) and <code>mergeAll</code>.
-     </p>
+  {% lang_operator RxJS merge mergeAll mergeDelayError %}
      <figure>
       <img src="images/merge.png" style="width:100%;" alt="merge" />
       <figcaption><p>
@@ -371,6 +368,45 @@ Sequence complete.</pre></div>
        <li><code>rx.js</code></li>
        <li><code>rx.all.js</code></li>
        <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/mergeDelayError.png" style="width:100%;" alt="mergeDelayError" />
+      <figcaption><p>
+       If any of the individual Observables passed into <code>merge</code> or <code>mergeAll</code> terminates
+       with an <code>onError</code> notification, the resulting Observable will immediately terminate with an
+       <code>onError</code> notification. If you would prefer a merge that continues emitting the results of the
+       remaining, error-free Observables before reporting the error, use <code>mergeDelayError</code> instead.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source1 = Rx.Observable.of(1,2,3);
+var source2 = Rx.Observable.throwError(new Error('whoops!'));
+var source3 = Rx.Observable.of(4,5,6);
+
+var merged = Rx.Observable.mergeDelayError(source1, source2, source3);
+
+var subscription = merged.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); }
+  function () { console.log('Completed' } );</pre></div>
+      <div class="output"><pre>
+1
+2
+3
+4
+5
+6
+Error: Error: whoops!</pre></div>
+      <p>
+       <code>mergeDelayError</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
        <li><code>rx.compat.js</code></li>
        <li><code>rx.lite.js</code></li>
        <li><code>rx.lite.compat.js</code></li>

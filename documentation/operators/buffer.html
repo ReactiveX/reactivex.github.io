@@ -217,8 +217,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = bursty.buffer(500, TimeUn
      <figcaption><p>
       Or you could get fancy, and collect items in buffers during the bursty periods and emit them
       at the end of each burst, by using the
-      <a href="throttle.html"><span class="operator">Throttle</span></a> operator
-      (<code>debounce</code> in RxGroovy) to emit a buffer closing indicator to the buffer operator.
+      <a href="debounce.html"><span class="operator">Debounce</span></a> operator
+      to emit a buffer closing indicator to the buffer operator.
      </p>
      <h4>Sample Code</h4>
      <div class="code groovy"><pre>
@@ -377,8 +377,8 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = bursty.buffer(500, TimeUn
      <figcaption><p>
       Or you could get fancy, and collect items in buffers during the bursty periods and emit them
       at the end of each burst, by using the
-      <a href="throttle.html"><span class="operator">Throttle</span></a> operator
-      (<code>debounce</code> in RxJava) to emit a buffer closing indicator to the buffer operator.
+      <a href="debounce.html"><span class="operator">Debounce</span></a> operator
+      to emit a buffer closing indicator to the buffer operator.
      </p>
      <h4>Sample Code</h4>
      <div class="code java"><pre>

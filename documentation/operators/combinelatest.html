@@ -209,7 +209,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>combineLatest</code>
+              RxGroovy <code>combineLatest withLatestFrom</code>
             </a>
           </h4>
         </div>
@@ -229,6 +229,15 @@
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
      </figure>
+     <figure>
+      <img src="images/withLatestFrom.png" style="width:100%;" alt="withLatestFrom" />
+      <figcaption><p>
+       Under development, but not part of the 1.0 release, is the <code>withLatestFrom</code> operator. It is
+       similar to <code>combineLatest</code>, but only emits items when the single source Observable emits an
+       item (not when <em>any</em> of the Observables that are passed to the operator do, as
+       <code>combineLatest</code> does).
+      </p>
+     </figure>
   
           </div>
         </div>
@@ -240,7 +249,7 @@
         <div class="panel-heading" role="tab" id="headingRxJava">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>combineLatest</code>
+              RxJava <code>combineLatest withLatestFrom</code>
             </a>
           </h4>
         </div>
@@ -259,6 +268,15 @@
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List,%20rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
       </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/withLatestFrom.png" style="width:100%;" alt="withLatestFrom" />
+      <figcaption><p>
+       Under development, but not part of the 1.0 release, is the <code>withLatestFrom</code> operator. It is
+       similar to <code>combineLatest</code>, but only emits items when the single source Observable emits an
+       item (not when <em>any</em> of the Observables that are passed to the operator do, as
+       <code>combineLatest</code> does).
+      </p>
      </figure>
   
           </div>

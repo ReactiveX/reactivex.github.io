@@ -282,7 +282,7 @@ var source = Rx.Observable.from(times)
       .of(item.value)
       .delay(item.time);
   })
-  .throttleFirst(500 /* ms */);
+  .throttleFirst(300 /* ms */);
 
 var subscription = source.subscribe(
   function (x) { console.log('Next: %s', x); },

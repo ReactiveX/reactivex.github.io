@@ -347,7 +347,7 @@ Completed</pre></div></figcaption>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.fromArray([1,2,3,4])
-    .elementAt(4, 0);
+    .elementAtOrDefault(4, 0);
 
 var subscription = source.subscribe(
     function (x) { console.log('Next: ' + x); },

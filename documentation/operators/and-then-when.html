@@ -107,10 +107,33 @@ id: and-then-when
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPY %}
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
+  {% lang_operator RxPY and then_do when %}
+      <h4>Sample Code</h4>
+      <div class="code python"><pre>
+from __future__ import print_function
+import rx
+import operator
+
+source1 = rx.Observable.return_value("a")
+source2 = rx.Observable.from_(range(1, 10)).delay(500)
+source3 = rx.Observable.from_(["A", "B"])
+source4 = rx.Observable.from_(["C", "D"])
+
+source = rx.Observable.when(
+    source1.and_(source2).then_do(lambda x, y: operator.add(x, str(y))),
+    source3.and_(source4).then_do(operator.add)
+)
+
+subscription = source.subscribe(
+    lambda x: print(x),
+    lambda err: print(err),
+    lambda: print("Completed")
+)</pre></div>
+      <div class="output"><pre>
+AC
+BD
+a1
+Completed</pre></div>
   {% endlang_operator %}
 
   {% lang_operator Rx.rb %}

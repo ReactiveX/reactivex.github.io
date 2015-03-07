@@ -53,12 +53,14 @@ id: tutorials
 * [Channel 9 MSDN videos on Reactive Extensions](http://channel9.msdn.com/Tags/reactive+extensions)
 * [Rx Workshop: Observables vs. Events](http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Observables-versus-Events)
 * [Rx Workshop: Unified Programming Model](http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Unified-Programming-Model)
+* [Improving the Carnac Codebase and Rx Usage](http://jake.ginnivan.net/blog/carnac-improvements/part-1/) by Jake Ginnivan
 
 ## RxJS
 * An interactive tutorial: [Functional Programming in Javascript](http://jhusain.github.io/learnrx/) and [an accompanying lecture (video)](http://www.youtube.com/watch?v=LB4lhFJBBq0) by Jafar Husain
 * [Netflix JavaScript Talks - Async JavaScript with Reactive Extensions](https://www.youtube.com/watch?v=XRYN2xt11Ek) video of a talk by Jafar Husain about the Rx way of programming
 * [Journey from procedural to reactive Javascript with stops](http://bahmutov.calepin.co/journey-from-procedural-to-reactive-javascript-with-stops.html) by Gleb Bahmutov
 * [RxEmber](https://github.com/blesh/RxEmber) &mdash; an experimental set of helpers for Ember and RxJS
+* [rxvision](http://react.rocks/example/rxvision) &mdash; a visualizer debugger for RxJS reactive streams
 
 ## Android
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall

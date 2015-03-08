@@ -192,9 +192,21 @@ Completed</pre></div></figcaption>
   {% endlang_operator %}
 
   {% lang_operator RxPY average %}
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
+      <h4>Sample Code</h4>
+      <div class="code python"><pre>
+from __future__ import print_function
+import rx
+
+source = rx.Observable.from_([1, 2, 3]).average()
+
+subscription = source.subscribe(
+    lambda x: print(x),
+    lambda err: print(err),
+    lambda: print("Completed")
+)</pre></div>
+      <div class="output"><pre>
+2.0
+Completed</pre></div>
   {% endlang_operator %}
 
   {% lang_operator Rx.rb average %}

@@ -132,9 +132,27 @@ Completed</pre></div></figcaption>
   {% endlang_operator %}
 
   {% lang_operator RxPY amb %}
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
+      <h4>Sample Code</h4>
+      <div class="code python"><pre>
+from __future__ import print_function
+import rx
+
+source1 = rx.Observable.from_([1, 2, 3]).delay(500)
+source2 = rx.Observable.from_([4, 5, 6]).delay(100)
+source3 = rx.Observable.from_([7, 8, 9]).delay(300)
+
+source = source1.amb(source2).amb(source3)
+
+subscription = source.subscribe(
+    lambda x: print(x),
+    lambda err: print(err),
+    lambda: print("Completed")
+)</pre></div>
+      <div class="output"><pre>
+4
+5
+6
+Completed</pre></div>
   {% endlang_operator %}
 
   {% lang_operator Rx.rb amb %}

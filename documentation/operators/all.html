@@ -140,9 +140,20 @@ Completed</pre></div></figcaption>
   {% endlang_operator %}
 
   {% lang_operator RxPY all every %}
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
+      <h4>Sample Code</h4>
+      <div class="code python"><pre>
+from __future__ import print_function
+import rx
+
+source = rx.Observable.from_(range(1, 5)).all(lambda x: x < 5)
+subscription = source.subscribe(
+    lambda x: print(x),
+    lambda err: print(err),
+    lambda: print("Completed")
+)</pre></div>
+      <div class="output"><pre>
+True
+Completed</pre></div>
   {% endlang_operator %}
 
   {% lang_operator Rx.rb all? %}

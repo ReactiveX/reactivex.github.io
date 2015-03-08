@@ -593,10 +593,26 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPY from_array from_callback from_future from_iterable from_list of %}
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
+  {% lang_operator RxPY from_array from_callback from_future from_iterable from_list of as_observable %}
+      <h4>Sample Code</h4>
+      <div class="code python"><pre>
+from __future__ import print_function
+import rx
+import rx.subjects
+
+subject = rx.subjects.AsyncSubject()
+subject.on_next("a")
+subject.on_completed()
+source = subject.as_observable()
+
+subscription = source.subscribe(
+    lambda x: print(x),
+    lambda err: print(err),
+    lambda: print("Completed")
+)</pre></div>
+      <div class="output"><pre>
+a
+Completed</pre></div>
   {% endlang_operator %}
 
   {% lang_operator Rx.rb of_array of_enumerable of_enumerator %}

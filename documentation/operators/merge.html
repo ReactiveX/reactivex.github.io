@@ -218,7 +218,7 @@ Sequence complete</pre></div>
       <img src="images/merge.png" style="width:100%;" alt="merge" />
      <h4>Sample Code</h4>
      <div class="code java"><pre>
-Observable&lt;Integer&gt; odds = Observable.just(1, 3, 5);
+Observable&lt;Integer&gt; odds = Observable.just(1, 3, 5).subscribeOn(someScheduler);
 Observable&lt;Integer&gt; evens = Observable.just(2, 4, 6);
 
 Observable.merge(odds, evens)

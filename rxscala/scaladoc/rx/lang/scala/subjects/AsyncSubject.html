@@ -246,10 +246,12 @@ unsubscribe, that is, to stop receiving items and notifications before the Obser
 sending them, which also invokes the Subscriber's <a href="../Observer.html#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Observer#onCompleted">onCompleted</a> method.</p><p>An <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> instance is responsible for accepting all subscriptions
 and notifying all <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s. Unless the documentation for a particular
 <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> implementation indicates otherwise, <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s should make no
-assumptions about the order in which multiple <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s will receive their notifications.</p></div><dl class="paramcmts block"><dt class="param">subscriber</dt><dd class="cmt"><p>
+assumptions about the order in which multiple <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s will receive their notifications.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">subscriber</dt><dd class="cmt"><p>
         the <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a></p></dd><dt>returns</dt><dd class="cmt"><p>
         a <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> reference whose <code>unsubscribe</code> method can be called to  stop receiving items
-        before the Observable has finished sending them</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+        before the Observable has finished sending them
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="apply(observer:rx.lang.scala.Observer[T]):rx.lang.scala.Subscription"></a>
       <a id="apply(Observer[T]):Subscription"></a>
@@ -273,10 +275,12 @@ unsubscribe, that is, to stop receiving items and notifications before the Obser
 sending them, which also invokes the Observer's <a href="../Observer.html#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Observer#onCompleted">onCompleted</a> method.</p><p>An <code>Observable[T]</code> instance is responsible for accepting all subscriptions
 and notifying all Observers. Unless the documentation for a particular
 <code>Observable[T]</code> implementation indicates otherwise, Observers should make no
-assumptions about the order in which multiple Observers will receive their notifications.</p></div><dl class="paramcmts block"><dt class="param">observer</dt><dd class="cmt"><p>
+assumptions about the order in which multiple Observers will receive their notifications.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">observer</dt><dd class="cmt"><p>
         the observer</p></dd><dt>returns</dt><dd class="cmt"><p>
         a <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> reference whose <code>unsubscribe</code> method can be called to  stop receiving items
-        before the Observable has finished sending them</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+        before the Observable has finished sending them
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -1873,9 +1877,8 @@ the source Observable satisfy a condition.</p><p><img width="640" height="315" s
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element and the terminal events.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element and the terminal events.</p><p>Alias to <code>subscribe(T =&gt; Unit, Throwable =&gt; Unit, () =&gt; Unit)</code>.
-</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>function to execute for each item.</p></dd><dt class="param">onError</dt><dd class="cmt"><p>function to execute when an error is emitted.</p></dd><dt class="param">onComplete</dt><dd class="cmt"><p>function to execute when completion is signalled.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.19
-</p></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if <code>onNext</code> is null, or if <code>onError</code> is null, or if <code>onComplete</code> is null</p></span></dd></dl></div>
+      <p class="shortcomment cmt">Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element and the terminal events.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element and the terminal events.</p><p>Alias to <code>subscribe(T =&gt; Unit, Throwable =&gt; Unit, () =&gt; Unit)</code>.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>function to execute for each item.</p></dd><dt class="param">onError</dt><dd class="cmt"><p>function to execute when an error is emitted.</p></dd><dt class="param">onComplete</dt><dd class="cmt"><p>function to execute when completion is signalled.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.19</p></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if <code>onNext</code> is null, or if <code>onError</code> is null, or if <code>onComplete</code> is null</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#foreach" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="foreach(onNext:T=&gt;Unit,onError:Throwable=&gt;Unit):Unit"></a>
       <a id="foreach((T)⇒Unit,(Throwable)⇒Unit):Unit"></a>
@@ -1892,9 +1895,8 @@ the source Observable satisfy a condition.</p><p><img width="640" height="315" s
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element and error events.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element and error events.</p><p>Alias to <code>subscribe(T =&gt; Unit, Throwable =&gt; Unit)</code>.
-</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>function to execute for each item.</p></dd><dt class="param">onError</dt><dd class="cmt"><p>function to execute when an error is emitted.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.19
-</p></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if <code>onNext</code> is null, or if <code>onError</code> is null</p></span></dd></dl></div>
+      <p class="shortcomment cmt">Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element and error events.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element and error events.</p><p>Alias to <code>subscribe(T =&gt; Unit, Throwable =&gt; Unit)</code>.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>function to execute for each item.</p></dd><dt class="param">onError</dt><dd class="cmt"><p>function to execute when an error is emitted.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.19</p></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if <code>onNext</code> is null, or if <code>onError</code> is null</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#foreach" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="foreach(onNext:T=&gt;Unit):Unit"></a>
       <a id="foreach((T)⇒Unit):Unit"></a>
@@ -1911,9 +1913,8 @@ the source Observable satisfy a condition.</p><p><img width="640" height="315" s
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element.</p><p>Alias to <code>subscribe(T =&gt; Unit)</code>.
-</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>function to execute for each item.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.19
-</p></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if <code>onNext</code> is null</p></span></dd></dl></div>
+      <p class="shortcomment cmt">Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribes to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and receives notifications for each element.</p><p>Alias to <code>subscribe(T =&gt; Unit)</code>.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>function to execute for each item.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Since</dt><dd><p>0.19</p></dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if <code>onNext</code> is null</p></span><span class="cmt">OnErrorNotImplementedException<p>if the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> tries to call <code>onError</code></p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -2575,38 +2576,6 @@ is invoked again to increase the request count.</p><h5>Scheduler:</h5><p>onBackp
     </span>
       <p class="shortcomment cmt">Notifies the Observer that the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">rx.lang.scala.Observable</a> has experienced an error condition.</p><div class="fullcomment"><div class="comment cmt"><p>Notifies the Observer that the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">rx.lang.scala.Observable</a> has experienced an error condition.</p><p>If the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">rx.lang.scala.Observable</a> calls this method, it will not thereafter call <code>onNext</code> or <code>onCompleted</code>.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Subject.html" class="extype" name="rx.lang.scala.Subject">Subject</a> → <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a></dd></dl></div>
-    </li><li name="rx.lang.scala.Observable#onErrorResumeNext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="onErrorResumeNext[U&gt;:T](resumeSequence:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]"></a>
-      <a id="onErrorResumeNext[U&gt;:T](Observable[U]):Observable[U]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">onErrorResumeNext</span><span class="tparams">[<span name="U">U &gt;: <span class="extype" name="rx.lang.scala.subjects.AsyncSubject.T">T</span></span>]</span><span class="params">(<span name="resumeSequence">resumeSequence: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.onErrorResumeNext.U">U</span>]</span>)</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.onErrorResumeNext.U">U</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../index.html#rx.lang.scala.subjects.AsyncSubject@onErrorResumeNext[U&gt;:T](resumeSequence:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Instruct an Observable to pass control to another Observable rather than invoking <a href="../Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a> if it encounters an error.</p><div class="fullcomment"><div class="comment cmt"><p>Instruct an Observable to pass control to another Observable rather than invoking <a href="../Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a> if it encounters an error.</p><p><img width="640" height="310" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/onErrorResumeNext.png" alt="" /></p><p>By default, when an Observable encounters an error that prevents it from emitting the
-expected item to its <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a>, the Observable invokes its Observer's
-<code>onError</code> method, and then quits without invoking any more of its Observer's
-methods. The <code>onErrorResumeNext</code> method changes this behavior. If you pass
-another Observable (<code>resumeSequence</code>) to an Observable's
-<code>onErrorResumeNext</code> method, if the original Observable encounters an error,
-instead of invoking its Observer's <code>onError</code> method, it will instead relinquish
-control to <code>resumeSequence</code> which will invoke the Observer's <a href="../Observer.html#onNext(value:T):Unit" class="extmbr" name="rx.lang.scala.Observer#onNext">onNext</a>
-method if it is able to do so. In such a case, because no
-Observable necessarily invokes <code>onError</code>, the Observer may never know that an
-error happened.</p><p>You can use this to prevent errors from propagating or to supply fallback data should errors
-be encountered.
-</p></div><dl class="paramcmts block"><dt class="param">resumeSequence</dt><dd class="cmt"><p>
-           a function that returns an Observable that will take over if the source Observable
-           encounters an error</p></dd><dt>returns</dt><dd class="cmt"><p>the original Observable, with appropriately modified behavior
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#onErrorResumeNext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="onErrorResumeNext[U&gt;:T](resumeFunction:Throwable=&gt;rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]"></a>
       <a id="onErrorResumeNext[U&gt;:T]((Throwable)⇒Observable[U]):Observable[U]"></a>
@@ -4078,12 +4047,14 @@ Buffers are emitted when the created Observable produces an object.
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Call this method to receive items and notifications from this observable.</p><div class="fullcomment"><div class="comment cmt"><p>Call this method to receive items and notifications from this observable.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>
+      <p class="shortcomment cmt">Call this method to receive items and notifications from this observable.</p><div class="fullcomment"><div class="comment cmt"><p>Call this method to receive items and notifications from this observable.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>
         this function will be called whenever the Observable emits an item</p></dd><dt class="param">onError</dt><dd class="cmt"><p>
         this function will be called if an error occurs</p></dd><dt class="param">onCompleted</dt><dd class="cmt"><p>
         this function will be called when this Observable has finished emitting items</p></dd><dt>returns</dt><dd class="cmt"><p>
         a <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> reference whose <code>unsubscribe</code> method can be called to  stop receiving items
-        before the Observable has finished sending them</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+        before the Observable has finished sending them
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#subscribe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="subscribe(onNext:T=&gt;Unit,onError:Throwable=&gt;Unit):rx.lang.scala.Subscription"></a>
       <a id="subscribe((T)⇒Unit,(Throwable)⇒Unit):Subscription"></a>
@@ -4100,11 +4071,13 @@ Buffers are emitted when the created Observable produces an object.
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Call this method to receive items and notifications from this observable.</p><div class="fullcomment"><div class="comment cmt"><p>Call this method to receive items and notifications from this observable.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>
+      <p class="shortcomment cmt">Call this method to receive items and notifications from this observable.</p><div class="fullcomment"><div class="comment cmt"><p>Call this method to receive items and notifications from this observable.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>
         this function will be called whenever the Observable emits an item</p></dd><dt class="param">onError</dt><dd class="cmt"><p>
         this function will be called if an error occurs</p></dd><dt>returns</dt><dd class="cmt"><p>
         a <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> reference whose <code>unsubscribe</code> method can be called to  stop receiving items
-        before the Observable has finished sending them</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+        before the Observable has finished sending them
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#subscribe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="subscribe(onNext:T=&gt;Unit):rx.lang.scala.Subscription"></a>
       <a id="subscribe((T)⇒Unit):Subscription"></a>
@@ -4121,10 +4094,12 @@ Buffers are emitted when the created Observable produces an object.
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Call this method to receive items from this observable.</p><div class="fullcomment"><div class="comment cmt"><p>Call this method to receive items from this observable.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>
+      <p class="shortcomment cmt">Call this method to receive items from this observable.</p><div class="fullcomment"><div class="comment cmt"><p>Call this method to receive items from this observable.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>
         this function will be called whenever the Observable emits an item</p></dd><dt>returns</dt><dd class="cmt"><p>
         a <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> reference whose <code>unsubscribe</code> method can be called to  stop receiving items
-        before the Observable has finished sending them</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+        before the Observable has finished sending them
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt">OnErrorNotImplementedException<p>if the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> tries to call <code>onError</code></p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#subscribe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="subscribe(subscriber:rx.lang.scala.Subscriber[T]):rx.lang.scala.Subscription"></a>
       <a id="subscribe(Subscriber[T]):Subscription"></a>
@@ -4146,10 +4121,12 @@ unsubscribe, that is, to stop receiving items and notifications before the Obser
 sending them, which also invokes the Subscriber's <a href="../Observer.html#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Observer#onCompleted">onCompleted</a> method.</p><p>An <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> instance is responsible for accepting all subscriptions
 and notifying all <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s. Unless the documentation for a particular
 <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> implementation indicates otherwise, <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s should make no
-assumptions about the order in which multiple <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s will receive their notifications.</p></div><dl class="paramcmts block"><dt class="param">subscriber</dt><dd class="cmt"><p>
+assumptions about the order in which multiple <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s will receive their notifications.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">subscriber</dt><dd class="cmt"><p>
         the <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a></p></dd><dt>returns</dt><dd class="cmt"><p>
         a <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> reference whose <code>unsubscribe</code> method can be called to  stop receiving items
-        before the Observable has finished sending them</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+        before the Observable has finished sending them
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#subscribe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="subscribe(observer:rx.lang.scala.Observer[T]):rx.lang.scala.Subscription"></a>
       <a id="subscribe(Observer[T]):Subscription"></a>
@@ -4173,10 +4150,12 @@ unsubscribe, that is, to stop receiving items and notifications before the Obser
 sending them, which also invokes the Observer's <a href="../Observer.html#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Observer#onCompleted">onCompleted</a> method.</p><p>An <code>Observable[T]</code> instance is responsible for accepting all subscriptions
 and notifying all Observers. Unless the documentation for a particular
 <code>Observable[T]</code> implementation indicates otherwise, Observers should make no
-assumptions about the order in which multiple Observers will receive their notifications.</p></div><dl class="paramcmts block"><dt class="param">observer</dt><dd class="cmt"><p>
+assumptions about the order in which multiple Observers will receive their notifications.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">observer</dt><dd class="cmt"><p>
         the observer</p></dd><dt>returns</dt><dd class="cmt"><p>
         a <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> reference whose <code>unsubscribe</code> method can be called to  stop receiving items
-        before the Observable has finished sending them</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+        before the Observable has finished sending them
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#subscribe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="subscribe():rx.lang.scala.Subscription"></a>
       <a id="subscribe():Subscription"></a>
@@ -4193,16 +4172,11 @@ assumptions about the order in which multiple Observers will receive their notif
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Call this method to subscribe an <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a> for receiving
-items and notifications from the Observable.</p><div class="fullcomment"><div class="comment cmt"><p>Call this method to subscribe an <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a> for receiving
-items and notifications from the Observable.</p><p>A typical implementation of <code>subscribe</code> does the following:</p><p>It stores a reference to the Observer in a collection object, such as a <code>List[T]</code> object.</p><p>It returns a reference to the <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> interface. This enables Observers to
-unsubscribe, that is, to stop receiving items and notifications before the Observable stops
-sending them, which also invokes the Observer's <a href="../Observer.html#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Observer#onCompleted">onCompleted</a> method.</p><p>An <code>Observable[T]</code> instance is responsible for accepting all subscriptions
-and notifying all Observers. Unless the documentation for a particular
-<code>Observable[T]</code> implementation indicates otherwise, Observers should make no
-assumptions about the order in which multiple Observers will receive their notifications.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
+      <p class="shortcomment cmt">Subscribes to an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> but ignore its emissions and notifications.</p><div class="fullcomment"><div class="comment cmt"><p>Subscribes to an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> but ignore its emissions and notifications.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
         a <a href="../Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> reference whose <code>unsubscribe</code> method can be called to  stop receiving items
-        before the Observable has finished sending them</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd></dl></div>
+        before the Observable has finished sending them
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt">OnErrorNotImplementedException<p>if the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> tries to call <code>onError</code></p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/subscribe.html">ReactiveX operators documentation: Subscribe</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#subscribeOn" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="subscribeOn(scheduler:rx.lang.scala.Scheduler):rx.lang.scala.Observable[T]"></a>
       <a id="subscribeOn(Scheduler):Observable[T]"></a>

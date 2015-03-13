@@ -253,7 +253,7 @@ Sequence complete</pre></div>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJS from fromCallback fromEvent fromEventPattern fromNodeCallback fromPromise of ofWithScheduler %}
+  {% lang_operator RxJS from fromCallback fromEvent fromEventPattern fromNodeCallback fromPromise of ofArrayChanges ofObjectChanges ofWithScheduler pairs %}
     <p>
      There are several, specialized <span class="operator">From</span> variants in RxJS:
     </p>
@@ -527,6 +527,7 @@ var subscription = source.subscribe(
 input.trigger('click');</pre></div>
      <div class="output"><pre>
 Next: Clicked!</pre></div>
+    </figcaption></figure>
     <figure class="variant">
      <img src="images/of.png" style="width:100%;" alt="of" />
      <figcaption><p>
@@ -577,8 +578,105 @@ Completed</pre></div>
      <li><code>rx.lite.js</code></li>
      <li><code>rx.lite.compat.js</code></li>
     </ul>
-     </figcaption>
-    </figure>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var promise = new RSVP.Promise(function (resolve, reject) {
+   resolve(42);
+});
+
+var source = Rx.Observable.fromPromise(promise);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (e) { console.log('Error: ' + e); },
+    function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42:
+Completed</pre></div>
+    <div class="code javascript"><pre>
+var promise = new RSVP.Promise(function (resolve, reject) {
+   reject(new Error('reason'));
+});
+
+var source = Rx.Observable.fromPromise(promise);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (e) { console.log('Error: ' + e); },
+    function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Error: Error: reject</pre></div>
+    <p>
+     There is also an <code>ofArrayChanges</code> operator that monitors an Array with the
+     <code>Array.observe</code> method, and returns an Observable that emits any changes that take place in
+     the array. This operator is found only in the <code>rx.all.js</code> distribution.
+    </p>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var arr = [1,2,3];
+var source = Rx.Observable.ofArrayChanges(arr);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (e) { console.log('Error: ' + e); },
+    function ( ) { console.log('Completed'); });
+
+arr.push(4)</pre></div>
+     <div class="output"><pre>
+Next: {type: "splice", object: Array[4], index: 3, removed: Array[0], addedCount: 1}</pre></div>
+    <p>
+     A similar operator is <code>ofObjectChanges</code>. It returns an Observable that emits any changes made
+     to a particular object, as reported by its <code>Object.observe</code> method. It is also found only in
+     the <code>rx.all.js</code> distribution.
+    </p>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var obj = {x: 1};
+var source = Rx.Observable.ofObjectChanges(obj);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (e) { console.log('Error: ' + e); },
+    function ( ) { console.log('Completed'); });
+
+obj.x = 42;</pre></div>
+     <div class="output"><pre>
+Next: {type: "update", object: Object, name: "x", oldValue: 1}</pre></div>
+    <p>
+     There is also a <code>pairs</code> operator. This operator accepts an Object, and returns an Observable
+     that emits, as key/value pairs, the attributes of that object.
+    </p>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var obj = {
+  foo: 42,
+  bar: 56,
+  baz: 78
+};
+
+var source = Rx.Observable.pairs(obj);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (e) { console.log('Error: ' + e); },
+    function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: ['foo', 42]
+Next: ['bar', 56]
+Next: ['baz', 78]
+Completed</pre></div>
+    <p>
+     <code>pairs</code> is found in the following distributions:
+    </p>
+    <ul>
+     <li><code>rx.js</code></li>
+     <li><code>rx.all.js</code></li>
+     <li><code>rx.all.compat.js</code></li>
+     <li><code>rx.compat.js</code></li>
+     <li><code>rx.lite.js</code></li>
+     <li><code>rx.lite.compat.js</code></li>
+    </ul>
+
   {% endlang_operator %}
 
   {% lang_operator RxKotlin asObservable from %}

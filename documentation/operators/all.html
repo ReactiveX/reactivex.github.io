@@ -272,7 +272,7 @@ true</pre></div>
         <div class="panel-heading" role="tab" id="headingRxJS">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code>every</code>
+              RxJS <code>every jortSort jortSortUntil</code>
             </a>
           </h4>
         </div>
@@ -298,18 +298,103 @@ var subscription = source.subscribe(
   function () { console.log('Completed'); });</pre></div>
       <div class="output"><pre>
 Next: true
-Completed</pre></div></figcaption>
+Completed</pre></div>
+      <p>
+       <code>every</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.aggregates.js</code></li>
+      </ul>
+      <p>
+       It requires one of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
      </figure>
      <p>
-      <code>every</code> is found in the following distributions:
+      There is also a <code>jortSort</code> operator that performs a test on the entire sequence of items
+      emitted by the source Observable. If those items are emitted in sorted order, upon the successful
+      completion of the source Observable, the Observable returned from <code>jortSort</code> will emit
+      <code>true</code> and then complete. If any of the items emitted by the source Observable is out of sort
+      order, upon the successful completion of the source Observable, the Observable returned from
+      <code>jortSort</code> will emit <code>false</code> and then complete.
+     </p><p>
+      There is also a <code>jortSortUntil</code> operator. It does not wait until the source Observable
+      completes to evaluate its sequence for sortedness, as <code>jortSort</code> does, but waits until a
+      second Observable emits an item to do so.
+     </p>
+     <h4>See also</h4>
+     <ul>
+      <li><a href="http://jort.technology">jort.technology</a></li>
+     </ul>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.of(1,2,3,4) // already sorted
+               .jortSort();
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (e) { console.log('Error: %s', e); },
+  function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: true
+Completed</pre></div>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.of(3,1,2,4) // not sorted
+               .jortSort();
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (e) { console.log('Error: %s', e); },
+  function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: false
+Completed</pre></div>
+     <div class="code javascript"><pre>
+var just = Rx.helpers.just;
+
+var source = Rx.Observable.of(1,2,3,4) // already sorted
+               .flatmap(function (x) {
+                 return Rx.Observable.timer(1000).map(just(x));
+               }).jortSortUntil(Rx.Observable.timer(3000);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (e) { console.log('Error: %s', e); },
+  function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: true
+Completed</pre></div>
+     <div class="code javascript"><pre>
+var just = Rx.helpers.just;
+
+var source = Rx.Observable.of(3,1,2,4) // not sorted
+               .flatmap(function (x) {
+                 return Rx.Observable.timer(1000).map(just(x));
+               }).jortSortUntil(Rx.Observable.timer(3000);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (e) { console.log('Error: %s', e); },
+  function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: false
+Completed</pre></div>
+     <p>
+      <code>jortSort</code> and <code>jortSortUntil</code> are found in the following distribution:
      </p>
      <ul>
-      <li><code>rx.all.js</code></li>
-      <li><code>rx.all.compat.js</code></li>
-      <li><code>rx.aggregates.js</code></li>
+      <li><code>rx.sorting.js</code></li>
      </ul>
      <p>
-      It requires one of the following distributions:
+      They require one of the following distributions:
      </p>
      <ul>
       <li><code>rx.js</code></li>

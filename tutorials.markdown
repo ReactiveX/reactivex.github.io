@@ -72,6 +72,7 @@ id: tutorials
 * [RxBinding](https://android-arsenal.com/details/1/1259) &mdash; easy one-way binding support for Android, based on RxJava
 * [G-Rex](https://github.com/Naturally-Being/G-Rex) &mdash; a tiny library that assists in saving and restoring objects to and from disk using RxJava on Android
 * [Replace AsyncTask and AsyncTaskLoader with rx.Observable](http://stablekernel.com/blog/replace-asynctask-asynctaskloader-rx-observable-rxjava-android-patterns/) by Ross Hambrick
+* [How to Keep Your RxJava Subscribers from Leaking](http://philosophicalhacker.com/2015/03/24/how-to-keep-your-rxjava-subscribers-from-leaking/) by Matt Dupree
 
 ## RxNetty
 * [Accessing Meetup&#8217;s streaming API with RxNetty](http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html) by Tomasz Nurkiewicz

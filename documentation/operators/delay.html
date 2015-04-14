@@ -403,7 +403,7 @@
         <div class="panel-heading" role="tab" id="headingRxJS">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code>delay delayWithSelector</code>
+              RxJS <code>delay delaySubscription delayWithSelector</code>
             </a>
           </h4>
         </div>
@@ -448,6 +448,33 @@ Next: 0
 Next: 1
 Next: 2
 Completed</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.png" style="width:100%;" alt="delaySubscription" />
+      <figcaption><p>
+       <code>delaySubscription</code> is similar to <code>delay</code> but rather than timeshifting the
+       emissions from the source Observable, it timeshifts the moment of subscription to that Observable.
+       You pass to this operator a time value (either a <code>Number</code>, in which case this sets the number
+       of milliseconds of delay, or a <code>Date</code>, in which case this sets an absolute future time at
+       which <code>delaySubscription</code> will trigger the subscription). You may optionally pass a
+       <a href="../scheduler.html">Scheduler</a> as a second parameter, which <code>delaySubscription</code>
+       will use to govern the delay period or trigger time.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var start = Date.now();
+var source = Rx.Observable.range(0, 3).delaySubscription(5000);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: %s, %s', x, Date.now() - start); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0, 5001
+Next: 1, 5002
+Next: 2, 5003
+Completed</pre></div>
+      </figcaption>
      </figure>
      <figure>
       <img src="images/delayWithSelector.png" style="width:100%;" alt="delayWithSelector" />
@@ -509,8 +536,9 @@ Next: 2:400
 Completed</pre></div></figcaption>
      </figure>
      <p>
-      <code>delay</code> and <code>delayWithSelector</code> require <code>rx.lite.js</code> or
-      <code>rx.lite.compat.js</code> and are found in each of the following distributions:
+      <code>delay</code>, <code>delaySubscription</code>, and <code>delayWithSelector</code> require
+      <code>rx.lite.js</code> or <code>rx.lite.compat.js</code> and are found in each of the following
+      distributions:
      </p>
      <ul>
       <li><code>rx.all.js</code></li>
@@ -549,7 +577,7 @@ Completed</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxNET">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
-              RxNET <code>Delay</code>
+              RxNET <code>Delay DelaySubscription</code>
             </a>
           </h4>
         </div>

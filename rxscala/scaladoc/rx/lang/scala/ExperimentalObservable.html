@@ -523,6 +523,28 @@ a given amount of items until they can be emitted. The resulting <a href="Observ
 items, and unsubscribe from the source.</p><p><img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt=""></p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
 </p></div><dl class="paramcmts block"><dt class="param">capacity</dt><dd class="cmt"><p>capacity of the internal buffer.</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will buffer items up to the given capacity</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
 </p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureDropDo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onBackpressureDropDo(onDrop:T=&gt;Unit):rx.lang.scala.Observable[T]"></a>
+      <a id="onBackpressureDropDo((T)⇒Unit):Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onBackpressureDropDo</span><span class="params">(<span name="onDrop">onDrop: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureDropDo(onDrop:T=&gt;Unit):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its observer can consume them to discard,
+rather than emit, those items that its observer is not prepared to observe.</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its observer can consume them to discard,
+rather than emit, those items that its observer is not prepared to observe.</p><p><img width="640" height="245" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.drop.png" alt=""></p><p>If the downstream request count hits <code>0</code> then the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will refrain from calling <code>onNext</code> until
+the observer invokes <code>request(n)</code> again to increase the request count.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">onDrop</dt><dd class="cmt"><p>the action to invoke for each item dropped. <code>onDrop</code> action should be fast and should never block.</p></dd><dt>returns</dt><dd class="cmt"><p>an new <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will drop <code>onNext</code> notifications on overflow</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
+</p></span></dd></dl></div>
     </li><li name="rx.lang.scala.ExperimentalObservable#switchIfEmpty" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="switchIfEmpty[U&gt;:T](alternate:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]"></a>
       <a id="switchIfEmpty[U&gt;:T](Observable[U]):Observable[U]"></a>

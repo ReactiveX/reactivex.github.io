@@ -678,7 +678,7 @@ operators.
 * [**`Sample`**]({{ site.url }}/documentation/operators/sample.html)
 * [**`Scan`**]({{ site.url }}/documentation/operators/scan.html)
 * [`scope`]({{ site.url }}/documentation/operators/using.html)
-* [`Select`]({{ site.url }}/documentation/operators/map.html) (alternate name of of **`Map`**)
+* [`Select`]({{ site.url }}/documentation/operators/map.html) (alternate name of **`Map`**)
 * [`select`]({{ site.url }}/documentation/operators/filter.html) (alternate name of **`Filter`**)
 * [`selectConcat`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`selectConcatObserver`]({{ site.url }}/documentation/operators/flatmap.html)

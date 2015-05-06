@@ -15,6 +15,7 @@ id: tutorials
 * [Be Reactive](http://colintheshots.com/blog/?p=85) by ColinTheShots
 * [Collection Pipeline](http://martinfowler.com/articles/collection-pipeline/) by Martin Fowler
 * [Rx for .NET and RxJava for Android](http://futurice.com/blog/tech-pick-of-the-week-rx-for-net-and-rxjava-for-android) by Olli Salonen
+* [NotRxJava guide for lazy folks](http://yarikx.github.io/NotRxJava/) by Yaroslav Heriatovych &mdash; how to reorganize messy Async code to be reactive
 
 ## Tutorials
 * [Learn RxJS](http://reactive-extensions.github.io/learnrx/) by Jafar Husain

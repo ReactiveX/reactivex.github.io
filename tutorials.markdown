@@ -16,6 +16,7 @@ id: tutorials
 * [Collection Pipeline](http://martinfowler.com/articles/collection-pipeline/) by Martin Fowler
 * [Rx for .NET and RxJava for Android](http://futurice.com/blog/tech-pick-of-the-week-rx-for-net-and-rxjava-for-android) by Olli Salonen
 * [NotRxJava guide for lazy folks](http://yarikx.github.io/NotRxJava/) by Yaroslav Heriatovych &mdash; how to reorganize messy Async code to be reactive
+* [Learn You Some Rx for the Greater Good](http://www.schibsted.pl/2015/05/learn-you-some-rx-for-the-greater-good) a video introduction by Artur Glier
 
 ## Tutorials
 * [Learn RxJS](http://reactive-extensions.github.io/learnrx/) by Jafar Husain
@@ -44,6 +45,7 @@ id: tutorials
 * [Implementing an Event Bus with RxJava](http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/) by Kaushik Gopal
 * [Turning Twitter4J into RxJava&#8217;s Observable](http://www.nurkiewicz.com/2014/01/turning-twitter4j-into-rxjavas.html) by Tomasz Nurkiewicz
 * [Converting between Completablefuture and Observable](http://www.nurkiewicz.com/2014/11/converting-between-completablefuture.html) by Tomasz Nurkiewicz
+* [Advanced RxJava](http://akarnokd.blogspot.hu/) a blog from D&aacute;vid Karnok
 
 ## RxScala
 * [RxJava: Reactive Extensions in Scala](http://www.youtube.com/watch?v=tOMK_FYJREw&feature=youtu.be): video of Ben Christensen and Matt Jacobs presenting at SF Scala

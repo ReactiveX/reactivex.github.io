@@ -74,17 +74,17 @@ id: backpressure
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy onBackpressureBlock onBackpressureBuffer onBackpressureDrop %}
+  {% lang_operator RxGroovy onBackpressureBlock onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
     <p>
      RxGroovy implements reactive pull backpressure, and many of its operators support that form of
-     backpressure. It also has three operators that you can apply to Observables that have not been
+     backpressure. It also has four operators that you can apply to Observables that have not been
      written to support backpressure:
     <figure class="variant">
      <img src="images/bp.obp.block.png" style="width:100%;" alt="onBackpressureBlock" />
      <figcaption><p>
-      <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0) blocks the thread
-      on which the source Observable is operating until such time as an observer issues a request
-      for items, and then unblocks the thread only so long as there are pending requests.
+      <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0.0) blocks the
+      thread on which the source Observable is operating until such time as an observer issues a
+      request for items, and then unblocks the thread only so long as there are pending requests.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBlock()"><code>onBackpressureBlock()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBlock(int)"><code>onBackpressureBlock(int)</code></a></li>
@@ -97,7 +97,7 @@ id: backpressure
       source Observable and emits them to downstream observers according to the requests they
       generate.
      </p><p>
-      An experimental version of this operator (not available in RxJava 1.0) allows you to set the
+      An experimental version of this operator (not available in RxJava 1.0.0) allows you to set the
       capacity of the buffer; applying this operator will cause the resulting Observable to
       terminate with an error if this buffer is overrun.
      </p><ul>
@@ -114,19 +114,30 @@ id: backpressure
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop()"><code>onBackpressureDrop()</code></a></li>
      </ul></figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/bp.obp.latest.png" style="width:100%;" alt="onBackpressureLatest" />
+     <figcaption><p>
+      <code>onBackpressureLatest</code> (experimental; not available in RxJava 1.0.0) holds on to
+      the most-recently emitted item from the source Observable and immediately emits that item to
+      its observer upon request. It drops any other items that it observes between requests from its
+      observer.
+     </p><ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureLatest()"><code>onBackpressureLatest()</code></a></li>
+     </ul></figcaption>
+    </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava onBackpressureBlock onBackpressureBuffer onBackpressureDrop %}
+  {% lang_operator RxJava onBackpressureBlock onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
     <p>
      RxJava implements reactive pull backpressure, and many of its operators support that form of
-     backpressure. It also has three operators that you can apply to Observables that have not been
+     backpressure. It also has four operators that you can apply to Observables that have not been
      written to support backpressure:
     <figure class="variant">
      <img src="images/bp.obp.block.png" style="width:100%;" alt="onBackpressureBlock" />
      <figcaption><p>
-      <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0) blocks the thread
-      on which the source Observable is operating until such time as an observer issues a request
-      for items, and then unblocks the thread only so long as there are pending requests.
+      <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0.0) blocks the
+      thread on which the source Observable is operating until such time as an observer issues a
+      request for items, and then unblocks the thread only so long as there are pending requests.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBlock()"><code>onBackpressureBlock()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBlock(int)"><code>onBackpressureBlock(int)</code></a></li>
@@ -139,9 +150,9 @@ id: backpressure
       source Observable and emits them to downstream observers according to the requests they
       generate.
      </p><p>
-      An experimental version of this operator (not available in RxJava 1.0) allows you to set the
+      An experimental version of this operator (not available in RxJava 1.0.0) allows you to set the
       capacity of the buffer; applying this operator will cause the resulting Observable to
-      http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop()terminate with an error if this buffer is overrun.
+      terminate with an error if this buffer is overrun.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer()"><code>onBackpressureBuffer()</code></a></li>
      </ul></figcaption>
@@ -154,6 +165,17 @@ id: backpressure
       the request.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop()"><code>onBackpressureDrop()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/bp.obp.latest.png" style="width:100%;" alt="onBackpressureLatest" />
+     <figcaption><p>
+      <code>onBackpressureLatest</code> (experimental; not available in RxJava 1.0.0) holds on to
+      the most-recently emitted item from the source Observable and immediately emits that item to
+      its observer upon request. It drops any other items that it observes between requests from its
+      observer.
+     </p><ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureLatest()"><code>onBackpressureLatest()</code></a></li>
      </ul></figcaption>
     </figure>
   {% endlang_operator %}

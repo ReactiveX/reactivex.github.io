@@ -22,6 +22,9 @@ resembles the language-specific operator (so, for instance, the Rx.NET &ldquo;Se
 to the documentation of the <span class="operator">FlatMap</span> ReactiveX operator, of which
 &ldquo;SelectMany&rdquo; is the Rx.NET implementation).
 
+If you want to implement your own operator, see <a href="implement-operator.html">Implementing Your
+Own Operators</a>.
+
 <h4>Contents</h4> 
 <ol>
  <li><a href="#categorized">Operators By Category</a></li>

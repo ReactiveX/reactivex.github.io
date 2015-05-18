@@ -75,3 +75,7 @@ public class myOperator<T> implements Operator<T> {
   * [`reduce(a)`](Mathematical-and-Aggregate-Operators#wiki-reduce) is defined as [`scan(a)`](Transforming-Observables#wiki-scan)`.`[`last( )`](Filtering-Observables#wiki-last)
 * If your operator uses functions or lambdas that are passed in as parameters (predicates, for instance), note that these may be sources of exceptions, and be prepared to catch these and notify subscribers via `onError( )` calls.
 * In general, notify subscribers of error conditions immediately, rather than making an effort to emit more items first.
+* In some ReactiveX implementations, your operator may need to be sensitive to that implementation&#8217;s &ldquo;backpressure&rdquo; strategies. (See, for example: <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">Pitfalls of Operator Implementations (part 2)</a> by D&aacute;vid Karnok.)
+
+# See Also
+* <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations.html">Pitfalls of Operator Implementations (part 1)</a> and <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">(part 2)</a> by D&aacute;vid Karnok.

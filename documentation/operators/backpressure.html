@@ -74,22 +74,11 @@ id: backpressure
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy onBackpressureBlock onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
+  {% lang_operator RxGroovy onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
     <p>
      RxGroovy implements reactive pull backpressure, and many of its operators support that form of
-     backpressure. It also has four operators that you can apply to Observables that have not been
+     backpressure. It also has three operators that you can apply to Observables that have not been
      written to support backpressure:
-    <figure class="variant">
-     <img src="images/bp.obp.block.png" style="width:100%;" alt="onBackpressureBlock" />
-     <figcaption><p>
-      <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0.0) blocks the
-      thread on which the source Observable is operating until such time as an observer issues a
-      request for items, and then unblocks the thread only so long as there are pending requests.
-     </p><ul>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBlock()"><code>onBackpressureBlock()</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBlock(int)"><code>onBackpressureBlock(int)</code></a></li>
-     </ul></figcaption>
-    </figure>
     <figure class="variant">
      <img src="images/bp.obp.buffer.png" style="width:100%;" alt="onBackpressureBuffer" />
      <figcaption><p>
@@ -127,22 +116,11 @@ id: backpressure
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava onBackpressureBlock onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
+  {% lang_operator RxJava onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
     <p>
      RxJava implements reactive pull backpressure, and many of its operators support that form of
-     backpressure. It also has four operators that you can apply to Observables that have not been
+     backpressure. It also has three operators that you can apply to Observables that have not been
      written to support backpressure:
-    <figure class="variant">
-     <img src="images/bp.obp.block.png" style="width:100%;" alt="onBackpressureBlock" />
-     <figcaption><p>
-      <code>onBackpressureBlock</code> (experimental; not available in RxJava 1.0.0) blocks the
-      thread on which the source Observable is operating until such time as an observer issues a
-      request for items, and then unblocks the thread only so long as there are pending requests.
-     </p><ul>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBlock()"><code>onBackpressureBlock()</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBlock(int)"><code>onBackpressureBlock(int)</code></a></li>
-     </ul></figcaption>
-    </figure>
     <figure class="variant">
      <img src="images/bp.obp.buffer.png" style="width:100%;" alt="onBackpressureBuffer" />
      <figcaption><p>

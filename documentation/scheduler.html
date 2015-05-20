@@ -210,21 +210,22 @@
             
     <h2>Varieties of Scheduler</h2>
     <p>
-     You obtain a Scheduler from the factory methods described in the <code>Schedulers</code> class. The
-     following table shows the varieties of Scheduler that are available to you by means of these methods in
-     RxGroovy:
+     You obtain a Scheduler from the factory methods described in
+     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html">the
+     <code>Schedulers</code> class</a>. The following table shows the varieties of Scheduler that
+     are available to you by means of these methods in RxGroovy:
     </p>
     <table class="table">
      <thead>
       <tr><th>Scheduler</th><th>purpose</th></tr>
      </thead>
      <tbody>
-      <tr><td><code>Schedulers.computation(&#8239;)</code></td><td>meant for computational work such as event-loops and callback processing; do not use this scheduler for I/O (use <code>Schedulers.io(&#8239;)</code> instead)</td></tr>
-      <tr><td><code>Schedulers.from(executor)</code></td><td>uses the specified <code>Executor</code> as a Scheduler</td></tr>
-      <tr><td><code>Schedulers.immediate(&#8239;)</code></td><td>schedules work to begin immediately in the current thread</td></tr>
-      <tr><td><code>Schedulers.io(&#8239;)</code></td><td>meant for I/O-bound work such as asynchronous performance of blocking I/O, this scheduler is backed by a thread-pool that will grow as needed; for ordinary computational work, switch to <code>Schedulers.computation(&#8239;)</code></td></tr>
-      <tr><td><code>Schedulers.newThread(&#8239;)</code></td><td>creates a new thread for each unit of work</td></tr>
-      <tr><td><code>Schedulers.trampoline(&#8239;)</code></td><td>queues work to begin on the current thread after any already-queued work</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#computation()"><code>Schedulers.computation(&#8239;)</code></a></td><td>meant for computational work such as event-loops and callback processing; do not use this scheduler for I/O (use <code>Schedulers.io(&#8239;)</code> instead); the number of threads, by default, is equal to the number of processors</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#from(java.util.concurrent.Executor)"><code>Schedulers.from(executor)</code></a></td><td>uses the specified <code>Executor</code> as a Scheduler</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#immediate()"><code>Schedulers.immediate(&#8239;)</code></a></td><td>schedules work to begin immediately in the current thread</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#io()"><code>Schedulers.io(&#8239;)</code></a></td><td>meant for I/O-bound work such as asynchronous performance of blocking I/O, this scheduler is backed by a thread-pool that will grow as needed; for ordinary computational work, switch to <code>Schedulers.computation(&#8239;)</code></td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#newThread()"><code>Schedulers.newThread(&#8239;)</code></a></td><td>creates a new thread for each unit of work</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td><td>queues work to begin on the current thread after any already-queued work</td></tr>
      </tbody>
     </table>
     <h2>Default Schedulers for RxGroovy Observable Operators</h2>
@@ -279,21 +280,19 @@
     </table>
     <h2>Test Scheduler</h2>
     <p>
-     The <code>TestScheduler</code> allows you to exercise fine-tuned manual control over how the Scheduler’s
-     clock behaves. This can be useful for testing interactions that depend on precise arrangements of actions
-     in time. This Scheduler has four additional methods:
+     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html">The
+     <code>TestScheduler</code></a> allows you to exercise fine-tuned manual control over how the
+     Scheduler’s clock behaves. This can be useful for testing interactions that depend on precise
+     arrangements of actions in time. This Scheduler has three additional methods:
     </p>
     <dl>
-     <dt><code>advanceTimeTo(time,unit)</code></dt>
+     <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeTo(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeTo(time,unit)</code></a></dt>
       <dd>advances the Scheduler’s clock to a particular point in time</dd>
-     <dt><code>advanceTimeBy(time,unit)</code></dt>
+     <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeBy(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeBy(time,unit)</code></a></dt>
       <dd>advances the Scheduler’s clock forward by a particular amount of time</dd>
-     <dt><code>triggerActions( )</code></dt>
+     <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#triggerActions()"><code>triggerActions( )</code></a></dt>
       <dd>start any unstarted actions that have been scheduled for a time equal to or earlier than the present
           time according to the Scheduler’s clock</dd>
-     <dt><code>triggerActions(time)</code></dt>
-      <dd>start any unstarted actions that have been scheduled for a time equal to or earlier than the specified
-          time (the time unit is nanoseconds)</dd>
     </dl>
   
           </div>
@@ -315,21 +314,22 @@
             
     <h2>Varieties of Scheduler</h2>
     <p>
-     You obtain a Scheduler from the factory methods described in the <code>Schedulers</code> class. The
-     following table shows the varieties of Scheduler that are available to you by means of these methods in
-     RxJava:
+     You obtain a Scheduler from the factory methods described in
+     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html">the
+     <code>Schedulers</code> class</a>. The following table shows the varieties of Scheduler that
+     are available to you by means of these methods in RxJava:
     </p>
     <table class="table">
      <thead>
       <tr><th>Scheduler</th><th>purpose</th></tr>
      </thead>
      <tbody>
-      <tr><td><code>Schedulers.computation(&#8239;)</code></td><td>meant for computational work such as event-loops and callback processing; do not use this scheduler for I/O (use <code>Schedulers.io(&#8239;)</code> instead)</td></tr>
-      <tr><td><code>Schedulers.from(executor)</code></td><td>uses the specified <code>Executor</code> as a Scheduler</td></tr>
-      <tr><td><code>Schedulers.immediate(&#8239;)</code></td><td>schedules work to begin immediately in the current thread</td></tr>
-      <tr><td><code>Schedulers.io(&#8239;)</code></td><td>meant for I/O-bound work such as asynchronous performance of blocking I/O, this scheduler is backed by a thread-pool that will grow as needed; for ordinary computational work, switch to <code>Schedulers.computation(&#8239;)</code></td></tr>
-      <tr><td><code>Schedulers.newThread(&#8239;)</code></td><td>creates a new thread for each unit of work</td></tr>
-      <tr><td><code>Schedulers.trampoline(&#8239;)</code></td><td>queues work to begin on the current thread after any already-queued work</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#computation()"><code>Schedulers.computation(&#8239;)</code></a></td><td>meant for computational work such as event-loops and callback processing; do not use this scheduler for I/O (use <code>Schedulers.io(&#8239;)</code> instead); the number of threads, by default, is equal to the number of processors</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#from(java.util.concurrent.Executor)"><code>Schedulers.from(executor)</code></a></td><td>uses the specified <code>Executor</code> as a Scheduler</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#immediate()"><code>Schedulers.immediate(&#8239;)</code></a></td><td>schedules work to begin immediately in the current thread</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#io()"><code>Schedulers.io(&#8239;)</code></a></td><td>meant for I/O-bound work such as asynchronous performance of blocking I/O, this scheduler is backed by a thread-pool that will grow as needed; for ordinary computational work, switch to <code>Schedulers.computation(&#8239;)</code></td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#newThread()"><code>Schedulers.newThread(&#8239;)</code></a></td><td>creates a new thread for each unit of work</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td><td>queues work to begin on the current thread after any already-queued work</td></tr>
      </tbody>
     </table>
     <h2>Default Schedulers for RxJava Observable Operators</h2>
@@ -383,9 +383,10 @@
     </table>
     <h2>Using Schedulers</h2>
     <p>
-     Aside from passing these Schedulers in to RxJava Observable operators, you can also use them to schedule
-     your own work on Subscriptions. The following example uses the <code>schedule</code> method of the
-     <code>Scheduler</code> class to schedule work on the <code>newThread</code> Scheduler:
+     Aside from passing these Schedulers in to RxJava Observable operators, you can also use them to
+     schedule your own work on Subscriptions. The following example uses
+     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0)">the <code>schedule</code> method</a> of
+     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html">the <code>Scheduler.Worker</code> class</a> to schedule work on the <code>newThread</code> Scheduler:
     <div class="code java"><pre>
 worker = Schedulers.newThread().createWorker();
 worker.schedule(new Action0() {
@@ -419,9 +420,12 @@ worker.schedule(new Action0() {
 worker.unsubscribe();</pre></div>
     <h3>Checking or Setting Unsubscribed Status</h3>
     <p>
-     Objects of the <code>Worker</code> class implement the <code>Subscription</code> interface, with its
-     <code>isUnsubscribed</code> and <code>unsubscribe</code> methods, so you can stop work when a subscription
-     is cancelled, or you can cancel the subscription from within the scheduled task:
+     Objects of the <code>Worker</code> class implement
+     <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html">the <code>Subscription</code>
+     interface</a>, with its <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html#isUnsubscribed()"><code>isUnsubscribed</code></a>
+     and <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html#unsubscribe()"><code>unsubscribe</code></a>
+     methods, so you can stop work when a subscription is cancelled, or you can cancel the
+     subscription from within the scheduled task:
     <div class="code java"><pre>
 Worker worker = Schedulers.newThread().createWorker();
 Subscription mySubscription = worker.schedule(new Action0() {
@@ -443,36 +447,36 @@ Subscription mySubscription = worker.schedule(new Action0() {
 worker.unsubscribe();</pre></div>
     <h3>Delayed and Periodic Schedulers</h3>
     <p>
-     You can also use a version of <code>schedule</code> that delays your action on the given Scheduler until a
-     certain timespan has passed. The following example schedules <code>someAction</code> to be performed on
+     You can also use <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0,%20long,%20java.util.concurrent.TimeUnit)">a version of <code>schedule</code></a>
+     that delays your action on the given Scheduler until a certain timespan has passed. The
+     following example schedules <code>someAction</code> to be performed on
      <code>someScheduler</code> after 500ms have passed according to that Scheduler&#8217;s clock:
     </p>
     <div class="code java"><pre>
 someScheduler.schedule(someAction, 500, TimeUnit.MILLISECONDS);</pre></div>
     <p>
-     Another <code>Scheduler</code> method allows you to schedule an action to take place at regular intervals.
-     The following example schedules <code>someAction</code> to be performed on <code>someScheduler</code> after
-     500ms have passed, and then every 250ms thereafter:
+     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedulePeriodically(rx.functions.Action0,%20long,%20long,%20java.util.concurrent.TimeUnit)">Another <code>Scheduler</code> method</a>
+     allows you to schedule an action to take place at regular intervals. The following example
+     schedules <code>someAction</code> to be performed on <code>someScheduler</code> after 500ms
+     have passed, and then every 250ms thereafter:
     </p>
     <div class="code java"><pre>
 someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);</pre></div>
     <h2>Test Scheduler</h2>
     <p>
-     The <code>TestScheduler</code> allows you to exercise fine-tuned manual control over how the Scheduler’s
-     clock behaves. This can be useful for testing interactions that depend on precise arrangements of actions
-     in time. This Scheduler has four additional methods:
+     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html">The
+     <code>TestScheduler</code></a> allows you to exercise fine-tuned manual control over how the
+     Scheduler’s clock behaves. This can be useful for testing interactions that depend on precise
+     arrangements of actions in time. This Scheduler has three additional methods:
     </p>
     <dl>
-     <dt><code>advanceTimeTo(time,unit)</code></dt>
+     <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeTo(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeTo(time,unit)</code></a></dt>
       <dd>advances the Scheduler’s clock to a particular point in time</dd>
-     <dt><code>advanceTimeBy(time,unit)</code></dt>
+     <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeBy(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeBy(time,unit)</code></a></dt>
       <dd>advances the Scheduler’s clock forward by a particular amount of time</dd>
-     <dt><code>triggerActions( )</code></dt>
+     <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#triggerActions()"><code>triggerActions( )</code></a></dt>
       <dd>start any unstarted actions that have been scheduled for a time equal to or earlier than the present
           time according to the Scheduler’s clock</dd>
-     <dt><code>triggerActions(time)</code></dt>
-      <dd>start any unstarted actions that have been scheduled for a time equal to or earlier than the specified
-          time (the time unit is nanoseconds)</dd>
     </dl>
     <h4>See Also</h4>
     <ul>

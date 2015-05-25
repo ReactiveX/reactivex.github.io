@@ -58,6 +58,9 @@ id: tutorials
 * [Rx Workshop: Unified Programming Model](http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Unified-Programming-Model)
 * [Improving the Carnac Codebase and Rx Usage](http://jake.ginnivan.net/blog/carnac-improvements/part-1/) by Jake Ginnivan
 
+## RxPY
+* [Getting Started with RxPY](https://github.com/ReactiveX/RxPY/blob/develop/notebooks/Geting%20Started.ipynb)
+
 ## RxJS
 * An interactive tutorial: [Functional Programming in Javascript](http://jhusain.github.io/learnrx/) and [an accompanying lecture (video)](http://www.youtube.com/watch?v=LB4lhFJBBq0) by Jafar Husain
 * [Netflix JavaScript Talks - Async JavaScript with Reactive Extensions](https://www.youtube.com/watch?v=XRYN2xt11Ek) video of a talk by Jafar Husain about the Rx way of programming

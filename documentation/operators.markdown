@@ -693,6 +693,7 @@ operators.
 * [`selectConcatObserver`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`SelectMany`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`selectManyObserver`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`select_switch`]({{ site.url }}/documentation/operators/switch.html)
 * [`selectSwitch`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`select_with_index`]({{ site.url }}/documentation/operators/filter.html)
 * [`seq`]({{ site.url }}/documentation/operators/from.html)

@@ -13,11 +13,11 @@ id: subject
 </p><p>
  Because a Subject subscribes to an Observable, it will trigger that Observable to begin emitting items (if that
  Observable is “cold” — that is, if it waits for a subscription before it begins to emit items). This can have
- the effect of making the resulting Subject a &ldquo;hot&rdquo; Observable variant of the original “cold”
- Observable.
+ the effect of making the resulting Subject a “hot” Observable variant of the original “cold” Observable.
 </p>
 <h4>See Also</h4>
 <ul>
+ <li><a href="http://davesexton.com/blog/post/To-Use-Sbject-Or-Not-To-Use-Subject.aspx">To Use or Not to Use Subject</a> from <cite>Dave Sexton&#8217;s blog</cite></li>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/02_KeyTypes.html#Subject"><cite>Introduction to Rx</cite>: Subject</a></li>
  <li><a href="http://rxwiki.wikidot.com/101samples#toc44"><cite>101 Rx Samples</cite>: ISubject&lt;T&gt; and ISubject&lt;T1,T2&gt;</a></li>
 </ul>
@@ -25,7 +25,7 @@ id: subject
 <p>
  There are four varieties of <code>Subject</code> that are designed for particular use cases. Not all of these
  are available in all implementations, and some implementations use other naming conventions (for example, in
- RxScala, what is called a &ldquo;PublishSubject&rdquo; here is known simply as a &ldquo;Subject&rdquo;).:
+ RxScala, what is called a “PublishSubject” here is known simply as a “Subject”):
 </p>
 <h3>AsyncSubject</h3>
 <figure>

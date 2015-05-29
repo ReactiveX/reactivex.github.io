@@ -67,6 +67,7 @@ id: tutorials
 * [Journey from procedural to reactive Javascript with stops](http://bahmutov.calepin.co/journey-from-procedural-to-reactive-javascript-with-stops.html) by Gleb Bahmutov
 * [RxEmber](https://github.com/blesh/RxEmber) &mdash; an experimental set of helpers for Ember and RxJS
 * [rxvision](http://react.rocks/example/rxvision) &mdash; a visualizer debugger for RxJS reactive streams
+* [RxJS Observables vs. Promises](https://egghead.io/lessons/rxjs-rxjs-observables-vs-promises) &mdash; a video lesson from Ben Lesh that explains some of the differences
 
 ## Android
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall

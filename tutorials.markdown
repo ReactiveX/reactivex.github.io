@@ -112,6 +112,7 @@ id: tutorials
 * [MIX 2011](http://channel9.msdn.com/events/MIX/MIX11/HTM07)
 * [Reactive Extensions Videos on Channel 9](http://channel9.msdn.com/Tags/reactive+extensions)
 * [Reactive Angular - Devoxx France 2014 - Martin Gontovnikas](http://parleys.com/play/53677646e4b0593229b85841/chapter0/about)
+* [Testing Reactive Applications](https://speakerdeck.com/benjchristensen/applying-rxjava-to-existing-applications-at-philly-ete-2015) by Ben Christensen - learn about `TestSubscriber` and `TestScheduler`
 
 ## Reference Material
 * [101 Rx Samples Wiki](http://rxwiki.wikidot.com/101samples)

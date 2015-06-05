@@ -128,6 +128,10 @@ id: scheduler
       <dd>start any unstarted actions that have been scheduled for a time equal to or earlier than the present
           time according to the Scheduler’s clock</dd>
     </dl>
+    <h4>See Also</h4>
+    <ul>
+     <li><a href="https://speakerdeck.com/benjchristensen/applying-rxjava-to-existing-applications-at-philly-ete-2015">Testing Reactive Applications</a> by Ben Christensen</li>
+    </ul>
   {% endlang_operator %}
 
   {% lang_operator RxJava %}
@@ -300,6 +304,8 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
     <h4>See Also</h4>
     <ul>
      <li><a href="http://www.grahamlea.com/2014/07/rxjava-threading-examples/"><cite>RxJava Threading Examples</cite></a> by Graham Lea</li>
+     <li><a href="https://speakerdeck.com/benjchristensen/applying-rxjava-to-existing-applications-at-philly-ete-
+2015">Testing Reactive Applications</a> by Ben Christensen</li> 
     </ul>
   {% endlang_operator %}
 

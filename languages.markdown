@@ -18,8 +18,10 @@ id: languages
 * Groovy: [RxGroovy](https://github.com/ReactiveX/RxGroovy)
 * JRuby: [RxJRuby](https://github.com/ReactiveX/RxJRuby)
 * Kotlin: [RxKotlin](https://github.com/ReactiveX/RxKotlin)
+* Swift: [RxSwift](https://github.com/kzaher/RxSwift)
 
 ## ReactiveX for platforms and frameworks
 
 * [RxNetty](https://github.com/ReactiveX/RxNetty)
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+* [RxCocoa](https://github.com/kzaher/RxSwift)

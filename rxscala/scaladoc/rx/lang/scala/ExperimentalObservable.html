@@ -30,7 +30,9 @@
       <div id="definition">
         <img src="../../../lib/class_big.png" />
         <p id="owner"><a href="../../package.html" class="extype" name="rx">rx</a>.<a href="../package.html" class="extype" name="rx.lang">lang</a>.<a href="package.html" class="extype" name="rx.lang.scala">scala</a></p>
-        <h1>ExperimentalObservable</h1> <span class="permalink">
+        <h1>ExperimentalObservable</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="rx.lang.scala">package scala</a>
+          </div></span></h3><span class="permalink">
       <a href="../../../index.html#rx.lang.scala.ExperimentalObservable" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
@@ -43,11 +45,14 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">ExperimentalObservable</span><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use new methods in scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@41db021a instead. This is kept here only for backward compatibility.">ExperimentalObservable</span><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use new methods in <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> instead. This is kept here only for backward compatibility.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -204,25 +209,6 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#doOnRequest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="doOnRequest(onRequest:Long=&gt;Unit):rx.lang.scala.Observable[T]"></a>
-      <a id="doOnRequest((Long)⇒Unit):Observable[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">doOnRequest</span><span class="params">(<span name="onRequest">onRequest: (<span class="extype" name="scala.Long">Long</span>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@doOnRequest(onRequest:Long=&gt;Unit):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">An <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> wrapping the source one that will invokes the given action when it receives a request for more items.</p><div class="fullcomment"><div class="comment cmt"><p>An <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> wrapping the source one that will invokes the given action when it receives a request for more items.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt class="param">onRequest</dt><dd class="cmt"><p>the action that gets called when an <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> requests items from this <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will call <code>onRequest</code> when appropriate</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/do.html">ReactiveX operators documentation: Do</a>
-</p></span></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -280,56 +266,6 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#flatMapWithMaxConcurrent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="flatMapWithMaxConcurrent[R](onNext:T=&gt;rx.lang.scala.Observable[R],onError:Throwable=&gt;rx.lang.scala.Observable[R],onCompleted:()=&gt;rx.lang.scala.Observable[R],maxConcurrent:Int):rx.lang.scala.Observable[R]"></a>
-      <a id="flatMapWithMaxConcurrent[R]((T)⇒Observable[R],(Throwable)⇒Observable[R],()⇒Observable[R],Int):Observable[R]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">flatMapWithMaxConcurrent</span><span class="tparams">[<span name="R">R</span>]</span><span class="params">(<span name="onNext">onNext: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>, <span name="onError">onError: (<span class="extype" name="scala.Throwable">Throwable</span>) ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>, <span name="onCompleted">onCompleted: () ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>, <span name="maxConcurrent">maxConcurrent: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@flatMapWithMaxConcurrent[R](onNext:T=&gt;rx.lang.scala.Observable[R],onError:Throwable=&gt;rx.lang.scala.Observable[R],onCompleted:()=&gt;rx.lang.scala.Observable[R],maxConcurrent:Int):rx.lang.scala.Observable[R]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that applies a function to each item emitted or notification raised by the source
-<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>  and then flattens the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> s returned from these functions and emits the resulting items,
-while limiting the maximum number of concurrent subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that applies a function to each item emitted or notification raised by the source
-<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>  and then flattens the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> s returned from these functions and emits the resulting items,
-while limiting the maximum number of concurrent subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>a function that returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to merge for each item emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">onError</dt><dd class="cmt"><p>a function that returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to merge for an onError notification from the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">onCompleted</dt><dd class="cmt"><p>a function that returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to merge for an onCompleted notification from the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">maxConcurrent</dt><dd class="cmt"><p>the maximum number of <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s that may be subscribed to concurrently</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the results of merging the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s returned from applying the
-        specified functions to the emissions and notifications of the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a>
-</p></span></dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#flatMapWithMaxConcurrent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="flatMapWithMaxConcurrent[R](f:T=&gt;rx.lang.scala.Observable[R],maxConcurrent:Int):rx.lang.scala.Observable[R]"></a>
-      <a id="flatMapWithMaxConcurrent[R]((T)⇒Observable[R],Int):Observable[R]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">flatMapWithMaxConcurrent</span><span class="tparams">[<span name="R">R</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>, <span name="maxConcurrent">maxConcurrent: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@flatMapWithMaxConcurrent[R](f:T=&gt;rx.lang.scala.Observable[R],maxConcurrent:Int):rx.lang.scala.Observable[R]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits items based on applying a function that you supply to each item emitted
-by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> , where that function returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> , and then merging those resulting
-<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s and emitting the results of this merger, while limiting the maximum number of concurrent
-subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits items based on applying a function that you supply to each item emitted
-by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> , where that function returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> , and then merging those resulting
-<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s and emitting the results of this merger, while limiting the maximum number of concurrent
-subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><p>$$noDefaultScheduler
-</p></div><dl class="paramcmts block"><dt class="param">f</dt><dd class="cmt"><p>a function that, when applied to an item emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">maxConcurrent</dt><dd class="cmt"><p>the maximum number of <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s that may be subscribed to concurrently</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the result of applying the transformation function to each item emitted
-        by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and merging the results of the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s obtained from this transformation</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a>
-</p></span></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -432,141 +368,6 @@ subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.sc
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureBlock" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="onBackpressureBlock:rx.lang.scala.Observable[T]"></a>
-      <a id="onBackpressureBlock:Observable[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">onBackpressureBlock</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureBlock:rx.lang.scala.Observable[T]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p><p><img width="640" height="245" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.block.png" alt=""></p><p>The producer side can emit up to the system-wide ring buffer size onNext elements without blocking, but
-the consumer side considers the amount its downstream requested through <code>Producer.request(n)</code>
-and doesn't emit more than requested even if available.</p><p>Note that if the upstream Observable does support backpressure, this operator ignores that capability
-and doesn't propagate any backpressure requests from downstream.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
-</p></span></dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureBlock" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="onBackpressureBlock(maxQueueLength:Int):rx.lang.scala.Observable[T]"></a>
-      <a id="onBackpressureBlock(Int):Observable[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">onBackpressureBlock</span><span class="params">(<span name="maxQueueLength">maxQueueLength: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureBlock(maxQueueLength:Int):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p><p><img width="640" height="245" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.block.png" alt=""></p><p>The producer side can emit up to <code>maxQueueLength</code> onNext elements without blocking, but the
-consumer side considers the amount its downstream requested through <code>Producer.request(n)</code>
-and doesn't emit more than requested even if more is available. For example, using
-<code>onBackpressureBlock(384).observeOn(Schedulers.io())</code> will not throw a MissingBackpressureException.</p><p>Note that if the upstream Observable does support backpressure, this operator ignores that capability
-and doesn't propagate any backpressure requests from downstream.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt class="param">maxQueueLength</dt><dd class="cmt"><p>the maximum number of items the producer can emit without blocking</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
-</p></span></dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureBufferWithCapacity" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="onBackpressureBufferWithCapacity(capacity:Long,onOverflow:=&gt;Unit):rx.lang.scala.Observable[T]"></a>
-      <a id="onBackpressureBufferWithCapacity(Long,⇒Unit):Observable[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">onBackpressureBufferWithCapacity</span><span class="params">(<span name="capacity">capacity: <span class="extype" name="scala.Long">Long</span></span>, <span name="onOverflow">onOverflow: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureBufferWithCapacity(capacity:Long,onOverflow:=&gt;Unit):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them to buffer up to
-a given amount of items until they can be emitted.</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them to buffer up to
-a given amount of items until they can be emitted. The resulting <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will emit
-<code>BufferOverflowException</code> as soon as the buffer's capacity is exceeded, drop all undelivered
-items, unsubscribe from the source, and notify <code>onOverflow</code>.</p><p><img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt=""></p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt class="param">capacity</dt><dd class="cmt"><p>capacity of the internal buffer.</p></dd><dt class="param">onOverflow</dt><dd class="cmt"><p>an action to run when the buffer's capacity is exceeded. This is a by-name parameter.</p></dd><dt>returns</dt><dd class="cmt"><p>the source Observable modified to buffer items up to the given capacity</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>(if this graduates from Experimental/Beta to supported, replace this parenthetical with the release number)
-</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a></p></span></dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureBufferWithCapacity" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="onBackpressureBufferWithCapacity(capacity:Long):rx.lang.scala.Observable[T]"></a>
-      <a id="onBackpressureBufferWithCapacity(Long):Observable[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">onBackpressureBufferWithCapacity</span><span class="params">(<span name="capacity">capacity: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureBufferWithCapacity(capacity:Long):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them to buffer up to
-a given amount of items until they can be emitted.</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them to buffer up to
-a given amount of items until they can be emitted. The resulting <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will emit
-<code>BufferOverflowException</code> as soon as the buffer's capacity is exceeded, drop all undelivered
-items, and unsubscribe from the source.</p><p><img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt=""></p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt class="param">capacity</dt><dd class="cmt"><p>capacity of the internal buffer.</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will buffer items up to the given capacity</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
-</p></span></dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureDropDo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="onBackpressureDropDo(onDrop:T=&gt;Unit):rx.lang.scala.Observable[T]"></a>
-      <a id="onBackpressureDropDo((T)⇒Unit):Observable[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">onBackpressureDropDo</span><span class="params">(<span name="onDrop">onDrop: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureDropDo(onDrop:T=&gt;Unit):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its observer can consume them to discard,
-rather than emit, those items that its observer is not prepared to observe.</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its observer can consume them to discard,
-rather than emit, those items that its observer is not prepared to observe.</p><p><img width="640" height="245" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.drop.png" alt=""></p><p>If the downstream request count hits <code>0</code> then the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will refrain from calling <code>onNext</code> until
-the observer invokes <code>request(n)</code> again to increase the request count.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt class="param">onDrop</dt><dd class="cmt"><p>the action to invoke for each item dropped. <code>onDrop</code> action should be fast and should never block.</p></dd><dt>returns</dt><dd class="cmt"><p>an new <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will drop <code>onNext</code> notifications on overflow</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
-</p></span></dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#switchIfEmpty" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="switchIfEmpty[U&gt;:T](alternate:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]"></a>
-      <a id="switchIfEmpty[U&gt;:T](Observable[U]):Observable[U]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">switchIfEmpty</span><span class="tparams">[<span name="U">U &gt;: <span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span></span>]</span><span class="params">(<span name="alternate">alternate: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.switchIfEmpty.U">U</span>]</span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.switchIfEmpty.U">U</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@switchIfEmpty[U&gt;:T](alternate:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> or the items of an alternate
-<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> if the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> is empty.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> or the items of an alternate
-<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> if the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> is empty.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt class="param">alternate</dt><dd class="cmt"><p>the alternate <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to subscribe to if the source does not emit any items</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> or the items of an
-        alternate <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> if the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> is empty.
-</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -584,29 +385,6 @@ the observer invokes <code>request(n)</code> again to increase the request count
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="rx.lang.scala.ExperimentalObservable#takeUntil" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="takeUntil(stopPredicate:T=&gt;Boolean):rx.lang.scala.Observable[T]"></a>
-      <a id="takeUntil((T)⇒Boolean):Observable[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">takeUntil</span><span class="params">(<span name="stopPredicate">stopPredicate: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@takeUntil(stopPredicate:T=&gt;Boolean):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, checks the specified predicate
-for each item, and then completes if the condition is satisfied.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, checks the specified predicate
-for each item, and then completes if the condition is satisfied.</p><p><img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/takeUntil.p.png" alt=""></p><p>The difference between this operator and <code>takeWhile(T =&gt; Boolean)</code> is that here, the condition is
-evaluated <b>after</b> the item is emitted.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
-</p></div><dl class="paramcmts block"><dt class="param">stopPredicate</dt><dd class="cmt"><p>a function that evaluates an item emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and returns a Boolean</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that first emits items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, checks the specified
-        condition after each item, and then completes if the condition is satisfied.</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="Observable.html#takeWhile(predicate:T=&gt;Boolean):rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#takeWhile">Observable.takeWhile</a>
-</p></span><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/takeuntil.html">ReactiveX operators documentation: TakeUntil</a></p></span></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -693,6 +471,270 @@ evaluated <b>after</b> the item is emitted.</p><h5>Scheduler:</h5><p>This method
     </span>)</span>
               
         </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="rx.lang.scala.ExperimentalObservable#doOnRequest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="doOnRequest(onRequest:Long=&gt;Unit):rx.lang.scala.Observable[T]"></a>
+      <a id="doOnRequest((Long)⇒Unit):Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@56a5d1f4 instead. This is kept here only for backward compatibility.">doOnRequest</span><span class="params">(<span name="onRequest">onRequest: (<span class="extype" name="scala.Long">Long</span>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@doOnRequest(onRequest:Long=&gt;Unit):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> wrapping the source one that will invokes the given action when it receives a request for more items.</p><div class="fullcomment"><div class="comment cmt"><p>An <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> wrapping the source one that will invokes the given action when it receives a request for more items.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">onRequest</dt><dd class="cmt"><p>the action that gets called when an <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> requests items from this <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will call <code>onRequest</code> when appropriate</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#doOnRequest(onRequest:Long=&gt;Unit):rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#doOnRequest">Observable.doOnRequest</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/do.html">ReactiveX operators documentation: Do</a>
+</p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#flatMapWithMaxConcurrent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flatMapWithMaxConcurrent[R](onNext:T=&gt;rx.lang.scala.Observable[R],onError:Throwable=&gt;rx.lang.scala.Observable[R],onCompleted:()=&gt;rx.lang.scala.Observable[R],maxConcurrent:Int):rx.lang.scala.Observable[R]"></a>
+      <a id="flatMapWithMaxConcurrent[R]((T)⇒Observable[R],(Throwable)⇒Observable[R],()⇒Observable[R],Int):Observable[R]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@49720bae instead. This is kept here only for backward compatibility.">flatMapWithMaxConcurrent</span><span class="tparams">[<span name="R">R</span>]</span><span class="params">(<span name="onNext">onNext: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>, <span name="onError">onError: (<span class="extype" name="scala.Throwable">Throwable</span>) ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>, <span name="onCompleted">onCompleted: () ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>, <span name="maxConcurrent">maxConcurrent: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@flatMapWithMaxConcurrent[R](onNext:T=&gt;rx.lang.scala.Observable[R],onError:Throwable=&gt;rx.lang.scala.Observable[R],onCompleted:()=&gt;rx.lang.scala.Observable[R],maxConcurrent:Int):rx.lang.scala.Observable[R]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that applies a function to each item emitted or notification raised by the source
+<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>  and then flattens the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> s returned from these functions and emits the resulting items,
+while limiting the maximum number of concurrent subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that applies a function to each item emitted or notification raised by the source
+<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>  and then flattens the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> s returned from these functions and emits the resulting items,
+while limiting the maximum number of concurrent subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">onNext</dt><dd class="cmt"><p>a function that returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to merge for each item emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">onError</dt><dd class="cmt"><p>a function that returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to merge for an onError notification from the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">onCompleted</dt><dd class="cmt"><p>a function that returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to merge for an onCompleted notification from the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">maxConcurrent</dt><dd class="cmt"><p>the maximum number of <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s that may be subscribed to concurrently</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the results of merging the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s returned from applying the
+        specified functions to the emissions and notifications of the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#flatMap[R](maxConcurrent:Int,onNext:T=&gt;rx.lang.scala.Observable[R],onError:Throwable=&gt;rx.lang.scala.Observable[R],onCompleted:()=&gt;rx.lang.scala.Observable[R]):rx.lang.scala.Observable[R]" class="extmbr" name="rx.lang.scala.Observable#flatMap">Observable.flatMap[R](maxConcurrent:Int,onNext:T=&gt;rx\.lang\.scala\.Observable[R],onError:Throwable=&gt;rx\.lang\.scala\.Observable[R],onCompleted:()=&gt;rx\.lang\.scala\.Observable[R])*</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a>
+</p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#flatMapWithMaxConcurrent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flatMapWithMaxConcurrent[R](f:T=&gt;rx.lang.scala.Observable[R],maxConcurrent:Int):rx.lang.scala.Observable[R]"></a>
+      <a id="flatMapWithMaxConcurrent[R]((T)⇒Observable[R],Int):Observable[R]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@23525af8 instead. This is kept here only for backward compatibility.">flatMapWithMaxConcurrent</span><span class="tparams">[<span name="R">R</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>, <span name="maxConcurrent">maxConcurrent: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.flatMapWithMaxConcurrent.R">R</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@flatMapWithMaxConcurrent[R](f:T=&gt;rx.lang.scala.Observable[R],maxConcurrent:Int):rx.lang.scala.Observable[R]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits items based on applying a function that you supply to each item emitted
+by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> , where that function returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> , and then merging those resulting
+<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s and emitting the results of this merger, while limiting the maximum number of concurrent
+subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits items based on applying a function that you supply to each item emitted
+by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> , where that function returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> , and then merging those resulting
+<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s and emitting the results of this merger, while limiting the maximum number of concurrent
+subscriptions to these <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><p>$$noDefaultScheduler
+</p></div><dl class="paramcmts block"><dt class="param">f</dt><dd class="cmt"><p>a function that, when applied to an item emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">maxConcurrent</dt><dd class="cmt"><p>the maximum number of <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s that may be subscribed to concurrently</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the result of applying the transformation function to each item emitted
+        by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and merging the results of the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s obtained from this transformation</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#flatMap[R](maxConcurrent:Int,f:T=&gt;rx.lang.scala.Observable[R]):rx.lang.scala.Observable[R]" class="extmbr" name="rx.lang.scala.Observable#flatMap">Observable.flatMap[R](maxConcurrent:Int,f:T=&gt;rx\.lang\.scala\.Observable[R])*</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a>
+</p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureBlock" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onBackpressureBlock:rx.lang.scala.Observable[T]"></a>
+      <a id="onBackpressureBlock:Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@3a80475a instead. This is kept here only for backward compatibility.">onBackpressureBlock</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureBlock:rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p><p><img width="640" height="245" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.block.png" alt=""></p><p>The producer side can emit up to the system-wide ring buffer size onNext elements without blocking, but
+the consumer side considers the amount its downstream requested through <code>Producer.request(n)</code>
+and doesn't emit more than requested even if available.</p><p>Note that if the upstream Observable does support backpressure, this operator ignores that capability
+and doesn't propagate any backpressure requests from downstream.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#onBackpressureBlock:rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#onBackpressureBlock">Observable.onBackpressureBlock:*</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
+</p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureBlock" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onBackpressureBlock(maxQueueLength:Int):rx.lang.scala.Observable[T]"></a>
+      <a id="onBackpressureBlock(Int):Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@42521b8f instead. This is kept here only for backward compatibility.">onBackpressureBlock</span><span class="params">(<span name="maxQueueLength">maxQueueLength: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureBlock(maxQueueLength:Int):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p><p><img width="640" height="245" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.block.png" alt=""></p><p>The producer side can emit up to <code>maxQueueLength</code> onNext elements without blocking, but the
+consumer side considers the amount its downstream requested through <code>Producer.request(n)</code>
+and doesn't emit more than requested even if more is available. For example, using
+<code>onBackpressureBlock(384).observeOn(Schedulers.io())</code> will not throw a MissingBackpressureException.</p><p>Note that if the upstream Observable does support backpressure, this operator ignores that capability
+and doesn't propagate any backpressure requests from downstream.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">maxQueueLength</dt><dd class="cmt"><p>the maximum number of items the producer can emit without blocking</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will block the producer thread if the source emits items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#onBackpressureBlock(maxQueueLength:Int):rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#onBackpressureBlock">Observable.onBackpressureBlock(maxQueueLength:Int)*</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
+</p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureBufferWithCapacity" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onBackpressureBufferWithCapacity(capacity:Long,onOverflow:=&gt;Unit):rx.lang.scala.Observable[T]"></a>
+      <a id="onBackpressureBufferWithCapacity(Long,⇒Unit):Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@1ba45710 instead. This is kept here only for backward compatibility.">onBackpressureBufferWithCapacity</span><span class="params">(<span name="capacity">capacity: <span class="extype" name="scala.Long">Long</span></span>, <span name="onOverflow">onOverflow: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureBufferWithCapacity(capacity:Long,onOverflow:=&gt;Unit):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them to buffer up to
+a given amount of items until they can be emitted.</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them to buffer up to
+a given amount of items until they can be emitted. The resulting <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will emit
+<code>BufferOverflowException</code> as soon as the buffer's capacity is exceeded, drop all undelivered
+items, unsubscribe from the source, and notify <code>onOverflow</code>.</p><p><img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt=""></p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">capacity</dt><dd class="cmt"><p>capacity of the internal buffer.</p></dd><dt class="param">onOverflow</dt><dd class="cmt"><p>an action to run when the buffer's capacity is exceeded. This is a by-name parameter.</p></dd><dt>returns</dt><dd class="cmt"><p>the source Observable modified to buffer items up to the given capacity</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#onBackpressureBuffer(capacity:Long,onOverflow:=&gt;Unit):rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#onBackpressureBuffer">Observable.onBackpressureBuffer(capacity:Long,onOverflow:=&gt;Unit)*</a> instead. This is kept here only for backward compatibility.</p></dd><dt>Since</dt><dd><p>(if this graduates from Experimental/Beta to supported, replace this parenthetical with the release number)
+</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a></p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureBufferWithCapacity" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onBackpressureBufferWithCapacity(capacity:Long):rx.lang.scala.Observable[T]"></a>
+      <a id="onBackpressureBufferWithCapacity(Long):Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@2a904b06 instead. This is kept here only for backward compatibility.">onBackpressureBufferWithCapacity</span><span class="params">(<span name="capacity">capacity: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureBufferWithCapacity(capacity:Long):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them to buffer up to
+a given amount of items until they can be emitted.</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> can consume them to buffer up to
+a given amount of items until they can be emitted. The resulting <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will emit
+<code>BufferOverflowException</code> as soon as the buffer's capacity is exceeded, drop all undelivered
+items, and unsubscribe from the source.</p><p><img width="640" height="300" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.buffer.png" alt=""></p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">capacity</dt><dd class="cmt"><p>capacity of the internal buffer.</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will buffer items up to the given capacity</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#onBackpressureBuffer(capacity:Long):rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#onBackpressureBuffer">Observable.onBackpressureBuffer(capacity:Long)*</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
+</p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#onBackpressureDropDo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onBackpressureDropDo(onDrop:T=&gt;Unit):rx.lang.scala.Observable[T]"></a>
+      <a id="onBackpressureDropDo((T)⇒Unit):Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@12127399 instead. This is kept here only for backward compatibility.">onBackpressureDropDo</span><span class="params">(<span name="onDrop">onDrop: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@onBackpressureDropDo(onDrop:T=&gt;Unit):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its observer can consume them to discard,
+rather than emit, those items that its observer is not prepared to observe.</p><div class="fullcomment"><div class="comment cmt"><p>Instructs an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that is emitting items faster than its observer can consume them to discard,
+rather than emit, those items that its observer is not prepared to observe.</p><p><img width="640" height="245" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/bp.obp.drop.png" alt=""></p><p>If the downstream request count hits <code>0</code> then the <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> will refrain from calling <code>onNext</code> until
+the observer invokes <code>request(n)</code> again to increase the request count.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">onDrop</dt><dd class="cmt"><p>the action to invoke for each item dropped. <code>onDrop</code> action should be fast and should never block.</p></dd><dt>returns</dt><dd class="cmt"><p>an new <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that will drop <code>onNext</code> notifications on overflow</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#onBackpressureDrop(onDrop:T=&gt;Unit):rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#onBackpressureDrop">Observable.onBackpressureDrop(onDrop:T=&gt;Unit)*</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/backpressure.html">ReactiveX operators documentation: backpressure operators</a>
+</p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#switchIfEmpty" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="switchIfEmpty[U&gt;:T](alternate:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]"></a>
+      <a id="switchIfEmpty[U&gt;:T](Observable[U]):Observable[U]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@40ce8c37 instead. This is kept here only for backward compatibility.">switchIfEmpty</span><span class="tparams">[<span name="U">U &gt;: <span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span></span>]</span><span class="params">(<span name="alternate">alternate: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.switchIfEmpty.U">U</span>]</span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.switchIfEmpty.U">U</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@switchIfEmpty[U&gt;:T](alternate:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> or the items of an alternate
+<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> if the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> is empty.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> or the items of an alternate
+<a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> if the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> is empty.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">alternate</dt><dd class="cmt"><p>the alternate <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> to subscribe to if the source does not emit any items</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> or the items of an
+        alternate <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> if the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> is empty.
+</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#switchIfEmpty[U&gt;:T](alternate:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]" class="extmbr" name="rx.lang.scala.Observable#switchIfEmpty">Observable.switchIfEmpty</a> instead. This is kept here only for backward compatibility.</p></dd></dl></div>
+    </li><li name="rx.lang.scala.ExperimentalObservable#takeUntil" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="takeUntil(stopPredicate:T=&gt;Boolean):rx.lang.scala.Observable[T]"></a>
+      <a id="takeUntil((T)⇒Boolean):Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@79eb5fe9 instead. This is kept here only for backward compatibility.">takeUntil</span><span class="params">(<span name="stopPredicate">stopPredicate: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@takeUntil(stopPredicate:T=&gt;Boolean):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, checks the specified predicate
+for each item, and then completes if the condition is satisfied.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, checks the specified predicate
+for each item, and then completes if the condition is satisfied.</p><p><img width="640" height="305" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/takeUntil.p.png" alt=""></p><p>The difference between this operator and <code>takeWhile(T =&gt; Boolean)</code> is that here, the condition is
+evaluated <b>after</b> the item is emitted.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
+</p></div><dl class="paramcmts block"><dt class="param">stopPredicate</dt><dd class="cmt"><p>a function that evaluates an item emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and returns a Boolean</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that first emits items emitted by the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, checks the specified
+        condition after each item, and then completes if the condition is satisfied.</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#takeUntil(stopPredicate:T=&gt;Boolean):rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#takeUntil">Observable.takeUntil(stopPredicate:T=&gt;Boolean)*</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="Observable.html#takeWhile(predicate:T=&gt;Boolean):rx.lang.scala.Observable[T]" class="extmbr" name="rx.lang.scala.Observable#takeWhile">Observable.takeWhile</a>
+</p></span><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/takeuntil.html">ReactiveX operators documentation: TakeUntil</a></p></span></dd></dl></div>
     </li><li name="rx.lang.scala.ExperimentalObservable#withLatestFrom" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="withLatestFrom[U,R](other:rx.lang.scala.Observable[U])(resultSelector:(T,U)=&gt;R):rx.lang.scala.Observable[R]"></a>
       <a id="withLatestFrom[U,R](Observable[U])((T,U)⇒R):Observable[R]"></a>
@@ -702,7 +744,7 @@ evaluated <b>after</b> the item is emitted.</p><h5>Scheduler:</h5><p>This method
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">withLatestFrom</span><span class="tparams">[<span name="U">U</span>, <span name="R">R</span>]</span><span class="params">(<span name="other">other: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.withLatestFrom.U">U</span>]</span>)</span><span class="params">(<span name="resultSelector">resultSelector: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>, <span class="extype" name="rx.lang.scala.ExperimentalObservable.withLatestFrom.U">U</span>) ⇒ <span class="extype" name="rx.lang.scala.ExperimentalObservable.withLatestFrom.R">R</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.withLatestFrom.R">R</span>]</span>
+        <span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@510bf3a9 instead. This is kept here only for backward compatibility.">withLatestFrom</span><span class="tparams">[<span name="U">U</span>, <span name="R">R</span>]</span><span class="params">(<span name="other">other: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.withLatestFrom.U">U</span>]</span>)</span><span class="params">(<span name="resultSelector">resultSelector: (<span class="extype" name="rx.lang.scala.ExperimentalObservable.T">T</span>, <span class="extype" name="rx.lang.scala.ExperimentalObservable.withLatestFrom.U">U</span>) ⇒ <span class="extype" name="rx.lang.scala.ExperimentalObservable.withLatestFrom.R">R</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.ExperimentalObservable.withLatestFrom.R">R</span>]</span>
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#rx.lang.scala.ExperimentalObservable@withLatestFrom[U,R](other:rx.lang.scala.Observable[U])(resultSelector:(T,U)=&gt;R):rx.lang.scala.Observable[R]" title="Permalink" target="_top">
@@ -714,14 +756,13 @@ function only when the source <a href="Observable.html" class="extype" name="rx.
 function only when the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> (this instance) emits an item.</p><p><img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/withLatestFrom.png" alt=""></p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p><p>A class to add <code>Experimental/Beta</code> APIs in RxJava. These APIs can change at any time.</p><p><code>import rx.lang.scala.ExperimentalAPIs._</code> to enable them.
 </p></div><dl class="paramcmts block"><dt class="param">other</dt><dd class="cmt"><p>the other <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt class="param">resultSelector</dt><dd class="cmt"><p>the function to call when this <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> emits an item and the other <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> has already
                       emitted an item, to generate the item to be emitted by the resulting <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that merges the specified <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> into this <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> by using the
-        <code>resultSelector</code> function only when the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> sequence (this instance) emits an item</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/combinelatest.html">ReactiveX operators documentation: CombineLatest</a>
+        <code>resultSelector</code> function only when the source <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> sequence (this instance) emits an item</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use <a href="Observable.html#withLatestFrom[U,R](other:rx.lang.scala.Observable[U])(resultSelector:(T,U)=&gt;R):rx.lang.scala.Observable[R]" class="extmbr" name="rx.lang.scala.Observable#withLatestFrom">Observable.withLatestFrom</a> instead. This is kept here only for backward compatibility.</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/combinelatest.html">ReactiveX operators documentation: CombineLatest</a>
 </p></span></dd></dl></div>
     </li></ol>
             </div>
-
-        
-
-        
         </div>
 
         <div id="inheritedMembers">

@@ -67,6 +67,7 @@ title: Comparison of Scala Observable and Java Observable
 | `doOnEach(Observer<? super T>)` | `doOnEach(Observer[T])` |
 | `doOnError(Action1<Throwable>)` | `doOnError(Throwable => Unit)` |
 | `doOnNext(Action1<? super T>)` | `doOnNext(T => Unit)` |
+| `doOnRequest(Action1<Long>)` | `doOnRequest(Long => Unit)` |
 | `doOnSubscribe(Action0)` | `doOnSubscribe(=> Unit)` |
 | `doOnTerminate(Action0)` | `doOnTerminate(=> Unit)` |
 | `doOnUnsubscribe(Action0)` | `doOnUnsubscribe(=> Unit)` |
@@ -82,6 +83,9 @@ title: Comparison of Scala Observable and Java Observable
 | `firstOrDefault(T, Func1<? super T, Boolean>)` | use `.filter(condition).firstOrElse(default)` |
 | `firstOrDefault(T)` | `firstOrElse(=> U)` |
 | <span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Func1&lt;? super Throwable, ? extends Observable&lt;? extends R&gt;&gt;, Func0&lt;? extends Observable&lt;? extends R&gt;&gt;)"><code>flatMap(...)</code></span> | `flatMap(T => Observable[R], Throwable => Observable[R], () => Observable[R])` |
+| <span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Func1&lt;? super Throwable, ? extends Observable&lt;? extends R&gt;&gt;, Func0&lt;? extends Observable&lt;? extends R&gt;&gt;, Int)"><code>flatMap(...)</code></span> | `flatMap(Int, T => Observable[R], Throwable => Observable[R], () => Observable[R])` |
+| <span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Int)"><code>flatMap(...)</code></span> | `flatMap(Int, T => Observable[R])` |
+| <span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends U&gt;&gt;, Func2&lt;? super T, ? super U, ? extends R&gt;, Int)"><code>flatMap(...)</code></span> | `flatMapWith(Int, T => Observable[U])((T, U) => R)` |
 | <span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends U&gt;&gt;, Func2&lt;? super T, ? super U, ? extends R&gt;)"><code>flatMap(...)</code></span> | `flatMapWith(T => Observable[U])((T, U) => R)` |
 | `flatMap(Func1<? super T, ? extends Observable<? extends R>>)` | `flatMap(T => Observable[R])` |
 | <span title="flatMapIterable(Func1&lt;? super T, ? extends Iterable&lt;? extends R&gt;&gt;)"><code>flatMapIterable(...)</code></span> | `flatMapIterable(T => Iterable[R])` |
@@ -123,11 +127,15 @@ title: Comparison of Scala Observable and Java Observable
 | `never()` | `never` |
 | `observeOn(Scheduler)` | `observeOn(Scheduler)` |
 | `ofType(Class<R>)` | use `filter(_.isInstanceOf[Class])` |
-| `onBackpressureBlock()`<br/>`onBackpressureBlock(Int)` | Marked as `@Beta` or `@Experimental` in RxJava and thus not available in RxScala |
+| `onBackpressureBlock()` | `onBackpressureBlock` |
+| `onBackpressureBlock(Int)` | `onBackpressureBlock(Int)` |
+| `onBackpressureBuffer(Long)` | `onBackpressureBuffer(Long)` |
+| `onBackpressureBuffer(Long, Action0)` | `onBackpressureBuffer(Long, => Unit)` |
 | `onBackpressureBuffer()` | `onBackpressureBuffer` |
+| `onBackpressureDrop(Action1<? super T>)` | `onBackpressureDrop(T => Unit)` |
 | `onBackpressureDrop()` | `onBackpressureDrop` |
-| <span title="onErrorResumeNext(Func1&lt;Throwable, ? extends Observable&lt;? extends T&gt;&gt;)"><code>onErrorResumeNext(...)</code></span> | `onErrorResumeNext(Throwable => Observable[U])` |
-| `onErrorResumeNext(Observable<? extends T>)` | `onErrorResumeNext(Observable[U])` |
+| `onBackpressureLatest()` | `onBackpressureLatest` |
+| <span title="onErrorResumeNext(Func1&lt;Throwable, ? extends Observable&lt;? extends T&gt;&gt;)"><code>onErrorResumeNext(...)</code></span><br/>`onErrorResumeNext(Observable<? extends T>)` | `onErrorResumeNext(Throwable => Observable[U])` |
 | `onErrorReturn(Func1<Throwable, ? extends T>)` | `onErrorReturn(Throwable => U)` |
 | `onExceptionResumeNext(Observable<? extends T>)` | `onExceptionResumeNext(Observable[U])` |
 | `publish()` | `publish` |
@@ -195,6 +203,7 @@ title: Comparison of Scala Observable and Java Observable
 | `subscribe(Subscriber<? super T>)` | `subscribe(Subscriber[T])` |
 | `subscribe(Observer<? super T>)` | `subscribe(Observer[T])` |
 | `subscribeOn(Scheduler)` | `subscribeOn(Scheduler)` |
+| `switchIfEmpty(Observable<? extends T>)` | `switchIfEmpty(Observable[U])` |
 | `switchMap(Func1<? super T, ? extends Observable<? extends R>>)` | `switchMap(T => Observable[R])` |
 | `switchOnNext(Observable<? extends Observable<? extends T>>)` | `switch(<:<[Observable[T], Observable[Observable[U]]])` |
 | `take(Long, TimeUnit, Scheduler)` | `take(Duration, Scheduler)` |
@@ -207,6 +216,7 @@ title: Comparison of Scala Observable and Java Observable
 | `takeLast(Long, TimeUnit)` | `takeRight(Duration)` |
 | `takeLast(Int)` | `takeRight(Int)` |
 | `takeLastBuffer(Int)`<br/>`takeLastBuffer(Int, Long, TimeUnit)`<br/>`takeLastBuffer(Int, Long, TimeUnit, Scheduler)`<br/>`takeLastBuffer(Long, TimeUnit)`<br/>`takeLastBuffer(Long, TimeUnit, Scheduler)` | use `takeRight(...).toSeq` |
+| `takeUntil(Func1<? super T, Boolean>)` | `takeUntil(T => Boolean)` |
 | `takeUntil(Observable<? extends E>)` | `takeUntil(Observable[Any])` |
 | `takeWhile(Func1<? super T, Boolean>)` | `takeWhile(T => Boolean)` |
 | `throttleFirst(Long, TimeUnit)` | `throttleFirst(Duration)` |
@@ -240,11 +250,11 @@ title: Comparison of Scala Observable and Java Observable
 | `toMultimap(Func1<? super T, ? extends K>)` | `toMultiMap(T => K)` |
 | <span title="toMultimap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;, Func0&lt;? extends Map&lt;K, Collection&lt;V&gt;&gt;&gt;)"><code>toMultimap(...)</code></span> | `toMultiMap(T => K, T => V, => M)` |
 | <span title="toMultimap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;)"><code>toMultimap(...)</code></span> | `toMultiMap(T => K, T => V)` |
-| `toSortedList(Func2<? super T, ? super T, Integer>)` | Sorting is already done in Scala's collection library, use `.toSeq.map(_.sortWith(f))` |
-| `toSortedList()` | Sorting is already done in Scala's collection library, use `.toSeq.map(_.sorted)` |
+| `toSortedList(Func2<? super T, ? super T, Integer>)`<br/>`toSortedList(Func2<? super T, ? super T, Integer>, Int)` | Sorting is already done in Scala's collection library, use `.toSeq.map(_.sortWith(f))` |
+| `toSortedList()`<br/>`toSortedList(Int)` | Sorting is already done in Scala's collection library, use `.toSeq.map(_.sorted)` |
 | `unsafeSubscribe(Subscriber<? super T>)` | `unsafeSubscribe(Subscriber[T])` |
 | `unsubscribeOn(Scheduler)` | `unsubscribeOn(Scheduler)` |
-| <span title="using(Func0&lt;Resource&gt;, Func1&lt;? super Resource, ? extends Observable&lt;? extends T&gt;&gt;, Action1&lt;? super Resource&gt;)"><code>using(...)</code></span> | `using(=> Resource)(Resource => Observable[T], Resource => Unit)` |
+| <span title="using(Func0&lt;Resource&gt;, Func1&lt;? super Resource, ? extends Observable&lt;? extends T&gt;&gt;, Action1&lt;? super Resource&gt;)"><code>using(...)</code></span><br/><span title="using(Func0&lt;Resource&gt;, Func1&lt;? super Resource, ? extends Observable&lt;? extends T&gt;&gt;, Action1&lt;? super Resource&gt;, Boolean)"><code>using(...)</code></span> | `using(=> Resource)(Resource => Observable[T], Resource => Unit, Boolean)` |
 | `window(Long, TimeUnit, Scheduler)` | `tumbling(Duration, Scheduler)` |
 | `window(Func0<? extends Observable<? extends TClosing>>)`<br/>`window(Observable<U>)` | `tumbling(=> Observable[Any])` |
 | `window(Int)` | `tumbling(Int)` |
@@ -256,11 +266,12 @@ title: Comparison of Scala Observable and Java Observable
 | <span title="window(Observable&lt;? extends TOpening&gt;, Func1&lt;? super TOpening, ? extends Observable&lt;? extends TClosing&gt;&gt;)"><code>window(...)</code></span> | `sliding(Observable[Opening])(Opening => Observable[Any])` |
 | `window(Long, TimeUnit)` | `tumbling(Duration)` |
 | `window(Long, TimeUnit, Int)` | `tumbling(Duration, Int)` |
+| <span title="withLatestFrom(Observable&lt;? extends U&gt;, Func2&lt;? super T, ? super U, ? extends R&gt;)"><code>withLatestFrom(...)</code></span> | `withLatestFrom(Observable[U])((T, U) => R)` |
 | <span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Func2&lt;? super T1, ? super T2, ? extends R&gt;)"><code>zip(...)</code></span> | use instance method `zip` and `map` |
 | `zip(Iterable<? extends Observable<_>>, FuncN<? extends R>)`<br/>`zip(Observable<? extends Observable<_>>, FuncN<? extends R>)` | use `zip` in companion object and `map` |
 | <span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Func3&lt;? super T1, ? super T2, ? super T3, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Func4&lt;? super T1, ? super T2, ? super T3, ? super T4, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Func5&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Func6&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Func7&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Observable&lt;? extends T8&gt;, Func8&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? super T8, ? extends R&gt;)"><code>zip(...)</code></span><br/><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Observable&lt;? extends T3&gt;, Observable&lt;? extends T4&gt;, Observable&lt;? extends T5&gt;, Observable&lt;? extends T6&gt;, Observable&lt;? extends T7&gt;, Observable&lt;? extends T8&gt;, Observable&lt;? extends T9&gt;, Func9&lt;? super T1, ? super T2, ? super T3, ? super T4, ? super T5, ? super T6, ? super T7, ? super T8, ? super T9, ? extends R&gt;)"><code>zip(...)</code></span> | considered unnecessary in Scala land |
 | <span title="zipWith(Iterable&lt;? extends T2&gt;, Func2&lt;? super T, ? super T2, ? extends R&gt;)"><code>zipWith(...)</code></span> | `zipWith(Iterable[U])((T, U) => R)` |
 | <span title="zipWith(Observable&lt;? extends T2&gt;, Func2&lt;? super T, ? super T2, ? extends R&gt;)"><code>zipWith(...)</code></span> | `zipWith(Observable[U])((T, U) => R)` |
 
-This table was generated on Sat Dec 06 22:47:02 CET 2014.
+This table was generated on Mon Jun 08 18:56:52 CST 2015.
 **Do not edit**. Instead, edit `rx.lang.scala.CompletenessTest`.

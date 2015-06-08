@@ -30,7 +30,7 @@
       <div id="definition">
         <img src="../../../lib/package_big.png" />
         <p id="owner"><a href="../../package.html" class="extype" name="rx">rx</a>.<a href="../package.html" class="extype" name="rx.lang">lang</a></p>
-        <h1>scala</h1> <span class="permalink">
+        <h1>scala</h1><span class="permalink">
       <a href="../../../index.html#rx.lang.scala.package" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
@@ -90,24 +90,7 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="rx.lang.scala.ExperimentalObservable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ExperimentalObservable[+T]extendsAnyRef"></a>
-      <a id="ExperimentalObservable[+T]:ExperimentalObservable[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a href="ExperimentalObservable.html"><span class="name">ExperimentalObservable</span></a><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.package@ExperimentalObservable[+T]extendsAnyRef" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt"></p>
-    </li><li name="rx.lang.scala.Notification" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+              <ol><li name="rx.lang.scala.Notification" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="Notification[+T]extendsAnyRef"></a>
       <a id="Notification[+T]:Notification[T]"></a>
       <h4 class="signature">
@@ -304,6 +287,26 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
       </a>
     </span>
       
+    </li><li name="rx.lang.scala.ExperimentalObservable" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ExperimentalObservable[+T]extendsAnyRef"></a>
+      <a id="ExperimentalObservable[+T]:ExperimentalObservable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExperimentalObservable.html"><span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use new methods in scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@6ecb905 instead. This is kept here only for backward compatibility.">ExperimentalObservable</span></a><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.package@ExperimentalObservable[+T]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use new methods in <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> instead. This is kept here only for backward compatibility.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -311,24 +314,7 @@ Subscribers from given <code>onNext</code>/<code>onError</code>/<code>onComplete
 
         <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li name="rx.lang.scala.ExperimentalAPIs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ExperimentalAPIs"></a>
-      <a id="ExperimentalAPIs:ExperimentalAPIs"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="ExperimentalAPIs$.html"><span class="name">ExperimentalAPIs</span></a>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.package@ExperimentalAPIs" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      
-    </li><li name="rx.lang.scala.ImplicitFunctionConversions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+              <ol><li name="rx.lang.scala.ImplicitFunctionConversions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ImplicitFunctionConversions"></a>
       <a id="ImplicitFunctionConversions:ImplicitFunctionConversions"></a>
       <h4 class="signature">
@@ -389,9 +375,9 @@ use <a href="ImplicitFunctionConversions$.html" class="extype" name="rx.lang.sca
       </a>
     </span>
       <p class="shortcomment cmt">Provides pattern matching support and constructors for Notifications.</p><div class="fullcomment"><div class="comment cmt"><p>Provides pattern matching support and constructors for Notifications.</p><p>Example:</p><pre><span class="kw">import</span> Notification._
-Observable(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>).materialize.subscribe(n <span class="kw">=&gt;</span> n <span class="kw">match</span> {
+Observable.just(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>).materialize.subscribe(n <span class="kw">=&gt;</span> n <span class="kw">match</span> {
   <span class="kw">case</span> OnNext(v)     <span class="kw">=&gt;</span> println(<span class="lit">"Got value "</span> + v)
-  <span class="kw">case</span> OnCompleted() <span class="kw">=&gt;</span> println(<span class="lit">"Completed"</span>)
+  <span class="kw">case</span> OnCompleted <span class="kw">=&gt;</span> println(<span class="lit">"Completed"</span>)
   <span class="kw">case</span> OnError(err)  <span class="kw">=&gt;</span> println(<span class="lit">"Error: "</span> + err.getMessage)
 })</pre></div></div>
     </li><li name="rx.lang.scala.Observable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
@@ -547,6 +533,23 @@ In the corresponding Java package <code>rx.observables</code>, there is also a
 in Scala, because we use a pair <code>(key, observable)</code> instead of <code>GroupedObservable</code>
 and a pair <code>(startFunction, observable)</code> instead of <code>ConnectableObservable</code>.
 </p></div></div>
+    </li><li name="rx.lang.scala.observers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="observers"></a>
+      <a id="observers:observers"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="observers/package.html"><span class="name">observers</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.package@observers" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      
     </li><li name="rx.lang.scala.schedulers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="schedulers"></a>
       <a id="schedulers:schedulers"></a>
@@ -603,7 +606,30 @@ and a pair <code>(startFunction, observable)</code> instead of <code>Connectable
 
         
 
-        
+        <div id="values" class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="rx.lang.scala.ExperimentalAPIs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ExperimentalAPIs"></a>
+      <a id="ExperimentalAPIs:ExperimentalAPIs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ExperimentalAPIs$.html"><span class="name deprecated" title="Deprecated: (Since version 0.25.0) Use new methods in scala.tools.nsc.doc.base.MemberLookupBase$$anon$1@2e7b6fa1 instead. This is kept here only for backward compatibility.">ExperimentalAPIs</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#rx.lang.scala.package@ExperimentalAPIs" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.25.0)</i> Use new methods in <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> instead. This is kept here only for backward compatibility.</p></dd></dl></div>
+    </li></ol>
+            </div>
         </div>
 
         <div id="inheritedMembers">

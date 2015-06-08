@@ -43,7 +43,7 @@ id: defaultIfEmpty
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy defaultIfEmpty %}
+  {% lang_operator RxGroovy defaultIfEmpty switchIfEmpty %}
      <figure>
       <img src="images/defaultIfEmpty.png" style="width:100%;" alt="defaultIfEmpty" />
       <figcaption><p>
@@ -54,9 +54,14 @@ id: defaultIfEmpty
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
       </ul></figcaption>
      </figure>
+     <p>
+      There is also a new, experimental operator (not available in RxGroovy 1.0.0) called
+      <code>switchIfEmpty</code> that, rather than emitting a backup <em>value</em> if the source Observable
+      terminates without having emitted any items, it emits the emissions from a backup <em>Observable</em>.
+     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxJava defaultIfEmpty %}
+  {% lang_operator RxJava defaultIfEmpty switchIfEmpty %}
      <figure>
       <img src="images/defaultIfEmpty.png" style="width:100%;" alt="defaultIfEmpty" />
       <figcaption><p>
@@ -67,6 +72,11 @@ id: defaultIfEmpty
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
       </ul></figcaption>
      </figure>
+     <p>
+      There is also a new, experimental operator (not available in RxJava 1.0.0) called
+      <code>switchIfEmpty</code> that, rather than emitting a backup <em>value</em> if the source Observable
+      terminates without having emitted any items, it emits the emissions from a backup <em>Observable</em>.
+     </p>
   {% endlang_operator %}
 
   {% lang_operator RxJS defaultIfEmpty %}
@@ -140,7 +150,7 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala orElse %}
+  {% lang_operator RxScala orElse switchIfEmpty %}
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>

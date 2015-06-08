@@ -67,6 +67,7 @@
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/kzaher/RxSwift">RxSwift<span class="external-link"></span></a></li>
 <li><a href="/languages.html">Others</a></li>
 
               </ul>
@@ -364,6 +365,10 @@
 <td><code>doOnNext(T =&gt; Unit)</code></td>
 </tr>
 <tr>
+<td><code>doOnRequest(Action1&lt;Long&gt;)</code></td>
+<td><code>doOnRequest(Long =&gt; Unit)</code></td>
+</tr>
+<tr>
 <td><code>doOnSubscribe(Action0)</code></td>
 <td><code>doOnSubscribe(=&gt; Unit)</code></td>
 </tr>
@@ -422,6 +427,18 @@
 <tr>
 <td><span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Func1&lt;? super Throwable, ? extends Observable&lt;? extends R&gt;&gt;, Func0&lt;? extends Observable&lt;? extends R&gt;&gt;)"><code>flatMap(...)</code></span></td>
 <td><code>flatMap(T =&gt; Observable[R], Throwable =&gt; Observable[R], () =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Func1&lt;? super Throwable, ? extends Observable&lt;? extends R&gt;&gt;, Func0&lt;? extends Observable&lt;? extends R&gt;&gt;, Int)"><code>flatMap(...)</code></span></td>
+<td><code>flatMap(Int, T =&gt; Observable[R], Throwable =&gt; Observable[R], () =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Int)"><code>flatMap(...)</code></span></td>
+<td><code>flatMap(Int, T =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends U&gt;&gt;, Func2&lt;? super T, ? super U, ? extends R&gt;, Int)"><code>flatMap(...)</code></span></td>
+<td><code>flatMapWith(Int, T =&gt; Observable[U])((T, U) =&gt; R)</code></td>
 </tr>
 <tr>
 <td><span title="flatMap(Func1&lt;? super T, ? extends Observable&lt;? extends U&gt;&gt;, Func2&lt;? super T, ? super U, ? extends R&gt;)"><code>flatMap(...)</code></span></td>
@@ -588,24 +605,40 @@
 <td>use <code>filter(_.isInstanceOf[Class])</code></td>
 </tr>
 <tr>
-<td><code>onBackpressureBlock()</code><br/><code>onBackpressureBlock(Int)</code></td>
-<td>Marked as <code>@Beta</code> or <code>@Experimental</code> in RxJava and thus not available in RxScala</td>
+<td><code>onBackpressureBlock()</code></td>
+<td><code>onBackpressureBlock</code></td>
+</tr>
+<tr>
+<td><code>onBackpressureBlock(Int)</code></td>
+<td><code>onBackpressureBlock(Int)</code></td>
+</tr>
+<tr>
+<td><code>onBackpressureBuffer(Long)</code></td>
+<td><code>onBackpressureBuffer(Long)</code></td>
+</tr>
+<tr>
+<td><code>onBackpressureBuffer(Long, Action0)</code></td>
+<td><code>onBackpressureBuffer(Long, =&gt; Unit)</code></td>
 </tr>
 <tr>
 <td><code>onBackpressureBuffer()</code></td>
 <td><code>onBackpressureBuffer</code></td>
 </tr>
 <tr>
+<td><code>onBackpressureDrop(Action1&lt;? super T&gt;)</code></td>
+<td><code>onBackpressureDrop(T =&gt; Unit)</code></td>
+</tr>
+<tr>
 <td><code>onBackpressureDrop()</code></td>
 <td><code>onBackpressureDrop</code></td>
 </tr>
 <tr>
-<td><span title="onErrorResumeNext(Func1&lt;Throwable, ? extends Observable&lt;? extends T&gt;&gt;)"><code>onErrorResumeNext(...)</code></span></td>
-<td><code>onErrorResumeNext(Throwable =&gt; Observable[U])</code></td>
+<td><code>onBackpressureLatest()</code></td>
+<td><code>onBackpressureLatest</code></td>
 </tr>
 <tr>
-<td><code>onErrorResumeNext(Observable&lt;? extends T&gt;)</code></td>
-<td><code>onErrorResumeNext(Observable[U])</code></td>
+<td><span title="onErrorResumeNext(Func1&lt;Throwable, ? extends Observable&lt;? extends T&gt;&gt;)"><code>onErrorResumeNext(...)</code></span><br/><code>onErrorResumeNext(Observable&lt;? extends T&gt;)</code></td>
+<td><code>onErrorResumeNext(Throwable =&gt; Observable[U])</code></td>
 </tr>
 <tr>
 <td><code>onErrorReturn(Func1&lt;Throwable, ? extends T&gt;)</code></td>
@@ -876,6 +909,10 @@
 <td><code>subscribeOn(Scheduler)</code></td>
 </tr>
 <tr>
+<td><code>switchIfEmpty(Observable&lt;? extends T&gt;)</code></td>
+<td><code>switchIfEmpty(Observable[U])</code></td>
+</tr>
+<tr>
 <td><code>switchMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;)</code></td>
 <td><code>switchMap(T =&gt; Observable[R])</code></td>
 </tr>
@@ -922,6 +959,10 @@
 <tr>
 <td><code>takeLastBuffer(Int)</code><br/><code>takeLastBuffer(Int, Long, TimeUnit)</code><br/><code>takeLastBuffer(Int, Long, TimeUnit, Scheduler)</code><br/><code>takeLastBuffer(Long, TimeUnit)</code><br/><code>takeLastBuffer(Long, TimeUnit, Scheduler)</code></td>
 <td>use <code>takeRight(...).toSeq</code></td>
+</tr>
+<tr>
+<td><code>takeUntil(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td><code>takeUntil(T =&gt; Boolean)</code></td>
 </tr>
 <tr>
 <td><code>takeUntil(Observable&lt;? extends E&gt;)</code></td>
@@ -1056,11 +1097,11 @@
 <td><code>toMultiMap(T =&gt; K, T =&gt; V)</code></td>
 </tr>
 <tr>
-<td><code>toSortedList(Func2&lt;? super T, ? super T, Integer&gt;)</code></td>
+<td><code>toSortedList(Func2&lt;? super T, ? super T, Integer&gt;)</code><br/><code>toSortedList(Func2&lt;? super T, ? super T, Integer&gt;, Int)</code></td>
 <td>Sorting is already done in Scala&#39;s collection library, use <code>.toSeq.map(_.sortWith(f))</code></td>
 </tr>
 <tr>
-<td><code>toSortedList()</code></td>
+<td><code>toSortedList()</code><br/><code>toSortedList(Int)</code></td>
 <td>Sorting is already done in Scala&#39;s collection library, use <code>.toSeq.map(_.sorted)</code></td>
 </tr>
 <tr>
@@ -1072,8 +1113,8 @@
 <td><code>unsubscribeOn(Scheduler)</code></td>
 </tr>
 <tr>
-<td><span title="using(Func0&lt;Resource&gt;, Func1&lt;? super Resource, ? extends Observable&lt;? extends T&gt;&gt;, Action1&lt;? super Resource&gt;)"><code>using(...)</code></span></td>
-<td><code>using(=&gt; Resource)(Resource =&gt; Observable[T], Resource =&gt; Unit)</code></td>
+<td><span title="using(Func0&lt;Resource&gt;, Func1&lt;? super Resource, ? extends Observable&lt;? extends T&gt;&gt;, Action1&lt;? super Resource&gt;)"><code>using(...)</code></span><br/><span title="using(Func0&lt;Resource&gt;, Func1&lt;? super Resource, ? extends Observable&lt;? extends T&gt;&gt;, Action1&lt;? super Resource&gt;, Boolean)"><code>using(...)</code></span></td>
+<td><code>using(=&gt; Resource)(Resource =&gt; Observable[T], Resource =&gt; Unit, Boolean)</code></td>
 </tr>
 <tr>
 <td><code>window(Long, TimeUnit, Scheduler)</code></td>
@@ -1120,6 +1161,10 @@
 <td><code>tumbling(Duration, Int)</code></td>
 </tr>
 <tr>
+<td><span title="withLatestFrom(Observable&lt;? extends U&gt;, Func2&lt;? super T, ? super U, ? extends R&gt;)"><code>withLatestFrom(...)</code></span></td>
+<td><code>withLatestFrom(Observable[U])((T, U) =&gt; R)</code></td>
+</tr>
+<tr>
 <td><span title="zip(Observable&lt;? extends T1&gt;, Observable&lt;? extends T2&gt;, Func2&lt;? super T1, ? super T2, ? extends R&gt;)"><code>zip(...)</code></span></td>
 <td>use instance method <code>zip</code> and <code>map</code></td>
 </tr>
@@ -1141,7 +1186,7 @@
 </tr>
 </tbody></table>
 
-<p>This table was generated on Sat Dec 06 22:47:02 CET 2014.
+<p>This table was generated on Mon Jun 08 18:56:52 CST 2015.
 <strong>Do not edit</strong>. Instead, edit <code>rx.lang.scala.CompletenessTest</code>.</p>
 
 </div>
@@ -1171,6 +1216,7 @@
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/kzaher/RxSwift">RxSwift<span class="external-link"></span></a></li>
 <li><a href="/languages.html">Others</a></li>
 
             </ul>

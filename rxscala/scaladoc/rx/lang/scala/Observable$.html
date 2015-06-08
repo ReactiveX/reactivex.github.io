@@ -28,9 +28,13 @@
         </head>
         <body class="value">
       <div id="definition">
-        <a href="Observable.html" title="Go to companion"><img src="../../../lib/object_to_trait_big.png" /></a>
+        <a href="Observable.html" title="See companion trait"><img src="../../../lib/object_to_trait_big.png" /></a>
         <p id="owner"><a href="../../package.html" class="extype" name="rx">rx</a>.<a href="../package.html" class="extype" name="rx.lang">lang</a>.<a href="package.html" class="extype" name="rx.lang.scala">scala</a></p>
-        <h1><a href="Observable.html" title="Go to companion">Observable</a></h1> <span class="permalink">
+        <h1><a href="Observable.html" title="See companion trait">Observable</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="Observable.html" title="See companion trait">trait Observable</a>
+            | <a href="package.html" class="extype" name="rx.lang.scala">package scala</a>
+          </div></span></h3><span class="permalink">
       <a href="../../../index.html#rx.lang.scala.Observable$" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
@@ -47,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides various ways to construct new Observables.
-</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides various ways to construct new Observables.</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -183,8 +186,8 @@
     </span>
       <p class="shortcomment cmt">Returns an Observable that will execute the specified function when someone subscribes to it.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an Observable that will execute the specified function when someone subscribes to it.</p><p><img width="640" height="200" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/create.png" alt="" /></p><p>Write the function you pass so that it behaves as an Observable: It should invoke the
 Subscriber's <code>onNext</code>, <code>onError</code>, and <code>onCompleted</code> methods appropriately.</p><p>You can <code>add</code> custom <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s to <a href="Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>. These <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">Subscription</a>s will be called</p><ul><li>when someone calls <code>unsubscribe</code>.</li><li>after <code>onCompleted</code> or <code>onError</code>.</li></ul><p>See <a href="http://go.microsoft.com/fwlink/?LinkID=205219">Rx Design Guidelines (PDF)</a> for detailed
-information.</p><p>See <code><a href="https://github.com/ReactiveX/RxScala/blob/0.x/examples/src/test/scala/rx/lang/scala/examples/RxScalaDemo.scala">RxScalaDemo</a>.createExampleGood</code>
-and <code><a href="https://github.com/ReactiveX/RxScala/blob/0.x/examples/src/test/scala/rx/lang/scala/examples/RxScalaDemo.scala">RxScalaDemo</a>.createExampleGood2</code>.
+information.</p><p>See <code><a href="https://github.com/ReactiveX/RxScala/blob/0.x/examples/src/test/scala/examples/RxScalaDemo.scala">RxScalaDemo</a>.createExampleGood</code>
+and <code><a href="https://github.com/ReactiveX/RxScala/blob/0.x/examples/src/test/scala/examples/RxScalaDemo.scala">RxScalaDemo</a>.createExampleGood2</code>.
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>
            the type of the items that this Observable emits</p></dd><dt class="param">f</dt><dd class="cmt"><p>
            a function that accepts a <code>Subscriber[T]</code>, and invokes its <code>onNext</code>,
@@ -275,7 +278,10 @@ aggregation is defined by a specified function.
 should invoke the Observer's <a href="Observer.html#onNext(value:T):Unit" class="extmbr" name="rx.lang.scala.Observer#onNext">onNext</a>, <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a>, and <a href="Observer.html#onCompleted():Unit" class="extmbr" name="rx.lang.scala.Observer#onCompleted">onCompleted</a> methods
 appropriately.</p><p>See <a href="http://go.microsoft.com/fwlink/?LinkID=205219">Rx Design Guidelines (PDF)</a>
 for detailed information.</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>
-           the type of the items that this Observable emits.</p></dd><dt>returns</dt><dd class="cmt"><p>
+           the type of the items that this Observable emits.</p></dd><dt class="param">f</dt><dd class="cmt"><p>
+           a function that accepts an <code>Observer[T]</code>, invokes its <code>onNext</code>, <code>onError</code>, and <code>onCompleted</code> methods
+           as appropriate, and returns a <a href="Subscription.html" class="extype" name="rx.lang.scala.Subscription">rx.lang.scala.Subscription</a> to allow the Observer to
+           canceling the subscription.</p></dd><dt>returns</dt><dd class="cmt"><p>
         an Observable that, when an <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a> subscribes to it, will execute the given function.
 </p></dd></dl></div>
     </li><li name="rx.lang.scala.Observable#defer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -367,29 +373,24 @@ with the specified scheduler.</p><p><img width="640" height="190" src="https://r
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="rx.lang.scala.Observable#error" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="error[T](exception:Throwable):rx.lang.scala.Observable[T]"></a>
-      <a id="error[T](Throwable):Observable[T]"></a>
+      <a id="error(exception:Throwable):rx.lang.scala.Observable[Nothing]"></a>
+      <a id="error(Throwable):Observable[Nothing]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">error</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="exception">exception: <span class="extype" name="scala.Throwable">Throwable</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.error.T">T</span>]</span>
+        <span class="name">error</span><span class="params">(<span name="exception">exception: <span class="extype" name="scala.Throwable">Throwable</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="scala.Nothing">Nothing</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.Observable$@error[T](exception:Throwable):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#rx.lang.scala.Observable$@error(exception:Throwable):rx.lang.scala.Observable[Nothing]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Returns an Observable that invokes an <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a>'s <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a>
-method when the Observer subscribes to it.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an Observable that invokes an <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a>'s <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a>
-method when the Observer subscribes to it.</p><p><img width="640" height="190" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/error.png" alt="" />
-</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>
-           the type of the items (ostensibly) emitted by the Observable</p></dd><dt class="param">exception</dt><dd class="cmt"><p>
-           the particular error to report</p></dd><dt>returns</dt><dd class="cmt"><p>an Observable that invokes the <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">rx.lang.scala.Observer</a>'s <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a>
-        method when the Observer subscribes to it
-</p></dd></dl></div>
+      <p class="shortcomment cmt">Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that invokes an <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">Observer.onError</a> method when the <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> subscribes to it.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that invokes an <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">Observer.onError</a> method when the <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> subscribes to it.</p><p><img width="640" height="190" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/error.png" alt=""></p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.
+</p></div><dl class="paramcmts block"><dt class="param">exception</dt><dd class="cmt"><p>the particular <code>Throwable</code> to pass to <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">Observer.onError</a></p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that invokes the <a href="Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">Observer.onError</a> method when the <a href="Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> subscribes to it</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/empty-never-throw.html">ReactiveX operators documentation: Throw</a>
+</p></span></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -767,25 +768,26 @@ the period of time between emissions of the subsequent numbers</p></dd><dt>retur
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="rx.lang.scala.Observable#using" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="using[T,Resource](resourceFactory:=&gt;Resource)(observableFactory:Resource=&gt;rx.lang.scala.Observable[T],dispose:Resource=&gt;Unit):rx.lang.scala.Observable[T]"></a>
-      <a id="using[T,Resource](⇒Resource)((Resource)⇒Observable[T],(Resource)⇒Unit):Observable[T]"></a>
+      <a id="using[T,Resource](resourceFactory:=&gt;Resource)(observableFactory:Resource=&gt;rx.lang.scala.Observable[T],dispose:Resource=&gt;Unit,disposeEagerly:Boolean):rx.lang.scala.Observable[T]"></a>
+      <a id="using[T,Resource](⇒Resource)((Resource)⇒Observable[T],(Resource)⇒Unit,Boolean):Observable[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">using</span><span class="tparams">[<span name="T">T</span>, <span name="Resource">Resource</span>]</span><span class="params">(<span name="resourceFactory">resourceFactory: ⇒ <span class="extype" name="rx.lang.scala.Observable.using.Resource">Resource</span></span>)</span><span class="params">(<span name="observableFactory">observableFactory: (<span class="extype" name="rx.lang.scala.Observable.using.Resource">Resource</span>) ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.using.T">T</span>]</span>, <span name="dispose">dispose: (<span class="extype" name="rx.lang.scala.Observable.using.Resource">Resource</span>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.using.T">T</span>]</span>
+        <span class="name">using</span><span class="tparams">[<span name="T">T</span>, <span name="Resource">Resource</span>]</span><span class="params">(<span name="resourceFactory">resourceFactory: ⇒ <span class="extype" name="rx.lang.scala.Observable.using.Resource">Resource</span></span>)</span><span class="params">(<span name="observableFactory">observableFactory: (<span class="extype" name="rx.lang.scala.Observable.using.Resource">Resource</span>) ⇒ <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.using.T">T</span>]</span>, <span name="dispose">dispose: (<span class="extype" name="rx.lang.scala.Observable.using.Resource">Resource</span>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>, <span name="disposeEagerly">disposeEagerly: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="result">: <a href="Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.Observable.using.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#rx.lang.scala.Observable$@using[T,Resource](resourceFactory:=&gt;Resource)(observableFactory:Resource=&gt;rx.lang.scala.Observable[T],dispose:Resource=&gt;Unit):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#rx.lang.scala.Observable$@using[T,Resource](resourceFactory:=&gt;Resource)(observableFactory:Resource=&gt;rx.lang.scala.Observable[T],dispose:Resource=&gt;Unit,disposeEagerly:Boolean):rx.lang.scala.Observable[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
       <p class="shortcomment cmt">Constructs an Observable that creates a dependent resource object.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an Observable that creates a dependent resource object.</p><p><img width="640" height="400" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/using.png" alt="" /></p><h5>Scheduler:</h5><p><code>using</code> does not operate by default on a particular <code>Scheduler</code>.
 </p></div><dl class="paramcmts block"><dt class="param">resourceFactory</dt><dd class="cmt"><p>the factory function to create a resource object that depends on the Observable.
-                       Note: this is a by-name parameter.</p></dd><dt class="param">observableFactory</dt><dd class="cmt"><p>the factory function to create an Observable</p></dd><dt class="param">dispose</dt><dd class="cmt"><p>the function that will dispose of the resource</p></dd><dt>returns</dt><dd class="cmt"><p>the Observable whose lifetime controls the lifetime of the dependent resource object</p></dd></dl><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://msdn.microsoft.com/en-us/library/hh229585.aspx">MSDN: Observable.Using</a>
-</p></span><span class="cmt"><p><a href="https://github.com/ReactiveX/RxJava/wiki/Observable-Utility-Operators#using">RxJava wiki: using</a></p></span></dd></dl></div>
+                       Note: this is a by-name parameter.</p></dd><dt class="param">observableFactory</dt><dd class="cmt"><p>the factory function to create an Observable</p></dd><dt class="param">dispose</dt><dd class="cmt"><p>the function that will dispose of the resource</p></dd><dt class="param">disposeEagerly</dt><dd class="cmt"><p>if <code>true</code> then disposal will happen either on unsubscription or just before emission of
+                      a terminal event (<code>onComplete</code> or <code>onError</code>).</p></dd><dt>returns</dt><dd class="cmt"><p>the Observable whose lifetime controls the lifetime of the dependent resource object</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>(if this graduates from Experimental/Beta to supported, replace this parenthetical with the release number)
+</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://msdn.microsoft.com/en-us/library/hh229585.aspx">MSDN: Observable.Using</a></p></span><span class="cmt"><p><a href="https://github.com/ReactiveX/RxJava/wiki/Observable-Utility-Operators#using">RxJava wiki: using</a></p></span></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

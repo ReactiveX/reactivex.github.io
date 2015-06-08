@@ -67,6 +67,7 @@
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/kzaher/RxSwift">RxSwift<span class="external-link"></span></a></li>
 <li><a href="/languages.html">Others</a></li>
 
               </ul>
@@ -199,7 +200,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>defaultIfEmpty</code>
+              RxGroovy <code>defaultIfEmpty switchIfEmpty</code>
             </a>
           </h4>
         </div>
@@ -216,6 +217,11 @@
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
       </ul></figcaption>
      </figure>
+     <p>
+      There is also a new, experimental operator (not available in RxGroovy 1.0.0) called
+      <code>switchIfEmpty</code> that, rather than emitting a backup <em>value</em> if the source Observable
+      terminates without having emitted any items, it emits the emissions from a backup <em>Observable</em>.
+     </p>
   
           </div>
         </div>
@@ -227,7 +233,7 @@
         <div class="panel-heading" role="tab" id="headingRxJava">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>defaultIfEmpty</code>
+              RxJava <code>defaultIfEmpty switchIfEmpty</code>
             </a>
           </h4>
         </div>
@@ -244,6 +250,11 @@
        <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
       </ul></figcaption>
      </figure>
+     <p>
+      There is also a new, experimental operator (not available in RxJava 1.0.0) called
+      <code>switchIfEmpty</code> that, rather than emitting a backup <em>value</em> if the source Observable
+      terminates without having emitted any items, it emits the emissions from a backup <em>Observable</em>.
+     </p>
   
           </div>
         </div>
@@ -401,7 +412,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxScala">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
-              RxScala <code>orElse</code>
+              RxScala <code>orElse switchIfEmpty</code>
             </a>
           </h4>
         </div>
@@ -456,6 +467,7 @@ Completed</pre></div>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/kzaher/RxSwift">RxSwift<span class="external-link"></span></a></li>
 <li><a href="/languages.html">Others</a></li>
 
             </ul>

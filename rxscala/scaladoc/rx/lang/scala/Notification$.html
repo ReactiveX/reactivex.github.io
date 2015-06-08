@@ -28,9 +28,13 @@
         </head>
         <body class="value">
       <div id="definition">
-        <a href="Notification.html" title="Go to companion"><img src="../../../lib/object_to_trait_big.png" /></a>
+        <a href="Notification.html" title="See companion trait"><img src="../../../lib/object_to_trait_big.png" /></a>
         <p id="owner"><a href="../../package.html" class="extype" name="rx">rx</a>.<a href="../package.html" class="extype" name="rx.lang">lang</a>.<a href="package.html" class="extype" name="rx.lang.scala">scala</a></p>
-        <h1><a href="Notification.html" title="Go to companion">Notification</a></h1> <span class="permalink">
+        <h1><a href="Notification.html" title="See companion trait">Notification</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="Notification.html" title="See companion trait">trait Notification</a>
+            | <a href="package.html" class="extype" name="rx.lang.scala">package scala</a>
+          </div></span></h3><span class="permalink">
       <a href="../../../index.html#rx.lang.scala.Notification$" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
@@ -48,9 +52,9 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides pattern matching support and constructors for Notifications.</p><p>Example:</p><pre><span class="kw">import</span> Notification._
-Observable(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>).materialize.subscribe(n <span class="kw">=&gt;</span> n <span class="kw">match</span> {
+Observable.just(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>).materialize.subscribe(n <span class="kw">=&gt;</span> n <span class="kw">match</span> {
   <span class="kw">case</span> OnNext(v)     <span class="kw">=&gt;</span> println(<span class="lit">"Got value "</span> + v)
-  <span class="kw">case</span> OnCompleted() <span class="kw">=&gt;</span> println(<span class="lit">"Completed"</span>)
+  <span class="kw">case</span> OnCompleted <span class="kw">=&gt;</span> println(<span class="lit">"Completed"</span>)
   <span class="kw">case</span> OnError(err)  <span class="kw">=&gt;</span> println(<span class="lit">"Error: "</span> + err.getMessage)
 })</pre></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>

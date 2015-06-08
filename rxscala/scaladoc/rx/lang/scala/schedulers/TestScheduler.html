@@ -28,9 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <a href="TestScheduler$.html" title="Go to companion"><img src="../../../../lib/class_to_object_big.png" /></a>
+        <a href="TestScheduler$.html" title="See companion object"><img src="../../../../lib/class_to_object_big.png" /></a>
         <p id="owner"><a href="../../../package.html" class="extype" name="rx">rx</a>.<a href="../../package.html" class="extype" name="rx.lang">lang</a>.<a href="../package.html" class="extype" name="rx.lang.scala">scala</a>.<a href="package.html" class="extype" name="rx.lang.scala.schedulers">schedulers</a></p>
-        <h1><a href="TestScheduler$.html" title="Go to companion">TestScheduler</a></h1> <span class="permalink">
+        <h1><a href="TestScheduler$.html" title="See companion object">TestScheduler</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="TestScheduler$.html" title="See companion object">object TestScheduler</a>
+            | <a href="package.html" class="extype" name="rx.lang.scala.schedulers">package schedulers</a>
+          </div></span></h3><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.schedulers.TestScheduler" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" />
       </a>
@@ -48,33 +52,34 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Scheduler with artificial time, useful for testing.</p><p>For example, you could test the <code>Observable.interval</code> operation using a <code>TestScheduler</code> as follows:</p><pre>@Test <span class="kw">def</span> testInterval() {
-<span class="kw">import</span> org.mockito.Matchers._
-<span class="kw">import</span> org.mockito.Mockito._
+  <span class="kw">import</span> org.mockito.Matchers._
+  <span class="kw">import</span> org.mockito.Mockito._
+  <span class="kw">import</span> rx.lang.scala.JavaConversions._
 
-<span class="kw">val</span> scheduler = TestScheduler()
-<span class="kw">val</span> observer = mock(classOf[rx.Observer[<span class="std">Long</span>]])
+  <span class="kw">val</span> scheduler = TestScheduler()
+  <span class="kw">val</span> observer = mock(classOf[rx.Observer[<span class="std">Long</span>]])
 
-<span class="kw">val</span> o = Observable.interval(<span class="num">1</span> second, scheduler)
-<span class="kw">val</span> sub = o.subscribe(observer)
+  <span class="kw">val</span> o = Observable.interval(<span class="num">1</span> second, scheduler)
+  <span class="kw">val</span> sub = o.subscribe(toScalaObserver(<span class="kw">new</span> TestObserver(observer)))
 
-verify(observer, never).onNext(<span class="num">0</span>L)
-verify(observer, never).onCompleted()
-verify(observer, never).onError(any(classOf[Throwable]))
+  verify(observer, never).onNext(<span class="num">0</span>L)
+  verify(observer, never).onCompleted()
+  verify(observer, never).onError(any(classOf[Throwable]))
 
-scheduler.advanceTimeTo(<span class="num">2</span> seconds)
+  scheduler.advanceTimeTo(<span class="num">2</span> seconds)
 
-<span class="kw">val</span> inOrdr = inOrder(observer);
-inOrdr.verify(observer, times(<span class="num">1</span>)).onNext(<span class="num">0</span>L)
-inOrdr.verify(observer, times(<span class="num">1</span>)).onNext(<span class="num">1</span>L)
-inOrdr.verify(observer, never).onNext(<span class="num">2</span>L)
-verify(observer, never).onCompleted()
-verify(observer, never).onError(any(classOf[Throwable]))
+  <span class="kw">val</span> inOrdr = inOrder(observer);
+  inOrdr.verify(observer, times(<span class="num">1</span>)).onNext(<span class="num">0</span>L)
+  inOrdr.verify(observer, times(<span class="num">1</span>)).onNext(<span class="num">1</span>L)
+  inOrdr.verify(observer, never).onNext(<span class="num">2</span>L)
+  verify(observer, never).onCompleted()
+  verify(observer, never).onError(any(classOf[Throwable]))
 
-sub.unsubscribe();
-scheduler.advanceTimeTo(<span class="num">4</span> seconds)
-verify(observer, never).onNext(<span class="num">2</span>L)
-verify(observer, times(<span class="num">1</span>)).onCompleted()
-verify(observer, never).onError(any(classOf[Throwable]))
+  sub.unsubscribe();
+  scheduler.advanceTimeTo(<span class="num">4</span> seconds)
+  verify(observer, never).onNext(<span class="num">2</span>L)
+  verify(observer, times(<span class="num">1</span>)).onCompleted()
+  verify(observer, never).onError(any(classOf[Throwable]))
 }</pre></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>

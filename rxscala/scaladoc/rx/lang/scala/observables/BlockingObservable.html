@@ -30,7 +30,9 @@
       <div id="definition">
         <img src="../../../../lib/class_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="rx">rx</a>.<a href="../../package.html" class="extype" name="rx.lang">lang</a>.<a href="../package.html" class="extype" name="rx.lang.scala">scala</a>.<a href="package.html" class="extype" name="rx.lang.scala.observables">observables</a></p>
-        <h1>BlockingObservable</h1> <span class="permalink">
+        <h1>BlockingObservable</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="rx.lang.scala.observables">package observables</a>
+          </div></span></h3><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.observables.BlockingObservable" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" />
       </a>
@@ -181,7 +183,7 @@
       <p class="shortcomment cmt">Returns the first item emitted by a specified <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, or
 <code>NoSuchElementException</code> if source contains no elements.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the first item emitted by a specified <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, or
 <code>NoSuchElementException</code> if source contains no elements.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the first item emitted by the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">NoSuchElementException<p>
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the first item emitted by the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="NoSuchElementException"><code>NoSuchElementException</code></span> 
             if source contains no elements</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://msdn.microsoft.com/en-us/library/hh229177.aspx">MSDN: Observable.First</a>
 </p></span><span class="cmt"><p><a href="https://github.com/ReactiveX/RxJava/wiki/Blocking-Observable-Operators#first-and-firstordefault">RxJava Wiki: first()</a></p></span></dd></dl></div>
     </li><li name="rx.lang.scala.observables.BlockingObservable#foreach" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -200,12 +202,12 @@
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Invoke a method on each item emitted by the <code> Observable</code>; block until the Observable
-completes.</p><div class="fullcomment"><div class="comment cmt"><p>Invoke a method on each item emitted by the <code> Observable</code>; block until the Observable
-completes.</p><p>NOTE: This will block even if the Observable is asynchronous.</p><p>This is similar to <code> Observable#subscribe(Observer)</code>, but it blocks. Because it blocks it does
-not need the <code> Observer#onCompleted()</code> or <code> Observer#onError(Throwable)</code> methods.</p><p><img width="640" height="330" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/B.forEach.png" alt="" />
+      <p class="shortcomment cmt">Invoke a method on each item emitted by the <code><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></code>; block until the Observable
+completes.</p><div class="fullcomment"><div class="comment cmt"><p>Invoke a method on each item emitted by the <code><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></code>; block until the Observable
+completes.</p><p>NOTE: This will block even if the Observable is asynchronous.</p><p>This is similar to <code><span class="extype" name="Observable#subscribe(Observer)">Observable#subscribe(Observer)</span></code>, but it blocks. Because it blocks it does
+not need the <code><span class="extype" name="Observer#onCompleted()">Observer#onCompleted()</span></code> or <code><span class="extype" name="Observer#onError(Throwable)">Observer#onError(Throwable)</span></code> methods.</p><p><img width="640" height="330" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/B.forEach.png" alt="" />
 </p></div><dl class="paramcmts block"><dt class="param">f</dt><dd class="cmt"><p>
-           the <code> Action1</code> to invoke for every item emitted by the <code> Observable</code></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">RuntimeException<p>
+           the <code><span class="extype" name="Action1">Action1</span></code> to invoke for every item emitted by the <code><a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></code></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="RuntimeException"><code>RuntimeException</code></span> 
             if an error occurs
 </p></span></dd></dl></div>
     </li><li name="scala.AnyVal#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -244,7 +246,7 @@ not need the <code> Observer#onCompleted()</code> or <code> Observer#onError(Thr
       <p class="shortcomment cmt">Returns the first item emitted by a specified <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, or
 <code>NoSuchElementException</code> if source contains no elements.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the first item emitted by a specified <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, or
 <code>NoSuchElementException</code> if source contains no elements.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the first item emitted by the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">NoSuchElementException<p>
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the first item emitted by the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="NoSuchElementException"><code>NoSuchElementException</code></span> 
             if source contains no elements</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="#first:T" class="extmbr" name="rx.lang.scala.observables.BlockingObservable#first">BlockingObservable.first</a>
 </p></span><span class="cmt"><p><a href="http://msdn.microsoft.com/en-us/library/hh229177.aspx">MSDN: Observable.First</a></p></span><span class="cmt"><p><a href="https://github.com/ReactiveX/RxJava/wiki/Blocking-Observable-Operators#first-and-firstordefault">RxJava Wiki: first()</a></p></span></dd></dl></div>
     </li><li name="rx.lang.scala.observables.BlockingObservable#headOption" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -325,7 +327,7 @@ or <code>None</code> if the source Observable is empty.
       <p class="shortcomment cmt">Returns the last item emitted by a specified <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, or
 throws <code>NoSuchElementException</code> if it emits no items.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the last item emitted by a specified <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, or
 throws <code>NoSuchElementException</code> if it emits no items.</p><p><img width="640" height="315" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/B.last.png" alt="" />
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the last item emitted by the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">NoSuchElementException<p>
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the last item emitted by the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="NoSuchElementException"><code>NoSuchElementException</code></span> 
             if source contains no elements</p></span></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.last.aspx">MSDN: Observable.Last</a>
 </p></span><span class="cmt"><p><a href="https://github.com/ReactiveX/RxJava/wiki/Blocking-Observable-Operators#last-and-lastordefault">RxJava Wiki: last()</a></p></span></dd></dl></div>
     </li><li name="rx.lang.scala.observables.BlockingObservable#lastOption" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -410,9 +412,9 @@ waiting if necessary for one to become available.</p><p>If this <code>BlockingOb
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Returns an <code> Iterable</code> that always returns the item most recently emitted by an <code> Observable</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <code> Iterable</code> that always returns the item most recently emitted by an <code> Observable</code>.</p><p><img width="640" height="490" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/B.mostRecent.png" alt="" />
+      <p class="shortcomment cmt">Returns an <code>Iterable</code> that always returns the item most recently emitted by an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <code>Iterable</code> that always returns the item most recently emitted by an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>.</p><p><img width="640" height="490" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/B.mostRecent.png" alt="" />
 </p></div><dl class="paramcmts block"><dt class="param">initialValue</dt><dd class="cmt"><p>
-           the initial value that will be yielded by the <code> Iterable</code> sequence if the <code> Observable</code> has not yet emitted an item</p></dd><dt>returns</dt><dd class="cmt"><p>an <code> Iterable</code> that on each iteration returns the item that the <code> Observable</code> has most recently emitted
+           the initial value that will be yielded by the <code>Iterable</code> sequence if the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> has not yet emitted an item</p></dd><dt>returns</dt><dd class="cmt"><p>an <code>Iterable</code> that on each iteration returns the item that the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> has most recently emitted
 </p></dd></dl></div>
     </li><li name="rx.lang.scala.observables.BlockingObservable#next" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="next:Iterable[T]"></a>
@@ -430,10 +432,10 @@ waiting if necessary for one to become available.</p><p>If this <code>BlockingOb
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Returns an <code> Iterable</code> that blocks until the <code> Observable</code> emits another item,
-then returns that item.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <code> Iterable</code> that blocks until the <code> Observable</code> emits another item,
+      <p class="shortcomment cmt">Returns an <code>Iterable</code> that blocks until the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> emits another item,
+then returns that item.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <code>Iterable</code> that blocks until the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> emits another item,
 then returns that item.</p><p><img width="640" height="490" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/B.next.png" alt="" />
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an <code> Iterable</code> that blocks upon each iteration until the <code> Observable</code> emits a new item, whereupon the Iterable returns that item
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an <code>Iterable</code> that blocks upon each iteration until the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> emits a new item, whereupon the Iterable returns that item
 </p></dd></dl></div>
     </li><li name="rx.lang.scala.observables.BlockingObservable#o" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="o:rx.lang.scala.Observable[T]"></a>
@@ -470,7 +472,7 @@ then returns that item.</p><p><img width="640" height="490" src="https://raw.git
     </span>
       <p class="shortcomment cmt">If the source Observable completes after emitting a single item, return that item.</p><div class="fullcomment"><div class="comment cmt"><p>If the source Observable completes after emitting a single item, return that item. If the source Observable
 emits more than one item or no items, notify of an <code>IllegalArgumentException</code> or <code>NoSuchElementException</code> respectively.</p><p><img width="640" height="315" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/single.png" alt="" />
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an Observable that emits the single item emitted by the source Observable</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if the source emits more than one item</p></span><span class="cmt">NoSuchElementException<p>if the source emits no items
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an Observable that emits the single item emitted by the source Observable</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> if the source emits more than one item</p></span><span class="cmt"><p><span class="extype" name="NoSuchElementException"><code>NoSuchElementException</code></span> if the source emits no items
 </p></span></dd></dl></div>
     </li><li name="rx.lang.scala.observables.BlockingObservable#singleOption" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="singleOption:Option[T]"></a>
@@ -493,7 +495,7 @@ if the source Observable is empty, return <code>None</code>.</p><div class="full
 if the source Observable is empty, return <code>None</code>. If the source Observable emits more than one item,
 throw an <code>IllegalArgumentException</code>.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an <code>Option</code> with the single item emitted by the source Observable, or
-        <code>None</code> if the source Observable is empty</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if the source Observable emits more than one item
+        <code>None</code> if the source Observable is empty</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> if the source Observable emits more than one item
 </p></span></dd></dl></div>
     </li><li name="rx.lang.scala.observables.BlockingObservable#singleOrElse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="singleOrElse[U&gt;:T](default:=&gt;U):U"></a>
@@ -517,7 +519,7 @@ if the source Observable is empty, return a default item. If the source Observab
 emits more than one item, throw an <code>IllegalArgumentException</code>.</p><p><img width="640" height="315" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/singleOrDefault.png" alt="" />
 </p></div><dl class="paramcmts block"><dt class="param">default</dt><dd class="cmt"><p>a default value to emit if the source Observable emits no item.
                This is a by-name parameter, so it is only evaluated if the source Observable doesn't emit anything.</p></dd><dt>returns</dt><dd class="cmt"><p>the single item emitted by the source Observable, or a default item if
-        the source Observable is empty</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if the source Observable emits more than one item
+        the source Observable is empty</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> if the source Observable emits more than one item
 </p></span></dd></dl></div>
     </li><li name="rx.lang.scala.observables.BlockingObservable#toFuture" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toFuture:scala.concurrent.Future[T]"></a>
@@ -557,7 +559,7 @@ and do not want to handle these <code>Exception</code>s.</p><p><img width="640" 
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Returns an <code> Iterator</code> that iterates over all items emitted by this <code> Observable</code>.</p>
+      <p class="shortcomment cmt">Returns an <code>Iterator</code> that iterates over all items emitted by this <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>.</p>
     </li><li name="rx.lang.scala.observables.BlockingObservable#toList" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="toList:List[T]"></a>
       <a id="toList:List[T]"></a>
@@ -574,7 +576,7 @@ and do not want to handle these <code>Exception</code>s.</p><p><img width="640" 
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Returns a <code> List</code> that contains all items emitted by this <code> Observable</code>.</p>
+      <p class="shortcomment cmt">Returns a <code>List</code> that contains all items emitted by this <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>.</p>
     </li><li name="scala.Any#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>

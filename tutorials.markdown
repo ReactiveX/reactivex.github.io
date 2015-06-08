@@ -19,6 +19,7 @@ id: tutorials
 * [Learn You Some Rx for the Greater Good](http://www.schibsted.pl/2015/05/learn-you-some-rx-for-the-greater-good) a video introduction by Artur Glier
 * [A Playful Introduction to Rx](https://www.youtube.com/watch?v=WKore-AkisY) a video lecture by Erik Meijer
 * [What is Reactive Programming?](http://blog.hackhands.com/overview-of-reactive-programming/) a video presentation by Jafar Husain.
+* [Reactive Extensions: Beyond the Basics](https://www.youtube.com/watch?v=Jt-_oVQVZlQ), a presentation by Dan Lew (how to make your own operators, avoiding memory leaks in subscriptions, understanding Schedulers, hot and cold Observables, sharing Observables, the trouble with Subjects, backpressure)
 
 ## Tutorials
 * [Learn RxJava](http://github.com/jhusain/learnrxjava/) by Jafar Husain
@@ -83,6 +84,7 @@ id: tutorials
 * [JavaScript Jabber #83](http://javascriptjabber.com/083-jsj-frp-and-rxjs-with-matthew-podwysocki/)
 * [Hello RxJS - Channel 9](http://channel9.msdn.com/Blogs/Charles/Introducing-RxJS-Reactive-Extensions-for-JavaScript)
 * [RxJS Today and Tomorrow - Channel 9](http://channel9.msdn.com/Blogs/Charles/Matthew-Podwysocki-and-Bart-J-F-De-Smet-RxJS-Today-and-Tomorrow)
+* [Dealing with Streams using RxJS](https://speakerdeck.com/hugocrd/dealing-with-streams-using-rxjs), slides from a presentation by Hugo Cordier
 
 ## Android
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall
@@ -95,6 +97,7 @@ id: tutorials
 * [G-Rex](https://github.com/Naturally-Being/G-Rex) — a tiny library that assists in saving and restoring objects to and from disk using RxJava on Android
 * [Replace AsyncTask and AsyncTaskLoader with rx.Observable](http://stablekernel.com/blog/replace-asynctask-asynctaskloader-rx-observable-rxjava-android-patterns/) by Ross Hambrick
 * [How to Keep Your RxJava Subscribers from Leaking](http://philosophicalhacker.com/2015/03/24/how-to-keep-your-rxjava-subscribers-from-leaking/) by Matt Dupree
+* [Android reactive programming with RxJava](https://www.youtube.com/watch?v=JCLZ55M2gVo) video of a presentation by Ivan Morgillo
 
 ## RxNetty
 * [Accessing Meetup’s streaming API with RxNetty](http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html) by Tomasz Nurkiewicz

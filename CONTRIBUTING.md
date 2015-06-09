@@ -1,6 +1,6 @@
-# Contributing to ReactiveX
+# Contributing to ReactiveX.io
 
-If you would like to contribute code you can do so through GitHub by forking the repository and sending a pull request.
+If you would like to contribute to the site you can do so through GitHub by forking the repository and sending a pull request to the "develop" branch (the "master" branch, which represents what is live on reactivex.io, is generated from the "develop" branch, so any changes you try to make directly to "master" would be overwritten during the generation from the "develop" source).
 
 When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible.
 
@@ -10,7 +10,7 @@ By contributing your code, you agree to license your contribution under the term
 
 All files are released with the Apache 2.0 license.
 
-If you are adding a new file it should have a header like this:
+If you are adding a new source code file it should have a header like this:
 
 ```
 /**

@@ -71,7 +71,7 @@ id: flatMap
 // this closure is an Observable that emits three numbers
 numbers   = Observable.from([1, 2, 3]);
 // this closure is an Observable that emits two numbers based on what number it is passed
-multiples = { n -> Observable.from([ n*2, n*3 ]) };   
+multiples = { n -> Observable.from([ n*2, n*3 ]) };
 
 numbers.flatMap(multiples).subscribe(
   { println(it); },                          // onNext
@@ -162,7 +162,7 @@ Sequence complete</pre></div>
     <figure class="variant">
      <img src="images/switchMap.png" style="width:100%;" alt="switchMap" />
      <figcaption><p>
-      RxGroovy also implements the <code>switchMap</code> operator. It behaves much like 
+      RxGroovy also implements the <code>switchMap</code> operator. It behaves much like
       <code>flatMap</code>, except that whenever a new item is emitted by the source Observable, it
       will unsubscribe to and stop mirroring the Observable that was generated from the
       previously-emitted item, and begin only mirroring the current one.
@@ -268,7 +268,7 @@ Sequence complete</pre></div>
     <figure class="variant">
      <img src="images/switchMap.png" style="width:100%;" alt="switchMap" />
      <figcaption><p>
-      RxJava also implements the <code>switchMap</code> operator. It behaves much like 
+      RxJava also implements the <code>switchMap</code> operator. It behaves much like
       <code>flatMap</code>, except that whenever a new item is emitted by the source Observable, it
       will unsubscribe to and stop mirroring the Observable that was generated from the
       previously-emitted item, and begin only mirroring the current one.
@@ -585,7 +585,7 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxSwift concat %}
+  {% lang_operator RxSwift flatMap %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

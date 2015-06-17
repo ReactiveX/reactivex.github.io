@@ -47,69 +47,39 @@ id: timer
   {% endlang_operator %}
 
   {% lang_operator RxGroovy timer %}
-    <p>In RxGroovy there are two versions of the <code>timer</code> operator.</p>
+    <p>RxGroovy implements this operator as <code>timer</code>.</p>
     <figure class="variant">
      <img src="images/timer.png" style="width:100%;" alt="timer" />
      <figcaption><p>
-      The first version of <code>timer</code> returns an Observable that emits a single number zero
-      after a delay period you specify.
+      <code>timer</code> returns an Observable that emits a single number zero after a delay period you specify.
+     </p><p>
+      <code>timer</code> by default operates on the <code>computation</code>
+      <a href="../scheduler.html">Scheduler</a>, or you can override this by passing in a Scheduler as a final
+      parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timer(long,%20java.util.concurrent.TimeUnit)"><code>timer(long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timer(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>timer(long,TimeUnit,Scheduler)</code></a></li>
      </ul></figcaption>
     </figure>
-    <figure class="variant">
-     <img src="images/timer.p.png" style="width:100%;" alt="timer" />
-     <figcaption><p>
-      There is also a version of <code>timer</code> that returns an Observable that emits a single
-      zero after a specified delay, and then emits incrementally increasing numbers periodically
-      thereafter on a specified periodicity. In this way it behaves a bit more like the
-      <a href="interval.html"><span class="operator">Interval</span></a> operator.
-     </p>
-     <ul>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timer(long,%20long,%20java.util.concurrent.TimeUnit)"><code>timer(long,long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timer(long,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>timer(long,long,TimeUnit,Scheduler)</code></a></li>
-     </ul></figcaption>
-    </figure>
-    <p>
-     <code>timer</code> by default operates on the <code>computation</code>
-     <a href="../scheduler.html">Scheduler</a>, or you can override this by passing in a Scheduler as a final
-     parameter.
-    </p>
   {% endlang_operator %}
 
   {% lang_operator RxJava timer %}
-    <p>In RxJava there are two versions of the <code>timer</code> operator.</p>
+    <p>RxJava implements this operator as <code>timer</code>.</p>
     <figure class="variant">
      <img src="images/timer.png" style="width:100%;" alt="timer" />
      <figcaption><p>
-      The first version of <code>timer</code> returns an Observable that emits a single number zero
-      after a delay period you specify.
+      <code>timer</code> returns an Observable that emits a single number zero after a delay period you specify.
+     </p><p>
+      <code>timer</code> by default operates on the <code>computation</code>
+      <a href="../scheduler.html">Scheduler</a>, or you can override this by passing in a Scheduler as a final
+      parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timer(long,%20java.util.concurrent.TimeUnit)"><code>timer(long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timer(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>timer(long,TimeUnit,Scheduler)</code></a></li>
      </ul></figcaption>
     </figure>
-    <figure class="variant">
-     <img src="images/timer.p.png" style="width:100%;" alt="timer" />
-     <figcaption><p>
-      There is also a version of <code>timer</code> that returns an Observable that emits a single
-      zero after a specified delay, and then emits incrementally increasing numbers periodically
-      thereafter on a specified periodicity. In this way it behaves a bit more like the
-      <a href="interval.html"><span class="operator">Interval</span></a> operator.
-     </p>
-     <ul>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timer(long,%20long,%20java.util.concurrent.TimeUnit)"><code>timer(long,long,TimeUnit)</code></a></li>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timer(long,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>timer(long,long,TimeUnit,Scheduler)</code></a></li>
-     </ul></figcaption>
-    </figure>
-    <p>
-     <code>timer</code> by default operates on the <code>computation</code>
-     <a href="../scheduler.html">Scheduler</a>, or you can override this by passing in a Scheduler as a final
-     parameter.
-    </p>
   {% endlang_operator %}
 
   {% lang_operator RxJS timer %}

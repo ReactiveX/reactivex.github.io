@@ -88,6 +88,7 @@ id: tutorials
 * [Dealing with Streams using RxJS](https://speakerdeck.com/hugocrd/dealing-with-streams-using-rxjs), slides from a presentation by Hugo Cordier
 
 ## Android
+* [Introduction to RxJava for Android](http://www.philosophicalhacker.com/2015/06/16/introduction-to-rxjava-for-android-the-talk/) by Matt Dupree
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall
 * [Grokking RxJava, Part 4: Reactive Android](http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/) — by Dan Lew
 * [RxJava on Android: PopupMenus and Dialogs](http://adelnizamutdinov.github.io/blog/2014/11/23/advanced-rxjava-on-android-popupmenus-and-dialogs/) by Adel Nizamutdinov

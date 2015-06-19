@@ -609,6 +609,7 @@ operators.
 * [`length`]({{ site.url }}/documentation/operators/count.html)
 * [`let`]({{ site.url }}/documentation/operators/publish.html)
 * [`letBind`]({{ site.url }}/documentation/operators/publish.html)
+* [`limit`]({{ site.url }}/documentation/operators/take.html)
 * [`LongCount`]({{ site.url }}/documentation/operators/count.html)
 * [`ManySelect`]({{ site.url }}/documentation/operators/flatmap.html)
 * [**`Map`**]({{ site.url }}/documentation/operators/map.html)

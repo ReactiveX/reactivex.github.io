@@ -150,7 +150,7 @@
      &ldquo;OnErrorResumeNext&rdquo; that behaves like a <span class="operator">Catch</span>
      variant: specifically reacting to an <code>onError</code> notification from the source
      Observable. In others, there is an operator with that name that behaves more like a
-     <span class="operator">Concat</span> variant: performing the concatination operation
+     <span class="operator">Concat</span> variant: performing the concatenation operation
      regardless of whether the source Observable terminates normally or with an error. This is
      unfortunate and confusing, but something we have to live with.
     </p></figcaption>
@@ -600,7 +600,7 @@ Sequence complete</pre></div>
        This implementation introduces a confusing nomenclature, in which in spite of its name
        <code>OnErrorResumeNext</code> switches to a back-up Observable both on an error <em>and</em>
        on a normal, error-free termination of the source Observable. It is therefore more like a
-       concatination operator.
+       concatenation operator.
       </p></figcaption>
      </figure>
   
@@ -629,7 +629,7 @@ Sequence complete</pre></div>
       <dt><code>catch_exception</code></dt>
        <dd>instructs an Observable, if it encounters an error, to begin emitting items from a set of other Observables, one Observable at a time, until one of those Observables terminates successfully</dd>
       <dt><code>on_error_resume_next</code></dt>
-       <dd>instructs an Observable to concatinate items emitted by a set of other Observables, one Observable at a time, regardless of whether the source Observable or any subsequent Observable terminates with an error</dd>
+       <dd>instructs an Observable to concatenate items emitted by a set of other Observables, one Observable at a time, regardless of whether the source Observable or any subsequent Observable terminates with an error</dd>
      </dl>
      <h4><code>catch_exception</code></h4>
      <figure>
@@ -653,7 +653,7 @@ Sequence complete</pre></div>
        individual function parameters, as a single array of Observables, or as a factory function
        that generates Observables. When the source Observable terminates, whether normally or with
        an error, <code>on_error_resume_next</code> will subscribe to and begin mirroring the first
-       of these back-up Observables, and then will recursively continue this concatination process
+       of these back-up Observables, and then will recursively continue this concatenation process
        for each additional Observable until there are no more Observables to mirror, at which time
        it will pass on the <code>onError</code> or <code>onCompleted</code> notification from the
        last of these Observables.
@@ -685,7 +685,7 @@ Sequence complete</pre></div>
       <dt><code>rescue_error</code></dt>
        <dd>instructs an Observable to begin emitting items from another Observable, or from an Observable returned from an action, if it encounters an error</dd>
       <dt><code>on_error_resume_next</code></dt>
-       <dd>instructs an Observable to concatinate items emitted by another Observable to the sequence emitted by the source Observable, regardless of whether the source Observable terminates normally or with an error</dd>
+       <dd>instructs an Observable to concatenate items emitted by another Observable to the sequence emitted by the source Observable, regardless of whether the source Observable terminates normally or with an error</dd>
      </dl>
      <h4><code>rescue_error</code></h4>
      <figure>
@@ -700,7 +700,7 @@ Sequence complete</pre></div>
       <img src="images/on_error_resume_next.png" style="width:100%;" alt="on_error_resume_next" />
       <figcaption><p>
        In Rx.rb, <code>on_error_resume_next</code> inherits the misleading nomenclature from Rx.NET
-       in that it concatinates the second Observable sequence to the source sequence whether that
+       in that it concatenates the second Observable sequence to the source sequence whether that
        source sequence terminates normally or with an error.
       </p></figcaption>
      </figure>

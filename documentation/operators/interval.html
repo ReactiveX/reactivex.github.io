@@ -218,21 +218,30 @@
       RxGroovy implements this operator as <code>interval</code>. It accepts as its parameters a
       span of time to wait between emissions and the <code>TimeUnit</code> in which this
       span is measured.
-     </p><p>
-      <code>interval</code> operates by default on the <code>computation</code>
-      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
-      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit)"><code>interval(long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit%20rx.Scheduler)"><code>interval(long,TimeUnit,Scheduler)</code></a></li>
      </ul></figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/timer.p.png" style="width:100%;" alt="timer" />
+     <figcaption><p>
+      There is also a version of <code>interval</code> that returns an Observable that emits a single
+      zero after a specified delay, and then emits incrementally increasing numbers periodically
+      thereafter on a specified periodicity. This version of <code>interval</code> was called
+      <a href="timer.html"><code>timer</code></a> in RxGroovy 1.0.0, but that method has since been
+      deprecated in favor of the one named <code>interval</code> with the same behavior.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20long,%20java.util.concurrent.TimeUnit)"><code>interval(long,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>interval(long,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
     <p>
-     In RxGroovy there is also a version of the
-     <a href="timer.html"><span class="operator">Timer</span></a> operator that behaves somewhat
-     like <span class="operator">Interval</span>: it emits a zero after a time delay you specify,
-     an then incrementally increasing numbers of numbers at a periodicity you specify.
+     <code>interval</code> operates by default on the <code>computation</code>
+     <a href="../scheduler.html">Scheduler</a>. There are also variants that allow you to set the Scheduler by
+     passing one in as a parameter.
     </p>
   
           </div>
@@ -258,21 +267,30 @@
       RxJava implements this operator as <code>interval</code>. It accepts as its parameters a
       span of time to wait between emissions and the <code>TimeUnit</code> in which this
       span is measured.
-     </p><p>
-      <code>interval</code> operates by default on the <code>computation</code>
-      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
-      passing one in as a parameter.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit)"><code>interval(long,TimeUnit)</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit%20rx.Scheduler)"><code>interval(long,TimeUnit,Scheduler)</code></a></li>
      </ul></figcaption>
     </figure>
+    <figure class="variant">
+     <img src="images/timer.p.png" style="width:100%;" alt="timer" />
+     <figcaption><p>
+      There is also a version of <code>interval</code> that returns an Observable that emits a single
+      zero after a specified delay, and then emits incrementally increasing numbers periodically
+      thereafter on a specified periodicity. This version of <code>interval</code> was called
+      <a href="timer.html"><code>timer</code></a> in RxJava 1.0.0, but that method has since been
+      deprecated in favor of the one named <code>interval</code> with the same behavior.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20long,%20java.util.concurrent.TimeUnit)"><code>interval(long,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>interval(long,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
     <p>
-     In RxGroovy there is also a version of the
-     <a href="timer.html"><span class="operator">Timer</span></a> operator that behaves somewhat
-     like <span class="operator">Interval</span>: it emits a zero after a time delay you specify,
-     an then incrementally increasing numbers of numbers at a periodicity you specify.
+     <code>interval</code> operates by default on the <code>computation</code>
+     <a href="../scheduler.html">Scheduler</a>. There are also variants that allow you to set the Scheduler by
+     passing one in as a parameter.
     </p>
   
           </div>

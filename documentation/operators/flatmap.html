@@ -234,7 +234,7 @@
 // this closure is an Observable that emits three numbers
 numbers   = Observable.from([1, 2, 3]);
 // this closure is an Observable that emits two numbers based on what number it is passed
-multiples = { n -> Observable.from([ n*2, n*3 ]) };   
+multiples = { n -> Observable.from([ n*2, n*3 ]) };
 
 numbers.flatMap(multiples).subscribe(
   { println(it); },                          // onNext
@@ -315,7 +315,7 @@ Sequence complete</pre></div>
      <img src="images/concatMap.png" style="width:100%;" alt="concatMap" />
      <figcaption><p>
       There is also a <code>concatMap</code> operator, which is like the simpler version of the
-      <code>flatMap</code> operator, but it concatinates rather than merges the resulting
+      <code>flatMap</code> operator, but it concatenates rather than merges the resulting
       Observables in order to generate its own sequence.
      </p>
      <ul>
@@ -325,7 +325,7 @@ Sequence complete</pre></div>
     <figure class="variant">
      <img src="images/switchMap.png" style="width:100%;" alt="switchMap" />
      <figcaption><p>
-      RxGroovy also implements the <code>switchMap</code> operator. It behaves much like 
+      RxGroovy also implements the <code>switchMap</code> operator. It behaves much like
       <code>flatMap</code>, except that whenever a new item is emitted by the source Observable, it
       will unsubscribe to and stop mirroring the Observable that was generated from the
       previously-emitted item, and begin only mirroring the current one.
@@ -436,7 +436,7 @@ Sequence complete</pre></div>
      <img src="images/concatMap.png" style="width:100%;" alt="concatMap" />
      <figcaption><p>
       There is also a <code>concatMap</code> operator, which is like the simpler version of the
-      <code>flatMap</code> operator, but it concatinates rather than merges the resulting
+      <code>flatMap</code> operator, but it concatenates rather than merges the resulting
       Observables in order to generate its own sequence.
      </p>
      <ul>
@@ -446,7 +446,7 @@ Sequence complete</pre></div>
     <figure class="variant">
      <img src="images/switchMap.png" style="width:100%;" alt="switchMap" />
      <figcaption><p>
-      RxJava also implements the <code>switchMap</code> operator. It behaves much like 
+      RxJava also implements the <code>switchMap</code> operator. It behaves much like
       <code>flatMap</code>, except that whenever a new item is emitted by the source Observable, it
       will unsubscribe to and stop mirroring the Observable that was generated from the
       previously-emitted item, and begin only mirroring the current one.
@@ -646,7 +646,7 @@ Completed</pre></div>
      <img src="images/concatMap.png" style="width:100%;" alt="concatMap" />
      <figcaption><p>
       There is also a <code>concatMap</code> operator, which is like the <code>flatMap</code>
-      operator, but it concatinates rather than merges the resulting Observables in order to
+      operator, but it concatenates rather than merges the resulting Observables in order to
       generate its own sequence.
      </p><p>
       As with <code>flatMap</code>, <code>concatMap</code> works just as well if the function you
@@ -687,7 +687,7 @@ Completed</pre></div>
      <figcaption><p>
       There is also a <code>concatMapObserver</code> operator, which is like the
       <code>flatMapObserver</code> operator, in that it creates Observables to merge from both the
-      emissions and terminal notifications of the source Observable, but it concatinates rather than
+      emissions and terminal notifications of the source Observable, but it concatenates rather than
       merges these resulting Observables in order to generate its own sequence.
      </p><p>
       &ldquo;<code>selectConcatObserver</code>&rdquo; is an alias for
@@ -862,7 +862,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxSwift">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxSwift" aria-expanded="true" aria-controls="collapseRxSwift">
-              RxSwift <code>concat</code>
+              RxSwift <code>flatMap</code>
             </a>
           </h4>
         </div>

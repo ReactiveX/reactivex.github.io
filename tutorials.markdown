@@ -8,7 +8,7 @@ id: tutorials
 * [Introduction to Rx](http://www.introtorx.com/): a free, on-line book by Lee Campbell
 * [Your Mouse is a Database](http://queue.acm.org/detail.cfm?id=2169076) by Erik Meijer
 * [The introduction to Reactive Programming you’ve been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) by André Staltz
-* [Mastering Observables](http://docs.couchbase.com/prebuilt/java-sdk-2.0-beta/topics/observables.html) from the Couchbase documentation
+* [Mastering Observables](http://docs.couchbase.com/developer/java-2.0/observables.html) from the Couchbase documentation
 * [33rd Degree Reactive Java](http://www.slideshare.net/tkowalcz/33rd-degree-reactive-java) by Tomasz Kowalczewski
 * [2 minute introduction to Rx](https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877) by André Staltz
 * Wikipedia: [Reactive Programming](http://en.wikipedia.org/wiki/Reactive_programming) and [Functional Reactive Programming](http://en.wikipedia.org/wiki/Functional_reactive_programming)
@@ -66,7 +66,7 @@ id: tutorials
 * Event stream manipulation using Rx [part 1](https://blogs.endjin.com/2014/04/event-stream-manipulation-using-rx-part-1/) and [part 2](https://blogs.endjin.com/2014/05/event-stream-manipulation-using-rx-part-2/) by Richard Kerslake
 
 ## RxPY
-* [Getting Started with RxPY](https://github.com/ReactiveX/RxPY/blob/develop/notebooks/Geting%20Started.ipynb)
+* [Getting Started with RxPY](https://github.com/ReactiveX/RxPY/blob/develop/notebooks/Getting%20Started.ipynb)
 
 ## RxJS
 * [RxJS GitBook](http://xgrommx.github.io/rx-book/)

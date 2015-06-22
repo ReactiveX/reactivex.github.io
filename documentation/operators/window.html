@@ -707,13 +707,12 @@ Observable&lt;Observable&lt;Integer&gt;&gt; burstyWindowed = bursty.window(5);</
       <img src="images/window1.net.png" style="width:100%;" alt="window(windowClosingSelector)" />
       <figcaption><p>
        This variant of <code>Window</code> opens its first window immediately and calls the
-       <code>windowClosingSelector</code> function to obtain a second Observable. When this second
+       <code>windowClosingSelector</code> function to obtain a second Observable. Whenever this second
        Observable emits a <code>TWindowClosing</code> object, <code>Window</code> closes the
-       currently open window, immediately opens a new one, and again calls the
-       <code>windowClosingSelector</code> function to obtain a fresh Observable. It repeats this
-       process until the source Observable terminates. In this way, this variant of
-       <code>Window</code> emits a series of non-overlapping windows whose collective emissions
-       correspond one-to-one with those of the source Observable.
+       currently open window, and immediately opens a new one. It repeats this process until either
+       Observable terminates. In this way, this variant of <code>Window</code> emits a series of
+       non-overlapping windows whose collective emissions correspond one-to-one with those of the
+       source Observable, until the closing selector observable terminates.
       </p></figcaption>
      </figure>
      <h4><code>Window(count)</code></h4>

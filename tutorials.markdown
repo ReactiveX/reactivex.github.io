@@ -86,6 +86,9 @@ id: tutorials
 * [Hello RxJS - Channel 9](http://channel9.msdn.com/Blogs/Charles/Introducing-RxJS-Reactive-Extensions-for-JavaScript)
 * [RxJS Today and Tomorrow - Channel 9](http://channel9.msdn.com/Blogs/Charles/Matthew-Podwysocki-and-Bart-J-F-De-Smet-RxJS-Today-and-Tomorrow)
 * [Dealing with Streams using RxJS](https://speakerdeck.com/hugocrd/dealing-with-streams-using-rxjs), slides from a presentation by Hugo Cordier
+* [RxJS Session at DevNation](http://www.bleathem.ca/blog/2015/06/rxjs-devnation.html), visualizing Observable operations as animations, by Brian Leathem
+* [Reactive Functions with RxJs](https://www.icloud.com/keynote/AwBWCAESEIf9pea2IykiVtOZFiXflDsaKj9lVsSLP_OtPU29v7fNpMs78DK7tvXz4bFBkb6BXFKjxqt4G5B_UlM6TwMCUCAQEEIGVYVFig5qOTdorTOd2ERMJDtn6dvDFY58zqBiVzZmtN#RxJS_talk), slides from Vincent O&#8217;s LeedsJS talk
+* [Async and Streaming in JavaScript: We&#8217;re All Doing it Wrong!](https://vimeo.com/13196784) - video/slide presentation by Matthew Podwysocki
 
 ## Android
 * [Introduction to RxJava for Android](http://www.philosophicalhacker.com/2015/06/16/introduction-to-rxjava-for-android-the-talk/) by Matt Dupree

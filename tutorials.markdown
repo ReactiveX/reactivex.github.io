@@ -20,6 +20,7 @@ id: tutorials
 * [A Playful Introduction to Rx](https://www.youtube.com/watch?v=WKore-AkisY) a video lecture by Erik Meijer
 * [What is Reactive Programming?](http://blog.hackhands.com/overview-of-reactive-programming/) a video presentation by Jafar Husain.
 * [Reactive Extensions: Beyond the Basics](https://www.youtube.com/watch?v=Jt-_oVQVZlQ), a presentation by Dan Lew (how to make your own operators, avoiding memory leaks in subscriptions, understanding Schedulers, hot and cold Observables, sharing Observables, the trouble with Subjects, backpressure)
+* [Reactive Programming](https://www.youtube.com/watch?v=3bAQXTVsEiQ), video of a presentation by Venkat Subramaniam
 
 ## Tutorials
 * [Learn RxJava](http://github.com/jhusain/learnrxjava/) by Jafar Husain

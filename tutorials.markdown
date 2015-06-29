@@ -1,4 +1,4 @@
----
+--
 layout: simple
 title: ReactiveX - Links to More Information
 id: tutorials
@@ -47,9 +47,10 @@ id: tutorials
 * [Reactive Programming at Netflix](http://techblog.netflix.com/2013/01/reactive-programming-at-netflix.html) by Jafar Husain
 * [Implementing an Event Bus with RxJava](http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/) by Kaushik Gopal
 * [Ben Christensen explains RxJava “backpressure” strategies](https://www.parleys.com/play/543f8d5be4b06e1184ae4106/about) (video)
+* [Advanced RxJava](http://akarnokd.blogspot.hu/) a blog from Dávid Karnok
+* [Unit Testing RxJava Observables](https://medium.com/ribot-labs/unit-testing-rxjava-6e9540d4a329) by Iván Carballo
 * [Turning Twitter4J into RxJava’s Observable](http://www.nurkiewicz.com/2014/01/turning-twitter4j-into-rxjavas.html) by Tomasz Nurkiewicz
 * [Converting between Completablefuture and Observable](http://www.nurkiewicz.com/2014/11/converting-between-completablefuture.html) by Tomasz Nurkiewicz
-* [Advanced RxJava](http://akarnokd.blogspot.hu/) a blog from Dávid Karnok
 * [RxJava Observables and Akka Actors](http://onoffswitch.net/rxjava-observables-akka-actors/) by Anton Kropp
 * [Vert.x and RxJava](http://slid.es/petermd/eclipsecon2014) by @petermd
 

@@ -105,6 +105,7 @@ id: tutorials
 * [Replace AsyncTask and AsyncTaskLoader with rx.Observable](http://stablekernel.com/blog/replace-asynctask-asynctaskloader-rx-observable-rxjava-android-patterns/) by Ross Hambrick
 * [How to Keep Your RxJava Subscribers from Leaking](http://philosophicalhacker.com/2015/03/24/how-to-keep-your-rxjava-subscribers-from-leaking/) by Matt Dupree
 * [Android reactive programming with RxJava](https://www.youtube.com/watch?v=JCLZ55M2gVo) video of a presentation by Ivan Morgillo
+* [Learning RxJava (for Android) by example](https://newcircle.com/s/post/1744/2015/06/29/learning-rxjava-for-android-by-example) video and speaker deck of a presentation by Kaushik Gopal
 
 ## RxNetty
 * [Accessing Meetup’s streaming API with RxNetty](http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html) by Tomasz Nurkiewicz

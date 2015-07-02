@@ -66,6 +66,7 @@ id: tutorials
 * [Improving the Carnac Codebase and Rx Usage](http://jake.ginnivan.net/blog/carnac-improvements/part-1/) by Jake Ginnivan
 * [.NET Rocks #907](http://dotnetrocks.com/default.aspx?showNum=907)
 * Event stream manipulation using Rx [part 1](https://blogs.endjin.com/2014/04/event-stream-manipulation-using-rx-part-1/) and [part 2](https://blogs.endjin.com/2014/05/event-stream-manipulation-using-rx-part-2/) by Richard Kerslake
+* [Cloud-Scale Event Processing with the Reactive Extensions](https://vimeo.com/132192255) by Bart De Smet
 
 ## RxPY
 * [Getting Started with RxPY](https://github.com/ReactiveX/RxPY/blob/develop/notebooks/Getting%20Started.ipynb)

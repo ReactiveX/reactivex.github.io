@@ -21,10 +21,12 @@ id: community
 
 - [StackOverflow rxjs](http://stackoverflow.com/questions/tagged/rxjs)
 - [Google Group RxJS](https://groups.google.com/forum/#!forum/rxjs)
+- [Gitter RxJS room](https://gitter.im/Reactive-Extensions/RxJS)
 
 ## Rx.NET
 
 - [Discussion forum on Codeplex](http://rx.codeplex.com/discussions)
+- [Gitter Rx.NET room](https://gitter.im/Reactive-Extensions/Rx.NET)
 
 ## RxCpp
 

@@ -32,6 +32,7 @@ id: tutorials
 * [Intro to Rx](http://www.amazon.com/Introduction-to-Rx-ebook/dp/B008GM3YPM/)
 * [Intro to Rx (website)](http://introtorx.com/)
 * [Programming Reactive Extensions and LINQ](http://www.amazon.com/Programming-Reactive-Extensions-Jesse-Liberty/dp/1430237473/)
+* [Reactive Extensions in Action](http://manning.com/dresher/?a_aid=8ec75026&a_bid=8ec75026)
 
 ## Courses
 * [Reactive Programming in Java 8 With RxJava](http://pluralsight.com/training/Courses/TableOfContents/reactive-programming-java-8-rxjava), a course designed by Russell Elledge

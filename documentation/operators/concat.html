@@ -35,9 +35,16 @@ id: concat
    </figure>
 END REMOVED SECTION -->
    <p>
+    <span class="operator">Concat</span> waits to subscribe to each additional Observable that you
+    pass to it until the previous Observable completes. Note that because of this, if you try to
+    concatenate a &ldquo;hot&rdquo; Observable, that is, one that begins emitting items immediately
+    and before it is subscribed to, <span class="operator">Concat</span> will not see, and therefore
+    will not emit, any items that Observable emits before all previous Observables complete and
+    <span class="operator">Concat</span> subscribes to the &ldquo;hot&rdquo; Observable.
+   </p><p>
     In some ReactiveX implementations there is also a <span class="operator">ConcatMap</span>
     operator (a.k.a. <code>concat_all</code>, <code>concat_map</code>,
-    <code>concatMapObserver</code>, <code>for</code>, <code>forIn</code>/<code>for_in</code>
+    <code>concatMapObserver</code>, <code>for</code>, <code>forIn</code>/<code>for_in</code>,
     <code>mapcat</code>, <code>selectConcat</code>, or <code>selectConcatObserver</code>) that
     transforms the items emitted by a source Observable into corresponding Observables and then
     concatenates the items emitted by each of these Observables in the order in which they are

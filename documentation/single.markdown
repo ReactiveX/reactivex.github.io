@@ -51,6 +51,7 @@ id: single
   <tr><td><tt>subscribeOn</tt></td><td><tt>Single</tt></td><td>instructs the Single to operate on a particular <a href="scheduler.html">Scheduler</a></td></tr>
   <tr><td><tt>timeout</tt></td><td><tt>Single</tt></td><td>returns a Single that makes an error notification if the source Single does not emit a value in a specified time period</td></tr>
   <tr><td><tt>toSingle</tt></td><td><tt>Single</tt></td><td>converts an Observable that emits a single item into a Single that emits that item</td></tr>
+  <tr><td><tt>toObservable</tt></td><td><tt>Observable</tt></td><td>converts a Single into an Observable that emits the item emitted by the Single and then completes</td></tr>
   <tr><td><tt>zip</tt> and <tt>zipWith</tt></td><td><tt>Single</tt></td><td>returns a Single that emits an item that is the result of a function applied to items emitted by two or more other Singles</td></tr>
  </tbody>
 </table>
@@ -119,5 +120,7 @@ id: single
  This, too, has a <a href="scheduler.html">Scheduler</a>-specific version:
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.2s.png" width="100%" />
+<h2>toObservable</h2>
+<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.toObservable.png" width="100%" />
 <h2>zip and zipWith</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.zip.png" width="100%" />

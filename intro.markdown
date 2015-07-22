@@ -22,6 +22,14 @@ id: intro
   <tr><th>asynchronous</th><td><code>Future&lt;T&gt; getData()</code></td><td><code>Observable&lt;T&gt; getData()</code></td></tr>
  </tbody>
 </table></center>
+<p>
+ It is sometimes called &ldquo;functional reactive programming&rdquo; but this is a misnomer. ReactiveX may be
+ functional, and it may be reactive, but &ldquo;functional reactive programming&rdquo; is a different animal.
+ One main point of difference is that functional reactive programming operates on values that change
+ <em>continuously</em> over time, while ReactiveX operates on <em>discrete</em> values that are emitted over
+ time. (See <a href="http://conal.net/talks/essence-and-origins-of-frp-bayhac-2015.pdf">Conal Elliott&#8217;s
+ work for more-precise information on functional reactive programming</a>.)
+</p>
 
 <h1>Why Use Observables?</h1>
 <p>

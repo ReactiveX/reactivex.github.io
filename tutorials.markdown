@@ -54,6 +54,7 @@ id: tutorials
 * [Converting between Completablefuture and Observable](http://www.nurkiewicz.com/2014/11/converting-between-completablefuture.html) by Tomasz Nurkiewicz
 * [RxJava Observables and Akka Actors](http://onoffswitch.net/rxjava-observables-akka-actors/) by Anton Kropp
 * [Vert.x and RxJava](http://slid.es/petermd/eclipsecon2014) by @petermd
+* [Deferring Observable code until subscription in RxJava](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/) by Dan Lew
 
 ## RxScala
 * [RxJava: Reactive Extensions in Scala](http://www.youtube.com/watch?v=tOMK_FYJREw&feature=youtu.be): video of Ben Christensen and Matt Jacobs presenting at SF Scala
@@ -93,8 +94,10 @@ id: tutorials
 * [RxJS Session at DevNation](http://www.bleathem.ca/blog/2015/06/rxjs-devnation.html), visualizing Observable operations as animations, by Brian Leathem
 * [Reactive Functions with RxJs](https://www.icloud.com/keynote/AwBWCAESEIf9pea2IykiVtOZFiXflDsaKj9lVsSLP_OtPU29v7fNpMs78DK7tvXz4bFBkb6BXFKjxqt4G5B_UlM6TwMCUCAQEEIGVYVFig5qOTdorTOd2ERMJDtn6dvDFY58zqBiVzZmtN#RxJS_talk), slides from Vincent O&#8217;s LeedsJS talk
 * [Async and Streaming in JavaScript: We&#8217;re All Doing it Wrong!](https://vimeo.com/13196784) - video/slide presentation by Matthew Podwysocki
+* [Step-by-step: Building an RSS reader with RxJS](https://github.com/channikhabra/yarr) - by Charanjit Singh
 
 ## Android
+* [The RxAndroid Project](https://github.com/ReactiveX/RxAndroid)
 * [Introduction to RxJava for Android](http://www.philosophicalhacker.com/2015/06/16/introduction-to-rxjava-for-android-the-talk/) by Matt Dupree
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall
 * [Grokking RxJava, Part 4: Reactive Android](http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/) — by Dan Lew

@@ -476,8 +476,8 @@ var eventEmitter = new EventEmitter();
 var source = Rx.Observable.fromEvent(
     eventEmitter,
     'data',
-    function (args) {
-        return { foo: args[0], bar: args[1] };
+    function (first, second) {
+        return { foo: first, bar: second };
     });
 
 var subscription = source.subscribe(

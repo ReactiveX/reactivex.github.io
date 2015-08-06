@@ -762,7 +762,7 @@ Sequence complete.</pre></div>
         <div class="panel-heading" role="tab" id="headingRxJS">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code>find findIndex first firstOrDefault single singleOrDefault</code>
+              RxJS <code>find findIndex first single</code>
             </a>
           </h4>
         </div>
@@ -783,6 +783,11 @@ Sequence complete.</pre></div>
        <li>the zero-based index of this item in the source Observable&#8217;s sequence</li>
        <li>the source Observable object</li>
       </ol>
+      <p>
+       An optional third parameter (named <code>defaultValue</code>) allows you to choose an item
+       that <code>first</code> will emit if the source Observable does not emit any items (or if
+       it does not emit the <i>n</i><sup>th</sup> item that it expected.
+      </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 10)
@@ -864,41 +869,8 @@ Next: -1
 Completed</pre></div>
       </figcaption>
      </figure>
-     <figure>
-      <img src="images/firstOrDefaultN.png" style="width:100%;" alt="firstOrDefault" />
-      <figcaption><p>
-       RxJS also implements the <code>firstOrDefault</code> operator. It is similar to <code>first</code>
-       except that if the source Observable emits no items (or no items that match the predicate),
-       <code>firstOrDefault</code> will emit a default item that you specify, rather than sending an
-       <code>onError</code> notification. (If you do not specify the default item,
-       <code>firstOrDefault</code> will emit a <code>null</code> as its default.
-      </p>
-      <h4>Sample Code</h4>
-      <div class="code javascript"><pre>
-var source = Rx.Observable.range(0, 10)
-    .firstOrDefault(function (x, idx, obs) { return x > 42; }, 88 );
-
-var subscription = source.subscribe(
-    function (x) { console.log('Next: ' + x); },
-    function (err) { console.log('Error: ' + err); },
-    function () { console.log('Completed'); });</pre></div>
-      <div class="output"><pre>
-Next: 88
-Completed
-</pre></div>
-      </figcaption>
-     </figure>
-     <figure>
-      <img src="images/singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
-      <figcaption><p>
-       The <code>singleOrDefault</code> operator is similar, except that it only emits its item once the source
-       Observable successfully completes after emitting zero or one items. If it emits more than one item (or
-       more than one that satisfies the predicate), <code>singleOrDefault</code> will terminate with an
-       <code>onError</code> notitifcation (&ldquo;<code>Sequence contains no elements.</code>&rdquo;).
-      </p></figcaption>
-     </figure>
      <p>
-      <code>find</code>, <code>findIndex</code>, <code>first</code>, and <code>firstOrDefault</code> are found
+      <code>find</code>, <code>findIndex</code>, and <code>first</code> are found
       in each of the following distributions:
      </p>
      <ul>

@@ -165,6 +165,7 @@
  <li><a href="http://blog.danlew.net/2014/09/22/grokking-rxjava-part-2/"><cite>Grokking RxJava</cite>: Operator, Operator</a> by Dan Lew</li>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#SelectMany"><cite>Introduction to Rx</cite>: SelectMany</a></li>
  <li><a href="https://jkschneider.github.io/blog/2014/recursive-observables-with-rxjava.html"><cite>Recurseive Observables with RxJava</cite></a> by Jon Schneider</li>
+ <li><a href="http://fernandocejas.com/2015/01/11/rxjava-observable-tranformation-concatmap-vs-flatmap/">RxJava Observable transformation: concatMap() vs. flatMap()</cite></a> by Fernando Cejas</li>
 </ul>
 
 <h2>Language-Specific Information:</h2>
@@ -476,13 +477,18 @@ Sequence complete</pre></div>
         <div class="panel-heading" role="tab" id="headingRxJS">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code>concatMap concatMapObserver flatMap flatMapLatest flatMapObserver for forIn manySelect selectConcat selectConcatObserver selectMany selectManyObserver selectSwitch</code>
+              RxJS <code>concatMap concatMapObserver flatMap flatMapFirst flatMapLatest flatMapObserver flatMapWithMaxConcurrency for forIn manySelect selectConcat selectConcatObserver selectMany selectManyObserver selectSwitch selectSwitchFirst selectWithMatchConcurrent</code>
             </a>
           </h4>
         </div>
         <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
           <div class="panel-body">
             
+<!--
+ TODO: flatMapFirst, flatMapWithMaxConcurrency, selectSwitchFirst, selectWithMaxConcurrent
+ https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmapfirst.md
+ https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmapwithmaxconcurrent.md
+ -->
     <p>
      RxJS has a wealth of operators that perform
      <span class="operator">FlatMap</span>-like operations. In RxJS, the functions that transform

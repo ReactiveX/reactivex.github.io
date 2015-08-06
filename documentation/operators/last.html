@@ -487,7 +487,7 @@ Sequence complete.</pre></div>
         <div class="panel-heading" role="tab" id="headingRxJS">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code>last lastOrDefault</code>
+              RxJS <code>last</code>
             </a>
           </h4>
         </div>
@@ -524,22 +524,14 @@ Completed</pre></div>
        If the source Observable emits no items (or no items that match the predicate), <code>last</code>
        will terminate with a &ldquo;<code>Sequence contains no elements.</code>&rdquo; <code>onError</code>
        notification.
-      </p>
-      </figcaption>
-     </figure>
-     <figure>
-      <img src="images/lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
-      <figcaption><p>
-       RxJS also implements the <code>lastOrDefault</code> operator. It is similar to <code>last</code>
-       except that if the source Observable emits no items (or no items that match the predicate),
-       <code>lastOrDefault</code> will emit a default item that you specify, rather than sending an
-       <code>onError</code> notification. (If you do not specify the default item,
-       <code>lastOrDefault</code> will emit a <code>null</code> as its default.
+      </p><p>
+       If instead you want the Observable to emit a default value in such a case, you can pass a
+       second parameter (named <code>defaultValue</code>) to <code>last</code>:
       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(0, 10)
-    .lastOrDefault(function (x, idx, obs) { return x > 42; }, 88 );
+    .last(function (x, idx, obs) { return x > 42; }, 88 );
 
 var subscription = source.subscribe(
     function (x) { console.log('Next: ' + x); },
@@ -551,7 +543,7 @@ Completed
 </pre></div></figcaption>
      </figure>
      <p>
-      <code>last</code> and <code>lastOrDefault</code> are found in each of the following distributions:
+      <code>last</code> is found in each of the following distributions:
      </p>
      <ul>
       <li><code>rx.all.js</code></li>
@@ -559,7 +551,7 @@ Completed
       <li><code>rx.aggregates.js</code></li>
      </ul>
      <p>
-      They each require one of the following distributions:
+      It requires one of the following distributions:
      </p>
      <ul>
       <li><code>rx.js</code></li>

@@ -308,7 +308,7 @@
         <div class="panel-heading" role="tab" id="headingRxJS">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code>elementAt elementAtOrDefault</code>
+              RxJS <code>elementAt</code>
             </a>
           </h4>
         </div>
@@ -337,31 +337,26 @@ var subscription = source.subscribe(
     function () { console.log('Completed'); });</pre></div>
       <div class="output"><pre>
 Next: 2
-Completed</pre></div></figcaption>
-     </figure>
-     <figure>
-      <img src="images/elementAtOrDefault.png" style="width:100%;" alt="elementAtOrDefault" />
-      <figcaption><p>
-       The <code>elementAtOrDefault</code> operator is similar, except that if there is no element in the
-       source sequence with the index value you specify, it will emit a default value of your choosing (rather
-       than making an <code>onError</code> notification).
-      </p>
+Completed</pre></div>
+       <p>
+        You may optionally pass in a default value that <code>elementAt</code> will emit if the
+        source Observable emits no values:
+       </p>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
-var source = Rx.Observable.fromArray([1,2,3,4])
-    .elementAtOrDefault(4, 0);
+var source = Rx.Observable.fromArray([])
+    .element({defaultValue: 23});
 
 var subscription = source.subscribe(
     function (x) { console.log('Next: ' + x); },
     function (err) { console.log('Error: ' + err); },
     function () { console.log('Completed'); });</pre></div>
       <div class="output"><pre>
-Next: 0
+Next: 23
 Completed</pre></div></figcaption>
      </figure>
      <p>
-      <code>elementAt</code> and <code>elementAtUntilChanged</code> are found in each of the following
-      distributions:
+      <code>elementAt</code> is found in each of the following distributions:
      </p>
      <ul>
       <li><code>rx.all.js</code></li>

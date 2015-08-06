@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ReactiveX - Serialize operator</title>
+    <title>ReactiveX - The Observable Contract</title>
 
 
     <!-- Bootstrap -->
@@ -127,256 +127,41 @@
 <div class="full-page-container">
   <div class="row">
     <div class="col-sm-8">
-      <ol class="breadcrumb">
-  <li><a href="/documentation/operators.html">Operators</a></li>
-  <li><a href="/documentation/operators.html#utility">Utility</a></li>
-  <li class="active">Serialize</li>
-</ol>
+      <h1>The Observable Contract</h1>
 
-<h1>Serialize</h1>
-<h3>force an Observable to make serialized calls and to be well-behaved</h3>
+<p>
+ &ldquo;The Observable Contract,&rdquo; which you may see referred to in various places in source documentation
+ and in the pages on this site, is an attempt at a formal definition of an Observable, based originally on the
+ 2010 document <a href="https://go.microsoft.com/fwlink/?LinkID=205219"><cite>Rx Design Guidelines</cite></a>
+ from Microsoft that described its Rx.NET implementation of ReactiveX.
+</p><p>
+ This page summarizes The Observable Contract.
+</p>
 
-<figure>
- <img src="images/serialize.c.png" style="width:100%;" alt="Serialize" />
- <figcaption><p>
-  It is possible for an Observable to invoke its observers&#8217; methods asynchronously, perhaps from
-  different threads. This could make such an Observable violate <a href="../contract.html">the Observable
-  contract</a>, in that it might try to send an <code>OnCompleted</code> or <code>OnError</code> notification
-  before one of its <code>OnNext</code> notifications, or it might make an <code>OnNext</code> notification
-  from two different threads concurrently. You can force such an Observable to be well-behaved and synchronous
-  by applying the <span class="operator">Serialize</span> operator to it.
- </p></figcaption>
-</figure>
+<h2>Notifications from an Observable</h2>
 
-<h2>Language-Specific Information:</h2>
+<p>
+ An Observable may emit zero or more items with one OnNext notification per item, and may then follow those
+ emission notifications by either an OnCompleted or an OnError notification, but not both. Upon issuing an
+ OnCompleted or OnError notification, it may not thereafter issue any further notifications.
+</p><p>
+ An Observable may emit no items at all.  An Observable may also never terminate with either an OnCompleted or
+ an OnError notification.  That is to say that it is proper for an Observable to issue no notifications, to
+ issue only an OnCompleted or an OnError notification, or to issue only OnNext notifications.
+</p><p>
+ Observables must send notifications serially, in a single thread, and not in parallel.
+</p>
 
-<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+<h2>Subscribing and Unsubscribing</h2>
 
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxClojure">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
-              RxClojure <code>serialize</code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
-          <div class="panel-body">
-            
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxCpp">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
-              RxCpp <code></code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
-          <div class="panel-body">
-            
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxGroovy">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>serialize</code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
-          <div class="panel-body">
-            
-    <figure class="variant">
-     <img src="images/synchronize.png" style="width:100%;" alt="serialize" />
-     <figcaption><p>
-      RxGroovy implements this operator as <code>serialize</code>. It does not by default operate on any
-      particular <a href="../scheduler.html">Scheduler</a>.
-     </p>
-     <ul>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#serialize()"><code>serialize()</code></a></li>
-     </ul></figcaption>
-    </figure>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxJava">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
-              RxJava <code>serialize</code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
-          <div class="panel-body">
-            
-    <figure class="variant">
-     <img src="images/synchronize.png" style="width:100%;" alt="serialize" />
-     <figcaption><p>
-      RxJava implements this operator as <code>serialize</code>. It does not by default operate on any
-      particular <a href="../scheduler.html">Scheduler</a>.
-     </p>
-     <ul>
-      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#serialize()"><code>serialize()</code></a></li>
-     </ul></figcaption>
-    </figure>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxJS">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
-              RxJS <code></code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
-          <div class="panel-body">
-            
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxKotlin">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
-              RxKotlin <code>serialize</code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
-          <div class="panel-body">
-            
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxNET">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
-              RxNET <code>Synchronize</code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
-          <div class="panel-body">
-            
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxPY">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
-              RxPY <code></code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
-          <div class="panel-body">
-            
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxrb">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
-              Rxrb <code>sychronize</code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
-          <div class="panel-body">
-            
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
-  
-          </div>
-        </div>
-      </div>
-      
-
-  
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingRxScala">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
-              RxScala <code>serialize</code>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
-          <div class="panel-body">
-            
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
-  
-          </div>
-        </div>
-      </div>
-      
-
-</div>
+<p>
+ An Observable may begin sending notifications to an observer immediately after the Observable receives a
+ Subscribe notification from the observer.
+</p><p>
+ When an observer sends an Unsubscribe notification to an Observable, the Observable will attempt to stop
+ sending notifications to the observer. It is not guaranteed, however, that the Observable will send <em>no</em>
+ notifications to the observer after an observer sends it an Unsubscribe notification.
+</p>
 
     </div>
     <div class="col-sm-4">
@@ -468,7 +253,7 @@
     </span>
 
     <!-- Activate current page menu button -->
-    <script>$("#menu-serialize").addClass("active");</script>
+    <script>$("#menu-contract").addClass("active");</script>
 
     <!-- Polymer Paper Tabs -->
     <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />

@@ -380,7 +380,7 @@ Completed</pre></div>
      <figure>
       <img src="images/scanSeed.js.png" style="width:100%;" alt="scan" />
       <figcaption><p>
-       You can optionally pass <code>scan</code> a seed value as a first parameter.
+       You can optionally pass <code>scan</code> a seed value as an additional parameter.
        <code>scan</code> will pass this seed value to the accumulator function the first time it is
        called (for the first emission from the source Observable) in place of the result from the
        missing prior call to the accumulator.
@@ -388,11 +388,9 @@ Completed</pre></div>
       <h4>Sample Code</h4>
       <div class="code javascript"><pre>
 var source = Rx.Observable.range(1, 3)
-    .scan(
-        1,
-        function (acc, x) {
+    .scan( function (acc, x) {
             return acc * x;
-        });
+           }, 1 );
 
 var subscription = source.subscribe(
     function (x) { console.log('Next: ' + x); },

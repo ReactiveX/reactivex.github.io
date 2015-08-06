@@ -17,10 +17,11 @@ id: serialize
  <img src="images/serialize.c.png" style="width:100%;" alt="Serialize" />
  <figcaption><p>
   It is possible for an Observable to invoke its observers&#8217; methods asynchronously, perhaps from
-  different threads. This could make such an Observable poorly-behaved, in that it might try to invoke
-  <code>onCompleted</code> or <code>onError</code> before one of its <code>onNext</code> invocations, or it
-  might call <code>onNext</code> from two different threads concurrently. You can force such an Observable to be
-  well-behaved and synchronous by applying the <span class="operator">Serialize</span> operator to it.
+  different threads. This could make such an Observable violate <a href="../contract.html">the Observable
+  contract</a>, in that it might try to send an <code>OnCompleted</code> or <code>OnError</code> notification
+  before one of its <code>OnNext</code> notifications, or it might make an <code>OnNext</code> notification
+  from two different threads concurrently. You can force such an Observable to be well-behaved and synchronous
+  by applying the <span class="operator">Serialize</span> operator to it.
  </p></figcaption>
 </figure>
 
@@ -28,7 +29,7 @@ id: serialize
 
 <div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
-  {% lang_operator RxClojure serialize%}
+  {% lang_operator RxClojure serialize %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

@@ -105,15 +105,14 @@ id: subject
  </p><p>
   If you use a <code>ReplaySubject</code> as an observer, take care not to call its <code>onNext</code> method
   (or its other <code>on</code> methods) from multiple threads, as this could lead to coincident
-  (non-sequential) calls, which violates the Observable contract and creates an ambiguity in the resulting
-  Subject as to which item or notification should be replayed first.
+  (non-sequential) calls, which violates <a href="contract.html">the Observable contract</a> and creates an
+  ambiguity in the resulting Subject as to which item or notification should be replayed first.
  </p></figcaption>
 </figure>
 <h4>See Also</h4>
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/02_KeyTypes.html#ReplaySubject"><cite>Introduction to Rx</cite>: ReplaySubject</a></li>
 </ul>
-
 
 <h2>Language-Specific Information:</h2>
 

@@ -113,11 +113,11 @@ myObservable.subscribe(myOnNext);
       encountered any errors.</dd>
 </dl>
 <p>
- By the terms of the Observable contract, it may call <code>onNext</code> zero or more times, and then may
- follow those calls with a call to either <code>onCompleted</code> or <code>onError</code> but not both, which
- will be its last call. By convention, in this document, calls to <code>onNext</code> are usually called
- &ldquo;emissions&rdquo; of items, whereas calls to <code>onCompleted</code> or <code>onError</code> are
- called &ldquo;notifications.&rdquo;
+ By the terms of <a href="contract.html">the Observable contract</a>, it may call <code>onNext</code> zero or
+ more times, and then may follow those calls with a call to either <code>onCompleted</code> or
+ <code>onError</code> but not both, which will be its last call. By convention, in this document, calls to
+ <code>onNext</code> are usually called &ldquo;emissions&rdquo; of items, whereas calls to
+ <code>onCompleted</code> or <code>onError</code> are called &ldquo;notifications.&rdquo;
 </p><p>
  A more complete <code>subscribe</code> call example looks like this:
 </p>

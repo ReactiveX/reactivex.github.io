@@ -470,9 +470,9 @@ Sequence complete</pre></div>
       <img src="images/onErrorFlatMap.png" style="width:100%;" alt="onErrorFlatMap" />
       <figcaption><p>
        <code>onErrorFlatMap</code> handles a special case: a source Observable that is noncompliant
-       with the Observable contract in such a way that it may interleave <code>onError</code>
-       notifications with its emissions without terminating. This operator allows you to replace
-       those <code>onError</code> notifications with the emissions of an Observable of your choosing
+       with <a href="../contract.html">the Observable contract</a> in such a way that it may interleave
+       <code>onError</code> notifications with its emissions without terminating. This operator allows you to
+       replace those <code>onError</code> notifications with the emissions of an Observable of your choosing
        without unsubscribing from the source, so that any future items emitted from the source will
        be passed along to observers as though the sequence had not been interrupted with an
        <code>onError</code> notification.

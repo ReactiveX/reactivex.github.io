@@ -21,12 +21,14 @@ id: tutorials
 * [What is Reactive Programming?](http://blog.hackhands.com/overview-of-reactive-programming/) a video presentation by Jafar Husain.
 * [Reactive Extensions: Beyond the Basics](https://www.youtube.com/watch?v=Jt-_oVQVZlQ), a presentation by Dan Lew (how to make your own operators, avoiding memory leaks in subscriptions, understanding Schedulers, hot and cold Observables, sharing Observables, the trouble with Subjects, backpressure)
 * [Reactive Programming](https://www.youtube.com/watch?v=3bAQXTVsEiQ), video of a presentation by Venkat Subramaniam
+* [ReactiveX, RxJava, and RxAndroid - where to start](http://www.andreamaglie.com/rxjava-android-where-to-start/) by Andrea Maglie
 
 ## Tutorials
 * [Learn RxJava](http://github.com/jhusain/learnrxjava/) by Jafar Husain
 * [Rx Workshop](http://rxworkshop.codeplex.com/)
 * [Reactive Programming and MVC](http://aaronstacy.com/writings/reactive-programming-and-mvc/)
 * An interactive tutorial: [Functional Programming in Javascript](http://jhusain.github.io/learnrx/) and [an accompanying lecture (video)](http://www.youtube.com/watch?v=LB4lhFJBBq0) by Jafar Husain
+* [RxJava Tutorial 01](https://www.youtube.com/watch?v=hzaq64zh0K4) a video tutorial from ZA Software Development Tutorials showing how to set up a simple project in Eclipse
 
 ## Books
 * [Intro to Rx](http://www.amazon.com/Introduction-to-Rx-ebook/dp/B008GM3YPM/)
@@ -99,18 +101,19 @@ id: tutorials
 ## Android
 * [The RxAndroid Project](https://github.com/ReactiveX/RxAndroid)
 * [Introduction to RxJava for Android](http://www.philosophicalhacker.com/2015/06/16/introduction-to-rxjava-for-android-the-talk/) by Matt Dupree
+* [Getting Started With ReactiveX on Android](http://code.tutsplus.com/tutorials/getting-started-with-reactivex-on-android--cms-24387) by Ashraff Hathbelagal
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall
 * [Grokking RxJava, Part 4: Reactive Android](http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/) — by Dan Lew
 * [RxJava on Android: PopupMenus and Dialogs](http://adelnizamutdinov.github.io/blog/2014/11/23/advanced-rxjava-on-android-popupmenus-and-dialogs/) by Adel Nizamutdinov
 * [Tackling Complexity in Android Apps with RxJava at SoundCloud](http://www.infoq.com/news/2014/11/android-rxjava-at-soundcloud): Matt McComb interviews Matthias Käppler
 * [Resources for Learning RxJava for Android](http://gregloesch.com/dev/2014/10/20/resources-for-learning-rxjava-android.html) by Greg Loesch
 * [Top 7 Tips for RxJava on Android](http://futurice.com/blog/top-7-tips-for-rxjava-on-android)
-* [RxBinding](https://android-arsenal.com/details/1/1259) — easy one-way binding support for Android, based on RxJava
+* [RxBinding](https://github.com/JakeWharton/RxBinding) — easy one-way binding support for Android, based on RxJava
 * [G-Rex](https://github.com/Naturally-Being/G-Rex) — a tiny library that assists in saving and restoring objects to and from disk using RxJava on Android
 * [Replace AsyncTask and AsyncTaskLoader with rx.Observable](http://stablekernel.com/blog/replace-asynctask-asynctaskloader-rx-observable-rxjava-android-patterns/) by Ross Hambrick
 * [How to Keep Your RxJava Subscribers from Leaking](http://philosophicalhacker.com/2015/03/24/how-to-keep-your-rxjava-subscribers-from-leaking/) by Matt Dupree
 * [Android reactive programming with RxJava](https://www.youtube.com/watch?v=JCLZ55M2gVo) video of a presentation by Ivan Morgillo
-* [Learning RxJava (for Android) by example](https://newcircle.com/s/post/1744/2015/06/29/learning-rxjava-for-android-by-example) video and speaker deck of a presentation by Kaushik Gopal
+* [Learning RxJava (for Android) by example](https://newcircle.com/s/post/1744/2015/06/29/learning-rxjava-for-android-by-example) video and speaker deck of a presentation by Kaushik Gopal, and [the associated GitHub repository](https://github.com/kaushikgopal/RxJava-Android-Samples)
 
 ## RxNetty
 * [Accessing Meetup’s streaming API with RxNetty](http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html) by Tomasz Nurkiewicz

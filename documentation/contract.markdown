@@ -60,8 +60,11 @@ id: contract
  may release its resources and terminate, and its observers should not attempt to communicate with it any
  further.
 </p><p>
- Before an Observable releases its resources and terminates it must first issue either an OnCompleted or OnError
- notification to all of the observers that are subscribed to it.
+ An OnError notification must contain the cause of the error (that is to say, it is invalid to call OnError with
+ a <code>null</code> value).
+</p><p>
+ Before an Observable terminates it must first issue either an OnCompleted or OnError notification to all of the
+ observers that are subscribed to it.
 </p>
 <h2>Subscribing and Unsubscribing</h2>
 <p>

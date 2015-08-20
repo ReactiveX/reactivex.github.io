@@ -11,15 +11,25 @@ id: scheduler
 </p><p>
  Some ReactiveX Observable operators have variants that take a Scheduler as a parameter. These instruct the
  operator to do some or all of its work on a particular Scheduler.
-</p><p>
- You can make an Observable act on a particular Scheduler by means of the
- <a href="operators/observeon.html"><span class="operator">ObserveOn</span></a> or
- <a href="operators/subscribeon.html"><span class="operator">SubscribeOn</span></a> operators.
- <span class="operator">ObserveOn</span> instructs an Observable to call its observer&#8217;s
- <code>onNext</code>, <code>onError</code>, and <code>onCompleted</code> methods on a particular Scheduler;
- <span class="operator">SubscribeOn</span> takes this a step further and instructs the Observable to do all of
- its processing (including the sending of items and notifications to observers) on a particular Scheduler.
 </p>
+<figure>
+ <figcaption><p>
+  By default, an Observable and the chain of operators that you apply to it will do its work, and will notify
+  its observers, on the same thread on which its <code>Subscribe</code> method is called. The
+  <span class="operator">SubscribeOn</span> operator changes this behavior by specifying a different Scheduler
+  on which the Observable should operate. The <span class="operator">ObserveOn</span> operator specifies a
+  different Scheduler that the Observable will use to send notifications to its observers.
+ </p><p>
+  As shown in this illustration, the <span class="operator">SubscribeOn</span> operator designates which thread
+  the Observable will begin operating on, no matter at what point in the chain of operators that operator is
+  called.  <span class="operator">ObserveOn</span>, on the other hand, affects the thread that the Observable
+  will use <em>below</em> where that operator appears.  For this reason, you may call 
+  <span class="operator">ObserveOn</span> multiple times at various points during the chain of Observable
+  operators in order to change on which threads certain of those operators operate.
+ </p></figcaption>
+ <img src="operators/images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
+</figure>
+
 <h4>See Also</h4>
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html"><cite>Introduction to Rx</cite>: Scheduling and Threading</a></li>

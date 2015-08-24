@@ -27,8 +27,8 @@ id: intro
  functional, and it may be reactive, but &ldquo;functional reactive programming&rdquo; is a different animal.
  One main point of difference is that functional reactive programming operates on values that change
  <em>continuously</em> over time, while ReactiveX operates on <em>discrete</em> values that are emitted over
- time. (See <a href="http://conal.net/talks/essence-and-origins-of-frp-bayhac-2015.pdf">Conal Elliott&#8217;s
- work for more-precise information on functional reactive programming</a>.)
+ time. (See <a href="https://github.com/conal/essence-and-origins-of-frp">Conal Elliott&#8217;s work for
+ more-precise information on functional reactive programming</a>.)
 </p>
 
 <h1>Why Use Observables?</h1>

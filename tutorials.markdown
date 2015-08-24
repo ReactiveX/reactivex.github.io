@@ -138,3 +138,4 @@ id: tutorials
 * [Rx Design Guidelines](http://go.microsoft.com/fwlink/?LinkID=205219)
 * [Beginners Guide to Rx](http://msdn.microsoft.com/en-us/data/gg577611)
 * [Reactive Manifesto](http://www.reactivemanifesto.org/)
+* [ReactiveX文档中文翻译](https://github.com/mcxiaoke/RxDocs/blob/master/operators/Creating-Observables.md) - the documentation from this site, translated into Chinese

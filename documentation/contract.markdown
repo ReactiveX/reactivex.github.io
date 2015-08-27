@@ -114,3 +114,8 @@ id: contract
  discard the excess items, store them to emit at a later time, or use some other strategy to deal with the
  overflow.
 </p>
+<h2>See Also</h2>
+<ul>
+ <li><a href="https://go.microsoft.com/fwlink/?LinkID=205219"><cite>Rx Design Guidelines</cite></a></li>
+ <li><a href="http://xgrommx.github.io/rx-book/content/guidelines/index.html"><cite>RxJS Design Guidelines</cite></a></li>
+</ul>

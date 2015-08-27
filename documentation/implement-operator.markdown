@@ -79,3 +79,4 @@ public class myOperator<T> implements Operator<T> {
 
 # See Also
 * <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations.html">Pitfalls of Operator Implementations (part 1)</a> and <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">(part 2)</a> by D&aacute;vid Karnok.
+* <a href="http://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/implementing_your_own_operators.html">Implementing Your Own Observable Operators</a> (in RxJS) by Dennis Stoyanov

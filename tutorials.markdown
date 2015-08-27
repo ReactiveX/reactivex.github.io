@@ -76,7 +76,7 @@ id: tutorials
 * [Getting Started with RxPY](https://github.com/ReactiveX/RxPY/blob/develop/notebooks/Getting%20Started.ipynb)
 
 ## RxJS
-* [RxJS GitBook](http://xgrommx.github.io/rx-book/)
+* [RxJS - Javascript library for functional reactive programming](http://xgrommx.github.io/rx-book/index.html), an on-line book by Dennis Stoyanov
 * [Learn RxJS](http://reactive-extensions.github.io/learnrx/) by Jafar Husain
 * [RxJS Koans](https://github.com/mattpodwysocki/RxJSKoans) by Matt Podwysocki
 * [Netflix JavaScript Talks - Async JavaScript with Reactive Extensions](https://www.youtube.com/watch?v=XRYN2xt11Ek) video of a talk by Jafar Husain about the Rx way of programming

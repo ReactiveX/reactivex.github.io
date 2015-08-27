@@ -34,6 +34,7 @@ id: scheduler
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html"><cite>Introduction to Rx</cite>: Scheduling and Threading</a></li>
  <li><a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers"><cite>Rx Workshop</cite>: Schedulers</a></li>
+ <li><a href="http://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/scheduling_and_concurrency.html">Using Schedulers</a> by Dennis Stoyanov</li>
 </ul>
 
 <h2>Language-Specific Information:</h2>
@@ -341,6 +342,7 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
     <h4>See Also</h4>
     <ul>
      <li><a href="http://stackoverflow.com/questions/28145890/what-is-a-scheduler-in-rxjs"><cite>StackOverflow</cite>: What is a &ldquo;Scheduler&rdquo; in RxJS</a></li>
+     <li><a href="http://xgrommx.github.io/rx-book/content/schedulers/index.html">Schedulers</a> by Dennis Stoyanov</a></li>
     </ul>
   {% endlang_operator %}
 

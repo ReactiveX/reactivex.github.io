@@ -139,10 +139,10 @@ id: subject
    </p>
    <h4>See Also</h4>
    <ul>
-    <li>Javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/subjects/AsyncSubject.html"><code>AsyncSubject</code></a></li>
-    <li>Javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/subjects/BehaviorSubject.html"><code>BehaviorSubject</code></a></li>
-    <li>Javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/subjects/PublishSubject.html"><code>PublishSubject</code></a></li>
-    <li>Javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/subjects/ReplaySubject.html"><code>ReplaySubject</code></a></li>
+    <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/subjects/AsyncSubject.html"><code>AsyncSubject</code></a></li>
+    <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/subjects/BehaviorSubject.html"><code>BehaviorSubject</code></a></li>
+    <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/subjects/PublishSubject.html"><code>PublishSubject</code></a></li>
+    <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/subjects/ReplaySubject.html"><code>ReplaySubject</code></a></li>
    </ul>
   {% endlang_operator %}
 
@@ -154,10 +154,10 @@ id: subject
    </p>
    <h4>See Also</h4>
    <ul>
-    <li>Javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/subjects/AsyncSubject.html"><code>AsyncSubject</code></a></li>
-    <li>Javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/subjects/BehaviorSubject.html"><code>BehaviorSubject</code></a></li>
-    <li>Javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/subjects/PublishSubject.html"><code>PublishSubject</code></a></li>
-    <li>Javadoc: <a href="http://netflix.github.io/RxJava/javadoc/rx/subjects/ReplaySubject.html"><code>ReplaySubject</code></a></li>
+    <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/subjects/AsyncSubject.html"><code>AsyncSubject</code></a></li>
+    <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/subjects/BehaviorSubject.html"><code>BehaviorSubject</code></a></li>
+    <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/subjects/PublishSubject.html"><code>PublishSubject</code></a></li>
+    <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/subjects/ReplaySubject.html"><code>ReplaySubject</code></a></li>
    </ul>
   {% endlang_operator %}
 

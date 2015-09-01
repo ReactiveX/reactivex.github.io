@@ -22,6 +22,8 @@ id: tutorials
 * [Reactive Extensions: Beyond the Basics](https://www.youtube.com/watch?v=Jt-_oVQVZlQ), a presentation by Dan Lew (how to make your own operators, avoiding memory leaks in subscriptions, understanding Schedulers, hot and cold Observables, sharing Observables, the trouble with Subjects, backpressure)
 * [Reactive Programming](https://www.youtube.com/watch?v=3bAQXTVsEiQ), video of a presentation by Venkat Subramaniam
 * [ReactiveX, RxJava, and RxAndroid - where to start](http://www.andreamaglie.com/rxjava-android-where-to-start/) by Andrea Maglie
+* [Building an Application from Scratch Using RxJava and Java8](http://blog.xebia.in/2015/09/01/day1-building-an-application-from-scratch-using-rxjava-and-java8/) by Shekhar Gulati
+* [Party Tricks with RxJava, RxAndroid, and Retrolambda](https://blog.growth.supply/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c) by C&eacute;sar Ferreira
 
 ## Tutorials
 * [Learn RxJava](http://github.com/jhusain/learnrxjava/) by Jafar Husain
@@ -57,6 +59,7 @@ id: tutorials
 * [RxJava Observables and Akka Actors](http://onoffswitch.net/rxjava-observables-akka-actors/) by Anton Kropp
 * [Vert.x and RxJava](http://slid.es/petermd/eclipsecon2014) by @petermd
 * [Deferring Observable code until subscription in RxJava](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/) by Dan Lew
+* [Convert a Listener into an Observable](http://www.andreamaglie.com/rxjava-listener-to-observable/) by Andrea Maglie
 
 ## RxScala
 * [RxJava: Reactive Extensions in Scala](http://www.youtube.com/watch?v=tOMK_FYJREw&feature=youtu.be): video of Ben Christensen and Matt Jacobs presenting at SF Scala
@@ -77,7 +80,7 @@ id: tutorials
 
 ## RxJS
 * [RxJS - Javascript library for functional reactive programming](http://xgrommx.github.io/rx-book/index.html), an on-line book by Dennis Stoyanov
-* [Learn RxJS](http://reactive-extensions.github.io/learnrx/) by Jafar Husain
+* [Learn RxJS](http://reactivex.io/learnrx/) by Jafar Husain
 * [RxJS Koans](https://github.com/mattpodwysocki/RxJSKoans) by Matt Podwysocki
 * [Netflix JavaScript Talks - Async JavaScript with Reactive Extensions](https://www.youtube.com/watch?v=XRYN2xt11Ek) video of a talk by Jafar Husain about the Rx way of programming
 * [Journey from procedural to reactive Javascript with stops](http://bahmutov.calepin.co/journey-from-procedural-to-reactive-javascript-with-stops.html) by Gleb Bahmutov
@@ -97,10 +100,11 @@ id: tutorials
 * [Reactive Functions with RxJs](https://www.icloud.com/keynote/AwBWCAESEIf9pea2IykiVtOZFiXflDsaKj9lVsSLP_OtPU29v7fNpMs78DK7tvXz4bFBkb6BXFKjxqt4G5B_UlM6TwMCUCAQEEIGVYVFig5qOTdorTOd2ERMJDtn6dvDFY58zqBiVzZmtN#RxJS_talk), slides from Vincent O&#8217;s LeedsJS talk
 * [Async and Streaming in JavaScript: We&#8217;re All Doing it Wrong!](https://vimeo.com/13196784) - video/slide presentation by Matthew Podwysocki
 * [Step-by-step: Building an RSS reader with RxJS](https://github.com/channikhabra/yarr) - by Charanjit Singh
+* [Angular Air #29: Reactive Programming](https://www.youtube.com/watch?v=fV5G9lXRBvA) a video featuring Matt Podwysocki
 
 ## Android
 * [The RxAndroid Project](https://github.com/ReactiveX/RxAndroid)
-* [Introduction to RxJava for Android](http://www.philosophicalhacker.com/2015/06/16/introduction-to-rxjava-for-android-the-talk/) by Matt Dupree
+* [Introduction to RxJava for Android](http://www.philosophicalhacker.com/2015/06/16/introduction-to-rxjava-for-android-the-talk/) by Matt Dupree (and [part 2](http://www.philosophicalhacker.com/2015/06/19/introduction-to-rxjava-for-android-pt-2))
 * [Getting Started With ReactiveX on Android](http://code.tutsplus.com/tutorials/getting-started-with-reactivex-on-android--cms-24387) by Ashraff Hathbelagal
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall
 * [Grokking RxJava, Part 4: Reactive Android](http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/) — by Dan Lew

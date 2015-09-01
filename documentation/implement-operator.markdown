@@ -21,7 +21,7 @@ The following section will show how to form the scaffolding of your operator so 
 
 # Implementing Your Operator
 
-Define your operator as a public class that implements the [`Operator`](http://netflix.github.io/RxJava/javadoc/rx/Observable.Operator.html) interface, like so:
+Define your operator as a public class that implements the [`Operator`](http://reactivex.io/RxJava/javadoc/rx/Observable.Operator.html) interface, like so:
 
 ```java
 public class myOperator<T> implements Operator<T> {

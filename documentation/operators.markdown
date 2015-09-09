@@ -456,7 +456,7 @@ Specialty Observables that have more precisely-controlled subscription dynamics
   </dl></dd>
 </dl>
 </div>
-<h4>See Also</h4>
+<h4 style="clear:both;">See Also</h4>
 <ul>
  <li><a href="http://xgrommx.github.io/rx-book/content/which_operator_do_i_use/index.html">Which Operator do I use?</a> by Dennis Stoyanov (a similar decision tree, specific to RxJS operators)</li>
 </ul>

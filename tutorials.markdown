@@ -31,6 +31,7 @@ id: tutorials
 * [Reactive Programming and MVC](http://aaronstacy.com/writings/reactive-programming-and-mvc/)
 * An interactive tutorial: [Functional Programming in Javascript](http://jhusain.github.io/learnrx/) and [an accompanying lecture (video)](http://www.youtube.com/watch?v=LB4lhFJBBq0) by Jafar Husain
 * [RxJava Tutorial 01](https://www.youtube.com/watch?v=hzaq64zh0K4) a video tutorial from ZA Software Development Tutorials showing how to set up a simple project in Eclipse
+* [Intro To RxJava](https://github.com/Froussios/Intro-To-RxJava) by Chris Froussios
 
 ## Books
 * [Intro to Rx](http://www.amazon.com/Introduction-to-Rx-ebook/dp/B008GM3YPM/)
@@ -54,6 +55,7 @@ id: tutorials
 * [Ben Christensen explains RxJava “backpressure” strategies](https://www.parleys.com/play/543f8d5be4b06e1184ae4106/about) (video)
 * [Advanced RxJava](http://akarnokd.blogspot.hu/) a blog from Dávid Karnok
 * [Unit Testing RxJava Observables](https://medium.com/ribot-labs/unit-testing-rxjava-6e9540d4a329) by Iván Carballo
+* [RxJava: Unit Testing Examples](https://medium.com/mobile-engineering/rxjava-unit-testing-examples-a26af80dfce4) by Nathan Hunston
 * [Turning Twitter4J into RxJava’s Observable](http://www.nurkiewicz.com/2014/01/turning-twitter4j-into-rxjavas.html) by Tomasz Nurkiewicz
 * [Converting between Completablefuture and Observable](http://www.nurkiewicz.com/2014/11/converting-between-completablefuture.html) by Tomasz Nurkiewicz
 * [RxJava Observables and Akka Actors](http://onoffswitch.net/rxjava-observables-akka-actors/) by Anton Kropp
@@ -64,6 +66,9 @@ id: tutorials
 ## RxScala
 * [RxJava: Reactive Extensions in Scala](http://www.youtube.com/watch?v=tOMK_FYJREw&feature=youtu.be): video of Ben Christensen and Matt Jacobs presenting at SF Scala
 * [RxScala + Swing GUIs](https://github.com/samuelgruetter/rx-playground): Some motivating RxScala examples with Swing GUIs by Samuel Gruetter
+
+## RxKotlin
+* [Experimentation with RxJava](http://blog.joanzapata.com/experimentation-with-rx/) by Joan Zapata
 
 ## Rx.NET
 * [rx.codeplex.com](https://rx.codeplex.com)
@@ -118,6 +123,7 @@ id: tutorials
 * [How to Keep Your RxJava Subscribers from Leaking](http://philosophicalhacker.com/2015/03/24/how-to-keep-your-rxjava-subscribers-from-leaking/) by Matt Dupree
 * [Android reactive programming with RxJava](https://www.youtube.com/watch?v=JCLZ55M2gVo) video of a presentation by Ivan Morgillo
 * [Learning RxJava (for Android) by example](https://newcircle.com/s/post/1744/2015/06/29/learning-rxjava-for-android-by-example) video and speaker deck of a presentation by Kaushik Gopal, and [the associated GitHub repository](https://github.com/kaushikgopal/RxJava-Android-Samples)
+* [Retrofit 2.0: The biggest update yet on the best HTTP Client Library for Android](http://inthecheesefactory.com/blog/retrofit-2.0/en), which now supports RxJava Observables
 
 ## RxNetty
 * [Accessing Meetup’s streaming API with RxNetty](http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html) by Tomasz Nurkiewicz
@@ -143,3 +149,6 @@ id: tutorials
 * [Beginners Guide to Rx](http://msdn.microsoft.com/en-us/data/gg577611)
 * [Reactive Manifesto](http://www.reactivemanifesto.org/)
 * [ReactiveX文档中文翻译](http://mcxiaoke.gitbooks.io/rxdocs/content/) - the documentation from this site, translated into Chinese
+
+## Future Prospects
+* [Reactive Streams 1.0.0 Interview](https://medium.com/@viktorklang/reactive-streams-1-0-0-interview-faaca2c00bec)

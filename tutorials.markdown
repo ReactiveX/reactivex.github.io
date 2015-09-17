@@ -63,26 +63,6 @@ id: tutorials
 * [Deferring Observable code until subscription in RxJava](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/) by Dan Lew
 * [Convert a Listener into an Observable](http://www.andreamaglie.com/rxjava-listener-to-observable/) by Andrea Maglie
 
-## RxScala
-* [RxJava: Reactive Extensions in Scala](http://www.youtube.com/watch?v=tOMK_FYJREw&feature=youtu.be): video of Ben Christensen and Matt Jacobs presenting at SF Scala
-* [RxScala + Swing GUIs](https://github.com/samuelgruetter/rx-playground): Some motivating RxScala examples with Swing GUIs by Samuel Gruetter
-
-## RxKotlin
-* [Experimentation with RxJava](http://blog.joanzapata.com/experimentation-with-rx/) by Joan Zapata
-
-## Rx.NET
-* [rx.codeplex.com](https://rx.codeplex.com)
-* [Channel 9 MSDN videos on Reactive Extensions](http://channel9.msdn.com/Tags/reactive+extensions)
-* [Rx Workshop: Observables vs. Events](http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Observables-versus-Events)
-* [Rx Workshop: Unified Programming Model](http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Unified-Programming-Model)
-* [Improving the Carnac Codebase and Rx Usage](http://jake.ginnivan.net/blog/carnac-improvements/part-1/) by Jake Ginnivan
-* [.NET Rocks #907](http://dotnetrocks.com/default.aspx?showNum=907)
-* Event stream manipulation using Rx [part 1](https://blogs.endjin.com/2014/04/event-stream-manipulation-using-rx-part-1/) and [part 2](https://blogs.endjin.com/2014/05/event-stream-manipulation-using-rx-part-2/) by Richard Kerslake
-* [Cloud-Scale Event Processing with the Reactive Extensions](https://vimeo.com/132192255) by Bart De Smet
-
-## RxPY
-* [Getting Started with RxPY](https://github.com/ReactiveX/RxPY/blob/develop/notebooks/Getting%20Started.ipynb)
-
 ## RxJS
 * [RxJS - Javascript library for functional reactive programming](http://xgrommx.github.io/rx-book/index.html), an on-line book by Dennis Stoyanov
 * [Learn RxJS](http://reactivex.io/learnrx/) by Jafar Husain
@@ -107,6 +87,32 @@ id: tutorials
 * [Step-by-step: Building an RSS reader with RxJS](https://github.com/channikhabra/yarr) - by Charanjit Singh
 * [Angular Air #29: Reactive Programming](https://www.youtube.com/watch?v=fV5G9lXRBvA) a video featuring Matt Podwysocki
 
+## RxKotlin
+* [Experimentation with RxJava](http://blog.joanzapata.com/experimentation-with-rx/) by Joan Zapata
+
+## Rx.NET
+* [rx.codeplex.com](https://rx.codeplex.com)
+* [Channel 9 MSDN videos on Reactive Extensions](http://channel9.msdn.com/Tags/reactive+extensions)
+* [Rx Workshop: Observables vs. Events](http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Observables-versus-Events)
+* [Rx Workshop: Unified Programming Model](http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Unified-Programming-Model)
+* [Improving the Carnac Codebase and Rx Usage](http://jake.ginnivan.net/blog/carnac-improvements/part-1/) by Jake Ginnivan
+* [.NET Rocks #907](http://dotnetrocks.com/default.aspx?showNum=907)
+* Event stream manipulation using Rx [part 1](https://blogs.endjin.com/2014/04/event-stream-manipulation-using-rx-part-1/) and [part 2](https://blogs.endjin.com/2014/05/event-stream-manipulation-using-rx-part-2/) by Richard Kerslake
+* [Cloud-Scale Event Processing with the Reactive Extensions](https://vimeo.com/132192255) by Bart De Smet
+
+## RxNetty
+* [Accessing Meetup’s streaming API with RxNetty](http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html) by Tomasz Nurkiewicz
+
+## RxPY
+* [Getting Started with RxPY](https://github.com/ReactiveX/RxPY/blob/develop/notebooks/Getting%20Started.ipynb)
+
+## RxScala
+* [RxJava: Reactive Extensions in Scala](http://www.youtube.com/watch?v=tOMK_FYJREw&feature=youtu.be): video of Ben Christensen and Matt Jacobs presenting at SF Scala
+* [RxScala + Swing GUIs](https://github.com/samuelgruetter/rx-playground): Some motivating RxScala examples with Swing GUIs by Samuel Gruetter
+
+## RxSwing
+* [Java MVVM with Swing, RxJava and RxSwing examples](https://github.com/Petikoch/Java_MVVM_with_Swing_and_RxJava_Examples) by Peti Koch
+
 ## Android
 * [The RxAndroid Project](https://github.com/ReactiveX/RxAndroid)
 * [Introduction to RxJava for Android](http://www.philosophicalhacker.com/2015/06/16/introduction-to-rxjava-for-android-the-talk/) by Matt Dupree (and [part 2](http://www.philosophicalhacker.com/2015/06/19/introduction-to-rxjava-for-android-pt-2))
@@ -124,9 +130,6 @@ id: tutorials
 * [Android reactive programming with RxJava](https://www.youtube.com/watch?v=JCLZ55M2gVo) video of a presentation by Ivan Morgillo
 * [Learning RxJava (for Android) by example](https://newcircle.com/s/post/1744/2015/06/29/learning-rxjava-for-android-by-example) video and speaker deck of a presentation by Kaushik Gopal, and [the associated GitHub repository](https://github.com/kaushikgopal/RxJava-Android-Samples)
 * [Retrofit 2.0: The biggest update yet on the best HTTP Client Library for Android](http://inthecheesefactory.com/blog/retrofit-2.0/en), which now supports RxJava Observables
-
-## RxNetty
-* [Accessing Meetup’s streaming API with RxNetty](http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html) by Tomasz Nurkiewicz
 
 ## Examples
 * [React RxJS Autocomplete](https://github.com/eliseumds/react-autocomplete)

@@ -86,11 +86,14 @@ id: backpressure
       source Observable and emits them to downstream observers according to the requests they
       generate.
      </p><p>
-      An experimental version of this operator (not available in RxJava 1.0.0) allows you to set the
-      capacity of the buffer; applying this operator will cause the resulting Observable to
-      terminate with an error if this buffer is overrun.
+      A version of this operator that was introduced in RxGroovy 1.1 allows you to set the capacity of the
+      buffer; applying this operator will cause the resulting Observable to terminate with an error if this
+      buffer is overrun. A second version, introduced during the same release, allows you to set an
+      <code>Action</code> that <code>onBackpressureBuffer</code> will call if the buffer is overrun.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer()"><code>onBackpressureBuffer()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer(long)"><code>onBackpressureBuffer(long)</code> (RxGroovy 1.1)</a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer(long,%20rx.functions.Action0)"><code>onBackpressureBuffer(long,&nbsp;Action0)</code> (RxGroovy 1.1)</a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
@@ -99,17 +102,20 @@ id: backpressure
       <code>onBackpressureDrop</code> drops emissions from the source Observable unless there is a
       pending request from a downstream observer, in which case it will emit enough items to fulfill
       the request.
+     </p><p>
+      A version of this operator that was introduced in the 1.1 release notifies you, by means of an
+      <code>Action</code> you pass as a parameter, when an item has been dropped and which item was dropped.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop()"><code>onBackpressureDrop()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop(rx.functions.Action1)">onBackpressureDrop(Action1)</code> (RxGroovy 1.1)</a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
      <img src="images/bp.obp.latest.png" style="width:100%;" alt="onBackpressureLatest" />
      <figcaption><p>
-      <code>onBackpressureLatest</code> (experimental; not available in RxJava 1.0.0) holds on to
-      the most-recently emitted item from the source Observable and immediately emits that item to
-      its observer upon request. It drops any other items that it observes between requests from its
-      observer.
+      <code>onBackpressureLatest</code> (new in RxJava 1.1) holds on to the most-recently emitted item from the
+      source Observable and immediately emits that item to its observer upon request. It drops any other items
+      that it observes between requests from its observer.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureLatest()"><code>onBackpressureLatest()</code></a></li>
      </ul></figcaption>
@@ -128,11 +134,15 @@ id: backpressure
       source Observable and emits them to downstream observers according to the requests they
       generate.
      </p><p>
-      An experimental version of this operator (not available in RxJava 1.0.0) allows you to set the
-      capacity of the buffer; applying this operator will cause the resulting Observable to
-      terminate with an error if this buffer is overrun.
+      A version of this operator that was introduced in RxJava 1.1 allows you to set the capacity of the
+      buffer; applying this operator will cause the resulting Observable to terminate with an error if this
+      buffer is overrun. A second version, introduced during the same release, allows you to set an
+      <code>Action</code> that <code>onBackpressureBuffer</code> will call if the buffer is overrun.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer()"><code>onBackpressureBuffer()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer(long)"><code>onBackpressureBuffer(long)</code> (RxJava 1.1)</a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer(long,%20rx.functions.Action0)"><code>onBackpressureBuffer(long,&nbsp;Action0)</code> (RxJava 1.1)</a></li>
+     </ul></figcaption>
      </ul></figcaption>
     </figure>
     <figure class="variant">
@@ -141,17 +151,20 @@ id: backpressure
       <code>onBackpressureDrop</code> drops emissions from the source Observable unless there is a
       pending request from a downstream observer, in which case it will emit enough items to fulfill
       the request.
+     </p><p>
+      A version of this operator that was introduced in the 1.1 release notifies you, by means of an
+      <code>Action</code> you pass as a parameter, when an item has been dropped and which item was dropped.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop()"><code>onBackpressureDrop()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop(rx.functions.Action1)">onBackpressureDrop(Action1)</code> (RxJava 1.1)</a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
      <img src="images/bp.obp.latest.png" style="width:100%;" alt="onBackpressureLatest" />
      <figcaption><p>
-      <code>onBackpressureLatest</code> (experimental; not available in RxJava 1.0.0) holds on to
-      the most-recently emitted item from the source Observable and immediately emits that item to
-      its observer upon request. It drops any other items that it observes between requests from its
-      observer.
+      <code>onBackpressureLatest</code> (new in RxJava 1.1) holds on to the most-recently emitted item from the
+      source Observable and immediately emits that item to its observer upon request. It drops any other items
+      that it observes between requests from its observer.
      </p><ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureLatest()"><code>onBackpressureLatest()</code></a></li>
      </ul></figcaption>
@@ -242,7 +255,7 @@ id: backpressure
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxScala onBackpressureBlock onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
+  {% lang_operator RxScala onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
     <p>
      <span style="color:#f00">TBD</span>
     </p>

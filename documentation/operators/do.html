@@ -46,7 +46,7 @@ id: do
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxGroovy doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+  {% lang_operator RxGroovy doOnCompleted doOnEach doOnError doOnNext doOnRequest doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
     <p>
      RxGroovy has several <span class="operator">Do</span> variants.
     </p>
@@ -73,6 +73,16 @@ id: do
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnNext(rx.functions.Action1)"><code>doOnNext(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <figcaption><p>
+      The <code>doOnRequest</code> operator (new in RxGroovy 1.1) registers an <code>Action</code> which will be
+      called whenever an observer requests additional items from the resulting Observable. That
+      <code>Action</code> receives as its parameter the number of items that the observer is requesting.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnRequest(rx.functions.Action1)"><code>doOnRequest(Action1)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">
@@ -155,7 +165,7 @@ Finally</pre></div>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+  {% lang_operator RxJava doOnCompleted doOnEach doOnError doOnNext doOnRequest doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
     <p>
      RxJava has several <span class="operator">Do</span> variants.
     </p>
@@ -211,6 +221,16 @@ Next: 1
 Error: Item exceeds maximum value</pre></div>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnNext(rx.functions.Action1)"><code>doOnNext(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <figcaption><p>
+      The <code>doOnRequest</code> operator (new in RxJava 1.1) registers an <code>Action</code> which will be
+      called whenever an observer requests additional items from the resulting Observable. That
+      <code>Action</code> receives as its parameter the number of items that the observer is requesting.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnRequest(rx.functions.Action1)"><code>doOnRequest(Action1)</code></a></li>
      </ul></figcaption>
     </figure>
     <figure class="variant">

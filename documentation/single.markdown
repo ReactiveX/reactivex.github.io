@@ -38,6 +38,8 @@ id: single
   <tr><td><tt>compose</tt></td><td><tt>Single</tt></td><td>allows you create a custom operator</td></tr>
   <tr><td><tt>concat</tt> and <tt>concatWith</tt></td><td><tt>Observable</tt></td><td>concatenates the items emitted by multiple Singles as Observable emissions</td></tr>
   <tr><td><tt>create</tt></td><td><tt>Single</tt></td><td>create a Single from scratch by calling subscriber methods explicitly</td></tr>
+  <tr><td><tt>doOnError</tt></td><td><tt>Single</tt></td><td>returns a Single that also calls a method you specify when it calls onError</td></tr>
+  <tr><td><tt>doOnSuccess</tt></td><td><tt>Single</tt></td><td>returns a Single that also calls a method you specify when it calls onSuccess</td></tr>
   <tr><td><tt>error</tt></td><td><tt>Single</tt></td><td>returns a Single that immediately notifies subscribers of an error</td></tr>
   <tr><td><tt>flatMap</tt></td><td><tt>Single</tt></td><td>returns a Single that is the result of a function applied to an item emitted by a Single</td></tr>
   <tr><td><tt>flatMapObservable</tt></td><td><tt>Observable</tt></td><td>returns an Observable that is the result of a function applied to an item emitted by a Single</td></tr>
@@ -69,6 +71,10 @@ id: single
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.concatWith.png" width="100%" />
 <h2>create</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.create.png" width="100%" />
+<h2>doOnError</h2>
+<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.doOnError.png" width="100%" />
+<h2>doOnSuccess</h2>
+<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.doOnSuccess.png" width="100%" />
 <h2>error</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.error.png" width="100%" />
 <h2>flatMap</h2>

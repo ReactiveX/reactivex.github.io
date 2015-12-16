@@ -18,7 +18,7 @@ id: switch
  <figcaption><p>
   <span class="operator">Switch</span> subscribes to an Observable that emits Observables. Each time it observes
   one of these emitted Observables, the Observable returned by <span class="operator">Switch</span> unsubscribes
-  from the previously-emitted Observable begins emitting items from the latest Observable. Note that it will
+  from the previously-emitted Observable and begins emitting items from the latest Observable. Note that it will
   unsubscribe from the previously-emitted Observable when a new Observable is emitted from the source
   Observable, not when the new Observable emits an item. This means that items emitted by the previous
   Observable between the time the subsequent Observable is emitted and the time that subsequent Observable

@@ -252,11 +252,43 @@ Sequence complete</pre></div>
       you should instead apply an operator like <a href="take.html"><code>take(0)</code></a> to it
       as a way of signalling to it that it may discard its buffer.
      </p><p>
-      If you unsubscribe from one of the <code>GroupedObservable</code>s, that
-      <code>GroupedObservable</code> will be terminated. If the source Observable later emits an
+      If you unsubscribe from one of the <code>GroupedObservable</code>s, or if an operator like
+      <code>take</code> that you apply to the <code>GroupedObservable</code> unsubscribes from it,
+      that <code>GroupedObservable</code> will be terminated. If the source Observable later emits an
       item whose key matches the <code>GroupedObservable</code> that was terminated in this way,
-      <code>groupBy</code> will create and emit a new <code>GroupedObservable</code> to match the
-      key.
+      <code>groupBy</code> will create and emit a <em>new</em> <code>GroupedObservable</code> to match
+      the key. In other words, unsubscribing from a <code>GroupedObservable</code> will <em>not</em>
+      cause <code>groupBy</code> to swallow items from its group.  For example, see the following code:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+Observable.range(1,5)
+          .groupBy({ 0 })
+          .flatMap({ this.take(1) })
+          .subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+1
+2
+3
+4
+5
+</pre></div>
+     <p>
+      In the above code, the source Observable emits the sequence <code>{ 1 2 3 4 5 }</code>. When it emits
+      the first item in this sequence, the <code>groupBy</code> operator creates and emits a
+      <code>GroupedObservable</code> with the key of <code>0</code>. The <code>flatMap</code> operator
+      applies the <code>take(1)</code> operator to that <code>GroupedObservable</code>, which gives it the
+      item (<code>1</code>) that it emits and that also unsubscribes from the <code>GroupedObservable</code>,
+      which is terminated. When the source Observable emits the second item in its sequence, the
+      <code>groupBy</code> operator creates and emits a <em>second</em> <code>GroupedObservable</code> with
+      the same key (<code>0</code>) to replace the one that was terminated. <code>flatMap</code> again applies
+      <code>take(1)</code> to this new <code>GroupedObservable</code> to retrieve the new item to emit
+      (<code>2</code>) and to unsubscribe from and terminate the <code>GroupedObservable</code>, and this
+      process repeats for the remaining items in the source sequence.
      </p><p>
       <code>groupBy</code> does not by default operate on any particular
       <a href="../scheduler.html">Scheduler</a>.

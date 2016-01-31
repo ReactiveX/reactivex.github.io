@@ -1,15 +1,16 @@
 ---
 layout: comparison
-title: Comparison of Scala Observable and Java Observable
+title: Comparison of Scala Classes and Java Classes
 ---
 
-#Comparison of Scala Observable and Java Observable
+# Comparison of Scala Classes and Java Classes
+### Note:
 
-###Note:
-
-*    This table contains both static methods and instance methods.
+*    These tables contain both static methods and instance methods.
 *    If a signature is too long, move your mouse over it to get the full signature.
 
+
+## Comparison of Scala Observable and Java Observable
 
 | Java Method | Scala Method |
 |-------------|--------------|
@@ -39,7 +40,14 @@ title: Comparison of Scala Observable and Java Observable
 | `compose(Transformer<? super T, ? extends R>)` | use extension methods instead |
 | `concat(Observable<? extends Observable<? extends T>>)` | `concat(<:<[Observable[T], Observable[Observable[U]]])` |
 | `concat(Observable<? extends T>, Observable<? extends T>)`<br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span><br/><span title="concat(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concat(...)</code></span> | unnecessary because we can use `++` instead or `Observable(o1, o2, ...).concat` |
+| `concatEager(Iterable<? extends Observable<? extends T>>, Int)` | use `iter.toObservable.concatEager(Int)` |
+| `concatEager(Observable<? extends Observable<? extends T>>, Int)` | `concatEager(Int)(<:<[Observable[T], Observable[Observable[U]]])` |
+| `concatEager(Observable<? extends T>, Observable<? extends T>)`<br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span> | unnecessary because we can use `concatEager` instead or `Observable(o1, o2, ...).concatEager` |
+| `concatEager(Iterable<? extends Observable<? extends T>>)` | use `iter.toObservable.concatEager` |
+| `concatEager(Observable<? extends Observable<? extends T>>)` | `concatEager(<:<[Observable[T], Observable[Observable[U]]])` |
 | `concatMap(Func1<? super T, ? extends Observable<? extends R>>)` | `concatMap(T => Observable[R])` |
+| <span title="concatMapEager(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Int)"><code>concatMapEager(...)</code></span> | `concatMapEager(Int, T => Observable[R])` |
+| <span title="concatMapEager(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;)"><code>concatMapEager(...)</code></span> | `concatMapEager(T => Observable[R])` |
 | `concatWith(Observable<? extends T>)` | use `o1 ++ o2` |
 | `contains(Any)` | `contains(U)` |
 | `count()` | `length` |
@@ -76,6 +84,7 @@ title: Comparison of Scala Observable and Java Observable
 | `empty()` | `empty` |
 | `error(Throwable)` | `error(Throwable)` |
 | `exists(Func1<? super T, Boolean>)` | `exists(T => Boolean)` |
+| `extend(Func1<? super OnSubscribe<T>, ? extends R>)` | use Scala implicit feature to extend `Observable` |
 | `filter(Func1<? super T, Boolean>)` | `filter(T => Boolean)` |
 | `finallyDo(Action0)` | `finallyDo(=> Unit)` |
 | `first()` | `first` |
@@ -95,11 +104,14 @@ title: Comparison of Scala Observable and Java Observable
 | `forEach(Action1<? super T>, Action1<Throwable>)` | `foreach(T => Unit, Throwable => Unit)` |
 | `from(Future<? extends T>)`<br/>`from(Future<? extends T>, Long, TimeUnit)`<br/>`from(Future<? extends T>, Scheduler)` | TODO: Decide how Scala Futures should relate to Observables. Should there be a common base interface for Future and Observable? And should Futures also have an unsubscribe method? |
 | `from(T[])`<br/>`from(Iterable<? extends T>)` | `from(Iterable[T])` |
+| `fromCallable(Callable<? extends T>)` | use `Observable.defer(Observable.just(expensiveComputation))` |
 | `groupBy(Func1<? super T, ? extends K>)` | `groupBy(T => K)` |
 | <span title="groupBy(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends R&gt;)"><code>groupBy(...)</code></span> | `groupBy(T => K, T => V)` |
 | <span title="groupJoin(Observable&lt;T2&gt;, Func1&lt;? super T, ? extends Observable&lt;D1&gt;&gt;, Func1&lt;? super T2, ? extends Observable&lt;D2&gt;&gt;, Func2&lt;? super T, ? super Observable&lt;T2&gt;, ? extends R&gt;)"><code>groupJoin(...)</code></span> | `groupJoin(Observable[S])(T => Observable[Any], S => Observable[Any], (T, Observable[S]) => R)` |
 | `ignoreElements()` | use `filter(_ => false)` |
 | `interval(Long, TimeUnit)` | `interval(Duration)` |
+| `interval(Long, Long, TimeUnit)` | `interval(Duration, Duration)` |
+| `interval(Long, Long, TimeUnit, Scheduler)` | `interval(Duration, Duration, Scheduler)` |
 | `interval(Long, TimeUnit, Scheduler)` | `interval(Duration, Scheduler)` |
 | `isEmpty()` | `isEmpty` |
 | <span title="join(Observable&lt;TRight&gt;, Func1&lt;T, Observable&lt;TLeftDuration&gt;&gt;, Func1&lt;TRight, Observable&lt;TRightDuration&gt;&gt;, Func2&lt;T, TRight, R&gt;)"><code>join(...)</code></span> | `join(Observable[S])(T => Observable[Any], S => Observable[Any], (T, S) => R)` |
@@ -112,6 +124,7 @@ title: Comparison of Scala Observable and Java Observable
 | `limit(Int)` | `take(Int)` |
 | `map(Func1<? super T, ? extends R>)` | `map(T => R)` |
 | `materialize()` | `materialize` |
+| `merge(Array<Observable<? extends T>>, Int)` | use `Observable.from(array).flatten(n)` |
 | `merge(Array<Observable<? extends T>>)` | use `Observable.from(array).flatten` |
 | <span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span><br/><span title="merge(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>merge(...)</code></span> | unnecessary because we can use `Observable(o1, o2, ...).flatten` instead |
 | `merge(Observable<? extends Observable<? extends T>>)` | `flatten(<:<[Observable[T], Observable[Observable[U]]])` |
@@ -120,6 +133,7 @@ title: Comparison of Scala Observable and Java Observable
 | `merge(Observable<? extends Observable<? extends T>>, Int)` | `flatten(Int)(<:<[Observable[T], Observable[Observable[U]]])` |
 | `merge(Iterable<? extends Observable<? extends T>>, Int)` | use `Observable.from(iter).flatten(n)` |
 | `mergeDelayError(Observable<? extends Observable<? extends T>>)` | `flattenDelayError(<:<[Observable[T], Observable[Observable[U]]])` |
+| <span title="mergeDelayError(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;, Int)"><code>mergeDelayError(...)</code></span> | `flattenDelayError(Int)(<:<[Observable[T], Observable[Observable[U]]])` |
 | <span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span> | unnecessary because we can use `Observable(o1, o2, ...).flattenDelayError` instead |
 | <span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span> | `mergeDelayError(Observable[U])` |
 | `mergeWith(Observable<? extends T>)` | `merge(Observable[U])` |
@@ -127,8 +141,6 @@ title: Comparison of Scala Observable and Java Observable
 | `never()` | `never` |
 | `observeOn(Scheduler)` | `observeOn(Scheduler)` |
 | `ofType(Class<R>)` | use `filter(_.isInstanceOf[Class])` |
-| `onBackpressureBlock()` | `onBackpressureBlock` |
-| `onBackpressureBlock(Int)` | `onBackpressureBlock(Int)` |
 | `onBackpressureBuffer(Long)` | `onBackpressureBuffer(Long)` |
 | `onBackpressureBuffer(Long, Action0)` | `onBackpressureBuffer(Long, => Unit)` |
 | `onBackpressureBuffer()` | `onBackpressureBuffer` |
@@ -235,8 +247,6 @@ title: Comparison of Scala Observable and Java Observable
 | `timeout(Long, TimeUnit)` | `timeout(Duration)` |
 | <span title="timeout(Func0&lt;? extends Observable&lt;U&gt;&gt;, Func1&lt;? super T, ? extends Observable&lt;V&gt;&gt;, Observable&lt;? extends T&gt;)"><code>timeout(...)</code></span> | `timeout(() => Observable[Any], T => Observable[Any], Observable[U])` |
 | `timeout(Long, TimeUnit, Scheduler)` | `timeout(Duration, Scheduler)` |
-| `timer(Long, Long, TimeUnit)` | `timer(Duration, Duration)` |
-| `timer(Long, Long, TimeUnit, Scheduler)` | `timer(Duration, Duration, Scheduler)` |
 | `timer(Long, TimeUnit, Scheduler)` | `timer(Duration, Scheduler)` |
 | `timer(Long, TimeUnit)` | `timer(Duration)` |
 | `timestamp(Scheduler)` | `timestamp(Scheduler)` |
@@ -250,6 +260,7 @@ title: Comparison of Scala Observable and Java Observable
 | `toMultimap(Func1<? super T, ? extends K>)` | `toMultiMap(T => K)` |
 | <span title="toMultimap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;, Func0&lt;? extends Map&lt;K, Collection&lt;V&gt;&gt;&gt;)"><code>toMultimap(...)</code></span> | `toMultiMap(T => K, T => V, => M)` |
 | <span title="toMultimap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;)"><code>toMultimap(...)</code></span> | `toMultiMap(T => K, T => V)` |
+| `toSingle()` | TODO |
 | `toSortedList(Func2<? super T, ? super T, Integer>)`<br/>`toSortedList(Func2<? super T, ? super T, Integer>, Int)` | Sorting is already done in Scala's collection library, use `.toSeq.map(_.sortWith(f))` |
 | `toSortedList()`<br/>`toSortedList(Int)` | Sorting is already done in Scala's collection library, use `.toSeq.map(_.sorted)` |
 | `unsafeSubscribe(Subscriber<? super T>)` | `unsafeSubscribe(Subscriber[T])` |
@@ -273,5 +284,85 @@ title: Comparison of Scala Observable and Java Observable
 | <span title="zipWith(Iterable&lt;? extends T2&gt;, Func2&lt;? super T, ? super T2, ? extends R&gt;)"><code>zipWith(...)</code></span> | `zipWith(Iterable[U])((T, U) => R)` |
 | <span title="zipWith(Observable&lt;? extends T2&gt;, Func2&lt;? super T, ? super T2, ? extends R&gt;)"><code>zipWith(...)</code></span> | `zipWith(Observable[U])((T, U) => R)` |
 
-This table was generated on Mon Jun 08 18:56:52 CST 2015.
-**Do not edit**. Instead, edit `rx.lang.scala.CompletenessTest`.
+## Comparison of Scala BlockingObservable and Java BlockingObservable
+
+| Java Method | Scala Method |
+|-------------|--------------|
+| `first()` | `first` |
+| `first(Func1<? super T, Boolean>)` | use `Observable.filter(p).toBlocking.head` |
+| `firstOrDefault(T, Func1<? super T, Boolean>)` | use `Observable.filter(p).toBlocking.headOrElse(=> U)` |
+| `firstOrDefault(T)` | `headOrElse(=> U)` |
+| `forEach(Action1<? super T>)` | `foreach(T => Unit)` |
+| `from(Observable<? extends T>)` | use `Observable.toBlocking` |
+| `getIterator()` | use `toIterable.toIterator` |
+| `last()` | `last` |
+| `last(Func1<? super T, Boolean>)` | use `Observable.filter(p).toBlocking.last` |
+| `lastOrDefault(T, Func1<? super T, Boolean>)` | use `Observable.filter(p).toBlocking.lastOrElse(=> U)` |
+| `lastOrDefault(T)` | `lastOrElse(=> U)` |
+| `latest()` | `latest` |
+| `mostRecent(T)` | `mostRecent(U)` |
+| `next()` | `next` |
+| `single()` | `single` |
+| `single(Func1<? super T, Boolean>)` | use `Observable.filter(p).toBlocking.single` |
+| `singleOrDefault(T)` | `singleOrElse(=> U)` |
+| `singleOrDefault(T, Func1<? super T, Boolean>)` | use `Observable.filter(p).toBlocking.singleOrElse(=> U)` |
+| `subscribe(Action1<? super T>, Action1<? super Throwable>)` | `subscribe(T => Unit, Throwable => Unit)` |
+| <span title="subscribe(Action1&lt;? super T&gt;, Action1&lt;? super Throwable&gt;, Action0)"><code>subscribe(...)</code></span> | `subscribe(T => Unit, Throwable => Unit, () => Unit)` |
+| `subscribe()` | `subscribe()` |
+| `subscribe(Action1<? super T>)` | `subscribe(T => Unit)` |
+| `subscribe(Subscriber<? super T>)` | `subscribe(Subscriber[T])` |
+| `subscribe(Observer<? super T>)` | `subscribe(Observer[T])` |
+| `toFuture()` | `toFuture` |
+| `toIterable()` | `toIterable` |
+
+## Comparison of Scala TestScheduler and Java TestScheduler
+
+| Java Method | Scala Method |
+|-------------|--------------|
+| `advanceTimeBy(Long, TimeUnit)` | `advanceTimeBy(Duration)` |
+| `advanceTimeTo(Long, TimeUnit)` | `advanceTimeTo(Duration)` |
+| `createWorker()` | `createWorker` |
+| `now()` | `now` |
+| `triggerActions()` | `triggerActions()` |
+
+## Comparison of Scala TestSubscriber and Java TestSubscriber
+
+| Java Method | Scala Method |
+|-------------|--------------|
+| `add(Subscription)` | `add(Subscription)` |
+| `assertCompleted()` | `assertCompleted()` |
+| `assertError(Class<? extends Throwable>)` | `assertError(Class[_ <: Throwable])` |
+| `assertError(Throwable)` | `assertError(Throwable)` |
+| `assertNoErrors()` | `assertNoErrors()` |
+| `assertNoTerminalEvent()` | `assertNoTerminalEvent()` |
+| `assertNoValues()` | `assertNoValues()` |
+| `assertNotCompleted()` | `assertNotCompleted()` |
+| `assertReceivedOnNext(List<T>)` | `assertValues(T*)` |
+| `assertTerminalEvent()` | `assertTerminalEvent()` |
+| `assertUnsubscribed()` | `assertUnsubscribed()` |
+| `assertValue(T)` | `assertValue(T)` |
+| `assertValueCount(Int)` | `assertValueCount(Int)` |
+| `assertValues(T*)` | `assertValues(T*)` |
+| `awaitTerminalEvent()` | `awaitTerminalEvent()` |
+| `awaitTerminalEvent(Long, TimeUnit)` | `awaitTerminalEvent(Duration)` |
+| `awaitTerminalEventAndUnsubscribeOnTimeout(Long, TimeUnit)` | `awaitTerminalEventAndUnsubscribeOnTimeout(Duration)` |
+| `create()` | `apply()` |
+| `create(Observer<T>)` | `apply(Observer[T])` |
+| `create(Long)` | `apply(Long)` |
+| `create(Subscriber<T>)` | `apply(Subscriber[T])` |
+| `create(Observer<T>, Long)` | `apply(Observer[T], Long)` |
+| `getLastSeenThread()` | `getLastSeenThread` |
+| `getOnCompletedEvents()` | `assertCompleted()` |
+| `getOnErrorEvents()` | `getOnErrorEvents` |
+| `getOnNextEvents()` | `getOnNextEvents` |
+| `isUnsubscribed()` | `isUnsubscribed` |
+| `onCompleted()` | `onCompleted()` |
+| `onError(Throwable)` | `onError(Throwable)` |
+| `onNext(T)` | `onNext(T)` |
+| `onStart()` | `onStart()` |
+| `requestMore(Long)` | `requestMore(Long)` |
+| `setProducer(Producer)` | `setProducer(Producer)` |
+| `unsubscribe()` | `unsubscribe()` |
+
+These tables were generated on Sat Jan 30 17:13:09 PST 2016.
+**Do not edit**. Instead, edit `rx.lang.scala.completeness.CompletenessTables` and run `sbt 'test:run rx.lang.scala.completeness.CompletenessTables'` to generate these tables.

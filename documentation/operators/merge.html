@@ -598,8 +598,53 @@ Error: Error: whoops!</pre></div>
 
   {% lang_operator RxSwift merge %}
      <p>
-      <span style="color:#ff0000">TBD</span>
+       RxSwift implements this operator as <code>merge</code>.
      </p>
+     <figure>
+       <img src="images/merge.png" style="width: 100%" alt="merge" />
+       <figcaption><p>
+         <code>merge</code> takes as its parameter an Observable that emits Observables. It merges
+         the items emitted by each of these Observables to create its own single Observable sequence.
+       </p>
+       <p>
+         A variant of this operator <code>merge(maxConcurrent:)</code> allows you to pass in an
+         <code>Int</code> indicating the maximum number of these emitted Observables you want
+         <code>merge</code> to try to be subscribed to at any time. If it hits this maximum
+         subscription count, it will refrain from subscribing to any other Observables emitted by
+         the source Observable until such time as one of the already-subscribed-to Observables
+         issues an <code>onCompleted</code> notification.
+       </p>
+       <h4>Sample Code</h4>
+       <div class="code swift"><pre>
+let subject1 = PublishSubject<Int>()
+let subject2 = PublishSubject<Int>()
+
+Observable.of(subject1, subject2)
+   .merge()
+   .subscribe {
+       print($0)
+   }
+
+subject1.on(.Next(10))
+subject1.on(.Next(11))
+subject1.on(.Next(12))
+subject2.on(.Next(20))
+subject2.on(.Next(21))
+subject1.on(.Next(14))
+subject1.on(.Completed)
+subject2.on(.Next(22))
+subject2.on(.Completed)</pre></div>
+       <div class="output"><pre>
+Next(10)
+Next(11)
+Next(12)
+Next(20)
+Next(21)
+Next(14)
+Next(22)
+Completed</pre></div>
+     </figcaption>
+     </figure>
   {% endlang_operator %}
 
 </div>

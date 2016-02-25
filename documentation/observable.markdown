@@ -108,9 +108,8 @@ myObservable.subscribe(myOnNext);
       the item emitted by the Observable.</dd>
  <dt><code>onError</code></dt>
   <dd>An Observable calls this method to indicate that it has failed to generate the expected data or has
-      encountered some other error. This stops the Observable and it will not make further calls to
-      <code>onNext</code> or <code>onCompleted</code>. The <code>onError</code> method takes as its parameter
-      an indication of what caused the error.</dd>
+      encountered some other error. It will not make further calls to <code>onNext</code> or <code>onCompleted</code>.
+      The <code>onError</code> method takes as its parameter an indication of what caused the error.</dd>
  <dt><code>onCompleted</code></dt>
   <dd>An Observable calls this method after it has called <code>onNext</code> for the final time, if it has not
       encountered any errors.</dd>

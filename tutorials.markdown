@@ -62,6 +62,7 @@ id: tutorials
 * [Vert.x and RxJava](http://slid.es/petermd/eclipsecon2014) by @petermd
 * [Deferring Observable code until subscription in RxJava](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/) by Dan Lew
 * [Convert a Listener into an Observable](http://www.andreamaglie.com/rxjava-listener-to-observable/) by Andrea Maglie
+* [Effective RxJava](https://github.com/mgp/effective-rxjava) by Mike Parker
 
 ## RxJS
 * [RxJS - Javascript library for functional reactive programming](http://xgrommx.github.io/rx-book/index.html), an on-line book by Dennis Stoyanov

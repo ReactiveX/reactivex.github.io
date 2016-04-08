@@ -289,7 +289,9 @@ Next: 2
 Next: 3
 Completed</pre></div>
      <div class="code javascript"><pre>
- = new Set(["foo", window]);
+// Any iterable object...
+// Set
+var s = new Set(['foo', window]);
 Rx.Observable.from(s).subscribe(
   function (x) { console.log('Next: ' + x); },
   function (err) { console.log('Error: ' + err); },

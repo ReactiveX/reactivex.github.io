@@ -19,6 +19,7 @@ id: languages
 * JRuby: [RxJRuby](https://github.com/ReactiveX/RxJRuby)
 * Kotlin: [RxKotlin](https://github.com/ReactiveX/RxKotlin)
 * Swift: [RxSwift](https://github.com/kzaher/RxSwift)
+* PHP: [RxPHP](https://github.com/ReactiveX/RxPHP)
 
 ## ReactiveX for platforms and frameworks
 

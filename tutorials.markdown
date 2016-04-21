@@ -84,7 +84,7 @@ id: tutorials
 * [Dealing with Streams using RxJS](https://speakerdeck.com/hugocrd/dealing-with-streams-using-rxjs), slides from a presentation by Hugo Cordier
 * [RxJS Session at DevNation](http://www.bleathem.ca/blog/2015/06/rxjs-devnation.html), visualizing Observable operations as animations, by Brian Leathem
 * [Reactive Functions with RxJs](https://www.icloud.com/keynote/AwBWCAESEIf9pea2IykiVtOZFiXflDsaKj9lVsSLP_OtPU29v7fNpMs78DK7tvXz4bFBkb6BXFKjxqt4G5B_UlM6TwMCUCAQEEIGVYVFig5qOTdorTOd2ERMJDtn6dvDFY58zqBiVzZmtN#RxJS_talk), slides from Vincent O&#8217;s LeedsJS talk
-* [Async and Streaming in JavaScript: We&#8217;re All Doing it Wrong!](https://vimeo.com/13196784) - video/slide presentation by Matthew Podwysocki
+* [Async and Streaming in JavaScript: We&#8217;re All Doing it Wrong!](https://vimeo.com/131196784) - video/slide presentation by Matthew Podwysocki
 * [Step-by-step: Building an RSS reader with RxJS](https://github.com/channikhabra/yarr) - by Charanjit Singh
 * [Angular Air #29: Reactive Programming](https://www.youtube.com/watch?v=fV5G9lXRBvA) a video featuring Matt Podwysocki
 

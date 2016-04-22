@@ -165,6 +165,38 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator Rx.PHP takeUntil %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>takeUntil</code>.
+    </p>
+    <p>
+    Returns the values from the source observable sequence until the other observable sequence produces a value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/take.php
+
+$observable = Rx\Observable::fromArray([21, 42, 63]);
+$observable
+    ->take(2)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 21
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY take_until take_until_with_time %}
      <p>
       <span style="color:#ff0000">TBD</span>

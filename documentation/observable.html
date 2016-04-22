@@ -157,7 +157,7 @@
  <li><a href="https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877"><cite>2 minute introduction to Rx</cite></a> by Andre Staltz (&ldquo;Think of an Observable as an asynchronous immutable array.&rdquo;)</li>
  <li><a href="https://egghead.io/lessons/javascript-introducing-the-observable">Introducing the Observable</a> by Jafar Husain (JavaScript Video Tutorial)</li>
  <li><a href="http://xgrommx.github.io/rx-book/content/observable/index.html">Observable object</a> (RxJS) by Dennis Stoyanov</li>
- <li><a href="https://afterecho.wordpress.com/2015/09/03/turning-a-callback-into-an-rx-observable/">Turning a callback into an Rx Observable</a> by @afterecho</li>
+ <li><a href="https://afterecho.uk/blog/turning-a-callback-into-an-rx-observable.html">Turning a callback into an Rx Observable</a> by @afterecho</li>
 </ul>
 
 <h1>Background</h1>
@@ -245,9 +245,8 @@ myObservable.subscribe(myOnNext);
       the item emitted by the Observable.</dd>
  <dt><code>onError</code></dt>
   <dd>An Observable calls this method to indicate that it has failed to generate the expected data or has
-      encountered some other error. This stops the Observable and it will not make further calls to
-      <code>onNext</code> or <code>onCompleted</code>. The <code>onError</code> method takes as its parameter
-      an indication of what caused the error.</dd>
+      encountered some other error. It will not make further calls to <code>onNext</code> or <code>onCompleted</code>.
+      The <code>onError</code> method takes as its parameter an indication of what caused the error.</dd>
  <dt><code>onCompleted</code></dt>
   <dd>An Observable calls this method after it has called <code>onNext</code> for the final time, if it has not
       encountered any errors.</dd>

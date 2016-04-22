@@ -560,6 +560,202 @@ Completed</pre></div>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>multicast multicastWithSelector publish publishLast publishValue</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>multicast</code>.
+    </p>
+    <p>
+    Multicasts the source sequence notifications through an instantiated subject into all uses of the sequence within a selector function. Each subscription to the resulting sequence causes a separate multicast invocation, exposing the sequence resulting from the selector function's invocation. For specializations with fixed subject types, see Publish, PublishLast, and Replay.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/multicast/multicast.php
+
+$subject = new \Rx\Subject\Subject();
+$source  = \Rx\Observable::range(0, 3)->multicast($subject);
+
+$subscription = $source->subscribe($stdoutObserver);
+$subject->subscribe($stdoutObserver);
+
+$connected = $source->connect();
+
+$subscription->dispose();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 0
+Next value: 1
+Next value: 1
+Next value: 2
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>multicastWithSelector</code>.
+    </p>
+    <p>
+    Multicasts the source sequence notifications through an instantiated subject from a subject selector factory, into all uses of the sequence within a selector function. Each subscription to the resulting sequence causes a separate multicast invocation, exposing the sequence resulting from the selector function's invocation. For specializations with fixed subject types, see Publish, PublishLast, and Replay.
+    </p>
+
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>publish</code>.
+    </p>
+    <p>
+    Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence. This operator is a specialization of Multicast using a regular Subject.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/publish/publish.php
+
+/* With publish */
+$interval = \Rx\Observable::range(0, 10);
+
+$source = $interval
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->publish();
+
+$published->subscribe($createStdoutObserver('SourceC '));
+$published->subscribe($createStdoutObserver('SourceD '));
+
+$published->connect();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+SourceC Next value: 0
+SourceD Next value: 0
+Side effect
+SourceC Next value: 1
+SourceD Next value: 1
+SourceC Complete!
+SourceD Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>publishLast</code>.
+    </p>
+    <p>
+    Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence containing only the last notification. This operator is a specialization of Multicast using a AsyncSubject.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/publish/publishLast.php
+
+$range = \Rx\Observable::fromArray(range(0, 1000));
+
+$source = $range
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->publishLast();
+
+$published->subscribe($createStdoutObserver('SourceA'));
+$published->subscribe($createStdoutObserver('SourceB'));
+
+$connection = $published->connect();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+Side effect
+SourceANext value: 1
+SourceBNext value: 1
+SourceAComplete!
+SourceBComplete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>publishValue</code>.
+    </p>
+    <p>
+    Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence and starts with initialValue. This operator is a specialization of Multicast using a BehaviorSubject.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/publish/publishValue.php
+
+$range = \Rx\Observable::fromArray(range(0, 1000));
+
+$source = $range
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->publishValue(42);
+
+$published->subscribe($createStdoutObserver('SourceA'));
+$published->subscribe($createStdoutObserver('SourceB'));
+
+$connection = $published->connect();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+SourceANext value: 42
+SourceBNext value: 42
+Side effect
+SourceANext value: 0
+SourceBNext value: 0
+Side effect
+SourceANext value: 1
+SourceBNext value: 1
+SourceAComplete!
+SourceBComplete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

@@ -382,6 +382,65 @@ Completed</pre></div>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>timestamp</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>timestamp</code>.
+    </p>
+    <p>
+    Records the timestamp for each value in an observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/timestamp/timestamp.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = \Rx\Observable::interval(1000, $scheduler)
+    ->timestamp()
+    ->map(function (\Rx\Timestamped $x) {
+        return $x->getValue() . ':' . $x->getTimestampMillis();
+    })
+    ->take(5);
+
+$source->subscribe($createStdoutObserver());
+
+$loop->run();
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0:1460781738354
+Next value: 1:1460781739358
+Next value: 2:1460781740359
+Next value: 3:1460781741362
+Next value: 4:1460781742367
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

@@ -392,6 +392,90 @@ Completed</pre></div>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>takeWhile takeWhileWithIndex</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>takeWhile</code>.
+    </p>
+    <p>
+    Returns elements from an observable sequence as long as a specified condition is true.  It takes as a parameter a a callback to test each source element for a condition.  The callback predicate is called with the value of the element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/takeWhile.php
+
+
+$source = \Rx\Observable::range(1, 5)
+    ->takeWhile(function ($x) {
+        return $x < 3;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>takeWhileWithIndex</code>.
+    </p>
+    <p>
+    Returns elements from an observable sequence as long as a specified condition is true.  It takes as a parameter a a callback to test each source element for a condition.  The callback predicate is called with the index and the value of the element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/takeWhileWithIndex.php
+
+
+$source = \Rx\Observable::range(1, 5)
+    ->takeWhileWithIndex(function ($i) {
+        return $i < 3;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

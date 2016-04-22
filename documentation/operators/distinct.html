@@ -519,6 +519,161 @@ Completed</pre></div></figcaption>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>distinct distinctKey distinctUntilChanged distinctUntilKeyChanged</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>distinct</code>.
+    </p>
+    <p>
+    Returns an observable sequence that contains only distinct elements according to the keySelector and the comparer. Usage of this operator should be considered carefully due to the maintenance of an internal lookup structure which can grow large.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/distinct/distinct.php
+
+$source = \Rx\Observable::fromArray([
+    42, 24, 42, 24
+])->distinct();
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 24
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>distinctKey</code>.
+    </p>
+    <p>
+    Variant of distinct that takes a key selector
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/distinct/distinctKey.php
+
+$source = \Rx\Observable::fromArray([
+    ['id' => '42'],
+    ['id' => '24'],
+    ['id' => '42'],
+    ['id' => '24']
+])
+    ->distinctKey(function ($x) {
+        return $x['id'];
+    })
+    ->map(function ($x) {
+        return $x['id'];
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 24
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>distinctUntilChanged</code>.
+    </p>
+    <p>
+    A variant of distinct that only compares emitted items from the source Observable against their immediate predecessors in order to determine whether or not they are distinct.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/distinct/distinctUntilChanged.php
+
+$source = \Rx\Observable::fromArray([
+    24, 42, 24, 24
+])->distinctUntilChanged();
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 24
+Next value: 42
+Next value: 24
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>distinctUntilKeyChanged</code>.
+    </p>
+    <p>
+    Variant of distinctUntilChanged that takes a key selector and the comparer.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/distinct/distinctUntilKeyChanged.php
+
+$source = \Rx\Observable::fromArray([
+    ['id' => '24'],
+    ['id' => '42'],
+    ['id' => '24'],
+    ['id' => '24']
+])
+    ->distinctUntilKeyChanged(function ($x) {
+        return $x['id'];
+    })
+    ->map(function ($x) {
+        return $x['id'];
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 24
+Next value: 42
+Next value: 24
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

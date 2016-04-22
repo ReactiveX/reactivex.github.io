@@ -430,6 +430,117 @@ Completed</pre></div>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>share shareValue</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>share</code>.
+    </p>
+    <p>
+    Returns an observable sequence that shares a single subscription to the underlying sequence.  This operator is a specialization of publish which creates a subscription when the number of observers goes from zero to one, then shares that subscription with all subsequent observers until the number of observers returns to zero, at which point the subscription is disposed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/share/share.php
+
+$loop = \React\EventLoop\Factory::create();
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+//With Share
+$source = \Rx\Observable::interval(1000, $scheduler)
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->share();
+
+$published->subscribe($createStdoutObserver('SourceA '));
+$published->subscribe($createStdoutObserver('SourceB '));
+
+$loop->run();
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+SourceA Next value: 0
+SourceB Next value: 0
+Side effect
+SourceA Next value: 1
+SourceB Next value: 1
+SourceA Complete!
+SourceB Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>shareValue</code>.
+    </p>
+    <p>
+    Returns an observable sequence that shares a single subscription to the underlying sequence and starts with an initialValue.  This operator is a specialization of publishValue which creates a subscription when the number of observers goes from zero to one, then shares that subscription with all subsequent observers until the number of observers returns to zero, at which point the subscription is disposed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/share/shareValue.php
+
+$loop = \React\EventLoop\Factory::create();
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = \Rx\Observable::interval(1000, $scheduler)
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->shareValue(42);
+
+$published->subscribe($createStdoutObserver('SourceA '));
+$published->subscribe($createStdoutObserver('SourceB '));
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+SourceA Next value: 42
+SourceB Next value: 42
+Side effect
+SourceA Next value: 0
+SourceB Next value: 0
+Side effect
+SourceA Next value: 1
+SourceB Next value: 1
+SourceA Complete!
+SourceB Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

@@ -514,6 +514,60 @@ Completed</pre></div>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>repeat</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>repeat</code>.
+    </p>
+    <p>
+    Generates an observable sequence that repeats the given element the specified number of times.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/repeat/repeat.php
+
+$source = \Rx\Observable::range(1, 3)
+    ->repeat(3);
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 1
+Next value: 2
+Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

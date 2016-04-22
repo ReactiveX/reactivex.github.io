@@ -624,7 +624,7 @@ operators.</p>
 <li><a href="/documentation/operators/contains.html"><code>Any</code></a></li>
 <li><a href="/documentation/operators/create.html"><code>apply</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>as_blocking</code></a></li>
-<li><a href="/documentation/operators/from.html"><code>AsObservable</code></a></li>
+<li><a href="/documentation/operators/from.html"><code>asObservable</code></a></li>
 <li><a href="/documentation/operators/sequenceequal.html"><code>AssertEqual</code></a></li>
 <li><a href="/documentation/operators/start.html"><code>asyncAction</code></a></li>
 <li><a href="/documentation/operators/start.html"><code>asyncFunc</code></a></li>
@@ -643,6 +643,7 @@ operators.</p>
 <li><a href="/documentation/operators/defer.html"><code>case</code></a></li>
 <li><a href="/documentation/operators/map.html"><code>Cast</code></a></li>
 <li><a href="/documentation/operators/catch.html"><strong><code>Catch</code></strong></a></li>
+<li><a href="/documentation/operators/catch.html"><code>catchError</code></a></li>
 <li><a href="/documentation/operators/catch.html"><code>catchException</code></a></li>
 <li><a href="/documentation/operators/reduce.html"><code>collect</code></a></li>
 <li><a href="/documentation/operators/filter.html"><code>collect</code></a> (RxScala version of <strong><code>Filter</code></strong>)</li>
@@ -652,6 +653,7 @@ operators.</p>
 <li><a href="/documentation/operators/flatmap.html"><code>concat_all</code></a></li>
 <li><a href="/documentation/operators/flatmap.html"><code>concatMap</code></a></li>
 <li><a href="/documentation/operators/flatmap.html"><code>concatMapObserver</code></a></li>
+<li><a href="/documentation/operators/flatmap.html"><code>concatMapTo</code></a></li>
 <li><a href="/documentation/operators/concat.html"><code>concatAll</code></a></li>
 <li><a href="/documentation/operators/concat.html"><code>concatWith</code></a></li>
 <li><a href="/documentation/operators/connect.html"><strong><code>Connect</code></strong></a></li>
@@ -673,7 +675,9 @@ operators.</p>
 <li><a href="/documentation/operators/delay.html"><code>delayWithSelector</code></a></li>
 <li><a href="/documentation/operators/materialize-dematerialize.html"><strong><code>Dematerialize</code></strong></a></li>
 <li><a href="/documentation/operators/distinct.html"><strong><code>Distinct</code></strong></a></li>
-<li><a href="/documentation/operators/distinct.html"><code>DistinctUntilChanged</code></a></li>
+<li><a href="/documentation/operators/distinct.html"><code>distinctKey</code></a></li>
+<li><a href="/documentation/operators/distinct.html"><code>distinctUntilChanged</code></a></li>
+<li><a href="/documentation/operators/distinct.html"><code>distinctUntilKeyChanged</code></a></li>
 <li><a href="/documentation/operators/do.html"><strong><code>Do</code></strong></a></li>
 <li><a href="/documentation/operators/do.html"><code>doAction</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>doOnCompleted</code></a></li>
@@ -692,6 +696,7 @@ operators.</p>
 <li><a href="/documentation/operators/elementat.html"><strong><code>ElementAt</code></strong></a></li>
 <li><a href="/documentation/operators/elementat.html"><code>ElementAtOrDefault</code></a></li>
 <li><a href="/documentation/operators/empty-never-throw.html"><strong><code>Empty</code></strong></a></li>
+<li><a href="/documentation/operators/empty-never-throw.html"><code>emptyObservable</code></a></li>
 <li><a href="/documentation/operators/contains.html"><code>empty?</code></a></li>
 <li><a href="/documentation/operators/map.html"><code>encode</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>ensures</code></a></li>
@@ -741,6 +746,7 @@ operators.</p>
 <li><a href="/documentation/operators/from.html"><code>fromFunc0</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>from_future</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>from_iterable</code></a></li>
+<li><a href="/documentation/operators/from.html"><code>fromIterator</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>from_list</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>fromNodeCallback</code></a></li>
 <li><a href="/documentation/operators/from.html"><code>fromPromise</code></a></li>
@@ -791,7 +797,8 @@ operators.</p>
 <li><a href="/documentation/operators/flatmap.html"><code>MapCat</code></a></li>
 <li><a href="/documentation/operators/zip.html"><code>mapCat</code></a> (RxClojure version of <strong><code>Zip</code></strong>)</li>
 <li><a href="/documentation/operators/map.html"><code>map-indexed</code></a></li>
-<li><a href="/documentation/operators/map.html"><code>map_with_index</code></a></li>
+<li><a href="/documentation/operators/map.html"><code>mapTo</code></a></li>
+<li><a href="/documentation/operators/map.html"><code>mapWithIndex</code></a></li>
 <li><a href="/documentation/operators/materialize-dematerialize.html"><strong><code>Materialize</code></strong></a></li>
 <li><a href="/documentation/operators/max.html"><strong><code>Max</code></strong></a></li>
 <li><a href="/documentation/operators/max.html"><code>MaxBy</code></a></li>
@@ -805,6 +812,7 @@ operators.</p>
 <li><a href="/documentation/operators/min.html"><code>MinBy</code></a></li>
 <li><a href="/documentation/operators/first.html"><code>MostRecent</code></a></li>
 <li><a href="/documentation/operators/publish.html"><code>Multicast</code></a></li>
+<li><a href="/documentation/operators/publish.html"><code>multicastWithSelector</code></a></li>
 <li><a href="/documentation/operators/to.html"><code>nest</code></a></li>
 <li><a href="/documentation/operators/empty-never-throw.html"><strong><code>Never</code></strong></a></li>
 <li><a href="/documentation/operators/takelast.html"><code>Next</code></a></li>
@@ -893,7 +901,7 @@ operators.</p>
 <li><a href="/documentation/operators/skipuntil.html"><strong><code>SkipUntil</code></strong></a></li>
 <li><a href="/documentation/operators/skipuntil.html"><code>skipUntilWithTime</code></a></li>
 <li><a href="/documentation/operators/skipwhile.html"><strong><code>SkipWhile</code></strong></a></li>
-<li><a href="/documentation/operators/skipwhile.html"><code>skip_while_with_index</code></a></li>
+<li><a href="/documentation/operators/skipwhile.html"><code>skipWhileWithIndex</code></a></li>
 <li><a href="/documentation/operators/skip.html"><code>skip_with_time</code></a></li>
 <li><a href="/documentation/operators/filter.html"><code>slice</code></a></li>
 <li><a href="/documentation/operators/window.html"><code>sliding</code></a></li>
@@ -908,6 +916,7 @@ operators.</p>
 <li><a href="/documentation/operators/start.html"><code>startAsync</code></a></li>
 <li><a href="/documentation/operators/start.html"><code>startFuture</code></a></li>
 <li><a href="/documentation/operators/startwith.html"><strong><code>StartWith</code></strong></a></li>
+<li><a href="/documentation/operators/startwith.html"><code>startWithArray</code></a></li>
 <li><a href="/documentation/operators/sum.html"><code>stringConcat</code></a></li>
 <li><a href="/documentation/operators/backpressure.html"><code>stopAndWait</code></a></li>
 <li><a href="/documentation/operators/subscribe.html"><code>subscribe</code></a></li>
@@ -939,7 +948,7 @@ operators.</p>
 <li><a href="/documentation/operators/takeuntil.html"><strong><code>TakeUntil</code></strong></a></li>
 <li><a href="/documentation/operators/takeuntil.html"><code>takeUntilWithTime</code></a></li>
 <li><a href="/documentation/operators/takewhile.html"><strong><code>TakeWhile</code></strong></a></li>
-<li><a href="/documentation/operators/takewhile.html"><code>take_while_with_index</code></a></li>
+<li><a href="/documentation/operators/takewhile.html"><code>takeWhileWithIndex</code></a></li>
 <li><a href="/documentation/operators/takelast.html"><code>tail</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>tap</code></a></li>
 <li><a href="/documentation/operators/do.html"><code>tapOnCompleted</code></a></li>

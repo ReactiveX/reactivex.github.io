@@ -597,6 +597,70 @@ Completed</pre></div></figcaption>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>delay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>delay</code>.
+    </p>
+    <p>
+    Time shifts the observable sequence by dueTime. The relative time intervals between the values are preserved.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/delay/delay.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+\Rx\Observable::interval(1000, $scheduler)
+    ->doOnNext(function ($x) {
+        echo "Side effect: " . $x . "\n";
+    })
+    ->delay(1000)
+    ->take(5)
+    ->subscribe($createStdoutObserver(), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect: 0
+Next value: 0
+Side effect: 1
+Next value: 1
+Side effect: 2
+Next value: 2
+Side effect: 3
+Next value: 3
+Side effect: 4
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

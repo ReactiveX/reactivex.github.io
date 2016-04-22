@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Comparison of Scala Observable and Java Observable</title>
+    <title>Comparison of Scala Classes and Java Classes</title>
 
 
     <!-- Bootstrap -->
@@ -134,14 +134,16 @@
 </style>
 
 <div class="container">
-    <h1 id="comparison-of-scala-observable-and-java-observable">Comparison of Scala Observable and Java Observable</h1>
+    <h1 id="comparison-of-scala-classes-and-java-classes">Comparison of Scala Classes and Java Classes</h1>
 
 <h3 id="note:">Note:</h3>
 
 <ul>
-<li>   This table contains both static methods and instance methods.</li>
+<li>   These tables contain both static methods and instance methods.</li>
 <li>   If a signature is too long, move your mouse over it to get the full signature.</li>
 </ul>
+
+<h2 id="comparison-of-scala-observable-and-java-observable">Comparison of Scala Observable and Java Observable</h2>
 
 <table><thead>
 <tr>
@@ -254,8 +256,36 @@
 <td>unnecessary because we can use <code>++</code> instead or <code>Observable(o1, o2, ...).concat</code></td>
 </tr>
 <tr>
+<td><code>concatEager(Iterable&lt;? extends Observable&lt;? extends T&gt;&gt;, Int)</code></td>
+<td>use <code>iter.toObservable.concatEager(Int)</code></td>
+</tr>
+<tr>
+<td><code>concatEager(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;, Int)</code></td>
+<td><code>concatEager(Int)(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
+</tr>
+<tr>
+<td><code>concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)</code><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span><br/><span title="concatEager(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>concatEager(...)</code></span></td>
+<td>unnecessary because we can use <code>concatEager</code> instead or <code>Observable(o1, o2, ...).concatEager</code></td>
+</tr>
+<tr>
+<td><code>concatEager(Iterable&lt;? extends Observable&lt;? extends T&gt;&gt;)</code></td>
+<td>use <code>iter.toObservable.concatEager</code></td>
+</tr>
+<tr>
+<td><code>concatEager(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;)</code></td>
+<td><code>concatEager(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
+</tr>
+<tr>
 <td><code>concatMap(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;)</code></td>
 <td><code>concatMap(T =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><span title="concatMapEager(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;, Int)"><code>concatMapEager(...)</code></span></td>
+<td><code>concatMapEager(Int, T =&gt; Observable[R])</code></td>
+</tr>
+<tr>
+<td><span title="concatMapEager(Func1&lt;? super T, ? extends Observable&lt;? extends R&gt;&gt;)"><code>concatMapEager(...)</code></span></td>
+<td><code>concatMapEager(T =&gt; Observable[R])</code></td>
 </tr>
 <tr>
 <td><code>concatWith(Observable&lt;? extends T&gt;)</code></td>
@@ -402,6 +432,10 @@
 <td><code>exists(T =&gt; Boolean)</code></td>
 </tr>
 <tr>
+<td><code>extend(Func1&lt;? super OnSubscribe&lt;T&gt;, ? extends R&gt;)</code></td>
+<td>use Scala implicit feature to extend <code>Observable</code></td>
+</tr>
+<tr>
 <td><code>filter(Func1&lt;? super T, Boolean&gt;)</code></td>
 <td><code>filter(T =&gt; Boolean)</code></td>
 </tr>
@@ -478,6 +512,10 @@
 <td><code>from(Iterable[T])</code></td>
 </tr>
 <tr>
+<td><code>fromCallable(Callable&lt;? extends T&gt;)</code></td>
+<td>use <code>Observable.defer(Observable.just(expensiveComputation))</code></td>
+</tr>
+<tr>
 <td><code>groupBy(Func1&lt;? super T, ? extends K&gt;)</code></td>
 <td><code>groupBy(T =&gt; K)</code></td>
 </tr>
@@ -496,6 +534,14 @@
 <tr>
 <td><code>interval(Long, TimeUnit)</code></td>
 <td><code>interval(Duration)</code></td>
+</tr>
+<tr>
+<td><code>interval(Long, Long, TimeUnit)</code></td>
+<td><code>interval(Duration, Duration)</code></td>
+</tr>
+<tr>
+<td><code>interval(Long, Long, TimeUnit, Scheduler)</code></td>
+<td><code>interval(Duration, Duration, Scheduler)</code></td>
 </tr>
 <tr>
 <td><code>interval(Long, TimeUnit, Scheduler)</code></td>
@@ -546,6 +592,10 @@
 <td><code>materialize</code></td>
 </tr>
 <tr>
+<td><code>merge(Array&lt;Observable&lt;? extends T&gt;&gt;, Int)</code></td>
+<td>use <code>Observable.from(array).flatten(n)</code></td>
+</tr>
+<tr>
 <td><code>merge(Array&lt;Observable&lt;? extends T&gt;&gt;)</code></td>
 <td>use <code>Observable.from(array).flatten</code></td>
 </tr>
@@ -578,6 +628,10 @@
 <td><code>flattenDelayError(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
 </tr>
 <tr>
+<td><span title="mergeDelayError(Observable&lt;? extends Observable&lt;? extends T&gt;&gt;, Int)"><code>mergeDelayError(...)</code></span></td>
+<td><code>flattenDelayError(Int)(&lt;:&lt;[Observable[T], Observable[Observable[U]]])</code></td>
+</tr>
+<tr>
 <td><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span><br/><span title="mergeDelayError(Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;, Observable&lt;? extends T&gt;)"><code>mergeDelayError(...)</code></span></td>
 <td>unnecessary because we can use <code>Observable(o1, o2, ...).flattenDelayError</code> instead</td>
 </tr>
@@ -604,14 +658,6 @@
 <tr>
 <td><code>ofType(Class&lt;R&gt;)</code></td>
 <td>use <code>filter(_.isInstanceOf[Class])</code></td>
-</tr>
-<tr>
-<td><code>onBackpressureBlock()</code></td>
-<td><code>onBackpressureBlock</code></td>
-</tr>
-<tr>
-<td><code>onBackpressureBlock(Int)</code></td>
-<td><code>onBackpressureBlock(Int)</code></td>
 </tr>
 <tr>
 <td><code>onBackpressureBuffer(Long)</code></td>
@@ -1038,14 +1084,6 @@
 <td><code>timeout(Duration, Scheduler)</code></td>
 </tr>
 <tr>
-<td><code>timer(Long, Long, TimeUnit)</code></td>
-<td><code>timer(Duration, Duration)</code></td>
-</tr>
-<tr>
-<td><code>timer(Long, Long, TimeUnit, Scheduler)</code></td>
-<td><code>timer(Duration, Duration, Scheduler)</code></td>
-</tr>
-<tr>
 <td><code>timer(Long, TimeUnit, Scheduler)</code></td>
 <td><code>timer(Duration, Scheduler)</code></td>
 </tr>
@@ -1096,6 +1134,10 @@
 <tr>
 <td><span title="toMultimap(Func1&lt;? super T, ? extends K&gt;, Func1&lt;? super T, ? extends V&gt;)"><code>toMultimap(...)</code></span></td>
 <td><code>toMultiMap(T =&gt; K, T =&gt; V)</code></td>
+</tr>
+<tr>
+<td><code>toSingle()</code></td>
+<td>TODO</td>
 </tr>
 <tr>
 <td><code>toSortedList(Func2&lt;? super T, ? super T, Integer&gt;)</code><br/><code>toSortedList(Func2&lt;? super T, ? super T, Integer&gt;, Int)</code></td>
@@ -1187,8 +1229,298 @@
 </tr>
 </tbody></table>
 
-<p>This table was generated on Mon Jun 08 18:56:52 CST 2015.
-<strong>Do not edit</strong>. Instead, edit <code>rx.lang.scala.CompletenessTest</code>.</p>
+<h2 id="comparison-of-scala-blockingobservable-and-java-blockingobservable">Comparison of Scala BlockingObservable and Java BlockingObservable</h2>
+
+<table><thead>
+<tr>
+<th>Java Method</th>
+<th>Scala Method</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>first()</code></td>
+<td><code>first</code></td>
+</tr>
+<tr>
+<td><code>first(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>Observable.filter(p).toBlocking.head</code></td>
+</tr>
+<tr>
+<td><code>firstOrDefault(T, Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>Observable.filter(p).toBlocking.headOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>firstOrDefault(T)</code></td>
+<td><code>headOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>forEach(Action1&lt;? super T&gt;)</code></td>
+<td><code>foreach(T =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>from(Observable&lt;? extends T&gt;)</code></td>
+<td>use <code>Observable.toBlocking</code></td>
+</tr>
+<tr>
+<td><code>getIterator()</code></td>
+<td>use <code>toIterable.toIterator</code></td>
+</tr>
+<tr>
+<td><code>last()</code></td>
+<td><code>last</code></td>
+</tr>
+<tr>
+<td><code>last(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>Observable.filter(p).toBlocking.last</code></td>
+</tr>
+<tr>
+<td><code>lastOrDefault(T, Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>Observable.filter(p).toBlocking.lastOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>lastOrDefault(T)</code></td>
+<td><code>lastOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>latest()</code></td>
+<td><code>latest</code></td>
+</tr>
+<tr>
+<td><code>mostRecent(T)</code></td>
+<td><code>mostRecent(U)</code></td>
+</tr>
+<tr>
+<td><code>next()</code></td>
+<td><code>next</code></td>
+</tr>
+<tr>
+<td><code>single()</code></td>
+<td><code>single</code></td>
+</tr>
+<tr>
+<td><code>single(Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>Observable.filter(p).toBlocking.single</code></td>
+</tr>
+<tr>
+<td><code>singleOrDefault(T)</code></td>
+<td><code>singleOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>singleOrDefault(T, Func1&lt;? super T, Boolean&gt;)</code></td>
+<td>use <code>Observable.filter(p).toBlocking.singleOrElse(=&gt; U)</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Action1&lt;? super T&gt;, Action1&lt;? super Throwable&gt;)</code></td>
+<td><code>subscribe(T =&gt; Unit, Throwable =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><span title="subscribe(Action1&lt;? super T&gt;, Action1&lt;? super Throwable&gt;, Action0)"><code>subscribe(...)</code></span></td>
+<td><code>subscribe(T =&gt; Unit, Throwable =&gt; Unit, () =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>subscribe()</code></td>
+<td><code>subscribe()</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Action1&lt;? super T&gt;)</code></td>
+<td><code>subscribe(T =&gt; Unit)</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Subscriber&lt;? super T&gt;)</code></td>
+<td><code>subscribe(Subscriber[T])</code></td>
+</tr>
+<tr>
+<td><code>subscribe(Observer&lt;? super T&gt;)</code></td>
+<td><code>subscribe(Observer[T])</code></td>
+</tr>
+<tr>
+<td><code>toFuture()</code></td>
+<td><code>toFuture</code></td>
+</tr>
+<tr>
+<td><code>toIterable()</code></td>
+<td><code>toIterable</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="comparison-of-scala-testscheduler-and-java-testscheduler">Comparison of Scala TestScheduler and Java TestScheduler</h2>
+
+<table><thead>
+<tr>
+<th>Java Method</th>
+<th>Scala Method</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>advanceTimeBy(Long, TimeUnit)</code></td>
+<td><code>advanceTimeBy(Duration)</code></td>
+</tr>
+<tr>
+<td><code>advanceTimeTo(Long, TimeUnit)</code></td>
+<td><code>advanceTimeTo(Duration)</code></td>
+</tr>
+<tr>
+<td><code>createWorker()</code></td>
+<td><code>createWorker</code></td>
+</tr>
+<tr>
+<td><code>now()</code></td>
+<td><code>now</code></td>
+</tr>
+<tr>
+<td><code>triggerActions()</code></td>
+<td><code>triggerActions()</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="comparison-of-scala-testsubscriber-and-java-testsubscriber">Comparison of Scala TestSubscriber and Java TestSubscriber</h2>
+
+<table><thead>
+<tr>
+<th>Java Method</th>
+<th>Scala Method</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>add(Subscription)</code></td>
+<td><code>add(Subscription)</code></td>
+</tr>
+<tr>
+<td><code>assertCompleted()</code></td>
+<td><code>assertCompleted()</code></td>
+</tr>
+<tr>
+<td><code>assertError(Class&lt;? extends Throwable&gt;)</code></td>
+<td><code>assertError(Class[_ &lt;: Throwable])</code></td>
+</tr>
+<tr>
+<td><code>assertError(Throwable)</code></td>
+<td><code>assertError(Throwable)</code></td>
+</tr>
+<tr>
+<td><code>assertNoErrors()</code></td>
+<td><code>assertNoErrors()</code></td>
+</tr>
+<tr>
+<td><code>assertNoTerminalEvent()</code></td>
+<td><code>assertNoTerminalEvent()</code></td>
+</tr>
+<tr>
+<td><code>assertNoValues()</code></td>
+<td><code>assertNoValues()</code></td>
+</tr>
+<tr>
+<td><code>assertNotCompleted()</code></td>
+<td><code>assertNotCompleted()</code></td>
+</tr>
+<tr>
+<td><code>assertReceivedOnNext(List&lt;T&gt;)</code></td>
+<td><code>assertValues(T*)</code></td>
+</tr>
+<tr>
+<td><code>assertTerminalEvent()</code></td>
+<td><code>assertTerminalEvent()</code></td>
+</tr>
+<tr>
+<td><code>assertUnsubscribed()</code></td>
+<td><code>assertUnsubscribed()</code></td>
+</tr>
+<tr>
+<td><code>assertValue(T)</code></td>
+<td><code>assertValue(T)</code></td>
+</tr>
+<tr>
+<td><code>assertValueCount(Int)</code></td>
+<td><code>assertValueCount(Int)</code></td>
+</tr>
+<tr>
+<td><code>assertValues(T*)</code></td>
+<td><code>assertValues(T*)</code></td>
+</tr>
+<tr>
+<td><code>awaitTerminalEvent()</code></td>
+<td><code>awaitTerminalEvent()</code></td>
+</tr>
+<tr>
+<td><code>awaitTerminalEvent(Long, TimeUnit)</code></td>
+<td><code>awaitTerminalEvent(Duration)</code></td>
+</tr>
+<tr>
+<td><code>awaitTerminalEventAndUnsubscribeOnTimeout(Long, TimeUnit)</code></td>
+<td><code>awaitTerminalEventAndUnsubscribeOnTimeout(Duration)</code></td>
+</tr>
+<tr>
+<td><code>create()</code></td>
+<td><code>apply()</code></td>
+</tr>
+<tr>
+<td><code>create(Observer&lt;T&gt;)</code></td>
+<td><code>apply(Observer[T])</code></td>
+</tr>
+<tr>
+<td><code>create(Long)</code></td>
+<td><code>apply(Long)</code></td>
+</tr>
+<tr>
+<td><code>create(Subscriber&lt;T&gt;)</code></td>
+<td><code>apply(Subscriber[T])</code></td>
+</tr>
+<tr>
+<td><code>create(Observer&lt;T&gt;, Long)</code></td>
+<td><code>apply(Observer[T], Long)</code></td>
+</tr>
+<tr>
+<td><code>getLastSeenThread()</code></td>
+<td><code>getLastSeenThread</code></td>
+</tr>
+<tr>
+<td><code>getOnCompletedEvents()</code></td>
+<td><code>assertCompleted()</code></td>
+</tr>
+<tr>
+<td><code>getOnErrorEvents()</code></td>
+<td><code>getOnErrorEvents</code></td>
+</tr>
+<tr>
+<td><code>getOnNextEvents()</code></td>
+<td><code>getOnNextEvents</code></td>
+</tr>
+<tr>
+<td><code>isUnsubscribed()</code></td>
+<td><code>isUnsubscribed</code></td>
+</tr>
+<tr>
+<td><code>onCompleted()</code></td>
+<td><code>onCompleted()</code></td>
+</tr>
+<tr>
+<td><code>onError(Throwable)</code></td>
+<td><code>onError(Throwable)</code></td>
+</tr>
+<tr>
+<td><code>onNext(T)</code></td>
+<td><code>onNext(T)</code></td>
+</tr>
+<tr>
+<td><code>onStart()</code></td>
+<td><code>onStart()</code></td>
+</tr>
+<tr>
+<td><code>requestMore(Long)</code></td>
+<td><code>requestMore(Long)</code></td>
+</tr>
+<tr>
+<td><code>setProducer(Producer)</code></td>
+<td><code>setProducer(Producer)</code></td>
+</tr>
+<tr>
+<td><code>unsubscribe()</code></td>
+<td><code>unsubscribe()</code></td>
+</tr>
+</tbody></table>
+
+<p>These tables were generated on Sat Jan 30 17:13:09 PST 2016.
+<strong>Do not edit</strong>. Instead, edit <code>rx.lang.scala.completeness.CompletenessTables</code> and run <code>sbt &#39;test:run rx.lang.scala.completeness.CompletenessTables&#39;</code> to generate these tables.</p>
 
 </div>
 

@@ -587,6 +587,60 @@ Completed</pre></div>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>create</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>create</code>.
+    </p>
+    <p>
+    Creates an observable sequence from a specified subscribeAction callable implementation.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/create/create.php
+
+//With static method
+$source = \Rx\Observable::create(function (\Rx\ObserverInterface $observer) {
+    $observer->onNext(42);
+    $observer->onCompleted();
+
+    return new CallbackDisposable(function () {
+        echo "Disposed\n";
+    });
+});
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+Disposed
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
@@ -660,9 +714,73 @@ Completed</pre></div>
         <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
           <div class="panel-body">
             
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
+    <figure class="variant">
+      <img src="images/create.png" style="width:100%;" alt="create" />
+      <figcaption><p>
+        RxSwift implements this operator as <code>create</code>.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code swift"><pre>
+let source = Observable<Int>.create { observer in
+  for i in 1...5 {
+    observer.on(.Next(i))
+  }
+  observer.on(.Completed)
+
+  // Note that this is optional. If you require no cleanup you can return
+  // NopDisposable.instance
+  return AnonymousDisposable {
+    print("Disposed")
+  }
+}
+
+source.subscribe {
+  print($0)
+}</pre></div>
+      <div class="output"><pre>
+Next(1)
+Next(2)
+Next(3)
+Next(4)
+Next(5)
+Completed
+disposed</pre></div>
+      </figcaption>
+    </figure>
+    <figure class="variant">
+      <img src="images/generate.png" style="width:100%;" alt="generate" />
+      <figcaption><p>
+        You can use the <code>generate</code> operator to create simple Observables that can generate their
+        next emissions, and can determine when to terminate, based on the value of the previous emission. The
+        basic form of <code>generate</code> takes three parameters:
+       </p><ol>
+        <li>the first item to emit</li>
+        <li>a function to test an item to determine whether to emit it (<code>true</code>) or terminate the
+            Observable (<code>false</code>)</li>
+        <li>a function to generate the next item to test and emit based on the value of the previous item</li>
+       </ol><p>
+        You can also pass in as an optional fourth parameter a <a href="../scheduler.html">Scheduler</a> that
+        <code>generate</code> will use to create and emit its sequence (it uses <code>CurrentThreadScheduler</code> by
+        default).
+       </p>
+       <h4>Sample Code</h4>
+       <div class="code swift"><pre>
+let source = Observable<Int>.generate(
+   initialState: 0,
+   condition: { $0 < 3 },
+   iterate: { $0 + 1 }
+)
+
+source.subscribe {
+   print($0)
+}</pre></div>
+         <div class="output"><pre>
+Next(0)
+Next(1)
+Next(2)
+Completed</pre></div>
+      </figcaption>
+    </figure>
   
           </div>
         </div>

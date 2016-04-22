@@ -449,7 +449,7 @@ Completed</pre></div>
      <figure>
       <img src="images/forkJoin.png" style="width:100%;" alt="forkJoin" />
       <figcaption><p>
-       RxJS also implements a similar operator, <code>forkJoin</code>. There are two varities of this
+       RxJS also implements a similar operator, <code>forkJoin</code>. There are two varieties of this
        operator. The first collects the last element emitted by each of the source Observables into an array and
        emits this array as its own sole emitted item. You can either pass a list of Observables to
        <code>forkJoin</code> as individual parameters or as an array of Observables.
@@ -547,6 +547,99 @@ Completed</pre></div>
      <p>
       <span style="color:#ff0000">TBD</span>
      </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>zip</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>zip</code>.
+    </p>
+    <p>
+    Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index. If the result selector function is omitted, a list with the elements of the observable sequences at corresponding indexes will be yielded.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/zip/zip.php
+
+//Without a result selector
+$range = \Rx\Observable::fromArray(range(0, 4));
+
+$source = $range
+    ->zip([
+        $range->skip(1),
+        $range->skip(2)
+    ]);
+
+$observer = $createStdoutObserver();
+
+$subscription = $source
+    ->subscribe(new CallbackObserver(
+        function ($array) use ($observer) {
+            $observer->onNext(json_encode($array));
+        },
+        [$observer, "onError"],
+        [$observer, "onCompleted"]
+    ));
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: [0,1,2]
+Next value: [1,2,3]
+Next value: [2,3,4]
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/zip/zip-result-selector.php
+
+//With a result selector
+$range = \Rx\Observable::fromArray(range(0, 4));
+
+$source = $range
+    ->zip([
+        $range->skip(1),
+        $range->skip(2)
+    ], function ($s1, $s2, $s3) {
+        return $s1 . ':' . $s2 . ':' . $s3;
+    });
+
+$observer = $createStdoutObserver();
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0:1:2
+Next value: 1:2:3
+Next value: 2:3:4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
   
           </div>
         </div>

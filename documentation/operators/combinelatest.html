@@ -437,6 +437,65 @@ Completed</pre></div>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>combineLatest</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>combineLatest</code>.
+    </p>
+    <p>
+    Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element. Observables need to be an array. If the result selector is omitted, a list with the elements will be yielded.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/combineLatest/combineLatest.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+/* Have staggering intervals */
+$source1 = \Rx\Observable::interval(100);
+$source2 = \Rx\Observable::interval(120);
+
+$source = $source1->combineLatest([$source2], function ($value1, $value2) {
+    return "First: {$value1}, Second: {$value2}";
+})->take(4);
+
+$subscription = $source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: First: 0, Second: 0
+Next value: First: 1, Second: 0
+Next value: First: 1, Second: 1
+Next value: First: 2, Second: 1
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

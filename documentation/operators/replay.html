@@ -532,6 +532,134 @@ Completed</pre></div>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>replay shareReplay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>replay</code>.
+    </p>
+    <p>
+    Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum time length for the replay buffer.  This operator is a specialization of Multicast using a ReplaySubject.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/replay/replay.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$interval = \Rx\Observable::interval(1000);
+
+$source = $interval
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo $x, " something", PHP_EOL;
+        echo "Side effect", PHP_EOL;
+    });
+
+$published = $source
+    ->replay(function (\Rx\Observable $x) {
+        return $x->take(2)->repeat(2);
+    }, 3);
+
+$published->subscribe($createStdoutObserver('SourceA '), $scheduler);
+$published->subscribe($createStdoutObserver('SourceB '), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>shareReplay</code>.
+    </p>
+    <p>
+    Returns an observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum time length for the replay buffer.  This operator is a specialization of  replay which creates a subscription when the number of observers goes from zero to one, then shares that  subscription with all subsequent observers until the number of observers returns to zero, at which point the subscription is disposed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/share/shareReplay.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$interval = Rx\Observable::interval(1000);
+
+$source = $interval
+    ->take(4)
+    ->doOnNext(function ($x) {
+        echo 'Side effect', PHP_EOL;
+    });
+
+$published = $source
+    ->shareReplay(3);
+
+$published->subscribe($createStdoutObserver('SourceA '), $scheduler);
+$published->subscribe($createStdoutObserver('SourceB '), $scheduler);
+
+Rx\Observable
+    ::just(true)
+    ->concatMapTo(\Rx\Observable::timer(6000))
+    ->flatMap(function () use ($published) {
+        return $published;
+    })
+    ->subscribe($createStdoutObserver('SourceC '), $scheduler);
+
+$loop->run();
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+SourceA Next value: 0
+SourceB Next value: 0
+Side effect
+SourceA Next value: 1
+SourceB Next value: 1
+Side effect
+SourceA Next value: 2
+SourceB Next value: 2
+Side effect
+SourceA Next value: 3
+SourceB Next value: 3
+SourceA Complete!
+SourceB Complete!
+SourceC Next value: 1
+SourceC Next value: 2
+SourceC Next value: 3
+SourceC Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">

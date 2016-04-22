@@ -162,6 +162,75 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP takeWhile takeWhileWithIndex %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>takeWhile</code>.
+    </p>
+    <p>
+    Returns elements from an observable sequence as long as a specified condition is true.  It takes as a parameter a a callback to test each source element for a condition.  The callback predicate is called with the value of the element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/takeWhile.php
+
+
+$source = \Rx\Observable::range(1, 5)
+    ->takeWhile(function ($x) {
+        return $x < 3;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>takeWhileWithIndex</code>.
+    </p>
+    <p>
+    Returns elements from an observable sequence as long as a specified condition is true.  It takes as a parameter a a callback to test each source element for a condition.  The callback predicate is called with the index and the value of the element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/takeWhileWithIndex.php
+
+
+$source = \Rx\Observable::range(1, 5)
+    ->takeWhileWithIndex(function ($i) {
+        return $i < 3;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY take_while %}
      <p>
       <span style="color:#ff0000">TBD</span>

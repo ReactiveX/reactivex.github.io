@@ -229,6 +229,79 @@ Sequence complete</pre></div>
      </figure>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP concat concatAll %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>concat</code>.
+    </p>
+    <p>
+    Concatenate an observable sequence onto the end of the source observable.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/concat/concat.php
+
+
+$source1 = \Rx\Observable::just(42);
+$source2 = \Rx\Observable::just(56);
+
+$source = \Rx\Observable::emptyObservable()->concat($source1)->concat($source2);
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 56
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>concatAll</code>.
+    </p>
+    <p>
+    Concatenates a sequence of observable sequences into a single observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/concat/concatAll.php
+
+$source = Rx\Observable::range(0, 3)
+    ->map(function ($x) {
+        return \Rx\Observable::range($x, 3);
+    })
+    ->concatAll();
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 2
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 2
+Next value: 3
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY concat concatAll %}
      <figure>
       <img src="images/concat.png" style="width:100%;" alt="concat" />

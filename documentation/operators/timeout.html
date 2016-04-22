@@ -473,6 +473,50 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP timeout %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>timeout</code>.
+    </p>
+    <p>
+    
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/timeout/timeout.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+Rx\Observable::interval(1000)
+    ->timeout(500)
+    ->subscribe($createStdoutObserver("One second - "), $scheduler);
+
+Rx\Observable::interval(100)
+    ->take(3)
+    ->timeout(500)
+    ->subscribe($createStdoutObserver("100 ms     - "), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+100 ms     - Next value: 0
+100 ms     - Next value: 1
+100 ms     - Next value: 2
+100 ms     - Complete!
+One second - Exception: timeout
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY timeout timeout_with_selector %}
      <p>
       <span style="color:#ff0000">TBD</span>

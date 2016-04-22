@@ -240,6 +240,63 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP reduce %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>reduce</code>.
+    </p>
+    <p>
+    Applies an accumulator function over an observable sequence, returning the result of the aggregation as a single element in the result sequence. The specified seed value is used as the initial accumulator value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/reduce/reduce.php
+
+//Without a seed
+$source = \Rx\Observable::fromArray(range(1, 3));
+
+$subscription = $source
+    ->reduce(function ($acc, $x) {
+        return $acc + $x;
+    })
+    ->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 6
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/reduce/reduce-with-seed.php
+
+//With a seed
+$source = \Rx\Observable::fromArray(range(1, 3));
+
+$subscription = $source
+    ->reduce(function ($acc, $x) {
+        return $acc * $x;
+    }, 1)
+    ->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 6
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY aggregate expand reduce %}
      <p>
       <span style="color:#ff0000">TBD</span>

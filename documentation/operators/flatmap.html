@@ -573,6 +573,168 @@ Completed</pre></div>
     </ul>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP flatMap selectMany concatMap concatMapTo %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>flatMap</code>.
+    </p>
+    <p>
+    Projects each element of an observable sequence to an observable sequence and merges the resulting observable sequences into one observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/flatMap/flatMap.php
+
+$loop      = React\EventLoop\Factory::create();
+$scheduler = new Rx\Scheduler\EventLoopScheduler($loop);
+
+$observable = Rx\Observable::range(1, 5);
+
+$selectManyObservable = $observable->flatMap(function ($value) {
+    return Rx\Observable::range(1, $value);
+}, $scheduler);
+
+$disposable = $selectManyObservable->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 1
+Next value: 2
+Next value: 1
+Next value: 2
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 3
+Next value: 4
+Next value: 4
+Next value: 5
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>selectMany</code>.
+    </p>
+    <p>
+    Alias for flatMap
+    </p>
+
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>concatMap</code>.
+    </p>
+    <p>
+    Projects each element of an observable sequence to an observable sequence and concatenates the resulting observable sequences into one observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/concat/concatMap.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::range(0, 5)
+    ->concatMap(function ($x, $i) use ($scheduler) {
+        return \Rx\Observable::interval(100, $scheduler)
+            ->take($x)
+            ->map(function () use ($i) {
+                return $i;
+            });
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 2
+Next value: 3
+Next value: 3
+Next value: 3
+Next value: 4
+Next value: 4
+Next value: 4
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>concatMapTo</code>.
+    </p>
+    <p>
+    Projects each element of the source observable sequence to the other observable sequence and merges the resulting observable sequences into one observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/concat/concatMapTo.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$obs = \Rx\Observable::interval(100, $scheduler)
+    ->take(3)
+    ->mapWithIndex(function ($i) {
+        return $i;
+    });
+
+$source = Rx\Observable::range(0, 5)
+    ->concatMapTo($obs);
+
+$subscription = $source->subscribe($stdoutObserver);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 4
+Next value: 5
+Next value: 6
+Next value: 7
+Next value: 8
+Next value: 9
+Next value: 10
+Next value: 11
+Next value: 12
+Next value: 13
+Next value: 14
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY concat_all expand flat_map for_in many_select select_many select_switch %}
     <p>
      <span style="color:#f00">TBD</span>

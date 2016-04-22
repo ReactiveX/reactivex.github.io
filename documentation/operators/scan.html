@@ -273,6 +273,67 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP scan %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>scan</code>.
+    </p>
+    <p>
+    Applies an accumulator function over an observable sequence and returns each intermediate result. The optional seed value is used as the initial accumulator value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/scan/scan.php
+
+//Without a seed
+$source = Rx\Observable::range(1, 3);
+
+$subscription = $source
+    ->scan(function ($acc, $x) {
+        return $acc + $x;
+    })
+    ->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 3
+Next value: 6
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/scan/scan-with-seed.php
+
+//With a seed
+$source = Rx\Observable::range(1, 3);
+
+$subscription = $source
+    ->scan(function ($acc, $x) {
+        return $acc * $x;
+    }, 1)
+    ->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 6
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY scan %}
      <p>
       <span style="color:#ff0000">TBD</span>

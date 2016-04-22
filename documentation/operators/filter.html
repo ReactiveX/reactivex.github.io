@@ -209,6 +209,50 @@ Completed</pre></div></figcaption>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP filter where %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>filter</code>.
+    </p>
+    <p>
+    Emit only those items from an Observable that pass a predicate test.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/filter/filter.php
+
+$observable = Rx\Observable::fromArray([21, 42, 84]);
+$observable
+    ->filter(function ($elem) {
+        return $elem >= 42;
+    })
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 84
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>where</code>.
+    </p>
+    <p>
+    Alias for filter
+    </p>
+
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY filter slice where %}
      <p>
       <span style="color:#ff0000">TBD</span>

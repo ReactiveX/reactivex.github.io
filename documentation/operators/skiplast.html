@@ -219,6 +219,38 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP skipLast %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>skipLast</code>.
+    </p>
+    <p>
+    Bypasses a specified number of elements at the end of an observable sequence.  This operator accumulates a queue with a length enough to store the first `count` elements. As more elements are received, elements are taken from the front of the queue and produced on the result sequence. This causes elements to be delayed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/skip/skipLast.php
+
+$observable = Rx\Observable::range(0, 5)
+    ->skipLast(3);
+
+$observable->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY skip_last skip_last_with_time %}
      <p>
       <span style="color:#ff0000">TBD</span>

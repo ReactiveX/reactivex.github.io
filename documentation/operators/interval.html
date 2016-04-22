@@ -172,6 +172,46 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP interval %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>interval</code>.
+    </p>
+    <p>
+    Returns an Observable that emits an infinite sequence of ascending integers starting at 0, with a constant interval of time of your choosing between emissions.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/interval/interval.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$disposable = \Rx\Observable::interval(1000, $scheduler)
+    ->take(5)
+    ->subscribe($createStdoutObserver());
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY interval %}
     <p>
      <span style="color:#f00">TBD</span>

@@ -284,6 +284,45 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP repeat %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>repeat</code>.
+    </p>
+    <p>
+    Generates an observable sequence that repeats the given element the specified number of times.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/repeat/repeat.php
+
+$source = \Rx\Observable::range(1, 3)
+    ->repeat(3);
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 1
+Next value: 2
+Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY do_while repeat while_do %}
     <p>
      <span style="color:#f00">TBD</span>

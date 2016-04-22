@@ -134,6 +134,45 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP skipUntil %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>skipUntil</code>.
+    </p>
+    <p>
+    Returns the values from the source observable sequence only after the other observable sequence produces a value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/skip/skipUntil.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$observable = Rx\Observable::interval(1000)
+    ->skipUntil(\Rx\Observable::timer(5000))
+    ->take(3);
+
+$observable->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 4
+Next value: 5
+Next value: 6
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY skipUntil skipUntil_with_time %}
      <p>
       <span style="color:#ff0000">TBD</span>

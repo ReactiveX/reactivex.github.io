@@ -269,6 +269,66 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP take takeUntil %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>take</code>.
+    </p>
+    <p>
+    Returns a specified number of contiguous elements from the start of an observable sequence
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/take.php
+
+$observable = Rx\Observable::fromArray([21, 42, 63]);
+$observable
+    ->take(2)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 21
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>takeUntil</code>.
+    </p>
+    <p>
+    Returns the values from the source observable sequence until the other observable sequence produces a value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/take.php
+
+$observable = Rx\Observable::fromArray([21, 42, 63]);
+$observable
+    ->take(2)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 21
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY take take_with_time %}
      <p>
       <span style="color:#ff0000">TBD</span>

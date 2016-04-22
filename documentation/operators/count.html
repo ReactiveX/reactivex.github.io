@@ -148,6 +148,36 @@ assertEquals( 5, Observable.from(list)!!.count()!!.toBlocking()!!.single() )</pr
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP count %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>count</code>.
+    </p>
+    <p>
+    Returns an observable sequence containing a value that represents how many elements in the specified observable sequence satisfy a condition if provided, else the count of items.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/count/count.php
+
+$source = \Rx\Observable::fromArray(range(1, 10));
+
+$subscription = $source->count()->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 10
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY count %}
      <p>
       In RxPY you have the option to pass <code>count</code> a predicate that takes an item emitted

@@ -221,6 +221,42 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP skip %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>skip</code>.
+    </p>
+    <p>
+    Bypasses a specified number of elements in an observable sequence and then returns the remaining elements.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/skip/skip.php
+
+use Rx\Observable\ArrayObservable;
+
+$observable = Rx\Observable::fromArray([1, 1, 2, 3, 5, 8, 13]);
+$observable
+    ->skip(3)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 3
+Next value: 5
+Next value: 8
+Next value: 13
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY skip skip_with_time %}
      <p>
       <span style="color:#ff0000">TBD</span>

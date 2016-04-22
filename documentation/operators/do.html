@@ -495,6 +495,141 @@ Finally</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP doOnEach doOnNext doOnError doOnCompleted %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>doOnEach</code>.
+    </p>
+    <p>
+    Invokes an action for each element in the observable sequence and invokes an action upon graceful or exceptional termination of the observable sequence. This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnEach.php
+
+$source = \Rx\Observable::range(0, 3)
+    ->doOnEach(new \Rx\Observer\CallbackObserver(
+        function ($x) {
+            echo 'Do Next:', $x, PHP_EOL;
+        },
+        function (Exception $err) {
+            echo 'Do Error:', $err->getMessage(), PHP_EOL;
+        },
+        function () {
+            echo 'Do Completed', PHP_EOL;
+        }
+    ));
+
+$subscription = $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Do Next:0
+Next value: 0
+Do Next:1
+Next value: 1
+Do Next:2
+Next value: 2
+Do Completed
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>doOnNext</code>.
+    </p>
+    <p>
+    
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnNext.php
+
+$source = \Rx\Observable::range(0, 3)
+    ->doOnNext(function ($x) {
+        echo 'Do Next:', $x, PHP_EOL;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Do Next:0
+Next value: 0
+Do Next:1
+Next value: 1
+Do Next:2
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>doOnError</code>.
+    </p>
+    <p>
+    
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnError.php
+
+$source = \Rx\Observable::error(new Exception('Oops'))
+    ->doOnError(function (Exception $err) {
+        echo 'Do Error:', $err->getMessage(), PHP_EOL;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Do Error:Oops
+Exception: Oops
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>doOnCompleted</code>.
+    </p>
+    <p>
+    
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnCompleted.php
+
+$source = \Rx\Observable::emptyObservable()
+    ->doOnCompleted(function () {
+        echo 'Do Completed', PHP_EOL;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Do Completed
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY do_action finally_action tap %}
     <p>
      <span style="color:#f00">TBD</span>

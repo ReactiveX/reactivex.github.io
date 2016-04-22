@@ -312,6 +312,135 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP groupBy groupByUntil %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>groupBy</code>.
+    </p>
+    <p>
+    Groups the elements of an observable sequence according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/groupBy/groupBy.php
+
+$observable = \Rx\Observable::fromArray([21, 42, 21, 42, 21, 42]);
+$observable
+    ->groupBy(
+        function ($elem) {
+            if ($elem === 42) {
+                return 0;
+            }
+
+            return 1;
+        },
+        null,
+        function ($key) {
+            return $key;
+        }
+    )
+    ->subscribeCallback(function ($groupedObserver) use ($createStdoutObserver) {
+        $groupedObserver->subscribe($createStdoutObserver($groupedObserver->getKey() . ": "));
+    });
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+1: Next value: 21
+0: Next value: 42
+1: Next value: 21
+0: Next value: 42
+1: Next value: 21
+0: Next value: 42
+1: Complete!
+0: Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>groupByUntil</code>.
+    </p>
+    <p>
+    Groups the elements of an observable sequence according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/groupBy/groupByUntil.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$codes = [
+    ['id' => 38],
+    ['id' => 38],
+    ['id' => 40],
+    ['id' => 40],
+    ['id' => 37],
+    ['id' => 39],
+    ['id' => 37],
+    ['id' => 39],
+    ['id' => 66],
+    ['id' => 65]
+];
+
+$source = Rx\Observable
+    ::fromArray($codes)
+    ->concatMap(function ($x) {
+        return \Rx\Observable::timer(100)->mapTo($x);
+    })
+    ->groupByUntil(
+        function ($x) {
+            return $x['id'];
+        },
+        function ($x) {
+            return $x['id'];
+        },
+        function ($x) {
+            return Rx\Observable::timer(200);
+        });
+
+$subscription = $source->subscribe(new CallbackObserver(
+    function (\Rx\Observable $obs) {
+        // Print the count
+        $obs->count()->subscribe(new CallbackObserver(
+            function ($x) {
+                echo 'Count: ', $x, PHP_EOL;
+            }));
+    },
+    function (Exception $err) {
+        echo 'Error', $err->getMessage(), PHP_EOL;
+    },
+    function () {
+        echo 'Completed', PHP_EOL;
+    }), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Count: 2
+Count: 2
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Completed
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY group_by group_by_until partition %}
     <p>
      <span style="color:#f00">TBD</span>

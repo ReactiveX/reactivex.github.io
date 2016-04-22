@@ -482,6 +482,45 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP toArray %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>toArray</code>.
+    </p>
+    <p>
+    Creates an observable sequence containing a single element which is an array containing all the elements of the source sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/toArray/toArray.php
+
+$source = \Rx\Observable::fromArray([1, 2, 3, 4]);
+
+$observer = $createStdoutObserver();
+
+$subscription = $source->toArray()
+    ->subscribe(new CallbackObserver(
+        function ($array) use ($observer) {
+            $observer->onNext(json_encode($array));
+        },
+        [$observer, "onError"],
+        [$observer, "onCompleted"]
+    ));
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: [1,2,3,4]
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY BlockingObservable.to_iterable to_array to_blocking to_dict to_future to_iterable to_list to_marbles to_set %}
     <p>
      <span style="color:#f00">TBD</span>

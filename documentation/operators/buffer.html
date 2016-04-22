@@ -750,6 +750,60 @@ Observable&lt;List&lt;Integer&gt;&gt; burstyBuffered = burstyMulticast.buffer(bu
    </figure>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP bufferWithCount %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>bufferWithCount</code>.
+    </p>
+    <p>
+    Projects each element of an observable sequence into zero or more buffers which are produced based on element count information.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/bufferWithCount/bufferWithCount.php
+
+$source = Rx\Observable::range(1, 6)
+    ->bufferWithCount(2)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: [1,2]
+Next value: [3,4]
+Next value: [5,6]
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/bufferWithCount/bufferWithCountAndSkip.php
+
+$source = Rx\Observable::range(1, 6)
+    ->bufferWithCount(2, 1)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: [1,2]
+Next value: [2,3]
+Next value: [3,4]
+Next value: [4,5]
+Next value: [5,6]
+Next value: [6]
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY buffer buffer_with_count buffer_with_time buffer_with_time_or_count pairwise %}
    <p>
     RxPY has several <span class="operator">Buffer</span> variants: <code>buffer</code>,

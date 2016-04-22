@@ -357,6 +357,45 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP create %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>create</code>.
+    </p>
+    <p>
+    Creates an observable sequence from a specified subscribeAction callable implementation.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/create/create.php
+
+//With static method
+$source = \Rx\Observable::create(function (\Rx\ObserverInterface $observer) {
+    $observer->onNext(42);
+    $observer->onCompleted();
+
+    return new CallbackDisposable(function () {
+        echo "Disposed\n";
+    });
+});
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+Disposed
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY create generate generate_with_relative_time %}
     <p>
      <span style="color:#f00">TBD</span>

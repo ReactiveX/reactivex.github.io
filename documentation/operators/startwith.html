@@ -187,6 +187,68 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
      </figure>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP startWith startWithArray %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>startWith</code>.
+    </p>
+    <p>
+    Prepends a value to an observable sequence with an argument of a signal value to prepend.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/startWith/startWith.php
+
+$source = \Rx\Observable::just(2)
+    ->startWith(1);
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>startWithArray</code>.
+    </p>
+    <p>
+    Prepends a sequence of values to an observable sequence with an argument of an array of values to prepend.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/startWith/startWithArray.php
+
+$source = \Rx\Observable::just(4)
+    ->startWithArray([1, 2, 3]);
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY start_with %}
      <figure>
       <img src="images/start_with.png" style="width:100%;" alt="start_with" />

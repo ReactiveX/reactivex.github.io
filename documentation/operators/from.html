@@ -694,6 +694,114 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP fromArray fromIterator asObservable %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>fromArray</code>.
+    </p>
+    <p>
+    Converts an array to an observable sequence
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/fromArray/fromArray.php
+
+$source = \Rx\Observable::fromArray([1, 2, 3, 4]);
+
+$subscription = $source->subscribe($stdoutObserver);
+
+//Next value: 1
+//Next value: 2
+//Next value: 3
+//Next value: 4
+//Complete!
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>fromIterator</code>.
+    </p>
+    <p>
+    Converts an Iterator into an observable sequence
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/iterator/iterator.php
+
+function gen_one_to_three()
+{
+    for ($i = 1; $i <= 3; $i++) {
+        yield $i;
+    }
+}
+
+$generator = gen_one_to_three();
+$source    = new \Rx\Observable\IteratorObservable($generator);
+
+$source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>asObservable</code>.
+    </p>
+    <p>
+    Hides the identity of an observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/asObservable/asObservable.php
+
+// Create subject
+$subject = new \Rx\Subject\AsyncSubject();
+
+// Send a value
+$subject->onNext(42);
+$subject->onCompleted();
+
+// Hide its type
+$source = $subject->asObservable();
+
+$source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY from_array from_callback from_future from_iterable from_list from_marbles of %}
     <p>
      <span style="color:#f00">TBD</span>

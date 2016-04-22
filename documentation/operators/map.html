@@ -240,6 +240,106 @@ Completed</pre></div></figcaption>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP map mapWithIndex mapTo select %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>map</code>.
+    </p>
+    <p>
+    Takes a transforming function that operates on each element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/map/map.php
+
+$observable = \Rx\Observable::fromArray([21, 42]);
+$observable
+    ->map(function ($elem) {
+        return $elem * 2;
+    })
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 84
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>mapWithIndex</code>.
+    </p>
+    <p>
+    Maps operator variant that calls the map selector with the index and value
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/map/mapWithIndex.php
+
+$subscriptions = Rx\Observable::fromArray([21, 42])
+    ->mapWithIndex(function ($index, $elem) {
+        return $index + $elem;
+    })
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 21
+Next value: 43
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>mapTo</code>.
+    </p>
+    <p>
+    Maps every value to the same value every time
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/map/mapTo.php
+
+$subscription = Rx\Observable::fromArray([21, 42])
+    ->mapTo(1)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 1
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>select</code>.
+    </p>
+    <p>
+    Alias for Map
+    </p>
+
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY map pluck select %}
      <p>
       <span style="color:#ff0000">TBD</span>

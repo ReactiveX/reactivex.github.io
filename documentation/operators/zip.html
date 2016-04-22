@@ -325,6 +325,84 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP zip %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>zip</code>.
+    </p>
+    <p>
+    Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index. If the result selector function is omitted, a list with the elements of the observable sequences at corresponding indexes will be yielded.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/zip/zip.php
+
+//Without a result selector
+$range = \Rx\Observable::fromArray(range(0, 4));
+
+$source = $range
+    ->zip([
+        $range->skip(1),
+        $range->skip(2)
+    ]);
+
+$observer = $createStdoutObserver();
+
+$subscription = $source
+    ->subscribe(new CallbackObserver(
+        function ($array) use ($observer) {
+            $observer->onNext(json_encode($array));
+        },
+        [$observer, "onError"],
+        [$observer, "onCompleted"]
+    ));
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: [0,1,2]
+Next value: [1,2,3]
+Next value: [2,3,4]
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/zip/zip-result-selector.php
+
+//With a result selector
+$range = \Rx\Observable::fromArray(range(0, 4));
+
+$source = $range
+    ->zip([
+        $range->skip(1),
+        $range->skip(2)
+    ], function ($s1, $s2, $s3) {
+        return $s1 . ':' . $s2 . ':' . $s3;
+    });
+
+$observer = $createStdoutObserver();
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0:1:2
+Next value: 1:2:3
+Next value: 2:3:4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY zip zip_array %}
      <p>
       <span style="color:#ff0000">TBD</span>

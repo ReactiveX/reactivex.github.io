@@ -157,6 +157,42 @@ Completed</pre></div>
     </ul>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP timer %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>timer</code>.
+    </p>
+    <p>
+    Returns an observable sequence that produces a value after dueTime has elapsed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/timer/timer.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = \Rx\Observable::timer(200, $scheduler);
+
+$source->subscribe($createStdoutObserver());
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY timer %}
     <p>
      <span style="color:#f00">TBD</span>

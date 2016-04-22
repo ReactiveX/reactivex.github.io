@@ -254,6 +254,39 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP defer %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>defer</code>.
+    </p>
+    <p>
+    Returns an observable sequence that invokes the specified factory function whenever a new observer subscribes.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/defer/defer.php
+
+
+$source = \Rx\Observable::defer(function () {
+    return \Rx\Observable::just(42);
+});
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY case defer if_then switch_case %}
     <p>
      <span style="color:#f00">TBD</span>

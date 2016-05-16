@@ -531,6 +531,7 @@ operators.
 * [`distinctUntilKeyChanged`]({{ site.url }}/documentation/operators/distinct.html)
 * [**`Do`**]({{ site.url }}/documentation/operators/do.html)
 * [`doAction`]({{ site.url }}/documentation/operators/do.html)
+* [`doAfterTerminate`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnCompleted`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnEach`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnError`]({{ site.url }}/documentation/operators/do.html)

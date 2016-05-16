@@ -165,7 +165,7 @@ Finally</pre></div>
     </figure>
   {% endlang_operator %}
 
-  {% lang_operator RxJava doOnCompleted doOnEach doOnError doOnNext doOnRequest doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+  {% lang_operator RxJava doOnCompleted doOnEach doOnError doOnNext doOnRequest doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo doAfterTerminate %}
     <p>
      RxJava has several <span class="operator">Do</span> variants.
     </p>
@@ -287,11 +287,24 @@ Error: Item exceeds maximum value</pre></div>
     <figure class="variant">
      <img src="images/finallyDo.png" style="width:100%;" alt="finallyDo" />
      <figcaption><p>
+      <code>finallyDo</code></a> is deprecated since RxJava 1.1.1, in favor of 
+      <code>doAfterTerminate</code> with the same behavior.
+      </p><p>
       The <code>finallyDo</code> operator registers an <code>Action</code> which will be called just
       <em>after</em> the resulting Observable terminates, whether normally or with an error.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#finallyDo(rx.functions.Action0)"><code>finallyDo(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doAfterTerminate.png" style="width:100%;" alt="doAfterTerminate" />
+     <figcaption><p>
+      The <code>doAfterTerminate</code> operator registers an <code>Action</code> which will be called just
+      <em>after</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doAfterTerminate(rx.functions.Action0)"><code>doAfterTerminate(Action0)</code></a></li>
      </ul></figcaption>
     </figure>
   {% endlang_operator %}

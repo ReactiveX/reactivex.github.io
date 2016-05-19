@@ -199,6 +199,30 @@ Error: Error: woops</pre></div>
     </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP materialize dematerialize %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>materialize</code>.
+    </p>
+    <p>
+    Materializes the implicit notifications of an observable sequence as explicit notifications.
+    </p>
+
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>dematerialize</code>.
+    </p>
+    <p>
+    Dematerializes the explicit notification values of an observable sequence as implicit notifications.
+    </p>
+
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY dematerialize materialize %}
     <p>
      <span style="color:#f00">TBD</span>

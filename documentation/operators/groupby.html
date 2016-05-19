@@ -312,7 +312,7 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPHP groupBy groupByUntil %}
+  {% lang_operator RxPHP groupBy groupByUntil partition %}
 <figure class="variant">
     <figcaption>
     <p>
@@ -435,6 +435,46 @@ Count: 1
 Count: 1
 Count: 1
 Completed
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>partition</code>.
+    </p>
+    <p>
+    Returns two observables which partition the observations of the source by the given function. The first will trigger observations for those values for which the predicate returns true. The second will trigger observations for those values where the predicate returns false. The predicate is executed once for each subscribed observer. Both also propagate all error observations arising from the source and each completes when the source completes.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/partition/partition.php
+
+list($evens, $odds) = \Rx\Observable::range(0, 10)
+    ->partition(function ($x) {
+        return $x % 2 === 0;
+    });
+
+$evens->subscribe($createStdoutObserver('Evens '));
+$odds->subscribe($createStdoutObserver('Odds '));
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Evens Next value: 0
+Evens Next value: 2
+Evens Next value: 4
+Evens Next value: 6
+Evens Next value: 8
+Evens Complete!
+Odds Next value: 1
+Odds Next value: 3
+Odds Next value: 5
+Odds Next value: 7
+Odds Next value: 9
+Odds Complete!
     </pre>
 </div>
     </figcaption>

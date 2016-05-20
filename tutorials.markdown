@@ -38,6 +38,8 @@ id: tutorials
 * [Intro to Rx (website)](http://introtorx.com/)
 * [Programming Reactive Extensions and LINQ](http://www.amazon.com/Programming-Reactive-Extensions-Jesse-Liberty/dp/1430237473/)
 * [Reactive Extensions in Action](http://manning.com/dresher/) - Permanent 39% discount for the Rx community with the code "dresherdoc"
+* [RxJava Essentials](http://bit.ly/rxjava-essentials) - RxJava for Android developers
+* [Grokking Rx](http://bit.ly/grokking-rx) - From theory to everyday real-world problems. No matter if you code for backend, frondend or Android: we got you covered!
 
 ## Courses
 * [Reactive Programming in Java 8 With RxJava](http://pluralsight.com/training/Courses/TableOfContents/reactive-programming-java-8-rxjava), a course designed by Russell Elledge

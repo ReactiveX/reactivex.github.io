@@ -246,10 +246,11 @@
      <img src="images/replay.f.png" style="width:100%;" alt="replay" />
      <figcaption><p>
       There is also a variety of <code>replay</code> that returns an ordinary Observable. These
-      variants take as a parameter a transformative function; this function accepts an item emitted
-      by the source Observable as its parameter, and returns an item to be emitted by the resulting
-      Observable. So really, this operator does not replay the source Observable but instead replays
-      the source Observable <em>as transformed</em> by this function.
+      variants take as a parameter a transformative function; this function will receive an Observable 
+      which can be subscribed to as many times as necessary without causing multiple subscriptions 
+      to the upstream Observable. The function then should return an Observable whose values will 
+      be emitted to the downstream subscriber. So really, this operator does not replay the source 
+      Observable but instead replays the source Observable <em>as transformed</em> by this function.
      </p><p>
       Variants of this variety of the <code>replay</code> operator permit you to set a maximum
       buffer size to limit the number of items <code>replay</code> will buffer and replay to
@@ -312,10 +313,11 @@
      <img src="images/replay.f.png" style="width:100%;" alt="replay" />
      <figcaption><p>
       There is also a variety of <code>replay</code> that returns an ordinary Observable. These
-      variants take as a parameter a transformative function; this function accepts an item emitted
-      by the source Observable as its parameter, and returns an item to be emitted by the resulting
-      Observable. So really, this operator does not replay the source Observable but instead replays
-      the source Observable <em>as transformed</em> by this function.
+      variants take as a parameter a transformative function; this function will receive an Observable 
+      which can be subscribed to as many times as necessary without causing multiple subscriptions 
+      to the upstream Observable. The function then should return an Observable whose values will 
+      be emitted to the downstream subscriber. So really, this operator does not replay the source 
+      Observable but instead replays the source Observable <em>as transformed</em> by this function.
      </p><p>
       Variants of this variety of the <code>replay</code> operator permit you to set a maximum
       buffer size to limit the number of items <code>replay</code> will buffer and replay to

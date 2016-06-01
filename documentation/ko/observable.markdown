@@ -11,7 +11,7 @@ id: observable
 </p>
 <p>
  이 문서에서는 리액티브 패턴이 무엇이고 Observable과 옵저버가 무엇인지(그리고 어떻게 옵저버가 observable을 구독하는지)를 설명한다.
- 그 다음에는 <a href="../operators.html">다양한 Observable의 연산자들</a>을 어떻게 Obseravable에 연결 시키는지 또, 어떻게 Observable의 행동을 변경 시킬 수 있는지 설명한다.
+ 그 다음에는 <a href="../operators.html">다양한 Observable 연산자</a>를 어떻게 Obseravable에 연결 시키는지 또, 어떻게 Observable의 행동을 변경 시킬 수 있는지 설명한다.
 </p>
 <figure>
  <figcaption>
@@ -87,7 +87,7 @@ myObservable.subscribe(myOnNext);
 // 필요한 코드를 구현한다</pre></div>
 <h2>onNext, onCompleted, 그리고 onError</h2>
 <p>
- <a href="operators/subscribe.html"><code>Subscribe</code> 메서드</a>를 통해 옵저버와 Observable을 연결한다. 여러분의 옵저버는 아래의 메서드를 구현하게 될 것이다:
+ <a href="../operators/subscribe.html"><code>Subscribe</code> 메서드</a>를 통해 옵저버와 Observable을 연결한다. 여러분의 옵저버는 아래의 메서드를 구현하게 될 것이다:
 </p>
 <dl>
  <dt><code>onNext</code></dt>
@@ -99,7 +99,7 @@ myObservable.subscribe(myOnNext);
   <dd>오류가 발생하지 않았다면 Observable은 마지막 <code>onNext</code>를 호출한 후에 이 메서드를 호출한다.</dd>
 </dl>
 <p>
- <a href="contract.html">the Observable contract</a>에 명시된 조건에 따라, <code>onNext</code>는 0번 이상 호출 될 수 있으며 그 후에는 <code>onCompleted</code> 또는
+ <a href="../contract.html">Observable 계약</a>에 명시된 조건에 따라, <code>onNext</code>는 0번 이상 호출 될 수 있으며 그 후에는 <code>onCompleted</code> 또는
  <code>onError</code> 둘 중 하나를 마지막으로 호출한다. 단, 둘 다 호출하지는 않는다. 이 문서에서는 관례에 따라, <code>onNext</code> 호출을 항목의 &ldquo;배출&rdquo;로 부르며, 반대로 
  <code>onCompleted</code> 혹은 <code>onError</code> 호출을 &ldquo;알림&rdquo;으로 부를 것이다.
 </p><p>

@@ -6,21 +6,21 @@ id: scheduler
 
 <h1>스케줄러</h1>
 <p>
- 만약 Observable의 연산자 체인에 멀티스레딩을 적용하고 싶다면, 특정 <dfn>스케줄러</dfn>를 통해 연산자(또는 특정 Observable)들을 실행하면 된다.
+ Observable의 연산자 체인에 멀티스레딩을 적용하고 싶다면, 특정 <dfn>스케줄러</dfn>를 사용해서 연산자(또는 특정 Observable)를 실행하면 된다.
 </p>
 <p>
- ReactiveX의 일부 Observable 연산자 중에는 스케줄러를 파라미터로 받기도 하는데, 이런 형태의 연산자들은 자신이 처리할 연산의 일부 또는 전체를 특정 스케줄러 내에서 실행한다.
+ ReactiveX의 일부 Observable 연산자는 사용할 스케줄러를 파라미터로 전달 받기도 하는데, 이 연산자들은 자신이 처리할 연산의 일부 또는 전체를 전달된 스케줄러 안에서 실행한다.
 </p>
 <figure>
  <figcaption>
  <p>
-  기본적으로, Observable과 연산자 체인은 이같이 동작하며 <code>Subscribe</code> 메서드가 호출되는 스레드와 동일한 스레드 상에서 옵저버에게 알림을 보낸다.
-  <span class="operator">SubscribeOn</span> 연산자는 앞에서 실행 중인 Observable 위에 스케러를 명시함으로써 동작을 변경한다.
+  기본적으로, Observable과 연산자 체인은 위에서 설명한 것과 같은 방식으로 동작하며 <code>Subscribe</code> 메서드는 호출되는 스레드와 동일한 스레드 상에서 옵저버에게 알림을 보낸다.
+  <span class="operator">SubscribeOn</span> 연산자는 이미 실행 중인 Observable에 스케줄러를 지정해 동작을 변경한다. 그리고, 
   <span class="operator">ObserveOn</span> 연산자는 Observable이 옵저버에게 알림을 보낼때 사용 할 다른 스케줄러를 명시한다.
  </p>
  <p>
-  위에서 말했듯이, <span class="operator">SubscribeOn</span> 연산자는 Observable이 연산자 처리에 시용할 스레드를 할당하며 연산자 체인 중 어디에서 호출되는지 문제되지 않는다.
-  하지만, 반대로 <span class="operator">ObserveOn</span> 연산자는 연산자 체인 중 Observable이 사용할 스레드가 호출 체인 중 어느 시점에 호출되는지에 따라 <em>그 이후</em>에 호출되는 연산자에 영향을 미친다. 이런 이유 때문에, 아마도 여러분은 특정 연산자를 별도의 스레드 상에서 실행 시키도록 연산자 호출 체인 중 여러 곳에서<span class="operator">ObserveOn</span>를 호출하기도 할 것이다.
+  위에서 말했듯이, <span class="operator">SubscribeOn</span> 연산자는 Observable이 연산에 사용할 스레드를 할당하며 연산자 체인 중 어디에서 호출되든 문제되지 않는다.
+  하지만, 이와 달리 <span class="operator">ObserveOn</span> 연산자는 연산자 체인 중 Observable이 사용할 스레드가 호출 체인 중 어느 시점에서 할당되는지에 따라 <em>그 후</em>에 호출되는 연산자에 영향을 미친다. 그렇기 때문에, 어쩌면 여러분은 특정 연산자를 별도의 스레드 상에서 실행 시키기 위해 연산자 호출 체인 중 한 군데 이상에서<span class="operator">ObserveOn</span>를 호출할 수도 있다.
  </p>
  </figcaption>
  <img src="../operators/images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
@@ -51,8 +51,8 @@ id: scheduler
   {% lang_operator RxGroovy %}
     <h2>다양한 스케줄러</h2>
     <p>
-     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html">the
-     <code>Schedulers</code> 클래스에 명시된 팩토리 메서드를 통해 스케쥴러를 생성할 수 있다. 아래의 테이블은 RxGroovy에서 지원하는 메서드를 통해 사용 가능한 스케줄러들을 보여준다;
+     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html">
+     <code>Schedulers</code></a> 클래스의 팩토리 메서드를 통해 스케쥴러를 생성한다. 아래의 테이블은 RxGroovy에서 제공하는 메서드와를 통해 사용 가능한 스케줄러들을 보여준다;
     </p>
     <table class="table">
      <thead>
@@ -61,24 +61,24 @@ id: scheduler
      <tbody>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#computation()"><code>Schedulers.computation(&#8239;)</code></a></td>
       <td>
-      이벤트-루프와 콜백 처리 같은 연산 중심적인 작업을 위해 사용된다; I/O를 위한 용도로 사용하지 말아야 한다(대신 <code>Schedulers.io(&#8239;)</code>를 사용); 기본적으로 스레드의 수는 프로세서의 수와 같다
+      이벤트-루프와 콜백 처리 같은 연산 중심적인 작업을 위해 사용된다; 그렇기 때문에 I/O를 위한 용도로는 사용하지 말아야 한다(대신 <code>Schedulers.io(&#8239;)</code>를 사용); 기본적으로 스레드의 수는 프로세서의 수와 같다
       </td>
       </tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#from(java.util.concurrent.Executor)"><code>Schedulers.from(executor)</code></a></td>
-      <td>지정된 <code>Executor</code>를 스케줄러로 사용한다</td></tr>
+      <td>지정한 <code>Executor</code>를 스케줄러로 사용한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#immediate()"><code>Schedulers.immediate(&#8239;)</code></a></td>
       <td>현재 스레드에서 즉시 실행할 작업을 스케줄링 한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#io()"><code>Schedulers.io(&#8239;)</code></a></td>
-      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리하며, 필요에 따라 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&#8239)는 <code>CachedThreadScheduler</code>로, <code>CachedThreadScheduler</code>는 스레드 캐싱을 통한 새로운 스레드 스케줄러로 생각하면 된다</td></tr>
+      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리하며, 필요에 따라 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&#8239)는 <code>CachedThreadScheduler</code>이며, <code>CachedThreadScheduler</code>는 스레드 캐싱을 사용하는 새로운 스레드 스케줄러로 생각하면 된다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#newThread()"><code>Schedulers.newThread(&#8239;)</code></a></td>
       <td>각각의 단위 작업을 위한 새로운 스레드를 생성한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td>
-      <td>대기 중인 완료된 후에 현재 스레드에서 실행 될 작업 큐를 만든다</td></tr>
+      <td>대기 중인 큐를 처리한 후에 현재 스레드에서 실행 될 작업 큐를 만든다</td></tr>
      </tbody>
     </table>
     <h2>RxGroovy Observable 연산자를 위한 기본 스케줄러</h2>
     <p>
-     RxGroovy의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 특정 기본 스케줄러는 아래와 같다:
+     RxGroovy의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 기본 스케줄러는 아래와 같다:
     </p>
     <table class="table">
      <thead>
@@ -134,7 +134,7 @@ id: scheduler
      <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeBy(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeBy(time,unit)</code></a></dt>
       <dd>특정 시간만큼 스케줄러의 시간을 앞으로 당긴다</dd>
      <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#triggerActions()"><code>triggerActions( )</code></a></dt>
-      <dd>스케줄러가 가리키는 시간보다 이전에 또는 동일 시간에 예약된, 아직 실행되지 않은 동작들을 시작시킨다.</dd>
+      <dd>스케줄러가 가리키는 시간보다 이전에 또는 동일 시간에 예약된, 아직 실행되지 않은 동작들을 시작한다.</dd>
     </dl>
     <h4>참고</h4>
     <ul>
@@ -147,8 +147,8 @@ id: scheduler
   {% lang_operator RxJava %}
     <h2>다양한 스케줄러</h2>
     <p>
-     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html">the
-     <code>Schedulers</code> 클래스</a>에 명시된 팩토리 메서드를 통해 스케줄러를 생성할 수 있다. 아래의 테이블은 RxJava가 제공하는 메서드를 통해 사용 가능한 스케줄러들을 보여준다:
+     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html">
+     <code>Schedulers</code></a> 클래스의 팩토리 메서드를 통해 스케쥴러를 생성한다. 아래의 테이블은 RxJava에서 제공하는 메서드와를 통해 사용 가능한 스케줄러들을 보여준다:
     </p>
     <table class="table">
      <thead>
@@ -157,22 +157,22 @@ id: scheduler
      <tbody>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#computation()"><code>Schedulers.computation(&#8239;)</code></a></td>
       <td>
-      이벤트-루프와 콜백 처리 같은 연산 중심적인 작업을 위해 사용된다; I/O를 위한 용도로 사용하지 말아야 한다(대신 <code>Schedulers.io(&#8239;)</code>를 사용); 기본적으로 스레드의 수는 프로세서의 수와 같다</td></tr>
+      이벤트-루프와 콜백 처리 같은 연산 중심적인 작업을 위해 사용된다; 그렇기 때문에 I/O를 위한 용도로는 사용하지 말아야 한다(대신 <code>Schedulers.io(&#8239;)</code>를 사용); 기본적으로 스레드의 수는 프로세서의 수와 같다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#from(java.util.concurrent.Executor)"><code>Schedulers.from(executor)</code></a></td>
-      <td>지정된 <code>Executor</code>를 스케줄러로 사용한다</td></tr>
+      <td>지정한 <code>Executor</code>를 스케줄러로 사용한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#immediate()"><code>Schedulers.immediate(&#8239;)</code></a></td>
       <td>현재 스레드에서 즉시 실행할 작업을 스케줄링 한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#io()"><code>Schedulers.io(&#8239;)</code></a></td>
-      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리하며, 필요에 따라 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&#8239)는 <code>CachedThreadScheduler</code>로, <code>CachedThreadScheduler</code>는 스레드 캐싱을 통한 새로운 스레드 스케줄러로 생각하면 된다</td></tr>
+      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리하며, 필요에 따라 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&#8239)이며 <code>CachedThreadScheduler</code>로, <code>CachedThreadScheduler</code>는 스레드 캐싱을 사용하는 새로운 스레드 스케줄러로 생각하면 된다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#newThread()"><code>Schedulers.newThread(&#8239;)</code></a></td>
       <td>각각의 단위 작업을 위한 새로운 스레드를 생성한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td>
-      <td>대기 중인 완료된 후에 현재 스레드에서 실행 될 작업 큐를 만든다</td></tr>
+      <td>대기 중인 큐를 처리한 후에 현재 스레드에서 실행 될 작업 큐를 만든다</td></tr>
      </tbody>
     </table>
     <h2>RxJava Observable 연산자를 위한 기본 스케줄러</h2>
     <p>
-     RxJava의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 특정 기본 스케줄러는 아래와 같다:
+     RxJava의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 기본 스케줄러는 아래와 같다:
     </p>
     <table class="table">
      <thead>
@@ -219,7 +219,7 @@ id: scheduler
     </table>
     <h2>스케줄러 사용</h2>
     <p>
-     스케줄러를 RxJava의 Observable 연산자에 전달하는 것을 제외하면, 구독 시에 여러분이 작성한 코드를 스케줄링 하기 위해서 이 스케줄러들을 그대로 사용할 수 있다. 아래의 예제 코드는 <code>newThread</code> 스케줄러 안에서 작업을 스케줄링 하기 위해 <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html"><code>Scheduler.Worker</code> 클래스의</a> <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0)"><code>schedule</code> 메서드</a>를 사용한다:
+     스케줄러를 RxJava의 Observable 연산자에 전달하는 것을 제외하면, 구독 시에 여러분이 작성한 코드를 스케줄링 하기 위해서 이 스케줄러들을 그대로 사용할 수 있다. 아래의 예제 코드는 <code>newThread</code> 스케줄러 안에서 작업을 스케줄링 하기 위해 <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html"><code>Scheduler.Worker</code> 클래스</a>의 <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0)"><code>schedule</code> 메서드</a>를 사용한다:
     <div class="code java"><pre>
 worker = Schedulers.newThread().createWorker();
 worker.schedule(new Action0() {
@@ -230,7 +230,7 @@ worker.schedule(new Action0() {
     }
 
 });
-// 얼마 후에...
+// 그 후에...
 worker.unsubscribe();</pre></div>
     <h3>스케줄러 재귀</h3>
     <p>
@@ -248,12 +248,12 @@ worker.schedule(new Action0() {
     }
 
 });
-// 얼마 후에...
+// 그 후에...
 worker.unsubscribe();</pre></div>
     <h3>구독 해지 상태 체크 또는 설정</h3>
     <p>
      <code>Worker</code> 클래스의 객체들은 <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html"><code>Subscription</code> 인터페이스의 <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html#isUnsubscribed()"><code>isUnsubscribed</code></a>와 <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html#unsubscribe()"><code>unsubscribe</code></a>
-     메서드를 구현하기 때문에, 구독이 취소 됐을 때 작업을 중지 시킬 수 있고 또는 예정된 작업 내에서 구독을 취소 시킬 수 있다:
+     메서드를 구현하기 때문에, 구독이 취소 됐을 때 작업을 중지 할 수 있을 뿐만 아니라, 예정된 작업 내에서도 구독을 취소 할 수 있다:
     <div class="code java"><pre>
 Worker worker = Schedulers.newThread().createWorker();
 Subscription mySubscription = worker.schedule(new Action0() {
@@ -268,18 +268,18 @@ Subscription mySubscription = worker.schedule(new Action0() {
 
 });</pre></div>
     <p>
-     <code>Worker</code> 역시 하나의 <code>Subscription</code>이며 그렇기 때문에(결과적으로 반드시) 작업을 중지시키고 리소스를 반환하기 위해 <code>unsubscribe</code> 메서드를 호출해야 한다:
+     <code>Worker</code> 역시 하나의 <code>Subscription</code>이기 때문에(결과적으로 반드시) 작업을 중지시키고 리소스를 반환하기 위해서 <code>unsubscribe</code> 메서드를 호출해야 한다:
     </p>
     <div class="code java"><pre>
 worker.unsubscribe();</pre></div>
-    <h3>지연된 그리고 주기적인 스케줄러</h3>
+    <h3>지연 그리고 주기적 스케줄러</h3>
     <p>
-     일정 시간이 경과할 때까지 주어진 스케줄러 상에서 여러분이 지정한 동작을 지연시킬 수 있는 <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0,%20long,%20java.util.concurrent.TimeUnit)">다른 버전의 <code>schedule</code></a> 메서드를 사용할 수도 있다. 아래의 예제 코드는 스케줄러의 시간이 500ms 경과한 후에 <code>someScheduler</code> 상에서 <code>someAction</code>을 실행시키는 스케줄링 작업을 정의한다:
+     일정 시간이 경과할 때까지 주어진 스케줄러 상에서 여러분이 지정한 동작을 지연시키도록 <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0,%20long,%20java.util.concurrent.TimeUnit)">다른 버전의 <code>schedule</code></a> 메서드를 사용할 수도 있다. 아래의 예제 코드는 스케줄러의 시간이 500ms 경과한 후에 <code>someScheduler</code>에서 <code>someAction</code>을 실행시키는 스케줄링 작업을 정의한다:
     </p>
     <div class="code java"><pre>
 someScheduler.schedule(someAction, 500, TimeUnit.MILLISECONDS);</pre></div>
     <p>
-     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedulePeriodically(rx.functions.Action0,%20long,%20long,%20java.util.concurrent.TimeUnit)">또 다른 <code>Scheduler</code> 메서드</a>는 특정 시간마다 지정된 동작이 실행될 수 있는 스케줄을 정의한다. 아래의 예제는 500ms가 경과한 후, 매 250ms 마다 <code>someScheduler</code> 상에서 <code>someAction</code>를 실행한다:
+     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedulePeriodically(rx.functions.Action0,%20long,%20long,%20java.util.concurrent.TimeUnit)">또 다른 <code>Scheduler</code> 메서드</a>는 특정 시간마다 지정된 동작을 실행하는 스케줄을 정의한다. 아래의 예제는 500ms가 경과한 후, 매 250ms 마다 <code>someScheduler</code>에서 <code>someAction</code>를 실행한다:
     </p>
     <div class="code java"><pre>
 someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);</pre></div>
@@ -294,7 +294,7 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
      <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeBy(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeBy(time,unit)</code></a></dt>
       <dd>특정 시간만큼 스케줄러의 시간을 앞으로 당긴다</dd>
      <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#triggerActions()"><code>triggerActions( )</code></a></dt>
-      <dd>스케줄러가 가리키는 시간보다 이전에 또는 동일 시간에 예약된, 아직 실행되지 않은 동작들을 시작시킨다.</dd>
+      <dd>스케줄러가 가리키는 시간보다 이전에 또는 동일 시간에 예약된, 아직 실행되지 않은 동작들을 시작다.</dd>
     </dl>
     <h4>참고</h4>
     <ul>
@@ -306,7 +306,7 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
 
   {% lang_operator RxJS %}
     <p>
-     RxJS에서는 <code>Rx.Scheduler</code> 또는 독립적으로 구현된 객체를 통해 스케줄러를 생성할 수 있다. 아래의 테이블은 RxJS에서 사용 가능한 스케줄러들을 보여준다:
+     RxJS에서는 <code>Rx.Scheduler</code> 또는 독립적으로 구현한 객체를 통해 스케줄러를 생성한다. 아래의 테이블은 RxJS에서 사용 가능한 스케줄러들을 보여준다:
     </p>
     <table class="table">
      <thead>

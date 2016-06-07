@@ -78,11 +78,11 @@ id: scheduler
     </table>
     <h2>RxGroovy Observable 연산자를 위한 기본 스케줄러</h2>
     <p>
-     RvGroovy에 있는 일부 Observable 연산자들은 연산자가 자신의 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 설정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 특정 기본 스케줄러는 아래와 같다:
+     RxGroovy의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 특정 기본 스케줄러는 아래와 같다:
     </p>
     <table class="table">
      <thead>
-      <tr><th>operator</th><th>Scheduler</th></tr>
+      <tr><th>연산자</th><th>스케줄러</th></tr>
      </thead>
      <tbody>
       <tr><td><a href="operators/buffer.html"><code>buffer(timespan)</code></a></td><td><code>computation</code></td></tr>
@@ -155,23 +155,28 @@ id: scheduler
       <tr><th>스케줄러</th><th>용도</th></tr>
      </thead>
      <tbody>
-      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#computation()"><code>Schedulers.computation(&#8239;)</code></a></td><td>meant for computational work such as event-loops and callback processing; do not use this scheduler for I/O (use <code>Schedulers.io(&#8239;)</code> instead); the number of threads, by default, is equal to the number of processors</td></tr>
-      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#from(java.util.concurrent.Executor)"><code>Schedulers.from(executor)</code></a></td><td>uses the specified <code>Executor</code> as a Scheduler</td></tr>
-      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#immediate()"><code>Schedulers.immediate(&#8239;)</code></a></td><td>schedules work to begin immediately in the current thread</td></tr>
-      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#io()"><code>Schedulers.io(&#8239;)</code></a></td><td>meant for I/O-bound work such as asynchronous performance of blocking I/O, this scheduler is backed by a thread-pool that will grow as needed; for ordinary computational work, switch to <code>Schedulers.computation(&#8239;)</code>; <code>Schedulers.io(&#8239)</code> by default is a <code>CachedThreadScheduler</code>, which is something like a new thread scheduler with thread caching</td></tr>
-      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#newThread()"><code>Schedulers.newThread(&#8239;)</code></a></td><td>creates a new thread for each unit of work</td></tr>
-      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td><td>queues work to begin on the current thread after any already-queued work</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#computation()"><code>Schedulers.computation(&#8239;)</code></a></td>
+      <td>
+      이벤트-루프와 콜백 처리 같은 연산 중심적인 작업을 위해 사용된다; I/O를 위한 용도로 사용하지 말아야 한다(대신 <code>Schedulers.io(&#8239;)</code>를 사용); 기본적으로 스레드의 수는 프로세서의 수와 같다</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#from(java.util.concurrent.Executor)"><code>Schedulers.from(executor)</code></a></td>
+      <td>지정된 <code>Executor</code>를 스케줄러로 사용한다</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#immediate()"><code>Schedulers.immediate(&#8239;)</code></a></td>
+      <td>현재 스레드에서 즉시 실행할 작업을 스케줄링 한다</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#io()"><code>Schedulers.io(&#8239;)</code></a></td>
+      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리하며, 필요에 따라 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&#8239)는 <code>CachedThreadScheduler</code>로, <code>CachedThreadScheduler</code>는 스레드 캐싱을 통한 새로운 스레드 스케줄러로 생각하면 된다</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#newThread()"><code>Schedulers.newThread(&#8239;)</code></a></td>
+      <td>각각의 단위 작업을 위한 새로운 스레드를 생성한다</td></tr>
+      <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td>
+      <td>대기 중인 완료된 후에 현재 스레드에서 실행 될 작업 큐를 만든다</td></tr>
      </tbody>
     </table>
-    <h2>Default Schedulers for RxJava Observable Operators</h2>
+    <h2>RxJava Observable 연산자를 위한 기본 스케줄러</h2>
     <p>
-     Some Observable operators in RxJava have alternate forms that allow you to set which Scheduler the operator
-     will use for (at least some part of) its operation. Others do not operate on any particular Scheduler, or
-     operate on a particular default Scheduler. Those that have a particular default Scheduler include:
+     RxJava의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 특정 기본 스케줄러는 아래와 같다:
     </p>
     <table class="table">
      <thead>
-      <tr><th>operator</th><th>Scheduler</th></tr>
+      <tr><th>연산자</th><th>스케줄러</th></tr>
      </thead>
      <tbody>
       <tr><td><a href="operators/buffer.html"><code>buffer(timespan)</code></a></td><td><code>computation</code></td></tr>
@@ -212,12 +217,9 @@ id: scheduler
       <tr><td><a href="operators/window.html"><code>window(timespan,&#8239;timeshift)</code></a></td><td><code>computation</code></td></tr>
      </tbody>
     </table>
-    <h2>Using Schedulers</h2>
+    <h2>스케줄러 사용</h2>
     <p>
-     Aside from passing these Schedulers in to RxJava Observable operators, you can also use them to
-     schedule your own work on Subscriptions. The following example uses
-     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0)">the <code>schedule</code> method</a> of
-     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html">the <code>Scheduler.Worker</code> class</a> to schedule work on the <code>newThread</code> Scheduler:
+     스케줄러를 RxJava의 Observable 연산자에 전달하는 것을 제외하면, 구독 시에 여러분이 작성한 코드를 스케줄링 하기 위해서 이 스케줄러들을 그대로 사용할 수 있다. 아래의 예제 코드는 <code>newThread</code> 스케줄러 안에서 작업을 스케줄링 하기 위해 <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html"><code>Scheduler.Worker</code> 클래스의</a> <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0)"><code>schedule</code> 메서드</a>를 사용한다:
     <div class="code java"><pre>
 worker = Schedulers.newThread().createWorker();
 worker.schedule(new Action0() {
@@ -228,12 +230,11 @@ worker.schedule(new Action0() {
     }
 
 });
-// some time later...
+// 얼마 후에...
 worker.unsubscribe();</pre></div>
-    <h3>Recursive Schedulers</h3>
+    <h3>스케줄러 재귀</h3>
     <p>
-     To schedule recursive calls, you can use <code>schedule</code> and then <code>schedule(this)</code> on the
-     Worker object:
+     재귀 호출을 스케줄링 하는 방법은 <code>schedule</code>을 사용한 후, 작업 객체 안에서 <code>schedule(this)</code>를 호출하면 된다:
     </p>
     <div class="code java"><pre>
 worker = Schedulers.newThread().createWorker();
@@ -247,16 +248,12 @@ worker.schedule(new Action0() {
     }
 
 });
-// some time later...
+// 얼마 후에...
 worker.unsubscribe();</pre></div>
-    <h3>Checking or Setting Unsubscribed Status</h3>
+    <h3>구독 해지 상태 체크 또는 설정</h3>
     <p>
-     Objects of the <code>Worker</code> class implement
-     <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html">the <code>Subscription</code>
-     interface</a>, with its <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html#isUnsubscribed()"><code>isUnsubscribed</code></a>
-     and <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html#unsubscribe()"><code>unsubscribe</code></a>
-     methods, so you can stop work when a subscription is cancelled, or you can cancel the
-     subscription from within the scheduled task:
+     <code>Worker</code> 클래스의 객체들은 <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html"><code>Subscription</code> 인터페이스의 <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html#isUnsubscribed()"><code>isUnsubscribed</code></a>와 <a href="http://reactivex.io/RxJava/javadoc/rx/Subscription.html#unsubscribe()"><code>unsubscribe</code></a>
+     메서드를 구현하기 때문에, 구독이 취소 됐을 때 작업을 중지 시킬 수 있고 또는 예정된 작업 내에서 구독을 취소 시킬 수 있다:
     <div class="code java"><pre>
 Worker worker = Schedulers.newThread().createWorker();
 Subscription mySubscription = worker.schedule(new Action0() {
@@ -271,45 +268,35 @@ Subscription mySubscription = worker.schedule(new Action0() {
 
 });</pre></div>
     <p>
-     The <code>Worker</code> is also a <code>Subscription</code> and so you can (and should, eventually) call
-     its <code>unsubscribe</code> method to signal that it can halt work and release resources:
+     <code>Worker</code> 역시 하나의 <code>Subscription</code>이며 그렇기 때문에(결과적으로 반드시) 작업을 중지시키고 리소스를 반환하기 위해 <code>unsubscribe</code> 메서드를 호출해야 한다:
     </p>
     <div class="code java"><pre>
 worker.unsubscribe();</pre></div>
-    <h3>Delayed and Periodic Schedulers</h3>
+    <h3>지연된 그리고 주기적인 스케줄러</h3>
     <p>
-     You can also use <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0,%20long,%20java.util.concurrent.TimeUnit)">a version of <code>schedule</code></a>
-     that delays your action on the given Scheduler until a certain timespan has passed. The
-     following example schedules <code>someAction</code> to be performed on
-     <code>someScheduler</code> after 500ms have passed according to that Scheduler&#8217;s clock:
+     일정 시간이 경과할 때까지 주어진 스케줄러 상에서 여러분이 지정한 동작을 지연시킬 수 있는 <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedule(rx.functions.Action0,%20long,%20java.util.concurrent.TimeUnit)">다른 버전의 <code>schedule</code></a> 메서드를 사용할 수도 있다. 아래의 예제 코드는 스케줄러의 시간이 500ms 경과한 후에 <code>someScheduler</code> 상에서 <code>someAction</code>을 실행시키는 스케줄링 작업을 정의한다:
     </p>
     <div class="code java"><pre>
 someScheduler.schedule(someAction, 500, TimeUnit.MILLISECONDS);</pre></div>
     <p>
-     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedulePeriodically(rx.functions.Action0,%20long,%20long,%20java.util.concurrent.TimeUnit)">Another <code>Scheduler</code> method</a>
-     allows you to schedule an action to take place at regular intervals. The following example
-     schedules <code>someAction</code> to be performed on <code>someScheduler</code> after 500ms
-     have passed, and then every 250ms thereafter:
+     <a href="http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html#schedulePeriodically(rx.functions.Action0,%20long,%20long,%20java.util.concurrent.TimeUnit)">또 다른 <code>Scheduler</code> 메서드</a>는 특정 시간마다 지정된 동작이 실행될 수 있는 스케줄을 정의한다. 아래의 예제는 500ms가 경과한 후, 매 250ms 마다 <code>someScheduler</code> 상에서 <code>someAction</code>를 실행한다:
     </p>
     <div class="code java"><pre>
 someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);</pre></div>
-    <h2>Test Scheduler</h2>
+    <h2>테스트 스케줄러</h2>
     <p>
-     <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html">The
-     <code>TestScheduler</code></a> allows you to exercise fine-tuned manual control over how the
-     Scheduler’s clock behaves. This can be useful for testing interactions that depend on precise
-     arrangements of actions in time. This Scheduler has three additional methods:
+     이 <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html">
+     <code>TestScheduler</code></a>는 스케줄러의 시간 동작을 정교하게 제어할 수 있는 방법들을 제공한다. 원하는 시점에 기대하는 동작에 따라 상호작용할 수 있는 테스트에 유용하게 사용될 수 있다. 이 스케줄러는 세 개의 메서드를 제공한다:
     </p>
     <dl>
      <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeTo(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeTo(time,unit)</code></a></dt>
-      <dd>advances the Scheduler’s clock to a particular point in time</dd>
+      <dd>특정 시간대로 스케줄러의 시간을 앞당긴다</dd>
      <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeBy(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeBy(time,unit)</code></a></dt>
-      <dd>advances the Scheduler’s clock forward by a particular amount of time</dd>
+      <dd>특정 시간만큼 스케줄러의 시간을 앞으로 당긴다</dd>
      <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#triggerActions()"><code>triggerActions( )</code></a></dt>
-      <dd>start any unstarted actions that have been scheduled for a time equal to or earlier than the present
-          time according to the Scheduler’s clock</dd>
+      <dd>스케줄러가 가리키는 시간보다 이전에 또는 동일 시간에 예약된, 아직 실행되지 않은 동작들을 시작시킨다.</dd>
     </dl>
-    <h4>See Also</h4>
+    <h4>참고</h4>
     <ul>
      <li><a href="http://www.grahamlea.com/2014/07/rxjava-threading-examples/"><cite>RxJava Threading Examples</cite></a> by Graham Lea</li>
      <li><a href="https://speakerdeck.com/benjchristensen/applying-rxjava-to-existing-applications-at-philly-ete-2015">Testing Reactive Applications</a> by Ben Christensen</li> 
@@ -319,22 +306,26 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
 
   {% lang_operator RxJS %}
     <p>
-     In RxJS you obtain Schedulers from the <code>Rx.Scheduler</code> object or as independently-implemented
-     objects. The following table shows the varieties of Scheduler that are available to you in RxJS:.
+     RxJS에서는 <code>Rx.Scheduler</code> 또는 독립적으로 구현된 객체를 통해 스케줄러를 생성할 수 있다. 아래의 테이블은 RxJS에서 사용 가능한 스케줄러들을 보여준다:
     </p>
     <table class="table">
      <thead>
-      <tr><th>Scheduler</th><th>purpose</th></tr>
+      <tr><th>스케줄러</th><th>용도</th></tr>
      </thead>
      <tbody>
-      <tr><td><code>Rx.Scheduler.currentThread</code></td><td>schedules work as soon as possible on the current thread</td></tr>
-      <tr><td><code>Rx.HistoricalScheduler</code></td><td>schedules work as though it were occurring at an arbitrary historical time</td></tr>
-      <tr><td><code>Rx.Scheduler.immediate</code></td><td>schedules work immediately on the current thread</td></tr>
-      <tr><td><code>Rx.TestScheduler</code></td><td>for unit testing; this allows you to manually manipulate the movement of time</td></tr>
-      <tr><td><code>Rx.Scheduler.timeout</code></td><td>schedules work by means of a timed callback</td></tr>
+      <tr><td><code>Rx.Scheduler.currentThread</code></td>
+      <td>현재 스레드에서 가능한 빠르게 작업을 스케줄링 한다</td></tr>
+      <tr><td><code>Rx.HistoricalScheduler</code></td>
+      <td>과거의 특정 시점을 지정해서 마치 지정된 과거에서부터 실행되고 있었던 것처럼 작업을 스케줄링 한다</td></tr>
+      <tr><td><code>Rx.Scheduler.immediate</code></td>
+      <td>현재 스레드에서 작업을 즉시 스케줄링 한다</td></tr>
+      <tr><td><code>Rx.TestScheduler</code></td>
+      <td>단위 테스트를 위해 사용되며, 시간의 흐름을 조절할 수 있다</td></tr>
+      <tr><td><code>Rx.Scheduler.timeout</code></td>
+      <td>지정된 콜백을 사용해서 작업을 스케줄링 한다</td></tr>
      </tbody>
     </table>
-    <h4>See Also</h4>
+    <h4>참고</h4>
     <ul>
      <li><a href="http://stackoverflow.com/questions/28145890/what-is-a-scheduler-in-rxjs"><cite>StackOverflow</cite>: What is a &ldquo;Scheduler&rdquo; in RxJS</a></li>
      <li><a href="http://xgrommx.github.io/rx-book/content/schedulers/index.html">Schedulers</a> by Dennis Stoyanov</a></li>

@@ -68,7 +68,7 @@
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
-<li><a href="https://github.com/kzaher/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
 <li><a href="/languages.html">Others</a></li>
 
               </ul>
@@ -806,7 +806,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>flatMap selectMany concatMap concatMapTo</code>
+              RxPHP <code>flatMap selectMany flatMapLatest concatMap concatMapTo</code>
             </a>
           </h4>
         </div>
@@ -849,13 +849,13 @@ Next value: 2
 Next value: 1
 Next value: 2
 Next value: 1
-Next value: 2
 Next value: 3
+Next value: 2
 Next value: 1
+Next value: 3
 Next value: 2
-Next value: 3
-Next value: 3
 Next value: 4
+Next value: 3
 Next value: 4
 Next value: 5
 Complete!
@@ -871,6 +871,42 @@ Complete!
     Alias for flatMap
     </p>
 
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>flatMapLatest</code>.
+    </p>
+    <p>
+    Bypasses a specified number of elements in an observable sequence and then returns the remaining elements.  Transform the items emitted by an Observable into Observables, and mirror those items emitted by the most-recently transformed Observable.  The flatMapLatest operator is similar to the flatMap and concatMap methods described above, however, rather than emitting all of the items emitted by all of the Observables that the operator generates by transforming items from the source Observable, flatMapLatest instead emits items from each such transformed Observable only until the next such Observable is emitted, then it ignores the previous one and begins emitting items emitted by the new one.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/flatMap/flatMapLatest.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = \Rx\Observable::range(1, 3)
+    ->flatMapLatest(function ($x) {
+        return \Rx\Observable::fromArray([$x . 'a', $x . 'b']);
+    });
+
+$source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1a
+Next value: 2a
+Next value: 3a
+Next value: 3b
+Complete!
+    </pre>
+</div>
     </figcaption>
 </figure><figure class="variant">
     <figcaption>
@@ -1103,7 +1139,7 @@ Complete!
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
-<li><a href="https://github.com/kzaher/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
 <li><a href="/languages.html">Others</a></li>
 
             </ul>

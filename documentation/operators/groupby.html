@@ -68,7 +68,7 @@
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
-<li><a href="https://github.com/kzaher/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
 <li><a href="/languages.html">Others</a></li>
 
               </ul>
@@ -545,7 +545,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>groupBy groupByUntil</code>
+              RxPHP <code>groupBy groupByUntil partition</code>
             </a>
           </h4>
         </div>
@@ -677,6 +677,46 @@ Completed
     </pre>
 </div>
     </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>partition</code>.
+    </p>
+    <p>
+    Returns two observables which partition the observations of the source by the given function. The first will trigger observations for those values for which the predicate returns true. The second will trigger observations for those values where the predicate returns false. The predicate is executed once for each subscribed observer. Both also propagate all error observations arising from the source and each completes when the source completes.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/partition/partition.php
+
+list($evens, $odds) = \Rx\Observable::range(0, 10)
+    ->partition(function ($x) {
+        return $x % 2 === 0;
+    });
+
+$evens->subscribe($createStdoutObserver('Evens '));
+$odds->subscribe($createStdoutObserver('Odds '));
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Evens Next value: 0
+Evens Next value: 2
+Evens Next value: 4
+Evens Next value: 6
+Evens Next value: 8
+Evens Complete!
+Odds Next value: 1
+Odds Next value: 3
+Odds Next value: 5
+Odds Next value: 7
+Odds Next value: 9
+Odds Complete!
+    </pre>
+</div>
+    </figcaption>
 </figure>
   
           </div>
@@ -788,7 +828,7 @@ Completed
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
-<li><a href="https://github.com/kzaher/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
 <li><a href="/languages.html">Others</a></li>
 
             </ul>

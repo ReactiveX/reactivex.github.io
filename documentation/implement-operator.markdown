@@ -8,7 +8,7 @@ id: implement-operator
 
 You can implement your own Observable operators. This page shows you how.
 
-If your operator is designed to *originate* an Observable, rather than to transform or react to a source Observable, use the [`create( )`](Creating-Observables#wiki-create) method rather than trying to implement `Observable` manually.  Otherwise, follow the instructions below.
+If your operator is designed to *originate* an Observable, rather than to transform or react to a source Observable, use the [`create( )`](Operators/create) method rather than trying to implement `Observable` manually.  Otherwise, follow the instructions below.
 
 # Chaining Your Custom Operators with Standard RxJava Operators
 

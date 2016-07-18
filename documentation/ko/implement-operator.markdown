@@ -51,7 +51,7 @@ public class myOperator<T> implements Operator<T> {
 
       @Override
       public void onNext(T item) {
-        /* 이 예제는 전달된 항목을 간단히 변환한 후 전달하는 코드를 구현하고 있다 */
+        /* 이 예제는 전달된 항목을 간단히 변환한 후 전달하는 코드를 구현한다 */
         if(!s.isUnsubscribed()) {
           transformedItem = myOperatorTransformOperation(item);
           s.onNext(transformedItem);
@@ -67,15 +67,15 @@ public class myOperator<T> implements Operator<T> {
 * 구현할 연산자는 구독자에게 항목을 배출하기 전에(혹은 알림을 보내기 전에) 반드시 [구독자의 `isUnsubscribed( )` 상태](Observable#unsubscribing)를 체크해야 한다. 구독자가 없는데도 항목을 배출하기 위해 시간을 낭비할 필요가 없다.
 
 * 구현할 연산자는 Observable 계약이 가진 핵심 원칙을 따라야 한다:
-  * 연산자는 구독자의 [`onNext( )`](Observable#onnext-oncompleted-and-onerror) 메서드를 수도 없이 호출할 수도 있다. 그렇지만, 절대 중복된 호출이 있어서는 안된다.
-  * 연산자는 구독자의 [`onCompleted( )`](Observable#onnext-oncompleted-and-onerror)나 [`onError( )`](Observable#onnext-oncompleted-and-onerror) 중 하나를 호출 할 수 있다. 하지만 둘 모두를 호출해서는 안되며 반드시 둘 중 하나를 한번만 호출해야 한다. 그리고 그 후에는 구독자의 [`onNext( )`](Observable#onnext-oncompleted-and-onerror)를 호출하지 않을 수도 있다.
+  * 연산자는 구독자의 [`onNext( )`](Observable#onnext-oncompleted-and-onerror) 메서드를 수도 없이 많이 호출할 수 있다. 하지만, 절대 중복된 호출이 발생하면 안된다.
+  * 연산자는 구독자의 [`onCompleted( )`](Observable#onnext-oncompleted-and-onerror)나 [`onError( )`](Observable#onnext-oncompleted-and-onerror) 중 하나를 호출한다. 하지만 둘 모두를 호출해서는 안되며 반드시 둘 중 하나만 한번 호출해야 한다. 그 후에는 구독자의 [`onNext( )`](Observable#onnext-oncompleted-and-onerror)를 호출하지 않을 것이다.
   * 만약 구현하는 연산자가 위의 두 원칙을 보장할 수 없다면, [`serialize( )`](Observable-Utility-Operators#serialize) 연산자 호출를 추가해서 올바르게 행동하도록 강제할 수 있다.
 * 구현하는 연산자 내에서 블럭킹(blocking) 방식을 사용하지 않는다.
 * 대부분의 상황에서는 새로운 연산자를 만들 때 완전히 새로운 것을 만들기 보다는 기존의 확장 가능한 연산자를 결합시켜 구현하는 것이 가장 좋은 방법이다. RxJava 역시도 표준 연산자들을 결합하여 새로운 연산자들을 만들었는데, 아래의 연산자들을 그 예로 들 수 있다:
   * [`first( )`](Filtering-Observables#wiki-first-and-takefirst) 연산자는 [`take(1)`](Filtering-Observables#wiki-take)`.`[`single( )`](Observable-Utility-Operators#wiki-single-and-singleordefault)를 활용해 만들어 졌다.
   * [`ignoreElements( )`](Filtering-Observables#wiki-ignoreelements) 연산자는 [`filter(alwaysFalse( ))`](Filtering-Observables#wiki-filter)를 사용해 만들어 졌다
   * [`reduce(a)`](Mathematical-and-Aggregate-Operators#wiki-reduce) 연산자는 is [`scan(a)`](Transforming-Observables#wiki-scan)`.`[`last( )`](Filtering-Observables#wiki-last)를 사용해 만들어 졌다
-* 만약 (예를 들어, predicates와 같이) 함수나 람다 식을 파라미터로 사용한다면, 이것이 오류를 발생시킬 수 있기 때문에 오류가 발생할 경우를 고려해서 코드를 구현해야 하고 오류가 발생하면 오류를 잡아서 `onError( )` 메서드를 호출해 구독자에게 오류가 발생했음을 알려야 한다.
+* 만약 (예를 들어, predicates와 같이) 함수나 람다 식을 파라미터로 사용한다면, 이것이 오류를 발생시킬 수 있기 때문에 오류가 발생할 경우를 대비해서 코드를 구현해야 하고 오류가 발생하면 try/catch 절로 오류를 잡아서 `onError( )` 메서드를 호출해 구독자에게 오류가 발생했음을 알려야 한다.
 * 일반적으로, 항목들을 배출하는 코드를 구현하기 위해 노력을 기울이기 보다는 그 전에 앞서 오류 조건을 먼저 파악하고 구독자에게 이를 알리는 것이 좋다.
 * ReactiveX의 일부 구현체에서는 구현한 연산자의 &ldquo;역압&rdquo; 전략에 대해 꼼꼼히 체크할 필요가 있다. (그 예로 D&aacute;vid Karnok의 <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">Pitfalls of Operator Implementations (part 2)</a> 글을 참고하기 바란다.)
 

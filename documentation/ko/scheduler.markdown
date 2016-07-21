@@ -14,13 +14,13 @@ id: scheduler
 <figure>
  <figcaption>
  <p>
-  기본적으로, Observable과 연산자 체인은 이처럼 스케줄러를 통해 동작할 것이며 <code>Subscribe</code> 메서드가 호출되는 스레드를 사용해서 옵저버에게 알림을 보낸다. 
-  <span class="operator">SubscribeOn</span> 연산자는 다른 스케줄러를 지정해 Observable이 처리해야 할 연산자들을 실행 시킨다. 그리고, 
-  <span class="operator">ObserveOn</span> 연산자는 Observable이 옵저버에게 알림을 보낼때 사용 할 다른 스케줄러를 명시한다.
+  기본적으로, Observable과 연산자 체인은 이처럼 스케줄러를 통해 동작하고 <code>Subscribe</code> 메서드가 호출되는 스레드를 사용해서 옵저버에게 알림을 보낸다. 
+  <span class="operator">SubscribeOn</span> 연산자는 다른 스케줄러를 지정해서 Observable이 처리해야 할 연산자들을 실행 시킨다. 그리고, 
+  <span class="operator">ObserveOn</span> 연산자는 Observable이 옵저버에게 알림을 보낼때 사용 할 스케줄러를 명시한다.
  </p>
  <p>
-  아래 그림에서 보여주듯이, <span class="operator">SubscribeOn</span> 연산자는 Observable이 연산을 위해 사용할 스레드를 지정하며, 연산자 체인 중 아무 곳에서 호출되도 문제되지 않는다.
-  하지만, <span class="operator">ObserveOn</span> 연산자는 연산자 체인 중 Observable이 사용할 스레드가 호출 체인 중 어느 시점에서 할당되는지에 따라 <em>그 후</em>에 호출되는 연산자에 영향을 미친다. 그렇기 때문에, 어쩌면 여러분은 특정 연산자를 별도의 스레드에서 실행 시키기 위해 연산자 체인 중 한 군데 이상에서<span class="operator">ObserveOn</span>를 호출할 수도 있다.
+  아래 그림이 보여주듯, <span class="operator">SubscribeOn</span> 연산자는 Observable이 연산을 위해 사용할 스레드를 지정하며, 연산자 체인 중 아무 곳에서 호출해도 문제되지 않는다.
+  하지만, <span class="operator">ObserveOn</span> 연산자는 연산자 체인 중 Observable이 사용할 스레드가 호출 체인 중 어느 시점에서 할당되는지에 따라 <em>그 후</em>에 호출되는 연산자는 영향을 받는다. 그렇기 때문에, 어쩌면 여러분은 특정 연산자를 별도의 스레드에서 실행 시키기 위해 연산자 체인 중 한 군데 이상에서<span class="operator">ObserveOn</span>을 호출하게 될 것이다.
  </p>
  </figcaption>
  <img src="../operators/images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
@@ -61,7 +61,7 @@ id: scheduler
      <tbody>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#computation()"><code>Schedulers.computation(&#8239;)</code></a></td>
       <td>
-      이벤트-루프와 콜백 처리 같은 연산 중심적인 작업을 위해 사용된다; 그렇기 때문에 I/O를 위한 용도로는 사용하지 말아야 한다(대신 <code>Schedulers.io(&#8239;)</code>를 사용); 기본적으로 스레드의 수는 프로세서의 수와 같다
+      이벤트-루프와 콜백 처리 같은 연산 중심적인 작업을 위해 사용된다; 그렇기 때문에 I/O를 위한 용도로는 사용하지 않아야 한다(대신 <code>Schedulers.io(&#8239;)</code>를 사용); 기본적으로 스레드의 수는 프로세서의 수와 같다
       </td>
       </tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#from(java.util.concurrent.Executor)"><code>Schedulers.from(executor)</code></a></td>
@@ -126,7 +126,7 @@ id: scheduler
     <h2>테스트 스케줄러</h2>
     <p>
      이 <a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html">
-     <code>TestScheduler</code></a>는 스케줄러의 시간에 따른 동작을 정교하게 제어할 수 있는 방법들을 제공하는데, 원하는 시점에 정확하게 동작해야 하는 상황을 테스트 할 때 유용하게 사용된다. 이 스케줄러는 세 개의 메서드를 제공한다:
+     <code>TestScheduler</code></a>는 스케줄러의 시간에 따른 동작을 정교하게 제어할 수 있는 방법들을 제공하며, 원하는 시점에서 정확하게 동작해야 하는 상황을 테스트 할 때 유용하게 사용된다. 이 스케줄러는 세 개의 메서드를 제공한다:
     </p>
     <dl>
      <dt><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/TestScheduler.html#advanceTimeTo(long,%20java.util.concurrent.TimeUnit)"><code>advanceTimeTo(time,unit)</code></a></dt>
@@ -172,7 +172,7 @@ id: scheduler
     </table>
     <h2>RxJava Observable 연산자를 위한 기본 스케줄러</h2>
     <p>
-     RxJava의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 기본 스케줄러는 아래와 같다:
+     RxJava의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정하는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 기본 스케줄러는 아래와 같다:
     </p>
     <table class="table">
      <thead>

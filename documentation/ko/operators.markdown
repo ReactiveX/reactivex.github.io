@@ -6,27 +6,27 @@ id: operators
 
 <h1>연산자 소개</h1>
 
-ReactiveX의 여러 언어 별 구현체들은 다양한 연산자들을 제공하는데, 이들 중에는 공통으로 제공되는 것도 있지만 특정 구현체에서만 제공하는 연산자들도 존재한다.
-또한, 언어별 구현체들은 이미 언어에서 제공하는 메서드의 이름과 유사한 형태로 연산자의 이름을 지정하고 있다.
+ReactiveX를 지원하는 언어 별 구현체들은 다양한 연산자들을 제공하는데, 이 중에는 공통적으로 제공되는 연산자도 있지만 반대로 특정 구현체에서만 제공하는 연산자들도 존재한다.
+또한, 언어별 구현체들은 이미 언어에서 제공하는 메서드의 이름과 유사한 형태로 연산자의 네이밍 컨벤션을 유지하고 있다.
 
 <h2>연산자 체인</h2>
 
-대부분의 연산자들은 Observable 상에서 동작하고 Observable을 리턴한다. 이런 접근 방법은 연산자들을 연이어 사용할 수 있는 연산자 체인을 제공한다. 
-연산자 체인에서 각각의 연산자는 이전 연산자가 리턴한 Observable 위에서 동작하며 동작에 따라 Observable을 변경시킨다.
+거의 모든 연산자들은 Observable 상에서 동작하고 Observable을 리턴한다. 이 접근 방법은 연산자들을 연달아 호출 할 수 있는 연산자 체인을 제공한다. 
+연산자 체인에서 각각의 연산자는 이전 연산자가 리턴한 Observable을 기반으로 동작하며 동작에 따라 Observable을 변경한다.
 
-또한, 특정 클래스가 제공하는 다양한 메서드를 호출하여 클래스의 항목들을 변경시키는 빌더 패턴과 같은 패턴도 존재한다. 이런 패턴 역시 연산자 체인과 유사한 메서드 체인을 제공한다.
-하지만, 빌더 패턴의 경우 메서드 체인으로 호출되는 메서드들과는 달리 Observable의 연산자 <em>호출 순서</em>가 실행 결과에 영향을 미치지 않는다.
+특정 클래스가 제공하는 여러 메서드들을 호출하여 클래스의 항목들을 변경하는 빌더 패턴과 같은 것도 존재한다. 빌더 패턴 역시 연산자 체인과 유사하게 메서드 체인을 제공한다.
+하지만, 빌더 패턴의 메서드 체인과는 달리 Observable의 연산자 체인은 <em>호출 순서</em>에 따라 실행 결과가 달라지는 차이점이 있다.
 
-Observable 연산자 체인은 원본 Observable과 독립적으로 실행될 수 없고 <em>순서대로</em> 실행되어야 하는데, 그 이유는 체인에서 먼저 실행된 연산자가 리턴한 Observable을 상에서 바로 다음 연산자가 동작하기 때문이다.
+따라서, Observable의 연산자 체인은 원본 Observable과 독립적으로 실행될 수 없고 <em>순서대로</em> 실행되어야 한다. 왜냐하면, 이미 이해하고 있듯이 연산자 체인에서 먼저 실행된 연산자가 리턴한 Observable을 기반으로 다음 연산자가 동작하기 때문이다.
 
 <h2>ReactiveX의 연산자</h2>
 
-이 페이지에서는 첫 번째로 ReactiveX의 &ldquo;핵심&rdquo; 연산자들을 나열하고, 각 연산자별 링크를 통해 연산자들이 어떻게 동작하고 ReactiveX의 언어별 구현체에서 이 연산자들을 어떻게 구현했는지를 자세히 설명한다.
+이 페이지에서는 먼저 ReactiveX의 &ldquo;핵심&rdquo; 연산자들을 나열하고, 각 연산자별로 제공된 링크를 통해 연산자들이 어떻게 동작하고 ReactiveX의 여러 언어별 구현체에서 연산자자가 어떻게 구현했는지 자세히 설명한다.
 
-그 다음은 &ldquo;결정 트리&rdquo;로써, 여러분이 필요로 하는 가장 적합한 연산자를 선택할 수 있도록 가이드하는 아주 유용한 힌트를 제공한다.
+그 후에는 &ldquo;결정 트리&rdquo;를 통해 여러분에게 필요한 적절한 연산자를 선택할 수 있는 유용한 가이드를 제공한다.
 
-마지막으로, ReactiveX의 다양한 언어 별 구현체에서 사용할 수 있는 모든 연산자들을 알파벳 순으로 소개한다. 또한 이 연산자들 역시 링크를 통해서 언어 별 구현체가 제공하는 연산자와 가장 유사한 핵심 연산자에 대한 설명을 제공한다.
-(예를 들어, Rx.NET의 &ldquo;SelectMany&rdquo; 연산자 링크는 Rx.NET의 SelectMany 연산자가 구현하는 ReactiveX의 <span class="operator">FlatMap</span> 연산자에 대한 자세한 설명한다)
+마지막으로, ReactiveX의 다양한 언어 별 구현체에서 제공하는 모든 연산자들을 알파벳 순으로 소개한다. 뿐만 아니라, 각각의 연산자 역시 링크를 통해 언어 별 구현체가 제공하는 연산자와 가장 유사한 핵심 연산자에 관한 자세한 설명을 제공한다.
+(예를 들어, Rx.NET의 &ldquo;SelectMany&rdquo; 연산자가 제공하는 링크는 Rx.NET의 SelectMany 연산자가 구현하는 ReactiveX의 <span class="operator">FlatMap</span> 연산자에 대한 구체적으로 설명한다)
 
 만약 직접 연산자를 구현하고 싶다면 <a href="implement-operator.html">연산자 구현하기</a>를 참고하기 바란다.
 
@@ -43,8 +43,8 @@ Observable 연산자 체인은 원본 Observable과 독립적으로 실행될 �
 
 새로운 Observable을 만드는 연산자들
 
-* [**`Create`**]({{ site.url }}/documentation/operators/create.html) — 옵저버 메서드를 호출하여 Observable을 생성한다
-* [**`Defer`**]({{ site.url }}/documentation/operators/defer.html) — 옵저버가 구독을 하기 전까지는 Observable을 생성하지 않고 있다가 구독이 시작되면 옵저버 별로 새로운 Observable을 생성한다
+* [**`Create`**]({{ site.url }}/documentation/operators/create.html) — 직접적인 코드 구현을 통해 옵저버 메서드를 호출하여 Observable을 생성한다
+* [**`Defer`**]({{ site.url }}/documentation/operators/defer.html) — 옵저버가 구독하기 전까지는 Observable 생성을 지연하고  구독이 시작되면 옵저버 별로 새로운 Observable을 생성한다
 * [**`Empty`/`Never`/`Throw`**]({{ site.url }}/documentation/operators/empty-never-throw.html) — 아주 정확하고 제한된 행동을 하는 Observable을 생성한다
 * [**`From`**]({{ site.url }}/documentation/operators/from.html) — 다른 객체나 자료 구조를 Observable로 변환한다
 * [**`Interval`**]({{ site.url }}/documentation/operators/interval.html) — 특정 시간별로 연속된 정수형을 배출하는 Observable을 생성한다
@@ -52,45 +52,45 @@ Observable 연산자 체인은 원본 Observable과 독립적으로 실행될 �
 * [**`Range`**]({{ site.url }}/documentation/operators/range.html) — 연속된 범위(Range)의 정수를 발행하는 Observable을 생성한다
 * [**`Repeat`**]({{ site.url }}/documentation/operators/repeat.html) — 특정 항목이나 연속된 항목들을 반복적으로 배출하는 Observable을 생성한다
 * [**`Start`**]({{ site.url }}/documentation/operators/start.html) — 함수의 실행 결과를 배출하는 Observable을 생성한다
-* [**`Timer`**]({{ site.url }}/documentation/operators/timer.html) — 주어진 시간 이후로 항목 하나를 배출하는 Observable을 생성한다
+* [**`Timer`**]({{ site.url }}/documentation/operators/timer.html) — 지정된 시간이 지나고 난 후 항목을 하나 배출하는 Observable을 생성한다
 
 <h2 id="transforming">Observable 변환</h2>
 
 Observable이 배출한 항목들을 변환하는 연산자들
 
 * [**`Buffer`**]({{ site.url }}/documentation/operators/buffer.html) — Observable로부터 정기적으로 항목들을 수집하고 묶음으로 만든 후에 묶음 안에 있는 항목들을 한번에 하나씩 배출하지 않고 수집된 묶음 단위로 배출한다
-* [**`FlatMap`**]({{ site.url }}/documentation/operators/flatmap.html) — 하나의 Observable이 발행한 항목들을 여러개의 Observable로 변환하고, 항목들의 배출을 차례차례 줄 세워 하나의 Observable로 전달한다
-* [**`GroupBy`**]({{ site.url }}/documentation/operators/groupby.html) — 원본 Observable로부터 키에 해당하는 그룹별로 분류한 후 하나의 Observable을 여러 Observable로 분리할 때 나눠진 Observable은 해당 그룹에 속한 항목들을 배출한다
+* [**`FlatMap`**]({{ site.url }}/documentation/operators/flatmap.html) — 하나의 Observable이 발행하는 항목들을 여러개의 Observable로 변환하고, 항목들의 배출을 차례차례 줄 세워 하나의 Observable로 전달한다
+* [**`GroupBy`**]({{ site.url }}/documentation/operators/groupby.html) — 원본 Observable이 배출하는 항목들을 키(Key) 별로 묶은 후 Observable에 담는다. 이렇게 키 별로 만들어진 Observable들은 자기가 담고 있는 묶음의 항목들을 배출한다
 * [**`Map`**]({{ site.url }}/documentation/operators/map.html) — Observable이 배출한 항목에 함수를 적용한다
-* [**`Scan`**]({{ site.url }}/documentation/operators/scan.html) — Observable이 배출한 항목에 연속적으로 함수를 적용하고 실행시켜 성공적으로 실행한 값을 발행한다
-* [**`Window`**]({{ site.url }}/documentation/operators/window.html) — Observable로부터 항목들을 정기적으로 더 작은 단위의 Observable 윈도우로 나누고 항목을 한번에 하나씩 발행하기 보단 작게 나눠진 윈도우 단위로 발행한다
+* [**`Scan`**]({{ site.url }}/documentation/operators/scan.html) — Observable이 배출한 항목에 연속적으로 함수를 적용하고 실행한 후 성공적으로 실행된 함수의 리턴 값을 발행한다
+* [**`Window`**]({{ site.url }}/documentation/operators/window.html) — 정기적으로 Observable의 항목들을 더 작은 단위의 Observable 윈도우로 나눈 후에, 한번에 하나씩 항목들을 발행하는 대신 작게 나눠진 윈도우 단위로 항목들을 배출한다
 
 <h2 id="filtering">Observable 필터링</h2>
 
-소스 Observable에서 선택적으로 항목을 배출시키는 연산자들
+소스 Observable에서 선택적으로 항목을 배출하는 연산자들
 
-* [**`Debounce`**]({{ site.url }}/documentation/operators/debounce.html) — Observable의 시간 흐름은 지속되는 상태에서 다른 항목들은 배출하지 않고 특정 시간 마다 그 흐름 상에 존재하는 항목 하나를 Observable로부터 배출한다
-* [**`Distinct`**]({{ site.url }}/documentation/operators/distinct.html) — Observable로부터 배출된 항목들 중 중복을 제거한 항목들을 배출한다
+* [**`Debounce`**]({{ site.url }}/documentation/operators/debounce.html) — Observable의 시간 흐름이 지속되는 상태에서 다른 항목들은 배출하지 않고 특정 시간 마다 그 시점에 존재하는 항목 하나를 Observable로부터 배출한다
+* [**`Distinct`**]({{ site.url }}/documentation/operators/distinct.html) — Observable이 배출하는 항목들 중 중복을 제거한 항목들을 배출한다
 * [**`ElementAt`**]({{ site.url }}/documentation/operators/elementat.html) — Obserable에서 <i>n</i>번째 항목만 배출한다
 * [**`Filter`**]({{ site.url }}/documentation/operators/filter.html) — 테스트 조건을 만족하는 항목들만 배출한다
 * [**`First`**]({{ site.url }}/documentation/operators/first.html) — 맨 첫 번째 항목 또는 조건을 만족하는 첫 번째 항목만 배출한다
-* [**`IgnoreElements`**]({{ site.url }}/documentation/operators/ignoreelements.html) — 항목들을 배출하지는 않지만 종료 알림은 보낸다
+* [**`IgnoreElements`**]({{ site.url }}/documentation/operators/ignoreelements.html) — 항목들을 배출하지는 않고 종료 알림은 보낸다
 * [**`Last`**]({{ site.url }}/documentation/operators/last.html) — Observable의 마지막 항목만 배출한다
-* [**`Sample`**]({{ site.url }}/documentation/operators/sample.html) — 특정 시간 간격으로 최근에 Observable이 발행한 항목들을 배출한다
-* [**`Skip`**]({{ site.url }}/documentation/operators/skip.html) — Observable 발행한 처음 <i>n</i>개의 항목들을 숨긴다
-* [**`SkipLast`**]({{ site.url }}/documentation/operators/skiplast.html) — Observable이 발행한 마지막 <i>n</i>개의 항목들을 숨긴다
-* [**`Take`**]({{ site.url }}/documentation/operators/take.html) — Observable이 발행한 처음 <i>n</i>개의 항목들만 배출한다
-* [**`TakeLast`**]({{ site.url }}/documentation/operators/takelast.html) — Observable이 발행한 마지막 <i>n</i>개의 항목들만 배출한다
+* [**`Sample`**]({{ site.url }}/documentation/operators/sample.html) — 특정 시간 간격으로 최근에 Observable이 배출한 항목들을 배출한다
+* [**`Skip`**]({{ site.url }}/documentation/operators/skip.html) — Observable이 배출한 처음 <i>n</i>개의 항목들을 숨긴다
+* [**`SkipLast`**]({{ site.url }}/documentation/operators/skiplast.html) — Observable이 배출한 마지막 <i>n</i>개의 항목들을 숨긴다
+* [**`Take`**]({{ site.url }}/documentation/operators/take.html) — Observable이 배츨한 처음 <i>n</i>개의 항목들만 배출한다
+* [**`TakeLast`**]({{ site.url }}/documentation/operators/takelast.html) — Observable이 배출한 마지막 <i>n</i>개의 항목들만 배출한다
 
 <h2 id="combining">Observables 결합</h2>
 
 여러 개의 소스 Observable들을 하나의 Observable로 만드는 연산자들
 
 * [**`And`/`Then`/`When`**]({{ site.url }}/documentation/operators/and-then-when.html) — 두 개 이상의 Observable들이 배출한 항목들을 'Pattern'과 'Plan' 중계자를 이용해서 결합한다
-* [**`CombineLatest`**]({{ site.url }}/documentation/operators/combinelatest.html) — 두 개의 Observable 중 하나가 항목을 배출할 때 배출된 맨 마지막 항목을 함수를 사용해서 다른 한 Observable이 배출한 항목과 결합하여 함수를 실행 시켜 실행된 결과를 배출한다
-* [**`Join`**]({{ site.url }}/documentation/operators/join.html) — A Observable과 B Observable이 배출한 항목들을 결합하는데, 이때 B Observable은 배출한 항목이 타임 윈도우를 가지고 있고 이 타임 윈도우가 열린 동안 A Observable은 항목의 배출을 계속한다. Join 연산자는 B Observable의 항목을 배출하고 배출된 항목은 타임 윈도우를 시작하며 그 시간 동안 A Observable은 자신의 항목들을 계속 배출하여 이 두 항목들을 결합한다
-* [**`Merge`**]({{ site.url }}/documentation/operators/merge.html) — 복수 개의 Observable들이 배출하는 항목들을 머지하여 하나의 Observable로 만든다
-* [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html) — 소스 Observable이 항목을 배출하기 전에 다른 항목들을 추가하여 배출한다
+* [**`CombineLatest`**]({{ site.url }}/documentation/operators/combinelatest.html) — 두 개의 Observable 중 하나가 항목을 배출할 때 배출된 마지막 항목과 다른 한 Observable이 배출한 항목을 결합한 후 함수를 적용하여 실행 후 실행된 결과를 배출한다
+* [**`Join`**]({{ site.url }}/documentation/operators/join.html) — A Observable과 B Observable이 배출한 항목들을 결합하는데, 이때 B Observable은 배출한 항목이 타임 윈도우를 가지고 있고 이 타임 윈도우가 열린 동안 A Observable은 항목의 배출을 계속한다. Join 연산자는 B Observable의 항목을 배출하고 배출된 항목은 타임 윈도우를 시작시킨다. 타임 윈도우가 열려 있는 동안 A Observable은 자신의 항목들을 계속 배출하여 이 두 항목들을 결합한다
+* [**`Merge`**]({{ site.url }}/documentation/operators/merge.html) — 복수 개의 Observable들이 배출하는 항목들을 머지시켜 하나의 Observable로 만든다
+* [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html) — 소스 Observable이 항목을 배출하기 전에 다른 항목들을 앞에 추가한 후 배출한다
 * [**`Switch`**]({{ site.url }}/documentation/operators/switch.html) — Observable들을 배출하는 Observable을 싱글 Observable로 변환하다. 변환된 싱글 Observable은 변환 전 소스 Observable들이 배출한 항목들을 배출한다
 * [**`Zip`**]({{ site.url }}/documentation/operators/zip.html) — 명시한 함수를 통해 여러 Observable들이 배출한 항목들을 결합하고 함수의 실행 결과를 배출한다
 
@@ -98,7 +98,7 @@ Observable이 배출한 항목들을 변환하는 연산자들
 
 Observable이 던진 오류를 복구할 수 있도록 도와주는 연산자들
 
-* [**`Catch`**]({{ site.url }}/documentation/operators/catch.html) — 오류를 제외하고 연속된 발행을 계속 진행시켜 'onError'로부터 전달된 오류를 복구한다
+* [**`Catch`**]({{ site.url }}/documentation/operators/catch.html) — 오류를 무시하고 배출되는 항목들을 계속 진행시켜 'onError'로부터 전달된 오류를 복구한다
 * [**`Retry`**]({{ site.url }}/documentation/operators/retry.html) — 만약 소스 Observable이 'onError' 알림을 보낼 경우, 오류 없이 실행이 완료되기를 기대하며 재구독을 시도한다
 
 <h2 id="utility">Observable 유틸리티 연산자</h2>
@@ -106,16 +106,16 @@ Observable이 던진 오류를 복구할 수 있도록 도와주는 연산자들
 Obserable과 함께 동작하는 유용한 도우미 연산자들
 
 * [**`Delay`**]({{ site.url }}/documentation/operators/delay.html) — Observable의 배출을 특정 시간동안 미룬다
-* [**`Do`**]({{ site.url }}/documentation/operators/do.html) — Observable의 생명주기 동안 발생하는 다양한 이벤트에서 실행 될 액션을 등록한다
-* [**`Materialize`/`Dematerialize`**]({{ site.url }}/documentation/operators/materialize-dematerialize.html) — 배출된 항목과 전달된 알림들을 배출된 항목들로 표현하거나 반대로 배출된 항목들을 알림과 항목으로 역 배출한다
-* [**`ObserveOn`**]({{ site.url }}/documentation/operators/observeon.html) — 옵저버가 Observable을 관찰할 스케줄러를 명시한다
+* [**`Do`**]({{ site.url }}/documentation/operators/do.html) — Observable의 생명주기 동안 발생하는 여러 이벤트에서 실행 될 액션을 등록한다
+* [**`Materialize`/`Dematerialize`**]({{ site.url }}/documentation/operators/materialize-dematerialize.html) — 배출된 항목이 어떤 알림을 통해 옵저버에게 전달 됐는지를 표현하며, 그 반대 과정을 수행할 수 있다
+* [**`ObserveOn`**]({{ site.url }}/documentation/operators/observeon.html) — 옵저버가 어느 스케줄러 상에서 Observable을 관찰할지 명시한다
 * [**`Serialize`**]({{ site.url }}/documentation/operators/serialize.html) — Observable이 직렬화된 호출을 생성하고 제대로 동작하도록 강제한다
-* [**`Subscribe`**]({{ site.url }}/documentation/operators/subscribe.html) — Observable의 배출과 알림 상에서 동작한다
-* [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html) — Observable이 구독될 때 Observable이 사용할 스케줄러를 명시한다
+* [**`Subscribe`**]({{ site.url }}/documentation/operators/subscribe.html) — Observable이 배출하는 항목과 알림을 기반으로 동작한다
+* [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html) — Observable을 구독할 때 사용할 스케줄러를 명시한다
 * [**`TimeInterval`**]({{ site.url }}/documentation/operators/timeinterval.html) — 항목들을 배출하는 Observable을, 항목을 배출하는데 걸린 시간이 얼마인지를 가리키는 Observable로 변환한다
 * [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — 소스 Obvservable을 그대로 전달하지만, 대신 특정 시간 동안 배출된 항목이 없으면 오류 알림을 보낸다
 * [**`Timestamp`**]({{ site.url }}/documentation/operators/timestamp.html) — Observable이 배출한 항목에 타임 스탬프를 추가한다
-* [**`Using`**]({{ site.url }}/documentation/operators/using.html) — 소스 Observable과 동일한 생명주기를 갖는 Observable을 생성하며, 이 Observable은 생명주기가 완료되면 리소스를 종료하고 반환한다
+* [**`Using`**]({{ site.url }}/documentation/operators/using.html) — 소스 Observable과 동일한 생명주기를 갖는 Observable을 생성하는데, 이 Observable은 생명주기가 완료되면 리소스를 종료하고 반환한다
 
 <h2 id="conditional">조건과 불린 연산자(Boolean)</h2>
 
@@ -151,10 +151,10 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 
 좀 더 정확히 제어되는 구독 역학을 가진 전문 Observable들
 
-* [**`Connect`**]({{ site.url }}/documentation/operators/connect.html) — 구독자에게 항목 배출을 시작 하도록 연결 가능한 Observable에게 명령을 내린다
+* [**`Connect`**]({{ site.url }}/documentation/operators/connect.html) — 구독자가 항목 배출을 시작할 수 있도록 연결 가능한 Observable에게 명령을 내린다
 * [**`Publish`**]({{ site.url }}/documentation/operators/publish.html) — 일반 Observable을 연결 가능한 Observable로 변환한다
-* [**`RefCount`**]({{ site.url }}/documentation/operators/refcount.html) — 일반 Observablec처럼 동작하는 연결 가능한 Observable을 만든다
-* [**`Replay`**]({{ site.url }}/documentation/operators/replay.html) — 비록 옵저버가 Observable이 항목 배출을 시작한 이후에 구독을 했다 하더라도 배출된 모든 항목들을 볼 수 있게 한다
+* [**`RefCount`**]({{ site.url }}/documentation/operators/refcount.html) — 일반 Observable처럼 동작하는 연결 가능한 Observable을 만든다
+* [**`Replay`**]({{ site.url }}/documentation/operators/replay.html) — 비록 옵저버가 Observable이 항목 배출을 시작한 후에 구독을 했다 하더라도 배출된 모든 항목들을 볼 수 있도록 한다
 
 <h2 id="conversion">Observable 변환 연산자</h2>
 
@@ -191,7 +191,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 <dl id="outer">
  <dt>나는 새로운 Observable을 생성하고 싶은데 그 Observable이</dt>
   <dd class="sub"><dl>
-   <dt>특정 항목 하나를 생성해야 한다면:</dt>
+   <dt>특정 항목을 생성해야 한다면:</dt>
     <dd><a href="operators/just.html">Just</a></dd>
     <dd class="sub"><dl>
      <dt>구독 시점에 호출된 함수를 통해 생성된 항목을 리턴해야 한다면:</dt>
@@ -203,7 +203,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
      </dl></dd>
    <dt>특정 <code>Array</code>, <code>Iterable</code> 또는 유사한 형태의 소스로부터 항목들을 배출해야 한다면:</dt>
     <dd><a href="operators/from.html">From</a></dd>
-   <dt>퓨처에서 항목을 조회해서 배출해야 한다면:</dt>
+   <dt>퓨처(Future)에서 항목을 조회해서 배출해야 한다면:</dt>
     <dd><a href="operators/start.html">Start</a></dd>
    <dt>퓨처에서 연속된 항목을 가져와야 한다면:</dt>
     <dd><a href="operators/from.html">From</a></dd>
@@ -268,7 +268,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
     <dd><a href="operators/timeinterval.html">TimeInterval</a></dd>
   </dl></dd>
 
- <dt>Observable이 항목을 배출하기 전에 항목의 배출 시간을 지연시켜야 한다:</dt>
+ <dt>Observable이 항목을 배출하기 전에 항목의 배출 시간을 지연시켜야 한다면:</dt>
   <dd><a href="operators/delay.html">Delay</a></dd>
 
  <dt>Observable이 배출하는 항목들<em>과</em> 알림들을 다시 항목들로 변환 후 배출해야 하는데</dt>
@@ -284,7 +284,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
  <dt>Observable이 배출하는 모든 객체를 무시하고 completed/error 알림만 전달해야 한다면:</dt>
   <dd><a href="operators/ignoreelements.html">IgnoreElements</a></dd>
 
- <dt>Observable이 가진 항목 그대로를 배출하지만 배출 전에 다른 항목들이 먼저 배출될 수 있도록 추가해야 한다면:</dt>
+ <dt>Observable이 가진 항목을 그대로를 배출하지만 배출 전에 다른 항목들을 먼저 배출될 수 있도록 추가해야 한다면:</dt>
   <dd><a href="operators/startwith.html">StartWith</a></dd>
   <dd class="sub"><dl>
    <dt>만약 소스 Observable이 비어있을 경우 기본 항목을 추가해야 한다면:</dt>

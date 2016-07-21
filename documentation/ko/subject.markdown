@@ -6,7 +6,7 @@ id: subject
 
 <h1>주제</h1>
 <p>
- 주제(subject)는 옵저버 그리고 Observable 처럼 행동하는 ReactiveX의 일부 구현체에서 사용 가능한 일종의 교각 혹은 프록시라고 볼 수 있는데, 그 이유는 주제는 옵저버이기 때문에 하나 이상의 Observable을 구독할 수 있으며 동시에 Observable이기도 하기 때문에 항목들을 하나 하나 거치면서 재배출하고 관찰하며 새로운 항목들을 배출할 수도 있다.
+ 주제(subject)는 옵저버나 Observable처럼 행동하는 ReactiveX의 일부 구현체에서 사용 가능한 일종의 교각 혹은 프록시라고 볼 수 있는데, 그 이유는 주제는 옵저버이기 때문에 하나 이상의 Observable을 구독할 수 있으며 동시에 Observable이기도 하기 때문에 항목들을 하나 하나 거치면서 재배출하고 관찰하며 새로운 항목들을 배출할 수도 있다.
 </p>
 <p>
  하나의 주제는 하나의 Observable을 구독하면서, (Observable이 "차가운" Observable인 경우 즉, 옵저버가 구독을 시작하기 전까지 항목들의 배출을 지연시키는 Observable일 경우)Observable이 항목들을 배출시키도록 동작시킨다.
@@ -22,14 +22,14 @@ id: subject
 </ul>
 <h2>주제의 종류</h2>
 <p>
- 모두 4 종류의 <code>Subject</code>가 존재하며, 각각의 Subject는 특정 상황에 맞게 설계되었다. 그렇기 때문에 모든 상황에서 아무 주제(Subject)나 임의대로 사용할 수 없으며 일부 구현체는 주제를 다른 이름을 부르기도 한다(예를 들어, RxScala는 "주제(Subject)"를 "발행주제(PublishSubject)"로 부른다).
+ 모두 4 종류의 <code>Subject</code>가 존재하며, 각각의 Subject는 특정 상황에 맞도록 설계되었다. 그렇기 때문에 모든 상황에서 아무 주제(Subject)를 임의대로 사용할 수 없으며 일부 구현체는 주제를 다른 이름으로 부르기도 한다(예를 들어, RxScala는 "주제(Subject)"를 "발행주제(PublishSubject)"로 부른다).
 </p>
 <h3>AysncSubject</h3>
 <figure>
  <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.png" style="width:100%;" />
  <figcaption>
  <p>
-  <code>AsyncSubject</code>는 소스 Observable로부터 배출된 마지막 값(만) 배출하며 소스 Observalbe의 동작이 완료된 후에야 동작한다. (만약, 소스 Observable이 아무 값도 배출하지 않으면 <code>AsyncSubject</code> 역시 아무 값도 배출하지 않는다.)
+  <code>AsyncSubject</code>는 소스 Observable로부터 배출된 마지막 값(만)을 배출하고 소스 Observalbe의 동작이 완료된 후에야 동작한다. (만약, 소스 Observable이 아무 값도 배출하지 않으면 <code>AsyncSubject</code> 역시 아무 값도 배출하지 않는다.)
  </p>
 </figcaption>
 </figure>
@@ -49,7 +49,7 @@ id: subject
  <img src="{{ site.url }}/documentation/operators/images/S.BehaviorSubject.png" style="width:100%;" />
  <figcaption>
  <p>
-  옵저버가 <code>BehaviorSubject</code>의 구독을 시작하면, 옵저버는 소스 Observable이 가장 최근에 발행한 항목(또는 아직 아무 값도 발행되지 않았다면 맨 처음 값이나 기본 값)의 발행을 시작하며 그 이후 소스 Observable(들)에 의해 발행된 항목들을 계속 발행한다.
+  옵저버가 <code>BehaviorSubject</code>를 구독하기 시작하면, 옵저버는 소스 Observable이 가장 최근에 발행한 항목(또는 아직 아무 값도 발행되지 않았다면 맨 처음 값이나 기본 값)의 발행을 시작하며 그 이후 소스 Observable(들)에 의해 발행된 항목들을 계속 발행한다.
  </p></figcaption>
 </figure>
 <figure>

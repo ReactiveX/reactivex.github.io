@@ -1,0 +1,189 @@
+---
+layout: documentation
+title: ReactiveX - DefaultIfEmpty operator
+id: defaultIfEmpty
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">DefaultIfEmpty</li>
+</ol>
+
+   <h1>DefaultIfEmpty</h1>
+   <h3>emit items from the source Observable, or a default item if the source Observable emits nothing</h3>
+   <figure>
+    <img src="images/defaultIfEmpty.c.png" style="width:100%;" alt="DefaultIfEmpty" />
+    <figcaption><p>
+     The <span class="operator">DefaultIfEmpty</span> operator simply mirrors the source Observable exactly
+     if the source Observable emits any items. If the source Observable terminates normally (with an
+     <code>onComplete</code>) without emitting any items, the Observable returned from
+     <span class="operator">DefaultIfEmpty</span> will instead emit a default item of your choosing before
+     it too completes.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#DefaultIfEmpty"><cite>Introduction to Rx</cite>: DefaultIfEmpty</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy defaultIfEmpty switchIfEmpty %}
+     <figure>
+      <img src="images/defaultIfEmpty.png" style="width:100%;" alt="defaultIfEmpty" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>defaultIfEmpty</code>.
+      </p><p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      There is also a new operator in RxGroovy 1.1 called <code>switchIfEmpty</code> that, rather than emitting
+      a backup <em>value</em> if the source Observable terminates without having emitted any items, it emits the
+      emissions from a backup <em>Observable</em>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava defaultIfEmpty switchIfEmpty %}
+     <figure>
+      <img src="images/defaultIfEmpty.png" style="width:100%;" alt="defaultIfEmpty" />
+      <figcaption><p>
+       RxJava implements this operator as <code>defaultIfEmpty</code>.
+      </p><p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      There is also a new operator in RxJava 1.1 called <code>switchIfEmpty</code> that, rather than emitting a
+      backup <em>value</em> if the source Observable terminates without having emitted any items, it emits the
+      emissions from a backup <em>Observable</em>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS defaultIfEmpty %}
+     <figure>
+      <img src="images/defaultIfEmpty.png" style="width:100%;" alt="defaultIfEmpty" />
+      <figcaption><p>
+       RxJS implements <code>defaultIfEmpty</code>, but the parameter that sets the default value is optional.
+       If you do not pass this default value, <code>defaultIfEmpty</code> will emit a
+       &ldquo;<code>null</code>&rdquo; if the source Observable completes without emitting anything. (Note
+       that an emission of a &ldquo;<code>null</code>&rdquo; is <em>not</em> the same as no emission.)
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Without a default value */
+var source = Rx.Observable.empty().defaultIfEmpty();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: null
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* With a defaultValue */
+var source = Rx.Observable.empty().defaultIfEmpty(false);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: false
+Completed</pre></div>
+      <p>
+       <code>defaultIfEmpty</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin defaultIfEmpty %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET DefaultIfEmpty %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP defaultIfEmpty %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>defaultIfEmpty</code>.
+    </p>
+    <p>
+    Returns the specified value of an observable if the sequence is empty.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/defaultIfEmpty/defaultIfEmpty.php
+
+$source = \Rx\Observable::emptyObservable()->defaultIfEmpty(new \Rx\Observable\ReturnObservable("something"));
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: something
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY default_if_empty %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb default_if_empty %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala orElse switchIfEmpty %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

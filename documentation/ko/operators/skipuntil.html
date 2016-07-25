@@ -1,0 +1,200 @@
+---
+layout: documentation
+title: ReactiveX - SkipUntil operator
+id: skipUntil
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">SkipUntil</li>
+</ol>
+
+   <h1>SkipUntil</h1>
+   <h3>discard items emitted by an Observable until a second Observable emits an item</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="skipUntil"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">SkipUntil</span> subscribes to the source Observable, but ignores its emissions
+     until such time as a second Observable emits an item, at which point
+     <span class="operator">SkipUntil</span> begins to mirror the source Observable.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="skip.html"><span class="operator">Skip</span></a></li>
+    <li><a href="skiplast.html"><span class="operator">SkipLast</span></a></li>
+    <li><a href="skipwhile.html"><span class="operator">SkipWhile</span></a></li>
+    <li><a href="take.html"><span class="operator">Take</span></a></li>
+    <li><a href="takelast.html"><span class="operator">TakeLast</span></a></li>
+    <li><a href="takeuntil.html"><span class="operator">TakeUntil</span></a></li>
+    <li><a href="takewhile.html"><span class="operator">TakeWhile</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipUntilTakeUntil"><cite>Introduction to Rx</cite>: SkipUntil and TakeUntil</a></li>
+    <li><a href="http://rxmarbles.com/#skipUntil">RxMarbles: <code>skipUntil</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp skip_until %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy skipUntil %}
+     <figure>
+      <img src="images/skipUntil.png" style="width:100%;" alt="skipUntil" />
+      <figcaption><p>
+       In RxGroovy, this operator is implemented as <code>skipUntil</code>.
+      </p><p>
+       <code>skipUntil</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skipUntil(rx.Observable)"><code>skipUntil(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava skipUntil %}
+     <figure>
+      <img src="images/skipUntil.png" style="width:100%;" alt="skipUntil" />
+      <figcaption><p>
+       In RxJava, this operator is implemented as <code>skipUntil</code>.
+      </p><p>
+       <code>skipUntil</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#skipUntil(rx.Observable)"><code>skipUntil(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS skipUntil %}
+     <figure>
+      <img src="images/skipUntil.png" style="width:100%;" alt="skipUntil" />
+      <figcaption><p>
+       RxJS implements the <code>skipUntil</code> operator. You can pass it either an Observable or a
+       <code>Promise</code> that it will monitor for an item that triggers <code>skipUntil</code> to begin
+       mirroring the source Observable.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .skipUntil(Rx.Observable.timer(5000));
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 6
+Next: 7
+Next: 8
+Completed</pre></div>
+      <p>
+       <code>skipUntil</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <p>
+      There is also a <code>skipUntilWithTime</code> operator to which you can pass an absolute time or an
+      initial duration in place of an Observable, but this is described on the
+      <a href="skip.html"><span class="operator">Skip</span></a> operator page.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin skipUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET SkipUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP skipUntil %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>skipUntil</code>.
+    </p>
+    <p>
+    Returns the values from the source observable sequence only after the other observable sequence produces a value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/skip/skipUntil.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$observable = Rx\Observable::interval(1000)
+    ->skipUntil(\Rx\Observable::timer(5000))
+    ->take(3);
+
+$observable->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 4
+Next value: 5
+Next value: 6
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY skipUntil skipUntil_with_time %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb skipUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala dropUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift skipUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

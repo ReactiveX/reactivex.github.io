@@ -1,0 +1,264 @@
+---
+layout: documentation
+title: ReactiveX - backpressure
+id: backpressure
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#backpressure">Backpressure</a></li>
+</ol>
+
+<h1>backpressure operators</h1>
+<h3>strategies for coping with Observables that produce items more rapidly than their observers consume them</h3>
+
+<p>
+ In ReactiveX it is not difficult to get into a situation in which an Observable is emitting items
+ more rapidly than an operator or observer can consume them. This presents the problem of what to do
+ with such a growing backlog of unconsumed items.
+</p><p>
+ For example, imagine using the <a href="zip.html"><span class="operator">Zip</span></a> operator to
+ zip together two infinite Observables, one of which emits items twice as frequently as the other. A
+ naive implementation of the operator would have to maintain an ever-expanding buffer of items
+ emitted by the faster Observable to eventually combine with items emitted by the slower one. This
+ could cause ReactiveX to seize an unwieldy amount of system resources.
+</p><p>
+ There are a variety of strategies with which you can exercise flow control and backpressure in
+ ReactiveX in order to alleviate the problems caused when a quickly-producing Observable meets a
+ slow-consuming observer, which include, in some ReactiveX implementations, reactive pull
+ backpressure and some backpressure-specific operators.
+</p><p>
+ A <dfn>cold Observable</dfn> emits a particular sequence of items, but can begin emitting this
+ sequence when its observer finds it to be convenient, and at whatever rate the observer desires,
+ without disrupting the integrity of the sequence. For example if you convert a static iterable into
+ an Observable, that Observable will emit the same sequence of items no matter when it is later
+ subscribed to or how frequently those items are observed. Examples of items emitted by a cold
+ Observable might include the results of a database query, file retrieval, or web request.
+</p><p>
+ A <dfn>hot Observable</dfn> begins generating items to emit immediately when it is created.
+ Subscribers typically begin observing the sequence of items emitted by a hot Observable from
+ somewhere in the middle of the sequence, beginning with the first item emitted by the Observable
+ subsequent to the establishment of the subscription. Such an Observable emits items at its own
+ pace, and it is up to its observers to keep up. Examples of items emitted by a hot Observable might
+ include mouse &amp; keyboard events, system events, or stock prices.
+</p><p>
+ When a cold Observable is multicast (when it is converted into a connectable Observable and its
+ <a href="connect.html"><span class="operator">Connect</span></a> method is called), it effectively
+ becomes hot and for the purposes of backpressure and flow-control it should be treated as a hot
+ Observable.
+</p><p>
+ Cold Observables are ideal for the reactive pull model of backpressure implemented by some
+ implementations of ReactiveX (which is described elsewhere). Hot Observables typically do not cope
+ well with a reactive pull model, and are better candidates for other flow control strategies, such
+ as the use of the operators described on this page, or operators like
+ <a href="buffer.html"><span class="operator">Buffer</span></a>, 
+ <a href="sample.html"><span class="operator">Sample</span></a>, 
+ <a href="debounce.html"><span class="operator">Debounce</span></a>, or
+ <a href="window.html"><span class="operator">Window</span></a>.
+</p>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="buffer.html"><span class="operator">Buffer</span></a></li>
+ <li><a href="sample.html"><span class="operator">Sample</span></a></li>
+ <li><a href="debounce.html"><span class="operator">Debounce</span></a></li>
+ <li><a href="window.html"><span class="operator">Window</span></a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
+    <p>
+     RxGroovy implements reactive pull backpressure, and many of its operators support that form of
+     backpressure. It also has three operators that you can apply to Observables that have not been
+     written to support backpressure:
+    <figure class="variant">
+     <img src="images/bp.obp.buffer.png" style="width:100%;" alt="onBackpressureBuffer" />
+     <figcaption><p>
+      <code>onBackpressureBuffer</code> maintains a buffer of all unobserved emissions from the
+      source Observable and emits them to downstream observers according to the requests they
+      generate.
+     </p><p>
+      A version of this operator that was introduced in RxGroovy 1.1 allows you to set the capacity of the
+      buffer; applying this operator will cause the resulting Observable to terminate with an error if this
+      buffer is overrun. A second version, introduced during the same release, allows you to set an
+      <code>Action</code> that <code>onBackpressureBuffer</code> will call if the buffer is overrun.
+     </p><ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer()"><code>onBackpressureBuffer()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer(long)"><code>onBackpressureBuffer(long)</code> (RxGroovy 1.1)</a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer(long,%20rx.functions.Action0)"><code>onBackpressureBuffer(long,&nbsp;Action0)</code> (RxGroovy 1.1)</a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/bp.obp.drop.png" style="width:100%;" alt="onBackpressureDrop" />
+     <figcaption><p>
+      <code>onBackpressureDrop</code> drops emissions from the source Observable unless there is a
+      pending request from a downstream observer, in which case it will emit enough items to fulfill
+      the request.
+     </p><p>
+      A version of this operator that was introduced in the 1.1 release notifies you, by means of an
+      <code>Action</code> you pass as a parameter, when an item has been dropped and which item was dropped.
+     </p><ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop()"><code>onBackpressureDrop()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop(rx.functions.Action1)">onBackpressureDrop(Action1)</code> (RxGroovy 1.1)</a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/bp.obp.latest.png" style="width:100%;" alt="onBackpressureLatest" />
+     <figcaption><p>
+      <code>onBackpressureLatest</code> (new in RxJava 1.1) holds on to the most-recently emitted item from the
+      source Observable and immediately emits that item to its observer upon request. It drops any other items
+      that it observes between requests from its observer.
+     </p><ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureLatest()"><code>onBackpressureLatest()</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
+    <p>
+     RxJava implements reactive pull backpressure, and many of its operators support that form of
+     backpressure. It also has three operators that you can apply to Observables that have not been
+     written to support backpressure:
+    <figure class="variant">
+     <img src="images/bp.obp.buffer.png" style="width:100%;" alt="onBackpressureBuffer" />
+     <figcaption><p>
+      <code>onBackpressureBuffer</code> maintains a buffer of all unobserved emissions from the
+      source Observable and emits them to downstream observers according to the requests they
+      generate.
+     </p><p>
+      A version of this operator that was introduced in RxJava 1.1 allows you to set the capacity of the
+      buffer; applying this operator will cause the resulting Observable to terminate with an error if this
+      buffer is overrun. A second version, introduced during the same release, allows you to set an
+      <code>Action</code> that <code>onBackpressureBuffer</code> will call if the buffer is overrun.
+     </p><ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer()"><code>onBackpressureBuffer()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer(long)"><code>onBackpressureBuffer(long)</code> (RxJava 1.1)</a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureBuffer(long,%20rx.functions.Action0)"><code>onBackpressureBuffer(long,&nbsp;Action0)</code> (RxJava 1.1)</a></li>
+     </ul></figcaption>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/bp.obp.drop.png" style="width:100%;" alt="onBackpressureDrop" />
+     <figcaption><p>
+      <code>onBackpressureDrop</code> drops emissions from the source Observable unless there is a
+      pending request from a downstream observer, in which case it will emit enough items to fulfill
+      the request.
+     </p><p>
+      A version of this operator that was introduced in the 1.1 release notifies you, by means of an
+      <code>Action</code> you pass as a parameter, when an item has been dropped and which item was dropped.
+     </p><ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop()"><code>onBackpressureDrop()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureDrop(rx.functions.Action1)">onBackpressureDrop(Action1)</code> (RxJava 1.1)</a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/bp.obp.latest.png" style="width:100%;" alt="onBackpressureLatest" />
+     <figcaption><p>
+      <code>onBackpressureLatest</code> (new in RxJava 1.1) holds on to the most-recently emitted item from the
+      source Observable and immediately emits that item to its observer upon request. It drops any other items
+      that it observes between requests from its observer.
+     </p><ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#onBackpressureLatest()"><code>onBackpressureLatest()</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS controlled pausable pausableBuffered stopAndWait windowed %}
+    <p>
+     RxJS implements backpressure by transforming an ordinary Observable into a
+     <code>ControlledObservable</code> with the <code>controlled</code> operator. This forces the
+     Observable to respect pull <code>request</code>s from its observer rather than pushing items on
+     its own initiative.
+    </p>
+    <figure class="variant">
+     <img src="images/bp.stopAndWait.png" style="width:100%;" alt="stopAndWait" />
+     <figcaption><p>
+      As an alternative to using <code>request</code> to pull items from a
+      <code>ControlledObservable</code>, you may apply the <code>stopAndWait</code> operator to it.
+      This operator will request a new item from the Observable each time its observers&#8217;
+      <code>onNext</code> routine receives the latest item.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/bp.windowed.png" style="width:100%;" alt="windowed" />
+     <figcaption><p>
+      A second possibility is to use the <code>windowed(</code><i>n</i><code>)</code>. This behaves
+      similarly to <code>stopAndWait</code> but has an internal buffer of <i>n</i> items, which
+      allows the <code>ControlledObservable</code> to run somewhat ahead of the observer from time
+      to time. <code>windowed(1)</code> is equivalent to <code>stopAndWait</code>.
+     </p></figcaption>
+    </figure>
+    <p>
+     There are also two operators that convert an ordinary Observable into at
+     <code>PausableObservable</code>.
+    </p>
+    <figure class="variant">
+     <img src="images/bp.pausable.png" style="width:100%;" alt="pausable" />
+     <figcaption><p>
+      If you call the <code>pause</code> method of a <code>PausableObservable</code> created with
+      the <code>pausable</code> operator, it will drop (ignore) any items emitted by the underlying
+      source Observable until such time as you call its <code>resume</code> method, whereupon it
+      will continue to pass along emitted items to its observers.
+     </p>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="http://rxmarbles.com/#pausable">RxMarbles: <code>pausable</code></a></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/bp.pausableBuffered.png" style="width:100%;" alt="pausableBuffered" />
+     <figcaption><p>
+      If you call the <code>pause</code> method of a <code>PausableObservable</code> created with
+      the <code>pausableBuffered</code> operator, it will buffer any items emitted by the underlying
+      source Observable until such time as you call its <code>resume</code> method, whereupon it
+      will emit those buffered items and then continue to pass along any additional emitted items to
+      its observers.
+     </p>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="http://rxmarbles.com/#pausableBuffered">RxMarbles: <code>pausableBuffered</code></a></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala onBackpressureBuffer onBackpressureDrop onBackpressureLatest %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

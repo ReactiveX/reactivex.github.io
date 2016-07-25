@@ -1,0 +1,278 @@
+---
+layout: documentation
+title: ReactiveX - CombineLatest operator
+id: combinelatest
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">CombineLatest</li>
+</ol>
+
+   <h1>CombineLatest</h1>
+   <h3>when an item is emitted by either of two Observables, combine the latest item emitted by each Observable via a specified function and emit items based on the results of this function</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="combineLatest"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">CombineLatest</span> operator behaves in a similar way to
+     <span class="operator">Zip</span>, but while <span class="operator">Zip</span> emits items only
+     when <em>each</em> of the zipped source Observables have emitted a previously unzipped item,
+     <span class="operator">CombineLatest</span> emits an item whenever <em>any</em> of the source
+     Observables emits an item (so long as each of the source Observables has emitted at least one
+     item). When any of the source Observables emits an item,
+     <span class="operator">CombineLatest</span> combines the most recently emitted items from each
+     of the other source Observables, using a function you provide, and emits the return value from
+     that function.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="zip.html"><span class="operator">Zip</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#CombineLatest"><cite>Introduction to Rx</cite>: CombineLatest</a></li>
+    <li><a href="http://rxmarbles.com/#combineLatest">RxMarbles: <code>combineLatest</code></a></li>
+    <li><a href="http://rxmarbles.com/#withLatestFrom">RxMarbles: <code>withLatestFrom</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc3"><cite>101 Rx Samples</cite>: CombineLatest &mdash; Parallel Execution</a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc50"><cite>101 Rx Samples</cite>: CombineLatest</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp combine_latest %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy combineLatest withLatestFrom %}
+     <figure>
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>combineLatest</code>. It may take between two and
+       nine Observables (as well as the combining function) as parameters, or a single
+       <code>List</code> of Observables (as well as the combining function). It does not by default
+       operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List,%20rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/withLatestFrom.png" style="width:100%;" alt="withLatestFrom" />
+      <figcaption><p>
+       Under development, but not part of the 1.0 release, is the <code>withLatestFrom</code> operator. It is
+       similar to <code>combineLatest</code>, but only emits items when the single source Observable emits an
+       item (not when <em>any</em> of the Observables that are passed to the operator do, as
+       <code>combineLatest</code> does).
+      </p>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava combineLatest withLatestFrom %}
+     <figure>
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
+      <figcaption><p>
+       RxJava implements this operator as <code>combineLatest</code>. It may take between two and
+       nine Observables (as well as the combining function) as parameters, or a single
+       <code>List</code> of Observables (as well as the combining function). It does not by default
+       operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(java.util.List,%20rx.functions.FuncN)"><code>combineLatest(List,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#combineLatest(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>combineLatest(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/withLatestFrom.png" style="width:100%;" alt="withLatestFrom" />
+      <figcaption><p>
+       Under development, but not part of the 1.0 release, is the <code>withLatestFrom</code> operator. It is
+       similar to <code>combineLatest</code>, but only emits items when the single source Observable emits an
+       item (not when <em>any</em> of the Observables that are passed to the operator do, as
+       <code>combineLatest</code> does).
+      </p>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS combineLatest withLatestFrom %}
+     <figure>
+      <img src="images/combineLatest.png" style="width:100%;" alt="combineLatest" />
+      <figcaption><p>
+       RxJS implements this operator as <code>combineLatest</code>. It may take a variable number
+       of individual Observables (as well as the combining function) as parameters, or a single
+       <code>Array</code> of Observables (as well as the combining function).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Have staggering intervals */
+var source1 = Rx.Observable.interval(100)
+    .map(function (i) { return 'First: ' + i; });
+
+var source2 = Rx.Observable.interval(150)
+    .map(function (i) { return 'Second: ' + i; });
+
+// Combine latest of source1 and source2 whenever either gives a value
+var source = source1.combineLatest(
+        source2,
+        function (s1, s2) { return s1 + ', ' + s2; }
+    ).take(4);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x.toString());
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: First: 0, Second: 0
+Next: First: 1, Second: 0
+Next: First: 1, Second: 1
+Next: First: 2, Second: 1
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/withLatestFrom.png" style="width:100%;" alt="withLatestFrom" />
+      <figcaption><p>
+       RxJS also has a <code>withLatestFrom</code> operator. It is similar to <code>combineLatest</code>, but
+       only emits items when the single source Observable emits an item (not when <em>any</em> of the
+       Observables that are passed to the operator do, as <code>combineLatest</code> does).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Have staggering intervals */
+var source1 = Rx.Observable.interval(140)
+    .map(function (i) { return 'First: ' + i; });
+
+var source2 = Rx.Observable.interval(50)
+    .map(function (i) { return 'Second: ' + i; });
+
+// When source1 emits a value, combine it with the latest emission from source2.
+var source = source1.withLatestFrom(
+    source2,
+    function (s1, s2) { return s1 + ', ' + s2; }
+).take(4);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x.toString());
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: First: 0, Second: 1
+Next: First: 1, Second: 4
+Next: First: 2, Second: 7
+Next: First: 3, Second: 10
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <p>
+      These two operators are both available in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin combineLatest %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET CombineLatest %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP combineLatest %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>combineLatest</code>.
+    </p>
+    <p>
+    Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element. Observables need to be an array. If the result selector is omitted, a list with the elements will be yielded.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/combineLatest/combineLatest.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+/* Have staggering intervals */
+$source1 = \Rx\Observable::interval(100);
+$source2 = \Rx\Observable::interval(120);
+
+$source = $source1->combineLatest([$source2], function ($value1, $value2) {
+    return "First: {$value1}, Second: {$value2}";
+})->take(4);
+
+$subscription = $source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: First: 0, Second: 0
+Next value: First: 1, Second: 0
+Next value: First: 1, Second: 1
+Next value: First: 2, Second: 1
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY combine_latest with_latest_from %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb combine_latest %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala combineLatest combineLatestWith %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift combineLatest withLatestFrom %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

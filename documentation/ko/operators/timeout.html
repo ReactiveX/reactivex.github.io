@@ -1,0 +1,544 @@
+---
+layout: documentation
+title: ReactiveX - Timeout operator
+id: timeout
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Timeout</li>
+</ol>
+
+   <h1>Timeout</h1>
+   <h3>mirror the source Observable, but issue an error notification if a particular period of time elapses without any emitted items</h3>
+
+   <figure>
+    <img src="images/timeout.c.png" style="width:100%;" alt="Timeout" />
+    <figcaption><p>
+     The <span class="operator">Timeout</span> operator allows you to abort an Observable with an
+     <code>onError</code> termination if that Observable fails to emit any items during a specified span of
+     time.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="debounce.html"><span class="operator">Debounce</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Timeout"><cite>Introduction to Rx</cite>: Timeout</a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc33"><cite>101 Rx Samples</cite>: Timeout &mdash; Simple</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy timeout %}
+     <p>
+      RxGroovy implements this operator as <code>timeout</code>, but in several variants.
+     </p>
+     <figure>
+      <img src="images/timeout.1.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       The first variant accepts parameters that define a duration of time (a quantity of time, and a
+       <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable emits an
+       item, <code>timeout</code> starts a timer, and if that timer exceeds the duration before the source
+       Observable emits another item, <code>timeout</code> terminates its Observable with an error
+       (<code>TimeoutException</code>).
+      </p><p>
+       By default this variant of <code>timeout</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>timeout</code>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit)"><code>timeout(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>timeout()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout.2.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       A second variant of <code>timeout</code> differs from the first in that instead of issuing an error
+       notification in case of a timeout condition, it instead immediately switches to a backup Observable that
+       you specify.
+      </p><p>
+       By default this variant of <code>timeout</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>timeout</code>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit,%20rx.Observable)"><code>timeout(long,TimeUnit,Observable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit,%20rx.Observable,%20rx.Scheduler)"><code>timeout(long,TimeUnit,Observable,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout3.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       A third variant of <code>timeout</code> does not use a constant timeout duration, but sets its timeout
+       duration on a per-item basis by passing each item from the source Observable into a function that returns
+       an Observable and then monitoring those Observables. If any such Observable completes before the source
+       Observable emits another item, this is considered a timeout condition, and triggers an
+       <code>onError</code> notification (&ldquo;<code>TimeoutException</code>&rdquo;) from the Observable
+       <code>timeout</code> returns.
+      </p><p>
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func1)"><code>timeout(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout4.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       There is also a variant of <code>timeout</code> that both uses a per-item Observable to set the timeout
+       duration and switches to a backup Observable in case of a timeout.
+      </p><p>
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func1,%20rx.Observable)"><code>timeout(Func1,Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout5.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       The variant of <code>timeout</code> that uses a per-item Observable to set the timeout has a variant
+       that allows you to pass in a function that returns an Observable that acts as a timeout timer for the
+       very first item emitted by the source Observable (in the absence of this, there would be no timeout for
+       the first item).
+      </p><p>
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func0,%20rx.functions.Func1)"><code>timeout(Func0,Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout6.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
+       an error upon hitting a timeout condition.
+      </p><p>
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func0,%20rx.functions.Func1,%20rx.Observable)"><code>timeout(Func0,Func1,Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava timeout %}
+     <p>
+      RxJava implements this operator as <code>timeout</code>, but in several variants.
+     </p>
+     <figure>
+      <img src="images/timeout.1.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       The first variant accepts parameters that define a duration of time (a quantity of time, and a
+       <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable emits an
+       item, <code>timeout</code> starts a timer, and if that timer exceeds the duration before the source
+       Observable emits another item, <code>timeout</code> terminates its Observable with an error
+       (<code>TimeoutException</code>).
+      </p><p>
+       By default this variant of <code>timeout</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>timeout</code>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit)"><code>timeout(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>timeout()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout.2.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       A second variant of <code>timeout</code> differs from the first in that instead of issuing an error
+       notification in case of a timeout condition, it instead immediately switches to a backup Observable that
+       you specify.
+      </p><p>
+       By default this variant of <code>timeout</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>timeout</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit,%20rx.Observable)"><code>timeout(long,TimeUnit,Observable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(long,%20java.util.concurrent.TimeUnit,%20rx.Observable,%20rx.Scheduler)"><code>timeout(long,TimeUnit,Observable,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout3.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       A third variant of <code>timeout</code> does not use a constant timeout duration, but sets its timeout
+       duration on a per-item basis by passing each item from the source Observable into a function that returns
+       an Observable and then monitoring those Observables. If any such Observable completes before the source
+       Observable emits another item, this is considered a timeout condition, and triggers an
+       <code>onError</code> notification (&ldquo;<code>TimeoutException</code>&rdquo;) from the Observable
+       <code>timeout</code> returns.
+      </p><p>
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func1)"><code>timeout(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout4.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       There is also a variant of <code>timeout</code> that both uses a per-item Observable to set the timeout
+       duration and switches to a backup Observable in case of a timeout.
+      </p><p>
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func1,%20rx.Observable)"><code>timeout(Func1,Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout5.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       The variant of <code>timeout</code> that uses a per-item Observable to set the timeout has a variant
+       that allows you to pass in a function that returns an Observable that acts as a timeout timer for the
+       very first item emitted by the source Observable (in the absence of this, there would be no timeout for
+       the first item).
+      </p><p>
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func0,%20rx.functions.Func1)"><code>timeout(Func0,Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout6.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
+       an error upon hitting a timeout condition.
+      </p><p>
+       This variant of <code>timeout</code> by default runs on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeout(rx.functions.Func0,%20rx.functions.Func1,%20rx.Observable)"><code>timeout(Func0,Func1,Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS timeout timeoutWithSelector %}
+     <p>
+      RxJS implements this operator as <code>timeout</code> and <code>timeoutWithSelector</code>:
+     </p>
+     <figure>
+      <img src="images/timeout.1.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       One variant of <code>timeout</code> accepts a duration of time (in milliseconds). Each time the source
+       Observable emits an item, <code>timeout</code> starts a timer, and if that timer exceeds the duration
+       before the source Observable emits another item, <code>timeout</code> terminates its Observable with an
+       error (&ldquo;<code>Timeout</code>&rdquo; or a string of your choice that you pass as an optional
+       second parameter).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable
+    .return(42)
+    .delay(5000)
+    .timeout(200, 'Timeout has occurred.');
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Error: Timeout has occurred.</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeout.2.png" style="width:100%;" alt="timeout" />
+      <figcaption><p>
+       Another variant allows you to instruct <code>timeout</code> to switch to a backup Observable that you
+       specify, rather than terminating with an error, if the timeout condition is triggered. To use this
+       variant, pass the backup Observable (or <code>Promise</code>) as the second parameter to
+       <code>timeout</code>.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable
+  .return(42)
+  .delay(5000)
+  .timeout(200, Promise.resolve(42));
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 42
+Completed</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeoutWithSelector3.png" style="width:100%;" alt="timeoutWithSelector" />
+      <figcaption><p>
+       <code>timeoutWithSelector</code> does not use a constant timeout duration, but sets its timeout duration
+       on a per-item basis by passing each item from the source Observable into a function that returns
+       an Observable and then monitoring those Observables. If any such Observable completes before the source
+       Observable emits another item, this is considered a timeout condition, and triggers an
+       <code>onError</code> notification (&ldquo;<code>Error: Timeout</code>&rdquo;) from the Observable
+       <code>timeoutWithSelector</code> returns.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var array = [
+    200,
+    300,
+    350,
+    400
+];
+
+var source = Rx.Observable
+    .for(array, function (x) {
+        return Rx.Observable.timer(x);
+    })
+    .map(function (x, i) { return i; })
+    .timeoutWithSelector(function (x) {
+        return Rx.Observable.timer(400);
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Error: Error: Timeout</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeoutWithSelector4.png" style="width:100%;" alt="timeoutWithSelector" />
+      <figcaption><p>
+       There is also a variant of <code>timeoutWithSelector</code> that both uses a per-item Observable to set
+       the timeout duration and switches to a backup Observable in case of a timeout.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var array = [
+    200,
+    300,
+    350,
+    400
+];
+
+var source = Rx.Observable
+    .for(array, function (x) {
+        return Rx.Observable.timer(x);
+    })
+    .map(function (x, i) { return i; })
+    .timeoutWithSelector(function (x) {
+        return Rx.Observable.timer(400);
+    }, Rx.Observable.return(42));
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Next: 42
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeoutWithSelector5.png" style="width:100%;" alt="timeoutWithSelector" />
+      <figcaption><p>
+       The variant of <code>timeoutWithSelector</code> that uses a per-item Observable to set the timeout has a
+       variant that allows you to pass in an Observable that acts as a timeout timer for the very first item
+       emitted by the source Observable (in the absence of this, there would be no timeout for the first item;
+       that is to say, the default Observable that governs this first timeout period is
+       <code>Rx.Observable.never()</code>).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var array = [
+    200,
+    300,
+    350,
+    400
+];
+
+var source = Rx.Observable
+    .for(array, function (x) {
+        return Rx.Observable.timer(x);
+    })
+    .map(function (x, i) { return i; })
+    .timeoutWithSelector(Rx.Observable.timer(250), function (x) {
+        return Rx.Observable.timer(400);
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Error: Error: Timeout</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/timeoutWithSelector6.png" style="width:100%;" alt="timeoutWithSelector" />
+      <figcaption><p>
+       And that variant also has a cousin that will switch to a specified backup Observable rather than emitting
+       an error upon hitting a timeout condition.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var array = [
+    200,
+    300,
+    350,
+    400
+];
+
+var source = Rx.Observable
+    .for(array, function (x) {
+        return Rx.Observable.timer(x);
+    })
+    .map(function (x, i) { return i; })
+    .timeoutWithSelector(Rx.Observable.timer(250), function (x) {
+        return Rx.Observable.timer(400);
+    }, Rx.Observable.return(42));
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Next: 42
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <p>
+      <code>timeout</code> and <code>timeoutWithSelector</code> are found in each of the following
+      distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.time.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <p>
+      They require one of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin timeout %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Timeout %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP timeout %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>timeout</code>.
+    </p>
+    <p>
+    
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/timeout/timeout.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+Rx\Observable::interval(1000)
+    ->timeout(500)
+    ->subscribe($createStdoutObserver("One second - "), $scheduler);
+
+Rx\Observable::interval(100)
+    ->take(3)
+    ->timeout(500)
+    ->subscribe($createStdoutObserver("100 ms     - "), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+100 ms     - Next value: 0
+100 ms     - Next value: 1
+100 ms     - Next value: 2
+100 ms     - Complete!
+One second - Exception: timeout
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY timeout timeout_with_selector %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala timeout %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift timeout %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,0 +1,186 @@
+---
+layout: documentation
+title: ReactiveX - SubscribeOn operator
+id: subscribeOn
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">SubscribeOn</li>
+</ol>
+
+<h1>SubscribeOn</h1>
+<h3>specify the Scheduler on which an Observable will operate</h3>
+
+<figure>
+ <img src="images/subscribeOn.c.png" style="width:100%;" alt="SubscribeOn" />
+ <figcaption><p>
+  Many implementations of ReactiveX use <a href="../scheduler.html">&ldquo;<code>Scheduler</code>s&rdquo;</a>
+  to govern an Observable&#8217;s transitions between threads in a multi-threaded environment. You can instruct
+  an Observable to do its work on a particular Scheduler by calling the Observable&#8217;s
+  <span class="operator">SubscribeOn</span> operator.
+ </p></figcaption>
+</figure>
+ <p>
+  The <a href="observeon.html"><span class="operator">ObserveOn</span></a> operator is similar, but more
+  limited. It instructs the Observable to send notifications to observers on a specified Scheduler.
+ </p><p>
+  In some implementations there is also an <span class="operator">UnsubscribeOn</span> operator.
+ </p>
+<figure>
+ <img src="images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
+ <figcaption><p>
+  By default, an Observable and the chain of operators that you apply to it will do its work, and will notify
+  its observers, on the same thread on which its <code>Subscribe</code> method is called. The
+  <span class="operator">SubscribeOn</span> operator changes this behavior by specifying a different Scheduler
+  on which the Observable should operate. The <span class="operator">ObserveOn</span> operator specifies a
+  different Scheduler that the Observable will use to send notifications to its observers.
+ </p><p>
+  As shown in this illustration, the <span class="operator">SubscribeOn</span> operator designates which thread
+  the Observable will begin operating on, no matter at what point in the chain of operators that operator is
+  called.  <span class="operator">ObserveOn</span>, on the other hand, affects the thread that the Observable
+  will use <em>below</em> where that operator appears.  For this reason, you may call
+  <span class="operator">ObserveOn</span> multiple times at various points during the chain of Observable
+  operators in order to change on which threads certain of those operators operate.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="../scheduler.html"><code>Scheduler</code></a></li>
+ <li><a href="observeon.html"><span class="operator">ObserveOn</span></a></li>
+ <li><a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers"><cite>Rx Workshop: Schedulers</cite></a></li>
+ <li><a href="http://www.grahamlea.com/2014/07/rxjava-threading-examples/"><cite>RxJava Threading Examples</cite></a> by Graham Lea</li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html#SubscribeOnObserveOn"><cite>Introduction to Rx</cite>: SubscribeOn and ObserveOn</a></li>
+ <li><a href="http://java.dzone.com/articles/async-abstractios-using-rx">Async Abstractions using rx-java</a> by Biju Kunjummen, <cite>DZone</cite></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure subscribe-on unsubscribe-on %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy subscribeOn unsubscribeOn %}
+    <figure class="variant">
+     <img src="images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
+     <figcaption><p>
+      To specify on which Scheduler the Observable should operate, use the <code>subscribeOn</code> operator,
+      passing it the appropriate <code>Scheduler</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribeOn(rx.Scheduler)"><code>subscribeOn(Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <p>
+     To specify which Scheduler observers will use to unsubscribe from an Observable, use the
+     <code>unsubscribeOn</code> operator, passing it the appropriate <code>Scheduler</code>.
+    </p>
+    <ul>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#unsubscribeOn(rx.Scheduler)"><code>unsubscribeOn(Scheduler)</code></a></li>
+    </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava subscribeOn unsubscribeOn %}
+    <figure class="variant">
+     <img src="images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
+     <figcaption><p>
+      To specify on which Scheduler the Observable should operate, use the <code>subscribeOn</code> operator,
+      passing it the appropriate <code>Scheduler</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribeOn(rx.Scheduler)"><code>subscribeOn(Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <p>
+     To specify which Scheduler observers will use to unsubscribe from an Observable, use the
+     <code>unsubscribeOn</code> operator, passing it the appropriate <code>Scheduler</code>.
+    </p>
+    <ul>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#unsubscribeOn(rx.Scheduler)"><code>unsubscribeOn(Scheduler)</code></a></li>
+    </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS subscribeOn %}
+    <figure class="variant">
+     <img src="images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
+     <figcaption><p>
+      To specify on which Scheduler the Observable should operate, use the <code>subscribeOn</code> operator,
+      passing it the appropriate <code>Scheduler</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+/* Change from immediate scheduler to timeout */
+var source = Rx.Observable.return(42, Rx.Scheduler.immediate)
+    .subscribeOn(Rx.Scheduler.timeout);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>subscribeOn</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin subscribeOn unsubscribeOn %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET SubscribeOn SubscribeOnDispatcher %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY subscribe_on %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb subscribe_on %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala subscribeOn unsubscribeOn %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift subscribeOn %}
+     <p>
+      <span style="color:#f00">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

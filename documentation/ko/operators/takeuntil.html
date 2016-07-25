@@ -1,0 +1,224 @@
+---
+layout: documentation
+title: ReactiveX - TakeUntil operator
+id: takeUntil
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">TakeUntil</li>
+</ol>
+
+   <h1>TakeUntil</h1>
+   <h3>discard any items emitted by an Observable after a second Observable emits an item or terminates</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="takeUntil"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">TakeUntil</span> subscribes and begins mirroring the source Observable. It also
+     monitors a second Observable that you provide. If this second Observable emits an item or sends a
+     termination notification, the Observable returned by <span class="operator">TakeUntil</span> stops
+     mirroring the source Observable and terminates.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="skip.html"><span class="operator">Skip</span></a></li>
+    <li><a href="skiplast.html"><span class="operator">SkipLast</span></a></li>
+    <li><a href="skipuntil.html"><span class="operator">SkipUntil</span></a></li>
+    <li><a href="skipwhile.html"><span class="operator">SkipWhile</span></a></li>
+    <li><a href="take.html"><span class="operator">Take</span></a></li>
+    <li><a href="takelast.html"><span class="operator">TakeLast</span></a></li>
+    <li><a href="takewhile.html"><span class="operator">TakeWhile</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipUntilTakeUntil"><cite>Introduction to Rx</cite>: SkipUntil and TakeUntil</a></li>
+    <li><a href="http://rxmarbles.com/#takeUntil">RxMarbles: <code>takeUntil</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp take_until %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy takeUntil %}
+     <figure>
+      <img src="images/takeUntil.png" style="width:100%;" alt="takeUntil" />
+      <figcaption><p>
+       In RxGroovy, this operator is implemented as <code>takeUntil</code>. Note that the second Observable can
+       cause <code>takeUntil</code> to quit emitting items either by emitting an item or by issuing an
+       <code>onError</code> or <code>onCompleted</code> notification.
+      </p><p>
+       <code>takeUntil</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.Observable)"><code>takeUntil(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeUntil.p.png" style="width:100%;" alt="takeUntil" />
+      <figcaption><p>
+       A second version of this operator was released in RxGroovy 1.1. It uses a predicate function that
+       evaluates the items emitted by the source Observable, rather than a second Observable, to terminate the
+       resulting Observable sequence. In this way, it behaves in a similar way to
+       <a href="takewhile.html"><span class="operator">TakeWhile</span></a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.functions.Func1)"><code>takeUntil(Func1)</code> (RxGroovy 1.1)</a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava takeUntil %}
+     <figure>
+      <img src="images/takeUntil.png" style="width:100%;" alt="takeUntil" />
+      <figcaption><p>
+       In RxJava, this operator is implemented as <code>takeUntil</code>. Note that the second Observable can
+       cause <code>takeUntil</code> to quit emitting items either by emitting an item or by issuing an
+       <code>onError</code> or <code>onCompleted</code> notification.
+      </p><p>
+       <code>takeUntil</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.Observable)"><code>takeUntil(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeUntil.p.png" style="width:100%;" alt="takeUntil" />
+      <figcaption><p>
+       A second version of this operator was released in RxJava 1.1. It uses a predicate function that
+       evaluates the items emitted by the source Observable, rather than a second Observable, to terminate the
+       resulting Observable sequence. In this way, it behaves in a similar way to
+       <a href="takewhile.html"><span class="operator">TakeWhile</span></a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeUntil(rx.functions.Func1)"><code>takeUntil(Func1)</code> (RxJava 1.1)</a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS takeUntil %}
+     <figure>
+      <img src="images/takeUntil.png" style="width:100%;" alt="takeUntil" />
+      <figcaption><p>
+       RxJS implements the <code>takeUntil</code> operator. You can pass it either an Observable or a
+       <code>Promise</code> that it will monitor for an item that triggers <code>takeUntil</code> to stop
+       mirroring the source Observable.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .takeUntil(Rx.Observable.timer(5000));
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Completed</pre></div>
+      <p>
+       <code>takeUntil</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <p>
+      There is also a <code>takeUntilWithTime</code> operator to which you can pass an absolute time or an
+      initial duration, but this is described on the <a href="take.html"><span class="operator">Take</span></a>
+      operator page.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin takeUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET TakeUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.PHP takeUntil %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>takeUntil</code>.
+    </p>
+    <p>
+    Returns the values from the source observable sequence until the other observable sequence produces a value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/take.php
+
+$observable = Rx\Observable::fromArray([21, 42, 63]);
+$observable
+    ->take(2)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 21
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY take_until take_until_with_time %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb take_until %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala takeUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift takeUntil %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

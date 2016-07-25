@@ -1,0 +1,324 @@
+---
+layout: documentation
+title: ReactiveX - Reduce operator
+id: reduce
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#mathematical">Mathematical and Aggregate</a></li>
+  <li class="active">Reduce</li>
+</ol>
+
+   <h1>Reduce</h1>
+   <h3>apply a function to each item emitted by an Observable, sequentially, and emit the final value</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="reduce"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Reduce</span> operator applies a function to the first item emitted by the
+     source Observable and then feeds the result of the function back into the function along with the second
+     item emitted by the source Observable, continuing this process until the source Observable emits its
+     final item and completes, whereupon the Observable returned from <span class="operator">Reduce</span>
+     emits the final value returned from the function.
+    </p><p>
+     This sort of operation is sometimes called &ldquo;accumulate,&rdquo; &ldquo;aggregate,&rdquo;
+     &ldquo;compress,&rdquo; &ldquo;fold,&rdquo; or &ldquo;inject&rdquo; in other contexts.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="scan.html"><span class="operator">Scan</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Aggregate"><cite>Introduction to Rx</cite>: Aggregate</a></li>
+    <li><a href="http://rxmarbles.com/#reduce">RxMarbles: <code>reduce</code></a></li>
+    <li><a href="http://blog.joanzapata.com/experimentation-with-rx/">Experimentation with RxJava</a> by Joan Zapata</li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure into iterate reduce %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp iterate reduce %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy collect reduce %}
+     <figure>
+      <img src="images/reduce.png" style="width:100%;" alt="reduce" />
+      <figcaption><p>
+       The <code>reduce</code> operator returns an Observable that applies a function of your choosing to the
+       first item emitted by a source Observable, then feeds the result of that function along with the second
+       item emitted by the source Observable into the same function, then feeds the result of that function
+       along with the third item into the same function, and so on until all items have been emitted by the
+       source Observable. Then it emits the final result from the final call to your function as the sole output
+       from the returned Observable.
+      </p><p>
+       Note that if the source Observable does not emit any items, <code>reduce</code> will fail with an
+       <code>IllegalArgumentException</code>.
+      </p><p>
+       For example, the following code uses <code>reduce</code> to compute, and then emit as an Observable, the
+       sum of the numbers emitted by the source Observable:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5]);
+
+numbers.reduce({ a, b -> a+b }).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+15
+Sequence complete</pre></div>
+      <p>
+       <code>reduce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#reduce(rx.functions.Func2)"><code>reduce(Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
+      <figcaption><p>
+       There is also a version of <code>reduce</code> to which you can pass a seed item in addition to an
+       accumulator function. Note that passing a <code>null</code> seed is not the same as not passing a seed.
+       The behavior will be different. If you pass a seed of <code>null</code>, you will be seeding your
+       reduction with the item <code>null</code>. Note also that if you do pass in a seed, and the source
+       Observable emits no items, reduce will emit the seed and complete normally without error.
+      </p><p>
+       <code>reduce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#reduce(R,%20rx.functions.Func2)"><code>reduce(R,Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      It is a bad idea to use <code>reduce</code> to collect emitted items into a mutable data structure.
+      Instead, use <code>collect</code> for that purpose.
+     </p>
+     <figure>
+      <img src="images/collect.png" style="width:100%;" alt="collect" />
+      <figcaption><p>
+       The <code>collect</code> operator is similar to <code>reduce</code> but is specialized for the purpose
+       of collecting the whole set of items emitted by the source Observable into a single mutable data
+       structure to be emitted by the resulting Observable. Pass it two parameters:
+      </p>
+      <ol>
+       <li>a function that returns the mutable data structure</li>
+       <li>a function that, when given the data structure and an item emitted by the source Observable, modifies the data structure appropriately</li>
+      </ol>
+      <p>
+       <code>collect</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#collect(rx.functions.Func0,%20rx.functions.Action2)"><code>collect(Func0,Action2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava collect reduce %}
+     <figure>
+      <img src="images/reduce.png" style="width:100%;" alt="reduce" />
+      <figcaption><p>
+       The <code>reduce</code> operator returns an Observable that applies a function of your choosing to the
+       first item emitted by a source Observable, then feeds the result of that function along with the second
+       item emitted by the source Observable into the same function, then feeds the result of that function
+       along with the third item into the same function, and so on until all items have been emitted by the
+       source Observable. Then it emits the final result from the final call to your function as the sole output
+       from the returned Observable.
+      </p><p>
+       Note that if the source Observable does not emit any items, <code>reduce</code> will fail with an
+       <code>IllegalArgumentException</code>.
+      </p><p>
+       <code>reduce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#reduce(rx.functions.Func2)"><code>reduce(Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
+      <figcaption><p>
+       There is also a version of <code>reduce</code> to which you can pass a seed item in addition to an
+       accumulator function. Note that passing a <code>null</code> seed is not the same as not passing a seed.
+       The behavior will be different. If you pass a seed of <code>null</code>, you will be seeding your
+       reduction with the item <code>null</code>. Note also that if you do pass in a seed, and the source
+       Observable emits no items, reduce will emit the seed and complete normally without error.
+      </p><p>
+       <code>reduce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#reduce(R,%20rx.functions.Func2)"><code>reduce(R,Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      It is a bad idea to use <code>reduce</code> to collect emitted items into a mutable data structure.
+      Instead, use <code>collect</code> for that purpose.
+     </p>
+     <figure>
+      <img src="images/collect.png" style="width:100%;" alt="collect" />
+      <figcaption><p>
+       The <code>collect</code> operator is similar to <code>reduce</code> but is specialized for the purpose
+       of collecting the whole set of items emitted by the source Observable into a single mutable data
+       structure to be emitted by the resulting Observable. Pass it two parameters:
+      </p>
+      <ol>
+       <li>a function that returns the mutable data structure</li>
+       <li>a function that, when given the data structure and an item emitted by the source Observable, modifies the data structure appropriately</li>
+      </ol>
+      <p>
+       <code>collect</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#collect(rx.functions.Func0,%20rx.functions.Action2)"><code>collect(Func0,Action2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS reduce %}
+     <figure>
+      <img src="images/reduceSeed.png" style="width:100%;" alt="reduce" />
+      <figcaption><p>
+       RxJS implements the <code>reduce</code> operator. Pass it an accumulator function, and, optionally, a
+       seed value to pass into the accumulator function with the first item emitted by the source Observable.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(1, 3)
+    .reduce(function (acc, x) {
+        return acc * x;
+    }, 1)
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 6
+Completed</pre></div>
+      <p><code>reduce</code> is found in each of the following distributions:</p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.aggregates.js</code></li>
+      </ul>
+      <p><code>reduce</code> requires one of the following distributions:</p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin collect reduce %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Aggregate %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP reduce %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>reduce</code>.
+    </p>
+    <p>
+    Applies an accumulator function over an observable sequence, returning the result of the aggregation as a single element in the result sequence. The specified seed value is used as the initial accumulator value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/reduce/reduce.php
+
+//Without a seed
+$source = \Rx\Observable::fromArray(range(1, 3));
+
+$subscription = $source
+    ->reduce(function ($acc, $x) {
+        return $acc + $x;
+    })
+    ->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 6
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/reduce/reduce-with-seed.php
+
+//With a seed
+$source = \Rx\Observable::fromArray(range(1, 3));
+
+$subscription = $source
+    ->reduce(function ($acc, $x) {
+        return $acc * $x;
+    }, 1)
+    ->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 6
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY aggregate expand reduce %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb reduce %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala foldLeft reduce %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift reduce %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,6 +1,7 @@
 ---
 layout: documentation
 title: ReactiveX - Implementing Your Own Operators
+lang: ko
 id: implement-operator
 ---
 
@@ -9,7 +10,7 @@ id: implement-operator
 필요하다면, 원하는 Observable의 연산자를 직접 구현할 수 있다. 이 페이지를 통해 어떻게 연산자를 구현하는지 설명한다.
 
 만약, 구현하려는 연산자가 소스 Observable이 배출하는 항목에 반응하거나 항목을 다른 형태로 변환하는 것이 아니라, Observable을 생성하는 거라면 `Observable`을 직접 구현하려고 애쓰지 말고 대신, 
-[`create( )`](https://github.com/ReactiveX/RxJava/wiki/Creating-Observables) 메서를 사용하는 것이 좋다. 반대로, 소스 Observable이 배출하는 항목에 반응하는 연산자라면 아래 내용을 살펴보자.
+[`create( )`](Operators/ko/create) 메서를 사용하는 것이 좋다. 반대로, 소스 Observable이 배출하는 항목에 반응하는 연산자라면 아래 내용을 살펴보자.
 
 <h1> 표준 RxJava 연산자와 사용자 정의 연산자 체인</h1>
 

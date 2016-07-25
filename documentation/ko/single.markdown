@@ -1,6 +1,7 @@
 ---
 layout: documentation
 title: ReactiveX - Single
+lang: ko
 id: single
 ---
 
@@ -12,7 +13,7 @@ id: single
  Single은 Obvservable의 한 형태이지만, Observable처럼 존재하지 않는 곳에서부터 무한대까지의 임이의 연속된 값들을 배출하는 것과는 달리, 항상 한 가지 값 또는 오류 알림 둘 중 하나만 배출한다.
 </p>
 <p>
- 이런 이유 때문에, Single을 구독할 때는 Observable을 구독할 때 사용하는 세 개의 메서드(<tt>onNext</tt>, <tt>onError</tt>, and <tt>onCompleted</tt>) 대신 다음의 두 메서드만 사용할 수 있다:
+ 이런 이유 때문에, Single을 구독할 때는 Observable을 구독할 때 사용하는 세 개의 메서드(<tt>onNext</tt>, <tt>onError</tt>, 그리고 <tt>onCompleted</tt>) 대신 다음의 두 메서드만 사용할 수 있다:
 </p>
 <dl>
  <dt>onSuccess</dt>
@@ -127,5 +128,5 @@ id: single
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.2s.png" width="100%" />
 <h2>toObservable</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.toObservable.png" width="100%" />
-<h2>zip and zipWith</h2>
+<h2>zip zipWith</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.zip.png" width="100%" />

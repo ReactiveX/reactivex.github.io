@@ -1,0 +1,227 @@
+---
+layout: documentation
+title: ReactiveX - Just operator
+id: just
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Just</li>
+</ol>
+
+<h1>Just</h1>
+<h3>create an Observable that emits a particular item</h3>
+
+<figure>
+ <img src="images/just.c.png" style="width:100%;" alt="Just" />
+ <figcaption><p>
+  The <span class="operator">Just</span> operator converts an item into an Observable that emits
+  that item.
+ </p><p>
+  <span class="operator">Just</span> is similar to <span class="operator">From</span>, but note
+  that <span class="operator">From</span> will dive into an array or an iterable or something of
+  that sort to pull out items to emit, while <span class="operator">Just</span> will simply emit
+  the array or iterable or what-have-you as it is, unchanged, as a single item.
+ </p><p>
+  Note that if you pass <code>null</code> to <span class="operator">Just</span>, it will return
+  an Observable that <em>emits</em> <code>null</code> as an item. Do not make the mistake of
+  assuming that this will return an empty Observable (one that emits no items at all). For that,
+  you will need the <a href="empty-never-throw.html"><span class="operator">Empty</span></a>
+  operator.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="from.html"><span class="operator">From</span></a></li>
+ <li><a href="repeat.html"><span class="operator">Repeat</span></a></li>
+ <li><a href="start.html"><span class="operator">Start</span></a></li>
+ <li><a href="timer.html"><span class="operator">Timer</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableReturn"><cite>Introduction to Rx</cite>: Return</a></li>
+ <li><a href="https://www.youtube.com/watch?v=sDqrlNprY24">RxJava Tutorial 03: Observable from, just, &amp; create methods</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure return %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp just %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy just %}
+    <figure class="variant">
+     <img src="images/just.png" style="width:100%;" alt="just" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>just</code>. It accepts between one and nine
+      items as parameters, and returns an Observable that emits these items in the same order as
+      they are given in the parameter list.
+     </p><p>
+      <code>just</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+// Observable emits "some string" as a single item
+def observableThatEmitsAString = Observable.just("some string"); 
+// Observable emits the list [1, 2, 3, 4, 5] as a single item
+def observableThatEmitsAList = Observable.just([1, 2, 3, 4, 5]); 
+// Observable emits 1, 2, 3, 4, and 5 as distinct items
+def observableThatEmitsSeveralNumbers = Observable.just( 1, 2, 3, 4, 5 );</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#just(T)"><code>just(item)</code></a> (there are also versions that accept between two and nine items as parameters)</li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava just %}
+    <figure class="variant">
+     <img src="images/just.png" style="width:100%;" alt="just" />
+     <figcaption><p>
+      RxJava implements this operator as <code>just</code>. It accepts between one and nine items as
+      parameters, and returns an Observable that emits these items in the same order as they are
+      given in the parameter list.
+     </p><p>
+      <code>just</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3)
+          .subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Sequence complete.</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#just(T)"><code>just(item)</code></a> (there are also versions that accept between two and nine items as parameters)</li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS just return %}
+    <figure class="variant">
+     <img src="images/just.png" style="width:100%;" alt="just" />
+     <figcaption><p>
+      RxJS implements this operator as <code>return</code> and as <code>just</code> (two names for
+      the same operator with the same behavior). It accepts a single item as a parameter and returns
+      an Observable that emits that single item as its sole emission.
+     </p><p>
+      <code>return</code>/<code>just</code> operates by default on the <code>immediate</code>
+      <a href="../scheduler.html">Scheduler</a>, but you can also pass in a Scheduler of your choosing as an
+      optional second parameter, in which case it will operate on that Scheduler instead.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.just(42);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>return</code>/<code>just</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin asObservable just %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Return %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP just %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>just</code>.
+    </p>
+    <p>
+    Returns an observable sequence that contains a single element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/just/just.php
+
+
+$source =  \Rx\Observable::just(42);
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY just return_value %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb just %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala items just :+ %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift just sequenceOf %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

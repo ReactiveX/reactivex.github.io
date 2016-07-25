@@ -1,0 +1,270 @@
+---
+layout: documentation
+title: ReactiveX - Debounce operator
+id: debounce
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">Debounce</li>
+</ol>
+
+   <h1>Debounce</h1>
+   <h3>only emit an item from an Observable if a particular timespan has passed without it emitting another item</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="debounce"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Debounce</span> operator filters out items emitted by the source Observable that
+     are rapidly followed by another emitted item.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="backpressure.html">Backpressure-related Operators</a></li>
+    <li><a href="sample.html"><span class="operator">Sample</span></a></li>
+    <li><a href="window.html"><span class="operator">Window</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Throttle"><cite>Introduction to Rx</cite>: Throttle</a></li>
+    <li><a href="http://rxmarbles.com/#debounce">RxMarbles: <code>debounce</code></a></li>
+    <li><a href="http://rxmarbles.com/#debounceWithSelector">RxMarbles: <code>debounceWithSelector</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc30"><cite>101 Rx Samples</cite>: Throttle &mdash; Simple</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy debounce throttleWithTimeout %}
+     <p>
+      RxGroovy implements this operator as <code>throttleWithTimeout</code> and <code>debounce</code>.
+     </p><p>
+      Note that the last item emitted by the source Observable will be emitted in turn by this operator even if
+      the source Observable&#8217;s <code>onCompleted</code> notification is issued within the time window you
+      specify since that item&#8217;s emission. That is to say: an <code>onCompleted</code> notification will
+      not trigger a throttle.
+     </p>
+     <figure>
+      <img src="images/debounce.png" style="width:100%;" alt="debounce" />
+      <figcaption><p>
+       One variant of <code>throtleWithTimeout</code>/<code>debounce</code> (two names for the same operator
+       variant) throttles at a periodic time interval that you choose by passing in a <code>TimeUnit</code> and
+       a quantity of such units as parameters to the operator.
+      </p><p>
+       This variant operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleWithTimeout(long,%20java.util.concurrent.TimeUnit)"><code>throttleWithTimeout(long,TimeUnit)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(long,%20java.util.concurrent.TimeUnit)"><code>debounce(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleWithTimeout(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>throttleWithTimeout(long,TimeUnit,Scheduler)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>debounce(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/debounce.f.png" style="width:100%;" alt="debounce" />
+      <figcaption><p>
+       There ia also a variant of <code>debounce</code> (that does not have a <code>throttleWithTimeout</code>
+       alias) that throttles the source Observable by applying a function to each item it emits, this function
+       generating an Observable. If the source Observable emits another item before this newly-generated
+       Observable terminates, <code>debounce</code> will suppress the item.
+      </p><p>
+       This variant of <code>debounce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(rx.functions.Func1)"><code>debounce(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava debounce throttleWithTimeout %}
+     <p>
+      RxJava implements this operator as <code>throttleWithTimeout</code> and <code>debounce</code>.
+     </p><p>
+      Note that the last item emitted by the source Observable will be emitted in turn by this operator even if
+      the source Observable&#8217;s <code>onCompleted</code> notification is issued within the time window you
+      specify since that item&#8217;s emission. That is to say: an <code>onCompleted</code> notification will
+      not trigger a throttle.
+     </p>
+     <figure>
+      <img src="images/debounce.png" style="width:100%;" alt="debounce" />
+      <figcaption><p>
+       One variant of <code>throtleWithTimeout</code>/<code>debounce</code> (two names for the same operator
+       variant) throttles at a periodic time interval that you choose by passing in a <code>TimeUnit</code> and
+       a quantity of such units as parameters to the operator.
+      </p><p>
+       This variant operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleWithTimeout(long,%20java.util.concurrent.TimeUnit)"><code>throttleWithTimeout(long,TimeUnit)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(long,%20java.util.concurrent.TimeUnit)"><code>debounce(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleWithTimeout(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>throttleWithTimeout(long,TimeUnit,Scheduler)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>debounce(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/debounce.f.png" style="width:100%;" alt="debounce" />
+      <figcaption><p>
+       There ia also a variant of <code>debounce</code> (that does not have a <code>throttleWithTimeout</code>
+       alias) that throttles the source Observable by applying a function to each item it emits, this function
+       generating an Observable. If the source Observable emits another item before this newly-generated
+       Observable terminates, <code>debounce</code> will suppress the item.
+      </p><p>
+       This variant of <code>debounce</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#debounce(rx.functions.Func1)"><code>debounce(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS debounce debounceWithSelector throttleWithTimeout %}
+     <figure>
+      <img src="images/debounce.png" style="width:100%;" alt="debounce" />
+      <figcaption><p>
+       The first variant &mdash; called either <code>debounce</code> or <code>throttleWithTimeout</code> &mdash;
+       accepts as its parameter a duration, defined as an integer number of milliseconds, and it suppresses any
+       emitted items that are followed by other emitted items during that duration since the first item&#8217;s
+       emission.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var times = [
+    { value: 0, time: 100 },
+    { value: 1, time: 600 },
+    { value: 2, time: 400 },
+    { value: 3, time: 700 },
+    { value: 4, time: 200 }
+];
+
+// Delay each item by time and project value;
+var source = Rx.Observable.from(times)
+  .flatMap(function (item) {
+    return Rx.Observable
+      .of(item.value)
+      .delay(item.time);
+  })
+  .debounce(500 /* ms */);
+
+var subscription = source.subscribe(
+  function (x) {
+    console.log('Next: %s', x);
+  },
+  function (err) {
+    console.log('Error: %s', err);
+  },
+  function () {
+    console.log('Completed');
+  });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 2
+Next: 4
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/debounceWithSelector.png" style="width:100%;" alt="debounceWithSelector" />
+      <figcaption><p>
+       The <code>debounceWithSelector</code> operator throttles the source Observable by applying a function to
+       each item it emits, this function generating an Observable. If the source Observable emits another item
+       before this newly-generated Observable terminates, <code>debounce</code> will suppress the item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var array = [
+    800,
+    700,
+    600,
+    500
+];
+
+var source = Rx.Observable.for(
+    array,
+    function (x) {
+        return Rx.Observable.timer(x)
+    })
+    .map(function(x, i) { return i; })
+    .throttleWithSelector(function (x) {
+        return Rx.Observable.timer(700);
+    });
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 3
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <p>
+      <code>debounce</code> and <code>debounceWithSelector</code> are found in each of the following
+      distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin debounce throttleWithTimeout %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Throttle %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY debounce throttle_with_selector throttle_with_timeout %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala debounce throttleWithTimeout %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift debounce throttle %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

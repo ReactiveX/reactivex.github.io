@@ -1,0 +1,548 @@
+---
+layout: documentation
+title: ReactiveX - To operator
+id: to
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#transforming">Transforming</a></li>
+  <li class="active">To</li>
+</ol>
+
+<h1>To</h1>
+<h3>convert an Observable into another object or data structure</h3>
+
+<figure>
+ <img src="images/to.c.png" style="width:100%;" alt="To" />
+ <figcaption><p>
+  The various language-specific implementations of ReactiveX have a variety of operators that you can use to
+  convert an Observable, or a sequence of items emitted by an Observable, into another variety of object or
+  data structure. Some of these block until the Observable terminates and then produce an equivalent object
+  or data structure; others return an Observable that emits such an object or data structure.
+ </p></figcaption>
+</figure>
+<p>
+ In some implementations of ReactiveX, there is also an operator that converts an Observable into a
+ &ldquo;Blocking&rdquo; Observable. A Blocking Observable extends the ordinary Observable by providing a set of
+ methods, operating on the items emitted by the Observable, that block. Some of the
+ <span class="operator">To</span> operators are in this Blocking Obsevable set of extended operations.
+</p>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/10_LeavingTheMonad.html#LeavingTheMonad"><cite>Introduction to Rx</cite>: Leaving the monad</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure BlockingObservable.blocking interpose BlockingObservable.into BlockingObservable.seq sort sort-by sorted-list-by %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp as_blocking %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy BlockingObservable.from BlockingObservable.getIterator nest toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
+    <figure class="variant">
+     <img src="images/B.getIterator.png" style="width:100%;" alt="getIterator" />
+     <figcaption><p>
+      The <code>getIterator</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
+      to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
+      of either the <code>BlockingObservable.from</code> method or the <code>Observable.toBlocking</code>
+      operator.
+     </p><p>
+      This operator converts an Observable into an <code>Iterator</code> with which you can iterate over the
+      set of items emitted by the source Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#getIterator()"><code>BlockingObservable.getIterator()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/B.toFuture.png" style="width:100%;" alt="toFuture" />
+     <figcaption><p>
+      The <code>toFuture</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
+      to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
+      of either the <code>BlockingObservable.from</code> method or the <code>Observable.toBlocking</code>
+      operator.
+     </p><p>
+      This operator converts an Observable into an <code>Future</code> that will return the single item emitted
+      by the source Observable. If the source Observable emits more than one item, the <code>Future</code> will
+      receive an <code>IllegalArgumentException</code>; if it completes after emitting no items, the
+      <code>Future</code> will receive a <code>NoSuchElementException</code>.
+     </p><p>
+      If you want to convert an Observable that may emit multiple items into a <code>Future</code>, try
+      something like this: <code>myObservable.toList().toBlocking().toFuture()</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#toFuture()"><code>BlockingObservable.toFuture()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/B.toIterable.png" style="width:100%;" alt="toIterable" />
+     <figcaption><p>
+      The <code>toIterable</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
+      to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
+      of either the <code>BlockingObservable.from</code> method or the <code>Observable.toBlocking</code>
+      operator.
+     </p><p>
+      This operator converts an Observable into an <code>Iterable</code> with which you can iterate over the
+      set of items emitted by the source Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#toIterable()"><code>BlockingObservable.toIterable()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toList.png" style="width:100%;" alt="toList" />
+     <figcaption><p>
+      Normally, an Observable that emits multiple items will do so by invoking its observer’s
+      <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
+      compose a list of these multiple items and then to invoke the observer’s <code>onNext</code> method only
+      once, passing it the entire list, by applying the <code>toList</code> operator to the Observable.
+     </p><p>
+      For example, the following rather pointless code takes a list of integers, converts it into an Observable,
+      then converts that Observable into one that emits the original list as a single item:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+numbers.toList().subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+Sequence complete</pre></div>
+     <p>
+      If the source Observable invokes <code>onCompleted</code> before emitting any items, the Observable
+      returned by <code>toList</code> will emit an empty list before invoking <code>onCompleted</code>. If the
+      source Observable invokes <code>onError</code>, the Observable returned by <code>toList</code> will
+      immediately invoke the <code>onError</code> methods of its observers.
+     </p><p>
+      <code>toList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toList()"><code>toList()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toMap.png" style="width:100%;" alt="toMap" />
+     <figcaption><p>
+      The <code>toMap</code> operator collects the items emitted by the source Observable into a map (by
+      default, a <code>HashMap</code>, but you can optionally supply a factory function that generates another
+      <code>Map</code> variety) and then emits that map. You supply a function that generates the key for each
+      emitted item. You may also optionally supply a function that converts an emitted item into the value to be
+      stored in the map (by default, the item itself is this value).
+     </p><p>
+      <code>toMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1)"><code>toMap(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1,%20rx.functions.Func1)"><code>toMap(Func1,Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0)"><code>toMap(Func1,Func1,Func0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toMultiMap.png" style="width:100%;" alt="toMultiMap" />
+     <figcaption><p>
+      The <code>toMultiMap</code> operator is similar to <code>toMap</code> except that the map it generates is
+      also an <code>ArrayList</code> (by default; or you can pass an optional factory method as a fourth
+      parameter by which you generate the variety of collection you prefer).
+     </p><p>
+      <code>toMultiMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1)"><code>toMultiMap(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1,%20rx.functions.Func1)"><code>toMultiMap(Func1,Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0)"><code>toMultiMap(Func1,Func1,Func0)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0,%20rx.functions.Func1)"><code>toMultiMap(Func1,Func1,Func0,Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toSortedList.png" style="width:100%;" alt="toSortedList" />
+     <figcaption><p>
+      The <code>toSortedList</code> operator behaves much like <code>toList</code> except that it sorts the
+      resulting list. By default it sorts the list naturally in ascending order by means of the
+      <code>Comparable</code> interface. If any of the items emitted by the Observable does not support
+      <code>Comparable</code> with respect to the type of every other item emitted by the Observable,
+      <code>toSortedList</code> will throw an exception. However, you can change this default behavior by also
+      passing in to <code>toSortedList</code> a function that takes as its parameters two items and returns a
+      number; <code>toSortedList</code> will then use that function instead of <code>Comparable</code> to sort
+      the items.
+     </p><p>
+      For example, the following code takes a list of unsorted integers, converts it into an Observable, then
+      converts that Observable into one that emits the original list in sorted form as a single item:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+numbers = Observable.from([8, 6, 4, 2, 1, 3, 5, 7, 9]);
+
+numbers.toSortedList().subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+Sequence complete</pre></div>
+     <p>
+      Here is an example that provides its own sorting function: in this case, one that sorts numbers according
+      to how close they are to the number 5.
+     </p>
+     <div class="code groovy"><pre>
+numbers = Observable.from([8, 6, 4, 2, 1, 3, 5, 7, 9]);
+
+numbers.toSortedList({ n, m -> Math.abs(5-n) - Math.abs(5-m) }).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+[5, 6, 4, 3, 7, 8, 2, 1, 9]
+Sequence complete</pre></div>
+     <p>
+      <code>toSortedList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList()"><code>toSortedList()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList(rx.functions.Func2)"><code>toSortedList(Func2)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/nest.png" style="width:100%;" alt="nest" />
+     <figcaption><p>
+      RxGroovy also has a <code>nest</code> operator that has one particular purpose: it converts a source
+      Observable into an Observable that emits that source Observable as its sole item.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava BlockingObservable.from BlockingObservable.getIterator nest toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
+    <figure class="variant">
+     <img src="images/B.getIterator.png" style="width:100%;" alt="getIterator" />
+     <figcaption><p>
+      The <code>getIterator</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
+      to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
+      of either the <code>BlockingObservable.from</code> method or the <code>Observable.toBlocking</code>
+      operator.
+     </p><p>
+      This operator converts an Observable into an <code>Iterator</code> with which you can iterate over the
+      set of items emitted by the source Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#getIterator()"><code>BlockingObservable.getIterator()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/B.toFuture.png" style="width:100%;" alt="toFuture" />
+     <figcaption><p>
+      The <code>toFuture</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
+      to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
+      of either the <code>BlockingObservable.from</code> method or the <code>Observable.toBlocking</code>
+      operator.
+     </p><p>
+      This operator converts an Observable into an <code>Future</code> that will return the single item emitted
+      by the source Observable. If the source Observable emits more than one item, the <code>Future</code> will
+      receive an <code>IllegalArgumentException</code>; if it completes after emitting no items, the
+      <code>Future</code> will receive a <code>NoSuchElementException</code>.
+     </p><p>
+      If you want to convert an Observable that may emit multiple items into a <code>Future</code>, try
+      something like this: <code>myObservable.toList().toBlocking().toFuture()</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#toFuture()"><code>BlockingObservable.toFuture()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/B.toIterable.png" style="width:100%;" alt="toIterable" />
+     <figcaption><p>
+      The <code>toIterable</code> operator applies to the <code>BlockingObservable</code> subclass, so in order
+      to use it, you must first convert your source Observable into a <code>BlockingObservable</code> by means
+      of either the <code>BlockingObservable.from</code> method or the <code>Observable.toBlocking</code>
+      operator.
+     </p><p>
+      This operator converts an Observable into an <code>Iterable</code> with which you can iterate over the
+      set of items emitted by the source Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#toIterable()"><code>BlockingObservable.toIterable()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toList.png" style="width:100%;" alt="toList" />
+     <figcaption><p>
+      Normally, an Observable that emits multiple items will do so by invoking its observer’s
+      <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
+      compose a list of these multiple items and then to invoke the observer’s <code>onNext</code> method only
+      once, passing it the entire list, by applying the <code>toList</code> operator to the Observable.
+     </p><p>
+      If the source Observable invokes <code>onCompleted</code> before emitting any items, the Observable
+      returned by <code>toList</code> will emit an empty list before invoking <code>onCompleted</code>. If the
+      source Observable invokes <code>onError</code>, the Observable returned by <code>toList</code> will
+      immediately invoke the <code>onError</code> methods of its observers.
+     </p><p>
+      <code>toList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toList()"><code>toList()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toMap.png" style="width:100%;" alt="toMap" />
+     <figcaption><p>
+      The <code>toMap</code> operator collects the items emitted by the source Observable into a map (by
+      default, a <code>HashMap</code>, but you can optionally supply a factory function that generates another
+      <code>Map</code> variety) and then emits that map. You supply a function that generates the key for each
+      emitted item. You may also optionally supply a function that converts an emitted item into the value to be
+      stored in the map (by default, the item itself is this value).
+     </p><p>
+      <code>toMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1)"><code>toMap(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1,%20rx.functions.Func1)"><code>toMap(Func1,Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0)"><code>toMap(Func1,Func1,Func0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toMultiMap.png" style="width:100%;" alt="toMultiMap" />
+     <figcaption><p>
+      The <code>toMultiMap</code> operator is similar to <code>toMap</code> except that the map it generates is
+      also an <code>ArrayList</code> (by default; or you can pass an optional factory method as a fourth
+      parameter by which you generate the variety of collection you prefer).
+     </p><p>
+      <code>toMultiMap</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1)"><code>toMultiMap(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1,%20rx.functions.Func1)"><code>toMultiMap(Func1,Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0)"><code>toMultiMap(Func1,Func1,Func0)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toMultimap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0,%20rx.functions.Func1)"><code>toMultiMap(Func1,Func1,Func0,Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toSortedList.png" style="width:100%;" alt="toSortedList" />
+     <figcaption><p>
+      The <code>toSortedList</code> operator behaves much like <code>toList</code> except that it sorts the
+      resulting list. By default it sorts the list naturally in ascending order by means of the
+      <code>Comparable</code> interface. If any of the items emitted by the Observable does not support
+      <code>Comparable</code> with respect to the type of every other item emitted by the Observable,
+      <code>toSortedList</code> will throw an exception. However, you can change this default behavior by also
+      passing in to <code>toSortedList</code> a function that takes as its parameters two items and returns a
+      number; <code>toSortedList</code> will then use that function instead of <code>Comparable</code> to sort
+      the items.
+     </p><p>
+      <code>toSortedList</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList()"><code>toSortedList()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toSortedList(rx.functions.Func2)"><code>toSortedList(Func2)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/nest.png" style="width:100%;" alt="nest" />
+     <figcaption><p>
+      RxJava also has a <code>nest</code> operator that has one particular purpose: it converts a source
+      Observable into an Observable that emits that source Observable as its sole item.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS toArray toMap toSet %}
+    <figure class="variant">
+     <img src="images/toArray.png" style="width:100%;" alt="toArray" />
+     <figcaption><p>
+      Normally, an Observable that emits multiple items will do so by invoking its observer’s
+      <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
+      compose an array of these multiple items and then to invoke the observer’s <code>onNext</code> method only
+      once, passing it the entire array, by applying the <code>toArray</code> operator to the Observable.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .take(5)
+    .toArray();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: [0,1,2,3,4]
+Completed</pre></div>
+     <p><code>toArray</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toMap.png" style="width:100%;" alt="toMap" />
+     <figcaption><p>
+      The <code>toMap</code> operator collects the items emitted by the source Observable into a
+      <code>Map</code> and then emits that map. You supply a function that generates the key for each emitted
+      item. You may also optionally supply a function that converts an emitted item into the value to be stored
+      in the map (by default, the item itself is this value).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .take(5)
+    .toMap(function (x) { return x * 2; }, function (x) { return x * 4; });
+
+var subscription = source.subscribe(
+    function (x) {
+        var arr = [];
+        x.forEach(function (value, key) { arr.push(value, key); })
+        console.log('Next: ' + arr);
+    },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: [0,0,2,4,4,8,6,12,8,16]
+Completed</pre></div>
+     <p><code>toMap</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toSet.png" style="width:100%;" alt="toSet" />
+     <figcaption><p>
+      Normally, an Observable that emits multiple items will do so by invoking its observer’s
+      <code>onNext</code> method for each such item. You can change this behavior, instructing the Observable to
+      compose a <code>Set</code> of these multiple items and then to invoke the observer’s <code>onNext</code>
+      method only once, passing it the entire <code>Set</code>, by applying the <code>toSet</code> operator to
+      the Observable.
+     </p><p>
+      Note that this only works in an ES6 environment or polyfilled.
+     </p>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .take(5)
+    .toSet();
+
+var subscription = source.subscribe(
+    function (x) {
+        var arr = [];
+        x.forEach(function (i) { arr.push(i); })
+        console.log('Next: ' + arr);
+    },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: [0,1,2,3,4]
+Completed</pre></div>
+     <p><code>toSet</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin BlockingObservable.from BlockingObservable.getIterator toBlocking BlockingObservable.toFuture BlockingObservable.toIterable toList toMap toMultiMap toSortedList %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET GetEnumerator ToArray ToDictionary ToEnumerable ToEvent ToEventPattern ToList ToLookup ToTask %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP toArray %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>toArray</code>.
+    </p>
+    <p>
+    Creates an observable sequence containing a single element which is an array containing all the elements of the source sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/toArray/toArray.php
+
+$source = \Rx\Observable::fromArray([1, 2, 3, 4]);
+
+$observer = $createStdoutObserver();
+
+$subscription = $source->toArray()
+    ->subscribe(new CallbackObserver(
+        function ($array) use ($observer) {
+            $observer->onNext(json_encode($array));
+        },
+        [$observer, "onError"],
+        [$observer, "onCompleted"]
+    ));
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: [1,2,3,4]
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY BlockingObservable.to_iterable to_array to_blocking to_dict to_future to_iterable to_list to_marbles to_set %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb to_a to_h %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala nest to toArray toBlocking toBuffer BlockingObservable.toFuture toIndexedSeq BlockingObservable.toIterable toIterable toIterator BlockingObservable.toList toList toMap toMultiMap toSet toStream toTraversable toVector %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift toArray %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

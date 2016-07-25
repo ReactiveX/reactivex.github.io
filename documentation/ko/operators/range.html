@@ -1,0 +1,195 @@
+---
+layout: documentation
+title: ReactiveX - Range operator
+id: range
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Range</li>
+</ol>
+
+<h1>Range</h1>
+<h3>create an Observable that emits a particular range of sequential integers</h3>
+
+<figure>
+ <img src="images/range.c.png" style="width:100%;" alt="Range" />
+ <figcaption><p>
+  The <span class="operator">Range</span> operator emits a range of sequential integers, in order,
+  where you select the start of the range and its length.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="interval.html"><span class="operator">Interval</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableRange"><cite>Introduction to Rx</cite>: Range</a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc40"><cite>101 Rx Samples</cite>: Range</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure range %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp range %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy range %}
+    <figure class="variant">
+     <img src="images/range.png" style="width:100%;" alt="range" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>range</code>. It accepts as its parameters the
+      start value of the range and the number of items in the range. If you set that number of
+      items to zero, the resulting Observable will emit no values (if you set it to a negative
+      number, <code>range</code> will cause an exception).
+     </p><p>
+      <code>range</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+// myObservable emits the integers 5, 6, and 7 before completing:
+def myObservable = Observable.range(5, 3);</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#range(int,%20int)"><code>range(int,int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#range(int,%20int%20rx.Scheduler)"><code>range(int,int,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava range %}
+    <figure class="variant">
+     <img src="images/range.png" style="width:100%;" alt="range" />
+     <figcaption><p>
+      RxJava implements this operator as <code>range</code>. It accepts as its parameters the
+      start value of the range and the number of items in the range. If you set that number of
+      items to zero, the resulting Observable will emit no values (if you set it to a negative
+      number, <code>range</code> will cause an exception).
+     </p><p>
+      <code>range</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#range(int,%20int)"><code>range(int,int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#range(int,%20int%20rx.Scheduler)"><code>range(int,int,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS range %}
+    <figure class="variant">
+     <img src="images/range.png" style="width:100%;" alt="range" />
+     <figcaption><p>
+      RxJS implements this operator as <code>range</code>. It accepts as its parameters the
+      start value of the range and the number of items in the range.
+     </p><p>
+      <code>range</code> operates by default on the <code>currentThread</code>
+      <a href="../scheduler.html">Scheduler</a>, but there is a variant that allows you to set the Scheduler by
+      passing one in as the optional third parameter.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+     <p>
+      <code>range</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin range %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Range %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP range %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>range</code>.
+    </p>
+    <p>
+    Generates an observable sequence of integral numbers within a specified range, using the specified scheduler to send out observer messages.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/range/range.php
+
+$observable = \Rx\Observable::range(0, 3);
+
+$observable->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY range %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb range %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift range %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

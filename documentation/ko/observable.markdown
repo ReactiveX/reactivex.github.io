@@ -1,6 +1,7 @@
 ---
 layout: documentation
 title: ReactiveX - Observable
+lang: ko
 id: observable
 ---
 
@@ -135,14 +136,14 @@ myObservable.subscribe(myOnNext, myError, myComplete);
  예를 들면, (<code>onNext</code>, <code>onCompleted</code>, <code>onError</code> 같은) <code>on<i>Event</i></code> 네이밍 패턴이 존재하는데,
  어떤 문맥에서는 이런 이름들이 어떤 핸들러가 등록 되었는지를 가리키는 메서드로 사용되기도 한다. 하지만, ReactiveX에서는 이벤트 핸들러 자체를 의미한다.
 </p>
-<h1>&ldquo;뜨거운(Hot)&rdquo; 그리고 &ldquo;차가운(Cold)&rdquo; Observable</h1>
+<h1>&ldquo;뜨거운(Hot)&rdquo; , &ldquo;차가운(Cold)&rdquo; Observable</h1>
 <p>
  그럼 Observable은 연속된 항목들을 언제 배출할까? 이 질문에 대한 대답은, "Observable에 따라 다르다"이다. &ldquo;뜨거운&rdquo; Observable은 생성되자 마자 항목들을 배출하기도 하기 때문에, 이 Observable을 구독하는 옵저버들은 어떤 경우에는 항목들이 배출되는 중간부터 Observable을 구독할 수 있다. 반대로, &ldquo;차가운&rdquo; Observable은 옵저버가 구독할 때 까지 항목을 배출하지 않기 때문에 이 Observable을 구독하는 옵저버는 Observable이 배출하는 항목 전체를 구독할 수 있도록 보장 받는다.
 </p>
 <p>
  ReactiveX의 구현 코드 중에는 &ldquo;연결 가능한(Connectable)&rdquo; Observable이라고 불리는 Observable 객체가 존재하는데, 이 Observable은 옵저버의 구독 여부와는 상관 없이 자신의 <a href="operators/connect.html"><span class="operator">Connect</span></a> 메서드가 호출되기 전까지 항목들을 배출하지 않는다.
 </p>
-<h1>Observable 연산자를 통한 구성</h1>
+<h1>Observable 연산자를 활용한 구성</h1>
 <p>
  Observable과 옵저버는 그저 ReactiveX의 시작점일 뿐이다. 우리가 알고 있는 표준 옵저버 패턴을 조금 확장한 것이며, 연속된 이벤트를 처리하는데 있어서는 싱글 콜백보다는 훨씬 더 효과적인 방법을 제공한다.
 </p>
@@ -159,34 +160,34 @@ myObservable.subscribe(myOnNext, myError, myComplete);
  <dt><a href="../operators.html#creating">Observable 생성</a></dt>
   <dd><code>Create</code>, <code>Defer</code>, <code>Empty</code>/<code>Never</code>/<code>Throw</code>,
       <code>From</code>, <code>Interval</code>, <code>Just</code>, <code>Range</code>, <code>Repeat</code>,
-      <code>Start</code>, and <code>Timer</code></dd>
+      <code>Start</code>, 그리고 <code>Timer</code></dd>
  <dt><a href="../operators.html#transforming">Observable 항목 변환</a></dt>
-  <dd><code>Buffer</code>, <code>FlatMap</code>, <code>GroupBy</code>, <code>Map</code>, <code>Scan</code>, and
+  <dd><code>Buffer</code>, <code>FlatMap</code>, <code>GroupBy</code>, <code>Map</code>, <code>Scan</code>, 그리고
       <code>Window</code></dd>
  <dt><a href="../operators.html#filtering">Observable 필터</a></dt>
   <dd><code>Debounce</code>, <code>Distinct</code>, <code>ElementAt</code>, <code>Filter</code>,
       <code>First</code>, <code>IgnoreElements</code>, <code>Last</code>, <code>Sample</code>,
-      <code>Skip</code>, <code>SkipLast</code>, <code>Take</code>, and <code>TakeLast</code></dd>
+      <code>Skip</code>, <code>SkipLast</code>, <code>Take</code>, 그리고 <code>TakeLast</code></dd>
  <dt><a href="../operators.html#combining">Observable 결합</a></dt>
   <dd><code>And</code>/<code>Then</code>/<code>When</code>, <code>CombineLatest</code>, <code>Join</code>,
-      <code>Merge</code>, <code>StartWith</code>, <code>Switch</code>, and <code>Zip</code></dd>
+      <code>Merge</code>, <code>StartWith</code>, <code>Switch</code>, 그리고 <code>Zip</code></dd>
  <dt><a href="../operators.html#error">오류 처리 연산자</a></dt>
-  <dd><code>Catch</code> and <code>Retry</code></dd>
+  <dd><code>Catch</code> 그리고 <code>Retry</code></dd>
  <dt><a href="../operators.html#utility">유틸리티 연산자</a></dt>
   <dd><code>Delay</code>, <code>Do</code>, <code>Materialize</code>/<code>Dematerialize</code>,
       <code>ObserveOn</code>, <code>Serialize</code>, <code>Subscribe</code>, <code>SubscribeOn</code>,
-      <code>TimeInterval</code>, <code>Timeout</code>, <code>Timestamp</code>, and <code>Using</code></dd>
+      <code>TimeInterval</code>, <code>Timeout</code>, <code>Timestamp</code>, 그리고 <code>Using</code></dd>
  <dt><a href="../operators.html#conditional">조건 및 불린(Boolean) 연산자</a></dt>
   <dd><code>All</code>, <code>Amb</code>, <code>Contains</code>, <code>DefaultIfEmpty</code>,
       <code>SequenceEqual</code>, <code>SkipUntil</code>, <code>SkipWhile</code>, <code>TakeUntil</code>,
-      and <code>TakeWhile</code></dd>
+      그리고 <code>TakeWhile</code></dd>
  <dt><a href="../operators.html#mathematical">수학과 조합 연산자</a></dt>
   <dd><code>Average</code>, <code>Concat</code>, <code>Count</code>, <code>Max</code>, <code>Min</code>,
-      <code>Reduce</code>, and <code>Sum</code></dd>
+      <code>Reduce</code>, 그리고 <code>Sum</code></dd>
  <dt><a href="../operators.html#conversion">변환 Observable</a></dt>
   <dd><code>To</code></dd>
  <dt><a href="../operators.html#connectable">연결 가능한 Observable 연산자</a></dt>
-  <dd><code>Connect</code>, <code>Publish</code>, <code>RefCount</code>, and <code>Replay</code></dd>
+  <dd><code>Connect</code>, <code>Publish</code>, <code>RefCount</code>, 그리고 <code>Replay</code></dd>
  <dt><a href="../operators/backpressure.html">역압(backpressure) 연산자</a></dt>
   <dd>특정 제어흐름 원칙들을 적용하는 다양한 연산자들</dd>
 </dl>

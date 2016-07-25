@@ -1,0 +1,280 @@
+---
+layout: documentation
+title: ReactiveX - Filter operator
+id: filter
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">Filter</li>
+</ol>
+
+   <h1>Filter</h1>
+   <h3>emit only those items from an Observable that pass a predicate test</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="filter"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Filter</span> operator filters an Observable by only allowing items through
+     that pass a test that you specify in the form of a predicate function.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Where"><cite>Introduction to Rx</cite>: Where</a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#CastAndOfType"><cite>Introduction to Rx</cite>: Cast and OfType</a></li>
+    <li><a href="http://rxmarbles.com/#filter">RxMarbles: <code>filter</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure filter %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp filter %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy filter ofType %}
+     <figure>
+      <img src="images/filter.png" style="width:100%;" alt="filter" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>filter</code>. You can filter an Observable, discarding any
+       items that do not meet some test, by passing a filtering function into the <code>filter</code> operator.
+       For example, the following code filters a list of integers, emitting only those that are even (that is,
+       where the remainder from dividing the number by two is zero):
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+numbers.filter({ 0 == (it % 2) }).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+2
+4
+6
+8
+Sequence complete</pre></div>
+      <p>
+       <code>filter</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#filter(rx.functions.Func1)"><code>filter(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/ofClass.png" style="width:100%;" alt="ofType" />
+      <figcaption><p>
+       There is also a specialized form of the <span class="operator">Filter</span> operator in RxGroovy that
+       filters an Observable so that it only emits items of a particular class.
+      </p><p>
+       <code>ofType</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ofType(java.lang.Class)"><code>ofType(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava filter ofType %}
+     <figure>
+      <img src="images/filter.png" style="width:100%;" alt="filter" />
+      <figcaption><p>
+       RxJava implements this operator as <code>filter</code>.
+      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3, 4, 5)
+          .filter(new Func1&lt;Integer, Boolean&gt;() {
+              @Override
+              public Boolean call(Integer item) {
+                return( item &lt; 4 );
+              }
+          }).subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Sequence complete.</pre></div>
+      <p>
+       <code>filter</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#filter(rx.functions.Func1)"><code>filter(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/ofClass.png" style="width:100%;" alt="ofType" />
+      <figcaption><p>
+       There is also a specialized form of the <span class="operator">Filter</span> operator in RxGroovy that
+       filters an Observable so that it only emits items of a particular class.
+      </p><p>
+       <code>ofType</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ofType(java.lang.Class)"><code>ofType(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS filter where %}
+     <figure>
+      <img src="images/filter.png" style="width:100%;" alt="filter" />
+      <figcaption><p>
+       RxJS implements this operator under two names, but with identical behavior: <code>filter</code> and
+       <code>where</code>. This operator takes two parameters: the predicate function, and an optional object
+       that will represent that function&#8217;s &ldquo;<code>this</code>&rdquo; context when it executes.
+      </p><p>
+       The predicate function itself takes three arguments:
+      </p>
+      <ol>
+       <li>the item from the source Observable to be, or not be, filtered</li>
+       <li>the zero-based index of this item in the source Observable&#8217;s sequence</li>
+       <li>the source Observable object</li>
+      </ol>
+      <p>
+       Write the predicate function so that it returns <code>true</code> for those items you want to pass
+       through the filter to the next observer, and <code>false</code> for those items you want the filter to
+       block and suppress.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 5)
+  .filter(function (x, idx, obs) {
+    return x % 2 === 0;
+  });
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 2
+Next: 4
+Completed</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>filter</code> and <code>where</code> are found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin filter ofType %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET OfType Where %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP filter where %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>filter</code>.
+    </p>
+    <p>
+    Emit only those items from an Observable that pass a predicate test.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/filter/filter.php
+
+$observable = Rx\Observable::fromArray([21, 42, 84]);
+$observable
+    ->filter(function ($elem) {
+        return $elem >= 42;
+    })
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 84
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>where</code>.
+    </p>
+    <p>
+    Alias for filter
+    </p>
+
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY filter slice where %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb select select_with_index %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala collect filter filterNot BlockingObservable.withFilter withFilter%}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift filter %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

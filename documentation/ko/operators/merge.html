@@ -1,0 +1,742 @@
+---
+layout: documentation
+title: ReactiveX - Merge operator
+id: merge
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">Merge</li>
+</ol>
+
+   <h1>Merge</h1>
+   <h3>combine multiple Observables into one by merging their emissions</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="merge"></rx-marbles>
+    <figcaption><p>
+     You can combine the output of multiple Observables so that they act like a single Observable, by
+     using the <span class="operator">Merge</span> operator.
+    </p><p>
+     Merge may interleave the items emitted by the merged Observables (a similar operator,
+     <a href="concat.html"><span class="operator">Concat</span></a>, does not interleave items, but
+     emits all of each source Observable&#8217;s items in turn before beginning to emit items from
+     the next source Observable).
+    </p><p>
+     As shown in the above diagram, an <code>onError</code> notification from any of the source
+     Observables will immediately be passed through to observers and will terminate the merged
+     Observable.
+    </p></figcaption>
+   </figure>
+   <figure>
+    <img src="images/mergeDelayError.C.png" style="width:100%;" alt="MergeDelayError" />
+    <figcaption><p>
+     In many ReactiveX implementations there is a second operator,
+     <span class="operator">MergeDelayError</span>, that changes this behavior &mdash; reserving
+     <code>onError</code> notifications until all of the merged Observables complete and only then
+     passing it along to the observers:
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="concat.html"><span class="operator">Concat</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#Merge"><cite>Introduction to Rx</cite>: Merge</a></li>
+    <li><a href="http://rxmarbles.com/#merge">RxMarbles: <code>merge</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc47"><cite>101 Rx Samples</cite>: Merge</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure interleave interleave* merge merge* merge-delay-error merge-delay-error* %}
+     <p>
+      In RxClojure there are six operators of concern here:
+     </p>
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+      <figcaption><p>
+       <code>merge</code> converts two or more Observables into a single Observable that emits all
+       of the items emitted by all of those Observables.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/mergeX.png" style="width:100%;" alt="merge*" />
+      <figcaption><p>
+       <code>merge*</code> converts an Observable that emits Observables into a single Observable
+       that emits all of the items emitted by all of the emitted Observables.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/merge-delay-error.png" style="width:100%;" alt="merge-delay-error" />
+      <figcaption><p>
+       <code>merge-delay-error</code> is like <code>merge</code>, but will emit all items from all
+       of the merged Observables even if one or more of those Observables terminates with an
+       <code>onError</code> notification while emissions are still pending.
+      </p><p>
+       <code>merge-delay-error*</code> is a similarly-modified version of <code>merge*</code>.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/interleaveX.png" style="width:100%;" alt="interleave*" />
+      <figcaption><p>
+       <code>interleave</code> is like <code>merge</code>, but more deliberate about how it
+       interleaves the items from the source Observables: the resulting Observable emits the first
+       item emitted by the first source Observable, then the first item emitted by the second source
+       Observable, and so forth, and having reached the last source Observable, then emits the
+       second item emitted by the first source Observable, the second item emitted by the second
+       source Observable, and so forth, until all of the source Observables terminate.
+      </p><p>
+       <code>interleave*</code> is similar but operates on an Observable of Observables.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp merge %}
+     <p>
+      RxCpp implements this operator as <code>merge</code>.
+     </p>
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+     </figure>
+<!-- I think we need more here, but it's too cryptic/undocumented for me to figure out easily -->
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy merge mergeDelayError mergeWith %}
+     <p>
+      RxGroovy implements this operator as <code>merge</code>, <code>mergeWith</code>, and
+      <code>mergeDelayError</code>.
+     </p>
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+      <figcaption><p>
+       For example, the following code merges the <code>odds</code> and <code>evens</code> into a
+       single Observable. (The <code>subscribeOn</code> operator makes <code>odds</code> operate
+       on a different thread from <code>evens</code> so that the two Observables may both emit items
+       at the same time, to demonstrate how <span class="operator">Merge</span> may interleave these
+       items.)
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+odds  = Observable.from([1, 3, 5, 7]).subscribeOn(someScheduler);
+evens = Observable.from([2, 4, 6]);
+
+Observable.merge(odds,evens).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+1
+3
+2
+5
+4
+7
+6
+Sequence complete</pre></div>
+      <p>
+       Instead of passing multiple Observables (up to nine) into <code>merge</code>, you could also
+       pass in a <code>List&lt;&gt;</code> (or other Iterable) of Observables, an Array of
+       Observables, or even an Observable that emits Observables, and <code>merge</code> will merge
+       their output into the output of a single Observable:
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable)"><code>merge(Iterable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable,%20int)"><code>merge(Iterable,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable%5B%5D)"><code>merge(Observable[])</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable%5B%5D,%20int)"><code>merge(Observable[],&nbsp;int)</code> (RxGroovy 1.1)</a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable,%20rx.Observable)"><code>merge(Observable,&nbsp;Observable)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/merge.io.png" style="width:100%;" alt="merge(List)" />
+      <figcaption><p>
+       If you pass in an Observable of Observables, you have the option of also passing in a value
+       indicating to <code>merge</code> the maximum number of those Observables it should attempt to
+       be subscribed to simultaneously. Once it reaches this maximum subscription count, it will
+       refrain from subscribing to any other Observables emitted by the source Observable until such
+       time as one of the already-subscribed-to Observables issues an <code>onCompleted</code>
+       notification.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable)"><code>merge(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable,%20int)"><code>merge(Observable&lt;Observable&gt;,int)</code> (RxGroovy 1.1)</a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example, in the
+      code sample above, instead of writing <code>Observable.merge(odds,evens)</code> you could also
+      write <code>odds.mergeWith(evens)</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeWith(rx.Observable)"><code>mergeWith(Observable)</code></a></li>
+     </ul>
+     <p>
+      If any of the individual Observables passed into <code>merge</code> terminates with an
+      <code>onError</code> notification, the Observable produced by <code>merge</code> itself will
+      immediately terminate with an <code>onError</code> notification. If you would prefer a merge
+      that continues emitting the results of the remaining, error-free Observables before reporting
+      the error, use <code>mergeDelayError</code> instead.
+     </p>
+     <figure>
+      <img src="images/mergeDelayError.png" style="width:100%;" alt="mergeDelayError" />
+      <figcaption><p>
+       <code>mergeDelayError</code> behaves much like <code>merge</code>. The exception is when one
+       of the Observables being merged terminates with an <code>onError</code> notification. If this
+       happens with <code>merge</code>, the merged Observable will immediately issue an
+       <code>onError</code> notification and terminate. <code>mergeDelayError</code>, on the other
+       hand, will hold off on reporting the error until it has given any other non-error-producing
+       Observables that it is merging a chance to finish emitting their items, and it will emit
+       those itself, and will only terminate with an <code>onError</code> notification when all of
+       the other merged Observables have finished.
+      </p><p>
+       Because it is possible that more than one of the merged Observables encountered an error,
+       <code>mergeDelayError</code> may pass information about <em>multiple</em> errors in the
+       <code>onError</code> notification (it will never invoke the observer&#8217;s
+       <code>onError</code> method more than once). For this reason, if you want to know the nature
+       of these errors, you should write your observers&#8217; <code>onError</code> methods so that
+       they accept a parameter of the class <code>CompositeException</code>.
+      </p><p>
+       <code>mergeDelayError</code> has fewer variants. You cannot pass it an Iterable or Array of
+       Observables, but you can pass it an Observable that emits Observables or between one and
+       nine individual Observables as parameters. There is not an instance method version of
+       <code>mergeDelayError</code> as there is for <code>merge</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeDelayError(rx.Observable)"><code>mergeDelayError(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeDelayError(rx.Observable,%20rx.Observable)"><code>mergeDelayError(Observable,Observable)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava merge mergeDelayError mergeWith %}
+     <p>
+      RxJava implements this operator as <code>merge</code>, <code>mergeWith</code>, and
+      <code>mergeDelayError</code>.
+     </p>
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable&lt;Integer&gt; odds = Observable.just(1, 3, 5).subscribeOn(someScheduler);
+Observable&lt;Integer&gt; evens = Observable.just(2, 4, 6);
+
+Observable.merge(odds, evens)
+          .subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 3
+Next: 5
+Next: 2
+Next: 4
+Next: 6
+Sequence complete.</pre></div>
+      <figcaption><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable)"><code>merge(Iterable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(java.lang.Iterable,%20int)"><code>merge(Iterable,int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable%5B%5D)"><code>merge(Observable[])</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable%5B%5D,%20int)"><code>merge(Observable[],&nbsp;int)</code> (RxJava 1.1)</a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable,%20rx.Observable)"><code>merge(Observable,&nbsp;Observable)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      Instead of passing multiple Observables (up to nine) into <code>merge</code>, you could also
+      pass in a <code>List&lt;&gt;</code> (or other Iterable) of Observables, an Array of
+      Observables, or even an Observable that emits Observables, and <code>merge</code> will merge
+      their output into the output of a single Observable:
+     </p>
+     <figure>
+      <img src="images/merge.io.png" style="width:100%;" alt="merge(List)" />
+      <figcaption><p>
+       If you pass in an Observable of Observables, you have the option of also passing in a value
+       indicating to <code>merge</code> the maximum number of those Observables it should attempt to
+       be subscribed to simultaneously. Once it reaches this maximum subscription count, it will
+       refrain from subscribing to any other Observables emitted by the source Observable until such
+       time as one of the already-subscribed-to Observables issues an <code>onCompleted</code>
+       notification.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable)"><code>merge(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#merge(rx.Observable,%20int)"><code>merge(Observable&lt;Observable&gt;,&nbsp;int)</code> (RxJava 1.1)</a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example, 
+      instead of writing <code>Observable.merge(odds,evens)</code> you could also write
+      <code>odds.mergeWith(evens)</code>.
+     </p><p>
+      If any of the individual Observables passed into <code>merge</code> terminates with an
+      <code>onError</code> notification, the Observable produced by <code>merge</code> itself will
+      immediately terminate with an <code>onError</code> notification. If you would prefer a merge
+      that continues emitting the results of the remaining, error-free Observables before reporting
+      the error, use <code>mergeDelayError</code> instead.
+     </p>
+     <figure>
+      <img src="images/mergeDelayError.png" style="width:100%;" alt="mergeDelayError" />
+      <figcaption><p>
+       <code>mergeDelayError</code> behaves much like <code>merge</code>. The exception is when one
+       of the Observables being merged terminates with an <code>onError</code> notification. If this
+       happens with <code>merge</code>, the merged Observable will immediately issue an
+       <code>onError</code> notification and terminate. <code>mergeDelayError</code>, on the other
+       hand, will hold off on reporting the error until it has given any other non-error-producing
+       Observables that it is merging a chance to finish emitting their items, and it will emit
+       those itself, and will only terminate with an <code>onError</code> notification when all of
+       the other merged Observables have finished.
+      </p><p>
+       Because it is possible that more than one of the merged Observables encountered an error,
+       <code>mergeDelayError</code> may pass information about <em>multiple</em> errors in the
+       <code>onError</code> notification (it will never invoke the observer&#8217;s
+       <code>onError</code> method more than once). For this reason, if you want to know the nature
+       of these errors, you should write your observers&#8217; <code>onError</code> methods so that
+       they accept a parameter of the class <code>CompositeException</code>.
+      </p><p>
+       <code>mergeDelayError</code> has fewer variants. You cannot pass it an Iterable or Array of
+       Observables, but you can pass it an Observable that emits Observables or between one and
+       nine individual Observables as parameters. There is not an instance method version of
+       <code>mergeDelayError</code> as there is for <code>merge</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeDelayError(rx.Observable)"><code>mergeDelayError(Observable&lt;Observable&gt;)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#mergeDelayError(rx.Observable,%20rx.Observable)"><code>mergeDelayError(Observable,Observable)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS merge mergeAll mergeDelayError %}
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+      <figcaption><p>
+       The first variant of <code>merge</code> is an instance operator that takes a variable number
+       of Observables as parameters, merging each of these Observables with the source (instance)
+       Observables to produce its single output Observable.
+      </p>
+      <p>
+       This first variant of <code>merge</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      <p>
+       The second variant of <code>merge</code> is a prototype (class) operator that accepts two
+       parameters. The second of these is an Observable that emits the Observables you want to merge.
+       The first is a number that indicates the maximum number of these emitted Observables that you
+       want <code>merge</code> to attempt to be subscribed to at any moment. Once it reaches this
+       maximum subscription count, it will refrain from subscribing to any other Observables emitted
+       by the source Observable until such time as one of the already-subscribed-to Observables
+       issues an <code>onCompleted</code> notification.
+      </p><p>
+       This second variant of <code>merge</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/mergeAll.png" style="width:100%;" alt="mergeAll" />
+      <figcaption><p>
+       <code>mergeAll</code> is like this second variant of <code>merge</code> except that it does
+       not allow you to set this maximum subscription count. It only takes the single parameter of
+       an Observable of Observables.
+      </p>
+      <p>
+       <code>mergeAll</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/mergeDelayError.png" style="width:100%;" alt="mergeDelayError" />
+      <figcaption><p>
+       If any of the individual Observables passed into <code>merge</code> or <code>mergeAll</code> terminates
+       with an <code>onError</code> notification, the resulting Observable will immediately terminate with an
+       <code>onError</code> notification. If you would prefer a merge that continues emitting the results of the
+       remaining, error-free Observables before reporting the error, use <code>mergeDelayError</code> instead.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source1 = Rx.Observable.of(1,2,3);
+var source2 = Rx.Observable.throwError(new Error('whoops!'));
+var source3 = Rx.Observable.of(4,5,6);
+
+var merged = Rx.Observable.mergeDelayError(source1, source2, source3);
+
+var subscription = merged.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); }
+  function () { console.log('Completed' } );</pre></div>
+      <div class="output"><pre>
+1
+2
+3
+4
+5
+6
+Error: Error: whoops!</pre></div>
+      <p>
+       <code>mergeDelayError</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin merge mergeDelayError mergeWith %}
+     <p>
+      RxKotlin implements this operator as <code>merge</code>, <code>mergeWith</code>, and
+      <code>mergeDelayError</code>.
+     </p>
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+     </figure>
+     <p>
+      Instead of passing multiple Observables (up to nine) into <code>merge</code>, you could also
+      pass in a <code>List&lt;&gt;</code> (or other Iterable) of Observables, an Array of
+      Observables, or even an Observable that emits Observables, and <code>merge</code> will merge
+      their output into the output of a single Observable:
+     </p>
+     <figure>
+      <img src="images/merge.io.png" style="width:100%;" alt="merge(List)" />
+      <figcaption><p>
+       If you pass in an Observable of Observables, you have the option of also passing in a value
+       indicating to <code>merge</code> the maximum number of those Observables it should attempt to
+       be subscribed to simultaneously. Once it reaches this maximum subscription count, it will
+       refrain from subscribing to any other Observables emitted by the source Observable until such
+       time as one of the already-subscribed-to Observables issues an <code>onCompleted</code>
+       notification.
+      </p></figcaption>
+     </figure>
+     <p>
+      The instance version of <code>merge</code> is <code>mergeWith</code>, so, for example,
+      instead of writing <code>Observable.merge(odds,evens)</code> you could also write
+      <code>odds.mergeWith(evens)</code>.
+     </p><p>
+      If any of the individual Observables passed into <code>merge</code> terminates with an
+      <code>onError</code> notification, the Observable produced by <code>merge</code> itself will
+      immediately terminate with an <code>onError</code> notification. If you would prefer a merge
+      that continues emitting the results of the remaining, error-free Observables before reporting
+      the error, use <code>mergeDelayError</code> instead.
+     </p>
+     <figure>
+      <img src="images/mergeDelayError.png" style="width:100%;" alt="mergeDelayError" />
+      <figcaption><p>
+       <code>mergeDelayError</code> behaves much like <code>merge</code>. The exception is when one
+       of the Observables being merged terminates with an <code>onError</code> notification. If this
+       happens with <code>merge</code>, the merged Observable will immediately issue an
+       <code>onError</code> notification and terminate. <code>mergeDelayError</code>, on the other
+       hand, will hold off on reporting the error until it has given any other non-error-producing
+       Observables that it is merging a chance to finish emitting their items, and it will emit
+       those itself, and will only terminate with an <code>onError</code> notification when all of
+       the other merged Observables have finished.
+      </p><p>
+       Because it is possible that more than one of the merged Observables encountered an error,
+       <code>mergeDelayError</code> may pass information about <em>multiple</em> errors in the
+       <code>onError</code> notification (it will never invoke the observer&#8217;s
+       <code>onError</code> method more than once). For this reason, if you want to know the nature
+       of these errors, you should write your observers&#8217; <code>onError</code> methods so that
+       they accept a parameter of the class <code>CompositeException</code>.
+      </p><p>
+       <code>mergeDelayError</code> has fewer variants. You cannot pass it an Iterable or Array of
+       Observables, but you can pass it an Observable that emits Observables or between one and
+       nine individual Observables as parameters. There is not an instance method version of
+       <code>mergeDelayError</code> as there is for <code>merge</code>.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Merge %}
+     <p>
+      Rx.NET implements this operator as <code>Merge</code>.
+     </p>
+     <figure>
+      <img src="images/merge.C.png" style="width:100%;" alt="Merge" />
+      <figcaption><p>
+       You can pass <code>Merge</code> an Array of Observables, an Enumerable of Observables, an
+       Observable of Observables, or two individual Observables.
+      </p><p>
+       If you pass an Enumerable or Observable of Observables, you have the option of also passing
+       in an integer indicating the maximum number of those Observables it should attempt to be
+       subscribed to simultaneously. Once it reaches this maximum subscription count, it will
+       refrain from subscribing to any other Observables emitted by the source Observable until such
+       time as one of the already-subscribed-to Observables issues an <code>onCompleted</code>
+       notification.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP merge mergeAll %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>merge</code>.
+    </p>
+    <p>
+    Combine an Observable together with another Observable by merging their emissions into a single Observable.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/merge/merge.php
+
+$loop      = React\EventLoop\Factory::create();
+$scheduler = new Rx\Scheduler\EventLoopScheduler($loop);
+
+$observable       = Rx\Observable::just(42)->repeat();
+$otherObservable  = Rx\Observable::just(21)->repeat();
+$mergedObservable = $observable
+    ->merge($otherObservable)
+    ->take(10);
+
+$disposable = $mergedObservable->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 21
+Next value: 42
+Next value: 21
+Next value: 42
+Next value: 21
+Next value: 42
+Next value: 21
+Next value: 42
+Next value: 21
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>mergeAll</code>.
+    </p>
+    <p>
+    Merges an observable sequence of observables into an observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/merge/merge-all.php
+
+$loop      = React\EventLoop\Factory::create();
+$scheduler = new Rx\Scheduler\EventLoopScheduler($loop);
+
+$sources = Rx\Observable::range(0, 3)
+    ->map(function ($x) {
+        return Rx\Observable::range($x, 3);
+    });
+
+$merged = \Rx\Observable::mergeAll($sources);
+
+$disposable = $merged->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 1
+Next value: 2
+Next value: 2
+Next value: 2
+Next value: 3
+Next value: 3
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY merge merge_all merge_observable %}
+     <p>
+      RxPY implements this operator as <code>merge</code> and 
+      <code>merge_all</code>/<code>merge_observable</code>.
+     </p>
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+      <figcaption><p>
+       You can either pass <code>merge</code> a set of Observables as individual parameters, or as
+       a single parameter containing an array of those Observables.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/merge_all.png" style="width:100%;" alt="merge_all" />
+      <figcaption><p>
+       <code>merge_all</code> and its alias <code>merge_observable</code> take as their single
+       parameter an Observable that emits Observables. They merge the emissions of all of these
+       Observables to create their own Observable.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb merge merge_all merge_concurrent %}
+     <p>
+      Rx.rb implements this operator as <code>merge</code>, <code>merge_concurrent</code>, and
+      <code>merge_all</code>.
+     </p>
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+      <figcaption><p>
+       <code>merge</code> merges a second Observable into the one it is operating on to create a
+       new merged Observable.
+      </p></figcaption>
+     </figure>
+     <p>
+      <code>merge_concurrent</code> operates on an Observable that emits Observables, merging the
+      emissions from each of these Observables into its own emissions. You can optionally pass it
+      an integer parameter indicating how many of these emitted Observables
+      <code>merge_concurrent</code> should try to subscribe to concurrently. Once it reaches this
+      maximum subscription count, it will refrain from subscribing to any other Observables emitted
+      by the source Observable until such time as one of the already-subscribed-to Observables
+      issues an <code>onCompleted</code> notification. The default is 1, which makes it equivalent
+      to <code>merge_all</code>.
+     </p>
+     <figure>
+      <img src="images/merge_all.png" style="width:100%;" alt="merge_all" />
+      <figcaption><p>
+       <code>merge_all</code> is like <code>merge_concurrent(1)</code>. It subscribes to each
+       emitted Observable one at a time, mirroring its emissions as its own, and waiting to
+       subscribe to the next Observable until the present one terminates with an
+       <code>onCompleted</code> notification. In this respect it is more like a
+       <span class="operator">Concat</span> variant.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala flatten flattenDelayError merge mergeDelayError %}
+     <p>
+      RxScala implements this operator as <code>flatten</code>, <code>flattenDelayError</code>,
+      <code>merge</code>, and <code>mergeDelayError</code>.
+     </p>
+     <figure>
+      <img src="images/merge.png" style="width:100%;" alt="merge" />
+      <figcaption><p>
+       <code>merge</code> takes a second Observable as a parameter and merges that Observable with
+       the one the <code>merge</code> operator is applied to in order to create a new output
+       Observable.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/mergeDelayError.png" style="width:100%;" alt="mergeDelayError" />
+      <figcaption><p>
+       <code>mergeDelayError</code> is similar to <code>merge</code> except that it will always
+       emit all items from both Observables even if one of the Observables terminates with an
+       <code>onError</code> notification before the other Observable has finished emitting items.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/flatten.png" style="width:100%;" alt="flatten" />
+      <figcaption><p>
+       <code>flatten</code> takes as its parameter an Observable that emits Observables. It merges
+       the items emitted by each of these Observables to create its own single Observable sequence.
+       A variant of this operator allows you to pass in an <code>Int</code> indicating the maximum
+       number of these emitted Observables you want <code>flatten</code> to try to be subscribed to
+       at any time. It it hits this maximum subscription count, it will refrain from subscribing to
+       any other Observables emitted by the source Observable until such time as one of the
+       already-subscribed-to Observables issues an <code>onCompleted</code> notification.
+      </p><p>
+       <code>flattenDelayError</code> is similar to <code>flatten</code> except that it will always
+       emit all items from all of the emitted Observables even if one or more of those Observables
+       terminates with an <code>onError</code> notification before the other Observables have
+       finished emitting items.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift merge %}
+     <p>
+       RxSwift implements this operator as <code>merge</code>.
+     </p>
+     <figure>
+       <img src="images/merge.png" style="width: 100%" alt="merge" />
+       <figcaption><p>
+         <code>merge</code> takes as its parameter an Observable that emits Observables. It merges
+         the items emitted by each of these Observables to create its own single Observable sequence.
+       </p>
+       <p>
+         A variant of this operator <code>merge(maxConcurrent:)</code> allows you to pass in an
+         <code>Int</code> indicating the maximum number of these emitted Observables you want
+         <code>merge</code> to try to be subscribed to at any time. If it hits this maximum
+         subscription count, it will refrain from subscribing to any other Observables emitted by
+         the source Observable until such time as one of the already-subscribed-to Observables
+         issues an <code>onCompleted</code> notification.
+       </p>
+       <h4>Sample Code</h4>
+       <div class="code swift"><pre>
+let subject1 = PublishSubject<Int>()
+let subject2 = PublishSubject<Int>()
+
+Observable.of(subject1, subject2)
+   .merge()
+   .subscribe {
+       print($0)
+   }
+
+subject1.on(.Next(10))
+subject1.on(.Next(11))
+subject1.on(.Next(12))
+subject2.on(.Next(20))
+subject2.on(.Next(21))
+subject1.on(.Next(14))
+subject1.on(.Completed)
+subject2.on(.Next(22))
+subject2.on(.Completed)</pre></div>
+       <div class="output"><pre>
+Next(10)
+Next(11)
+Next(12)
+Next(20)
+Next(21)
+Next(14)
+Next(22)
+Completed</pre></div>
+     </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+</div>

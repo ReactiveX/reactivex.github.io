@@ -1,0 +1,449 @@
+---
+layout: documentation
+title: ReactiveX - Retry operator
+id: retry
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#error">Error Handling</a></li>
+  <li class="active">Retry</li>
+</ol>
+
+   <h1>Retry</h1>
+   <h3>if a source Observable emits an error, resubscribe to it in the hopes that it will complete
+       without error</h3>
+
+   <figure>
+    <img src="images/retry.C.png" style="width:100%;" alt="Retry" />
+    <figcaption><p>
+     The <span class="operator">Retry</span> operator responds to an <code>onError</code>
+     notification from the source Observable by not passing that call through to its observers, but
+     instead by resubscribing to the source Observable and giving it another opportunity to complete
+     its sequence without error. <span class="operator">Retry</span> always passes
+     <code>onNext</code> notifications through to its observers, even from sequences that terminate
+     with an error, so this can cause duplicate emissions (as shown in the diagram above).
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="catch.html"><span class="operator">Catch</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/11_AdvancedErrorHandling.html#Retry"><cite>Introduction to Rx</cite>: Retry</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+     <p>
+      RxClojure does not implement the <span class="operator">Retry</span> operator.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp retry %}
+     <p>
+      RxCpp implements this operator as <code>retry</code>:
+     </p>
+     <figure>
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
+      <figcaption><p>
+       <code>retry</code> takes a single argument, a count of the number of times it should try
+       resubscribing to the source Observable when it encounters errors. If this count is exceeded,
+       <code>retry</code> will not attempt to resubscribe and will instead pass the
+       <code>onError</code> notification to its observers.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy retry retryWhen %}
+     <p>
+      RxGroovy has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
+     </p>
+     <figure>
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       times it should try to resubscribe to the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe again and will
+       instead pass the latest <code>onError</code> notification to its observers.
+      </p><p>
+       A third variant of <code>retry</code> takes a predicate function as a parameter. You write
+       this function to accept two arguments: an Integer count of how many retries have taken place
+       thusfar, and a Throwable indicating the error that caused the <code>onError</code>
+       notification. This function returns a Boolean to indicate whether or not <code>retry</code>
+       should resubscribe to and mirror the source Observable. If it does not, then
+       <code>retry</code> passes the latest <code>onError</code> notification to its observers.
+      </p><p>
+       <code>retry</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry()"><code>retry()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry(long)"><code>retry(long)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry(rx.functions.Func2)"><code>retry(Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/retryWhen.f.png" style="width:100%;" alt="retryWhen" />
+      <figcaption><p>
+       The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
+       not to resubscribe to and mirror the source Observable by passing the Throwable from the
+       <code>onError</code> notification to a function that generates a second Observable, and
+       observes its result to determine what to do. If that result is an emitted item,
+       <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if
+       that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
+       notification on to its observers and terminates.
+      </p><p>
+       <code>retryWhen</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>, and there is also a version that accepts a Scheduler as a
+       parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1)"><code>retryWhen(Func1)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1,%20rx.Scheduler)"><code>retryWhen(Func1,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava retry retryWhen %}
+     <p>
+      RxJava has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
+     </p>
+     <figure>
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       times it should try to resubscribe to the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe again and will
+       instead pass the latest <code>onError</code> notification to its observers.
+      </p><p>
+       A third variant of <code>retry</code> takes a predicate function as a parameter. You write
+       this function to accept two arguments: an Integer count of how many retries have taken place
+       thusfar, and a Throwable indicating the error that caused the <code>onError</code>
+       notification. This function returns a Boolean to indicate whether or not <code>retry</code>
+       should resubscribe to and mirror the source Observable. If it does not, then
+       <code>retry</code> passes the latest <code>onError</code> notification to its observers.
+      </p><p>
+       <code>retry</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry()"><code>retry()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry(long)"><code>retry(long)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retry(rx.functions.Func2)"><code>retry(Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/retryWhen.f.png" style="width:100%;" alt="retryWhen" />
+      <figcaption><p>
+       The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
+       not to resubscribe to and mirror the source Observable by passing the Throwable from the
+       <code>onError</code> notification to a function that generates a second Observable, and
+       observes its result to determine what to do. If that result is an emitted item,
+       <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if that
+       result is an <code>onError</code> notification, <code>retryWhen</code> passes this
+       notification on to its observers and terminates.
+      </p><p>
+       <code>retryWhen</code> by default operates on the <code>trampoline</code>
+       <a href="../scheduler.html">Scheduler</a>, and there is also a version that accepts a Scheduler as a
+       parameter.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code java"><pre>
+Observable.create((Subscriber&lt;? super String&gt; s) -&gt; {
+      System.out.println("subscribing");
+      s.onError(new RuntimeException("always fails"));
+  }).retryWhen(attempts -&gt; {
+      return attempts.zipWith(Observable.range(1, 3), (n, i) -&gt; i).flatMap(i -&gt; {
+          System.out.println("delay retry by " + i + " second(s)");
+          return Observable.timer(i, TimeUnit.SECONDS);
+      });
+  }).toBlocking().forEach(System.out::println);</pre></div>
+      <div class="output"><pre>
+subscribing
+delay retry by 1 second(s)
+subscribing
+delay retry by 2 second(s)
+subscribing
+delay retry by 3 second(s)
+subscribing</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1)"><code>retryWhen(Func1)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#retryWhen(rx.functions.Func1,%20rx.Scheduler)"><code>retryWhen(Func1,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS retry %}
+     <p>
+      RxJS implements this operator as <code>retry</code>.
+     </p>
+     <figure>
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       <code>onError</code> notification it should be willing to accept before it too fails and
+       passes the <code>onError</code> to its observers. For example, <code>retry(2)</code> means
+       that <code>retry</code> will resubscribe to and mirror the source Observable the first time
+       it receives an <code>onError</code> notification, but will terminate with an error the second
+       time this happens.
+      </p></figcaption>
+     </figure>
+     <p>
+      <code>retry</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin retry retryWhen %}
+     <p>
+      RxKotlin has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
+     </p>
+     <figure>
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       times it should try to resubscribe to the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe again and will
+       instead pass the latest <code>onError</code> notification to its observers.
+      </p><p>
+       A third variant of <code>retry</code> takes a predicate function as a parameter. You write
+       this function to accept two arguments: an Integer count of how many retries have taken place
+       thusfar, and a Throwable indicating the error that caused the <code>onError</code>
+       notification. This function returns a Boolean to indicate whether or not <code>retry</code>
+       should resubscribe to and mirror the source Observable. If it does not, then
+       <code>retry</code> passes the latest <code>onError</code> notification to its observers.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/retryWhen.f.png" style="width:100%;" alt="retryWhen" />
+      <figcaption><p>
+       The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
+       not to resubscribe to and mirror the source Observable by passing the Throwable from the
+       <code>onError</code> notification to a function that generates a second Observable, and
+       observes its result to determine what to do. If that result is an emitted item,
+       <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if
+       that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
+       notification on to its observers and terminates.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Retry %}
+     <p>
+      Rx.NET implements this operator as <code>Retry</code>.
+     </p>
+     <figure>
+      <img src="images/retry.C.png" style="width:100%;" alt="Retry" />
+      <figcaption><p>
+       One variant of <code>Retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>Retry</code> takes a single parameter: a count of the number of
+       <code>onError</code> notification it should be willing to accept before it too fails and
+       passes the <code>onError</code> to its observers. For example, <code>Retry(2)</code> means
+       that <code>Retry</code> will resubscribe to and mirror the source Observable the first time
+       it receives an <code>onError</code> notification, but will terminate with an error the second
+       time this happens.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP retry retryWhen %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>retry</code>.
+    </p>
+    <p>
+    Repeats the source observable sequence the specified number of times or until it successfully terminates. If the retry count is not specified, it retries indefinitely. Note if you encounter an error and want it to retry once, then you must use ->retry(2).
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/retry/retry.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$count = 0;
+
+$observable = Rx\Observable::interval(1000, $scheduler)
+    ->flatMap(function ($x) use (&$count) {
+        if (++$count < 2) {
+            return Rx\Observable::error(new \Exception("Something"));
+        }
+        return Rx\Observable::just(42);
+    })
+    ->retry(3)
+    ->take(1);
+
+$observable->subscribe($stdoutObserver);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>retryWhen</code>.
+    </p>
+    <p>
+    Repeats the source observable sequence on error when the notifier emits a next value. If the source observable errors and the notifier completes, it will complete the source sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/retry/retryWhen.php
+
+$loop      = new \React\EventLoop\StreamSelectLoop();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::interval(1000)
+    ->map(function ($n) {
+        if ($n === 2) {
+            throw new Exception();
+        }
+        return $n;
+    })
+    ->retryWhen(function ($errors) {
+        return $errors->delay(200);
+    })
+    ->take(6);
+
+$subscription = $source->subscribe($createStdoutObserver(), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 0
+Next value: 1
+Next value: 0
+Next value: 1
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY retry %}
+     <p>
+      RxPY implements this operator as <code>retry</code>:
+     </p>
+     <figure>
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
+      <figcaption><p>
+       <code>retry</code> takes a single optional parameter, a count of the number of times it
+       should try resubscribing to and mirroring the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe and will instead
+       pass the <code>onError</code> notification to its observers. If you omit this parameter,
+       <code>retry</code> will attempt to resubscribe and mirror indefinitely, no matter how many
+       <code>onError</code> notifications it receives.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb retry retry_infinitely %}
+     <p>
+      Rx.rb has two versions of this operator: <code>retry</code> and <code>retry_infinitely</code>.
+     </p>
+     <figure>
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
+      <figcaption><p>
+       <code>retry</code> takes a single optional parameter, a count of the number of times it
+       should try resubscribing to and mirroring the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe and will instead
+       pass the <code>onError</code> notification to its observers.
+      </p></figcaption>
+     </figure>
+     <p>
+      <code>retryInfinitely</code>, on the other hand, will attempt to resubscribe to and mirror the
+      source Observable indefinitely, no matter how many <code>onError</code> notifications it
+      receives.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala retry retryWhen %}
+     <p>
+      RxScala has two versions of this operator: <code>retry</code> and <code>retryWhen</code>.
+     </p>
+     <figure>
+      <img src="images/retry.png" style="width:100%;" alt="retry" />
+      <figcaption><p>
+       One variant of <code>retry</code> takes no parameters. It will continue to resubscribe to and
+       mirror the source Observable no matter how many <code>onError</code> notifications it
+       receives.
+      </p><p>
+       Another variant of <code>retry</code> takes a single parameter: a count of the number of
+       times it should try to resubscribe to the source Observable when it encounters errors. If
+       this count is exceeded, <code>retry</code> will not attempt to resubscribe again and will
+       instead pass the latest <code>onError</code> notification to its observers.
+      </p><p>
+       A third variant of <code>retry</code> takes a predicate function as a parameter. You write
+       this function to accept two arguments: an Int count of how many retries have taken place
+       thusfar, and a Throwable indicating the error that caused the <code>onError</code>
+       notification. This function returns a Boolean to indicate whether or not <code>retry</code>
+       should resubscribe to and mirror the source Observable. If it does not, then
+       <code>retry</code> passes the latest <code>onError</code> notification to its observers.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/retryWhen.f.png" style="width:100%;" alt="retryWhen" />
+      <figcaption><p>
+       The <code>retryWhen</code> operator is similar to <code>retry</code> but decides whether or
+       not to resubscribe to and mirror the source Observable by passing the Throwable from the
+       <code>onError</code> notification to a function that generates a second Observable, and
+       observes its result to determine what to do. If that result is an emitted item,
+       <code>retryWhen</code> resubscribes to and mirrors the source and the process repeats; if
+       that result is an <code>onError</code> notification, <code>retryWhen</code> passes this
+       notification on to its observers and terminates.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift retry retryWhen %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

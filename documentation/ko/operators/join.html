@@ -1,0 +1,283 @@
+---
+layout: documentation
+title: ReactiveX - Join operator
+id: join
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">Join</li>
+</ol>
+
+<h1>Join</h1>
+<h3>combine items emitted by two Observables whenever an item from one Observable is emitted during a time window defined according to an item emitted by the other Observable</h3>
+
+<figure>
+ <img src="images/join.c.png" style="width:100%;" alt="Join" />
+ <figcaption><p>
+  The <code>Join</code> operator combines the items emitted by two Observables, and selects which items to
+  combine based on duration-windows that you define on a per-item basis. You implement these windows as
+  Observables whose lifespans begin with each item emitted by either Observable. When such a window-defining
+  Observable either emits an item or completes, the window for the item it is associated with closes. So long as
+  an item&#8217;s window is open, it will combine with any item emitted by the other Observable. You define the
+  function by which the items combine.
+ </p></figcaption>
+</figure>
+
+<figure>
+ <img src="images/groupJoin.c.png" style="width:100%;" alt="GroupJoin" />
+ <figcaption><p>
+  Most ReactiveX implementations that have a <code>Join</code> operator also have a <code>GroupJoin</code>
+  operator that is similar, except that the function you define to combine items emitted by the two Observables
+  pairs individual items emitted by the source Observable not with an item from the second Observable, but with
+  an Observable that emits items from the second Observable that fall in the same window.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="combinelatest.html"><span class="operator">CombineLatest</span></a></li>
+ <li><a href="zip.html"><span class="operator">Zip</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/17_SequencesOfCoincidence.html#Join"><cite>Introduction to Rx</cite>: Join</a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/17_SequencesOfCoincidence.html#GroupJoin"><cite>Introduction to Rx</cite>: GroupJoin</a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc39"><cite>101 Rx Samples</cite>: GroupJoin &mdash; Joins two streams by matching by one of their attributes</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy join groupJoin %}
+    <figure class="variant">
+     <img src="images/join_.png" style="width:100%;" alt="join" />
+     <figcaption><p>
+      The <code>join</code> operator takes four parameters:
+     </p>
+     <ol>
+      <li>the second Observable to combine with the source Observable</li>
+      <li>a function that accepts an item from the source Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the second Observable</li>
+      <li>a function that accepts an item from the second Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the first Observable</li>
+      <li>a function that accepts an item from the first Observable and an item from the second Observable and returns an item to be emitted by the Observable returned from <code>join</code></li>
+     </ol>
+     <p>
+      <code>join</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#join(rx.Observable,%20rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func2)"><code>Join(Observable,Func1,Func1,Func2)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/groupJoin.png" style="width:100%;" alt="join" />
+     <figcaption><p>
+      The <code>groupJoin</code> operator takes four parameters:
+     </p>
+     <ol>
+      <li>the second Observable to combine with the source Observable</li>
+      <li>a function that accepts an item from the source Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the second Observable</li>
+      <li>a function that accepts an item from the second Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the first Observable</li>
+      <li>a function that accepts an item from the first Observable and an Observable that emits items from the second Observable and returns an item to be emitted by the Observable returned from <code>groupJoin</code></li>
+     </ol>
+     <p>
+      <code>groupJoin</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#groupJoin(rx.Observable,%20rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func2)"><code>groupJoin(Observable,Func1,Func1,Func2)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.join.png" style="width:100%;" alt="join" />
+     <figcaption><p>
+      Note that there is also a <code>join</code> operator in the optional <code>StringObservable</code> class.
+      It converts an Observable that emits a sequence of strings into an Observable that emits a single string
+      that concatenates them all, separating them by a specified string delimiter.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava join groupJoin %}
+    <figure class="variant">
+     <img src="images/join_.png" style="width:100%;" alt="join" />
+     <figcaption><p>
+      The <code>join</code> operator takes four parameters:
+     </p>
+     <ol>
+      <li>the second Observable to combine with the source Observable</li>
+      <li>a function that accepts an item from the source Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the second Observable</li>
+      <li>a function that accepts an item from the second Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the first Observable</li>
+      <li>a function that accepts an item from the first Observable and an item from the second Observable and returns an item to be emitted by the Observable returned from <code>join</code></li>
+     </ol>
+     <p>
+      <code>join</code> does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#join(rx.Observable,%20rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func2)"><code>Join(Observable,Func1,Func1,Func2)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/groupJoin.png" style="width:100%;" alt="join" />
+     <figcaption><p>
+      The <code>groupJoin</code> operator takes four parameters:
+     </p>
+     <ol>
+      <li>the second Observable to combine with the source Observable</li>
+      <li>a function that accepts an item from the source Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the second Observable</li>
+      <li>a function that accepts an item from the second Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the first Observable</li>
+      <li>a function that accepts an item from the first Observable and an Observable that emits items from the second Observable and returns an item to be emitted by the Observable returned from <code>groupJoin</code></li>
+     </ol>
+     <p>
+      <code>groupJoin</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#groupJoin(rx.Observable,%20rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func2)"><code>groupJoin(Observable,Func1,Func1,Func2)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.join.png" style="width:100%;" alt="join" />
+     <figcaption><p>
+      Note that there is also a <code>join</code> operator in the optional <code>StringObservable</code> class.
+      It converts an Observable that emits a sequence of strings into an Observable that emits a single string
+      that concatenates them all, separating them by a specified string delimiter.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS join groupJoin %}
+    <figure class="variant">
+     <img src="images/join_.png" style="width:100%;" alt="join" />
+     <figcaption><p>
+      The <code>join</code> operator takes four parameters:
+     </p>
+     <ol>
+      <li>the second Observable to combine with the source Observable</li>
+      <li>a function that accepts an item from the source Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the second Observable</li>
+      <li>a function that accepts an item from the second Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the first Observable</li>
+      <li>a function that accepts an item from the first Observable and an item from the second Observable and returns an item to be emitted by the Observable returned from <code>join</code></li>
+     </ol>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var xs = Rx.Observable.interval(100)
+    .map(function (x) { return 'first' + x; });
+
+var ys = Rx.Observable.interval(100)
+    .map(function (x) { return 'second' + x; });
+
+var source = xs
+    .join(
+        ys,
+        function () { return Rx.Observable.timer(0); },
+        function () { return Rx.Observable.timer(0); },
+        function (x, y) { return x + y; }
+    )
+    .take(5);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: first0second0
+Next: first1second1
+Next: first2second2
+Next: first3second3
+Next: first4second4
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/groupJoin.png" style="width:100%;" alt="join" />
+     <figcaption><p>
+      The <code>groupJoin</code> operator takes four parameters:
+     </p>
+     <ol>
+      <li>the second Observable to combine with the source Observable</li>
+      <li>a function that accepts an item from the source Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the second Observable</li>
+      <li>a function that accepts an item from the second Observable and returns an Observable whose lifespan governs the duration during which that item will combine with items from the first Observable</li>
+      <li>a function that accepts an item from the first Observable and an Observable that emits items from the second Observable and returns an item to be emitted by the Observable returned from <code>groupJoin</code></li>
+     </ol>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+ar xs = Rx.Observable.interval(100)
+    .map(function (x) { return 'first' + x; });
+
+var ys = Rx.Observable.interval(100)
+    .map(function (x) { return 'second' + x; });
+
+var source = xs.groupJoin(
+    ys,
+    function () { return Rx.Observable.timer(0); },
+    function () { return Rx.Observable.timer(0); },
+    function (x, yy) {
+        return yy.select(function (y) {
+            return x + y;
+        })
+    }).mergeAll().take(5);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: first0second0
+Next: first1second1
+Next: first2second2
+Next: first3second3
+Next: first4second4
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <p>
+     <code>join</code> and <code>groupJoin</code> are found in each of the following distributions:
+    </p>
+    <ul>
+     <li><code>rx.all.js</code></li>
+     <li><code>rx.all.compat.js</code></li>
+     <li><code>rx.coincidence.js</code></li>
+    </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin join groupJoin %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Join GroupJoin %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY join group_join %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala join groupJoin %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

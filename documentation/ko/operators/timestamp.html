@@ -1,0 +1,217 @@
+---
+layout: documentation
+title: ReactiveX - Timestamp operator
+id: timestamp
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Timestamp</li>
+</ol>
+
+   <h1>Timestamp</h1>
+   <h3>attach a timestamp to each item emitted by an Observable indicating when it was emitted</h3>
+   <figure>
+    <img src="images/timestamp.c.png" style="width:100%;" alt="Timestamp" />
+    <figcaption><p>
+     The <span class="operator">Timestamp</span> operator attaches a timestamp to each item emitted by the
+     source Observable before reemitting that item in its own sequence. The timestamp indicates at what time
+     the item was emitted.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="timestamp.html"><span class="operator">Timestamp</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#TimeStampAndTimeInterval"><cite>Introduction to Rx</cite>: Timestamp and TimeInterval</a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc35"><cite>101 Rx Samples</cite>: Timestamp</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy timestamp %}
+     <figure>
+      <img src="images/timestamp.png" style="width:100%;" alt="timestamp" />
+      <figcaption><p>
+       The <code>timestamp</code> method converts an Observable that emits items of type <i>T</i> into one that
+       emits objects of type <code>Timestamped&lt;<i>T</i>&gt;</code>, where each such object is stamped with
+       the time at which it was originally emitted.
+      </p>
+      <div class="code groovy"><pre>
+def myObservable = Observable.range(1, 1000000).filter({ 0 == (it % 200000) });
+
+myObservable.timestamp().subscribe(
+  { println(it.toString()); },               // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+Timestamped(timestampMillis = 1369252582698, value = 200000)
+Timestamped(timestampMillis = 1369252582740, value = 400000)
+Timestamped(timestampMillis = 1369252582782, value = 600000)
+Timestamped(timestampMillis = 1369252582823, value = 800000)
+Timestamped(timestampMillis = 1369252582864, value = 1000000)
+Sequence complete</pre></div>
+      <p>
+       <code>timestamp</code> by default operates on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a> but also has a variant
+       that allows you to choose the Scheduler by passing it in as a parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timestamp()"><code>timestamp()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timestamp(rx.Scheduler)"><code>timestamp(Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava timestamp %}
+     <figure>
+      <img src="images/timestamp.png" style="width:100%;" alt="timestamp" />
+      <figcaption><p>
+       The <code>timestamp</code> method converts an Observable that emits items of type <i>T</i> into one that
+       emits objects of type <code>Timestamped&lt;<i>T</i>&gt;</code>, where each such object is stamped with
+       the time at which it was originally emitted.
+      </p><p>
+       <code>timestamp</code> by default operates on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a> but also has a variant
+       that allows you to choose the Scheduler by passing it in as a parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timestamp()"><code>timestamp()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timestamp(rx.Scheduler)"><code>timestamp(Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS timestamp %}
+     <figure>
+      <img src="images/timestamp.png" style="width:100%;" alt="timestamp" />
+      <figcaption><p>
+       The <code>timestamp</code> method attaches a timestamp to each item emitted by the source Observable
+       before emitting that item as part of its own sequence. The timestamp indicates when the item was
+       emitted by the source Observable.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .timestamp()
+    .map(function (x) { return x.value + ':' + x.timestamp; })
+    .take(5);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0:1378690776351
+Next: 1:1378690777313
+Next: 2:1378690778316
+Next: 3:1378690779317
+Next: 4:1378690780319
+Completed</pre></div>
+      <p>
+       <code>timestamp</code> by default operates on the <code>timeout</code>
+       <a href="../scheduler.html">Scheduler</a>, but also has a
+       variant that allows you to specify the Scheduler by passing it in as a parameter.
+      </p><p>
+       <code>timestamp</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin timestamp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Timestamp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP timestamp %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>timestamp</code>.
+    </p>
+    <p>
+    Records the timestamp for each value in an observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/timestamp/timestamp.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = \Rx\Observable::interval(1000, $scheduler)
+    ->timestamp()
+    ->map(function (\Rx\Timestamped $x) {
+        return $x->getValue() . ':' . $x->getTimestampMillis();
+    })
+    ->take(5);
+
+$source->subscribe($createStdoutObserver());
+
+$loop->run();
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0:1460781738354
+Next value: 1:1460781739358
+Next value: 2:1460781740359
+Next value: 3:1460781741362
+Next value: 4:1460781742367
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY timestamp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala timestamp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

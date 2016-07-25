@@ -1,6 +1,7 @@
 ---
 layout: documentation
 title: ReactiveX - The Observable Contract
+lang: ko
 id: contract
 ---
 

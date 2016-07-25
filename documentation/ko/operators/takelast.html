@@ -1,0 +1,384 @@
+---
+layout: documentation
+title: ReactiveX - TakeLast operator
+id: takeLast
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">TakeLast</li>
+</ol>
+
+   <h1>TakeLast</h1>
+   <h3>emit only the final <i>n</i> items emitted by an Observable</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="takeLast"></rx-marbles>
+    <figcaption><p>
+     You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that come
+     before them, by modifying the Observable with the <span class="operator">TakeLast</span> operator.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="last.html"><span class="operator">Last</span></a></li>
+    <li><a href="skip.html"><span class="operator">Skip</span></a></li>
+    <li><a href="skiplast.html"><span class="operator">SkipLast</span></a></li>
+    <li><a href="skipuntil.html"><span class="operator">SkipUntil</span></a></li>
+    <li><a href="skipwhile.html"><span class="operator">SkipWhile</span></a></li>
+    <li><a href="take.html"><span class="operator">Take</span></a></li>
+    <li><a href="takeuntil.html"><span class="operator">TakeUntil</span></a></li>
+    <li><a href="takewhile.html"><span class="operator">TakeWhile</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipLastTakeLast"><cite>Introduction to Rx</cite>: SkipLast and TakeLast</a></li>
+    <li><a href="http://rxmarbles.com/#takeLast">RxMarbles: <code>takeLast</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure next %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy takeLast takeLastBuffer %}
+     <figure>
+      <img src="images/takeLast.n.png" style="width:100%;" alt="takeLast" />
+      <figcaption><p>
+       You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
+       them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
+       delay the emission of any item from the source Observable until the source Observable completes.
+      </p>
+     <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+numbers.takeLast(2).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+8
+9
+Sequence complete</pre></div>
+      <p>
+       This variant of <code>takeLast</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int)"><code>takeLast(int)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLast.t.png" style="width:100%;" alt="takeLast" />
+      <figcaption><p>
+       There is also a variant of <code>takeLast</code> that takes a temporal duration rather than a quantity of
+       items. It emits only those items that are emitted during that final duration of the source
+       Observable&#8217;s lifespan. You set this duration by passing in a length of time and the time units
+       this length is denominated in as parameters to <code>takeLast</code>.
+      </p><p>
+       Note that this will delay the emission of any item from the source Observable until the source Observable
+       completes.
+      </p><p>
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(long,%20java.util.concurrent.TimeUnit)"><code>takeLast(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>takeLast(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLast.tn.png" style="width:100%;" alt="takeLast" />
+      <figcaption><p>
+       There is also a variant that combines the two methods. It emits the minimum of the number of items
+       emitted during a specified time window <em>or</em> a particular count of items.
+      </p><p>
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional fourth parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int,%20long,%20java.util.concurrent.TimeUnit)"><code>takeLast(int,long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>takeLast(int,long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLastBuffer.png" style="width:100%;" alt="takeLastBuffer" />
+      <figcaption><p>
+       There is also an operator called <code>takeLastBuffer</code>. It exists in the same set of variants
+       as described above for <code>takeLast</code>, and only differs in behavior by emitting its items not
+       individually but collected into a single <code>List</code> of items that is emitted as a single item.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int)"><code>takeLastBuffer(int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(long,%20java.util.concurrent.TimeUnit)"><code>takeLastBuffer(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>takeLastBuffer(long,TimeUnit,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int,%20long,%20java.util.concurrent.TimeUnit)"><code>takeLastBuffer(int,long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>takeLastBuffer(int,long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava takeLast takeLastBuffer %}
+     <figure>
+      <img src="images/takeLast.n.png" style="width:100%;" alt="takeLast" />
+      <figcaption><p>
+       You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
+       them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
+       delay the emission of any item from the source Observable until the source Observable completes.
+      </p><p>
+       This variant of <code>takeLast</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int)"><code>takeLast(int)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLast.t.png" style="width:100%;" alt="takeLast" />
+      <figcaption><p>
+       There is also a variant of <code>takeLast</code> that takes a temporal duration rather than a quantity of
+       items. It emits only those items that are emitted during that final duration of the source
+       Observable&#8217;s lifespan. You set this duration by passing in a length of time and the time units
+       this length is denominated in as parameters to <code>takeLast</code>.
+      </p><p>
+       Note that this will delay the emission of any item from the source Observable until the source Observable
+       completes.
+      </p><p>
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(long,%20java.util.concurrent.TimeUnit)"><code>takeLast(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>takeLast(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLast.tn.png" style="width:100%;" alt="takeLast" />
+      <figcaption><p>
+       There is also a variant that combines the two methods. It emits the minimum of the number of items
+       emitted during a specified time window <em>or</em> a particular count of items.
+      </p><p>
+       This variant of <code>takeLast</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional fourth parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int,%20long,%20java.util.concurrent.TimeUnit)"><code>takeLast(int,long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLast(int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>takeLast(int,long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLastBuffer.png" style="width:100%;" alt="takeLastBuffer" />
+      <figcaption><p>
+       There is also an operator called <code>takeLastBuffer</code>. It exists in the same set of variants
+       as described above for <code>takeLast</code>, and only differs in behavior by emitting its items not
+       individually but collected into a single <code>List</code> of items that is emitted as a single item.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int)"><code>takeLastBuffer(int)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(long,%20java.util.concurrent.TimeUnit)"><code>takeLastBuffer(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>takeLastBuffer(long,TimeUnit,Scheduler)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int,%20long,%20java.util.concurrent.TimeUnit)"><code>takeLastBuffer(int,long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeLastBuffer(int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>takeLastBuffer(int,long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS takeLast takeLastBuffer takeLastBufferWithTime takeLastWithTime %}
+     <figure>
+      <img src="images/takeLast.n.png" style="width:100%;" alt="takeLast" />
+      <figcaption><p>
+       You can emit only the final <i>n</i> items emitted by an Observable and ignore those items that precede
+       them, by modifying the Observable with the <code>takeLast(<i>n</i>)</code> operator. Note that this will
+       delay the emission of any item from the source Observable until that Observable completes.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 5)
+    .takeLast(3);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 2
+Next: 3
+Next: 4
+Completed</pre></div>
+      <p>
+       <code>takeLast</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.alljs</code></li>
+       <li><code>rx.all.compatjs</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLastWithTime.png" style="width:100%;" alt="takeLastWithTime" />
+      <figcaption><p>
+       The <code>takeLastWithTime</code> operator takes a temporal duration rather than a quantity of items. It
+       emits only those items that are emitted during that final duration of the source Observable&#8217;s
+       lifespan. You set this duration by passing in a number of milliseconds as a parameter to
+       <code>takeLastWithTime</code>.
+      </p><p>
+       Note that the mechanism by which this is implemented will delay the emission of any item from the source
+       Observable until that Observable completes.
+      </p><p>
+       <code>takeLastWithTime</code> by default operates the timer on the <code>timeout</code>
+       <a href="../scheduler.html">Scheduler</a> and emits items on the <code>currentThread</code> Scheduler,
+       but you may also pass in Schedulers of your choosing to override these, as an optional second and third
+       parameters, respectively.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .take(10)
+    .takeLastWithTime(5000);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 5
+Next: 6
+Next: 7
+Next: 8
+Next: 9
+Completed</pre></div>
+      <p>
+       <code>takeLastWithTime</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLastBuffer.png" style="width:100%;" alt="takeLastBuffer" />
+      <figcaption><p>
+       There is also an operator called <code>takeLastBuffer</code>. It differs in behavior from
+       <code>takeLast</code> by emitting its items not individually but collected into a single array of items
+       that is emitted as a single item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 5)
+    .takeLastBuffer(3);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 2,3,4
+Completed</pre></div>
+      <p>
+       <code>takeLastBuffer</code> is found in each of the following distributions:
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/takeLastBufferWithTime.png" style="width:100%;" alt="takeLastBufferWithTime" />
+      <figcaption><p>
+       <code>takeLastBuffer</code> also has its duration-based variant, <code>takeLastBufferWithTime</code>,
+       which is similar to <code>takeLastWithTime</code> except that it emits its items not individually but
+       collected into a single array of items that is emitted as a single item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable
+    .timer(0, 1000)
+    .take(10)
+    .takeLastBufferWithTime(5000);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 5,6,7,8,9
+Completed</pre></div>
+      <p>
+       <code>takeLastBufferWithTime</code> is found in each of the following distributions:
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin takeLast takeLastBuffer %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET TakeLast %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY take_last take_last_buffer take_last_with_time %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb take_last take_last_buffer %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala tail takeRight %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift takeLast %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

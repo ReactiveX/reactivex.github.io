@@ -1,0 +1,239 @@
+---
+layout: documentation
+title: ReactiveX - Interval operator
+id: interval
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Interval</li>
+</ol>
+
+<h1>Interval</h1>
+<h3>create an Observable that emits a sequence of integers spaced by a given time interval</h3>
+
+<figure>
+ <img src="images/interval.c.png" style="width:100%;" alt="Interval" />
+ <figcaption><p>
+  The <span class="operator">Interval</span> operator returns an Observable that emits an infinite sequence of
+  ascending integers, with a constant interval of time of your choosing between emissions.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="range.html"><span class="operator">Range</span></a></li>
+ <li><a href="repeat.html"><span class="operator">Repeat</span></a></li>
+ <li><a href="timer.html"><span class="operator">Timer</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableInterval"><cite>Introduction to Rx</cite>: Interval</a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc15"><cite>101 Rx Samples</cite>: Observing the Passing of Time</a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc28"><cite>101 Rx Samples</cite>: Interval &mdash; Simple</a></li>
+ <li><a href="http://blog.freeside.co/2015/01/29/simple-background-polling-with-rxjava/"><cite>ad-hockery</cite>: Simple Background Polling with RxJava</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp interval %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy interval %}
+    <figure class="variant">
+     <img src="images/interval.png" style="width:100%;" alt="interval" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>interval</code>. It accepts as its parameters a
+      span of time to wait between emissions and the <code>TimeUnit</code> in which this
+      span is measured.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit)"><code>interval(long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit%20rx.Scheduler)"><code>interval(long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/timer.p.png" style="width:100%;" alt="timer" />
+     <figcaption><p>
+      There is also a version of <code>interval</code> that returns an Observable that emits a single
+      zero after a specified delay, and then emits incrementally increasing numbers periodically
+      thereafter on a specified periodicity. This version of <code>interval</code> was called
+      <a href="timer.html"><code>timer</code></a> in RxGroovy 1.0.0, but that method has since been
+      deprecated in favor of the one named <code>interval</code> with the same behavior.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20long,%20java.util.concurrent.TimeUnit)"><code>interval(long,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>interval(long,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <p>
+     <code>interval</code> operates by default on the <code>computation</code>
+     <a href="../scheduler.html">Scheduler</a>. There are also variants that allow you to set the Scheduler by
+     passing one in as a parameter.
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava interval %}
+    <figure class="variant">
+     <img src="images/interval.png" style="width:100%;" alt="interval" />
+     <figcaption><p>
+      RxJava implements this operator as <code>interval</code>. It accepts as its parameters a
+      span of time to wait between emissions and the <code>TimeUnit</code> in which this
+      span is measured.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit)"><code>interval(long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20java.util.concurrent.TimeUnit%20rx.Scheduler)"><code>interval(long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/timer.p.png" style="width:100%;" alt="timer" />
+     <figcaption><p>
+      There is also a version of <code>interval</code> that returns an Observable that emits a single
+      zero after a specified delay, and then emits incrementally increasing numbers periodically
+      thereafter on a specified periodicity. This version of <code>interval</code> was called
+      <a href="timer.html"><code>timer</code></a> in RxJava 1.0.0, but that method has since been
+      deprecated in favor of the one named <code>interval</code> with the same behavior.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20long,%20java.util.concurrent.TimeUnit)"><code>interval(long,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#interval(long,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>interval(long,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <p>
+     <code>interval</code> operates by default on the <code>computation</code>
+     <a href="../scheduler.html">Scheduler</a>. There are also variants that allow you to set the Scheduler by
+     passing one in as a parameter.
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS interval %}
+    <figure class="variant">
+     <img src="images/interval.png" style="width:100%;" alt="interval" />
+     <figcaption><p>
+      RxJS implements this operator as <code>interval</code>. It accepts as its parameter the number
+      of milliseconds to wait between emissions.
+     </p><p>
+      <code>interval</code> operates by default on the <code>timeout</code>
+      <a href="../scheduler.html">Scheduler</a>, or you can optionally pass in a different Scheduler as a second
+      parameter, and <code>interval</code> will operate on that Scheduler instead.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable
+    .interval(500 /* ms */)
+    .timeInterval()
+    .take(3);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div><div class="output"><pre>
+Next: {value: 0, interval: 500}
+Next: {value: 1, interval: 500}
+Next: {value: 2, interval: 500}
+Completed</pre></div>
+     <p>
+      <code>interval</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+      <li><code>rx.timejs</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin interval %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Interval %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP interval %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>interval</code>.
+    </p>
+    <p>
+    Returns an Observable that emits an infinite sequence of ascending integers starting at 0, with a constant interval of time of your choosing between emissions.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/interval/interval.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$disposable = \Rx\Observable::interval(1000, $scheduler)
+    ->take(5)
+    ->subscribe($createStdoutObserver());
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY interval %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala interval %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift interval %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

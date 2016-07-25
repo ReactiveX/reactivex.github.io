@@ -1,0 +1,798 @@
+---
+layout: documentation
+title: ReactiveX - FlatMap operator
+id: flatMap
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#transforming">Transforming</a></li>
+  <li class="active">FlatMap</li>
+</ol>
+
+<h1>FlatMap</h1>
+<h3>transform the items emitted by an Observable into Observables, then flatten the emissions from those into a single Observable</h3>
+
+<figure>
+ <img src="images/flatMap.c.png" style="width:100%;" alt="FlatMap" />
+ <figcaption><p>
+  The <span class="operator">FlatMap</span> operator transforms an Observable by applying a function
+  that you specify to each item emitted by the source Observable, where that function returns an
+  Observable that itself emits items. <span class="operator">FlatMap</span> then merges the emissions
+  of these resulting Observables, emitting these merged results as its own sequence.
+ </p><p>
+  This method is useful, for example, when you have an Observable that emits a series of items that
+  themselves have Observable members or are in other ways transformable into Observables, so that you
+  can create a new Observable that emits the complete collection of items emitted by the
+  sub-Observables of these items.
+ </p><p>
+  Note that <span class="operator">FlatMap</span> <em>merges</em> the emissions of these Observables,
+  so that they may interleave.
+ </p><p>
+  In several of the language-specific implementations there is also an operator that does
+  <em>not</em> interleave the emissions from the transformed Observables, but instead emits these
+  emissions in strict order, often called <span class="operator">ConcatMap</span> or something
+  similar.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="map.html"><span class="operator">Map</span></a></li>
+ <li><a href="http://blog.danlew.net/2014/09/22/grokking-rxjava-part-2/"><cite>Grokking RxJava</cite>: Operator, Operator</a> by Dan Lew</li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#SelectMany"><cite>Introduction to Rx</cite>: SelectMany</a></li>
+ <li><a href="https://jkschneider.github.io/blog/2014/recursive-observables-with-rxjava.html"><cite>Recurseive Observables with RxJava</cite></a> by Jon Schneider</li>
+ <li><a href="http://fernandocejas.com/2015/01/11/rxjava-observable-tranformation-concatmap-vs-flatmap/">RxJava Observable transformation: concatMap() vs. flatMap()</cite></a> by Fernando Cejas</li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure flatmap mapcat %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator flat_map %}
+
+  {% lang_operator RxCpp concat_map flat_map %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy concatMap flatMap flatMapIterable StringObservable.split switchMap %}
+    <figure class="variant">
+     <img src="images/mergeMap.png" style="width:100%;" alt="flatMap" />
+     <figcaption><p>
+      RxGroovy implements the <code>flatMap</code> operator.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+// this closure is an Observable that emits three numbers
+numbers   = Observable.from([1, 2, 3]);
+// this closure is an Observable that emits two numbers based on what number it is passed
+multiples = { n -> Observable.from([ n*2, n*3 ]) };
+
+numbers.flatMap(multiples).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+2
+3
+4
+6
+6
+9
+Sequence complete</pre></div>
+     <p>
+      Note that if any of the individual Observables mapped to the items from the source Observable
+      by <code>flatMap</code> aborts by invoking <code>onError</code>, the Observable produced by
+      <code>flatMap</code> will itself immediately abort and invoke <code>onError</code>.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1)"><code>flatMap(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20int)"><code>flatMap(Func1,int)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/mergeMap.nce.png" style="width:100%;" alt="flatMap" />
+     <figcaption><p>
+      Another version of <code>flatMap</code> creates (and flattens) a new Observable for each item
+      <em>and notification</em> from the source Observable.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0)"><code>flatMap(Func1,Func1,Func0)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0,%20int)"><code>flatMap(Func1,Func1,Func0,int)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/mergeMap.r.png" style="width:100%;" alt="flatMap" />
+     <figcaption><p>
+      Another version combines items from the source Observable with the Observable triggered by
+      those source items, and emits these combinations.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func2)"><code>flatMap(Func1,Func2)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func2,%20int)"><code>flatMap(Func1,Func2,int)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/mergeMapIterable.png" style="width:100%;" alt="flatMapIterable" />
+     <figcaption><p>
+      The <code>flatMapIterable</code> variants pair up source items and generated
+      <code>Iterable</code>s rather than source items and generated Observables, but otherwise work
+      in much the same way.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMapIterable(rx.functions.Func1)"><code>flatMapIterable(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMapIterable(rx.functions.Func1,%20rx.functions.Func2)"><code>flatMapIterable(Func1,Func2)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/concatMap.png" style="width:100%;" alt="concatMap" />
+     <figcaption><p>
+      There is also a <code>concatMap</code> operator, which is like the simpler version of the
+      <code>flatMap</code> operator, but it concatenates rather than merges the resulting
+      Observables in order to generate its own sequence.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatMap(rx.functions.Func1)"><code>concatMap(Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/switchMap.png" style="width:100%;" alt="switchMap" />
+     <figcaption><p>
+      RxGroovy also implements the <code>switchMap</code> operator. It behaves much like
+      <code>flatMap</code>, except that whenever a new item is emitted by the source Observable, it
+      will unsubscribe to and stop mirroring the Observable that was generated from the
+      previously-emitted item, and begin only mirroring the current one.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchMap(rx.functions.Func1)"><code>switchMap(Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.split.png" style="width:100%;" alt="split" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
+      <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
+      treats the source sequence as a stream and splits it on a specified regex boundary, then merges the
+      results of this split.
+     </p>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html">Aligning packets with JSON documents</a> with the <code>split</code> operator</li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava concatMap flatMap flatMapIterable StringObervable.split switchMap %}
+    <figure class="variant">
+     <img src="images/mergeMap.png" style="width:100%;" alt="flatMap" />
+     <figcaption><p>
+      RxJava implements the <code>flatMap</code> operator.
+     </p><p>
+      Note that if any of the individual Observables mapped to the items from the source Observable
+      by <code>flatMap</code> aborts by invoking <code>onError</code>, the Observable produced by
+      <code>flatMap</code> will itself immediately abort and invoke <code>onError</code>.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1)"><code>flatMap(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20int)"><code>flatMap(Func1,int)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/mergeMap.nce.png" style="width:100%;" alt="flatMap" />
+     <figcaption><p>
+      Another version of <code>flatMap</code> creates (and flattens) a new Observable for each item
+      <em>and notification</em> from the source Observable.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0)"><code>flatMap(Func1,Func1,Func0)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func1,%20rx.functions.Func0,%20int)"><code>flatMap(Func1,Func1,Func0,int)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/mergeMap.r.png" style="width:100%;" alt="flatMap" />
+     <figcaption><p>
+      Another version combines items from the source Observable with the Observable triggered by
+      those source items, and emits these combinations.
+     </p><p>
+      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
+      that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
+      Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
+      terminate before subscribing to another.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func2)"><code>flatMap(Func1,Func2)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMap(rx.functions.Func1,%20rx.functions.Func2,%20int)"><code>flatMap(Func1,Func2,int)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/mergeMapIterable.png" style="width:100%;" alt="flatMapIterable" />
+     <figcaption><p>
+      The <code>flatMapIterable</code> variants pair up source items and generated
+      <code>Iterable</code>s rather than source items and generated Observables, but otherwise work
+      in much the same way.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMapIterable(rx.functions.Func1)"><code>flatMapIterable(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#flatMapIterable(rx.functions.Func1,%20rx.functions.Func2)"><code>flatMapIterable(Func1,Func2)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/concatMap.png" style="width:100%;" alt="concatMap" />
+     <figcaption><p>
+      There is also a <code>concatMap</code> operator, which is like the simpler version of the
+      <code>flatMap</code> operator, but it concatenates rather than merges the resulting
+      Observables in order to generate its own sequence.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#concatMap(rx.functions.Func1)"><code>concatMap(Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/switchMap.png" style="width:100%;" alt="switchMap" />
+     <figcaption><p>
+      RxJava also implements the <code>switchMap</code> operator. It behaves much like
+      <code>flatMap</code>, except that whenever a new item is emitted by the source Observable, it
+      will unsubscribe to and stop mirroring the Observable that was generated from the
+      previously-emitted item, and begin only mirroring the current one.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchMap(rx.functions.Func1)"><code>switchMap(Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/St.split.png" style="width:100%;" alt="split" />
+     <figcaption><p>
+      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
+      <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
+      treats the source sequence as a stream and splits it on a specified regex boundary, then merges the
+      results of this split.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS concatMap concatMapObserver flatMap flatMapFirst flatMapLatest flatMapObserver flatMapWithMaxConcurrency for forIn manySelect selectConcat selectConcatObserver selectMany selectManyObserver selectSwitch selectSwitchFirst selectWithMatchConcurrent %}
+<!--
+ TODO: flatMapFirst, flatMapWithMaxConcurrency, selectSwitchFirst, selectWithMaxConcurrent
+ https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmapfirst.md
+ https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/flatmapwithmaxconcurrent.md
+ -->
+    <p>
+     RxJS has a wealth of operators that perform
+     <span class="operator">FlatMap</span>-like operations. In RxJS, the functions that transform
+     items emitted by the source Observable into Observables typically take as parameters both the
+     item and the index of the item in the Observable sequence.
+    </p>
+    <figure class="variant">
+     <img src="images/flatMap.png" style="width:100%;" alt="flatMap" />
+     <figcaption><p>
+      RxJS implements the basic <code>flatMap</code> operator. It has a variant that allows you to
+      apply a transformative function (an optional second parameter to <code>flatMap</code>) to the
+      items emitted by the Observables generated for each item in the source Observable, before
+      merging and emitting those items.
+     </p><p>
+      <code>flatMap</code> works just as well if the function you provide transforms items from the
+      source Observables into Observables, into Promises, or into arrays.
+     </p><p>
+      &ldquo;<code>selectMany</code>&rdquo; is an alias for <code>flatMap</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable
+    .range(1, 2)
+    .selectMany(function (x) {
+        return Rx.Observable.range(x, 2);
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 1
+Next: 2
+Next: 2
+Next: 3
+Completed</pre></div>
+     <div class="code javascript"><pre>
+// Using a promise
+var source = Rx.Observable.of(1,2,3,4)
+    .selectMany(function (x, i) {
+        return Promise.resolve(x + i);
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 1
+Next: 3
+Next: 5
+Next: 7
+Completed</pre></div>
+     <div class="code javascript"><pre>
+// Using an array
+Rx.Observable.of(1,2,3)
+  .flatMap(
+    function (x, i) { return [x,i]; },
+    function (x, y, ix, iy) { return x + y + ix + iy; }
+  );
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 2
+Next: 2
+Next: 5
+Next: 5
+Next: 8
+Next: 8
+Completed</pre></div>
+     <p><code>flatMap</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/flatMapLatest.png" style="width:100%;" alt="flatMapLatest" />
+     <figcaption><p>
+      The <code>flatMapLatest</code> operator behaves much like the standard
+      <span class="operator">FlatMap</span> operator, except that whenever a new item is emitted
+      by the source Observable, it will unsubscribe to and stop mirroring the Observable that was
+      generated from the previously-emitted item, and begin only mirroring the current one.
+     </p><p>
+      &ldquo;<code>selectSwitch</code>&rdquo; is an alias for <code>flatMapLatest</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable
+    .range(1, 2)
+    .flatMapLatest(function (x) {
+        return Rx.Observable.range(x, 2);
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Completed</pre></div>
+     <p><code>flatMapLatest</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/flatMapObserver.png" style="width:100%;" alt="flatMapObserver" />
+     <figcaption><p>
+      <code>flatMapObserver</code> creates (and flattens) a new Observable for each item <em>and
+      notification</em> from the source Observable. It accepts a different transformation function
+      to respond to <code>onNext</code>, <code>onError</code>, and <code>onCompleted</code>
+      notifications and to return an Observable for each.
+     </p><p>
+      &ldquo;<code>selectManyObserver</code>&rdquo; is an alias for <code>flatMapObserver</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.range(1, 3)
+    .flatMapObserver(
+        function (x, i) {
+            return Rx.Observable.repeat(x, i);
+        },
+        function (err) {
+            return Rx.Observable.return(42);
+        },
+        function () {
+            return Rx.Observable.empty();
+        });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 2
+Next: 3
+Next: 3
+Completed</pre></div>
+     <p><code>flatMapObserver</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/concatMap.png" style="width:100%;" alt="concatMap" />
+     <figcaption><p>
+      There is also a <code>concatMap</code> operator, which is like the <code>flatMap</code>
+      operator, but it concatenates rather than merges the resulting Observables in order to
+      generate its own sequence.
+     </p><p>
+      As with <code>flatMap</code>, <code>concatMap</code> works just as well if the function you
+      provide transforms items from the source Observables into Observables, into Promises, or into
+      arrays.
+     </p>
+     <p>&ldquo;<code>selectConcat</code>&rdquo; is an alias for <code>concatMap</code>.</p>
+     <p><code>concatMap</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/for.png" style="width:100%;" alt="for" />
+     <figcaption><p>
+      The <code>for</code> operator (and its alias, <code>forIn</code>) is very similar to
+      <code>concatMap</code>, though it has a converse flexibility. While <code>concatMap</code>
+      operates on an Observable source and can use Observable, Promise, or array intermediaries to
+      generate its output sequence; <code>for</code> always uses Observables as its intermediaries,
+      but can operate on a source that is either an Observable, a Promise, or an array.
+     </p>
+     <p><code>concatMap</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code> (requires either <code>rx.js</code>, <code>rx.compat.js</code>, <code>rx.lite.js</code>, or <code>rx.lite.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/concatMapObserver.png" style="width:100%;" alt="concatMapObserver" />
+     <figcaption><p>
+      There is also a <code>concatMapObserver</code> operator, which is like the
+      <code>flatMapObserver</code> operator, in that it creates Observables to merge from both the
+      emissions and terminal notifications of the source Observable, but it concatenates rather than
+      merges these resulting Observables in order to generate its own sequence.
+     </p><p>
+      &ldquo;<code>selectConcatObserver</code>&rdquo; is an alias for
+      <code>concatMapObserver</code>.
+     </p>
+     <p><code>concatMapObserver</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/manySelect.png" style="width:100%;" alt="manySelect" />
+     <figcaption><p>
+      The <code>manySelect</code> operator is often described as a &ldquo;comonadic bind.&rdquo; If that clears
+      things up for you, you&#8217;re welcome. Elsewise, here&#8217;s an explanation:
+     </p><p>
+      <code>manySelect</code> internally transforms each item emitted by the source Observable into an
+      Observable that emits that item and all items subsequently emitted by the source Observable, in the
+      same order. So, for example, it internally transforms an Observable that emits the numbers 1,2,3 into
+      three Observables: one that emits 1,2,3, one that emits 2,3, and one that emits 3.
+     </p><p>
+      Then <code>manySelect</code> passes each of these Observables into a function that you provide, and emits,
+      as the emissions from the Observable that <code>manySelect</code> returns, the return values from those
+      function calls.
+     </p><p>
+      In this way, each item emitted by the resulting Observable is a function of the corresponding item in
+      the source Observable and all of the items emitted by the source Observable after it.
+     </p><p>
+      <code>manySelect</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code></li>
+     </ul>
+     <p>
+      <code>manySelect</code> requires one of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="https://social.msdn.microsoft.com/Forums/en-US/e70fe8b6-6d9d-486a-a8d0-c1bc66551ded/what-does-the-new-manyselect-operator-do?forum=rx"><cite>Microsoft Developer Network</cite>: &ldquo;What does the new ManySelect operator do?&rdquo;</a></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin concatMap flatMap flatMapIterable switchMap %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET ManySelect SelectMany %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+    <h4>See Also</h4>
+    <ul>
+     <li><a href="https://social.msdn.microsoft.com/Forums/en-US/e70fe8b6-6d9d-486a-a8d0-c1bc66551ded/what-does-the-new-manyselect-operator-do?forum=rx"><cite>Microsoft Developer Network</cite>: &ldquo;What does the new ManySelect operator do?&rdquo;</a></li>
+    </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP flatMap selectMany flatMapLatest concatMap concatMapTo %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>flatMap</code>.
+    </p>
+    <p>
+    Projects each element of an observable sequence to an observable sequence and merges the resulting observable sequences into one observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/flatMap/flatMap.php
+
+$loop      = React\EventLoop\Factory::create();
+$scheduler = new Rx\Scheduler\EventLoopScheduler($loop);
+
+$observable = Rx\Observable::range(1, 5);
+
+$selectManyObservable = $observable->flatMap(function ($value) {
+    return Rx\Observable::range(1, $value);
+}, $scheduler);
+
+$disposable = $selectManyObservable->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 1
+Next value: 2
+Next value: 1
+Next value: 2
+Next value: 1
+Next value: 3
+Next value: 2
+Next value: 1
+Next value: 3
+Next value: 2
+Next value: 4
+Next value: 3
+Next value: 4
+Next value: 5
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>selectMany</code>.
+    </p>
+    <p>
+    Alias for flatMap
+    </p>
+
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>flatMapLatest</code>.
+    </p>
+    <p>
+    Bypasses a specified number of elements in an observable sequence and then returns the remaining elements.  Transform the items emitted by an Observable into Observables, and mirror those items emitted by the most-recently transformed Observable.  The flatMapLatest operator is similar to the flatMap and concatMap methods described above, however, rather than emitting all of the items emitted by all of the Observables that the operator generates by transforming items from the source Observable, flatMapLatest instead emits items from each such transformed Observable only until the next such Observable is emitted, then it ignores the previous one and begins emitting items emitted by the new one.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/flatMap/flatMapLatest.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = \Rx\Observable::range(1, 3)
+    ->flatMapLatest(function ($x) {
+        return \Rx\Observable::fromArray([$x . 'a', $x . 'b']);
+    });
+
+$source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1a
+Next value: 2a
+Next value: 3a
+Next value: 3b
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>concatMap</code>.
+    </p>
+    <p>
+    Projects each element of an observable sequence to an observable sequence and concatenates the resulting observable sequences into one observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/concat/concatMap.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::range(0, 5)
+    ->concatMap(function ($x, $i) use ($scheduler) {
+        return \Rx\Observable::interval(100, $scheduler)
+            ->take($x)
+            ->map(function () use ($i) {
+                return $i;
+            });
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 2
+Next value: 3
+Next value: 3
+Next value: 3
+Next value: 4
+Next value: 4
+Next value: 4
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>concatMapTo</code>.
+    </p>
+    <p>
+    Projects each element of the source observable sequence to the other observable sequence and merges the resulting observable sequences into one observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/concat/concatMapTo.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$obs = \Rx\Observable::interval(100, $scheduler)
+    ->take(3)
+    ->mapWithIndex(function ($i) {
+        return $i;
+    });
+
+$source = Rx\Observable::range(0, 5)
+    ->concatMapTo($obs);
+
+$subscription = $source->subscribe($stdoutObserver);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 4
+Next value: 5
+Next value: 6
+Next value: 7
+Next value: 8
+Next value: 9
+Next value: 10
+Next value: 11
+Next value: 12
+Next value: 13
+Next value: 14
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY concat_all expand flat_map for_in many_select select_many select_switch %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb flat_map flat_map_with_index %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala concatMap flatMap flatMapIterable flatMapIterableWith flatMapWith switchMap %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift flatMap flatMapWithIndex flatMapFirst flatMapLatest %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,0 +1,367 @@
+---
+layout: documentation
+title: ReactiveX - Map operator
+id: map
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#transforming">Transforming</a></li>
+  <li class="active">Map</li>
+</ol>
+
+   <h1>Map</h1>
+   <h3>transform the items emitted by an Observable by applying a function to each item</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="map"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Map</span> operator applies a function of your choosing to each item
+     emitted by the source Observable, and returns an Observable that emits the results of these
+     function applications.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="flatmap.html"><span class="operator">FlatMap</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#Select"><cite>Introduction to Rx</cite>: Select</a></li>
+    <li><a href="http://rxmarbles.com/#map">RxMarbles: <code>map</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc22"><cite>101 Rx Samples</cite>: Select &mdash; Indexed</a></li>
+    <li><a href="https://egghead.io/lessons/javascript-using-the-map-method-with-observable">Using the map method with Observable</a> by Jafar Husain (JavaScript Video Tutorial)</li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure keep keep-indexed map map-indexed %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp map %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy byLine cast encode map %}
+     <figure>
+      <img src="images/map.png" style="width:100%;" alt="map" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>map</code>. For example, the following code maps a
+       function that squares the incoming value onto the values in <code>numbers</code>:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5]);
+
+numbers.map({it * it}).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+1
+4
+9
+16
+25
+Sequence complete</pre></div>
+      <p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#map(rx.functions.Func1)"><code>map(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/cast.png" style="width:100%;" alt="cast" />
+      <figcaption><p>
+       The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
+       transforms each item from the source Observable by casting it into a particular Class before reemitting
+       it.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#cast(java.lang.Class)"><code>cast(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.encode.png" style="width:100%;" alt="encode" />
+      <figcaption><p>
+       In the <code>StringObservable</code> class that is not part of the RxGroovy core there is also a
+       specialty mapping operator, <code>encode</code>, that transforms an Observable that emits strings into
+       an Observable that emits byte arrays that respect character boundaries of multibyte characters in the
+       original strings.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.byLine.png" style="width:100%;" alt="byLine" />
+      <figcaption><p>
+       Also in the <code>StringObservable</code> class that is not part of the RxGroovy core there is a
+       specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
+       into an Observable that emits lines of text, by buffering the strings from the source Observable until a
+       line-feed is found in one of them.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava byLine cast encode map %}
+     <figure>
+      <img src="images/map.png" style="width:100%;" alt="map" />
+      <figcaption><p>
+       RxJava implements this operator as <code>map</code>.
+      </p><p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#map(rx.functions.Func1)"><code>map(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/cast.png" style="width:100%;" alt="cast" />
+      <figcaption><p>
+       The <code>cast</code> operator is a specialized version of <span class="operator">Map</span> that
+       transforms each item from the source Observable by casting it into a particular Class before reemitting
+       it.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#cast(java.lang.Class)"><code>cast(Class)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.encode.png" style="width:100%;" alt="encode" />
+      <figcaption><p>
+       In the <code>StringObservable</code> class that is not part of the RxJava core there is also a specialty
+       mapping operator, <code>encode</code>, that transforms an Observable that emits strings into an
+       Observable that emits byte arrays that respect character boundaries of multibyte characters in the
+       original strings.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/St.byLine.png" style="width:100%;" alt="byLine" />
+      <figcaption><p>
+       Also in the <code>StringObservable</code> class that is not part of the RxJava core there is a
+       specialty mapping operator called <code>byLine</code>, that transforms an Observable that emits strings
+       into an Observable that emits lines of text, by buffering the strings from the source Observable until a
+       line-feed is found in one of them.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS map pluck select %}
+     <figure>
+      <img src="images/map.i.png" style="width:100%;" alt="map" />
+      <figcaption><p>
+       RxJS implements this operator as <code>map</code> or <code>select</code> (the two are
+       synonymous). In addition to the transforming function, you may pass this operator an optional
+       second parameter that will become the &ldquo;<code>this</code>&rdquo; context in which the
+       transforming function will execute.
+      </p><p>
+       The transforming function gets three parameters:
+      </p>
+      <ol>
+       <li>the emitted item</li>
+       <li>the index of that item in the sequence of emitted items</li>
+       <li>the Observable from which that item was emitted</li>
+      </ol>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+// Using a value
+var md = Rx.Observable.fromEvent(document, 'mousedown').map(true);
+var mu = Rx.Observable.fromEvent(document, 'mouseup').map(false);
+
+// Using a function
+var source = Rx.Observable.range(1, 3)
+    .select(function (x, idx, obs) {
+        return x * x;
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 1
+Next: 4
+Next: 9
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/pluck.png" style="width:100%;" alt="pluck" />
+      <figcaption><p>
+       There is also an operator called <code>pluck</code> which is a simpler version of this
+       operator. It transforms the elements emitted by the source Observable by extracting a
+       single named property from those elements and emitting that property in their place.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable
+    .fromArray([
+        { value: 0 },
+        { value: 1 },
+        { value: 2 }
+    ])
+    .pluck('value');
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div></figcaption>
+     </figure>
+     <p><code>map</code>/<code>select</code> and <code>pluck</code> are found in each of the
+        following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <h4>See Also</h4>
+     <ul>
+      <li><a href="http://xgrommx.github.io/rx-book/content/helpers/pluck.html"><code>Rx.helpers.pluck(property)</code></a> from Dennis Stoyanov&#8217;s RxJS book</li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin cast map %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Cast Select %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP map mapWithIndex mapTo select %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>map</code>.
+    </p>
+    <p>
+    Takes a transforming function that operates on each element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/map/map.php
+
+$observable = \Rx\Observable::fromArray([21, 42]);
+$observable
+    ->map(function ($elem) {
+        return $elem * 2;
+    })
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 84
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>mapWithIndex</code>.
+    </p>
+    <p>
+    Maps operator variant that calls the map selector with the index and value
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/map/mapWithIndex.php
+
+$subscriptions = Rx\Observable::fromArray([21, 42])
+    ->mapWithIndex(function ($index, $elem) {
+        return $index + $elem;
+    })
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 21
+Next value: 43
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>mapTo</code>.
+    </p>
+    <p>
+    Maps every value to the same value every time
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/map/mapTo.php
+
+$subscription = Rx\Observable::fromArray([21, 42])
+    ->mapTo(1)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 1
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>select</code>.
+    </p>
+    <p>
+    Alias for Map
+    </p>
+
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY map pluck select %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb map map_with_index %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala map %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift map mapWithIndex %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,0 +1,212 @@
+---
+layout: documentation
+title: ReactiveX - Average operator
+id: average
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#mathematical">Mathematical and Aggregate</a></li>
+  <li class="active">Average</li>
+</ol>
+
+   <h1>Average</h1>
+   <h3>calculates the average of numbers emitted by an Observable and emits this average</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="average"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Average</span> operator operates on an Observable that emits numbers
+     (or items that can be evaluated as numbers), and emits a single value: the average of all of
+     the numbers emitted by the source Observable.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="sum.html"><span class="operator">Sum</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#MaxAndMin"><cite>Introduction to Rx</cite>: Min, Max, Sum, and Average</a></li>
+    <li><a href="http://rxmarbles.com/#average">RxMarbles: <code>average</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp average %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy averageDouble averageFloat averageInteger averageLong %}
+     <p>
+      In RxGroovy, this operator is not in the ReactiveX core, but is part of the distinct
+      <code>rxjava-math</code> module, where it is implemented with four type-specific operators:
+      <code>averageDouble</code>, <code>averageFloat</code>, <code>averageInteger</code>, and
+      <code>averageLong</code>. The following example shows how these operators work:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber ->
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext(4);
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext(3);
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext(2);
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext(1);
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onCompleted();
+});
+
+Observable.averageInteger(myObservable).subscribe(
+  { println(it); },                  // onNext
+  { println("Error encountered"); }, // onError
+  { println("Sequence complete"); }  // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+2
+Sequence complete</pre></div>
+     <figure>
+      <img src="images/average.f.png" style="width:100%;" alt="average" />
+      <figcaption><p>
+       You can also average not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the average number of sides on the figures
+       emitted by the source Observable.
+      </p></figcaption>
+     </figure>
+     <p>
+      This operator will fail with an <code>IllegalArgumentException</code> if the source Observable
+      does not emit any items.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava averageDouble averageFloat averageInteger averageLong %}
+     <p>
+      This operator is not in the RxJava core, but is part of the distinct <code>rxjava-math</code>
+      module, where it is implemented with four type-specific operators: <code>averageDouble</code>,
+      <code>averageFloat</code>, <code>averageInteger</code>, and <code>averageLong</code>.
+     </p>
+     <figure>
+      <img src="images/average.f.png" style="width:100%;" alt="average" />
+      <figcaption><p>
+       You can also average not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the average number of sides on the figures
+       emitted by the source Observable.
+      </p></figcaption>
+     </figure>
+     <p>
+      This operator will fail with an <code>IllegalArgumentException</code> if the source Observable
+      does not emit any items.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS average %}
+     <figure>
+      <img src="images/average.png" style="width:100%;" alt="average" />
+      <figcaption><p>
+       RxJS implements this operator as <code>average</code>. The following code sample shows how
+       to use it:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 9).average();
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: 4
+Completed</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/average.f.png" style="width:100%;" alt="average" />
+      <figcaption><p>
+       You can also average not the items themselves but the results of a function applied to each
+       item, as in the illustration above, which emits the average number of sides on the figures
+       emitted by the source Observable.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var arr = [
+    { value: 1 },
+    { value: 2 },
+    { value: 3 }
+];
+
+var source = Rx.Observable.fromArray(arr).average(function (x) {
+    return x.value;
+});
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: 2
+Completed</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>average</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      It requires one of the following:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin averageDouble averageFloat averageInteger averageLong %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Average %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY average %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb average %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

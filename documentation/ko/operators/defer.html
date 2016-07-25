@@ -1,0 +1,314 @@
+---
+layout: documentation
+title: ReactiveX - Defer operator
+id: defer
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Defer</li>
+</ol>
+
+<h1>Defer</h1>
+<h3>do not create the Observable until the observer subscribes, and create a fresh Observable for each observer</h3>
+
+<figure>
+ <img src="images/defer.c.png" style="width:100%;" alt="Defer" />
+ <figcaption><p>
+  The <span class="operator">Defer</span> operator waits until an observer subscribes to it, and
+  then it generates an Observable, typically with an Observable factory function. It does this
+  afresh for each subscriber, so although each subscriber may think it is subscribing to the same
+  Observable, in fact each subscriber gets its own individual sequence.
+ </p><p>
+  In some circumstances, waiting until the last minute (that is, until subscription time) to generate
+  the Observable can ensure that this Observable contains the freshest data.
+ </p></figcaption>
+</figure>
+<h4>See Also:</h4>
+<ul>
+ <li><a href="http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/">Deferring Observable code until subscription in RxJava</a> by Dan Lew</li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp defer %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy defer ifThen switchCase %}
+    <figure class="variant">
+     <img src="images/defer.png" style="width:100%;" alt="defer" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>defer</code>. This operator takes as its sole
+      parameter an Observable factory function of your choosing. This function takes no parameters
+      and returns an Observable.
+     </p><p>
+      <code>defer</code> does not by default operate on a particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defer(rx.functions.Func0)"><code>defer()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/switchCase.png" style="width:100%;" alt="switchCase" />
+     <figcaption><p>
+      There is a somewhat similar operator in the optional <code>rxjava-computation-expressions</code>
+      package (it is not part of the standard RxGroovy set of operators). The <code>switchCase</code> operator
+      conditionally creates and returns one of a set of possible Observables.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/ifThen.png" style="width:100%;" alt="ifThen" />
+     <figcaption><p>
+      An even simpler operator in the optional <code>rxjava-computation-expressions</code> package (also not
+      part of the standard RxGroovy set of operators) is <code>ifThen</code>. This operator checks a condition
+      and then either mirrors the source Observable or an empty Observable depending on the result.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava defer ifThen switchCase %}
+    <figure class="variant">
+     <img src="images/defer.png" style="width:100%;" alt="defer" />
+     <figcaption><p>
+      RxJava implements this operator as <code>defer</code>. This operator takes as its sole
+      parameter an Observable factory function of your choosing. This function takes no parameters
+      and returns an Observable.
+     </p><p>
+      <code>defer</code> does not by default operate on a particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defer(rx.functions.Func0)"><code>defer()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/switchCase.png" style="width:100%;" alt="switchCase" />
+     <figcaption><p>
+      There is a somewhat similar operator in the optional <code>rxjava-computation-expressions</code>
+      package (it is not part of the standard RxJava set of operators). The <code>switchCase</code> operator
+      conditionally creates and returns one of a set of possible Observables.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/ifThen.png" style="width:100%;" alt="ifThen" />
+     <figcaption><p>
+      An even simpler operator in the optional <code>rxjava-computation-expressions</code> package (also not
+      part of the standard RxGroovy set of operators) is <code>ifThen</code>. This operator checks a condition
+      and then either mirrors the source Observable or an empty Observable depending on the result.
+     </p></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS case defer if switchCase %}
+    <figure class="variant">
+     <img src="images/defer.png" style="width:100%;" alt="defer" />
+     <figcaption><p>
+      RxJS implements this operator as <code>defer</code>. This operator takes as its sole parameter
+      an Observable factory function of your choosing. This function takes no parameters and returns
+      an Observable or a Promise.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+/* Using an observable sequence */
+var source = Rx.Observable.defer(function () {
+    return Rx.Observable.return(42);
+});
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); } );</pre></div>
+     <div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.defer(function () {
+    return RSVP.Promise.resolve(42);
+});
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); } );</pre></div>
+     <div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>defer</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/if.png" style="width:100%;" alt="if" />
+     <figcaption><p>
+      RxJS also implements the <code>if</code> operator. It takes as parameters a function that returns a
+      boolean, an Observable to mirror if that function returns a true value, and optionally a second
+      Observable to mirror if that function returns a false value (if you omit this parameter, <code>if</code>
+      will mirror an empty Observable in such a case).
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var shouldRun = false;
+
+var source = Rx.Observable.if(
+    function () { return shouldRun; },
+    Rx.Observable.return(42),
+    Rx.Observable.return(56)
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 56
+Completed</pre></div>
+     <p>
+      <code>if</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.experimental.js</code> (requires <code>rx.js</code>, <code>rx.compat.js</code>, <code>rx.lite.js</code>, or <code>rx.lite.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/case.png" style="width:100%;" alt="case" />
+     <figcaption><p>
+      RxJS implements a somewhat similar operator called <code>case</code> (or
+      &ldquo;<code>switchCase</code>&rdquo;). This operator conditionally creates and returns one of a set of
+      possible Observables. It takes the following parameters:
+     </p>
+     <ol>
+      <li>a function that returns the key that determines which Observable to emit</li>
+      <li>an object that associates those keys with particular Observables</li>
+      <li>(optional) a <a href="../scheduler.html">Scheduler</a> or an Observable:<dl>
+        <dt>Scheduler</dt>
+         <dd>the Scheduler you want this operator to use</dd>
+        <dt>Observable</dt>
+         <dd>the default Observable to emit if the key does not associate with any Observables</dd>
+       </dl></li>
+     </ol>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var sources = {
+    'foo': Rx.Observable.return(42),
+    'bar': Rx.Observable.return(56)
+};
+
+var defaultSource = Rx.Observable.empty();
+
+var source = Rx.Observable.case(
+    function () {
+        return 'foo';
+    },
+    sources,
+    defaultSource);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); } );</pre></div>
+     <div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>case</code>/<code>switchCase</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code> (requires <code>rx.js</code>, <code>rx.compat.js</code>, <code>rx.lite.js</code>, or <code>rx.lite.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin defer switchCase %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Defer %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP defer %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>defer</code>.
+    </p>
+    <p>
+    Returns an observable sequence that invokes the specified factory function whenever a new observer subscribes.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/defer/defer.php
+
+
+$source = \Rx\Observable::defer(function () {
+    return \Rx\Observable::just(42);
+});
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY case defer if_then switch_case %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb defer %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala defer %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift defer %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

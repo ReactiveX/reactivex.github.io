@@ -1,0 +1,143 @@
+---
+layout: documentation
+title: ReactiveX - IgnoreElements operator
+id: ignoreElements
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">IgnoreElements</li>
+</ol>
+
+   <h1>IgnoreElements</h1>
+   <h3>do not emit any items from an Observable but mirror its termination notification</h3>
+   <figure>
+    <img src="images/ignoreElements.c.png" style="width:100%;" alt="IgnoreElements" />
+    <figcaption><p>
+     The <span class="operator">IgnoreElements</span> operator suppresses all of the items emitted by the
+     source Observable, but allows its termination notification (either <code>onError</code> or
+     <code>onCompleted</code>) to pass through unchanged.
+    </p><p>
+     If you do not care about the items being emitted by an Observable, but you do want to be notified when it
+     completes or when it terminates with an error, you can apply the <code>ignoreElements</code> operator to
+     the Observable, which will ensure that it will never call its observers&#8217; <code>onNext</code>
+     handlers.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#IgnoreElements"><cite>Introduction to Rx</cite>: IgnoreElements</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy ignoreElements %}
+     <figure>
+      <img src="images/ignoreElements.png" style="width:100%;" alt="ignoreElements" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>ignoreElements</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ignoreElements()"><code>ignoreElements()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>ignoreElements</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava ignoreElements %}
+     <figure>
+      <img src="images/ignoreElements.png" style="width:100%;" alt="ignoreElements" />
+      <figcaption><p>
+       RxJava implements this operator as <code>ignoreElements</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ignoreElements()"><code>ignoreElements()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>ignoreElements</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS ignoreElements %}
+     <figure>
+      <img src="images/ignoreElements.png" style="width:100%;" alt="ignoreElements" />
+      <figcaption><p>
+       RxJS implements this operator as <code>ignoreElements</code>.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 10)
+    .ignoreElements();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Completed</pre></div>
+      <p>
+       <code>ignoreElements</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin ignoreElements %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET IgnoreElements %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY ignore_elements %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb ignore_elements %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

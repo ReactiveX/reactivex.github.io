@@ -1,0 +1,187 @@
+---
+layout: documentation
+title: ReactiveX - Min operator
+id: min
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#mathematical">Mathematical and Aggregate</a></li>
+  <li class="active">Min</li>
+</ol>
+
+   <h1>Min</h1>
+   <h3>emits the item from the source Observable that had the minimum value</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="min"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Min</span> operator operates on an Observable that emits numbers
+     (or items that can be evaluated as numbers), and emits a single item: the item with the smallest
+     number.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="min.html"><span class="operator">Min</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#MaxAndMin"><cite>Introduction to Rx</cite>: Min, Max, Sum, and Average</a></li>
+    <li><a href="http://rxmarbles.com/#min">RxMarbles: <code>min</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy min minBy %}
+     <p>
+      In RxGroovy, this operator is not in the ReactiveX core, but is part of the distinct
+      <code>rxjava-math</code> module.
+     </p>
+     <figure>
+      <img src="images/min.png" style="width:100%;" alt="min" />
+      <figcaption><p>
+       RxGroovy implements a <code>min</code> operator. It takes an optional comparator that it
+       will use instead of its default to compare the value of two items. If more than one item
+       has the identical minimum value, <code>min</code> will emit the <em>last</em> such item
+       emitted by the source Observable.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/minBy.png" style="width:100%;" alt="minBy" />
+      <figcaption><p>
+       The <code>minBy</code> operator is similar to <code>min</code>, but instead of emitting the
+       item with the minimum value, it emits the item with the minimum <em>key</em>, where that
+       key is generated based on a function you provide to <code>minBy</code>
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava min minBy %}
+     <p>
+      In RxJava, this operator is not in the ReactiveX core, but is part of the distinct
+      <code>rxjava-math</code> module.
+     </p>
+     <figure>
+      <img src="images/min.png" style="width:100%;" alt="min" />
+      <figcaption><p>
+       RxJava implements a <code>min</code> operator. It takes an optional comparator that it
+       will use instead of its default to compare the value of two items. If more than one item
+       has the identical minimum value, <code>min</code> will emit the <em>last</em> such item
+       emitted by the source Observable.
+      </p></figcaption>
+     </figure>
+     <figure>
+      <img src="images/minBy.png" style="width:100%;" alt="minBy" />
+      <figcaption><p>
+       The <code>minBy</code> operator is similar to <code>min</code>, but instead of emitting the
+       item with the minimum value, it emits the item with the minimum <em>key</em>, where that
+       key is generated based on a function you provide to <code>minBy</code>
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS min minBy %}
+     <figure>
+      <img src="images/min.png" style="width:100%;" alt="min" />
+      <figcaption><p>
+       RxJS implements the <code>min</code> operator. It takes an optional comparer function that it
+       will use instead of its default to compare the value of two items.</p>
+       <h4>Sample Code</h4>
+       <div class="code javascript"><pre>
+var source = Rx.Observable.fromArray([1,3,5,7,9,2,4,6,8]).min();
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); } );</pre></div>
+       <div class="output"><pre>
+Next: 1
+Completed</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/minBy.png" style="width:100%;" alt="minBy" />
+      <figcaption><p>
+       The <code>minBy</code> operator is similar to <code>min</code>, but instead of emitting the
+       item with the minimum value, it emits the item with the minimum <em>key</em>, where that
+       key is generated based on a function you provide to <code>minBy</code>. <code>minBy</code>
+       also takes an optional second parameter: a comparer function that it will use instead of its
+       default to compare the keys of the two items.
+       </p><p>
+       <code>minBy</code> emits a list. If more than one item has the minimum key value, each such
+       item will be represented in the list.
+       </p>
+       <h4>Sample Code</h4>
+       <div class="code javascript"><pre>
+var source = Rx.Observable.fromArray([1,3,5,7,9,2,4,6,8,1])
+               .minBy( function (x) { return x; } );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); } );</pre></div>
+       <div class="output"><pre>
+Next: 1,1
+Completed</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>min</code> and <code>minBy</code> are found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      They requires one of the following:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin min minBy %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Min MinBy %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY min min_by %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb min min_by %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

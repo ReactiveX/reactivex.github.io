@@ -1,0 +1,200 @@
+---
+layout: documentation
+title: ReactiveX - Using operator
+id: using
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Using</li>
+</ol>
+
+   <h1>Using</h1>
+   <h3>create a disposable resource that has the same lifespan as the Observable</h3>
+   <figure>
+    <img src="images/using.c.png" style="width:100%;" alt="Using" />
+    <figcaption><p>
+     The <span class="operator">Using</span> operator is a way you can instruct an Observable to create a
+     resource that exists only during the lifespan of the Observable and is disposed of when the Observable
+     terminates.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/11_AdvancedErrorHandling.html#Using"><cite>Introduction to Rx</cite>: Using</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp scope %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy using %}
+     <figure>
+      <img src="images/using.png" style="width:100%;" alt="using" />
+      <figcaption><p>
+       You pass the <code>using</code> operator three parameters:
+      </p><ol>
+       <li>a factory function that creates a disposable resource</li>
+       <li>a factory function that creates an Observable</li>
+       <li>a function that disposes of the resource</li>
+      </ol><p>
+       When an observer subscribes to the Observable returned from <code>using</code>, <code>using</code> will
+       use the Observable factory function to create the Observable the observer will observe, while at the same
+       time using the resource factory function to create whichever resource you have designed it to make. When
+       the observer unsubscribes from the Observable, or when the Observable terminates (normally or with an
+       error), <code>using</code> will call the third function to dispose of the resource it created.
+      </p><p>
+       <code>using</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#using(rx.functions.Func0,%20rx.functions.Func1,%20rx.functions.Action1)"><code>using(Func0,Func1,Action1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava using %}
+     <figure>
+      <img src="images/using.png" style="width:100%;" alt="using" />
+      <figcaption><p>
+       You pass the <code>using</code> operator three parameters:
+      </p><ol>
+       <li>a factory function that creates a disposable resource</li>
+       <li>a factory function that creates an Observable</li>
+       <li>a function that disposes of the resource</li>
+      </ol><p>
+       When an observer subscribes to the Observable returned from <code>using</code>, <code>using</code> will
+       use the Observable factory function to create the Observable the observer will observe, while at the same
+       time using the resource factory function to create whichever resource you have designed it to make. When
+       the observer unsubscribes from the Observable, or when the Observable terminates (normally or with an
+       error), <code>using</code> will call the third function to dispose of the resource it created.
+      </p><p>
+       <code>using</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#using(rx.functions.Func0,%20rx.functions.Func1,%20rx.functions.Action1)"><code>using(Func0,Func1,Action1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS using %}
+     <figure>
+      <img src="images/using.js.png" style="width:100%;" alt="using" />
+      <figcaption><p>
+       You pass the <code>using</code> operator two parameters:
+      </p><ol>
+       <li>a factory function that creates a disposable resource</li>
+       <li>a factory function that creates an Observable</li>
+      </ol><p>
+       When an observer subscribes to the Observable returned from <code>using</code>, <code>using</code> will
+       use the Observable factory function to create the Observable the observer will observe, while at the same
+       time using the resource factory function to create whichever resource you have designed it to make. To
+       dispose of the resource, call the <code>dispose</code> method of the subscription that was returned from
+       the <code>subscribe</code> call you used to subscribe an observer to the Observable that you modified
+       with <code>using</code>.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Using an AsyncSubject as a resource which supports the .dispose method */
+function DisposableResource(value) {
+  this.value = value;
+  this.disposed = false;
+}
+
+DisposableResource.prototype.getValue = function () {
+  if (this.disposed) {
+    throw new Error('Object is disposed');
+  }
+  return this.value;
+};
+
+DisposableResource.prototype.dispose = function () {
+  if (!this.disposed) {
+    this.disposed = true;
+    this.value = null;
+  }
+  console.log('Disposed');
+};
+
+var source = Rx.Observable.using(
+  function () { return new DisposableResource(42); },
+  function (resource) {
+    var subject = new Rx.AsyncSubject();
+    subject.onNext(resource.getValue());
+    subject.onCompleted();
+    return subject;
+  }
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 42
+Completed</pre></div>
+      <div class="code javascript"><pre>
+subscription.dispose();</pre></div>
+      <div class="output"><pre>
+Disposed</pre></div>
+      <p>
+       <code>using</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin using %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Using %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY using %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb using %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala using %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift using %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

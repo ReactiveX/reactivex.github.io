@@ -357,6 +357,39 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP takeLast %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>takeLast</code>.
+    </p>
+    <p>
+    Returns a specified number of contiguous elements from the end of an observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/takeLast.php
+
+$source = \Rx\Observable::range(0, 5)
+    ->takeLast(3);
+
+$source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 2
+Next value: 3
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY take_last take_last_buffer take_last_with_time %}
      <p>
       <span style="color:#ff0000">TBD</span>

@@ -573,7 +573,7 @@ Completed</pre></div>
     </ul>
   {% endlang_operator %}
 
-  {% lang_operator RxPHP flatMap selectMany flatMapLatest concatMap concatMapTo %}
+  {% lang_operator RxPHP flatMap flatMapTo selectMany flatMapLatest concatMap concatMapTo %}
 <figure class="variant">
     <figcaption>
     <p>
@@ -594,7 +594,7 @@ $observable = Rx\Observable::range(1, 5);
 
 $selectManyObservable = $observable->flatMap(function ($value) {
     return Rx\Observable::range(1, $value);
-}, $scheduler);
+});
 
 $disposable = $selectManyObservable->subscribe($stdoutObserver, $scheduler);
 
@@ -620,6 +620,28 @@ Next value: 3
 Next value: 4
 Next value: 5
 Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>flatMapTo</code>.
+    </p>
+    <p>
+    Projects each element of the source observable sequence to the other observable sequence and merges the resulting observable sequences into one observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/concat/flatMapTo.php
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+
     </pre>
 </div>
     </figcaption>

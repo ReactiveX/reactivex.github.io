@@ -218,6 +218,37 @@ Completed</pre></div></figcaption>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP sum %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>sum</code>.
+    </p>
+    <p>
+    Computes the sum of a sequence of values
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/sum/sum.php
+
+$source = Rx\Observable::range(1, 10)
+    ->sum();
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 55
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY sum %}
      <p>
       <span style="color:#ff0000">TBD</span>

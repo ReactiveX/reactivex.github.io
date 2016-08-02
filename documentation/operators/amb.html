@@ -131,6 +131,50 @@ Completed</pre></div></figcaption>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP race %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>race</code>.
+    </p>
+    <p>
+    Propagates the observable sequence that reacts first.  Also known as 'amb'.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/race/race.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::race(
+    [
+        Rx\Observable::timer(500)->map(function () {
+            return 'foo';
+        }),
+        Rx\Observable::timer(200)->map(function () {
+            return 'bar';
+        })
+    ]
+);
+
+$source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: bar
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY amb %}
      <p>
       <span style="color:#ff0000">TBD</span>

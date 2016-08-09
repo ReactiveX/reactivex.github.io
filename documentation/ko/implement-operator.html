@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Implementing Your Own Operators</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>사용자 정의 연산자 구현</h1>
+
+<p>필요하다면, 원하는 Observable의 연산자를 직접 구현할 수 있다. 이 페이지를 통해 어떻게 연산자를 구현하는지 설명한다.</p>
+
+<p>만약, 구현하려는 연산자가 소스 Observable이 배출하는 항목에 반응하거나 항목을 다른 형태로 변환하는 것이 아니라, Observable을 생성하는 거라면 <code>Observable</code>을 직접 구현하려고 애쓰지 말고 대신, 
+<a href="Operators/ko/create"><code>create( )</code></a> 메서를 사용하는 것이 좋다. 반대로, 소스 Observable이 배출하는 항목에 반응하는 연산자라면 아래 내용을 살펴보자.</p>
+
+<h1> 표준 RxJava 연산자와 사용자 정의 연산자 체인</h1>
+
+<p>다음 예제는 표준 RxJava 연산자인 <code>lift( )</code>와 사용자 정의 연산자(이 예제에서는 <code>myOperator</code>)를 함께 체인에 적용하는 방법을 보여준다:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">Observable</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">barObservable</span><span class="o">.</span><span class="na">ofType</span><span class="o">(</span><span class="n">Integer</span><span class="o">).</span><span class="na">map</span><span class="o">({</span><span class="n">it</span><span class="o">*</span><span class="mi">2</span><span class="o">}).</span><span class="na">lift</span><span class="o">(</span><span class="k">new</span> <span class="n">myOperator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;()).</span><span class="na">map</span><span class="o">({</span><span class="s2">&quot;transformed by myOperator: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">});</span>
+</code></pre></div>
+<p>아래는 여러분이 정의한 연산자가 <code>lift( )</code>와 함께 잘 동작하기 위해서 어떤 구조로 코드를 구현해야 하는지 설명한다.</p>
+
+<h1> 연산자 구현</h1>
+
+<p>먼저, 구현하려는 연산자를 <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.Operator.html"><code>Operator</code></a> 인터페이스를 구현하는 public 클래스로 선언한다. 그럼 아래와 같을 것이다:</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">myOperator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Operator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nf">myOperator</span><span class="o">(</span> <span class="cm">/* 필요한 파라미터 선언 */</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="cm">/* 필요한 초기화 코드 구현 */</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="nf">call</span><span class="o">(</span><span class="kd">final</span> <span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Subscriber</span><span class="o">&lt;</span><span class="n">t</span><span class="o">&gt;(</span><span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCompleted</span><span class="o">()</span> <span class="o">{</span>
+        <span class="cm">/* onCompleted 시에 필요한 코드를 구현하거나 완료 알림을 그냥 지나친다: */</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">s</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+          <span class="n">s</span><span class="o">.</span><span class="na">onCompleted</span><span class="o">();</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="cm">/* onError 시에 필요한 코드를 구현하거나 오류 알림을 그냥 지나친다: */</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">s</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+          <span class="n">s</span><span class="o">.</span><span class="na">onError</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNext</span><span class="o">(</span><span class="n">T</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+        <span class="cm">/* 이 예제는 전달된 항목을 간단히 변환한 후 전달하는 코드를 구현한다 */</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">s</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
+          <span class="n">transformedItem</span> <span class="o">=</span> <span class="n">myOperatorTransformOperation</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+          <span class="n">s</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="n">transformedItem</span><span class="o">);</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">};</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h1> 그 외 고려사항</h1>
+
+<ul>
+<li><p>구현할 연산자는 구독자에게 항목을 배출하기 전에(혹은 알림을 보내기 전에) 반드시 <a href="Observable#unsubscribing">구독자의 <code>isUnsubscribed( )</code> 상태</a>를 체크해야 한다. 구독자가 없는데도 항목을 배출하기 위해 시간을 낭비할 필요가 없다.</p></li>
+<li><p>구현할 연산자는 Observable 계약이 가진 핵심 원칙을 따라야 한다:</p>
+
+<ul>
+<li>연산자는 구독자의 <a href="Observable#onnext-oncompleted-and-onerror"><code>onNext( )</code></a> 메서드를 수도 없이 많이 호출할 수 있다. 하지만, 절대 중복된 호출이 발생하면 안된다.</li>
+<li>연산자는 구독자의 <a href="Observable#onnext-oncompleted-and-onerror"><code>onCompleted( )</code></a>나 <a href="Observable#onnext-oncompleted-and-onerror"><code>onError( )</code></a> 중 하나를 호출한다. 하지만 둘 모두를 호출해서는 안되며 반드시 둘 중 하나만 한번 호출해야 한다. 그 후에는 구독자의 <a href="Observable#onnext-oncompleted-and-onerror"><code>onNext( )</code></a>를 호출하지 않을 것이다.</li>
+<li>만약 구현하는 연산자가 위의 두 원칙을 보장할 수 없다면, <a href="Observable-Utility-Operators#serialize"><code>serialize( )</code></a> 연산자 호출를 추가해서 올바르게 행동하도록 강제할 수 있다.</li>
+</ul></li>
+<li><p>구현하는 연산자 내에서 블럭킹(blocking) 방식을 사용하지 않는다.</p></li>
+<li><p>대부분의 상황에서는 새로운 연산자를 만들 때 완전히 새로운 것을 만들기 보다는 기존의 확장 가능한 연산자를 결합시켜 구현하는 것이 가장 좋은 방법이다. RxJava 역시도 표준 연산자들을 결합하여 새로운 연산자들을 만들었는데, 아래의 연산자들을 그 예로 들 수 있다:</p>
+
+<ul>
+<li><a href="Filtering-Observables#wiki-first-and-takefirst"><code>first( )</code></a> 연산자는 <a href="Filtering-Observables#wiki-take"><code>take(1)</code></a><code>.</code><a href="Observable-Utility-Operators#wiki-single-and-singleordefault"><code>single( )</code></a>를 활용해 만들어 졌다.</li>
+<li><a href="Filtering-Observables#wiki-ignoreelements"><code>ignoreElements( )</code></a> 연산자는 <a href="Filtering-Observables#wiki-filter"><code>filter(alwaysFalse( ))</code></a>를 사용해 만들어 졌다</li>
+<li><a href="Mathematical-and-Aggregate-Operators#wiki-reduce"><code>reduce(a)</code></a> 연산자는 is <a href="Transforming-Observables#wiki-scan"><code>scan(a)</code></a><code>.</code><a href="Filtering-Observables#wiki-last"><code>last( )</code></a>를 사용해 만들어 졌다</li>
+</ul></li>
+<li><p>만약 (예를 들어, predicates와 같이) 함수나 람다 식을 파라미터로 사용한다면, 이것이 오류를 발생시킬 수 있기 때문에 오류가 발생할 경우를 대비해서 코드를 구현해야 하고 오류가 발생하면 try/catch 절로 오류를 잡아서 <code>onError( )</code> 메서드를 호출해 구독자에게 오류가 발생했음을 알려야 한다.</p></li>
+<li><p>일반적으로, 항목들을 배출하는 코드를 구현하기 위해 노력을 기울이기 보다는 그 전에 앞서 오류 조건을 먼저 파악하고 구독자에게 이를 알리는 것이 좋다.</p></li>
+<li><p>ReactiveX의 일부 구현체에서는 구현한 연산자의 &ldquo;역압&rdquo; 전략에 대해 꼼꼼히 체크할 필요가 있다. (그 예로 D&aacute;vid Karnok의 <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">Pitfalls of Operator Implementations (part 2)</a> 글을 참고하기 바란다.)</p></li>
+</ul>
+
+<h1> 참고</h1>
+
+<ul>
+<li><a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations.html">Pitfalls of Operator Implementations (part 1)</a> and <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">(part 2)</a> by D&aacute;vid Karnok.</li>
+<li><a href="http://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/implementing_your_own_operators.html">Implementing Your Own Observable Operators</a> (in RxJS) by Dennis Stoyanov</li>
+</ul>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/implement-operator.html">한국어</a></li>
+        <li><a href="/documentation/ko/implement-operator.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+      
+        <li><a href="/documentation/ko/observable.html">Observable</a></li>
+        <li><a href="/documentation/ko/operators.html">Operators</a></li>
+        <li><a href="/documentation/ko/single.html">Single</a></li>
+        <li><a href="/documentation/ko/subject.html">Subject</a></li>
+        <li><a href="/documentation/ko/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-implement-operator").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

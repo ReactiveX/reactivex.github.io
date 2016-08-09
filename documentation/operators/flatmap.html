@@ -806,7 +806,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>flatMap selectMany flatMapLatest concatMap concatMapTo</code>
+              RxPHP <code>flatMap flatMapTo selectMany flatMapLatest concatMap concatMapTo</code>
             </a>
           </h4>
         </div>
@@ -833,7 +833,7 @@ $observable = Rx\Observable::range(1, 5);
 
 $selectManyObservable = $observable->flatMap(function ($value) {
     return Rx\Observable::range(1, $value);
-}, $scheduler);
+});
 
 $disposable = $selectManyObservable->subscribe($stdoutObserver, $scheduler);
 
@@ -859,6 +859,28 @@ Next value: 3
 Next value: 4
 Next value: 5
 Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>flatMapTo</code>.
+    </p>
+    <p>
+    Projects each element of the source observable sequence to the other observable sequence and merges the resulting observable sequences into one observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/concat/flatMapTo.php
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+
     </pre>
 </div>
     </figcaption>
@@ -1102,13 +1124,20 @@ Complete!
 
     </div>
     <div class="col-sm-4">
-    <ul class="side-menu">
-      <li><a href="/documentation/observable.html">Observable</a></li>
-      <li><a href="/documentation/operators.html">Operators</a></li>
-      <li><a href="/documentation/single.html">Single</a></li>
-      <li><a href="/documentation/subject.html">Subject</a></li>
-      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-    </ul>
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/operators/flatmap.html">한국어</a></li>
+        <li><a href="/documentation/operators/flatmap.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
     </div>
   </div>
 </div>

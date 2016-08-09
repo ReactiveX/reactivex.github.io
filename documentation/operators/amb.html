@@ -361,6 +361,65 @@ Completed</pre></div></figcaption>
 
   
       <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>race</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>race</code>.
+    </p>
+    <p>
+    Propagates the observable sequence that reacts first.  Also known as 'amb'.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/race/race.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::race(
+    [
+        Rx\Observable::timer(500)->map(function () {
+            return 'foo';
+        }),
+        Rx\Observable::timer(200)->map(function () {
+            return 'bar';
+        })
+    ]
+);
+
+$source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: bar
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxPY">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
@@ -447,13 +506,20 @@ Completed</pre></div></figcaption>
 
     </div>
     <div class="col-sm-4">
-    <ul class="side-menu">
-      <li><a href="/documentation/observable.html">Observable</a></li>
-      <li><a href="/documentation/operators.html">Operators</a></li>
-      <li><a href="/documentation/single.html">Single</a></li>
-      <li><a href="/documentation/subject.html">Subject</a></li>
-      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-    </ul>
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/operators/amb.html">한국어</a></li>
+        <li><a href="/documentation/operators/amb.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
     </div>
   </div>
 </div>

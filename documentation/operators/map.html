@@ -473,7 +473,7 @@ Completed</pre></div></figcaption>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>map mapWithIndex mapTo select</code>
+              RxPHP <code>map mapWithIndex mapTo select pluck</code>
             </a>
           </h4>
         </div>
@@ -576,6 +576,39 @@ Complete!
     </p>
 
     </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>pluck</code>.
+    </p>
+    <p>
+    Returns an Observable containing the value of a specified array index (if array) or property (if object) from all elements in the Observable sequence. If a property can't be resolved the observable will error.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/pluck/pluck.php
+
+$source = Rx\Observable::fromArray([
+    (object)['value' => 0],
+    (object)['value' => 1],
+    (object)['value' => 2]
+])
+    ->pluck('value');
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
 </figure>
   
           </div>
@@ -671,13 +704,20 @@ Complete!
 
     </div>
     <div class="col-sm-4">
-    <ul class="side-menu">
-      <li><a href="/documentation/observable.html">Observable</a></li>
-      <li><a href="/documentation/operators.html">Operators</a></li>
-      <li><a href="/documentation/single.html">Single</a></li>
-      <li><a href="/documentation/subject.html">Subject</a></li>
-      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-    </ul>
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/operators/map.html">한국어</a></li>
+        <li><a href="/documentation/operators/map.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
     </div>
   </div>
 </div>

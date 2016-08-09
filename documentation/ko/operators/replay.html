@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Replay operator</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#connectable">Connectable</a></li>
+  <li class="active">Replay</li>
+</ol>
+
+<h1>Replay</h1>
+<h3>ensure that all observers see the same sequence of emitted items, even if they subscribe after the Observable has begun emitting items</h3>
+
+<figure>
+ <img src="images/replay.c.png" style="width:100%;" alt="Replay" />
+ <figcaption><p>
+  A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+  emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+  operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
+  time of your choosing.
+ </p><p>
+  If you apply the <span class="operator">Replay</span> operator to an Observable before you convert
+  it into a connectable Observable, the resulting connectable Observable will always emit the same
+  complete sequence to any future observers, even those observers that subscribe after the
+  connectable Observable has begun to emit items to other subscribed observers.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="connect.html"><span class="operator">Connect</span></a></li>
+ <li><a href="publish.html"><span class="operator">Publish</span></a></li>
+ <li><a href="refcount.html"><span class="operator">RefCount</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/14_HotAndColdObservables.html#Replay"><cite>Introduction to Rx</cite>: Replay</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>cache</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+    <p> 
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>publish_synchronized replay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+ 
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>replay cache</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/replay.png" style="width:100%;" alt="replay" />
+     <figcaption><p>
+      In RxGroovy there is a variety of the <code>replay</code> operator that returns a connectable
+      Observable. You must <a href="publish.html"><span class="operator">Publish</span></a> this
+      connectable Observable before observers can subscribe to it, and then
+      <a href="connect.html"><span class="operator">Connect</span></a> to it in order to observe its
+      emissions.
+     </p><p>
+      Variants of this variety of the <code>replay</code> operator permit you to set a maximum
+      buffer size to limit the number of items <code>replay</code> will buffer and replay to
+      subsequent observers, and/or to establish a moving time window that defines when emitted items
+      become too old to buffer and replay.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay()"><code>replay()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.Scheduler)"><code>replay(Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int)"><code>replay(int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20rx.Scheduler)"><code>replay(int,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long,%20java.util.concurrent.TimeUnit)"><code>replay(long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(int,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(int,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/replay.f.png" style="width:100%;" alt="replay" />
+     <figcaption><p>
+      There is also a variety of <code>replay</code> that returns an ordinary Observable. These
+      variants take as a parameter a transformative function; this function accepts an item emitted
+      by the source Observable as its parameter, and returns an item to be emitted by the resulting
+      Observable. So really, this operator does not replay the source Observable but instead replays
+      the source Observable <em>as transformed</em> by this function.
+     </p><p>
+      Variants of this variety of the <code>replay</code> operator permit you to set a maximum
+      buffer size to limit the number of items <code>replay</code> will buffer and replay to
+      subsequent observers, and/or to establish a moving time window that defines when emitted items
+      become too old to buffer and replay.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1)"><code>replay(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20rx.Scheduler)"><code>replay(Func1,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int)"><code>replay(Func1,int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20rx.Scheduler)"><code>replay(Func1,int,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(Func1,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(Func1,long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(Func1,int,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(Func1,int,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
+              RxJava <code>replay cache</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/replay.png" style="width:100%;" alt="replay" />
+     <figcaption><p>
+      In RxJava there is a variety of the <code>replay</code> operator that returns a connectable
+      Observable. You must <a href="publish.html"><span class="operator">Publish</span></a> this
+      connectable Observable before observers can subscribe to it, and then
+      <a href="connect.html"><span class="operator">Connect</span></a> to it in order to observe its
+      emissions.
+     </p><p>
+      Variants of this variety of the <code>replay</code> operator permit you to set a maximum
+      buffer size to limit the number of items <code>replay</code> will buffer and replay to
+      subsequent observers, and/or to establish a moving time window that defines when emitted items
+      become too old to buffer and replay.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay()"><code>replay()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.Scheduler)"><code>replay(Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int)"><code>replay(int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20rx.Scheduler)"><code>replay(int,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long,%20java.util.concurrent.TimeUnit)"><code>replay(long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(int,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(int,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/replay.f.png" style="width:100%;" alt="replay" />
+     <figcaption><p>
+      There is also a variety of <code>replay</code> that returns an ordinary Observable. These
+      variants take as a parameter a transformative function; this function accepts an item emitted
+      by the source Observable as its parameter, and returns an item to be emitted by the resulting
+      Observable. So really, this operator does not replay the source Observable but instead replays
+      the source Observable <em>as transformed</em> by this function.
+     </p><p>
+      Variants of this variety of the <code>replay</code> operator permit you to set a maximum
+      buffer size to limit the number of items <code>replay</code> will buffer and replay to
+      subsequent observers, and/or to establish a moving time window that defines when emitted items
+      become too old to buffer and replay.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1)"><code>replay(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20rx.Scheduler)"><code>replay(Func1,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int)"><code>replay(Func1,int)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20rx.Scheduler)"><code>replay(Func1,int,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(Func1,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(Func1,long,TimeUnit,Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20long,%20java.util.concurrent.TimeUnit)"><code>replay(Func1,int,long,TimeUnit)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#replay(rx.functions.Func1,%20int,%20long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>replay(Func1,int,long,TimeUnit,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>replay shareReplay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/replay.fnts.png" style="width:100%;" alt="replay" />
+     <figcaption><p>
+      In RxJs the <code>replay</code> operator takes four optional parameters and returns an
+      ordinary Observable:
+     </p>
+     <dl>
+      <dt><code>selector</code></dt><dd>a transforming function that takes an item emitted by the
+          source Observable as its parameter and returns an item to be emitted by the resulting
+          Observable</dd>
+      <dt><code>bufferSize</code></dt><dd>the maximum number of items to buffer and replay to
+          subsequent observers</dd>
+      <dt><code>window</code></dt><dd>the age, in milliseconds, at which items in this buffer may be
+          discarded without being emitted to subsequent observers</dd>
+      <dt><code>scheduler</code></dt><dd>the <a href="../scheduler.html">Scheduler</a> on which this operator
+          will operate</dd>
+     </dl>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .do(function (x) {
+        console.log('Side effect');
+    });
+
+var published = source
+    .replay(function (x) {
+        return x.take(2).repeat(2);
+    }, 3);
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Side effect
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceA0
+Next: SourceA1
+Completed
+Side effect
+Next: SourceB1
+Next: SourceB0
+Next: SourceB1
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <p>
+     There is also a <code>shareReplay</code> operator, which keeps track of the number of
+     observers, and disconnects from the source Observable when that number drops to zero.
+     <code>shareReplay</code> takes three optional parameters and returns an ordinary Observable:
+     </p>
+     <dl>
+      <dt><code>bufferSize</code></dt><dd>the maximum number of items to buffer and replay to
+          subsequent observers</dd>
+      <dt><code>window</code></dt><dd>the age, in milliseconds, at which items in this buffer may be
+          discarded without being emitted to subsequent observers</dd>
+      <dt><code>scheduler</code></dt><dd>the <a href="../scheduler.html">Scheduler</a> on which this operator
+          will operate</dd>
+     </dl>
+    <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(4)
+    .doAction(function (x) {
+        console.log('Side effect');
+    });
+
+var published = source
+    .shareReplay(3);
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+// Creating a third subscription after the previous two subscriptions have
+// completed. Notice that no side effects result from this subscription,
+// because the notifications are cached and replayed.
+Rx.Observable
+    .return(true)
+    .delay(6000)
+    .flatMap(published)
+    .subscribe(createObserver('SourceC'));
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Side effect
+Next: SourceA2
+Next: SourceB2
+Side effect
+Next: SourceA3
+Next: SourceB3
+Completed
+Completed
+Next: SourceC1
+Next: SourceC2
+Next: SourceC3
+Completed</pre></div>
+     <p>
+      <code>replay</code> and <code>shareReplay</code> are found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.binding.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>replay cache</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Replay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>replay shareReplay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>replay</code>.
+    </p>
+    <p>
+    Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum time length for the replay buffer.  This operator is a specialization of Multicast using a ReplaySubject.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/replay/replay.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$interval = \Rx\Observable::interval(1000);
+
+$source = $interval
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo $x, " something", PHP_EOL;
+        echo "Side effect", PHP_EOL;
+    });
+
+$published = $source
+    ->replay(function (\Rx\Observable $x) {
+        return $x->take(2)->repeat(2);
+    }, 3);
+
+$published->subscribe($createStdoutObserver('SourceA '), $scheduler);
+$published->subscribe($createStdoutObserver('SourceB '), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>shareReplay</code>.
+    </p>
+    <p>
+    Returns an observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum time length for the replay buffer.  This operator is a specialization of  replay which creates a subscription when the number of observers goes from zero to one, then shares that  subscription with all subsequent observers until the number of observers returns to zero, at which point the subscription is disposed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/share/shareReplay.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$interval = Rx\Observable::interval(1000);
+
+$source = $interval
+    ->take(4)
+    ->doOnNext(function ($x) {
+        echo 'Side effect', PHP_EOL;
+    });
+
+$published = $source
+    ->shareReplay(3);
+
+$published->subscribe($createStdoutObserver('SourceA '), $scheduler);
+$published->subscribe($createStdoutObserver('SourceB '), $scheduler);
+
+Rx\Observable
+    ::just(true)
+    ->concatMapTo(\Rx\Observable::timer(6000))
+    ->flatMap(function () use ($published) {
+        return $published;
+    })
+    ->subscribe($createStdoutObserver('SourceC '), $scheduler);
+
+$loop->run();
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+SourceA Next value: 0
+SourceB Next value: 0
+Side effect
+SourceA Next value: 1
+SourceB Next value: 1
+Side effect
+SourceA Next value: 2
+SourceB Next value: 2
+Side effect
+SourceA Next value: 3
+SourceB Next value: 3
+SourceA Complete!
+SourceB Complete!
+SourceC Next value: 1
+SourceC Next value: 2
+SourceC Next value: 3
+SourceC Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>replay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>replay cache</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxSwift">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxSwift" aria-expanded="true" aria-controls="collapseRxSwift">
+              RxSwift <code>replay shareReplay</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/operators/replay.html">한국어</a></li>
+        <li><a href="/documentation/ko/operators/replay.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-replay").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

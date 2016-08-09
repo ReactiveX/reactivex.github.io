@@ -517,7 +517,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>repeat</code>
+              RxPHP <code>repeat repeatWhen</code>
             </a>
           </h4>
         </div>
@@ -555,6 +555,53 @@ Next value: 3
 Next value: 1
 Next value: 2
 Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>repeatWhen</code>.
+    </p>
+    <p>
+    Returns an Observable that emits the same values as the source Observable with the exception of an onCompleted. An onCompleted notification from the source will result in the emission of a count item to the Observable provided as an argument to the notificationHandler function. If that Observable calls onComplete or onError then repeatWhen will call onCompleted or onError on the child subscription. Otherwise, this Observable will resubscribe to the source observable.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/repeat/repeatWhen.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::just(42)
+    ->repeatWhen(function (\Rx\Observable $notifications) {
+        return $notifications
+            ->scan(function ($acc, $x) {
+                return $acc + $x;
+            }, 0)
+            ->delay(1000)
+            ->doOnNext(function () {
+                echo "1 second delay", PHP_EOL;
+            })
+            ->takeWhile(function ($count) {
+                return $count < 2;
+            });
+    });
+
+$subscription = $source->subscribe($createStdoutObserver(), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+1 second delay
+Next value: 42
+1 second delay
 Complete!
     </pre>
 </div>
@@ -654,13 +701,20 @@ Complete!
 
     </div>
     <div class="col-sm-4">
-    <ul class="side-menu">
-      <li><a href="/documentation/observable.html">Observable</a></li>
-      <li><a href="/documentation/operators.html">Operators</a></li>
-      <li><a href="/documentation/single.html">Single</a></li>
-      <li><a href="/documentation/subject.html">Subject</a></li>
-      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-    </ul>
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/operators/repeat.html">한국어</a></li>
+        <li><a href="/documentation/operators/repeat.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
     </div>
   </div>
 </div>

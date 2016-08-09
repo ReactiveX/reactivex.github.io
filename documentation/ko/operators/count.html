@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Count operator</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#mathematical">Mathematical and Aggregate</a></li>
+  <li class="active">Count</li>
+</ol>
+
+   <h1>Count</h1>
+   <h3>count the number of items emitted by the source Observable and emit only this value</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="count"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Count</span> operator transforms an Observable that emits items into
+     an Observable that emits a single value that represents the number of items emitted by the
+     source Observable.
+    </p><p>
+     If the source Observable terminates with an error, <span class="operator">Count</span> will pass
+     this error notification along without emitting an item first. If the source Observable does not
+     terminate at all, <span class="operator">Count</span> will neither emit an item nor terminate.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Count"><cite>Introduction to Rx</cite>: Count</a></li>
+    <li><a href="http://rxmarbles.com/#count">RxMarbles: <code>count</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>count longCount</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+     <p>
+      RxClojure has both <code>count</code> and <code>longCount</code> variants of this operator,
+      but both of these in fact return long values.
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>count</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+     <p>
+      RxCpp implements this operator as <code>count</code>.
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>count countLong</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+     <p>
+      In RxGroovy the operator is called <code>count</code> and the Observable it creates emits an
+      Integer value. There is also a <code>countLong</code> whose Observable emits a Long value.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber -&gt;
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Three');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('Two');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onNext('One');
+  if(false == aSubscriber.isUnsubscribed()) aSubscriber.onCompleted();
+});
+
+myObservable.count().subscribe(
+   { println(it); },                          // onNext
+   { println("Error: " + it.getMessage()); }, // onError
+   { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+3
+Sequence complete</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#count()"><code>count()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#countLong()"><code>countLong()</code></a></li>
+     </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
+              RxJava <code>count countLong</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
+          <div class="panel-body">
+            
+     <p>
+      In RxJava the operator is called <code>count</code> and the Observable it creates emits an
+      Integer value. There is also a <code>countLong</code> whose Observable emits a Long value.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+String[] items = new String[] { "one", "two", "three" };
+assertEquals( new Integer(3), Observable.from(items).count().toBlocking().single() );</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#count()"><code>count()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#countLong()"><code>countLong()</code></a></li>
+     </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>count</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+     <p>
+      In RxJS the operator <code>count</code> counts the number of items in the source Observable
+      that satisfy a specified predicate. That predicate takes the form of a function that takes
+      three parameters:
+     </p>
+     <ol>
+      <li>the emitted item</li>
+      <li>the index of that item in the sequence of emitted items</li>
+      <li>the source Observable</li>
+     </ol>
+     <p>
+      If the predicate function returns <code>true</code>, <code>count</code> will increment the
+      tally of items that it will report when the source Observable completes. If you want to count
+      <em>all</em> of the items emitted by the source Observable, simply pass <code>count</code> a
+      predicate that always returns <code>true</code>:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+numberOfItems = someObservable.count(function() { return true; });</pre></div>
+     <p>
+      <code>count</code> is part of the following packages:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      <code>count</code> requires one of any of the following packages:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>count</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+     <p>
+      RxKotlin implements this operator as <code>count</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code kotlin"><pre>
+val list = listOf(1, 2, 3, 4, 5)
+assertEquals( 5, Observable.from(list)!!.count()!!.toBlocking()!!.single() )</pre></div>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Count LongCount</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+     <p>
+      In Rx.NET the Observable this operator creates emits an Integer value, but there is also a
+      <code>LongCount</code> whose Observable emits a Long value. With both variants, you can either
+      pass the source Observable in to the operator as a parameter or you can call the operator as
+      an instance method of the source Observable (in which case you omit the parameter).
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>count</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>count</code>.
+    </p>
+    <p>
+    Returns an observable sequence containing a value that represents how many elements in the specified observable sequence satisfy a condition if provided, else the count of items.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/count/count.php
+
+$source = \Rx\Observable::fromArray(range(1, 10));
+
+$subscription = $source->count()->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 10
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>count</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+     <p>
+      In RxPY you have the option to pass <code>count</code> a predicate that takes an item emitted
+      by the source Observable as a parameter. If you do so, <code>count</code> will emit a count
+      only of those items from the source Observable that the predicate evaluates as
+      <code>true</code>. Otherwise, it will emit a count of all items emitted by the source
+      Observable.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code python"><pre>
+numberOfItems = someObservable.count()
+numberOfNegativeItems = someObservable.count(lambda x: x &lt; 0)</pre></div>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>count</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+     <p>
+      In Rx.rb you have the option to pass <code>count</code> a predicate that takes an item emitted
+      by the source Observable as a parameter. If you do so, <code>count</code> will emit a count
+      only of those items from the source Observable that the predicate evaluates as
+      <code>true</code>. Otherwise it will emit a count of all items emitted by the source
+      Observable.
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>count length longCount size</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+     <p>
+      In RxScala the operator <code>count</code> counts the number of items in the source Observable
+      that satisfy a specified predicate. That predicate accepts an emitted item as a parameter and
+      returns a Boolean. <code>count</code> will emit a count of all items for which this predicate
+      returned <code>true</code>.
+     </p><p>
+      Use <code>length</code> or <code>size</code> instead if you want to count <em>all</em> of the
+      items emitted by the source Observable and emit this count as an Integer, or use
+      <code>longCount</code> to emit it as a Long.
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/operators/count.html">한국어</a></li>
+        <li><a href="/documentation/ko/operators/count.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-count").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

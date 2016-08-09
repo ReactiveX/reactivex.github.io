@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Zip operator</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">Zip</li>
+</ol>
+
+   <h1>Zip</h1>
+   <h3>combine the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="zip"></rx-marbles>
+    <figcaption><p>
+     The <code>Zip</code> method returns an Observable that applies a function of your choosing to
+     the combination of items emitted, in sequence, by two (or more) other Observables, with the
+     results of this function becoming the items emitted by the returned Observable. It applies this
+     function in strict sequence, so the first item emitted by the new Observable will be the result
+     of the function applied to the first item emitted by Observable #1 and the first item emitted by
+     Observable #2; the second item emitted by the new zip-Observable will be the result of the
+     function applied to the second item emitted by Observable #1 and the second item emitted by
+     Observable #2; and so forth. It will only emit as many items as the number of items emitted by
+     the source Observable that emits the fewest items.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="and-then-when.html"><span class="operator">And</span>/<span class="operator">Then</span>/<span class="operator">When</span></a></li>
+    <li><a href="combinelatest.html"><span class="operator">CombineLatest</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#Zip"><cite>Introduction to Rx</cite>: Zip</a></li>
+    <li><a href="http://rxmarbles.com/#zip">RxMarbles: <code>zip</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc49"><cite>101 Rx Samples</cite>: Zip</a></li>
+   </ul>
+ 
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>map mapCat</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>zip</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>zip zipWith</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+     <p>
+      RxGroovy implements this operator as several variants of <code>zip</code> and also as
+      <code>zipWith</code>, an instance function version of the operator.
+     </p>
+     <figure>
+      <img src="images/zip.o.png" style="width:100%;" alt="zip" />
+      <figcaption><p>
+       The last argument to <code>zip</code> is a function that accepts an item from each of the
+       Observables being zipped and emits an item to be emitted in response by the Observable
+       returned from <code>zip</code>. You can provide the Observables to be zipped together to
+       <code>zip</code> either as between two and nine individual parameters, or as a single
+       parameter: either an Iterable of Observables or an Observable that emits Observables (as
+       in the illustration above).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+odds  = Observable.from([1, 3, 5, 7, 9]);
+evens = Observable.from([2, 4, 6]);
+
+Observable.zip(odds, evens, {o, e -> [o, e]}).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+[1, 2]
+[3, 4]
+[5, 6]
+Sequence complete</pre></div>
+      <p>
+       Note that in this example, the resulting Observable completes normally after emitting three
+       items, which is the number of items emitted by the shorter of the two component Observbles
+       (<code>evens</code>, which emits three items).
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable,%20rx.functions.FuncN)"><code>zip(Iterable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable,%20rx.functions.FuncN)"><code>zip(Observable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>zip(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/zip.i.png" style="width:100%;" alt="zipWith" />
+      <figcaption><p>
+       The <code>zipWith</code> instance version of this operator always takes two parameters.
+       The first parameter may be either a simple Observable, or an iterable (as in the illustration
+       above).
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(rx.Observable,%20rx.functions.Func2)"><code>zipWith(Observable,Func2)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(java.lang.Iterable,%20rx.functions.Func2)"><code>zipWith(Iterable,Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>zip</code> and <code>zipWith</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
+              RxJava <code>zip zipWith</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
+          <div class="panel-body">
+            
+     <p>
+      RxJava implements this operator as several variants of <code>zip</code> and also as
+      <code>zipWith</code>, an instance function version of the operator.
+     </p>
+     <figure>
+      <img src="images/zip.o.png" style="width:100%;" alt="zip" />
+      <figcaption><p>
+       The last argument to <code>zip</code> is a function that accepts an item from each of the
+       Observables being zipped and emits an item to be emitted in response by the Observable
+       returned from <code>zip</code>. You can provide the Observables to be zipped together to
+       <code>zip</code> either as between two and nine individual parameters, or as a single
+       parameter: either an Iterable of Observables or an Observable that emits Observables (as
+       in the illustration above).
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(java.lang.Iterable,%20rx.functions.FuncN)"><code>zip(Iterable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable,%20rx.functions.FuncN)"><code>zip(Observable&lt;Observable&gt;,FuncN)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zip(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>zip(Observable,Observable,Func2)</code></a> (there are also versions that take up to nine Observables)</li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/zip.i.png" style="width:100%;" alt="zipWith" />
+      <figcaption><p>
+       The <code>zipWith</code> instance version of this operator always takes two parameters.
+       The first parameter may be either a simple Observable, or an iterable (as in the illustration
+       above).
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(rx.Observable,%20rx.functions.Func2)"><code>zipWith(Observable,Func2)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#zipWith(java.lang.Iterable,%20rx.functions.Func2)"><code>zipWith(Iterable,Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>zip</code> and <code>zipWith</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>forkJoin zip zipArray</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+     <p>
+      RxJS implements this operator as <code>zip</code> and <code>zipArray</code>.
+     </p>
+     <figure>
+      <img src="images/zip.png" style="width:100%;" alt="zip" />
+      <figcaption><p>
+       <code>zip</code> accepts a variable number of Observables or Promises as parameters, followed
+       by a function that accepts one item emitted by each of those Observables or resolved by those
+       Promises as input and produces a single item to be emitted by the resulting Observable.
+      </p>
+      <h4>Sample Code</h4>
+       <div class="code javascript"><pre>
+/* Using arguments */
+var range = Rx.Observable.range(0, 5);
+
+var source = Observable.zip(
+    range,
+    range.skip(1),
+    range.skip(2),
+    function (s1, s2, s3) {
+        return s1 + ':' + s2 + ':' + s3;
+    }
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+       <div class="output"><pre>
+Next: 0:1:2
+Next: 1:2:3
+Next: 2:3:4
+Completed</pre></div>
+       <div class="code javascript"><pre>
+/* Using promises and Observables */
+var range = Rx.Observable.range(0, 5);
+
+var source = Observable.zip(
+    RSVP.Promise.resolve(0),
+    RSVP.Promise.resolve(1),
+    Rx.Observable.return(2)
+    function (s1, s2, s3) {
+        return s1 + ':' + s2 + ':' + s3;
+    }
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+       <div class="output"><pre>
+Next: 0:1:2
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/zipArray.png" style="width:100%;" alt="zipArray" />
+      <figcaption><p>
+       <code>zipArray</code> accepts a variable number of Observables as parameters and returns an
+       Observable that emits arrays, each one containing the <i>n</i><sup>th</sup> item from each
+       source Observable.
+      </p>
+     <h4>Sample Code</h4>
+       <div class="code javascript"><pre>
+var range = Rx.Observable.range(0, 5);
+
+var source = Rx.Observable.zipArray(
+    range,
+    range.skip(1), 
+    range.skip(2)
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);   
+    },
+    function () {
+        console.log('Completed');   
+    });</pre></div>
+       <div class="output"><pre>
+Next: [0,1,2]
+Next: [1,2,3]
+Next: [2,3,4]
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/forkJoin.png" style="width:100%;" alt="forkJoin" />
+      <figcaption><p>
+       RxJS also implements a similar operator, <code>forkJoin</code>. There are two varieties of this
+       operator. The first collects the last element emitted by each of the source Observables into an array and
+       emits this array as its own sole emitted item. You can either pass a list of Observables to
+       <code>forkJoin</code> as individual parameters or as an array of Observables.
+      </p>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.forkJoin(
+    Rx.Observable.return(42),
+    Rx.Observable.range(0, 10),
+    Rx.Observable.fromArray([1,2,3]),
+    RSVP.Promise.resolve(56)
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: [42, 9, 3, 56]
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/forkJoin.p.png" style="width:100%;" alt="forkJoin" />
+      <figcaption><p>
+      <p>
+       A second variant of <code>forkJoin</code> exists as a prototype function, and you call it on an instance
+       of one source Observable, passing it another source Observable as a parameter.  As a second parameter,
+       you pass it a function that combines the final item emitted by the two source Observables into the sole
+       item to be emitted by the resulting Observable.
+      </p>
+      <div class="code javascript"><pre>
+var source1 = Rx.Observable.return(42);
+var source2 = Rx.Observable.range(0, 3);
+
+var source = source1.forkJoin(source2, function (s1, s2) {
+    return s1 + s2;
+});
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 44
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <p>
+      <code>forkJoin</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code> (requires <code>rx.js</code>, <code>rx.compat.js</code>, <code>rx.lite.js</code>, or <code>rx.lite.compat.js</code>)</li>
+     </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>zip zipWith</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Zip</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>zip</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>zip</code>.
+    </p>
+    <p>
+    Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index. If the result selector function is omitted, a list with the elements of the observable sequences at corresponding indexes will be yielded.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/zip/zip.php
+
+//Without a result selector
+$range = \Rx\Observable::fromArray(range(0, 4));
+
+$source = $range
+    ->zip([
+        $range->skip(1),
+        $range->skip(2)
+    ]);
+
+$observer = $createStdoutObserver();
+
+$subscription = $source
+    ->subscribe(new CallbackObserver(
+        function ($array) use ($observer) {
+            $observer->onNext(json_encode($array));
+        },
+        [$observer, "onError"],
+        [$observer, "onCompleted"]
+    ));
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: [0,1,2]
+Next value: [1,2,3]
+Next value: [2,3,4]
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/zip/zip-result-selector.php
+
+//With a result selector
+$range = \Rx\Observable::fromArray(range(0, 4));
+
+$source = $range
+    ->zip([
+        $range->skip(1),
+        $range->skip(2)
+    ], function ($s1, $s2, $s3) {
+        return $s1 . ':' . $s2 . ':' . $s3;
+    });
+
+$observer = $createStdoutObserver();
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0:1:2
+Next value: 1:2:3
+Next value: 2:3:4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>zip zip_array</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>zip</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>zip zipWith zipWithIndex</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxSwift">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxSwift" aria-expanded="true" aria-controls="collapseRxSwift">
+              RxSwift <code>zip</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/operators/zip.html">한국어</a></li>
+        <li><a href="/documentation/ko/operators/zip.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-zip").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

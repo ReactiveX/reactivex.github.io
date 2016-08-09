@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - ObserveOn operator</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">ObserveOn</li>
+</ol>
+
+<h1>ObserveOn</h1>
+<h3>specify the Scheduler on which an observer will observe this Observable</h3>
+
+<figure>
+ <img src="images/observeOn.c.png" style="width:100%;" alt="ObserveOn" />
+ <figcaption><p>
+  Many implementations of ReactiveX use <a href="../scheduler.html">&ldquo;<code>Scheduler</code>s&rdquo;</a>
+  to govern an Observable&#8217;s transitions between threads in a multi-threaded environment. You can instruct
+  an Observable to send its notifications to observers on a particular Scheduler by means of the
+  <span class="operator">ObserveOn</span> operator.
+ </p></figcaption>
+</figure>
+<figure>
+ <img src="images/observeOn.e.png" style="width:100%;" alt="ObserveOn" />
+ <figcaption><p>
+  Note that <span class="operator">ObserveOn</span> will forward an <code>onError</code> termination
+  notification immediately if it receives one, and will not wait for a slow-consuming observer to receive any
+  not-yet-emitted items that it is aware of first. This may mean that the <code>onError</code> notification
+  jumps ahead of (and swallows) items emitted by the source Observable, as in the diagram above.
+ </p></figcaption>
+</figure>
+<figure>
+ <img src="images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
+ <figcaption><p>
+  The <a href="subscribeon.html"><span class="operator">SubscribeOn</span></a> operator is similar, but it
+  instructs the Observable to <em>itself</em> operate on the specified Scheduler, as well as notifying its
+  observers on that Scheduler.
+ </p><p>
+  By default, an Observable and the chain of operators that you apply to it will do its work, and will notify
+  its observers, on the same thread on which its <code>Subscribe</code> method is called. The
+  <span class="operator">SubscribeOn</span> operator changes this behavior by specifying a different Scheduler
+  on which the Observable should operate. The <span class="operator">ObserveOn</span> operator specifies a
+  different Scheduler that the Observable will use to send notifications to its observers.
+ </p><p>
+  As shown in this illustration, the <span class="operator">SubscribeOn</span> operator designates which thread
+  the Observable will begin operating on, no matter at what point in the chain of operators that operator is
+  called.  <span class="operator">ObserveOn</span>, on the other hand, affects the thread that the Observable
+  will use <em>below</em> where that operator appears.  For this reason, you may call 
+  <span class="operator">ObserveOn</span> multiple times at various points during the chain of Observable
+  operators in order to change on which threads certain of those operators operate.
+ </p></figcaption>
+</figure>
+
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="../scheduler.html"><code>Scheduler</code></a></li>
+ <li><a href="subscribeon.html"><span class="operator">SubscribeOn</span></a></li>
+ <li><a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers"><cite>Rx Workshop: Schedulers</cite></a></li>
+ <li><a href="http://www.grahamlea.com/2014/07/rxjava-threading-examples/"><cite>RxJava Threading Examples</cite> by Graham Lea</a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html#SubscribeOnObserveOn"><cite>Introduction to Rx</cite>: SubscribeOn and ObserveOn</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>observe_on</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>observeOn</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/observeOn.png" style="width:100%;" alt="observeOn" />
+     <figcaption><p>
+      To specify on which Scheduler the Observable should invoke its observers&#8217; <code>onNext</code>,
+      <code>onCompleted</code>, and <code>onError</code> methods, use the <code>observeOn</code> operator,
+      passing it the appropriate <code>Scheduler</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#observeOn(rx.Scheduler)"><code>observeOn(Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava" aria-expanded="true" aria-controls="collapseRxJava">
+              RxJava <code>observeOn</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/observeOn.png" style="width:100%;" alt="observeOn" />
+     <figcaption><p>
+      To specify on which Scheduler the Observable should invoke its observers&#8217; <code>onNext</code>,
+      <code>onCompleted</code>, and <code>onError</code> methods, use the <code>observeOn</code> operator,
+      passing it the appropriate <code>Scheduler</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#observeOn(rx.Scheduler)"><code>observeOn(Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>observeOn</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="images/observeOn.png" style="width:100%;" alt="observeOn" />
+     <figcaption><p>
+      To specify on which Scheduler the Observable should invoke its observers&#8217; <code>onNext</code>,
+      <code>onCompleted</code>, and <code>onError</code> methods, use the <code>observeOn</code> operator,
+      passing it the appropriate <code>Scheduler</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+/* Change from immediate scheduler to timeout */
+var source = Rx.Observable.return(42, Rx.Scheduler.immediate)
+    .observeOn(Rx.Scheduler.timeout);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>observeOn</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>observeOn</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>ObserveOn ObserveOnDispatcher</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>observe_on</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>observe_on</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>observeOn</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxSwift">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxSwift" aria-expanded="true" aria-controls="collapseRxSwift">
+              RxSwift <code>observeOn</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/operators/observeon.html">한국어</a></li>
+        <li><a href="/documentation/ko/operators/observeon.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-observeOn").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

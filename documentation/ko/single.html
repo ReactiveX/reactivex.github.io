@@ -130,7 +130,7 @@
       <h1>Single</h1>
 
 <p>
- RxJava(그리고 RxGroovy나 RxScala 같은 reactivex의 파생 기술들)는 <a href="observable.html">Observable</a>과 유사한 &ldquo;Single&rdquo;을 제공한다.
+ RxJava(그리고 RxGroovy나 RxScala 같은 reactivex의 구현체들)는 <a href="observable.html">Observable</a>과 유사한 &ldquo;Single&rdquo;을 제공한다.
 </p>
 
 <p>
@@ -138,7 +138,7 @@
 </p>
 
 <p>
- 이런 이유 때문에, Single을 구독할 때는 Observable을 구독할 때 사용하는 세 개의 메서드(<tt>onNext</tt>, <tt>onError</tt>, and <tt>onCompleted</tt>) 대신 다음의 두 메서드만 사용할 수 있다:
+ 이런 이유 때문에, Single을 구독할 때는 Observable을 구독할 때 사용하는 세 개의 메서드(<tt>onNext</tt>, <tt>onError</tt>, 그리고 <tt>onCompleted</tt>) 대신 다음의 두 메서드만 사용할 수 있다:
 </p>
 
 <dl>
@@ -155,7 +155,7 @@
 <h1>Single 연산자를 통한 구성</h1>
 
 <p>
- Observable과 마찬가지로, Single도 다양한 연산자들을 제공한다. 이 중 어떤 연산자들은 Observable과 Single을 섞어서 사용할 수 있도록 Observable의 영역과 Single의 영역을 잇는 인터페이스 역할을 한다:
+ Observable과 마찬가지로, Single도 다양한 연산자들을 제공한다. 이 중 어떤 연산자들은 Observable과 Single을 섞어서 사용할 수 있도록 Observable의 영역과 Single의 영역을 연결하는 인터페이스 역할을 수행한다:
 </p>
 
 <table>
@@ -166,7 +166,7 @@
   <tr><td><tt>compose</tt></td><td><tt>Single</tt></td><td>이 연산자를 통해 사용자 정의 연산자를 만들 수 있다</td></tr>
   <tr><td><tt>concat</tt> 그리고 <tt>concatWith</tt></td><td><tt>Observable</tt></td><td>여러 개의 Single이 배출한 항목들을 Observable이 배출하는 형태로 변환한다</td></tr>
   <tr><td><tt>create</tt></td><td><tt>Single</tt></td><td>명시적으로 subscriber 메서드 호출을 통해 Single을 생성한다</td></tr>
-  <tr><td><tt>delay</tt></td><td><tt>Single</tt></td><td>Single의 항목 배출을 명시된 시간 만큼 지연시킨다</td></tr>
+  <tr><td><tt>delay</tt></td><td><tt>Single</tt></td><td>Single의 항목 배출을 명시된 시간 만큼 미룬다</td></tr>
   <tr><td><tt>doOnError</tt></td><td><tt>Single</tt></td><td>onError 메서드가 호출될 때 전달한 메서드를 실행하는 Single을 리턴한다</td></tr>
   <tr><td><tt>doOnSuccess</tt></td><td><tt>Single</tt></td><td>onSuccess 메서드가 호출될 때 전달한 메서드를 실행하는 Single을 리턴한다</td></tr>
   <tr><td><tt>error</tt></td><td><tt>Single</tt></td><td>오류를 구독하는 구독자에게 즉시 오류가 발생했음을 알리는 Single을 리턴한다</td></tr>
@@ -183,7 +183,7 @@
   <tr><td><tt>timeout</tt></td><td><tt>Single</tt></td><td>특정 시간 동안 소스 Single이 항목을 배출하지 못하면 오류 알림을 보내는 Single을 리턴한다</td></tr>
   <tr><td><tt>toSingle</tt></td><td><tt>Single</tt></td><td>항목 하나를 배출하는 Observable을 Single로 변환한다</td></tr>
   <tr><td><tt>toObservable</tt></td><td><tt>Observable</tt></td><td>Single을 Observable로 변환하며 변환된 Observable은 Single이 배출 할 항목을 배출한 후 종료된다</td></tr>
-  <tr><td><tt>zip</tt> 그리고 <tt>zipWith</tt></td><td><tt>Single</tt></td><td>두 개 이상의 Single들이 배출한 항목에 적용된 함수의 결과를 담은 항목 하나를 배출하는 Single을 리턴한다</td></tr>
+  <tr><td><tt>zip</tt> 그리고 <tt>zipWith</tt></td><td><tt>Single</tt></td><td>두 개 이상의 Single들이 배출한 항목에 적용된 함수의 결과를 담은 항목을 하나 배출하는 Single을 리턴한다</td></tr>
  </tbody>
 </table>
 
@@ -259,18 +259,25 @@
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.2s.png" width="100%" />
 <h2>toObservable</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.toObservable.png" width="100%" />
-<h2>zip and zipWith</h2>
+<h2>zip zipWith</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.zip.png" width="100%" /></p>
 
     </div>
     <div class="col-sm-4">
-    <ul class="side-menu">
-      <li><a href="/documentation/observable.html">Observable</a></li>
-      <li><a href="/documentation/operators.html">Operators</a></li>
-      <li><a href="/documentation/single.html">Single</a></li>
-      <li><a href="/documentation/subject.html">Subject</a></li>
-      <li><a href="/documentation/scheduler.html">Scheduler</a></li>
-    </ul>
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/single.html">한국어</a></li>
+        <li><a href="/documentation/ko/single.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+      
+        <li><a href="/documentation/ko/observable.html">Observable</a></li>
+        <li><a href="/documentation/ko/operators.html">Operators</a></li>
+        <li><a href="/documentation/ko/single.html">Single</a></li>
+        <li><a href="/documentation/ko/subject.html">Subject</a></li>
+        <li><a href="/documentation/ko/scheduler.html">Scheduler</a></li>
+        
+      </ul>
     </div>
   </div>
 </div>

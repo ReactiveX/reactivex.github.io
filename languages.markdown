@@ -13,6 +13,7 @@ id: languages
 * Scala: [RxScala](https://github.com/ReactiveX/RxScala)
 * Clojure: [RxClojure](https://github.com/ReactiveX/RxClojure)
 * C++: [RxCpp](https://github.com/Reactive-Extensions/RxCpp)
+* Lua: [RxLua](https://github.com/bjornbytes/RxLua)
 * Ruby: [Rx.rb](https://github.com/Reactive-Extensions/Rx.rb)
 * Python: [RxPY](https://github.com/ReactiveX/RxPY)
 * Groovy: [RxGroovy](https://github.com/ReactiveX/RxGroovy)

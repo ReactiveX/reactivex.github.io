@@ -28,11 +28,11 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../../../lib/package_big.png" />
+        <img alt="Package" src="../../../../lib/package_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="rx">rx</a>.<a href="../../package.html" class="extype" name="rx.lang">lang</a>.<a href="../package.html" class="extype" name="rx.lang.scala">scala</a></p>
         <h1>subjects</h1><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -50,7 +50,7 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Subjects are Observers and Observables at the same time.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
@@ -61,7 +61,7 @@
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
@@ -74,9 +74,8 @@
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -103,7 +102,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@AsyncSubject[T]extendsSubject[T]" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -120,7 +119,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@BehaviorSubject[T]extendsSubject[T]" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -137,7 +136,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@ReplaySubject[T]extendsSubject[T]" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -154,7 +153,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@SerializedSubject[T]extendsSubject[T]" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -171,7 +170,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@TestSubject[T]extendsSubject[T]" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -195,7 +194,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@AsyncSubject" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Subject that publishes only the last item observed to each <code>Observer</code> that has subscribed, when the
@@ -207,7 +206,6 @@ subject.subscribe(observer)
 subject.onNext(<span class="lit">"one"</span>)
 subject.onNext(<span class="lit">"two"</span>)
 subject.onNext(<span class="lit">"three"</span>)
-
 <span class="cmt">// observer will receive "three" as the only onNext event.</span>
 <span class="kw">val</span> subject = AsyncSubject[<span class="std">String</span>]()
 subject.subscribe(observer)
@@ -229,7 +227,7 @@ subject.onCompleted()</pre></li></ol>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@BehaviorSubject" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Subject that emits the most recent item it has observed and all subsequent observed items to each subscribed
@@ -241,7 +239,6 @@ subject.subscribe(observer)
 subject.onNext(<span class="lit">"one"</span>)
 subject.onNext(<span class="lit">"two"</span>)
 subject.onNext(<span class="lit">"three"</span>)
-
 <span class="cmt">// observer will receive the "one", "two" and "three" events, but not "zero"</span>
 <span class="kw">val</span> subject = BehaviorSubject[<span class="std">String</span>](<span class="lit">"default"</span>)
 subject.onNext(<span class="lit">"zero"</span>)
@@ -249,14 +246,12 @@ subject.onNext(<span class="lit">"one"</span>)
 subject.subscribe(observer)
 subject.onNext(<span class="lit">"two"</span>)
 subject.onNext(<span class="lit">"three"</span>)
-
 <span class="cmt">// observer will receive only onCompleted</span>
 <span class="kw">val</span> subject = BehaviorSubject[<span class="std">String</span>](<span class="lit">"default"</span>)
 subject.onNext(<span class="lit">"zero"</span>)
 subject.onNext(<span class="lit">"one"</span>)
 subject.onCompleted()
 subject.subscribe(observer)
-
 <span class="cmt">// observer will receive only onError</span>
 <span class="kw">val</span> subject = BehaviorSubject[<span class="std">String</span>](<span class="lit">"default"</span>)
 subject.onNext(<span class="lit">"zero"</span>)
@@ -277,7 +272,7 @@ subject.subscribe(observer)</pre></li></ol>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@PublishSubject" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Subject that, once an <code>Observer</code> has subscribed, emits all subsequently observed items to the
@@ -306,7 +301,7 @@ subject.onCompleted()</pre></li></ol>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@ReplaySubject" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Subject that buffers all items it observes and replays them to any <code>Observer</code> that subscribes.</p><div class="fullcomment"><div class="comment cmt"><p>Subject that buffers all items it observes and replays them to any <code>Observer</code> that subscribes.</p><p><img width="640" height="405" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/S.ReplaySubject.png" alt="" /></p></div><dl class="attributes block"> <div class="block">Example:
@@ -315,7 +310,6 @@ subject.onNext(<span class="lit">"one"</span>)
 subject.onNext(<span class="lit">"two"</span>)
 subject.onNext(<span class="lit">"three"</span>)
 subject.onCompleted()
-
 <span class="cmt">// both of the following will get the onNext/onCompleted calls from above</span>
 subject.subscribe(observer1)
 subject.subscribe(observer2)</pre></li></ol>
@@ -333,7 +327,7 @@ subject.subscribe(observer2)</pre></li></ol>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@SerializedSubject" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Wraps a Subject to ensure that the resulting Subject is chronologically well-behaved.</p><div class="fullcomment"><div class="comment cmt"><p>Wraps a Subject to ensure that the resulting Subject is chronologically well-behaved.</p><p>A well-behaved Subject does not interleave its invocations of the <a href="../Subject.html#onNext(value:T):Unit" class="extmbr" name="rx.lang.scala.Subject#onNext">onNext</a>,
@@ -355,7 +349,7 @@ after invoking either <code>onCompleted</code> or <code>onError</code>.</p><p><a
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.subjects.package@TestSubject" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">A variety of Subject that is useful for testing purposes.</p><div class="fullcomment"><div class="comment cmt"><p>A variety of Subject that is useful for testing purposes. It operates on a <code>TestScheduler</code> and allows
@@ -371,9 +365,9 @@ you to precisely time emissions and notifications to the Subject's subscribers.
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>

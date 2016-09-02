@@ -1,0 +1,453 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>ErrorDelayingObservable - rx.lang.scala.observables.ErrorDelayingObservable</title>
+          <meta name="description" content="ErrorDelayingObservable - rx.lang.scala.observables.ErrorDelayingObservable" />
+          <meta name="keywords" content="ErrorDelayingObservable rx.lang.scala.observables.ErrorDelayingObservable" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'rx.lang.scala.observables.ErrorDelayingObservable';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img alt="Class" src="../../../../lib/class_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="rx">rx</a>.<a href="../../package.html" class="extype" name="rx.lang">lang</a>.<a href="../package.html" class="extype" name="rx.lang.scala">scala</a>.<a href="package.html" class="extype" name="rx.lang.scala.observables">observables</a></p>
+        <h1>ErrorDelayingObservable</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="rx.lang.scala.observables">package observables</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ErrorDelayingObservable</span><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> An <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that provides operators which delay errors when composing multiple <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Experimental</span><span class="args">()</span>
+              
+        </dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="rx.lang.scala.observables.ErrorDelayingObservable"><span>ErrorDelayingObservable</span></li><li class="in" name="scala.AnyVal"><span>AnyVal</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.Any###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@##():Int" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable#concat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="concat[U](implicitevidence:&lt;:&lt;[rx.lang.scala.Observable[T],rx.lang.scala.Observable[rx.lang.scala.Observable[U]]]):rx.lang.scala.Observable[U]"></a>
+      <a id="concat[U](&lt;:&lt;[Observable[T],Observable[Observable[U]]]):Observable[U]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">concat</span><span class="tparams">[<span name="U">U</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="evidence">evidence: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.T">T</span>], <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.concat.U">U</span>]]]</span>)</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.concat.U">U</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@concat[U](implicitevidence:&lt;:&lt;[rx.lang.scala.Observable[T],rx.lang.scala.Observable[rx.lang.scala.Observable[U]]]):rx.lang.scala.Observable[U]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Concatenates the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> sequence of <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s into a single sequence by subscribing to
+each inner <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, one after the other, one at a time and delays any errors till the all inner and the
+outer <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s terminate.</span></p><div class="fullcomment"><div class="comment cmt"><p><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Concatenates the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> sequence of <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s into a single sequence by subscribing to
+each inner <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, one after the other, one at a time and delays any errors till the all inner and the
+outer <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s terminate.</p><h5>Backpressure:</h5><p>Fully supports backpressure.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the new <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> with the concatenating behavior</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Experimental</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable#concatMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="concatMap[R](f:T=&gt;rx.lang.scala.Observable[R]):rx.lang.scala.Observable[R]"></a>
+      <a id="concatMap[R]((T)⇒Observable[R]):Observable[R]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">concatMap</span><span class="tparams">[<span name="R">R</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.T">T</span>) ⇒ <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.concatMap.R">R</span>]</span>)</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.concatMap.R">R</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@concatMap[R](f:T=&gt;rx.lang.scala.Observable[R]):rx.lang.scala.Observable[R]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Maps each of the items into an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, subscribes to them one after the other,
+one at a time and emits their values in order while delaying any error from either this or any of the inner <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s
+till all of them terminate.</span></p><div class="fullcomment"><div class="comment cmt"><p><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Maps each of the items into an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, subscribes to them one after the other,
+one at a time and emits their values in order while delaying any error from either this or any of the inner <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s
+till all of them terminate.</p><h5>Backpressure:</h5><p>Fully supports backpressure.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">f</dt><dd class="cmt"><p>the function that maps the items of this <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> into the inner <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p></dd><dt>returns</dt><dd class="cmt"><p>the new <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> instance with the concatenation behavior</p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Experimental</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable#flatten" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flatten[U](maxConcurrent:Int)(implicitevidence:&lt;:&lt;[rx.lang.scala.Observable[T],rx.lang.scala.Observable[rx.lang.scala.Observable[U]]]):rx.lang.scala.Observable[U]"></a>
+      <a id="flatten[U](Int)(&lt;:&lt;[Observable[T],Observable[Observable[U]]]):Observable[U]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flatten</span><span class="tparams">[<span name="U">U</span>]</span><span class="params">(<span name="maxConcurrent">maxConcurrent: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="evidence">evidence: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.T">T</span>], <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.flatten.U">U</span>]]]</span>)</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.flatten.U">U</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@flatten[U](maxConcurrent:Int)(implicitevidence:&lt;:&lt;[rx.lang.scala.Observable[T],rx.lang.scala.Observable[rx.lang.scala.Observable[U]]]):rx.lang.scala.Observable[U]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Flattens an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s into one <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, in a way that allows an <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> to
+receive all successfully emitted items from all of the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s without being interrupted by
+an error notification from one of them, while limiting the
+number of concurrent subscriptions to these <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</span></p><div class="fullcomment"><div class="comment cmt"><p><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Flattens an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s into one <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, in a way that allows an <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> to
+receive all successfully emitted items from all of the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s without being interrupted by
+an error notification from one of them, while limiting the
+number of concurrent subscriptions to these <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><p>This behaves like <code>flatten</code> except that if any of the merged <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s notify of an
+error via <code>onError</code>, it will refrain from propagating that
+error notification until all of the merged <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s have finished emitting items.</p><p><img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/mergeDelayError.png" alt=""></p><p>Even if multiple merged <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s send <code>onError</code> notifications, it will only
+invoke the <code>onError</code> method of its <code>Observer</code>s once.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">maxConcurrent</dt><dd class="cmt"><p>the maximum number of <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s that may be subscribed to concurrently</p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits all of the items emitted by the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s emitted by <code>this</code></p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Experimental</span><span class="args">()</span>
+              
+        </dd><dt>Since</dt><dd><p>(if this graduates from Experimental/Beta to supported, replace this parenthetical with the release number)</p></dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a></p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable#flatten" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flatten[U](implicitevidence:&lt;:&lt;[rx.lang.scala.Observable[T],rx.lang.scala.Observable[rx.lang.scala.Observable[U]]]):rx.lang.scala.Observable[U]"></a>
+      <a id="flatten[U](&lt;:&lt;[Observable[T],Observable[Observable[U]]]):Observable[U]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flatten</span><span class="tparams">[<span name="U">U</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="evidence">evidence: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.T">T</span>], <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.flatten.U">U</span>]]]</span>)</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.flatten.U">U</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@flatten[U](implicitevidence:&lt;:&lt;[rx.lang.scala.Observable[T],rx.lang.scala.Observable[rx.lang.scala.Observable[U]]]):rx.lang.scala.Observable[U]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Flattens an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s into one <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, in a way that allows an <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> to
+receive all successfully emitted items from all of the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s without being interrupted by
+an error notification from one of them, while limiting the
+number of concurrent subscriptions to these <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</span></p><div class="fullcomment"><div class="comment cmt"><p><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Flattens an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s into one <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, in a way that allows an <a href="../Observer.html" class="extype" name="rx.lang.scala.Observer">Observer</a> to
+receive all successfully emitted items from all of the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s without being interrupted by
+an error notification from one of them, while limiting the
+number of concurrent subscriptions to these <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p><p>This behaves like <code>flatten</code> except that if any of the merged <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s notify of an
+error via <code>onError</code>, it will refrain from propagating that
+error notification until all of the merged <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s have finished emitting items.</p><p><img width="640" height="380" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/mergeDelayError.png" alt=""></p><p>Even if multiple merged <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s send <code>onError</code> notifications, it will only
+invoke the <code>onError</code> method of its <code>Observer</code>s once.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits all of the items emitted by the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s emitted by <code>this</code></p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Experimental</span><span class="args">()</span>
+              
+        </dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/merge.html">ReactiveX operators documentation: Merge</a></p></span></dd></dl></div>
+    </li><li name="scala.AnyVal#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_&lt;:AnyVal]"></a>
+      <a id="getClass():Class[_&lt;:AnyVal]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.Class">Class</span>[_ &lt;: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@getClass():Class[_&lt;:AnyVal]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyVal → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable#merge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="merge[U&gt;:T](that:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]"></a>
+      <a id="merge[U&gt;:T](Observable[U]):Observable[U]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">merge</span><span class="tparams">[<span name="U">U &gt;: <span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.T">T</span></span>]</span><span class="params">(<span name="that">that: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.merge.U">U</span>]</span>)</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.merge.U">U</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@merge[U&gt;:T](that:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This behaves like <a href="../Observable.html#merge[U&gt;:T](that:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]" class="extmbr" name="rx.lang.scala.Observable#merge">rx.lang.scala.Observable.merge</a> except that if any of the merged Observables
+notify of an error via <a href="../Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a>, it will
+refrain from propagating that error notification until all of the merged Observables have
+finished emitting items.</p><div class="fullcomment"><div class="comment cmt"><p>This behaves like <a href="../Observable.html#merge[U&gt;:T](that:rx.lang.scala.Observable[U]):rx.lang.scala.Observable[U]" class="extmbr" name="rx.lang.scala.Observable#merge">rx.lang.scala.Observable.merge</a> except that if any of the merged Observables
+notify of an error via <a href="../Observer.html#onError(error:Throwable):Unit" class="extmbr" name="rx.lang.scala.Observer#onError">onError</a>, it will
+refrain from propagating that error notification until all of the merged Observables have
+finished emitting items.</p><p><img width="640" height="380" src="https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators/mergeDelayError.png" alt="" /></p><p>Even if multiple merged Observables send <code>onError</code> notifications, it will only invoke the <code>onError</code> method of its
+Observers once.</p><p>This method allows an Observer to receive all successfully emitted items from all of the
+source Observables without being interrupted by an error notification from one of them.
+</p></div><dl class="paramcmts block"><dt class="param">that</dt><dd class="cmt"><p>
+           an Observable to be merged</p></dd><dt>returns</dt><dd class="cmt"><p>an Observable that emits items that are the result of flattening the items emitted by
+        <code>this</code> and <code>that</code></p></dd></dl></div>
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable#o" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="o:rx.lang.scala.Observable[T]"></a>
+      <a id="o:Observable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">o</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@o:rx.lang.scala.Observable[T]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable#switch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="switch[U](implicitevidence:&lt;:&lt;[rx.lang.scala.Observable[T],rx.lang.scala.Observable[rx.lang.scala.Observable[U]]]):rx.lang.scala.Observable[U]"></a>
+      <a id="switch[U](&lt;:&lt;[Observable[T],Observable[Observable[U]]]):Observable[U]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">switch</span><span class="tparams">[<span name="U">U</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="evidence">evidence: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.T">T</span>], <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.switch.U">U</span>]]]</span>)</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.switch.U">U</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@switch[U](implicitevidence:&lt;:&lt;[rx.lang.scala.Observable[T],rx.lang.scala.Observable[rx.lang.scala.Observable[U]]]):rx.lang.scala.Observable[U]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Converts this <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s into an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the
+most recently emitted of those <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s and delays any exception until all <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s terminate.</span></p><div class="fullcomment"><div class="comment cmt"><p><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Converts this <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s into an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the
+most recently emitted of those <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s and delays any exception until all <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s terminate.</p><p><img width="640" height="370" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchDo.png" alt="" /></p><p>It subscribes to an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s. Each time it observes one of
+these emitted <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s, the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> returned by this method begins emitting the items
+emitted by that <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>. When a new <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> is emitted, it stops emitting items
+from the earlier-emitted <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> and begins emitting items from the new one.</p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> most recently emitted by the source
+        <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Experimental</span><span class="args">()</span>
+              
+        </dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/switch.html">ReactiveX operators documentation: Switch</a></p></span></dd></dl></div>
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable#switchMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="switchMap[R](f:T=&gt;rx.lang.scala.Observable[R]):rx.lang.scala.Observable[R]"></a>
+      <a id="switchMap[R]((T)⇒Observable[R]):Observable[R]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">switchMap</span><span class="tparams">[<span name="R">R</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.T">T</span>) ⇒ <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.switchMap.R">R</span>]</span>)</span><span class="result">: <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>[<span class="extype" name="rx.lang.scala.observables.ErrorDelayingObservable.switchMap.R">R</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@switchMap[R](f:T=&gt;rx.lang.scala.Observable[R]):rx.lang.scala.Observable[R]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Returns a new <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> by applying a function that you supply to each item emitted by the source
+<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that returns an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, and then emitting the items emitted by the most recently emitted
+of these <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s and delays any error until all <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s terminate.</span></p><div class="fullcomment"><div class="comment cmt"><p><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> Returns a new <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> by applying a function that you supply to each item emitted by the source
+<a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that returns an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, and then emitting the items emitted by the most recently emitted
+of these <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s and delays any error until all <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s terminate.</p><p><img width="640" height="350" src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/switchMap.png" alt="" /></p><h5>Scheduler:</h5><p>This method does not operate by default on a particular <a href="../Scheduler.html" class="extype" name="rx.lang.scala.Scheduler">Scheduler</a>.</p></div><dl class="paramcmts block"><dt class="param">f</dt><dd class="cmt"><p>a function that, when applied to an item emitted by the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, returns an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd><dt>returns</dt><dd class="cmt"><p>an <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that emits the items emitted by the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> returned from applying <code>f</code> to the most
+        recently emitted item emitted by the source <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a></p></dd></dl><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Experimental</span><span class="args">()</span>
+              
+        </dd><dt>See also</dt><dd><span class="cmt"><p><a href="http://reactivex.io/documentation/operators/flatmap.html">ReactiveX operators documentation: FlatMap</a></p></span></dd></dl></div>
+    </li><li name="scala.Any#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <a href=http://docs.oracle.com/javase/8/docs/api/index.html?java/lang/String.html class="extype" target="_top">String</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.ErrorDelayingObservable@toString():String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyVal">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

@@ -28,11 +28,11 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../../../lib/package_big.png" />
+        <img alt="Package" src="../../../../lib/package_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="rx">rx</a>.<a href="../../package.html" class="extype" name="rx.lang">lang</a>.<a href="../package.html" class="extype" name="rx.lang.scala">scala</a></p>
         <h1>observables</h1><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.observables.package" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -54,7 +54,7 @@ in Scala, because we use a pair <code>(key, observable)</code> instead of <code>
 and a pair <code>(startFunction, observable)</code> instead of <code>ConnectableObservable</code>.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
@@ -65,7 +65,7 @@ and a pair <code>(startFunction, observable)</code> instead of <code>Connectable
               <ol>
                 
                 <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By inheritance</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
         <div id="ancestors">
@@ -78,9 +78,8 @@ and a pair <code>(startFunction, observable)</code> instead of <code>Connectable
             <span class="filtertype"></span>
             <ol>
               <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show all</span></li>
+              <li class="showall in"><span>Show All</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -103,15 +102,15 @@ and a pair <code>(startFunction, observable)</code> instead of <code>Connectable
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="BlockingObservable.html"><span class="name">BlockingObservable</span></a><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a></span>
+        <a href="BlockingObservable.html"><span class="name">BlockingObservable</span></a><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.observables.package@BlockingObservable[+T]extendsAnyVal" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">An Observable that provides blocking operators.</p><div class="fullcomment"><div class="comment cmt"><p>An Observable that provides blocking operators.</p><p>You can obtain a BlockingObservable from an Observable using <a href="../Observable.html#toBlocking:rx.lang.scala.observables.BlockingObservable[T]" class="extmbr" name="rx.lang.scala.Observable#toBlocking">rx.lang.scala.Observable.toBlocking</a></p></div></div>
-    </li><li name="rx.lang.scala.observables.ConnectableObservable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="rx.lang.scala.observables.ConnectableObservable" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ConnectableObservable[+T]extendsObservable[T]"></a>
       <a id="ConnectableObservable[+T]:ConnectableObservable[T]"></a>
       <h4 class="signature">
@@ -124,10 +123,34 @@ and a pair <code>(startFunction, observable)</code> instead of <code>Connectable
       </span>
       </h4><span class="permalink">
       <a href="../../../../index.html#rx.lang.scala.observables.package@ConnectableObservable[+T]extendsObservable[T]" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" />
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">A <a href="ConnectableObservable.html" class="extype" name="rx.lang.scala.observables.ConnectableObservable">ConnectableObservable</a> resembles an ordinary <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, except that it does not begin
+emitting items when it is subscribed to, but only when its <a href="ConnectableObservable.html#connect:rx.lang.scala.Subscription" class="extmbr" name="rx.lang.scala.observables.ConnectableObservable#connect">connect</a> method is called.</p><div class="fullcomment"><div class="comment cmt"><p>A <a href="ConnectableObservable.html" class="extype" name="rx.lang.scala.observables.ConnectableObservable">ConnectableObservable</a> resembles an ordinary <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>, except that it does not begin
+emitting items when it is subscribed to, but only when its <a href="ConnectableObservable.html#connect:rx.lang.scala.Subscription" class="extmbr" name="rx.lang.scala.observables.ConnectableObservable#connect">connect</a> method is called.
+In this way you can wait for all intended <a href="../Subscriber.html" class="extype" name="rx.lang.scala.Subscriber">Subscriber</a>s to subscribe to the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>
+before the <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> begins emitting items.</p><p><img width="640" height="510" src="https://github.com/ReactiveX/RxJava/wiki/images/rx-operators/publishConnect.png" alt=""></p></div></div>
+    </li><li name="rx.lang.scala.observables.ErrorDelayingObservable" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ErrorDelayingObservable[+T]extendsAnyVal"></a>
+      <a id="ErrorDelayingObservable[+T]:ErrorDelayingObservable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ErrorDelayingObservable.html"><span class="name">ErrorDelayingObservable</span></a><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyVal" class="extype" target="_top">AnyVal</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#rx.lang.scala.observables.package@ErrorDelayingObservable[+T]extendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> An <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that provides operators which delay errors when composing multiple <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</span></p><div class="fullcomment"><div class="comment cmt"><p><span class="badge badge-red" style="float: right;">EXPERIMENTAL</span> An <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a> that provides operators which delay errors when composing multiple <a href="../Observable.html" class="extype" name="rx.lang.scala.Observable">Observable</a>s.</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Experimental</span><span class="args">()</span>
+              
+        </dd></dl></div>
     </li></ol>
             </div>
 
@@ -142,9 +165,9 @@ and a pair <code>(startFunction, observable)</code> instead of <code>Connectable
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.6/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>

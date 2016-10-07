@@ -6,7 +6,7 @@ id: plugins
 
 #Plugins
 
-Plugins allow you to modify the default behavior of RxJava in several respects:
+Plugins allow you to modify the default behavior of RxJava 1.x in several respects:
 
 * by changing the set of default computation, i/o, and new thread Schedulers
 * by registering a handler for extraordinary errors that RxJava may encounter

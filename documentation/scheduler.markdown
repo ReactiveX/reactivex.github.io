@@ -147,7 +147,7 @@ id: scheduler
     </ul>
   {% endlang_operator %}
 
-  {% lang_operator RxJava %}
+  {% lang_operator RxJava&nbsp;1․x %}
     <h2>Varieties of Scheduler</h2>
     <p>
      You obtain a Scheduler from the factory methods described in
@@ -168,7 +168,7 @@ id: scheduler
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td><td>queues work to begin on the current thread after any already-queued work</td></tr>
      </tbody>
     </table>
-    <h2>Default Schedulers for RxJava Observable Operators</h2>
+    <h2>Default Schedulers for RxJava 1.x Observable Operators</h2>
     <p>
      Some Observable operators in RxJava have alternate forms that allow you to set which Scheduler the operator
      will use for (at least some part of) its operation. Others do not operate on any particular Scheduler, or

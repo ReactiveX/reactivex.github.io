@@ -146,7 +146,7 @@ id: subject
    </ul>
   {% endlang_operator %}
 
-  {% lang_operator RxJava %}
+  {% lang_operator RxJava&nbsp;1․x %}
    <p>
     If you have a <code>Subject</code> and you want to pass it along to some other agent without exposing its
     <code>Subscriber</code> interface, you can mask it by calling its <code>asObservable</code> method, which

@@ -103,7 +103,7 @@ error: error - badness
 
   {% lang_operator RxJava&nbsp;1․x empty never error %}
      <p>
-      RxJava implements these operators as <code>empty</code>, <code>never</code>, and
+      RxJava 1.x implements these operators as <code>empty</code>, <code>never</code>, and
       <code>error</code>. The <code>error</code> operator takes as a parameter the
       <code>Throwable</code> with which you want the Observable to terminate.
      </p><p>
@@ -115,6 +115,23 @@ error: error - badness
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#empty()"><code>empty()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#never()"><code>never()</code></a></li>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#error(java.lang.Throwable)"><code>error(throwable)</code></a></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava&nbsp;2․x empty never error %}
+     <p>
+      RxJava 2.x implements these operators as <code>empty</code>, <code>never</code>, and
+      <code>error</code>. The <code>error</code> operator takes as a parameter the
+      <code>Throwable</code> with which you want the Observable to terminate, or a
+      <code>Callable</code> that returns such a <code>Throwable</code>.
+     </p><p>
+      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observable.html#empty()"><code>empty()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observable.html#never()"><code>never()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observable.html#error(java.util.concurrent.Callable)"><code>error(Callable)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observable.html#error(java.lang.Throwable)"><code>error(Throwable)</code></a></li>
      </ul>
   {% endlang_operator %}
 

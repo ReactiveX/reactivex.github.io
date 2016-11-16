@@ -827,9 +827,28 @@ Complete!
   {% endlang_operator %}
 
   {% lang_operator RxSwift from toObservable %}
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
+  	<p>In Swift, this is implemented using the <code>Observable.from</code> class method.</p>
+	  <p>Each element of the array is produced as an emission. The difference between this method and <code>Observable.just</code> is that the latter emits the whole array as one emission.</p>
+  	<h4>Sample Code</h4>
+	  <div class="code swift">
+<pre>let numbers = [1,2,3,4,5]
+
+let source = Observable.from(numbers)
+
+source.subscribe {
+    print($0)
+}
+</pre>
+  	</div>
+	  <div class="output">
+<pre>next(1)
+next(2)
+next(3)
+next(4)
+next(5)
+completed
+</pre>
+  	</div>
   {% endlang_operator %}
 
 </div>

@@ -85,9 +85,9 @@ id: publish
     <figure class="variant">
      <img src="images/publishConnect.f.png" style="width:100%;" alt="publish" />
      <figcaption><p>
-      There is also a variant that takes a function as a parameter. This function takes an emitted
-      item from the source Observable as a parameter and produces the item that will be emitted in
-      its place by the <code>ConnectableObservable</code>.
+      There is also a variant that takes a function as a parameter. This function takes as a parameter 
+      the <code>ConnectableObservable</code> that shares a single subscription to the underlying Observable sequence.
+      This function produces and returns a new Observable sequence.
      </p>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#publish(rx.functions.Func1)"><code>publish(Func1)</code></a></li>

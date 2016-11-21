@@ -34,7 +34,7 @@ id: contract
   <dd>indica que o observador está pronto para receber notificações do Observable</dd>
  <dt>Unsubscribe</dt>
   <dd>indiue o observador não quer receber notificações do Observable</dd>
- <dt>Request (optional)</dt>
+ <dt>Request (opcional)</dt>
   <dd>indica que o observador não que mais um determinado numero de notificações OnNext adicionais do Observable (veja <i>Contrapressão</i> abaixo)</dd>
 </dl>
 <h2>O Contrato que Regula Notifições</h2>

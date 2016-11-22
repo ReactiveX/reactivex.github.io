@@ -51,7 +51,7 @@ id: contains
 
   {% lang_operator RxGroovy contains exists isEmpty %}
      <figure>
-      <img src="images/contains.png" style="width:100%;" alt="contains" />
+      <img src="../../operators/images/contains.png" style="width:100%;" alt="contains" />
       <figcaption><p>
        RxGroovy implements this operator as <code>contains</code>. It does not by default operate on any
        particular <a href="../scheduler.html">Scheduler</a>.
@@ -61,7 +61,7 @@ id: contains
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/exists.png" style="width:100%;" alt="exists" />
+      <img src="../../operators/images/exists.png" style="width:100%;" alt="exists" />
       <figcaption><p>
        RxGroovy also implements the <code>exists</code> operator. It is similar to <code>contains</code> but
        tests items emitted by the source Observable against a predicate function you supply, rather than testing
@@ -76,7 +76,7 @@ id: contains
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
+      <img src="../../operators/images/isEmpty.png" style="width:100%;" alt="isEmpty" />
       <figcaption><p>
        RxGroovy also implements the <code>isEmpty</code> operator. The Observable returned from
        <code>isEmpty</code> will return <code>false</code> if the source Observable emits an item, and
@@ -92,7 +92,7 @@ id: contains
 
   {% lang_operator RxJava&nbsp;1․x contains exists isEmpty %}
      <figure>
-      <img src="images/contains.png" style="width:100%;" alt="contains" />
+      <img src="../../operators/images/contains.png" style="width:100%;" alt="contains" />
       <figcaption><p>
        RxJava implements this operator as <code>contains</code>. It does not by default operate on any
        particular <a href="../scheduler.html">Scheduler</a>.
@@ -102,7 +102,7 @@ id: contains
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/exists.png" style="width:100%;" alt="exists" />
+      <img src="../../operators/images/exists.png" style="width:100%;" alt="exists" />
       <figcaption><p>
        RxJava also implements the <code>exists</code> operator. It is similar to <code>contains</code> but
        tests items emitted by the source Observable against a predicate function you supply, rather than testing
@@ -117,7 +117,7 @@ id: contains
       </ul></figcaption>
      </figure>
      <figure>
-      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
+      <img src="../../operators/images/isEmpty.png" style="width:100%;" alt="isEmpty" />
       <figcaption><p>
        RxJava also implements the <code>isEmpty</code> operator. The Observable returned from
        <code>isEmpty</code> will return <code>false</code> if the source Observable emits an item, and
@@ -138,7 +138,7 @@ id: contains
 
   {% lang_operator RxJS contains findIndex indexOf isEmpty %}
      <figure>
-      <img src="images/contains.png" style="width:100%;" alt="contains" />
+      <img src="../../operators/images/contains.png" style="width:100%;" alt="contains" />
       <figcaption><p>
        The <code>contains</code> operator in RxJS takes an optional second parameter: a zero-based index
        into the source Observable&#8217;s sequence at which to start searching for the item.
@@ -188,7 +188,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/indexOf.png" style="width:100%;" alt="indexOf" />
+      <img src="../../operators/images/indexOf.png" style="width:100%;" alt="indexOf" />
       <figcaption><p>
        The <code>indexOf</code> operator in RxJS is similar to <code>contains</code> but rather than
        returning an Observable that emits <code>true</code> or <code>false</code> it returns an Observable
@@ -244,7 +244,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/findIndex.png" style="width:100%;" alt="findIndex" />
+      <img src="../../operators/images/findIndex.png" style="width:100%;" alt="findIndex" />
       <figcaption><p>
        The <code>findIndex</code> operator in RxJS takes as its parameter a predicate function. It returns
        an Observable that emits either a single number &mdash; the zero-based index of the first item in the
@@ -313,7 +313,7 @@ Completed</pre></div>
       </figcaption>
      </figure>
      <figure>
-      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
+      <img src="../../operators/images/isEmpty.png" style="width:100%;" alt="isEmpty" />
       <figcaption><p>
        RxJS also implements the <code>isEmpty</code> operator. The Observable returned from <code>isEmpty</code>
        will return <code>false</code> if the source Observable emits an item, and <code>true</code> if it

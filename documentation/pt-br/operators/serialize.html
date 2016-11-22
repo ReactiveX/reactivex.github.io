@@ -14,7 +14,7 @@ id: serialize
 <h3>force an Observable to make serialized calls and to be well-behaved</h3>
 
 <figure>
- <img src="images/serialize.c.png" style="width:100%;" alt="Serialize" />
+ <img src="../../operators/images/serialize.c.png" style="width:100%;" alt="Serialize" />
  <figcaption><p>
   It is possible for an Observable to invoke its observers&#8217; methods asynchronously, perhaps from
   different threads. This could make such an Observable violate <a href="../contract.html">the Observable
@@ -43,7 +43,7 @@ id: serialize
 
   {% lang_operator RxGroovy serialize %}
     <figure class="variant">
-     <img src="images/synchronize.png" style="width:100%;" alt="serialize" />
+     <img src="../../operators/images/synchronize.png" style="width:100%;" alt="serialize" />
      <figcaption><p>
       RxGroovy implements this operator as <code>serialize</code>. It does not by default operate on any
       particular <a href="../scheduler.html">Scheduler</a>.
@@ -56,7 +56,7 @@ id: serialize
 
   {% lang_operator RxJava&nbsp;1․x serialize %}
     <figure class="variant">
-     <img src="images/synchronize.png" style="width:100%;" alt="serialize" />
+     <img src="../../operators/images/synchronize.png" style="width:100%;" alt="serialize" />
      <figcaption><p>
       RxJava implements this operator as <code>serialize</code>. It does not by default operate on any
       particular <a href="../scheduler.html">Scheduler</a>.

@@ -14,7 +14,7 @@ id: materialize-dematerialize
 <h3>represent both the items emitted and the notifications sent as emitted items, or reverse this process</h3>
 
 <figure>
- <img src="images/materialize.c.png" style="width:100%;" alt="Materialize" />
+ <img src="../../operators/images/materialize.c.png" style="width:100%;" alt="Materialize" />
  <figcaption><p>
  A well-formed, finite Observable will invoke its observer’s <code>onNext</code> method zero or more times, and
  then will invoke either the <code>onCompleted</code> or <code>onError</code> method exactly once. The
@@ -24,7 +24,7 @@ id: materialize-dematerialize
  </p></figcaption>
 </figure>
 <figure>
- <img src="images/dematerialize.c.png" style="width:100%;" alt="Dematerialize" />
+ <img src="../../operators/images/dematerialize.c.png" style="width:100%;" alt="Dematerialize" />
  <figcaption><p>
  The <span class="operator">Dematerialize</span> operator reverses this process. It operates on an Observable
  that has previously been transformed by <span class="operator">Materialize</span> and returns it to its
@@ -55,7 +55,7 @@ id: materialize-dematerialize
 
   {% lang_operator RxGroovy dematerialize materialize %}
     <figure class="variant">
-     <img src="images/materialize.png" style="width:100%;" alt="materialize" />
+     <img src="../../operators/images/materialize.png" style="width:100%;" alt="materialize" />
      <figcaption><p>
       In RxGroovy, <code>materialize</code> transforms the notifications from the source Observable into
       <code>Notification</code> objects and emits them as the emissions from the Observable it returns. For
@@ -87,7 +87,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/dematerialize.png" style="width:100%;" alt="dematerialize" />
+     <img src="../../operators/images/dematerialize.png" style="width:100%;" alt="dematerialize" />
      <figcaption><p>
       <code>dematerialize</code> reverses this process: converting the emitted <code>Notification</code>
       objects from the source Observable into notifications from the resulting Observable.
@@ -119,7 +119,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJava&nbsp;1․x dematerialize materialize %}
     <figure class="variant">
-     <img src="images/materialize.png" style="width:100%;" alt="materialize" />
+     <img src="../../operators/images/materialize.png" style="width:100%;" alt="materialize" />
      <figcaption><p>
       In RxJava, <code>materialize</code> transforms the notifications from the source Observable into
       <code>Notification</code> objects and emits them as the emissions from the Observable it returns.
@@ -133,7 +133,7 @@ Sequence complete</pre></div>
      </ul></figcaption>
     </figure>
     <figure class="variant">
-     <img src="images/dematerialize.png" style="width:100%;" alt="dematerialize" />
+     <img src="../../operators/images/dematerialize.png" style="width:100%;" alt="dematerialize" />
      <figcaption><p>
       <code>dematerialize</code> reverses this process: converting the emitted <code>Notification</code>
       objects from the source Observable into notifications from the resulting Observable.
@@ -156,7 +156,7 @@ Sequence complete</pre></div>
 
   {% lang_operator RxJS dematerialize %}
     <figure class="variant">
-     <img src="images/dematerialize.png" style="width:100%;" alt="dematerialize" />
+     <img src="../../operators/images/dematerialize.png" style="width:100%;" alt="dematerialize" />
      <figcaption><p>
       RxJS only implements the <code>dematerialize</code> operator. If you want a &ldquo;materialized&rdquo;
       Observable, you have to assemble it by hand by manually creating and emitting the

@@ -14,7 +14,7 @@ id: observeOn
 <h3>specify the Scheduler on which an observer will observe this Observable</h3>
 
 <figure>
- <img src="images/observeOn.c.png" style="width:100%;" alt="ObserveOn" />
+ <img src="../../operators/images/observeOn.c.png" style="width:100%;" alt="ObserveOn" />
  <figcaption><p>
   Many implementations of ReactiveX use <a href="../scheduler.html">&ldquo;<code>Scheduler</code>s&rdquo;</a>
   to govern an Observable&#8217;s transitions between threads in a multi-threaded environment. You can instruct
@@ -23,7 +23,7 @@ id: observeOn
  </p></figcaption>
 </figure>
 <figure>
- <img src="images/observeOn.e.png" style="width:100%;" alt="ObserveOn" />
+ <img src="../../operators/images/observeOn.e.png" style="width:100%;" alt="ObserveOn" />
  <figcaption><p>
   Note that <span class="operator">ObserveOn</span> will forward an <code>onError</code> termination
   notification immediately if it receives one, and will not wait for a slow-consuming observer to receive any
@@ -32,7 +32,7 @@ id: observeOn
  </p></figcaption>
 </figure>
 <figure>
- <img src="images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
+ <img src="../../operators/images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
  <figcaption><p>
   The <a href="subscribeon.html"><span class="operator">SubscribeOn</span></a> operator is similar, but it
   instructs the Observable to <em>itself</em> operate on the specified Scheduler, as well as notifying its
@@ -83,7 +83,7 @@ id: observeOn
 
   {% lang_operator RxGroovy observeOn %}
     <figure class="variant">
-     <img src="images/observeOn.png" style="width:100%;" alt="observeOn" />
+     <img src="../../operators/images/observeOn.png" style="width:100%;" alt="observeOn" />
      <figcaption><p>
       To specify on which Scheduler the Observable should invoke its observers&#8217; <code>onNext</code>,
       <code>onCompleted</code>, and <code>onError</code> methods, use the <code>observeOn</code> operator,
@@ -97,7 +97,7 @@ id: observeOn
 
   {% lang_operator RxJava&nbsp;1․x observeOn %}
     <figure class="variant">
-     <img src="images/observeOn.png" style="width:100%;" alt="observeOn" />
+     <img src="../../operators/images/observeOn.png" style="width:100%;" alt="observeOn" />
      <figcaption><p>
       To specify on which Scheduler the Observable should invoke its observers&#8217; <code>onNext</code>,
       <code>onCompleted</code>, and <code>onError</code> methods, use the <code>observeOn</code> operator,
@@ -117,7 +117,7 @@ id: observeOn
 
   {% lang_operator RxJS observeOn %}
     <figure class="variant">
-     <img src="images/observeOn.png" style="width:100%;" alt="observeOn" />
+     <img src="../../operators/images/observeOn.png" style="width:100%;" alt="observeOn" />
      <figcaption><p>
       To specify on which Scheduler the Observable should invoke its observers&#8217; <code>onNext</code>,
       <code>onCompleted</code>, and <code>onError</code> methods, use the <code>observeOn</code> operator,

@@ -14,7 +14,7 @@ id: subscribeOn
 <h3>specify the Scheduler on which an Observable will operate</h3>
 
 <figure>
- <img src="images/subscribeOn.c.png" style="width:100%;" alt="SubscribeOn" />
+ <img src="../../operators/images/subscribeOn.c.png" style="width:100%;" alt="SubscribeOn" />
  <figcaption><p>
   Many implementations of ReactiveX use <a href="../scheduler.html">&ldquo;<code>Scheduler</code>s&rdquo;</a>
   to govern an Observable&#8217;s transitions between threads in a multi-threaded environment. You can instruct
@@ -29,7 +29,7 @@ id: subscribeOn
   In some implementations there is also an <span class="operator">UnsubscribeOn</span> operator.
  </p>
 <figure>
- <img src="images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
+ <img src="../../operators/images/schedulers.png" style="width:100%;" alt="ObserveOn and SubscribeOn" />
  <figcaption><p>
   By default, an Observable and the chain of operators that you apply to it will do its work, and will notify
   its observers, on the same thread on which its <code>Subscribe</code> method is called. The
@@ -76,7 +76,7 @@ id: subscribeOn
 
   {% lang_operator RxGroovy subscribeOn unsubscribeOn %}
     <figure class="variant">
-     <img src="images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
+     <img src="../../operators/images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
      <figcaption><p>
       To specify on which Scheduler the Observable should operate, use the <code>subscribeOn</code> operator,
       passing it the appropriate <code>Scheduler</code>.
@@ -96,7 +96,7 @@ id: subscribeOn
 
   {% lang_operator RxJava&nbsp;1․x subscribeOn unsubscribeOn %}
     <figure class="variant">
-     <img src="images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
+     <img src="../../operators/images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
      <figcaption><p>
       To specify on which Scheduler the Observable should operate, use the <code>subscribeOn</code> operator,
       passing it the appropriate <code>Scheduler</code>.
@@ -122,7 +122,7 @@ id: subscribeOn
 
   {% lang_operator RxJS subscribeOn %}
     <figure class="variant">
-     <img src="images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
+     <img src="../../operators/images/subscribeOn.png" style="width:100%;" alt="subscribeOn" />
      <figcaption><p>
       To specify on which Scheduler the Observable should operate, use the <code>subscribeOn</code> operator,
       passing it the appropriate <code>Scheduler</code>.

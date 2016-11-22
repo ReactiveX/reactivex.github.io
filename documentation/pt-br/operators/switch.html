@@ -14,7 +14,7 @@ id: switch
 <h3>convert an Observable that emits Observables into a single Observable that emits the items emitted by the most-recently-emitted of those Observables</h3>
 
 <figure>
- <img src="images/switch.c.png" style="width:100%;" alt="Switch" />
+ <img src="../../operators/images/switch.c.png" style="width:100%;" alt="Switch" />
  <figcaption><p>
   <span class="operator">Switch</span> subscribes to an Observable that emits Observables. Each time it observes
   one of these emitted Observables, the Observable returned by <span class="operator">Switch</span> unsubscribes
@@ -53,7 +53,7 @@ id: switch
 
   {% lang_operator RxGroovy switchOnNext %}
     <figure class="variant">
-     <img src="images/switchDo.png" style="width:100%;" alt="switch" />
+     <img src="../../operators/images/switchDo.png" style="width:100%;" alt="switch" />
      <figcaption><p>
       RxGroovy implements this operator as <code>switchOnNext</code>. It does not by default operate on any
       particular <a href="../scheduler.html">Scheduler</a>.
@@ -66,7 +66,7 @@ id: switch
 
   {% lang_operator RxJava&nbsp;1․x switchOnNext %}
     <figure class="variant">
-     <img src="images/switchDo.png" style="width:100%;" alt="switch" />
+     <img src="../../operators/images/switchDo.png" style="width:100%;" alt="switch" />
      <figcaption><p>
       RxJava implements this operator as <code>switchOnNext</code>. It does not by default operate on any
       particular <a href="../scheduler.html">Scheduler</a>.
@@ -85,7 +85,7 @@ id: switch
 
   {% lang_operator RxJS switch %}
     <figure class="variant">
-     <img src="images/switch.png" style="width:100%;" alt="switch" />
+     <img src="../../operators/images/switch.png" style="width:100%;" alt="switch" />
      <figcaption><p>
       RxJS implements this operator as <code>switch</code>
      </p>

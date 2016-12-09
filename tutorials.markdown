@@ -135,6 +135,7 @@ id: tutorials
 * [Learning RxJava (for Android) by example](https://newcircle.com/s/post/1744/2015/06/29/learning-rxjava-for-android-by-example) video and speaker deck of a presentation by Kaushik Gopal, and [the associated GitHub repository](https://github.com/kaushikgopal/RxJava-Android-Samples)
 * [Retrofit 2.0: The biggest update yet on the best HTTP Client Library for Android](http://inthecheesefactory.com/blog/retrofit-2.0/en), which now supports RxJava Observables
 * [Fast Android Networking](https://github.com/amitshekhariitbhu/Fast-Android-Networking/wiki/Using-Fast-Android-Networking-Library-With-RxJava) Fast Android Networking which is made on top of OkHttp Client Layer now supports RxJava
+* [RxJava2-Android-Samples](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples) Learning RxJava2.0 for Android by Amit Shekhar
 
 ## Examples
 * [React RxJS Autocomplete](https://github.com/eliseumds/react-autocomplete)

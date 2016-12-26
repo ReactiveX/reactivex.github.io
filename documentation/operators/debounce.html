@@ -249,6 +249,58 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP throttle %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>throttle</code>.
+    </p>
+    <p>
+    Returns an Observable that emits only the first item emitted by the source Observable during sequential time windows of a specified duration.  If items are emitted on the source observable prior to the expiration of the time period, the last item emitted on the source observable will be emitted.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/throttle/throttle.php
+
+$loop      = Factory::create();
+$scheduler = new EventLoopScheduler($loop);
+
+$times = [
+    ['value' => 0, 'time' => 100],
+    ['value' => 1, 'time' => 600],
+    ['value' => 2, 'time' => 300],
+    ['value' => 3, 'time' => 900],
+    ['value' => 4, 'time' => 200]
+];
+
+// Delay each item by time and project value;
+$source = Observable::fromArray($times)
+    ->flatMap(function ($item) {
+        return Observable::just($item['value'])
+            ->delay($item['time']);
+    })
+    ->throttle(300 /* ms */);
+
+$subscription = $source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 2
+Next value: 1
+Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY debounce throttle_with_selector throttle_with_timeout %}
      <p>
       <span style="color:#ff0000">TBD</span>

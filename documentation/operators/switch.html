@@ -130,7 +130,7 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPHP switchLatest %}
+  {% lang_operator RxPHP switchLatest switchFirst %}
 <figure class="variant">
     <figcaption>
     <p>
@@ -166,6 +166,45 @@ Next value: 1
 Next value: 2
 Next value: 3
 Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>switchFirst</code>.
+    </p>
+    <p>
+    Receives an Observable of Observables and propagates the first Observable exclusively until it completes before it begins subscribes to the next Observable. Observables that come before the current Observable completes will be dropped and will not propagate.  This operator is similar to concatAll() except that it will not hold onto Observables that come in before the current one is finished completed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/switch/switchFirst.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::fromArray([
+    \Rx\Observable::interval(100)->mapTo('a'),
+    \Rx\Observable::interval(200)->mapTo('b'),
+    \Rx\Observable::interval(300)->mapTo('c'),
+])
+    ->switchFirst()
+    ->take(3);
+
+$subscription = $source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: a
+Next value: a
+Next value: a
 Complete!
     </pre>
 </div>

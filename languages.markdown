@@ -21,6 +21,7 @@ id: languages
 * Kotlin: [RxKotlin](https://github.com/ReactiveX/RxKotlin)
 * Swift: [RxSwift](https://github.com/kzaher/RxSwift)
 * PHP: [RxPHP](https://github.com/ReactiveX/RxPHP)
+* Elixir: [reaxive](https://github.com/alfert/reaxive)
 
 ## ReactiveX for platforms and frameworks
 

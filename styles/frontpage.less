@@ -1,14 +1,11 @@
 
 .jumbotron {
-  background-image: url("/assets/reactivex_bg.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: top center;
-  perspective: 1rem;
   height: ~"calc(100vh - 50px)"; // 50px is @navbar-height
   max-height: 700px;
   color: @gray-lighter;
   position: relative;
+  background-color: transparent;
+  margin-bottom: 0;
   h1.title {
     font-family: @reactivex-font-special;
     img {
@@ -23,10 +20,16 @@
     line-height: 1.3em;
     margin-bottom: @margin-extra-large;
   }
-}
-@media (max-width: @screen-xs-max) {
-  .jumbotron {
-    background-attachment: scroll;
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background-image: url("/assets/reactivex_bg.jpg");
+    background-size: cover;
+    background-position: top center;
+    min-height: 100%;
   }
 }
 .scroll-down-indicator {
@@ -46,6 +49,11 @@
     background-color: darken(@reactivex-pinkle, 5%);
     color: white;
   }
+}
+
+.frontpage-container {
+  padding: @margin-large 0 @margin-extra-large;
+  background: #fff;
 }
 
 .frontpage-content {

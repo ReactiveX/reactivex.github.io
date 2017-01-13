@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Repeat operator</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Repeat</li>
+</ol>
+
+<h1>Repeat</h1>
+<h3>create an Observable that emits a particular item multiple times</h3>
+
+<figure>
+ <img src="../../operators/images/repeat.c.png" style="width:100%;" alt="Repeat" />
+ <figcaption><p>
+  The <span class="operator">Repeat</span> operator emits an item repeatedly. Some implementations
+  of this operator allow you to repeat a <em>sequence</em> of items, and some permit you to limit
+  the number of repetitions.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="interval.html"><span class="operator">Interval</span></a></li>
+ <li><a href="range.html"><span class="operator">Range</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#Repeat"><cite>Introduction to Rx</cite>: Repeat</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>cycle</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>repeat</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>doWhile repeat repeatWhen whileDo</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="../../operators/images/repeat.o.png" style="width:100%;" alt="repeat" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>repeat</code>. It does not initiate an Observable,
+      but operates on an Observable in such a way that it repeats the sequence emitted by the
+      source Observable as its own sequence, either infinitely, or in the case of
+      <code>repeat(<i>n</i>)</code>, <i>n</i> times.
+     </p><p>
+      <code>repeat</code> operates by default on the <code>trampoline</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat()"><code>repeat()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(long)"><code>repeat(long)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(rx.Scheduler)"><code>repeat(Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(long,%20rx.Scheduler)"><code>repeat(long,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/repeatWhen.f.png" style="width:100%;" alt="repeatWhen" />
+     <figcaption><p>
+      There is also an operator called <code>repeatWhen</code>. Rather than buffering and replaying
+      the sequence from the source Observable, it <em>resubscribes</em> to and mirrors the source
+      Observable, but only conditionally.
+     </p><p>
+      It decides whether to resubscribe and remirror the source Observable by passing that
+      Observable&#8217;s termination notifications (error or completed) to a notification handler as
+      <code>void</code> emissions. This notification handler acts as an Observable operator, taking
+      an Observable that emits these <code>void</code> notifications as input, and returning an
+      Observable that emits <code>void</code> items (meaning, resubscribe and mirror the source
+      Observable) or terminates (meaning, terminate the sequence emitted by
+      <code>repeatWhen</code>).
+     </p><p>
+      <code>repeatWhen</code> operates by default on the <code>trampoline</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1)"><code>repeatWhen(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1,%20rx.Scheduler)"><code>repeatWhen(Func1,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/doWhile.png" style="width:100%;" alt="doWhile" />
+     <figcaption><p>
+      In RxGroovy, <code>doWhile</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>doWhile</code> checks a condition
+      after each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/whileDo.png" style="width:100%;" alt="whileDo" />
+     <figcaption><p>
+      In RxGroovy, <code>whileDo</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>whileDo</code> checks a condition
+      before each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;1․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;1․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;1․x">
+              RxJava&nbsp;1․x <code>doWhile repeat repeatWhen whileDo</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;1․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;1․x">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="../../operators/images/repeat.o.png" style="width:100%;" alt="repeat" />
+     <figcaption><p>
+      RxJava implements this operator as <code>repeat</code>. It does not initiate an Observable,
+      but operates on an Observable in such a way that it repeats the sequence emitted by the
+      source Observable as its own sequence, either infinitely, or in the case of
+      <code>repeat(<i>n</i>)</code>, <i>n</i> times.
+     </p><p>
+      <code>repeat</code> operates by default on the <code>trampoline</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat()"><code>repeat()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(long)"><code>repeat(long)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(rx.Scheduler)"><code>repeat(Scheduler)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeat(long,%20rx.Scheduler)"><code>repeat(long,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/repeatWhen.f.png" style="width:100%;" alt="repeatWhen" />
+     <figcaption><p>
+      There is also an operator called <code>repeatWhen</code>. Rather than buffering and replaying
+      the sequence from the source Observable, it <em>resubscribes</em> to and mirrors the source
+      Observable, but only conditionally.
+     </p><p>
+      It decides whether to resubscribe and remirror the source Observable by passing that
+      Observable&#8217;s termination notifications (error or completed) to a notification handler as
+      <code>void</code> emissions. This notification handler acts as an Observable operator, taking
+      an Observable that emits these <code>void</code> notifications as input, and returning an
+      Observable that emits <code>void</code> items (meaning, resubscribe and mirror the source
+      Observable) or terminates (meaning, terminate the sequence emitted by
+      <code>repeatWhen</code>).
+     </p><p>
+      <code>repeatWhen</code> operates by default on the <code>trampoline</code>
+      <a href="../scheduler.html">Scheduler</a>. There is also a variant that allows you to set the Scheduler by
+      passing one in as a parameter.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1)"><code>repeatWhen(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#repeatWhen(rx.functions.Func1,%20rx.Scheduler)"><code>repeatWhen(Func1,Scheduler)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/doWhile.png" style="width:100%;" alt="doWhile" />
+     <figcaption><p>
+      In RxJava, <code>doWhile</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>doWhile</code> checks a condition
+      after each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/whileDo.png" style="width:100%;" alt="whileDo" />
+     <figcaption><p>
+      In RxJava, <code>whileDo</code> is not part of the standard set of operators, but is part of the
+      optional <code>rxjava-computation-expressions</code> package.  <code>whileDo</code> checks a condition
+      before each repetition of the source sequence, and only repeats it if that condition is true.
+     </p></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;2․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;2․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;2․x">
+              RxJava&nbsp;2․x <code>repeat repeatUntil repeatWhen</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;2․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;2․x">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>doWhile repeat while</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="../../operators/images/repeat.png" style="width:100%;" alt="repeat" />
+     <figcaption><p>
+      RxJS implements this operator as <code>repeat</code>. It accepts as its parameter the item to
+      repeat, and optionally two other parameters: the number of times you want the item to repeat,
+      and the <a href="../scheduler.html">Scheduler</a> on which you want to perform this operation (it uses the
+      <code>immediate</code> Scheduler by default).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.repeat(42, 3);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 42
+Next: 42
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>repeat</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/doWhile.png" style="width:100%;" alt="doWile" />
+     <figcaption><p>
+      RxJS also implements the <code>doWhile</code> operator. It repeats the source Observable&#8217;s sequence
+      of emissions only so long as a condition you specify remains true.
+     </p>
+     <div class="code javascript"><pre>
+var i = 0;
+
+var source = Rx.Observable.return(42).doWhile(
+    function (x) { return ++i &lt; 2; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Next: 42
+Completed</pre></div>
+     <p><code>doWhile</code> is found in each of the following distributions.
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.experimental.js</code></li>
+     </ul>
+     <p>It requires one of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/while.png" style="width:100%;" alt="while" />
+     <figcaption><p>
+      RxJS also implements the <code>while</code> operator. It repeats the source Observable&#8217;s sequence
+      of emissions only if a condition you specify is true.
+     </p>
+     <div class="code javascript"><pre>
+var i = 0;
+
+// Repeat until condition no longer holds
+var source = Rx.Observable.while(
+    function () { return i++ &lt; 3 },
+    Rx.Observable.return(42)
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Next: 42
+Next: 42
+Completed</pre></div>
+     <p><code>while</code> is found in the <code>rx.experimental.js</code> distribution. It requires one of the
+     following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>doWhile repeat repeatWhen whileDo</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Repeat</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>repeat repeatWhen</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>repeat</code>.
+    </p>
+    <p>
+    Generates an observable sequence that repeats the given element the specified number of times.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/repeat/repeat.php
+
+$source = \Rx\Observable::range(1, 3)
+    ->repeat(3);
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 1
+Next value: 2
+Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>repeatWhen</code>.
+    </p>
+    <p>
+    Returns an Observable that emits the same values as the source Observable with the exception of an onCompleted. An onCompleted notification from the source will result in the emission of a count item to the Observable provided as an argument to the notificationHandler function. If that Observable calls onComplete or onError then repeatWhen will call onCompleted or onError on the child subscription. Otherwise, this Observable will resubscribe to the source observable.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/repeat/repeatWhen.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::just(42)
+    ->repeatWhen(function (\Rx\Observable $notifications) {
+        return $notifications
+            ->scan(function ($acc, $x) {
+                return $acc + $x;
+            }, 0)
+            ->delay(1000)
+            ->doOnNext(function () {
+                echo "1 second delay", PHP_EOL;
+            })
+            ->takeWhile(function ($count) {
+                return $count < 2;
+            });
+    });
+
+$subscription = $source->subscribe($createStdoutObserver(), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+1 second delay
+Next value: 42
+1 second delay
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>do_while repeat while_do</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>repeat repeat_infinitely</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>repeat repeatWhen</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxSwift">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxSwift" aria-expanded="true" aria-controls="collapseRxSwift">
+              RxSwift <code>repeatElement</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/pt-br/operators/repeat.html">한국어</a></li>
+        <li><a href="/documentation/pt-br/operators/repeat.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-repeat").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

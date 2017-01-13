@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Subscribe operator</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#transforming">Transforming</a></li>
+  <li class="active">Subscribe</li>
+</ol>
+
+<h1>Subscribe</h1>
+<h3>operate upon the emissions and notifications from an Observable</h3>
+
+ <p>
+  The <span class="operator">Subscribe</span> operator is the glue that connects an observer to an
+  Observable. In order for an observer to see the items being emitted by an Observable, or to receive
+  error or completed notifications from the Observable, it must first subscribe to that Observable with
+  this operator.
+ </p><p>
+  A typical implementaiton of the <span class="operator">Subscribe</span> operator may accept one to three
+  methods (which then constitute the observer), or it may accept an object (sometimes called an
+  <code>Observer</code> or <code>Subscriber</code>) that implements the interface which includes those three
+  methods:
+ </p><dl>
+  <dt><code>onNext</code></dt>
+   <dd>An Observable calls this method whenever the Observable emits an item. This method takes as a
+       parameter the item emitted by the Observable.</dd>
+  <dt><code>onError</code></dt>
+   <dd>An Observable calls this method to indicate that it has failed to generate the expected data or has
+       encountered some other error. This stops the Observable and it will not make further calls to
+       <code>onNext</code> or <code>onCompleted</code>. The <code>onError</code> method takes as its parameter
+       an indication of what caused the error (sometimes an object like an Exception or Throwable, other times
+       a simple string, depending on the implementation).</dd>
+  <dt><code>onCompleted</code></dt>
+   <dd>An Observable calls this method after it has called <code>onNext</code> for the final time, if it has not
+       encountered any errors.</dd>
+ </dl>
+ <p>
+  An Observable is called a &ldquo;cold&rdquo; Observable if it does not begin to emit items until an observer
+  has subscribed to it; an Observable is called a &ldquo;hot&rdquo; Observable if it may begin emitting items
+  at any time, and a subscriber may begin observing the sequence of emitted items at some point after its
+  commencement, missing out on any items emitted previously to the time of the subscription.
+ </p>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="do.html"><span class="operator">Do</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/02_KeyTypes.html#IObserver"><cite>Introduction to Rx</cite>: IObserver</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>BlockingObservable.doseq subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>BlockingObservable.forEach forEach subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+    <p>
+     RxGroovy implements several variants of <code>subscribe</code>.
+    </p><p>
+     If you pass it no parameters, it will trigger a subscription to the underlying Observable, but will
+     ignore its emissions and notifications. This will activate a cold Observable.
+    </p><p>
+     You can also pass it between one and three functions; these will be interpreted as follows:
+    </p>
+    <ol>
+     <li><code>onNext</code></li>
+     <li><code>onNext</code> and <code>onError</code></li>
+     <li><code>onNext</code>, <code>onError</code>, and <code>onCompleted</code></li>
+    </ol>
+    <p>
+     Finally, you can pass it an object that implements either of the <code>Observer</code> or
+     <code>Subscriber</code> interfaces. The <code>Observer</code> interface consists of the three
+     previously-described &ldquo;<code>on</code>&rdquo; methods. The <code>Subscriber</code> interface
+     implements these also, and adds a number of additional methods that facilitate reactive pull backpressure
+     and that permit the Subscriber to unsubscribe to an Observable before it completes.
+    </p><p>
+     The call to <code>subscribe</code> returns an object that implements the <code>Subscription</code>
+     interface. This interface includes the <code>unsubscribe</code> method that you can call at any time
+     to sever the subscription that <code>subscribe</code> established between the Observable and the observer
+     (or the methods that stand in for the observer).
+    </p>
+    <ul>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe()"><code>subscribe()</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.functions.Action1)"><code>subscribe(Action1)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.functions.Action1,%20rx.functions.Action1)"><code>subscribe(Action1,Action1)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.functions.Action1,%20rx.functions.Action1,%20rx.functions.Action0)"><code>subscribe(Action1,Action1,Action0)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.Observer)"><code>subscribe(Observer)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.Subscriber)"><code>subscribe(Subscriber)</code></a></li>
+    </ul>
+
+    <p>
+     The <code>forEach</code> operators are simpler versions of <code>subscribe</code>. You can pass them
+     between one and three functions, which will be interpreted as follows:
+    </p>
+    <ol>
+     <li><code>onNext</code></li>
+     <li><code>onNext</code> and <code>onError</code></li>
+     <li><code>onNext</code>, <code>onError</code>, and <code>onCompleted</code></li>
+    </ol>
+    <p>
+     Unlike <code>subscribe</code>, <code>forEach</code> does not return an object with which you can cancel
+     the subscription. Nor do you have the option of passing a parameter that has this capability. So you should
+     only use this operator if you definitely need to operate on all of the emissions and notifications from the
+     Observable.
+    </p>
+    <ul>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#forEach(rx.functions.Action1)"><code>forEach(Action1)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#forEach(rx.functions.Action1,%20rx.functions.Action1)"><code>forEach(Action1,Action1)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#forEach(rx.functions.Action1,%20rx.functions.Action1,%20rx.functions.Action0)"><code>forEach(Action1,Action1,Action0)</code></a></li>
+    </ul>
+
+    <figure>
+     <img src="../../operators/images/B.forEach.png" style="width:100%;" alt="forEach">
+     <figcaption><p>
+      There is also a <code>BlockingObservable</code> method called <code>forEach</code> that is somewhat
+      similar. In order to use it, you must first convert your source Observable into a
+      <code>BlockingObservable</code> by means of either the <code>BlockingObservable.from</code> method or the
+      <code>Observable.toBlocking</code> operator.
+     </p><p>
+      <code>BlockingObservable.forEach</code> takes a single function as its parameter, and this function
+      behaves much like an <code>onNext</code> function in the subscription to an ordinary Observable. The
+      <code>forEach</code> operator itself blocks until the <code>BlockingObservable</code> completes, and it
+      is by unblocking, rather than by calling a callback function, that it indicates that it is complete. If
+      it encounters an error it will throw a <code>RuntimeException</code> (rather than calling an analogue to
+      the <code>onError</code> callback).
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#forEach(rx.functions.Action1)">BlockingObservable.forEach(Action1)</a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;1․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;1․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;1․x">
+              RxJava&nbsp;1․x <code>BlockingObservable.forEach forEach subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;1․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;1․x">
+          <div class="panel-body">
+            
+    <p>
+     RxJava implements several variants of <code>subscribe</code>.
+    </p><p>
+     If you pass it no parameters, it will trigger a subscription to the underlying Observable, but will
+     ignore its emissions and notifications. This will activate a cold Observable.
+    </p><p>
+     You can also pass it between one and three functions; these will be interpreted as follows:
+    </p>
+    <ol>
+     <li><code>onNext</code></li>
+     <li><code>onNext</code> and <code>onError</code></li>
+     <li><code>onNext</code>, <code>onError</code>, and <code>onCompleted</code></li>
+    </ol>
+    <p>
+     Finally, you can pass it an object that implements either of the <code>Observer</code> or
+     <code>Subscriber</code> interfaces. The <code>Observer</code> interface consists of the three
+     previously-described &ldquo;<code>on</code>&rdquo; methods. The <code>Subscriber</code> interface
+     implements these also, and adds a number of additional methods that facilitate reactive pull backpressure
+     and that permit the Subscriber to unsubscribe to an Observable before it completes.
+    </p><p>
+     The call to <code>subscribe</code> returns an object that implements the <code>Subscription</code>
+     interface. This interface includes the <code>unsubscribe</code> method that you can call at any time
+     to sever the subscription that <code>subscribe</code> established between the Observable and the observer
+     (or the methods that stand in for the observer).
+    </p>
+    <ul>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe()"><code>subscribe()</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.functions.Action1)"><code>subscribe(Action1)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.functions.Action1,%20rx.functions.Action1)"><code>subscribe(Action1,Action1)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.functions.Action1,%20rx.functions.Action1,%20rx.functions.Action0)"><code>subscribe(Action1,Action1,Action0)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.Observer)"><code>subscribe(Observer)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#subscribe(rx.Subscriber)"><code>subscribe(Subscriber)</code></a></li>
+    </ul>
+
+    <p>
+     The <code>forEach</code> operators are simpler versions of <code>subscribe</code>. You can pass them
+     between one and three functions, which will be interpreted as follows:
+    </p>
+    <ol>
+     <li><code>onNext</code></li>
+     <li><code>onNext</code> and <code>onError</code></li>
+     <li><code>onNext</code>, <code>onError</code>, and <code>onCompleted</code></li>
+    </ol>
+    <p>
+     Unlike <code>subscribe</code>, <code>forEach</code> does not return an object with which you can cancel
+     the subscription. Nor do you have the option of passing a parameter that has this capability. So you should
+     only use this operator if you definitely need to operate on all of the emissions and notifications from the
+     Observable.
+    </p>
+    <ul>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#forEach(rx.functions.Action1)"><code>forEach(Action1)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#forEach(rx.functions.Action1,%20rx.functions.Action1)"><code>forEach(Action1,Action1)</code></a></li>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#forEach(rx.functions.Action1,%20rx.functions.Action1,%20rx.functions.Action0)"><code>forEach(Action1,Action1,Action0)</code></a></li>
+    </ul>
+
+    <figure>
+     <img src="../../operators/images/B.forEach.png" style="width:100%;" alt="forEach">
+     <figcaption><p>
+      There is also a <code>BlockingObservable</code> method called <code>forEach</code> that is somewhat
+      similar. In order to use it, you must first convert your source Observable into a
+      <code>BlockingObservable</code> by means of either the <code>BlockingObservable.from</code> method or the
+      <code>Observable.toBlocking</code> operator.
+     </p><p>
+      <code>BlockingObservable.forEach</code> takes a single function as its parameter, and this function
+      behaves much like an <code>onNext</code> function in the subscription to an ordinary Observable. The
+      <code>forEach</code> operator itself blocks until the <code>BlockingObservable</code> completes, and it
+      is by unblocking, rather than by calling a callback function, that it indicates that it is complete. If
+      it encounters an error it will throw a <code>RuntimeException</code> (rather than calling an analogue to
+      the <code>onError</code> callback).
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#forEach(rx.functions.Action1)">BlockingObservable.forEach(Action1)</a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;2․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;2․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;2․x">
+              RxJava&nbsp;2․x <code>blockingForEach blockingSubscribe forEachWhile safeSubscribe subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;2․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;2․x">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>forEach subscribe subscribeOnCompleted subscribeOnError subscribeOnNext</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+    <p>
+     In RxJS, you can subscribe to an Observable in two ways:
+    </p>
+    <ol>
+     <li>subscribe a single function to either the <code>onNext</code>, the <code>onCompleted</code>, or
+         <code>onError</code> notifications from an Observable, with <code>subscribeOnNext</code>,
+         <code>subscribeOnCompleted</code>, or <code>subscribeOnError</code> respectively</li>
+     <li>subscribe by passing zero to three individual functions, or an object that implements those three
+         functions, into either the <code>subscribe</code> or <code>forEach</code> operator (those operators
+         behave identically).</li>
+    </ol>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+
+var subscription = source.subscribeOnNext(
+  function (x) {
+    console.log('Next: %s', x);
+  });</pre></div>
+    <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2</pre></div>
+    <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3);
+
+var subscription = source.subscribeOnCompleted(
+  function () {
+    console.log('Completed');
+  });</pre></div>
+    <div class="output"><pre>
+Completed</pre></div>
+    <div class="code javascript"><pre>
+var source = Rx.Observable.throw(new Error());
+
+var subscription = source.subscribeOnError(
+  function (err) {
+    console.log('Error: %s', err);
+  });</pre></div>
+    <div class="output"><pre>
+Error: Error</pre></div>
+    <div class="code javascript"><pre>
+var observer = Rx.Observer.create(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });
+
+var source = Rx.Observable.range(0, 3)
+
+var subscription = source.subscribe(observer);</pre></div>
+    <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+    <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });
+</pre></div>
+    <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+    <p>
+     The functions described in this section are all found in each of the following distributions:
+    </p>
+    <ul>
+     <li><code>rx.js</code></li>
+     <li><code>rx.all.js</code></li>
+     <li><code>rx.all.compat.js</code></li>
+     <li><code>rx.compat.js</code></li>
+     <li><code>rx.lite.js</code></li>
+     <li><code>rx.lite.compat.js</code></li>
+    </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>BlockingObservable.forEach forEach subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>ForEach Subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>BlockingObservable.for_each subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>BlockingObservable.foreach forEach subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxSwift">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxSwift" aria-expanded="true" aria-controls="collapseRxSwift">
+              RxSwift <code>subscribe</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/pt-br/operators/subscribe.html">한국어</a></li>
+        <li><a href="/documentation/pt-br/operators/subscribe.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-subscribe").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

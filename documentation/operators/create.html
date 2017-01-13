@@ -64,7 +64,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
@@ -742,29 +742,29 @@ Disposed
       </p>
       <h4>Sample Code</h4>
       <div class="code swift"><pre>
-let source = Observable<Int>.create { observer in
-  for i in 1...5 {
-    observer.on(.Next(i))
-  }
-  observer.on(.Completed)
-
-  // Note that this is optional. If you require no cleanup you can return
-  // NopDisposable.instance
-  return AnonymousDisposable {
-    print("Disposed")
-  }
+let source : Observable<Int> = Observable.create { observer in
+    for i in 1...5 {
+        observer.on(.next(i))
+    }
+    observer.on(.completed)
+    
+    // Note that this is optional. If you require no cleanup you can return
+    // NopDisposable.instance
+    return Disposables.create {
+        print("disposed")
+    }
 }
 
 source.subscribe {
-  print($0)
+    print($0)
 }</pre></div>
       <div class="output"><pre>
-Next(1)
-Next(2)
-Next(3)
-Next(4)
-Next(5)
-Completed
+next(1)
+next(2)
+next(3)
+next(4)
+next(5)
+completed
 disposed</pre></div>
       </figcaption>
     </figure>
@@ -796,10 +796,10 @@ source.subscribe {
    print($0)
 }</pre></div>
          <div class="output"><pre>
-Next(0)
-Next(1)
-Next(2)
-Completed</pre></div>
+next(0)
+next(1)
+next(2)
+completed</pre></div>
       </figcaption>
     </figure>
   
@@ -852,7 +852,7 @@ Completed</pre></div>
             <ul class="footer-section">
               <li><h4>Languages</h4></li>
               <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>

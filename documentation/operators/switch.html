@@ -64,7 +64,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
@@ -378,7 +378,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>switchLatest</code>
+              RxPHP <code>switchLatest switchFirst</code>
             </a>
           </h4>
         </div>
@@ -420,6 +420,45 @@ Next value: 1
 Next value: 2
 Next value: 3
 Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>switchFirst</code>.
+    </p>
+    <p>
+    Receives an Observable of Observables and propagates the first Observable exclusively until it completes before it begins subscribes to the next Observable. Observables that come before the current Observable completes will be dropped and will not propagate.  This operator is similar to concatAll() except that it will not hold onto Observables that come in before the current one is finished completed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/switch/switchFirst.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::fromArray([
+    \Rx\Observable::interval(100)->mapTo('a'),
+    \Rx\Observable::interval(200)->mapTo('b'),
+    \Rx\Observable::interval(300)->mapTo('c'),
+])
+    ->switchFirst()
+    ->take(3);
+
+$subscription = $source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: a
+Next value: a
+Next value: a
 Complete!
     </pre>
 </div>
@@ -559,7 +598,7 @@ Complete!
             <ul class="footer-section">
               <li><h4>Languages</h4></li>
               <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>

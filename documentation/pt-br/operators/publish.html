@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Publish operator</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#connectable">Connectable</a></li>
+  <li class="active">Publish</li>
+</ol>
+
+<h1>Publish</h1>
+<h3>convert an ordinary Observable into a connectable Observable</h3>
+
+<figure>
+ <img src="../../operators/images/publishConnect.c.png" style="width:100%;" alt="Publish" />
+ <figcaption><p>
+  A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+  emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+  operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
+  time of your choosing.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="connect.html"><span class="operator">Connect</span></a></li>
+ <li><a href="refcount.html"><span class="operator">RefCount</span></a></li>
+ <li><a href="replay.html"><span class="operator">Replay</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/14_HotAndColdObservables.html#PublishAndConnect"><cite>Introduction to Rx</cite>: Publish &amp; Connect</a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc48"><cite>101 Rx Samples</cite>: Publish &mdash; Sharing a subscription with multiple Observers</a></li>
+ <li><a href="http://blog.kaush.co/2015/01/21/rxjava-tip-for-the-day-share-publish-refcount-and-all-that-jazz/"><cite>Wedding Party</cite>: Share, Publish, Refcount, and All That Jazz</a> by Kaushik Gopal</li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>multicast publish</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>publish</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="../../operators/images/publishConnect.png" style="width:100%;" alt="publish" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>publish</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#publish()"><code>publish()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/publishConnect.f.png" style="width:100%;" alt="publish" />
+     <figcaption><p>
+      There is also a variant that takes a function as a parameter. This function takes an emitted
+      item from the source Observable as a parameter and produces the item that will be emitted in
+      its place by the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#publish(rx.functions.Func1)"><code>publish(Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;1․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;1․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;1․x">
+              RxJava&nbsp;1․x <code>publish</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;1․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;1․x">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="../../operators/images/publishConnect.png" style="width:100%;" alt="publish" />
+     <figcaption><p>
+      RxJava implements this operator as <code>publish</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#publish()"><code>publish()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/publishConnect.f.png" style="width:100%;" alt="publish" />
+     <figcaption><p>
+      There is also a variant that takes a function as a parameter. This function takes as a parameter 
+      the <code>ConnectableObservable</code> that shares a single subscription to the underlying Observable sequence.
+      This function produces and returns a new Observable sequence.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#publish(rx.functions.Func1)"><code>publish(Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;2․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;2․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;2․x">
+              RxJava&nbsp;2․x <code>publish</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;2․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;2․x">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>let letBind multicast publish publishLast publishValue</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+    <figure class="variant">
+     <img src="../../operators/images/publishConnect.f.png" style="width:100%;" alt="publish" />
+     <figcaption><p>
+      In RxJS, the <code>publish</code> operator takes a function as a parameter. This function
+      takes an emitted item from the source Observable as a parameter and produces the item that
+      will be emitted in its place by the returned <code>ConnectableObservable</code>.
+     </p>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .doAction(function (x) {
+        console.log('Side effect');
+    });
+
+var published = source.publish();
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+var connection = published.connect();
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/publishValue.png" style="width:100%;" alt="publishValue" />
+     <figcaption><p>
+      The <code>publishValue</code> operator takes, in addition to the function described above, an
+      initial item to be emitted by the resulting <code>ConnectableObservable</code> at connection
+      time before emitting the items from the source Observable. It will not, however, emit this
+      initial item to observers that subscribe after the time of connection.
+     </p>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .doAction(function (x) {
+        console.log('Side effect');
+    });
+
+var published = source.publishValue(42);
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+var connection = published.connect();
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Next: SourceA42
+Next: SourceB42
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Completed
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="../../operators/images/publishLast.png" style="width:100%;" alt="publishLast" />
+     <figcaption><p>
+      The <code>publishLast</code> operator is similar to <code>publish</code>, and takes a
+      similarly-behaving function as its parameter. It differs from <code>publish</code> in that
+      instead of applying that function to, and emitting an item for <em>every</em> item emitted by
+      the source Observable subsequent to the connection, it only applies that function to and emits
+      an item for the <em>last</em> item that was emitted by the source Observable, when that source
+      Observable terminates normally.
+     </p>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .doAction(function (x) {
+        console.log('Side effect');
+    });
+
+var published = source.publishLast();
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+var connection = published.connect();
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Side effect
+Next: SourceA1
+Completed
+Next: SourceB1
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <p>
+     The above operators are available in the following packages:
+    </p>
+    <ul>
+     <li><code>rx.all.js</code></li>
+     <li><code>rx.all.compat.js</code></li>
+     <li><code>rx.binding.js</code> (requires either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     <li><code>rx.lite.js</code></li>
+     <li><code>rx.lite.compat.js</code></li>
+    </ul>
+    <p>
+     RxJS also has a <code>multicast</code> operator which operates on an ordinary Observable,
+     multicasts that Observable by means of a particular Subject that you specify, applies a
+     transformative function to each emission, and then emits those transformed values as its own
+     ordinary Observable sequence. Each subscription to this new Observable will trigger a
+     new subscription to the underlying multicast Observable.
+    </p>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var subject = new Rx.Subject();
+var source = Rx.Observable.range(0, 3)
+    .multicast(subject);
+
+var observer = Rx.Observer.create(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); }
+);
+
+var subscription = source.subscribe(observer);
+subject.subscribe(observer);
+
+var connected = source.connect();
+
+subscription.dispose();</pre></div><div class="output"><pre>
+Next: 0
+Next: 0
+Next: 1
+Next: 1
+Next: 2
+Next: 2
+Completed</pre></div>
+    <p>
+     The <code>multicast</code> operator is available in the following packages:
+    </p>
+    <ul>
+     <li><code>rx.all.js</code></li>
+     <li><code>rx.all.compat.js</code></li>
+     <li><code>rx.binding.js</code> (requires either <code>rx.lite.js</code> or <code>rx.compat.js</code>)</li>
+     <li><code>rx.lite.js</code></li>
+     <li><code>rx.lite.compat.js</code></li>
+    </ul>
+    <p>
+     There is also a <code>let</code> operator (the alias <code>letBind</code> is available for
+     browsers such as Internet Explorer before IE9 where &ldquo;<code>let</code>&rdquo; is
+     forbidden). It is similar to <code>multicast</code> but does not multicast the underlying
+     Observable through a Subject:
+    </p>
+    <h4>Sample Code</h4>
+    <div class="code javascript"><pre>
+var obs = Rx.Observable.range(1, 3);
+
+var source = obs.let(function (o) { return o.concat(o); });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Next: 1
+Next: 2
+Next: 3
+Completed</pre></div>
+    <p>
+     The <code>let</code> (or <code>letBind</code>) operator is available in the following packages:
+    </p>
+    <ul>
+     <li><code>rx.all.js</code></li>
+     <li><code>rx.all.compat.js</code></li>
+     <li><code>rx.experimental.js</code></li>
+    </ul>
+    <p>
+     It requires one of the following packages:
+    </p>
+    <ul>
+     <li><code>rx.js</code></li>
+     <li><code>rx.compat.js</code></li>
+     <li><code>rx.lite.js</code></li>
+     <li><code>rx.lite.compat.js</code></li>
+    </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>publish</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Multicast Publish PublishLast</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPHP">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
+              RxPHP <code>multicast multicastWithSelector publish publishLast publishValue</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPHP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPHP">
+          <div class="panel-body">
+            
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>multicast</code>.
+    </p>
+    <p>
+    Multicasts the source sequence notifications through an instantiated subject into all uses of the sequence within a selector function. Each subscription to the resulting sequence causes a separate multicast invocation, exposing the sequence resulting from the selector function's invocation. For specializations with fixed subject types, see Publish, PublishLast, and Replay.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/multicast/multicast.php
+
+$subject = new \Rx\Subject\Subject();
+$source  = \Rx\Observable::range(0, 3)->multicast($subject);
+
+$subscription = $source->subscribe($stdoutObserver);
+$subject->subscribe($stdoutObserver);
+
+$connected = $source->connect();
+
+$subscription->dispose();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 0
+Next value: 1
+Next value: 1
+Next value: 2
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>multicastWithSelector</code>.
+    </p>
+    <p>
+    Multicasts the source sequence notifications through an instantiated subject from a subject selector factory, into all uses of the sequence within a selector function. Each subscription to the resulting sequence causes a separate multicast invocation, exposing the sequence resulting from the selector function's invocation. For specializations with fixed subject types, see Publish, PublishLast, and Replay.
+    </p>
+
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>publish</code>.
+    </p>
+    <p>
+    Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence. This operator is a specialization of Multicast using a regular Subject.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/publish/publish.php
+
+/* With publish */
+$interval = \Rx\Observable::range(0, 10);
+
+$source = $interval
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->publish();
+
+$published->subscribe($createStdoutObserver('SourceC '));
+$published->subscribe($createStdoutObserver('SourceD '));
+
+$published->connect();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+SourceC Next value: 0
+SourceD Next value: 0
+Side effect
+SourceC Next value: 1
+SourceD Next value: 1
+SourceC Complete!
+SourceD Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>publishLast</code>.
+    </p>
+    <p>
+    Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence containing only the last notification. This operator is a specialization of Multicast using a AsyncSubject.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/publish/publishLast.php
+
+$range = \Rx\Observable::fromArray(range(0, 1000));
+
+$source = $range
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->publishLast();
+
+$published->subscribe($createStdoutObserver('SourceA'));
+$published->subscribe($createStdoutObserver('SourceB'));
+
+$connection = $published->connect();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+Side effect
+SourceANext value: 1
+SourceBNext value: 1
+SourceAComplete!
+SourceBComplete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>publishValue</code>.
+    </p>
+    <p>
+    Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence and starts with initialValue. This operator is a specialization of Multicast using a BehaviorSubject.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/publish/publishValue.php
+
+$range = \Rx\Observable::fromArray(range(0, 1000));
+
+$source = $range
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->publishValue(42);
+
+$published->subscribe($createStdoutObserver('SourceA'));
+$published->subscribe($createStdoutObserver('SourceB'));
+
+$connection = $published->connect();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+SourceANext value: 42
+SourceBNext value: 42
+Side effect
+SourceANext value: 0
+SourceBNext value: 0
+Side effect
+SourceANext value: 1
+SourceBNext value: 1
+SourceAComplete!
+SourceBComplete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>let let_bind multicast publish publishValue</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>multicast publish publishLast</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxSwift">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxSwift" aria-expanded="true" aria-controls="collapseRxSwift">
+              RxSwift <code>multicast publish</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
+          <div class="panel-body">
+            
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/pt-br/operators/publish.html">한국어</a></li>
+        <li><a href="/documentation/pt-br/operators/publish.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-publish").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

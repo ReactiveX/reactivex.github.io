@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - Last operator</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <ol class="breadcrumb">
+  <li><a href="/documentation/operators.html">Operators</a></li>
+  <li><a href="/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">Last</li>
+</ol>
+
+   <h1>Last</h1>
+   <h3>emit only the last item (or the last item that meets some condition) emitted by an Observable</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="last"></rx-marbles>
+    <figcaption><p>
+     If you are only interested in the last item emitted by an Observable, or the last item that meets some
+     criteria, you can filter the Observable with the <span class="operator">Last</span> operator.
+    </p><p>
+     In some implementations, <code>Last</code> is not implemented as a filtering operator that returns an
+     Observable, but as a blocking function that returns a particular item when the source Observable
+     terminates. In those implementations, if you instead want a filtering operator, you may have better luck
+     with <a href="take.html"><code>TakeLast(1)</code></a>.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="elementat.html"><span class="operator">ElementAt</span></a></li>
+    <li><a href="first.html"><span class="operator">First</span></a></li>
+    <li><a href="take.html"><span class="operator">Take</span></a></li>
+    <li><a href="takeLast.html"><span class="operator">TakeLast</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Last"><cite>Introduction to Rx</cite>: Last</a></li>
+    <li><a href="http://rxmarbles.com/#last">RxMarbles: <code>last</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxClojure">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxClojure" aria-expanded="true" aria-controls="collapseRxClojure">
+              RxClojure <code>last</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxClojure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxClojure">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxCpp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxCpp" aria-expanded="true" aria-controls="collapseRxCpp">
+              RxCpp <code>last</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxCpp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxCpp">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxGroovy">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
+              RxGroovy <code>last lastOrDefault</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxGroovy" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxGroovy">
+          <div class="panel-body">
+            
+     <p>
+      In RxGroovy, this filtering operator is implemented as <code>last</code> and <code>lastOrDefault</code>.
+     </p><p>
+      Somewhat confusingly, there are also <code>BlockingObservable</code> operators called <code>last</code>
+      and <code>lastOrDefault</code> that block and then return items, rather than immediately returning
+      Observables.
+     </p>
+     <h3>The Filtering Operators</h3>
+     <figure>
+      <img src="../../operators/images/last.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       To filter an Observable so that only its last emission is emitted, use the
+       <code>last</code> operator with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#last()"><code>last()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       You can also pass a predicate function to <code>last</code>, in which case it will produce an
+       Observable that emits only the last item from the source Observable that the predicate evaluates as
+       <code>true</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#last(rx.functions.Func1)"><code>last(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       The <code>lastOrDefault</code> operator is similar to <code>last</code>, but you pass it a default item
+       that it can emit if the source Observable fails to emit any items.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       <code>lastOrDefault</code> also has a variant to which you can pass a predicate function, so that its
+       Observable will emit the last item from the source Observable that the predicate evaluates as
+       <code>true</code>, or the default item if no items emitted by the source Observable pass the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>last</code> and <code>lastOrDefault</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <h3>The <code>BlockingObservable</code> Methods</h3>
+     <p>
+      The <code>BlockingObservable</code> methods do not transform an Observable into another, filtered
+      Observable, but rather they break out of the Observable cascade, blocking until the Observable emits
+      the desired item, and then return that item itself.
+     </p><p>
+      To turn an Observable into a <code>BlockingObservable</code> so that you can use these methods, you can
+      use either the <code>Observable.toBlocking</code> or <code>BlockingObservable.from</code> methods.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toBlocking()"><code>Observable.toBlocking()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
+     </ul>
+     <figure>
+      <img src="../../operators/images/B.last.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       To retrieve the last emission from a <code>BlockingObservable</code>, use the <code>last</code> method
+       with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#last()"><code>BlockingObservable.last()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/B.last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       You can also pass a predicate function to the <code>last</code> method to retrieve the last emission
+       from a <code>BlockingObservable</code> that satisfies the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#last(rx.functions.Func1)"><code>BlockingObservable.last(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/B.lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       As with the filtering operators, the <code>last</code> method of <code>BlockingObservable</code> will
+       throw a <code>NoSuchElementException</code> if there is no last element in the source
+       <code>BlockingObservable</code>. To return a default item instead in such cases, use the
+       <code>lastOrDefault</code> method.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#lastOrDefault(T)"><code>BlockingObservable.lastOrDefault()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/B.lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       And, as with <code>last</code>, there is a <code>lastOrDefault</code> variant that takes a predicate
+       function as an argument and retrieves the last item from the source <code>BlockingObservable</code>
+       that satisfies that predicate, or a default item instead if no satisfying item was emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#lastOrDefault(T,%20rx.functions.Func1)"><code>BlockingObservable.lastOrDefault(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;1․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;1․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;1․x">
+              RxJava&nbsp;1․x <code>last lastOrDefault</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;1․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;1․x">
+          <div class="panel-body">
+            
+     <p>
+      In RxJava, this filtering operator is implemented as <code>last</code> and <code>lastOrDefault</code>.
+     </p><p>
+      Somewhat confusingly, there are also <code>BlockingObservable</code> operators called <code>last</code>
+      and <code>lastOrDefault</code> that block and then return items, rather than immediately returning
+      Observables.
+     </p>
+     <h3>The Filtering Operators</h3>
+     <figure>
+      <img src="../../operators/images/last.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       To filter an Observable so that only its last emission is emitted, use the
+       <code>last</code> operator with no parameters. 
+      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3)
+          .last()
+          .subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 3
+Sequence complete.</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#last()"><code>last()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       You can also pass a predicate function to <code>last</code>, in which case it will produce an
+       Observable that emits only the last item from the source Observable that the predicate evaluates as
+       <code>true</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#last(rx.functions.Func1)"><code>last(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       The <code>lastOrDefault</code> operator is similar to <code>last</code>, but you pass it a default item
+       that it can emit if the source Observable fails to emit any items.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       <code>lastOrDefault</code> also has a variant to which you can pass a predicate function, so that its
+       Observable will emit the last item from the source Observable that the predicate evaluates as
+       <code>true</code>, or the default item if no items emitted by the source Observable pass the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>last</code> and <code>lastOrDefault</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <h3>The <code>BlockingObservable</code> Methods</h3>
+     <p>
+      The <code>BlockingObservable</code> methods do not transform an Observable into another, filtered
+      Observable, but rather they break out of the Observable cascade, blocking until the Observable emits
+      the desired item, and then return that item itself.
+     </p><p>
+      To turn an Observable into a <code>BlockingObservable</code> so that you can use these methods, you can
+      use either the <code>Observable.toBlocking</code> or <code>BlockingObservable.from</code> methods.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toBlocking()"><code>Observable.toBlocking()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
+     </ul>
+     <figure>
+      <img src="../../operators/images/B.last.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       To retrieve the last emission from a <code>BlockingObservable</code>, use the <code>last</code> method
+       with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#last()"><code>BlockingObservable.last()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/B.last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       You can also pass a predicate function to the <code>last</code> method to retrieve the last emission
+       from a <code>BlockingObservable</code> that satisfies the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#last(rx.functions.Func1)"><code>BlockingObservable.last(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/B.lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       As with the filtering operators, the <code>last</code> method of <code>BlockingObservable</code> will
+       throw a <code>NoSuchElementException</code> if there is no last element in the source
+       <code>BlockingObservable</code>. To return a default item instead in such cases, use the
+       <code>lastOrDefault</code> method.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#lastOrDefault(T)"><code>BlockingObservable.lastOrDefault()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="../../operators/images/B.lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       And, as with <code>last</code>, there is a <code>lastOrDefault</code> variant that takes a predicate
+       function as an argument and retrieves the last item from the source <code>BlockingObservable</code>
+       that satisfies that predicate, or a default item instead if no satisfying item was emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#lastOrDefault(T,%20rx.functions.Func1)"><code>BlockingObservable.lastOrDefault(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;2․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;2․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;2․x">
+              RxJava&nbsp;2․x <code>blockingLast last lastElement</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;2․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;2․x">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJS">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJS" aria-expanded="true" aria-controls="collapseRxJS">
+              RxJS <code>last</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJS">
+          <div class="panel-body">
+            
+     <figure>
+      <img src="../../operators/images/last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       RxJS implements the <code>last</code> operator. It optionally takes a predicate function as a parameter,
+       in which case, rather than emitting the last item from the source Observable, the resulting Observable
+       will emit the last item from the source Observable that satisfies the predicate.
+      </p><p>
+       The predicate function itself takes three arguments:
+      </p>
+      <ol>
+       <li>the item from the source Observable to be, or not be, filtered</li>
+       <li>the zero-based index of this item in the source Observable&#8217;s sequence</li>
+       <li>the source Observable object</li>
+      </ol>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 10)
+    .last(function (x, idx, obs) { return x % 2 === 1; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 8
+Completed</pre></div>
+      <p>
+       If the source Observable emits no items (or no items that match the predicate), <code>last</code>
+       will terminate with a &ldquo;<code>Sequence contains no elements.</code>&rdquo; <code>onError</code>
+       notification.
+      </p><p>
+       If instead you want the Observable to emit a default value in such a case, you can pass a
+       second parameter (named <code>defaultValue</code>) to <code>last</code>:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 10)
+    .last(function (x, idx, obs) { return x > 42; }, 88 );
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 88
+Completed
+</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>last</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      It requires one of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxKotlin">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxKotlin" aria-expanded="true" aria-controls="collapseRxKotlin">
+              RxKotlin <code>last lastOrDefault takeLast</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxKotlin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxKotlin">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxNET">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxNET" aria-expanded="true" aria-controls="collapseRxNET">
+              RxNET <code>Last LastOrDefault</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxNET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxNET">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxPY">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPY" aria-expanded="true" aria-controls="collapseRxPY">
+              RxPY <code>last last_or_default</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxPY" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxPY">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxrb">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxrb" aria-expanded="true" aria-controls="collapseRxrb">
+              Rxrb <code>last last_or_default</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxrb" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxrb">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxScala">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxScala" aria-expanded="true" aria-controls="collapseRxScala">
+              RxScala <code>last lastOrElse head headOption headOrElse</code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxScala" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxScala">
+          <div class="panel-body">
+            
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  
+          </div>
+        </div>
+      </div>
+      
+
+</div>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/pt-br/operators/last.html">한국어</a></li>
+        <li><a href="/documentation/pt-br/operators/last.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+        
+        <li><a href="/documentation/observable.html">Observable</a></li>
+        <li><a href="/documentation/operators.html">Operators</a></li>
+        <li><a href="/documentation/single.html">Single</a></li>
+        <li><a href="/documentation/subject.html">Subject</a></li>
+        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-last").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

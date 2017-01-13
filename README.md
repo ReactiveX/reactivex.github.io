@@ -1,7 +1,9 @@
 reactivex.github.io
 ===================
 
-ReactiveX Website - [Jekyll](http://jekyllrb.com/) + [Bootstrap](http://getbootstrap.com/) experiment
+ReactiveX Website - [Jekyll](http://jekyllrb.com/) + [Bootstrap](http://getbootstrap.com/).
+
+If you want to contribute, please make sure to make your changes to the **develop** branch, from which the master branch is generated.
 
 Install tools
 --------------

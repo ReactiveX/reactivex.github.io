@@ -64,7 +64,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
@@ -539,9 +539,42 @@ Complete!
         <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
           <div class="panel-body">
             
+<div class="panel-body">
     <p>
-     <span style="color:#f00">TBD</span>
+      In Swift, this is implemented using the <code>Observable.just</code> class method.
     </p>
+    <p>
+      The parameter, whether a tuple (i.e. <code>(1, 2, 3)</code>) or an array (i.e. <code>[1,2,3]</code>) is produced as one emission.
+    </p>
+
+    <h4>Sample Code</h4>
+    <div class="code swift">
+<pre>let source = Observable.just(1, 2, 3)
+
+source.subscribe {
+    print($0)
+}
+
+let source2 = Observable.just([1,2,3])
+
+source2.subscribe {
+    print($0)
+}
+</pre>
+    </div>
+    <div class="output">
+<pre>next((1, 2, 3))
+completed
+next([1, 2, 3])
+completed
+
+</pre>
+    </div>
+    <p>
+      The difference between this and <code>Observable.from</code> is that the latter's parameter is an array or a sequence, and emits each of its element as one emission.
+    </p>
+
+</div>
   
           </div>
         </div>
@@ -592,7 +625,7 @@ Complete!
             <ul class="footer-section">
               <li><h4>Languages</h4></li>
               <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>

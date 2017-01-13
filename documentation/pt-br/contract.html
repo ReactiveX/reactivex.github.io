@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReactiveX - The Observable Contract</title>
+
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Prism -->
+    <link href="/css/prism.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/syntax.css" />
+
+    <!-- Embeddable RxMarbles -->
+    <script defer src="/js/CustomElements.min.js"></script>
+    <script defer src="/js/rx-marbles.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/intro.html">Introduction</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Docs <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Languages <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Resources <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Community <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery/1.11.0/jquery.min.js"></script>
+
+    <div class="site-content">
+      <style>
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .side-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    max-height: none;
+    border: 1px solid #DDD;
+  }
+}
+</style>
+
+<div class="full-page-container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>O contrato Observable</h1>
+
+<p>
+ “O contrato Observable,” que você ver referenciado em vários lugares na documentação de origem e nas páginas deste site, 
+ é uma tentativa formal de um Observable, baseado originalmente no documento de 2010 <a href="https://go.microsoft.com/fwlink/?LinkID=205219"><cite>Rx Design Guidelines</cite></a> da  Microsoft que descreveu sua implementação Rx.NET do ReactiveX.
+</p><p>
+  Esté é um resumo do contrato Observable.
+</p>
+
+<h2>Notificações</h2>
+
+<p>
+ Um Observable comunica-se com seus observadores com as seguintes <i>notificações</i>:
+</p>
+
+<dl>
+ <dt>OnNext</dt>
+ <dd>Transmite um <i>item</i> que é <i>emitido</i> pelo Observable ao observador.</dd>
+ <dt>OnCompleted</dt>
+  <dd>indica que o Observable tenha completado com sucesso e que não irá emitir mais itens</dd>
+ <dt>OnError</dt>
+  <dd>indica que o Observable tenha terminado com uma condição de erro especifica e que não irá emitir mais itens</dd>
+ <dt>OnSubscribe (opcional)</dt>
+  <dd>indica que o Observable está pronto para aceitar notificações solicitado do observer (veja <i>Contrapressão</i> abaixo)</dd>
+</dl>
+
+<p>
+ Um observador comunica-se com its Observable por meio das seguintes notificações:
+</p>
+
+<dl>
+ <dt>Subscribe</dt>
+  <dd>indica que o observador está pronto para receber notificações do Observable</dd>
+ <dt>Unsubscribe</dt>
+  <dd>indiue o observador não quer receber notificações do Observable</dd>
+ <dt>Request (opcional)</dt>
+  <dd>indica que o observador não que mais um determinado numero de notificações OnNext adicionais do Observable (veja <i>Contrapressão</i> abaixo)</dd>
+</dl>
+
+<h2>O Contrato que Regula Notifições</h2>
+
+<p>
+ Um Observable pode fazer zero ou mais notificações OnNext, cada um representando um único item emitido, e pode
+ seguir essas notificações de emissão por um OnCompleted ou um OnError, mas não ambos.
+ Ao emitir uma notificação OnCompleted ou OnError, esté não poderá emitir posteriormente nenhuma notificação adicional.
+</p><p>
+ UM Observable pode não emitir nenhum item para todos. Um Observable também nunca pode terminar com um OnCompleted ou
+ uma notificaficação OnError.  Isto significa que é adequado que um Observable não emita notificações, emitir
+ apenas um OnCompleted ou uma notificação OnError, ou para somente emitir notificações OnNext.
+</p><p>
+ Observables devem emitir notificações aos observadores em série (não em paralelo). Podem emitir essas
+ notificações de diferentes threads, mas deve haver um <i>acontecer antes</i> relação entre as notificações.
+</p>
+
+<h2>Término da Observable</h2>
+
+<p>
+ Se um Observable não emitiu um OnCompleted ou notificação OnError, um observador pode considera-lo ainda ativo
+ (mesmo que não esteja emitindo itens atualmente) e pode emitir notificações (como uma notificação Unsubscribe
+ ou Request). Quando un Observable emite um OnCompleted ou notificação OnError, a Observable
+ pode  liberar seus recursos e terminar, e seus observadores não devem tentar comunicar com o mais distante.
+</p><p>
+ Uma notificação OnError deve conter a causa do erro (ou seja, é inválido para chamar OnError com
+ um valor <code>null</code>).
+</p><p>
+ Antes de um Observable terminar ele primeiro deve emitir um OnCompleted ou uma notificação OnError para todos os observadores que
+ estão subscritas a ele.
+</p>
+
+<h2>Subscrever e Anular</h2>
+
+<p>
+ Um Observable pode começar a emitir notifficações para um observador imediatamente depois que o Observable recebe uma
+ notificação Subscribe do observador.
+</p><p>
+ Quando um observador emiti uma notificação Unsubscribe para um Observable, o Observable tentará para
+ as notificações ao observador. Isto não é garantido, contudo, que o Observable 
+ <em>não</em> emita notificações ao observador depois que um observador emitir uma notificação de Unsubscribe.
+</p><p>
+ Quando um Observable emiti uma notificaçao de OnError ou OnComplete aos seus observadores, isso termina a subscrição.
+ Observadores não necessita emitir uma notificação  Unsubscribe para encerrar inscrições que são finalizadas pelo Observable
+ nesse caminho.
+</p>
+
+<h2>Múltiplo Observers</h2>
+
+<p>
+ Se um segudo observador subscrever para um Observable que já está emitindo itens para um primeiro observador, cabe 
+ ao Observable que a partir de então, emitirá os mesmo itens a cada observador, ou se irá reproduzir a
+ seqüência completa de itens do inicio para o segundo observador, ou se emitirá uma seqüência de itens completamente diferente
+ para o segundo observador. Não há garantia de que dois observadore do mesmo Observable verão a mesma seqüência de itens.
+</p>
+
+<h2>Contrapressão(Backpressure)</h2>
+
+<p>
+ Backpressure é opcional; nem todas as implementações ReactiveX incluir o backpressure, e aqueles que fazem, nem todos os
+ Observables ou operadores honra a backpressure. Um Observable <em>pode</em> implementar o backpressure Se detectar que 
+ seu observador implementa notificações <i>Request</i> e entende notificações <i>OnSubscribe</i>.
+</p><p>
+ Se um Observable implementar um  backpressure e seu observador emprega backpressure, o Observable não começará a
+ emitir itens para o observador imediatamente após a subscrição. Em vez disso, ele emitirá uma notificação OnSubscribe
+ para o observador.
+</p><p>
+ A qualquer momento após receber uma notificação OnSubscribe, um observador pode emitir uma notificação de Request para 
+ Observable subscrito. Esta notificação solicita um determinado numero de itens. O Observable
+ responde ao pedido não emitindo mais itens ao observador do que o numero de itens que o observador solicitou. No entando,o Observable pode, 
+ emitir uma notificação  OnCompleted ou OnError, e pode até mesmo emitir tal solicitação antes que o observador solicite quaisquer itens.
+</p><p>
+ Um Observable que não implementa  backpressure deve responder a uma solicitação de notificação de um observador,
+ emitindo uma notificação OnError que indica que a backpressure não é suportada.
+</p><p>
+ Requests são acumulativas. Por exemplo, se um observador emitir três notificação de Request para um Observable, para
+ 3, 5, e 10 itens repectivamente, este Observable poderá emitir até 18 itens para o observador, não importando quando
+ essas notificações de Request chegaram em relação a quando o Observable emitiu itens em reposta.
+</p><p>
+ Se o Observable produzir mais itens que solicitado pelo observador, cabe ao Observable se descartará itens em excesso, 
+ armazena-los para emitir mais tarde, ou usar alguma outra estratégia para lidar com o problema de overflow.
+</p>
+
+<h2>Veja também</h2>
+
+<ul>
+ <li><a href="https://go.microsoft.com/fwlink/?LinkID=205219"><cite>Rx Design Guidelines</cite></a></li>
+ <li><a href="http://xgrommx.github.io/rx-book/content/guidelines/index.html"><cite>RxJS Design Guidelines</cite></a></li>
+</ul>
+
+    </div>
+    <div class="col-sm-4">
+      <ul class="side-menu">
+        <li><a href="/documentation/ko/pt-br/contract.html">한국어</a></li>
+        <li><a href="/documentation/pt-br/contract.html">English</a></li>
+      </ul>
+
+      <ul class="side-menu">
+      
+        <li><a href="/documentation/pt-br/observable.html">Observable</a></li>
+        <li><a href="/documentation/pt-br/operators.html">Operators</a></li>
+        <li><a href="/documentation/pt-br/single.html">Single</a></li>
+        <li><a href="/documentation/pt-br/subject.html">Subject</a></li>
+        <li><a href="/documentation/pt-br/scheduler.html">Scheduler</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Documentation</h4></li>
+              <li><a href="/documentation/observable.html">Observable</a></li>
+<li><a href="/documentation/operators.html">Operators</a></li>
+<li><a href="/documentation/single.html">Single</a></li>
+<li><a href="/documentation/subject.html">Subject</a></li>
+<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Languages</h4></li>
+              <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
+<li><a href="/rxscala">RxScala</a></li>
+<li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
+<li><a href="/languages.html">Others</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Resources</h4></li>
+              <li><a href="/tutorials.html">Tutorials</a></li>
+<!-- Uncomment only when ready
+<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="#">Code samples</a></li>
+<li><a href="#">Presentations</a></li>
+<li><a href="#">Related Projects</a></li>
+<li><a href="#">Who uses Rx</a></li>
+ -->
+
+            </ul>
+          </div>
+
+          <div class="col-sm-3">
+            <ul class="footer-section">
+              <li><h4>Community</h4></li>
+              <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
+<li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
+<li><a href="/community.html">Others</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 disclaimer">
+            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            page is licensed under Creative Commons Attribution 3.0 License, and
+            code samples are licensed under the BSD License.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- back to top link -->
+    <span id="top-link-block" class="hidden">
+        <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+    </span>
+
+    <!-- Activate current page menu button -->
+    <script>$("#menu-contract").addClass("active");</script>
+
+    <!-- Polymer Paper Tabs -->
+    <link rel="import" href="/polymer/components/paper-tabs/paper-tabs.html" />
+    <!-- Polymer Code Snippet Element-->
+    <link rel="import" href="/polymer/elements/code-snippet.html" />
+    <link rel="import" href="/polymer/elements/tabs-panel.html" />
+    <link rel="import" href="/polymer/elements/tab-code.html" />
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Prism -->
+    <script src="/js/prism.js"></script>
+    <script src="/js/prism.clojure.js"></script>
+    <!-- Google Closure -->
+    <script src="/js/goog/base.js"></script>
+
+    <script>
+        goog.require('goog.html.SafeHtml');
+    </script>
+
+    <script>
+        /* Dynamic "Back to top" link */
+        if ( ($(window).height() + 100) < $(document).height() ) {
+            $('#top-link-block').removeClass('hidden').affix({
+                offset: {top:100}
+            });
+        }
+    </script>
+
+  </body>
+</html>

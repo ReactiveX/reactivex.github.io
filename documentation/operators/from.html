@@ -64,7 +64,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
@@ -1141,9 +1141,28 @@ Complete!
         <div id="collapseRxSwift" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxSwift">
           <div class="panel-body">
             
-    <p>
-     <span style="color:#f00">TBD</span>
-    </p>
+  	<p>In Swift, this is implemented using the <code>Observable.from</code> class method.</p>
+	  <p>Each element of the array is produced as an emission. The difference between this method and <code>Observable.just</code> is that the latter emits the whole array as one emission.</p>
+  	<h4>Sample Code</h4>
+	  <div class="code swift">
+<pre>let numbers = [1,2,3,4,5]
+
+let source = Observable.from(numbers)
+
+source.subscribe {
+    print($0)
+}
+</pre>
+  	</div>
+	  <div class="output">
+<pre>next(1)
+next(2)
+next(3)
+next(4)
+next(5)
+completed
+</pre>
+  	</div>
   
           </div>
         </div>
@@ -1194,7 +1213,7 @@ Complete!
             <ul class="footer-section">
               <li><h4>Languages</h4></li>
               <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>

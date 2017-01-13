@@ -64,7 +64,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
@@ -775,7 +775,7 @@ Finally</pre></div>
     RxPHP implements this operator as <code>doOnEach</code>.
     </p>
     <p>
-    Invokes an action for each element in the observable sequence and invokes an action upon graceful or exceptional termination of the observable sequence. This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.
+    Invokes an action for each element in the observable sequence and invokes an action upon graceful or exceptional termination of the observable sequence. This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.  When using doOnEach, it is important to note that the Observer may receive additional events after a stream has completed or errored (such as when useing a repeat or resubscribing). If you are using an Observable that extends the AbstractObservable, you will not receive these events. For this special case, use the DoObserver.  doOnNext, doOnError, and doOnCompleted uses the DoObserver internally and will receive these additional events.
     </p>
 <h4>Sample Code</h4>
 <div class="code php">
@@ -1035,7 +1035,7 @@ Complete!
             <ul class="footer-section">
               <li><h4>Languages</h4></li>
               <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
-<li><a href="https://github.com/Reactive-Extensions/RxJS">RxJS<span class="external-link"></span></a></li>
+<li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
 <li><a href="/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>

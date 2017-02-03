@@ -16,7 +16,7 @@ id: community
 - [Google Group RxJava](http://groups.google.com/d/forum/rxjava)
 - Twitter [@RxJava](http://twitter.com/RxJava)
 - [GitHub Issues](https://github.com/ReactiveX/RxJava/issues)
-- [Glitter RxJava room](https://gitter.im/ReactiveX/RxJava)A
+- [Gitter RxJava room](https://gitter.im/ReactiveX/RxJava)
 - [Speakerdeck](https://speakerdeck.com/search?utf8=✓&q=rxjava)
 
 ## RxJS

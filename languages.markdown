@@ -22,6 +22,7 @@ id: languages
 * Swift: [RxSwift](https://github.com/kzaher/RxSwift)
 * PHP: [RxPHP](https://github.com/ReactiveX/RxPHP)
 * Elixir: [reaxive](https://github.com/alfert/reaxive)
+* Dart: [RxDart](https://github.com/ReactiveX/rxdart)
 
 ## ReactiveX for platforms and frameworks
 

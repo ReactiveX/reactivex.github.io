@@ -433,9 +433,9 @@ let source : Observable<Int> = Observable.create { observer in
         observer.on(.next(i))
     }
     observer.on(.completed)
-    
+
     // Note that this is optional. If you require no cleanup you can return
-    // NopDisposable.instance
+    // `Disposables.create()` (which returns the `NopDisposable` singleton)
     return Disposables.create {
         print("disposed")
     }

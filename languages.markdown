@@ -16,6 +16,7 @@ id: languages
 * Lua: [RxLua](https://github.com/bjornbytes/RxLua)
 * Ruby: [Rx.rb](https://github.com/Reactive-Extensions/Rx.rb)
 * Python: [RxPY](https://github.com/ReactiveX/RxPY)
+* Go: [RxGo](https://github.com/ReactiveX/RxGo)
 * Groovy: [RxGroovy](https://github.com/ReactiveX/RxGroovy)
 * JRuby: [RxJRuby](https://github.com/ReactiveX/RxJRuby)
 * Kotlin: [RxKotlin](https://github.com/ReactiveX/RxKotlin)

@@ -175,11 +175,11 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPHP just %}
+  {% lang_operator RxPHP of %}
 <figure class="variant">
     <figcaption>
     <p>
-    RxPHP implements this operator as <code>just</code>.
+    RxPHP implements this operator as <code>of</code>.
     </p>
     <p>
     Returns an observable sequence that contains a single element.
@@ -187,10 +187,10 @@ Completed</pre></div>
 <h4>Sample Code</h4>
 <div class="code php">
     <pre>
-//from https://github.com/ReactiveX/RxPHP/blob/master/demo/just/just.php
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/of/of.php
 
 
-$source =  \Rx\Observable::just(42);
+$source =  \Rx\Observable::of(42);
 
 $subscription = $source->subscribe($stdoutObserver);
 

@@ -347,7 +347,7 @@ $observable
             return $key;
         }
     )
-    ->subscribeCallback(function ($groupedObserver) use ($createStdoutObserver) {
+    ->subscribe(function ($groupedObserver) use ($createStdoutObserver) {
         $groupedObserver->subscribe($createStdoutObserver($groupedObserver->getKey() . ": "));
     });
 
@@ -378,9 +378,6 @@ $observable
 <div class="code php">
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/groupBy/groupByUntil.php
-
-$loop      = \React\EventLoop\Factory::create();
-$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
 
 $codes = [
     ['id' => 38],
@@ -419,14 +416,13 @@ $subscription = $source->subscribe(new CallbackObserver(
                 echo 'Count: ', $x, PHP_EOL;
             }));
     },
-    function (Exception $err) {
+    function (Throwable $err) {
         echo 'Error', $err->getMessage(), PHP_EOL;
     },
     function () {
         echo 'Completed', PHP_EOL;
-    }), $scheduler);
+    }));
 
-$loop->run();
 
    </pre>
 </div>
@@ -457,11 +453,12 @@ Completed
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/partition/partition.php
 
-list($evens, $odds) = \Rx\Observable::range(0, 10)
+list($evens, $odds) = \Rx\Observable::range(0, 10, \Rx\Scheduler::getImmediate())
     ->partition(function ($x) {
         return $x % 2 === 0;
     });
 
+//Because we used the immediate scheduler with range, the subscriptions are not asynchronous.
 $evens->subscribe($createStdoutObserver('Evens '));
 $odds->subscribe($createStdoutObserver('Odds '));
 

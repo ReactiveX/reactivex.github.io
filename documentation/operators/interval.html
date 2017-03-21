@@ -192,15 +192,9 @@ Completed</pre></div>
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/interval/interval.php
 
-$loop = new \React\EventLoop\StreamSelectLoop();
-
-$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
-
-$disposable = \Rx\Observable::interval(1000, $scheduler)
+\Rx\Observable::interval(1000)
     ->take(5)
     ->subscribe($createStdoutObserver());
-
-$loop->run();
 
    </pre>
 </div>

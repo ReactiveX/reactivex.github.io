@@ -486,27 +486,21 @@ Completed</pre></div>
     RxPHP implements this operator as <code>timeout</code>.
     </p>
     <p>
-    
+    Errors the observable sequence if no item is emitted in the specified time. When a timeout occurs, this operator errors with an instance of Rx\Exception\TimeoutException
     </p>
 <h4>Sample Code</h4>
 <div class="code php">
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/timeout/timeout.php
 
-$loop = new \React\EventLoop\StreamSelectLoop();
-
-$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
-
 Rx\Observable::interval(1000)
     ->timeout(500)
-    ->subscribe($createStdoutObserver("One second - "), $scheduler);
+    ->subscribe($createStdoutObserver('One second - '));
 
 Rx\Observable::interval(100)
     ->take(3)
     ->timeout(500)
-    ->subscribe($createStdoutObserver("100 ms     - "), $scheduler);
-
-$loop->run();
+    ->subscribe($createStdoutObserver('100 ms     - '));
 
    </pre>
 </div>

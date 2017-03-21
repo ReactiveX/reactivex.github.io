@@ -514,32 +514,32 @@ Finally</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPHP doOnEach doOnNext doOnError doOnCompleted %}
+  {% lang_operator RxPHP do doOnError doOnCompleted finally %}
 <figure class="variant">
     <figcaption>
     <p>
-    RxPHP implements this operator as <code>doOnEach</code>.
+    RxPHP implements this operator as <code>do</code>.
     </p>
     <p>
-    Invokes an action for each element in the observable sequence and invokes an action upon graceful or exceptional termination of the observable sequence. This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.  When using doOnEach, it is important to note that the Observer may receive additional events after a stream has completed or errored (such as when useing a repeat or resubscribing). If you are using an Observable that extends the AbstractObservable, you will not receive these events. For this special case, use the DoObserver.  doOnNext, doOnError, and doOnCompleted uses the DoObserver internally and will receive these additional events.
+    Invokes an action for each element in the observable sequence and invokes an action upon graceful or exceptional termination of the observable sequence. This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.  When using do, it is important to note that the Observer may receive additional events after a stream has completed or errored (such as when using a repeat or resubscribing). If you are using an Observable that extends the AbstractObservable, you will not receive these events. For this special case, use the DoObserver.  doOnNext, doOnError, and doOnCompleted uses the DoObserver internally and will receive these additional events.
     </p>
 <h4>Sample Code</h4>
 <div class="code php">
     <pre>
-//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnEach.php
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/do.php
 
 $source = \Rx\Observable::range(0, 3)
-    ->doOnEach(new \Rx\Observer\CallbackObserver(
+    ->do(
         function ($x) {
             echo 'Do Next:', $x, PHP_EOL;
         },
-        function (Exception $err) {
+        function (Throwable $err) {
             echo 'Do Error:', $err->getMessage(), PHP_EOL;
         },
         function () {
             echo 'Do Completed', PHP_EOL;
         }
-    ));
+    );
 
 $subscription = $source->subscribe($stdoutObserver);
    </pre>
@@ -560,39 +560,6 @@ Complete!
 </figure><figure class="variant">
     <figcaption>
     <p>
-    RxPHP also has an operator <code>doOnNext</code>.
-    </p>
-    <p>
-    
-    </p>
-<h4>Sample Code</h4>
-<div class="code php">
-    <pre>
-//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnNext.php
-
-$source = \Rx\Observable::range(0, 3)
-    ->doOnNext(function ($x) {
-        echo 'Do Next:', $x, PHP_EOL;
-    });
-
-$subscription = $source->subscribe($stdoutObserver);
-   </pre>
-</div>
-<div class="output">
-    <pre>
-Do Next:0
-Next value: 0
-Do Next:1
-Next value: 1
-Do Next:2
-Next value: 2
-Complete!
-    </pre>
-</div>
-    </figcaption>
-</figure><figure class="variant">
-    <figcaption>
-    <p>
     RxPHP also has an operator <code>doOnError</code>.
     </p>
     <p>
@@ -604,7 +571,7 @@ Complete!
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnError.php
 
 $source = \Rx\Observable::error(new Exception('Oops'))
-    ->doOnError(function (Exception $err) {
+    ->doOnError(function (Throwable $err) {
         echo 'Do Error:', $err->getMessage(), PHP_EOL;
     });
 
@@ -631,7 +598,7 @@ Exception: Oops
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnCompleted.php
 
-$source = \Rx\Observable::emptyObservable()
+$source = \Rx\Observable::empty()
     ->doOnCompleted(function () {
         echo 'Do Completed', PHP_EOL;
     });
@@ -643,6 +610,63 @@ $subscription = $source->subscribe($stdoutObserver);
     <pre>
 Do Completed
 Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>finally</code>.
+    </p>
+    <p>
+    Will call a specified function when the source terminates on complete or error.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/finally/finally.php
+
+Rx\Observable::range(1, 3)
+    ->finally(function() {
+        echo "Finally\n";
+    })
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Complete!
+Finally
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/finally/finally-error.php
+
+Rx\Observable::range(1, 3)
+    ->map(function($value) {
+        if ($value == 2) {
+            throw new \Exception('error');
+        }
+        return $value;
+    })
+    ->finally(function() {
+        echo "Finally\n";
+    })
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Exception: error
+Finally
     </pre>
 </div>
     </figcaption>

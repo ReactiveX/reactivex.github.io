@@ -214,11 +214,11 @@ Error: Error: error!</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPHP emptyObservable never error %}
+  {% lang_operator RxPHP empty never error %}
 <figure class="variant">
     <figcaption>
     <p>
-    RxPHP implements this operator as <code>emptyObservable</code>.
+    RxPHP implements this operator as <code>empty</code>.
     </p>
     <p>
     Returns an empty observable sequence.
@@ -226,9 +226,9 @@ Error: Error: error!</pre></div>
 <h4>Sample Code</h4>
 <div class="code php">
     <pre>
-//from https://github.com/ReactiveX/RxPHP/blob/master/demo/empty-observable/empty-observable.php
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/empty/empty.php
 
-$observable = \Rx\Observable::emptyObservable();
+$observable = \Rx\Observable::empty();
 $observable->subscribe($stdoutObserver);
 
    </pre>

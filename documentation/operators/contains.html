@@ -377,6 +377,55 @@ Completed</pre></div>
      </p>
   {% endlang_operator %}
 
+  {% lang_operator RxPHP isEmpty %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>isEmpty</code>.
+    </p>
+    <p>
+    If the source Observable is empty it returns an Observable that emits true, otherwise it emits false.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/isEmpty/isEmpty.php
+
+$source = \Rx\Observable::emptyObservable()
+    ->isEmpty();
+
+$source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/isEmpty/isEmpty-false.php
+
+$source = \Rx\Observable::just(1)
+    ->isEmpty();
+
+$source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
   {% lang_operator RxPY contains find find_index is_empty some %}
      <p>
       <span style="color:#ff0000">TBD</span>

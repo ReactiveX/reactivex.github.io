@@ -130,11 +130,11 @@ Completed</pre></div>
     </p>
   {% endlang_operator %}
 
-  {% lang_operator RxPHP switchLatest switchFirst %}
+  {% lang_operator RxPHP switch switchFirst %}
 <figure class="variant">
     <figcaption>
     <p>
-    RxPHP implements this operator as <code>switchLatest</code>.
+    RxPHP implements this operator as <code>switch</code>.
     </p>
     <p>
     Transforms an observable sequence of observable sequences into an observable sequence producing values only from the most recent observable sequence.
@@ -142,20 +142,15 @@ Completed</pre></div>
 <h4>Sample Code</h4>
 <div class="code php">
     <pre>
-//from https://github.com/ReactiveX/RxPHP/blob/master/demo/switch/switchLatest.php
-
-$loop      = \React\EventLoop\Factory::create();
-$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/switch/switch.php
 
 $source = Rx\Observable::range(0, 3)
     ->map(function ($x) {
         return \Rx\Observable::range($x, 3);
     })
-    ->switchLatest();
+    ->switch();
 
-$subscription = $source->subscribe($stdoutObserver, $scheduler);
-
-$loop->run();
+$subscription = $source->subscribe($stdoutObserver);
 
    </pre>
 </div>
@@ -183,9 +178,6 @@ Complete!
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/switch/switchFirst.php
 
-$loop      = \React\EventLoop\Factory::create();
-$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
-
 $source = Rx\Observable::fromArray([
     \Rx\Observable::interval(100)->mapTo('a'),
     \Rx\Observable::interval(200)->mapTo('b'),
@@ -194,9 +186,7 @@ $source = Rx\Observable::fromArray([
     ->switchFirst()
     ->take(3);
 
-$subscription = $source->subscribe($stdoutObserver, $scheduler);
-
-$loop->run();
+$subscription = $source->subscribe($stdoutObserver);
 
    </pre>
 </div>

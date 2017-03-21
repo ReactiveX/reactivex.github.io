@@ -315,19 +315,27 @@ Complete!
 <h4>Sample Code</h4>
 <div class="code php">
     <pre>
-//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/take.php
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/takeUntil.php
 
-$observable = Rx\Observable::fromArray([21, 42, 63]);
-$observable
-    ->take(2)
-    ->subscribe($stdoutObserver);
+$source = \Rx\Observable::interval(105)
+    ->takeUntil(\Rx\Observable::timer(1000));
+
+$subscription = $source->subscribe($stdoutObserver);
+
 
    </pre>
 </div>
 <div class="output">
     <pre>
-Next value: 21
-Next value: 42
+Next value: 0
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 4
+Next value: 5
+Next value: 6
+Next value: 7
+Next value: 8
 Complete!
     </pre>
 </div>

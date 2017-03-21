@@ -426,11 +426,7 @@ Completed</pre></div>
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/timestamp/timestamp.php
 
-$loop = new \React\EventLoop\StreamSelectLoop();
-
-$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
-
-$source = \Rx\Observable::interval(1000, $scheduler)
+$source = \Rx\Observable::interval(1000)
     ->timestamp()
     ->map(function (\Rx\Timestamped $x) {
         return $x->getValue() . ':' . $x->getTimestampMillis();
@@ -439,16 +435,22 @@ $source = \Rx\Observable::interval(1000, $scheduler)
 
 $source->subscribe($createStdoutObserver());
 
-$loop->run();
+// Next value: 0:1460781738354
+// Next value: 1:1460781739358
+// Next value: 2:1460781740359
+// Next value: 3:1460781741362
+// Next value: 4:1460781742367
+// Complete!
+
    </pre>
 </div>
 <div class="output">
     <pre>
-Next value: 0:1460781738354
-Next value: 1:1460781739358
-Next value: 2:1460781740359
-Next value: 3:1460781741362
-Next value: 4:1460781742367
+Next value: 0:1489535638531
+Next value: 1:1489535639534
+Next value: 2:1489535640532
+Next value: 3:1489535641528
+Next value: 4:1489535642528
 Complete!
     </pre>
 </div>

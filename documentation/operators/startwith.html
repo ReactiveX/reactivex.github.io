@@ -461,7 +461,7 @@ myObservable.startWith(-3, -2, -1, 0).subscribe(
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/startWith/startWith.php
 
-$source = \Rx\Observable::just(2)
+$source = \Rx\Observable::of(2)
     ->startWith(1);
 
 $subscription = $source->subscribe($stdoutObserver);
@@ -489,7 +489,7 @@ Complete!
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/startWith/startWithArray.php
 
-$source = \Rx\Observable::just(4)
+$source = \Rx\Observable::of(4)
     ->startWithArray([1, 2, 3]);
 
 $subscription = $source->subscribe($stdoutObserver);

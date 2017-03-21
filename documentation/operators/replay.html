@@ -576,16 +576,13 @@ Completed</pre></div>
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/replay/replay.php
 
-$loop      = \React\EventLoop\Factory::create();
-$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
-
 $interval = \Rx\Observable::interval(1000);
 
 $source = $interval
     ->take(2)
     ->doOnNext(function ($x) {
-        echo $x, " something", PHP_EOL;
-        echo "Side effect", PHP_EOL;
+        echo $x, ' something', PHP_EOL;
+        echo 'Side effect', PHP_EOL;
     });
 
 $published = $source
@@ -593,16 +590,31 @@ $published = $source
         return $x->take(2)->repeat(2);
     }, 3);
 
-$published->subscribe($createStdoutObserver('SourceA '), $scheduler);
-$published->subscribe($createStdoutObserver('SourceB '), $scheduler);
-
-$loop->run();
+$published->subscribe($createStdoutObserver('SourceA '));
+$published->subscribe($createStdoutObserver('SourceB '));
 
    </pre>
 </div>
 <div class="output">
     <pre>
-
+0 something
+Side effect
+0 something
+Side effect
+SourceA Next value: 0
+SourceB Next value: 0
+SourceA Next value: 0
+SourceB Next value: 0
+SourceA Next value: 0
+SourceB Next value: 0
+SourceA Next value: 0
+SourceA Complete!
+SourceB Next value: 0
+SourceB Complete!
+1 something
+Side effect
+1 something
+Side effect
     </pre>
 </div>
     </figcaption>
@@ -619,9 +631,6 @@ $loop->run();
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/share/shareReplay.php
 
-$loop      = \React\EventLoop\Factory::create();
-$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
-
 $interval = Rx\Observable::interval(1000);
 
 $source = $interval
@@ -633,19 +642,16 @@ $source = $interval
 $published = $source
     ->shareReplay(3);
 
-$published->subscribe($createStdoutObserver('SourceA '), $scheduler);
-$published->subscribe($createStdoutObserver('SourceB '), $scheduler);
+$published->subscribe($createStdoutObserver('SourceA '));
+$published->subscribe($createStdoutObserver('SourceB '));
 
 Rx\Observable
-    ::just(true)
+    ::of(true)
     ->concatMapTo(\Rx\Observable::timer(6000))
     ->flatMap(function () use ($published) {
         return $published;
     })
-    ->subscribe($createStdoutObserver('SourceC '), $scheduler);
-
-$loop->run();
-
+    ->subscribe($createStdoutObserver('SourceC '));
 
    </pre>
 </div>

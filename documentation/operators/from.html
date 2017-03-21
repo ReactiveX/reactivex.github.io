@@ -948,7 +948,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>fromArray fromIterator asObservable</code>
+              RxPHP <code>fromArray fromIterator asObservable fromPromise</code>
             </a>
           </h4>
         </div>
@@ -1003,15 +1003,15 @@ Complete!
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/iterator/iterator.php
 
-function gen_one_to_three()
-{
+$generator = function () {
     for ($i = 1; $i <= 3; $i++) {
         yield $i;
     }
-}
 
-$generator = gen_one_to_three();
-$source    = new \Rx\Observable\IteratorObservable($generator);
+    return 4;
+};
+
+$source = Rx\Observable::fromIterator($generator());
 
 $source->subscribe($stdoutObserver);
 
@@ -1022,6 +1022,7 @@ $source->subscribe($stdoutObserver);
 Next value: 1
 Next value: 2
 Next value: 3
+Next value: 4
 Complete!
     </pre>
 </div>
@@ -1050,6 +1051,34 @@ $subject->onCompleted();
 $source = $subject->asObservable();
 
 $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>fromPromise</code>.
+    </p>
+    <p>
+    Converts a promise into an observable
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/promise/fromPromise.php
+
+$promise = \React\Promise\resolve(42);
+
+$source = \Rx\Observable::fromPromise($promise);
+
+$subscription = $source->subscribe($stdoutObserver);
+
    </pre>
 </div>
 <div class="output">

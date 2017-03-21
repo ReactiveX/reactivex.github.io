@@ -412,7 +412,7 @@ Completed</pre></div>
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/defaultIfEmpty/defaultIfEmpty.php
 
-$source = \Rx\Observable::emptyObservable()->defaultIfEmpty(new \Rx\Observable\ReturnObservable("something"));
+$source = \Rx\Observable::empty()->defaultIfEmpty(Rx\Observable::of('something'));
 
 $subscription = $source->subscribe($stdoutObserver);
 

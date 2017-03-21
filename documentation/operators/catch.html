@@ -633,7 +633,7 @@ Sequence complete</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>catchError</code>
+              RxPHP <code>catch</code>
             </a>
           </h4>
         </div>
@@ -643,7 +643,7 @@ Sequence complete</pre></div>
 <figure class="variant">
     <figcaption>
     <p>
-    RxPHP implements this operator as <code>catchError</code>.
+    RxPHP implements this operator as <code>catch</code>.
     </p>
     <p>
     Continues an observable sequence that is terminated by an exception with the next observable sequence.
@@ -651,12 +651,12 @@ Sequence complete</pre></div>
 <h4>Sample Code</h4>
 <div class="code php">
     <pre>
-//from https://github.com/ReactiveX/RxPHP/blob/master/demo/catch/catchError.php
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/catch/catch.php
 
-$obs2 = Rx\Observable::just(42);
+$obs2 = Rx\Observable::of(42);
 
-$source = \Rx\Observable::error(new Exception("Some error"))
-    ->catchError(function (Exception $e, \Rx\Observable $sourceObs) use ($obs2) {
+$source = \Rx\Observable::error(new Exception('Some error'))
+    ->catch(function (Throwable $e, \Rx\Observable $sourceObs) use ($obs2) {
         return $obs2;
     });
 

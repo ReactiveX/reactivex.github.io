@@ -462,7 +462,7 @@ Error: Error: error!</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>emptyObservable never error</code>
+              RxPHP <code>empty never error</code>
             </a>
           </h4>
         </div>
@@ -472,7 +472,7 @@ Error: Error: error!</pre></div>
 <figure class="variant">
     <figcaption>
     <p>
-    RxPHP implements this operator as <code>emptyObservable</code>.
+    RxPHP implements this operator as <code>empty</code>.
     </p>
     <p>
     Returns an empty observable sequence.
@@ -480,9 +480,9 @@ Error: Error: error!</pre></div>
 <h4>Sample Code</h4>
 <div class="code php">
     <pre>
-//from https://github.com/ReactiveX/RxPHP/blob/master/demo/empty-observable/empty-observable.php
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/empty/empty.php
 
-$observable = \Rx\Observable::emptyObservable();
+$observable = \Rx\Observable::empty();
 $observable->subscribe($stdoutObserver);
 
    </pre>

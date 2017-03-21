@@ -579,7 +579,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>zip</code>
+              RxPHP <code>zip forkJoin</code>
             </a>
           </h4>
         </div>
@@ -615,8 +615,8 @@ $subscription = $source
         function ($array) use ($observer) {
             $observer->onNext(json_encode($array));
         },
-        [$observer, "onError"],
-        [$observer, "onCompleted"]
+        [$observer, 'onError'],
+        [$observer, 'onCompleted']
     ));
 
    </pre>
@@ -656,6 +656,38 @@ $subscription = $source->subscribe($createStdoutObserver());
 Next value: 0:1:2
 Next value: 1:2:3
 Next value: 2:3:4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>forkJoin</code>.
+    </p>
+    <p>
+    Runs all observable sequences in parallel and collect their last elements.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/forkJoin/forkJoin.php
+
+use Rx\Observable;
+
+$obs1 = Observable::range(1, 4);
+$obs2 = Observable::range(3, 5);
+$obs3 = Observable::fromArray(['a', 'b', 'c']);
+
+$observable = Observable::forkJoin([$obs1, $obs2, $obs3], function($v1, $v2, $v3) {
+    return $v1 . $v2 . $v3;
+});
+$observable->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 47c
 Complete!
     </pre>
 </div>

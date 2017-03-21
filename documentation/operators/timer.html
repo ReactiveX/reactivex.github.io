@@ -431,15 +431,9 @@ Completed</pre></div>
     <pre>
 //from https://github.com/ReactiveX/RxPHP/blob/master/demo/timer/timer.php
 
-$loop = new \React\EventLoop\StreamSelectLoop();
-
-$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
-
-$source = \Rx\Observable::timer(200, $scheduler);
+$source = \Rx\Observable::timer(200);
 
 $source->subscribe($createStdoutObserver());
-
-$loop->run();
 
    </pre>
 </div>

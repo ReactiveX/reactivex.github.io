@@ -7,7 +7,7 @@ id: languages
 ## Languages
 
 * Java: [RxJava](https://github.com/ReactiveX/RxJava)
-* JavaScript: [RxJS](https://github.com/Reactive-Extensions/RxJS)
+* JavaScript: [RxJS](https://github.com/ReactiveX/rxjs)
 * C#: [Rx.NET](https://github.com/Reactive-Extensions/Rx.NET)
 * C#(Unity): [UniRx](https://github.com/neuecc/UniRx)
 * Scala: [RxScala](https://github.com/ReactiveX/RxScala)

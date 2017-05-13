@@ -77,12 +77,41 @@ id: defaultIfEmpty
       backup <em>value</em> if the source Observable terminates without having emitted any items, it emits the
       emissions from a backup <em>Observable</em>.
      </p>
+      <h4>Sample Code</h4>
+      <div class="code java">
+          <pre>
+Observable.empty().defaultIfEmpty(10).subscribe(
+    val -> System.out.println("next: " + val),
+    err -> System.err.println(err) ,
+    () -> System.out.println("completed")
+); </div>
+        <div class="output"><pre>
+next: 10
+completed </pre> </div>
   {% endlang_operator %}
 
   {% lang_operator RxJava&nbsp;2․x defaultIfEmpty switchIfEmpty %}
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
+     <figure>
+      <img src="images/defaultIfEmpty.png" style="width:100%;" alt="defaultIfEmpty" />
+      <figcaption><p>
+       RxJava implements this operator as <code>defaultIfEmpty</code>.
+      </p><p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#defaultIfEmpty(T)"><code>defaultIfEmpty(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+      <h4>Sample Code</h4>
+      <div class="code java">
+          <pre>
+Flowable.empty().defaultIfEmpty(10).subscribe(
+    val -> System.out.println("next: " + val),
+    err -> System.err.println(err) ,
+    () -> System.out.println("completed")
+); </div>
+        <div class="output"><pre>
+next: 10
+completed </pre> </div>
   {% endlang_operator %}
 
   {% lang_operator RxJS defaultIfEmpty %}

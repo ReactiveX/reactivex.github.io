@@ -1,66 +1,67 @@
 ---
 layout: documentation
 title: ReactiveX - Plugins
+lang: pt-br
 id: plugins
 ---
 
 #Plugins
 
-Plugins allow you to modify the default behavior of RxJava 1.x in several respects:
+Os plugins permitem modificar o comportamento padrão do RxJava 1.x em vários aspectos:
 
-* by changing the set of default computation, i/o, and new thread Schedulers
-* by registering a handler for extraordinary errors that RxJava may encounter
-* by registering functions that can take note of the occurrence of several regular RxJava activities
+* Alterando o conjunto de computação predefinida, i / o, e novo thread Schedulers
+* Registrando um manipulador para erros extraordinários que RxJava pode encontrar
+* Registrando funções que podem tomar nota da ocorrência de várias atividades regulares do RxJava
 
 ## RxJavaDefaultSchedulers
 
-This plugin allows you to override the default computation, i/o, and new thread Schedulers with Schedulers of your choosing.  To do this, extend the class `RxJavaDefaultSchedulers` and override these methods:
+Este plugin permite que você substitua o cálculo padrão, i / o, e novo segmento Programadores com Programadores de sua escolha. Para fazer isso, estenda a classe `RxJavaDefaultSchedulers`  e substitua estes métodos:
 
 * `Scheduler getComputationScheduler( )`
 * `Scheduler getIOScheduler( )`
 * `Scheduler getNewThreadScheduler( )`
 
-Then follow these steps:
+Em seguida, siga estes passos:
 
-1. Create an object of the new `RxJavaDefaultSchedulers` subclass you have implemented.
-1. Obtain the global `RxJavaPlugins` instance via `RxJavaPlugins.getInstance( )`.
-1. Pass your default schedulers object to the `registerDefaultSchedulers( )` method of that instance.
+1. Crie um objeto da nova subclasse `RxJavaDefaultSchedulers` que você implementou.
+1. Obter a instância global do `RxJavaPlugins` através do `RxJavaPlugins.getInstance( )`.
+1. Passe seu objeto de agendador padrão para o método `registerDefaultSchedulers( )` dessa instância.
 
-When you do this, RxJava will begin to use the Schedulers returned by your methods rather than its built-in defaults.
+Quando você fizer isso, RxJava começará a usar os Schedulers retornados por seus métodos em vez de seus padrões internos.
 
 ## RxJavaErrorHandler
 
-This plugin allows you to register a function that will handle errors that are raised by RxJava but that cannot be handled by the ordinary RxJava `onError` notification process (for instance, if RxJava tries to propagate an error to a subscriber that has not implemented an `onError` handler). To do this, extend the class `RxJavaErrorHandler` and override this method:
+Este plugin permite que você registre uma função que lida com erros que são gerados pelo RxJava, mas que não podem ser manipulados pelo processo de notificação RxJava `onError` normal (por exemplo, se RxJava tentar propagar um erro para um assinante que não implementou um Manipulador `onError`). Para fazer isso, estenda a classe  `RxJavaErrorHandler` e substitua este método:
 
 * `void handleError(Throwable e)`
 
-Then follow these steps:
+Em seguida, siga estes passos:
 
-1. Create an object of the new `RxJavaErrorHandler` subclass you have implemented.
-1. Obtain the global `RxJavaPlugins` instance via `RxJavaPlugins.getInstance( )`.
-1. Pass your error handler object to the `registerErrorHandler( )` method of that instance.
+1. Crie um objeto da nova subclasse `RxJavaErrorHandler` que você implementou.
+1. Obtenha a instância global do`RxJavaPlugins` através de `RxJavaPlugins.getInstance( )`.
+1. Passe seu objeto manipulador de erro para o método `registerErrorHandler( )`dessa instância.
 
-When you do this, RxJava will begin to use your error handler to field errors that cannot be handled in ordinary ways.
+Quando você fizer isso, RxJava começará a usar seu manipulador de erro para erros de campo que não podem ser manipulados de maneiras comuns.
 
 ## RxJavaObservableExecutionHook
 
-This plugin allows you to register functions that RxJava will call upon certain regular RxJava activities, for instance for logging or metrics-collection purposes. To do this, extend the class `RxJavaObservableExecutionHook` and override any or all of these methods:
+Esse plugin permite que você registre funções que o RxJava irá chamar em certas atividades regulares do RxJava, por exemplo, para fins de registro ou de coleta de métricas. Para fazer isso, estenda a classe `RxJavaObservableExecutionHook` e substitua qualquer um ou todos estes métodos:
 
 <table><thead>
- <tr><th>method</th><th>when invoked</th></tr>
+ <tr><th>Método</th><th>Quando invocado</th></tr>
  </thead><tbody>
-  <tr><td><tt>onCreate( )</tt></td><td>during <tt>Observable.create( )</tt></td></tr>
-  <tr><td><tt>onSubscribeStart( )</tt></td><td>immediately before <tt>Observable.subscribe( )</tt></td></tr>
-  <tr><td><tt>onSubscribeReturn( )</tt></td><td>immediately after <tt>Observable.subscribe( )</tt></td></tr>
-  <tr><td><tt>onSubscribeError( )</tt></td><td>upon a failed execution of <tt>Observable.subscribe( )</tt></td></tr>
-  <tr><td><tt>onLift( )</tt></td><td>during <tt>Observable.lift( )</tt></td></tr>
+  <tr><td><tt>onCreate( )</tt></td><td>durante <tt>Observable.create( )</tt></td></tr>
+  <tr><td><tt>onSubscribeStart( )</tt></td><td>Imediatamente antes <tt>Observable.subscribe( )</tt></td></tr>
+  <tr><td><tt>onSubscribeReturn( )</tt></td><td>imediatamente depois <tt>Observable.subscribe( )</tt></td></tr>
+  <tr><td><tt>onSubscribeError( )</tt></td><td>uma falha na execução de <tt>Observable.subscribe( )</tt></td></tr>
+  <tr><td><tt>onLift( )</tt></td><td>durante <tt>Observable.lift( )</tt></td></tr>
  </tbody>
 </table>
 
-Then follow these steps:
+Em seguida, siga estes passos:
 
-1. Create an object of the new `RxJavaObservableExecutionHook` subclass you have implemented.
-1. Obtain the global `RxJavaPlugins` instance via `RxJavaPlugins.getInstance( )`.
-1. Pass your execution hooks object to the `registerObservableExecutionHook( )` method of that instance.
+1. Crie um objeto da nova subclasse `RxJavaObservableExecutionHook`  que você implementou.
+1. Obtenha a instância global do  `RxJavaPlugins` através de `RxJavaPlugins.getInstance( )`.
+1. Passe seu objeto hooks de execução para o método `registerObservableExecutionHook( )` dessa instância.
 
-When you do this, RxJava will begin to call your functions when it encounters the specific conditions they were designed to take note of.
+Quando você fizer isso, RxJava vai começar a chamar suas funções quando ele encontra as condições específicas que foram concebidos para tomar nota.

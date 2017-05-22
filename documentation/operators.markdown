@@ -264,7 +264,7 @@ Specialty Observables that have more precisely-controlled subscription dynamics
     <dd><a href="operators/switch.html">Switch</a></dd>
   </dl></dd>
 
- <dt>I want emit the items from an Observable after transforming them</dt>
+ <dt>I want to emit the items from an Observable after transforming them</dt>
   <dd class="sub"><dl>
    <dt>one at a time with a function</dt>
     <dd><a href="operators/map.html">Map</a></dd>

@@ -45,6 +45,8 @@ id: tutorials
 ## Courses
 * [Reactive Programming in Java 8 With RxJava](http://pluralsight.com/training/Courses/TableOfContents/reactive-programming-java-8-rxjava), a course designed by Russell Elledge
 * [Principles of Reactive Programming](https://www.coursera.org/course/reactive) on Coursera
+* [Reactive Java 9](https://www.packtpub.com/application-development/reactive-java-9-video) authored by Manuel Vicente Vivo, Packt.
+* [Reactive JavaScript Programming ](https://www.packtpub.com/application-development/reactive-javascript-programming-video) authored by Shriyans Bhatnagar, Packt.
 
 ## RxJava
 * [Grokking RxJava](http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/) by Dan Lew

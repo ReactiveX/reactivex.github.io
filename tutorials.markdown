@@ -41,6 +41,7 @@ id: tutorials
 * [RxJava Essentials](http://bit.ly/rxjava-essentials) - RxJava for Android developers
 * [Grokking ReactiveX](http://bit.ly/grokking-rx) - From theory to everyday real-world problems. No matter if you code for backend, frontend or Android: we got you covered!
 * [Grokking Reactive User Interfaces](https://www.manning.com/books/grokking-reactive-user-interfaces) - Teaches you a new way of thinking about programs and data as well as how to build robust and extensible user interfaces. 
+* [Mastering Reactive JavaScript](https://www.packtpub.com/web-development/mastering-reactive-javascript) authored by Erich de Souza OliveiraUo, Packt.
 
 ## Courses
 * [Reactive Programming in Java 8 With RxJava](http://pluralsight.com/training/Courses/TableOfContents/reactive-programming-java-8-rxjava), a course designed by Russell Elledge

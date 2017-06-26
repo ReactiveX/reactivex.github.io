@@ -78,6 +78,7 @@ id: tutorials
 * [Journey from procedural to reactive Javascript with stops](http://bahmutov.calepin.co/journey-from-procedural-to-reactive-javascript-with-stops.html) by Gleb Bahmutov
 * [RxJS Observables vs. Promises](https://egghead.io/lessons/rxjs-rxjs-observables-vs-promises) — a video lesson from Ben Lesh that explains some of the differences
 * [rxvision](http://react.rocks/example/rxvision) — a visualizer debugger for RxJS reactive streams
+* [Rx Visualizer](https://rxviz.com) - Animated playground for Rx Observables
 * [Asynchronous JavaScript at Netflix - Netflix JavaScript Talks - Jafar Husain](https://www.youtube.com/watch?v=XRYN2xt11Ek)
 * [Asynchronous JavaScript at Netflix - MountainWest JavaScript 2014 - Jafar Husain](https://www.youtube.com/watch?v=XE692Clb5LU)
 * [Asynchronous JavaScript at Netflix - HTML5DevConf - Jafar Husain](https://www.youtube.com/watch?v=5uxSu-F5Kj0)

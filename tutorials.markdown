@@ -164,5 +164,8 @@ id: tutorials
 * [Reactive Manifesto](http://www.reactivemanifesto.org/)
 * [ReactiveX文档中文翻译](http://mcxiaoke.gitbooks.io/rxdocs/content/) - the documentation from this site, translated into Chinese
 
+## Reactive Humor
+* [Reactive Mythology](https://medium.com/@tomarShashank/reactive-mythology-9749db984f08#.6osrj9ft7)
+
 ## Future Prospects
 * [Reactive Streams 1.0.0 Interview](https://medium.com/@viktorklang/reactive-streams-1-0-0-interview-faaca2c00bec)

@@ -123,6 +123,7 @@ id: tutorials
 * [Java MVVM with Swing, RxJava and RxSwing examples](https://github.com/Petikoch/Java_MVVM_with_Swing_and_RxJava_Examples) by Peti Koch
 
 ## Android
+* [The Essential RxJava Guide For Android Developers](http://blog.jimbaca.com/essential-rxjava-guide-for-android-developers/) by Jim Baca
 * [The RxAndroid Project](https://github.com/ReactiveX/RxAndroid)
 * [Introduction to RxJava for Android](http://www.philosophicalhacker.com/2015/06/16/introduction-to-rxjava-for-android-the-talk/) by Matt Dupree (and [part 2](http://www.philosophicalhacker.com/2015/06/19/introduction-to-rxjava-for-android-pt-2))
 * [Getting Started With ReactiveX on Android](http://code.tutsplus.com/tutorials/getting-started-with-reactivex-on-android--cms-24387) by Ashraff Hathbelagal

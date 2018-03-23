@@ -315,9 +315,41 @@ Complete!
   {% endlang_operator %}
 
   {% lang_operator RxSwift debounce throttle %}
-     <p>
-      <span style="color:#ff0000">TBD</span>
-     </p>
+     <figure class="variant">
+    <figcaption>
+    <p>
+    RxSwift differences <code>throttle</code> from <code>debounce</code>. While <code>debounce</code> works as defined above, <code>throttle</code> has a different functionality.
+    </p>
+    <p>
+    Returns an Observable that emits the latest item emitted by the source Observable after the specified period of time.
+    </p>
+    <h4>Difference between <code>debounce</code> and <code>throttle</code>:</h4>
+    <ul>
+    	<li>
+    		<code>debounce</code>. Calls the specified function when there hasn't been any events since the last one after the specified period of time:
+    	</li>
+    </ul>
+    <div class="code swift">
+    	<pre>
+    		-----1---2-34-5----6---->
+    		debounce(2)
+    		--------1--------5----6->
+    	</pre>
+    </div>
+    <ul>
+    	<li>
+    		<code>throttle</code>. Calls the specified function when the specified period has passed, regardless of the number of events that have occurred during that time.
+    	</li>
+    </ul>
+    <div class="code swift">
+    	<pre>
+    		------1---2-34-5----6---->
+    		throttle(2)
+    		--x--x--1--2--4--5--6--x->
+    	</pre>
+    </div>
+    </figcaption>
+</figure>
   {% endlang_operator %}
 
 </div>

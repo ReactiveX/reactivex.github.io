@@ -25,6 +25,12 @@ id: community
 - [Google Group RxJS](https://groups.google.com/forum/#!forum/rxjs)
 - [Gitter RxJS room](https://gitter.im/Reactive-Extensions/RxJS)
 
+## RxSwift
+- [StackOverflow rx-swift](http://stackoverflow.com/questions/tagged/rx-swift)
+- [RxSwift Slack](http://slack.rxswift.org)
+- [RxSwift Community Projects](https://community.rxswift.org)
+- [RxSwift Community @ GitHub](https://github.com/RxSwiftCommunity)
+
 ## Rx.NET
 
 - [Discussion forum on Codeplex](http://rx.codeplex.com/discussions)

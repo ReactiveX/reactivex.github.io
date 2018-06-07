@@ -22,6 +22,7 @@ id: tutorials
 * [Reactive Extensions: Beyond the Basics](https://www.youtube.com/watch?v=Jt-_oVQVZlQ), a presentation by Dan Lew (how to make your own operators, avoiding memory leaks in subscriptions, understanding Schedulers, hot and cold Observables, sharing Observables, the trouble with Subjects, backpressure)
 * [Reactive Programming](https://www.youtube.com/watch?v=3bAQXTVsEiQ), video of a presentation by Venkat Subramaniam
 * [ReactiveX, RxJava, and RxAndroid - where to start](http://www.andreamaglie.com/2015/rxjava-android-where-to-start/) by Andrea Maglie
+* [Building an Application from Scratch Using RxJava and Java8](http://blog.xebia.in/index.php/2015/08/31/day1-building-an-application-from-scratch-using-rxjava-and-java8/) by Shekhar Gulati
 * [Party Tricks with RxJava, RxAndroid, and Retrolambda](https://blog.growth.supply/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c) by C&eacute;sar Ferreira
 
 ## Tutorials

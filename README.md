@@ -5,6 +5,11 @@ ReactiveX Website - [Jekyll](http://jekyllrb.com/) + [Bootstrap](http://getboots
 
 If you want to contribute, please make sure to make your changes to the **develop** branch, from which the master branch is generated.
 
+Use Docker to Build & Run (Optional)
+--------------
+If you have Docker installed, you can use the Dockerfile in this repository to build and run the ReactiveX website. This one-liner will perform the build and run:
+`docker build -t reactivex.io - < Dockerfile && docker run -p 4000:4000 -it --rm -v $PWD:/app -t reactivex.io`
+
 Install tools
 --------------
 

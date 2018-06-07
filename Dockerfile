@@ -1,4 +1,4 @@
-FROM jekyll/jekyll:3.8.0
+FROM jekyll/jekyll
 WORKDIR /app
 
 RUN apk update && apk upgrade

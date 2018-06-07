@@ -461,7 +461,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>combineLatest</code>
+              RxPHP <code>combineLatest withLatestFrom</code>
             </a>
           </h4>
         </div>
@@ -499,6 +499,52 @@ Next value: First: 0, Second: 0
 Next value: First: 1, Second: 0
 Next value: First: 1, Second: 1
 Next value: First: 2, Second: 1
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>withLatestFrom</code>.
+    </p>
+    <p>
+    Merges the specified observable sequences into one observable sequence by using the selector function only when the (first) source observable sequence produces an element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/withLatestFrom/withLatestFrom.php
+
+/* Have staggering intervals */
+$source1 = \Rx\Observable::interval(140)
+    ->map(function ($i) {
+        return 'First: ' . $i;
+    });
+$source2 = \Rx\Observable::interval(50)
+    ->map(function ($i) {
+        return 'Second: ' . $i;
+    });
+
+$source3 = \Rx\Observable::interval(100)
+    ->map(function ($i) {
+        return 'Third: ' . $i;
+    });
+
+$source = $source1->withLatestFrom([$source2, $source3], function ($value1, $value2, $value3) {
+    return $value1 . ', ' . $value2 . ', ' . $value3;
+})->take(4);
+
+$source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: First: 0, Second: 1, Third: 0
+Next value: First: 1, Second: 4, Third: 1
+Next value: First: 2, Second: 7, Third: 3
+Next value: First: 3, Second: 10, Third: 4
 Complete!
     </pre>
 </div>

@@ -454,7 +454,7 @@ Completed</pre></div>
         <div class="panel-heading" role="tab" id="headingRxPHP">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxPHP" aria-expanded="true" aria-controls="collapseRxPHP">
-              RxPHP <code>share shareValue</code>
+              RxPHP <code>share singleInstance shareValue</code>
             </a>
           </h4>
         </div>
@@ -498,6 +498,63 @@ SourceA Next value: 1
 SourceB Next value: 1
 SourceA Complete!
 SourceB Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>singleInstance</code>.
+    </p>
+    <p>
+    Returns an observable sequence that shares a single subscription to the underlying sequence. This observable sequence can be resubscribed to, even if all prior subscriptions have ended.  This operator behaves like share() in RxJS 5
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/share/singleInstance.php
+
+$interval = Rx\Observable::interval(1000);
+
+$source = $interval
+    ->take(2)
+    ->do(function () {
+        echo 'Side effect', PHP_EOL;
+    });
+
+$single = $source->singleInstance();
+
+// two simultaneous subscriptions, lasting 2 seconds
+$single->subscribe($createStdoutObserver('SourceA '));
+$single->subscribe($createStdoutObserver('SourceB '));
+
+\Rx\Observable::timer(5000)->subscribe(function () use ($single, &$createStdoutObserver) {
+    // resubscribe two times again, more than 5 seconds later,
+    // long after the original two subscriptions have ended
+    $single->subscribe($createStdoutObserver('SourceC '));
+    $single->subscribe($createStdoutObserver('SourceD '));
+});
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+SourceA Next value: 0
+SourceB Next value: 0
+Side effect
+SourceA Next value: 1
+SourceB Next value: 1
+SourceA Complete!
+SourceB Complete!
+Side effect
+SourceC Next value: 0
+SourceD Next value: 0
+Side effect
+SourceC Next value: 1
+SourceD Next value: 1
+SourceC Complete!
+SourceD Complete!
     </pre>
 </div>
     </figcaption>

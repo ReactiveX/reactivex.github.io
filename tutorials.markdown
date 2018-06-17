@@ -12,23 +12,21 @@ id: tutorials
 * [33rd Degree Reactive Java](http://www.slideshare.net/tkowalcz/33rd-degree-reactive-java) by Tomasz Kowalczewski
 * [2 minute introduction to Rx](https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877) by André Staltz
 * Wikipedia: [Reactive Programming](http://en.wikipedia.org/wiki/Reactive_programming) and [Functional Reactive Programming](http://en.wikipedia.org/wiki/Functional_reactive_programming)
-* [Be Reactive](http://colintheshots.com/blog/?p=85) by ColinTheShots
 * [Collection Pipeline](http://martinfowler.com/articles/collection-pipeline/) by Martin Fowler
-* [Rx for .NET and RxJava for Android](http://futurice.com/blog/tech-pick-of-the-week-rx-for-net-and-rxjava-for-android) by Olli Salonen
 * [NotRxJava guide for lazy folks](http://yarikx.github.io/NotRxJava/) by Yaroslav Heriatovych — how to reorganize messy Async code to be reactive
 * [Learn You Some Rx for the Greater Good](http://www.schibsted.pl/2015/05/learn-you-some-rx-for-the-greater-good) a video introduction by Artur Glier
 * [A Playful Introduction to Rx](https://www.youtube.com/watch?v=WKore-AkisY) a video lecture by Erik Meijer
 * [What is Reactive Programming?](http://blog.hackhands.com/overview-of-reactive-programming/) a video presentation by Jafar Husain.
 * [Reactive Extensions: Beyond the Basics](https://www.youtube.com/watch?v=Jt-_oVQVZlQ), a presentation by Dan Lew (how to make your own operators, avoiding memory leaks in subscriptions, understanding Schedulers, hot and cold Observables, sharing Observables, the trouble with Subjects, backpressure)
-* [Reactive Programming](https://www.youtube.com/watch?v=3bAQXTVsEiQ), video of a presentation by Venkat Subramaniam
+* [Reactive Programming](https://www.youtube.com/watch?v=weWSYIUdX6c), video of a presentation by Venkat Subramaniam
 * [ReactiveX, RxJava, and RxAndroid - where to start](http://www.andreamaglie.com/2015/rxjava-android-where-to-start/) by Andrea Maglie
 * [Building an Application from Scratch Using RxJava and Java8](http://blog.xebia.in/index.php/2015/08/31/day1-building-an-application-from-scratch-using-rxjava-and-java8/) by Shekhar Gulati
-* [Party Tricks with RxJava, RxAndroid, and Retrolambda](https://blog.growth.supply/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c) by C&eacute;sar Ferreira
+* [Party Tricks with RxJava, RxAndroid, and Retrolambda](https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c) by C&eacute;sar Ferreira
 
 ## Tutorials
 * [Learn RxJava](http://github.com/jhusain/learnrxjava/) by Jafar Husain
 * [Rx Workshop](http://rxworkshop.codeplex.com/)
-* [Reactive Programming and MVC](http://aaronstacy.com/writings/reactive-programming-and-mvc/)
+* [Reactive Programming and MVC](http://aaronstacy.com/writings/reactive-programming-and-mvc)
 * An interactive tutorial: [Functional Programming in Javascript](http://jhusain.github.io/learnrx/) and [an accompanying lecture (video)](http://www.youtube.com/watch?v=LB4lhFJBBq0) by Jafar Husain
 * [RxJava Tutorial 01](https://www.youtube.com/watch?v=hzaq64zh0K4) a video tutorial from ZA Software Development Tutorials showing how to set up a simple project in Eclipse
 * [Intro To RxJava](https://github.com/Froussios/Intro-To-RxJava) by Chris Froussios
@@ -39,8 +37,7 @@ id: tutorials
 * [Programming Reactive Extensions and LINQ](http://www.amazon.com/Programming-Reactive-Extensions-Jesse-Liberty/dp/1430237473/)
 * [Reactive Extensions in .NET](http://manning.com/dresher/) - Permanent 39% discount for the Rx community with the code "dresherdoc"
 * [RxJava Essentials](http://bit.ly/rxjava-essentials) - RxJava for Android developers
-* [Grokking ReactiveX](http://bit.ly/grokking-rx) - From theory to everyday real-world problems. No matter if you code for backend, frontend or Android: we got you covered!
-* [Grokking Reactive User Interfaces](https://www.manning.com/books/grokking-reactive-user-interfaces) - Teaches you a new way of thinking about programs and data as well as how to build robust and extensible user interfaces. 
+* [Grokking Reactive User Interfaces](https://www.manning.com/books/grokking-reactive-user-interfaces) - Teaches you a new way of thinking about programs and data as well as how to build robust and extensible user interfaces.
 * [Mastering Reactive JavaScript](https://www.packtpub.com/web-development/mastering-reactive-javascript) authored by Erich de Souza OliveiraUo, Packt.
 * [Learning RxJava](https://www.packtpub.com/application-development/learning-rxjava) authored by Thomas Nield, Packt.
 * [RxSwift: Reactive Programming with Swift](https://store.raywenderlich.com/products/rxswift) authored by Florent Pillet, Junior Bontognali, Marin Todorov, and Scott Gardner, raywenderlich.com.
@@ -59,8 +56,7 @@ id: tutorials
 * [RxJava in Different Flavours of Java](http://instil.co/2014/08/05/rxjava-in-different-flavours-of-java/): Java 7 and Java 8 implementations of the same code
 * [Optimizing the Netflix API](http://techblog.netflix.com/2013/01/optimizing-netflix-api.html) by Ben Christensen
 * [Reactive Programming at Netflix](http://techblog.netflix.com/2013/01/reactive-programming-at-netflix.html) by Jafar Husain
-* [Implementing an Event Bus with RxJava](http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/) by Kaushik Gopal
-* [Ben Christensen explains RxJava “backpressure” strategies](https://www.parleys.com/play/543f8d5be4b06e1184ae4106/about) (video)
+* [Implementing an Event Bus with RxJava](https://blog.kaush.co/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus) by Kaushik Gopal
 * [Advanced RxJava](http://akarnokd.blogspot.hu/) a blog from Dávid Karnok
 * [Unit Testing RxJava Observables](https://medium.com/ribot-labs/unit-testing-rxjava-6e9540d4a329) by Iván Carballo
 * [RxJava: Unit Testing Examples](https://medium.com/mobile-engineering/rxjava-unit-testing-examples-a26af80dfce4) by Nathan Hunston
@@ -69,7 +65,7 @@ id: tutorials
 * [RxJava Observables and Akka Actors](http://onoffswitch.net/rxjava-observables-akka-actors/) by Anton Kropp
 * [Vert.x and RxJava](http://slid.es/petermd/eclipsecon2014) by @petermd
 * [Deferring Observable code until subscription in RxJava](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/) by Dan Lew
-* [Convert a Listener into an Observable](http://www.andreamaglie.com/rxjava-listener-to-observable/) by Andrea Maglie
+* [Convert a Listener into an Observable](http://www.andreamaglie.com/2015/rxjava-listener-to-observable) by Andrea Maglie
 * [Effective RxJava](https://github.com/mgp/effective-rxjava) by Mike Parker
 
 ## RxJS
@@ -77,7 +73,7 @@ id: tutorials
 * [Learn RxJS](http://reactivex.io/learnrx/) by Jafar Husain
 * [RxJS Koans](https://github.com/mattpodwysocki/RxJSKoans) by Matt Podwysocki
 * [Netflix JavaScript Talks - Async JavaScript with Reactive Extensions](https://www.youtube.com/watch?v=XRYN2xt11Ek) video of a talk by Jafar Husain about the Rx way of programming
-* [Journey from procedural to reactive Javascript with stops](http://bahmutov.calepin.co/journey-from-procedural-to-reactive-javascript-with-stops.html) by Gleb Bahmutov
+* [Journey from procedural to reactive Javascript with stops](https://glebbahmutov.com/blog/journey-from-procedural-to-reactive-javascript-with-stops) by Gleb Bahmutov
 * [RxJS Observables vs. Promises](https://egghead.io/lessons/rxjs-rxjs-observables-vs-promises) — a video lesson from Ben Lesh that explains some of the differences
 * [rxvision](http://react.rocks/example/rxvision) — a visualizer debugger for RxJS reactive streams
 * [Rx Visualizer](https://rxviz.com) - Animated playground for Rx Observables
@@ -130,10 +126,9 @@ id: tutorials
 * [Getting Started With ReactiveX on Android](http://code.tutsplus.com/tutorials/getting-started-with-reactivex-on-android--cms-24387) by Ashraff Hathbelagal
 * [Asynchronous Android Programming (The Good, the Bad, and the Ugly)](http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/) by Devin Corrigall
 * [Grokking RxJava, Part 4: Reactive Android](http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/) — by Dan Lew
-* [RxJava on Android: PopupMenus and Dialogs](http://adelnizamutdinov.github.io/blog/2014/11/23/advanced-rxjava-on-android-popupmenus-and-dialogs/) by Adel Nizamutdinov
+* [RxJava on Android: PopupMenus and Dialogs](http://meoyawn.tumblr.com/post/154217188827/rxjava-on-android-popupmenus-and-dialogs) by Adel Nizamutdinov
 * [Tackling Complexity in Android Apps with RxJava at SoundCloud](http://www.infoq.com/news/2014/11/android-rxjava-at-soundcloud): Matt McComb interviews Matthias Käppler
 * [Resources for Learning RxJava for Android](http://gregloesch.com/dev/2014/10/20/resources-for-learning-rxjava-android.html) by Greg Loesch
-* [Top 7 Tips for RxJava on Android](http://futurice.com/blog/top-7-tips-for-rxjava-on-android)
 * [RxBinding](https://github.com/JakeWharton/RxBinding) — easy one-way binding support for Android, based on RxJava
 * [G-Rex](https://github.com/Naturally-Being/G-Rex) — a tiny library that assists in saving and restoring objects to and from disk using RxJava on Android
 * [Replace AsyncTask and AsyncTaskLoader with rx.Observable](http://stablekernel.com/blog/replace-asynctask-asynctaskloader-rx-observable-rxjava-android-patterns/) by Ross Hambrick
@@ -156,7 +151,7 @@ id: tutorials
 * Streaming and event-based programming using FRP and RxJS - FutureJS 2014 [slides/demos](https://github.com/Reactive-Extensions/FutureJS) | [video](https://www.youtube.com/watch?v=zlERo_JMGCw)
 * [MIX 2011](http://channel9.msdn.com/events/MIX/MIX11/HTM07)
 * [Reactive Extensions Videos on Channel 9](http://channel9.msdn.com/Tags/reactive+extensions)
-* [Reactive Angular - Devoxx France 2014 - Martin Gontovnikas](http://parleys.com/play/53677646e4b0593229b85841/chapter0/about)
+* [Reactive Angular - Devoxx France 2014 - Martin Gontovnikas](https://www.youtube.com/watch?v=q_WdJguyRrg)
 * [Testing Reactive Applications](https://speakerdeck.com/benjchristensen/applying-rxjava-to-existing-applications-at-philly-ete-2015) by Ben Christensen - learn about `TestSubscriber` and `TestScheduler`
 
 ## Reference Material

@@ -29,7 +29,7 @@ id: single
 <p>
  Observable과 마찬가지로, Single도 다양한 연산자들을 제공한다. 이 중 어떤 연산자들은 Observable과 Single을 섞어서 사용할 수 있도록 Observable의 영역과 Single의 영역을 연결하는 인터페이스 역할을 수행한다:
 </p>
-<table>
+<table class="table table-striped">
  <thead>
   <tr><th>연산자</th><th>리턴 타입</th><th>설명</th></tr>
  </thead>

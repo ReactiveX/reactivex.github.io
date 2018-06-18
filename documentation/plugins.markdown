@@ -46,9 +46,11 @@ When you do this, RxJava will begin to use your error handler to field errors th
 
 This plugin allows you to register functions that RxJava will call upon certain regular RxJava activities, for instance for logging or metrics-collection purposes. To do this, extend the class `RxJavaObservableExecutionHook` and override any or all of these methods:
 
-<table><thead>
- <tr><th>method</th><th>when invoked</th></tr>
- </thead><tbody>
+<table class="table table-striped">
+ <thead>
+  <tr><th>method</th><th>when invoked</th></tr>
+ </thead>
+ <tbody>
   <tr><td><tt>onCreate( )</tt></td><td>during <tt>Observable.create( )</tt></td></tr>
   <tr><td><tt>onSubscribeStart( )</tt></td><td>immediately before <tt>Observable.subscribe( )</tt></td></tr>
   <tr><td><tt>onSubscribeReturn( )</tt></td><td>immediately after <tt>Observable.subscribe( )</tt></td></tr>

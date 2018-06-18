@@ -30,7 +30,7 @@ id: single
  Like Observables, Singles can be manipulated by means of a variety of operators. Some operators also allow
  for an interface between the Observable world and the Single world so that you can mix the two varieties:
 </p>
-<table>
+<table class="table table-striped">
  <thead>
   <tr><th>operator</th><th>returns</th><th>description</th></tr>
  </thead>

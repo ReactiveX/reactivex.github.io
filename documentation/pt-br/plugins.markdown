@@ -47,9 +47,11 @@ Quando você fizer isso, RxJava começará a usar seu manipulador de erro para e
 
 Esse plugin permite que você registre funções que o RxJava irá chamar em certas atividades regulares do RxJava, por exemplo, para fins de registro ou de coleta de métricas. Para fazer isso, estenda a classe `RxJavaObservableExecutionHook` e substitua qualquer um ou todos estes métodos:
 
-<table><thead>
- <tr><th>Método</th><th>Quando invocado</th></tr>
- </thead><tbody>
+<table class="table table-striped">
+ <thead>
+  <tr><th>Método</th><th>Quando invocado</th></tr>
+ </thead>
+ <tbody>
   <tr><td><tt>onCreate( )</tt></td><td>durante <tt>Observable.create( )</tt></td></tr>
   <tr><td><tt>onSubscribeStart( )</tt></td><td>Imediatamente antes <tt>Observable.subscribe( )</tt></td></tr>
   <tr><td><tt>onSubscribeReturn( )</tt></td><td>imediatamente depois <tt>Observable.subscribe( )</tt></td></tr>

@@ -30,7 +30,7 @@ id: subject
  <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.png" style="width:100%;" />
  <figcaption>
  <p>
-  <code>AsyncSubject</code>는 소스 Observable로부터 배출된 마지막 값(만)을 배출하고 소스 Observalbe의 동작이 완료된 후에야 동작한다. (만약, 소스 Observable이 아무 값도 배출하지 않으면 <code>AsyncSubject</code> 역시 아무 값도 배출하지 않는다.)
+  <code>AsyncSubject</code>는 소스 Observable로부터 배출된 마지막 값(만)을 배출하고 소스 Observable의 동작이 완료된 후에야 동작한다. (만약, 소스 Observable이 아무 값도 배출하지 않으면 <code>AsyncSubject</code> 역시 아무 값도 배출하지 않는다.)
  </p>
 </figcaption>
 </figure>

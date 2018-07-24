@@ -22,6 +22,7 @@ id: tutorials
 * [ReactiveX, RxJava, and RxAndroid - where to start](http://www.andreamaglie.com/2015/rxjava-android-where-to-start/) by Andrea Maglie
 * [Building an Application from Scratch Using RxJava and Java8](http://blog.xebia.in/index.php/2015/08/31/day1-building-an-application-from-scratch-using-rxjava-and-java8/) by Shekhar Gulati
 * [Party Tricks with RxJava, RxAndroid, and Retrolambda](https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c) by C&eacute;sar Ferreira
+* [Reactive GWT, RxJava in the front-end](https://www.javacodegeeks.com/2018/05/reactive-gwt.html) by Zakaria Amine
 
 ## Tutorials
 * [Learn RxJava](http://github.com/jhusain/learnrxjava/) by Jafar Husain
@@ -67,6 +68,7 @@ id: tutorials
 * [Deferring Observable code until subscription in RxJava](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/) by Dan Lew
 * [Convert a Listener into an Observable](http://www.andreamaglie.com/2015/rxjava-listener-to-observable) by Andrea Maglie
 * [Effective RxJava](https://github.com/mgp/effective-rxjava) by Mike Parker
+* [RxJava GWT](https://github.com/intendia-oss/rxjava-gwt) adapter library and [RxGWT](https://github.com/intendia-oss/rxgwt) bindings for GWT by Ignacio Baca
 
 ## RxJS
 * [RxJS - Javascript library for functional reactive programming](http://xgrommx.github.io/rx-book/index.html), an on-line book by Dennis Stoyanov

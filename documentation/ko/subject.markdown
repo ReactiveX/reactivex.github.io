@@ -80,7 +80,7 @@ id: subject
  <img src="{{ site.url }}/documentation/operators/images/S.PublishSubject.e.png" style="width:100%;" />
  <figcaption>
  <p>
-  만약, 소스 Observable이 오류 때문에 종료되면 <code>BehaviorSubject</code>는 아무런 항목도 배출하지 않고 소스 Observable에서 발생한 오류를 그대로 전달한다.
+  만약, 소스 Observable이 오류 때문에 종료되면 <code>PublishSubject</code>는 아무런 항목도 배출하지 않고 소스 Observable에서 발생한 오류를 그대로 전달한다.
  </p></figcaption>
 </figure>
 <h3>ReplaySubject</h3>

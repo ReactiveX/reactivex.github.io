@@ -1,6 +1,7 @@
 ---
 layout: documentation
 title: ReactiveX - Observable
+lang: cn
 id: observable
 ---
 

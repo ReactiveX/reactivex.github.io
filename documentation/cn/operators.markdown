@@ -200,9 +200,9 @@ ReactiveX的每个语言特定的实现都提供了一些操作符。 其中一�
      </dl></dd>
    <dt>从<code>Array</code>、<code>Iterable</code>或类似的地方拉取要发出的事件</dt>
     <dd><a href="operators/from.html">From</a></dd>
-   <dt>从Future获取它</dt>
+   <dt>从一个可能还没有完成的异步任务获取它</dt>
     <dd><a href="operators/start.html">Start</a></dd>
-   <dt>从Future获取序列</dt>
+   <dt>从一个可能还没有完成的异步任务获取序列</dt>
     <dd><a href="operators/from.html">From</a></dd>
    <dt>重复发出特定事件或事件序列</dt>
     <dd><a href="operators/repeat.html">Repeat</a></dd>
@@ -422,7 +422,7 @@ ReactiveX的每个语言特定的实现都提供了一些操作符。 其中一�
  <dt>想创建与事件源具有相同生命周期的可支配资源</dt>
   <dd><a href="operators/using.html">Using</a></dd>
 
- <dt>想订阅一个事件源并接受一个<code>Future</code>，阻塞直到事件源完成</dt>
+ <dt>想订阅一个事件源并接受一个可能还没有完成的异步任务，阻塞直到事件源完成</dt>
   <dd><a href="operators/start.html">Start</a></dd>
 
  <dt>想要一个事件源，直到被需要到才开始向观察者发出事件</dt>

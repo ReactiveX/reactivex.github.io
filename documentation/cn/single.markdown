@@ -1,73 +1,67 @@
 ---
 layout: documentation
 title: ReactiveX - Single
+lang: cn
 id: single
 ---
 
-<h1>Single</h1>
+<h1>单事件源（Single）</h1>
 <p>
- RxJava (and its derivatives like RxGroovy &amp; RxScala) has developed an
- <a href="observable.html">Observable</a> variant called &ldquo;Single.&rdquo;
+ RxJava（及其衍生品，如RxGroovy和RxScala）提供了一个<a href="observable.html">事件源</a>的变体&ldquo;单事件源&rdquo;。
 </p><p>
- A Single is something like an Observable, but instead of emitting a series of values &mdash; anywhere from none
- at all to an infinite number &mdash; it always either emits one value or an error notification.
-</p><p>
- For this reason, instead of subscribing to a Single with the three methods you use to respond to notifications
- from an Observable (<tt>onNext</tt>, <tt>onError</tt>, and <tt>onCompleted</tt>), you only use two methods to
- subscribe:
+ 单事件源和事件大部分是类似的，但它总是只输出一个事件或错误通知，而不是像事件源那样发出一系列的事件或通知。
+
+ 因此，订阅的时候不是使用原先的（<tt>onNext</tt>、<tt>onError</tt>和<tt>onCompleted</tt>）这三个方法， 而是以下两个方式：
 </p><dl>
  <dt>onSuccess</dt>
-  <dd>a Single passes this method the sole item that the Single emits</dd>
+  <dd>单事件源调用此方法当发出唯一的事件</dd>
  <dt>onError</dt>
-  <dd>a Single passes this method the Throwable that caused the Single to be unable to emit an item</dd>
+  <dd>当单事件无法发出事件时通过此方法处理Throwable对象</dd>
 </dl><p>
- A Single will call only one of these methods, and will only call it once. Upon calling either method, the
- Single terminates and the subscription to it ends.
+ 单事件源将只调用其中一种方法，并且只调用一次。在调用任一方法时，单事件源终止并且对它的订阅结束。
 </p>
 
-<h1>Composition via Single Operators</h1>
+<h1>单事件源操作符组合</h1>
 <p>
- Like Observables, Singles can be manipulated by means of a variety of operators. Some operators also allow
- for an interface between the Observable world and the Single world so that you can mix the two varieties:
+ 如同事件源，单事件源也可以通过各种操作符进行操作。 一些操作符甚至允许混合事件源和单事件源两种类型：
 </p>
 <table class="table table-striped">
  <thead>
-  <tr><th>operator</th><th>returns</th><th>description</th></tr>
+  <tr><th>操作符</th><th>返回</th><th>描述</th></tr>
  </thead>
  <tbody>
-  <tr><td><tt>compose</tt></td><td><tt>Single</tt></td><td>allows you create a custom operator</td></tr>
-  <tr><td><tt>concat</tt> and <tt>concatWith</tt></td><td><tt>Observable</tt></td><td>concatenates the items emitted by multiple Singles as Observable emissions</td></tr>
-  <tr><td><tt>create</tt></td><td><tt>Single</tt></td><td>create a Single from scratch by calling subscriber methods explicitly</td></tr>
-  <tr><td><tt>delay</tt></td><td><tt>Single</tt></td><td>move the emission of an item from a Single forward in time</td></tr>
-  <tr><td><tt>doOnError</tt></td><td><tt>Single</tt></td><td>returns a Single that also calls a method you specify when it calls onError</td></tr>
-  <tr><td><tt>doOnSuccess</tt></td><td><tt>Single</tt></td><td>returns a Single that also calls a method you specify when it calls onSuccess</td></tr>
-  <tr><td><tt>error</tt></td><td><tt>Single</tt></td><td>returns a Single that immediately notifies subscribers of an error</td></tr>
-  <tr><td><tt>flatMap</tt></td><td><tt>Single</tt></td><td>returns a Single that is the result of a function applied to an item emitted by a Single</td></tr>
-  <tr><td><tt>flatMapObservable</tt></td><td><tt>Observable</tt></td><td>returns an Observable that is the result of a function applied to an item emitted by a Single</td></tr>
-  <tr><td><tt>from</tt></td><td><tt>Single</tt></td><td>converts a Future into a Single</td></tr>
-  <tr><td><tt>just</tt></td><td><tt>Single</tt></td><td>returns a Single that emits a specified item</td></tr>
-  <tr><td><tt>map</tt></td><td><tt>Single</tt></td><td>returns a Single that emits the result of a function applied to the item emitted by the source Single</td></tr>
-  <tr><td><tt>merge</tt></td><td><tt>Single</tt></td><td>converts a Single that emits a second Single into a Single that emits the item emitted by the second Single</td></tr>
-  <tr><td><tt>merge</tt> and <tt>mergeWith</tt></td><td><tt>Observable</tt></td><td>merges the items emitted by multiple Singles as Observable emissions</td></tr>
-  <tr><td><tt>observeOn</tt></td><td><tt>Single</tt></td><td>instructs the Single to call the subscriber methods on a particular <a href="scheduler.html">Scheduler</a></td></tr>
-  <tr><td><tt>onErrorReturn</tt></td><td><tt>Single</tt></td><td>converts a Single that makes an error notification into a Single that emits a specified item</td></tr>
-  <tr><td><tt>subscribeOn</tt></td><td><tt>Single</tt></td><td>instructs the Single to operate on a particular <a href="scheduler.html">Scheduler</a></td></tr>
-  <tr><td><tt>timeout</tt></td><td><tt>Single</tt></td><td>returns a Single that makes an error notification if the source Single does not emit a value in a specified time period</td></tr>
-  <tr><td><tt>toSingle</tt></td><td><tt>Single</tt></td><td>converts an Observable that emits a single item into a Single that emits that item</td></tr>
-  <tr><td><tt>toObservable</tt></td><td><tt>Observable</tt></td><td>converts a Single into an Observable that emits the item emitted by the Single and then completes</td></tr>
-  <tr><td><tt>zip</tt> and <tt>zipWith</tt></td><td><tt>Single</tt></td><td>returns a Single that emits an item that is the result of a function applied to items emitted by two or more other Singles</td></tr>
+  <tr><td><tt>compose</tt></td><td><tt>单事件源</tt></td><td>创建自定义操作符</td></tr>
+  <tr><td><tt>concat</tt>和<tt>concatWith</tt></td><td><tt>事件源</tt></td><td>将多个单事件源发出的事件连接起来做事件源</td></tr>
+  <tr><td><tt>create</tt></td><td><tt>单事件源</tt></td><td>通过显式调用观察者方法创建单事件源</td></tr>
+  <tr><td><tt>delay</tt></td><td><tt>单事件源</tt></td><td>延迟指定时间发出事件</td></tr>
+  <tr><td><tt>doOnError</tt></td><td><tt>单事件源</tt></td><td>返回一个单事件源会在调用onError时调用指定的方法</td></tr>
+  <tr><td><tt>doOnSuccess</tt></td><td><tt>单事件源</tt></td><td>返回一个单事件源会在调用onSuccess时调用指定的方法</td></tr>
+  <tr><td><tt>error</tt></td><td><tt>单事件源</tt></td><td>返回一个单事件源立即通知观察者错误</td></tr>
+  <tr><td><tt>flatMap</tt></td><td><tt>单事件源</tt></td><td>返回一个发出函数处理后事件的结果的单事件源 </td></tr>
+  <tr><td><tt>flatMapObservable</tt></td><td><tt>事件源</tt></td><td>返回一个发出函数处理后事件的结果的单事件源</td></tr>
+  <tr><td><tt>from</tt></td><td><tt>单事件源</tt></td><td>转换一个可能还没有完成的异步任务为一个单事件源</td></tr>
+  <tr><td><tt>just</tt></td><td><tt>单事件源</tt></td><td>返回一个发出指定事件的单事件源</td></tr>
+  <tr><td><tt>map</tt></td><td><tt>单事件源</tt></td><td>返回一个单事件源，将发出的事件通过将函数处理后在发出</td></tr>
+  <tr><td><tt>merge</tt></td><td><tt>单事件源</tt></td><td>一个单事件源发出另一个单事件源，将发出后一个事件源的事件</td></tr>
+  <tr><td><tt>merge</tt>和<tt>mergeWith</tt></td><td><tt>事件源</tt></td><td>合并两个或多个单事件源为一个事件源</td></tr>
+  <tr><td><tt>observeOn</tt></td><td><tt>单事件源</tt></td><td>让单事件源的在指定的<a href="scheduler.html">调度器</a>上调用订阅方法</td></tr>
+  <tr><td><tt>onErrorReturn</tt></td><td><tt>单事件源</tt></td><td>将发出错误通知的单事件源转换为发出指定事件的单事件源</td></tr>
+  <tr><td><tt>subscribeOn</tt></td><td><tt>单事件源</tt></td><td>指定单事件源的<a href="scheduler.html">调度器</a></td></tr>
+  <tr><td><tt>timeout</tt></td><td><tt>单事件源</tt></td><td>如果源单事件源未在指定时间段内发出事件，则返回一个发出错误通知的单事件源</td></tr>
+  <tr><td><tt>toSingle</tt></td><td><tt>单事件源</tt></td><td>将发出单个事件的事件源转换为发出该事件的单事件源</td></tr>
+  <tr><td><tt>toObservable</tt></td><td><tt>事件源</tt></td><td>将单事件源转换为事件源，它发出单事件源发出的事件，然后完成</td></tr>
+  <tr><td><tt>zip</tt>和<tt>zipWith</tt></td><td><tt>单事件源</tt></td><td>返回一个单事件源发出通过指定的函数将两个或多个其他单事件源发出的事件组合的结果</td></tr>
  </tbody>
 </table>
 <p>
- The following sections of this page will give marble diagrams that explain these operators schematically. This
- diagram explains how Singles are represented in marble diagrams:
+ 本页的下面部分将提供弹珠图来说明这些操作符。 下图是单事件源在弹珠图中的表示：
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.legend.png" width="100%" />
 <h2>compose</h2>
-<h2>concat and concatWith</h2>
+<h2>concat和concatWith</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.concat.png" width="100%" />
 <p>
- There is also an instance version of this operator:
+ 这也是操作符的一个实例版本：
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.concatWith.png" width="100%" />
 <h2>create</h2>
@@ -75,8 +69,7 @@ id: single
 <h2>delay</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.delay.png" width="100%" />
 <p>
- There is also a version of this operator that allows you to perform the delay on a particular
- <a href="scheduler.html">Scheduler</a>:
+ 这也是操作符的一个实例版本以指定的<a href="scheduler.html">调度器</a>执行延迟：
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.delay.s.png" width="100%" />
 <h2>doOnError</h2>
@@ -91,21 +84,19 @@ id: single
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.flatMapObservable.png" width="100%" />
 <h2>from</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.from.Future.png" width="100%" />
-<p>There is also a variety that takes a <a href="scheduler.html">Scheduler</a> as an argument:
+<p>还有一种以<a href="scheduler.html">调度器</a>为参数:
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.from.Future.s.png" width="100%" />
 <h2>just</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.just.png" width="100%" />
 <h2>map</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.map.png" width="100%" />
-<h2>merge and mergeWith</h2>
+<h2>merge和mergeWith</h2>
 <p>
- One version of merge takes a Single that emits a second Single and converts it into a Single that emits the
- item emitted by that second Single:
+ 其中一种merge的实现是，一个单事件源发出另一个单事件源，则发出后一个事件源的事件：
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.merge.oo.png" width="100%" />
 <p>
- Another version takes two or more Singles and merges them into an Observable that emits the items emitted by
- the source Singles (in an arbitrary order):
+ 另一种是合并两个或多个单事件源为一个事件源，该事件源发出源单事件源发出的事件（以随机顺序）：
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.merge.png" width="100%" />
 <h2>observeOn</h2>
@@ -116,25 +107,22 @@ id: single
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.subscribeOn.png" width="100%" />
 <h2>timeout</h2>
 <p>
- Timeout will cause a Single to abort with an error notification if it does not emit an item in a specified
- period of time after it is subscribed to. One version allows you to set this time out by means of a number of
- specified time units:
+ 如果在订阅后指定的时间段内没有发出事件，超时将发出单个中止错误通知。一种实现是通过指定的时间单位设置此时间：
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.1.png" width="100%" />
 <p>
- You can also specify a particular <a href="scheduler.html">Scheduler</a> for the timer to operate on:
+ 也可以为要运行的计时器指定<a href="scheduler.html">调度器</a>:
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.1s.png" width="100%" />
 <p>
- A version of the timeout operator allows you to switch to a backup Single rather than sending an error
- notification if the timeout expires:
+ 另一种实现是超时切换到备用事件源而不是在超时时发出错误通知：
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.2.png" width="100%" />
 <p>
- This, too, has a <a href="scheduler.html">Scheduler</a>-specific version:
+ 同样有个能指定<a href="scheduler.html">调度器</a>的版本:
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.2s.png" width="100%" />
 <h2>toObservable</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.toObservable.png" width="100%" />
-<h2>zip and zipWith</h2>
+<h2>zip和zipWith</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.zip.png" width="100%" />

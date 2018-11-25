@@ -1,6 +1,7 @@
 ---
 layout: documentation
 title: ReactiveX - Scheduler
+lang: cn
 id: scheduler
 ---
 

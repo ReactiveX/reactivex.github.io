@@ -25,7 +25,7 @@ id: subject
 <p>
  모두 4 종류의 <code>Subject</code>가 존재하며, 각각의 Subject는 특정 상황에 맞도록 설계되었다. 그렇기 때문에 모든 상황에서 아무 주제(Subject)를 임의대로 사용할 수 없으며 일부 구현체는 주제를 다른 이름으로 부르기도 한다(예를 들어, RxScala는 "주제(Subject)"를 "발행주제(PublishSubject)"로 부른다).
 </p>
-<h3>AysncSubject</h3>
+<h3>AsyncSubject</h3>
 <figure>
  <img src="{{ site.url }}/documentation/operators/images/S.AsyncSubject.png" style="width:100%;" />
  <figcaption>

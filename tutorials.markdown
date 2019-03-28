@@ -40,6 +40,7 @@ id: tutorials
 * [RxJava Essentials](http://bit.ly/rxjava-essentials) - RxJava for Android developers
 * [Grokking Reactive User Interfaces](https://www.manning.com/books/grokking-reactive-user-interfaces) - Teaches you a new way of thinking about programs and data as well as how to build robust and extensible user interfaces.
 * [Mastering Reactive JavaScript](https://www.packtpub.com/web-development/mastering-reactive-javascript) authored by Erich de Souza OliveiraUo, Packt.
+* [Vert.x in Action](https://www.manning.com/books/vertx-in-action) authored by Julien Ponge.
 * [Learning RxJava](https://www.packtpub.com/application-development/learning-rxjava) authored by Thomas Nield, Packt.
 * [RxSwift: Reactive Programming with Swift](https://store.raywenderlich.com/products/rxswift) authored by Florent Pillet, Junior Bontognali, Marin Todorov, and Scott Gardner, raywenderlich.com.
 

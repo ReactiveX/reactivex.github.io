@@ -31,7 +31,7 @@ $ rake
 
 Marble diagrams
 ---------------
-The marble diagrams are created in OmniGraffle. The source file is found at the RxJava Wiki (https://github.com/Netflix/RxJava.wiki.git) or can be downloaded here: https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators.graffle
+The marble diagrams are created in OmniGraffle. The source file is found at the [RxJava Wiki](https://github.com/Netflix/RxJava.wiki.git) or can be downloaded [here](https://raw.githubusercontent.com/wiki/ReactiveX/RxJava/images/rx-operators.graffle).
 
 If you want to make changes to this file, please check it out from the wiki, make changes, and check it back in there.
 

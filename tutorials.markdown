@@ -16,10 +16,8 @@ id: tutorials
 * [NotRxJava guide for lazy folks](http://yarikx.github.io/NotRxJava/) by Yaroslav Heriatovych — how to reorganize messy Async code to be reactive
 * [Learn You Some Rx for the Greater Good](http://www.schibsted.pl/2015/05/learn-you-some-rx-for-the-greater-good) a video introduction by Artur Glier
 * [A Playful Introduction to Rx](https://www.youtube.com/watch?v=WKore-AkisY) a video lecture by Erik Meijer
-* [What is Reactive Programming?](http://blog.hackhands.com/overview-of-reactive-programming/) a video presentation by Jafar Husain.
 * [Reactive Extensions: Beyond the Basics](https://www.youtube.com/watch?v=Jt-_oVQVZlQ), a presentation by Dan Lew (how to make your own operators, avoiding memory leaks in subscriptions, understanding Schedulers, hot and cold Observables, sharing Observables, the trouble with Subjects, backpressure)
 * [Reactive Programming](https://www.youtube.com/watch?v=weWSYIUdX6c), video of a presentation by Venkat Subramaniam
-* [ReactiveX, RxJava, and RxAndroid - where to start](http://www.andreamaglie.com/2015/rxjava-android-where-to-start/) by Andrea Maglie
 * [Building an Application from Scratch Using RxJava and Java8](http://blog.xebia.in/index.php/2015/08/31/day1-building-an-application-from-scratch-using-rxjava-and-java8/) by Shekhar Gulati
 * [Party Tricks with RxJava, RxAndroid, and Retrolambda](https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c) by C&eacute;sar Ferreira
 * [Reactive GWT, RxJava in the front-end](https://www.javacodegeeks.com/2018/05/reactive-gwt.html) by Zakaria Amine
@@ -66,7 +64,6 @@ id: tutorials
 * [RxJava Observables and Akka Actors](http://onoffswitch.net/rxjava-observables-akka-actors/) by Anton Kropp
 * [Vert.x and RxJava](http://slid.es/petermd/eclipsecon2014) by @petermd
 * [Deferring Observable code until subscription in RxJava](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/) by Dan Lew
-* [Convert a Listener into an Observable](http://www.andreamaglie.com/2015/rxjava-listener-to-observable) by Andrea Maglie
 * [Effective RxJava](https://github.com/mgp/effective-rxjava) by Mike Parker
 * [RxJava GWT](https://github.com/intendia-oss/rxjava-gwt) adapter library and [RxGWT](https://github.com/intendia-oss/rxgwt) bindings for GWT by Ignacio Baca
 

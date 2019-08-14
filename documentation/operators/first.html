@@ -117,7 +117,7 @@ id: first
       <img src="images/first.takefirst.png" style="width:100%;" alt="takeFirst" />
       <figcaption><p>
        The <code>takeFirst</code> operator behaves similarly to <code>first</code>, with the exception of how
-       these operators behave wihen the source Observable emits no items that satisfy the predicate. In such a
+       these operators behave when the source Observable emits no items that satisfy the predicate. In such a
        case, <code>first</code> will throw a <code>NoSuchElementException</code> while <code>takeFirst</code>
        will return an empty Observable (one that calls <code>onCompleted</code> but never calls
        <code>onNext</code>).
@@ -162,7 +162,7 @@ id: first
      <figure>
       <img src="images/singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
       <figcaption><p>
-       And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and emits
+       And there is also a version of <code>singleOrDefault</code> that takes a predicate function and emits
        the sole item from the source Observable that matches that predicate, if any; the default item if no
        such items match; and makes an error notification if multiple items match.
       </p>
@@ -267,7 +267,7 @@ id: first
      <figure>
       <img src="images/B.singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
       <figcaption><p>
-       And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and returns
+       And there is also a version of <code>singleOrDefault</code> that takes a predicate function and returns
        the sole item from the source Observable that matches that predicate, if any; the default item if no
        such items match; and throws an error if multiple items match.
       </p>
@@ -386,7 +386,7 @@ Sequence complete.</pre></div>
       <img src="images/first.takefirst.png" style="width:100%;" alt="takeFirst" />
       <figcaption><p>
        The <code>takeFirst</code> operator behaves similarly to <code>first</code>, with the exception of how
-       these operators behave wihen the source Observable emits no items that satisfy the predicate. In such a
+       these operators behave when the source Observable emits no items that satisfy the predicate. In such a
        case, <code>first</code> will throw a <code>NoSuchElementException</code> while <code>takeFirst</code>
        will return an empty Observable (one that calls <code>onCompleted</code> but never calls
        <code>onNext</code>).
@@ -431,7 +431,7 @@ Sequence complete.</pre></div>
      <figure>
       <img src="images/singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
       <figcaption><p>
-       And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and emits
+       And there is also a version of <code>singleOrDefault</code> that takes a predicate function and emits
        the sole item from the source Observable that matches that predicate, if any; the default item if no
        such items match; and makes an error notification if multiple items match.
       </p>
@@ -536,7 +536,7 @@ Sequence complete.</pre></div>
      <figure>
       <img src="images/B.singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
       <figcaption><p>
-       And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and returns
+       And there is also a version of <code>singleOrDefault</code> that takes a predicate function and returns
        the sole item from the source Observable that matches that predicate, if any; the default item if no
        such items match; and throws an error if multiple items match.
       </p>
@@ -625,7 +625,7 @@ Completed</pre></div>
        The <code>single</code> operator is similar, except that it only emits its item once the source
        Observable successfully completes after emitting one item (or one item that matches the predicate). If it
        emits either no such items or more than one such item, <code>single</code> will terminate with an
-       <code>onError</code> notitifcation (&ldquo;<code>Sequence contains no elements.</code>&rdquo;).
+       <code>onError</code> notification (&ldquo;<code>Sequence contains no elements.</code>&rdquo;).
       </p>
       </figcaption>
      </figure>

@@ -14,9 +14,10 @@ Install tools
 --------------
 
 Jekyll is the static site generator. Uglifier, LESS, and Rake are build tools necessary for JavaScript and CSS compilation prior to Jekyll.
+Pygments.rb is used for syntax highlighting and redcarpet is used as the markdown parser for Jekyll.
 
 ```
-$ gem install jekyll uglifier rake
+$ gem install jekyll uglifier rake pygments.rb redcarpet
 $ npm install -g less
 ```
 

@@ -14,6 +14,7 @@ id: languages
 * Clojure: [RxClojure](https://github.com/ReactiveX/RxClojure)
 * C++: [RxCpp](https://github.com/Reactive-Extensions/RxCpp)
 * Lua: [RxLua](https://github.com/bjornbytes/RxLua)
+* Perl: [RxPerl](https://metacpan.org/pod/RxPerl)
 * Ruby: [Rx.rb](https://github.com/Reactive-Extensions/Rx.rb)
 * Python: [RxPY](https://github.com/ReactiveX/RxPY)
 * Go: [RxGo](https://github.com/ReactiveX/RxGo)

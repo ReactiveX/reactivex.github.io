@@ -4,7 +4,7 @@ WORKDIR /app
 RUN apk update && apk upgrade
 RUN apk --no-cache add python
 
-RUN gem install uglifier pygments.rb redcarpet
+RUN gem install uglifier kramdown
 RUN npm install -g less
 
 EXPOSE 4000

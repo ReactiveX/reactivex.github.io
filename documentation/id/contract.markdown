@@ -1,6 +1,6 @@
 ---
 layout: documentation
-title: ReactiveX - The Observable Contract
+title: ReactiveX - Kontrak Observable
 lang: id
 id: contract
 ---

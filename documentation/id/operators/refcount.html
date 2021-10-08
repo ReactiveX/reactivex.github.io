@@ -1,0 +1,323 @@
+---
+layout: documentation
+title: ReactiveX - RefCount operator
+id: refcount
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#connectable">Connectable</a></li>
+  <li class="active">RefCount</li>
+</ol>
+
+<h1>RefCount</h1>
+<h3>make a Connectable Observable behave like an ordinary Observable</h3>
+
+<figure>
+ <img src="images/publishRefCount.c.png" style="width:100%;" alt="RefCount" />
+ <figcaption><p>
+  A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+  emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+  operator is applied to it. In this way you can prompt an Observable to begin emitting items at a
+  time of your choosing.
+ </p><p>
+  The <span class="operator">RefCount</span> operator automates the process of connecting to and disconnecting
+  from a connectable Observable. It operates on a connectable Observable and returns an ordinary Observable.
+  When the first observer subscribes to this Observable, <span class="operator">RefCount</span> connects to the 
+  underlying connectable Observable. <span class="operator">RefCount</span> then keeps track of how many other
+  observers subscribe to it and does not disconnect from the underlying connectable Observable until the last
+  observer has done so.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="connect.html"><span class="operator">Connect</span></a></li>
+ <li><a href="publish.html"><span class="operator">Publish</span></a></li>
+ <li><a href="replay.html"><span class="operator">Replay</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/14_HotAndColdObservables.html#RefCount"><cite>Introduction to Rx</cite>: RefCount</a></li>
+ <li><a href="http://blog.kaush.co/2015/01/21/rxjava-tip-for-the-day-share-publish-refcount-and-all-that-jazz/"><cite>Wedding Party</cite>: Share, Publish, Refcount, and All That Jazz</a> by Kaushik Gopal</li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp publish %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy refCount share %}
+    <figure class="variant">
+     <img src="images/publishRefCount.png" style="width:100%;" alt="refCount" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>refCount</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/ConnectableObservable.html#refCount()"><code>refCount()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <p>
+     There is also a <code>share</code> operator, which is the equivalent of applying both the
+     <code>publish</code> and <code>refCount</code> operators to an Observable, in that order.
+    </p>
+    <ul>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#share()"><code>share()</code></a></li>
+    </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava refCount share %}
+    <figure class="variant">
+     <img src="images/publishRefCount.png" style="width:100%;" alt="refCount" />
+     <figcaption><p>
+      RxJava implements this operator as <code>refCount</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/ConnectableObservable.html#refCount()"><code>refCount()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <p>
+     There is also a <code>share</code> operator, which is the equivalent of applying both the
+     <code>publish</code> and <code>refCount</code> operators to an Observable, in that order.
+    </p>
+    <ul>
+     <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#share()"><code>share()</code></a></li>
+    </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS refCount share shareValue %}
+    <figure class="variant">
+     <img src="images/publishRefCount.png" style="width:100%;" alt="refCount" />
+     <figcaption><p>
+      RxJava implements this operator as <code>refCount</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .doAction(function (x) { console.log('Side effect'); });
+
+var published = source.publish().refCount();
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Completed
+Completed</pre></div>
+     <p>
+      <code>refCount</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.binding.js</code> (requires <code>rx.js</code>, <code>rx.compat.js</code>, <code>rx.lite.js</code>, or <code>rx.lite.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <p>
+     There is also a <code>share</code> operator, which is the equivalent of applying both the
+     <code>publish</code> and <code>refCount</code> operators to an Observable, in that order.
+     A variant called <code>shareValue</code> takes as a parameter a single item that it will
+     emit to any subscribers before beginning to emit items from the source Observable.
+    </p>
+    <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .do(
+        function (x) { console.log('Side effect'); });
+
+var published = source.share();
+
+// When the number of observers subscribed to published observable goes from
+// 0 to 1, we connect to the underlying observable sequence.
+published.subscribe(createObserver('SourceA'));
+// When the second subscriber is added, no additional subscriptions are added to the
+// underlying observable sequence. As a result the operations that result in side
+// effects are not repeated per subscriber.
+published.subscribe(createObserver('SourceB'));
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Completed</pre></div>
+     <p>
+      <code>share</code> and <code>shareValue</code> are found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.binding.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin refCount share %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET RefCount %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP share shareValue %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>share</code>.
+    </p>
+    <p>
+    Returns an observable sequence that shares a single subscription to the underlying sequence.  This operator is a specialization of publish which creates a subscription when the number of observers goes from zero to one, then shares that subscription with all subsequent observers until the number of observers returns to zero, at which point the subscription is disposed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/share/share.php
+
+$loop = \React\EventLoop\Factory::create();
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+//With Share
+$source = \Rx\Observable::interval(1000, $scheduler)
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->share();
+
+$published->subscribe($createStdoutObserver('SourceA '));
+$published->subscribe($createStdoutObserver('SourceB '));
+
+$loop->run();
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect
+SourceA Next value: 0
+SourceB Next value: 0
+Side effect
+SourceA Next value: 1
+SourceB Next value: 1
+SourceA Complete!
+SourceB Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>shareValue</code>.
+    </p>
+    <p>
+    Returns an observable sequence that shares a single subscription to the underlying sequence and starts with an initialValue.  This operator is a specialization of publishValue which creates a subscription when the number of observers goes from zero to one, then shares that subscription with all subsequent observers until the number of observers returns to zero, at which point the subscription is disposed.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/share/shareValue.php
+
+$loop = \React\EventLoop\Factory::create();
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = \Rx\Observable::interval(1000, $scheduler)
+    ->take(2)
+    ->doOnNext(function ($x) {
+        echo "Side effect\n";
+    });
+
+$published = $source->shareValue(42);
+
+$published->subscribe($createStdoutObserver('SourceA '));
+$published->subscribe($createStdoutObserver('SourceB '));
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+SourceA Next value: 42
+SourceB Next value: 42
+Side effect
+SourceA Next value: 0
+SourceB Next value: 0
+Side effect
+SourceA Next value: 1
+SourceB Next value: 1
+SourceA Complete!
+SourceB Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY ref_count %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala refCount share %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift refCount %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

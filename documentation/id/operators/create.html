@@ -1,0 +1,487 @@
+---
+layout: documentation
+title: ReactiveX - Create operator
+id: operators/create
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Create</li>
+</ol>
+
+<h1>Create</h1>
+<h3>create an Observable from scratch by means of a function</h3>
+
+<figure>
+ <img src="images/create.c.png" style="width:100%;" alt="Create" />
+ <figcaption><p>
+  You can create an Observable from scratch by using the <span class="operator">Create</span>
+  operator. You pass this operator a function that accepts the observer as its parameter. Write this
+  function so that it behaves as an Observable &mdash; by calling the observer’s <code>onNext</code>,
+  <code>onError</code>, and <code>onCompleted</code> methods appropriately.
+ </p><p>
+  A well-formed finite Observable must attempt to call either the observer’s <code>onCompleted</code>
+  method exactly once or its <code>onError</code> method exactly once, and must not thereafter
+  attempt to call any of the observer’s other methods.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableCreate"><cite>Introduction to Rx</cite>: Create</a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#ObservableGenerate"><cite>Introduction to Rx</cite>: Generate</a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc42"><cite>101 Rx Samples</cite>: Generate</a></li>
+ <li><a href="https://www.youtube.com/watch?v=sDqrlNprY24">RxJava Tutorial 03: Observable from, just, &amp; create methods</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure generator %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy create %}
+    <figure class="variant">
+     <img src="images/create.png" style="width:100%;" alt="create" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>create</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+def myObservable = Observable.create({ aSubscriber ->
+  try {
+    for (int i = 1; i &lt; 1000000; i++) {
+      if (aSubscriber.isUnsubscribed()) {
+        return;
+      }
+      aSubscriber.onNext(i);
+    }
+    if (!aSubscriber.isUnsubscribed()) {
+      aSubscriber.onCompleted();
+    }
+  } catch(Throwable t) {
+    if (!aSubscriber.isUnsubscribed()) {
+      aSubscriber.onError(t);
+    }
+  }
+})</pre></div>
+     <p>
+      It is good practice to check the observer’s <code>isUnsubscribed</code> state so that your
+      Observable can stop emitting items or doing expensive calculations when there is no longer an
+      interested observer.
+     </p><p>
+      <code>create</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#create(rx.Observable.OnSubscribe)"><code>create(OnSubscribe)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava create %}
+    <figure class="variant">
+     <img src="images/create.png" style="width:100%;" alt="create" />
+     <figcaption><p>
+      RxJava implements this operator as <code>create</code>.
+     </p><p>
+      It is good practice to check the observer’s <code>isUnsubscribed</code> state from within the
+      function you pass to <code>create</code> so that your Observable can stop emitting items or
+      doing expensive calculations when there is no longer an interested observer.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.create(new Observable.OnSubscribe&lt;Integer&gt;() {
+    @Override
+    public void call(Subscriber&lt;? super Integer&gt; observer) {
+        try {
+            if (!observer.isUnsubscribed()) {
+                for (int i = 1; i &lt; 5; i++) {
+                    observer.onNext(i);
+                }
+                observer.onCompleted();
+            }
+        } catch (Exception e) {
+            observer.onError(e);
+        }
+    }
+ } ).subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Sequence complete.</pre></div>
+     <p>
+      <code>create</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#create(rx.Observable.OnSubscribe)"><code>create(OnSubscribe)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS create createWithDisposable generate generateWithAbsoluteTime generateWithRelativeTime %}
+    <figure class="variant">
+     <img src="images/create.png" style="width:100%;" alt="create" />
+     <figcaption><p>
+      RxJS implements this operator as <code>create</code> (there is also an alternate name for the
+      same operator: <code>createWithDisposable</code>).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+/* Using a function */
+var source = Rx.Observable.create(function (observer) {
+    observer.onNext(42);
+    observer.onCompleted();
+
+    // Note that this is optional, you do not have to return this if you require no cleanup
+    return function () { console.log('disposed'); };
+});
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <div class="code javascript"><pre>
+/* Using a disposable */
+var source = Rx.Observable.create(function (observer) {
+    observer.onNext(42);
+    observer.onCompleted();
+
+    // Note that this is optional, you do not have to return this if you require no cleanup
+    return Rx.Disposable.create(function () {
+        console.log('disposed');
+    });
+});
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div><div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>create</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/generate.png" style="width:100%;" alt="generate" />
+     <figcaption><p>
+      You can use the <code>generate</code> operator to create simple Observables that can generate their
+      next emissions, and can determine when to terminate, based on the value of the previous emission. The
+      basic form of <code>generate</code> takes four parameters:
+     </p><ol>
+      <li>the first item to emit</li>
+      <li>a function to test an item to determine whether to emit it (<code>true</code>) or terminate the
+          Observable (<code>false</code>)</li>
+      <li>a function to generate the next item to test and emit based on the value of the previous item</li>
+      <li>a function to transform items before emitting them</li>
+     </ol><p>
+      You can also pass in as an optional fifth parameter a <a href="../scheduler.html">Scheduler</a> that
+      <code>generate</code> will use to create and emit its sequence (it uses <code>currentThread</code> by
+      default).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.generate(
+    0,
+    function (x) { return x &lt; 3; },
+    function (x) { return x + 1; },
+    function (x) { return x; }
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+     <p>
+      <code>generate</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/generateWithRelativeTime.png" style="width:100%;" alt="generateWithRelativeTime" />
+     <figcaption><p>
+      You can use the <code>generateWithRelativeTime</code> operator to create simple Observables that can
+      generate their next emissions, and can determine when to terminate, based on the value of the previous
+      emission. The basic form of <code>generateWithRelativeTime</code> takes five parameters:
+     </p><ol>
+      <li>the first item to emit</li>
+      <li>a function to test an item to determine whether to emit it (<code>true</code>) or terminate the
+          Observable (<code>false</code>)</li>
+      <li>a function to generate the next item to test and emit based on the value of the previous item</li>
+      <li>a function to transform items before emitting them</li>
+      <li>a function to indicate how long, in milliseconds, the generator should wait after the emission of
+          the previous item before emitting this item</li>
+     </ol><p>
+      You can also pass in as an optional sixth parameter a <a href="../scheduler.html">Scheduler</a> that
+      <code>generate</code> will use to create and emit its sequence (it uses <code>currentThread</code> by
+      default).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.generateWithRelativeTime(
+    1,
+    function (x) { return x &lt; 4; },
+    function (x) { return x + 1; },
+    function (x) { return x; },
+    function (x) { return 100 * x; }
+).timeInterval();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: {value: 1, interval: 100}
+Next: {value: 2, interval: 200}
+Next: {value: 3, interval: 300}
+Completed</pre></div>
+     <p>
+      <code>generateWithRelativeTime</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+      <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/generateWithAbsoluteTime.png" style="width:100%;" alt="generateWithAbsoluteTime" />
+     <figcaption><p>
+      You can use the <code>generateWithAbsoluteTime</code> operator to create simple Observables that can
+      generate their next emissions, and can determine when to terminate, based on the value of the previous
+      emission. The basic form of <code>generateWithAbsoluteTime</code> takes five parameters:
+     </p><ol>
+      <li>the first item to emit</li>
+      <li>a function to test an item to determine whether to emit it (<code>true</code>) or terminate the
+          Observable (<code>false</code>)</li>
+      <li>a function to generate the next item to test and emit based on the value of the previous item</li>
+      <li>a function to transform items before emitting them</li>
+      <li>a function to indicate at what time (expressed as a <code>Date</code>) the generator should emit the
+          the new item</li>
+     </ol><p>
+      You can also pass in as an optional sixth parameter a <a href="../scheduler.html">Scheduler</a> that
+      <code>generate</code> will use to create and emit its sequence (it uses <code>currentThread</code> by
+      default).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.generate(
+    1,
+    function (x) { return x &lt; 4; },
+    function (x) { return x + 1; },
+    function (x) { return x; },
+    function (x) { return Date.now() + (100 * x); }
+).timeInterval();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: {value: 1, interval: 100}
+Next: {value: 2, interval: 200}
+Next: {value: 3, interval: 300}
+Completed</pre></div>
+     <p>
+      <code>generateWithAbsoluteTime</code> is found in the following distribution:
+     </p>
+     <ul>
+      <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin create %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Create Generate %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP create %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>create</code>.
+    </p>
+    <p>
+    Creates an observable sequence from a specified subscribeAction callable implementation.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/create/create.php
+
+//With static method
+$source = \Rx\Observable::create(function (\Rx\ObserverInterface $observer) {
+    $observer->onNext(42);
+    $observer->onCompleted();
+
+    return new CallbackDisposable(function () {
+        echo "Disposed\n";
+    });
+});
+
+$subscription = $source->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+Disposed
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY create generate generate_with_relative_time %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb create generate %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala apply create %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift create generate %}
+    <figure class="variant">
+      <img src="images/create.png" style="width:100%;" alt="create" />
+      <figcaption><p>
+        RxSwift implements this operator as <code>create</code>.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code swift"><pre>
+let source = Observable<Int>.create { observer in
+  for i in 1...5 {
+    observer.on(.Next(i))
+  }
+  observer.on(.Completed)
+
+  // Note that this is optional. If you require no cleanup you can return
+  // NopDisposable.instance
+  return AnonymousDisposable {
+    print("Disposed")
+  }
+}
+
+source.subscribe {
+  print($0)
+}</pre></div>
+      <div class="output"><pre>
+Next(1)
+Next(2)
+Next(3)
+Next(4)
+Next(5)
+Completed
+disposed</pre></div>
+      </figcaption>
+    </figure>
+    <figure class="variant">
+      <img src="images/generate.png" style="width:100%;" alt="generate" />
+      <figcaption><p>
+        You can use the <code>generate</code> operator to create simple Observables that can generate their
+        next emissions, and can determine when to terminate, based on the value of the previous emission. The
+        basic form of <code>generate</code> takes three parameters:
+       </p><ol>
+        <li>the first item to emit</li>
+        <li>a function to test an item to determine whether to emit it (<code>true</code>) or terminate the
+            Observable (<code>false</code>)</li>
+        <li>a function to generate the next item to test and emit based on the value of the previous item</li>
+       </ol><p>
+        You can also pass in as an optional fourth parameter a <a href="../scheduler.html">Scheduler</a> that
+        <code>generate</code> will use to create and emit its sequence (it uses <code>CurrentThreadScheduler</code> by
+        default).
+       </p>
+       <h4>Sample Code</h4>
+       <div class="code swift"><pre>
+let source = Observable<Int>.generate(
+   initialState: 0,
+   condition: { $0 < 3 },
+   iterate: { $0 + 1 }
+)
+
+source.subscribe {
+   print($0)
+}</pre></div>
+         <div class="output"><pre>
+Next(0)
+Next(1)
+Next(2)
+Completed</pre></div>
+      </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+</div>

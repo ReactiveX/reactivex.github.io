@@ -1,0 +1,128 @@
+---
+layout: documentation
+title: ReactiveX - And/Then/When operator
+id: and-then-when
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">And/Then/When</li>
+</ol>
+
+   <h1>And/Then/When</h1>
+   <h3>combine sets of items emitted by two or more Observables by means of Pattern and Plan intermediaries</h3>
+   <figure>
+    <img src="images/and_then_when.C.png" style="width:100%;" alt="And/Then/When" />
+    <figcaption><p>
+    The combination of the <span class="operator">And</span>, <span class="operator">Then</span>,
+    and <span class="operator">When</span> operators behave much like the
+    <span class="operator">Zip</span> operator, but they do so by means of intermediate data
+    structures. <span class="operator">And</span> accepts two or more Observables and combines the
+    emissions from each, one set at a time, into <code>Pattern</code> objects.
+    <span class="operator">Then</span> operates on such <code>Pattern</code> objects, transforming
+    them in a <code>Plan</code>. <span class="operator">When</span> in turn transforms these various
+    <code>Plan</code> objects into emissions from an Observable.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="zip.html"><span class="operator">Zip</span></a></li>
+    <li><a href="http://www.introtorx.com/content/v1.0.10621.0/12_CombiningSequences.html#AndThenWhen"><cite>Introduction to Rx</cite>: And-Then-When</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy and then when %}
+     <figure>
+      <img src="images/and_then_when.png" style="width:100%;" alt="and/then/when" />
+      <figcaption><p>
+       In RxGroovy, these are not part of the core ReactiveX implementation, but are found as
+       <code>and</code>, <code>then</code>, and <code>when</code> in the
+       <code>rxjava-joins</code> module.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava and then when %}
+     <figure>
+      <img src="images/and_then_when.png" style="width:100%;" alt="and/then/when" />
+      <figcaption><p>
+       These are not part of the core RxJava implementation, but are found as <code>and</code>,
+       <code>then</code>, and <code>when</code> in the <code>rxjava-joins</code> module.
+      </p></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS and thenDo when %}
+     <figure>
+      <img src="images/and_thenDo_when.png" style="width:100%;" alt="and/thenDo/when" />
+      <figcaption><p>
+       RxJS implements these operators as <code>and</code>, <code>thenDo</code>, and
+       <code>when</code>.
+      </p><p>
+       These are found in the following packages:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.joinpatterns.js</code></li>
+      </ul>
+      <p>
+       They require one of the following packages:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin and then when %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET And Then When %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY and_ then_do when %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

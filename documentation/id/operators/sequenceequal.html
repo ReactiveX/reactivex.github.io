@@ -1,0 +1,177 @@
+---
+layout: documentation
+title: ReactiveX - SequenceEqual operator
+id: sequenceEqual
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">SequenceEqual</li>
+</ol>
+
+   <h1>SequenceEqual</h1>
+   <h3>determine whether two Observables emit the same sequence of items</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="sequenceEqual"></rx-marbles>
+    <figcaption><p>
+     Pass <span class="operator">SequenceEqual</span> two Observables, and it will compare the items emitted by
+     each Observable, and the Observable it returns will emit <code>true</code> only if both sequences are the
+     same (the same items, in the same order, with the same termination state).
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#SequenceEqual"><cite>Introduction to Rx</cite>: SequenceEqual</a></li>
+    <li><a href="http://rxmarbles.com/#sequenceEqual">RxMarbles: <code>sequenceEqual</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy sequenceEqual %}
+     <figure>
+      <img src="images/sequenceEqual.png" style="width:100%;" alt="sequenceEqual" />
+      <figcaption><p>
+       Pass <code>sequenceEqual</code> two Observables, and it will compare the items emitted by each
+       Observable, and the Observable it returns will emit <code>true</code> only if both sequences terminate
+       normally after emitting the same sequence of items in the same order; otherwise it will emit
+       <code>false</code>. You can optionally pass a third parameter: a function that accepts two items and
+       returns <code>true</code> if they are equal according to a standard of your choosing.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+def firstfour = Observable.from([1, 2, 3, 4]);
+def firstfouragain = Observable.from([1, 2, 3, 4]);
+def firstfive = Observable.from([1, 2, 3, 4, 5]);
+def firstfourscrambled = Observable.from([3, 2, 1, 4]);
+
+println('firstfour == firstfive?');
+Observable.sequenceEqual(firstfour, firstfive).subscribe({ println(it); });
+println('firstfour == firstfouragain?');
+Observable.sequenceEqual(firstfour, firstfouragain).subscribe({ println(it); });
+println('firstfour == firstfourscrambled?');
+Observable.sequenceEqual(firstfour, firstfourscrambled).subscribe({ println(it); });</pre></div>
+      <div class="output"><pre>
+firstfour == firstfive?
+false
+firstfour == firstfouragain?
+true
+firstfour == firstfourscrambled?
+false</pre></div>
+      <p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sequenceEqual(rx.Observable,%20rx.Observable)"><code>sequenceEqual(Observable,Observable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sequenceEqual(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>sequenceEqual(Observable,Observable,Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava sequenceEqual %}
+     <figure>
+      <img src="images/sequenceEqual.png" style="width:100%;" alt="sequenceEqual" />
+      <figcaption><p>
+       Pass <code>sequenceEqual</code> two Observables, and it will compare the items emitted by each
+       Observable, and the Observable it returns will emit <code>true</code> only if both sequences terminate
+       normally after emitting the same sequence of items in the same order; otherwise it will emit
+       <code>false</code>. You can optionally pass a third parameter: a function that accepts two items and
+       returns <code>true</code> if they are equal according to a standard of your choosing.
+      </p><p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sequenceEqual(rx.Observable,%20rx.Observable)"><code>sequenceEqual(Observable,Observable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sequenceEqual(rx.Observable,%20rx.Observable,%20rx.functions.Func2)"><code>sequenceEqual(Observable,Observable,Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS sequenceEqual %}
+     <figure>
+      <img src="images/sequenceEqual.png" style="width:100%;" alt="sequenceEqual" />
+      <figcaption><p>
+       In RxJS, <code>sequenceEqual</code> is a method of a particular Observable instance, so you pass it
+       exactly one other Observable to compare the instance to. You can optionally pass a second parameter: a
+       function that accepts two items and returns <code>true</code> if they are equal according to a standard
+       of your choosing. <code>sequenceEqual</code> returns an Observable that will emit a <code>true</code> if
+       the two Observables emit the same set of items in the same order before completing, or a
+       <code>false</code> otherwise.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source1 = Rx.Observable.return(42);
+var source2 = Rx.Observable.return(42);
+
+var source = source1.sequenceEqual(source2);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: true
+Completed</pre></div>
+      <p>
+       <code>sequenceEqual</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.aggregates.js</code></li>
+      </ul>
+      <p>
+       <code>sequenceEqual</code> requires one of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin sequenceEqual %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET AssertEqual SequenceEqual %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY sequence_equal %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb sequence_eql? %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala sequenceEqual sequenceEqualWith %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

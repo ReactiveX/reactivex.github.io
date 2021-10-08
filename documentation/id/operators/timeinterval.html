@@ -1,0 +1,165 @@
+---
+layout: documentation
+title: ReactiveX - TimeInterval operator
+id: timeInterval
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">TimeInterval</li>
+</ol>
+
+   <h1>TimeInterval</h1>
+   <h3>convert an Observable that emits items into one that emits indications of the amount of time elapsed between those emissions</h3>
+   <figure>
+    <img src="images/timeInterval.c.png" style="width:100%;" alt="TimeInterval" />
+    <figcaption><p>
+     The <span class="operator">TimeInterval</span> operator intercepts the items from the source Observable
+     and emits in their place objects that indicate the amount of time that elapsed between pairs of emissions.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="timestamp.html"><span class="operator">Timestamp</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#TimeStampAndTimeInterval"><cite>Introduction to Rx</cite>: Timestamp and TimeInterval</a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc31"><cite>101 Rx Samples</cite>: Interval &mdash; With TimeInterval()</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy timeInterval %}
+     <figure>
+      <img src="images/timeInterval.png" style="width:100%;" alt="timeInterval" />
+      <figcaption><p>
+       The <cite>timeInterval</cite> operator converts a source Observable into an Observable that emits
+       indications of the amount of time lapsed between consecutive emissions of the source Observable. The
+       first emission from this new Observable indicates the amount of time lapsed between the time when the
+       observer subscribed to the Observable and the time when the source Observable emitted its first item.
+       There is no corresponding emission marking the amount of time lapsed between the last emission of the
+       source Observable and the subsequent call to <code>onCompleted</code>.
+      </p><p>
+       <code>timeInterval</code> by default operates on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>, but also has a variant that allows you to specify the
+       Scheduler by passing it in as a parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeInterval()"><code>timeInterval()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeInterval(rx.Scheduler)"><code>timeInterval(Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava timeInterval %}
+     <figure>
+      <img src="images/timeInterval.png" style="width:100%;" alt="timeInterval" />
+      <figcaption><p>
+       The <cite>timeInterval</cite> operator converts a source Observable into an Observable that emits
+       indications of the amount of time lapsed between consecutive emissions of the source Observable. The
+       first emission from this new Observable indicates the amount of time lapsed between the time when the
+       observer subscribed to the Observable and the time when the source Observable emitted its first item.
+       There is no corresponding emission marking the amount of time lapsed between the last emission of the
+       source Observable and the subsequent call to <code>onCompleted</code>.
+      </p><p>
+       <code>timeInterval</code> by default operates on the <code>immediate</code>
+       <a href="../scheduler.html">Scheduler</a>, but also has a variant that allows you to specify the
+       Scheduler by passing it in as a parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeInterval()"><code>timeInterval()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#timeInterval(rx.Scheduler)"><code>timeInterval(Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS timeInterval %}
+     <figure>
+      <img src="images/timeInterval.png" style="width:100%;" alt="timeInterval" />
+      <figcaption><p>
+       The <code>timeInterval</code> operator converts a source Observable into an Observable that emits
+       indications of the amount of time lapsed between consecutive emissions of the source Observable. The
+       first emission from this new Observable indicates the amount of time lapsed between the time when the
+       observer subscribed to the Observable and the time when the source Observable emitted its first item.
+       There is no corresponding emission marking the amount of time lapsed between the last emission of the
+       source Observable and the subsequent call to <code>onCompleted</code>.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .timeInterval()
+    .map(function (x) { return x.value + ':' + x.interval; })
+    .take(5);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0:0
+Next: 1:1000
+Next: 2:1000
+Next: 3:1000
+Next: 4:1000
+Completed</pre></div>
+      <p>
+       <code>timeInterval</code> by default operates on the <code>timeout</code>
+       <a href="../scheduler.html">Scheduler</a>, but also has a variant that allows you to specify the
+       Scheduler by passing it in as a parameter.
+      </p><p>
+       <code>timeInterval</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin timeInterval %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET TimeInterval %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY time_interval %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala timeInterval %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

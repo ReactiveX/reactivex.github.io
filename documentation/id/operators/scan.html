@@ -1,0 +1,361 @@
+---
+layout: documentation
+title: ReactiveX - Scan operator
+id: scan
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#transforming">Transforming</a></li>
+  <li class="active">Scan</li>
+</ol>
+
+   <h1>Scan</h1>
+   <h3>apply a function to each item emitted by an Observable, sequentially, and emit each successive value</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="scan"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Scan</span> operator applies a function to the first item emitted
+     by the source Observable and then emits the result of that function as its own first emission.
+     It also feeds the result of the function back into the function along with the second item
+     emitted by the source Observable in order to generate its second emission. It continues to
+     feed back its own subsequent emissions along with the subsequent emissions from the source
+     Observable in order to create the rest of its sequence.
+    </p><p>
+     This sort of operator is sometimes called an &ldquo;accumulator&rdquo; in other contexts.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="reduce.html"><span class="operator">Reduce</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Scan"><cite>Introduction to Rx</cite>: Scan</a></li>
+    <li><a href="http://rxmarbles.com/#scan">RxMarbles: <code>scan</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure reductions %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy scan %}
+     <figure>
+      <img src="images/scan.png" style="width:100%;" alt="scan" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>scan</code>. The following code, for example,
+       takes an Observable that emits a consecutive sequence of <i>n</i> integers starting with
+       <code>1</code> and converts it, via <code>scan</code>, into an Observable that emits the
+       first <i>n</i> <a href="http://en.wikipedia.org/wiki/Triangular_number">triangular
+       numbers</a>:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5]);
+
+numbers.scan({ a, b -> a+b }).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+1
+3
+6
+10
+15
+Sequence complete</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#scan(rx.functions.Func2)"><code>scan(Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/scanSeed.png" style="width:100%;" alt="scan" />
+      <figcaption><p>
+       There is also a variant of <code>scan</code> to which you can pass a seed value to pass
+       to the accumulator function the first time it is called (for the first emission from the
+       source Observable) in place of the result from the missing prior call to the accumulator.
+       Note that if you use this version, <code>scan</code> will emit this seed value as its own
+       initial emission. Note also that passing a seed of <code>null</code> is <em>not</em> the
+       same as passing no seed at all. A <code>null</code> seed is a valid variety of seed.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#scan(R,%20rx.functions.Func2)"><code>scan(R,Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava scan %}
+     <figure>
+      <img src="images/scan.png" style="width:100%;" alt="scan" />
+      <figcaption><p>
+       RxJava implements this operator as <code>scan</code>.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code java"><pre>
+Observable.just(1, 2, 3, 4, 5)
+    .scan(new Func2&lt;Integer, Integer, Integer&gt;() {
+        @Override
+        public Integer call(Integer sum, Integer item) {
+            return sum + item;
+        }
+    }).subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+      <div class="output"><pre>
+Next: 1
+Next: 3
+Next: 6
+Next: 10
+Next: 15
+Sequence complete.</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#scan(rx.functions.Func2)"><code>scan(Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/scanSeed.png" style="width:100%;" alt="scan" />
+      <figcaption><p>
+       There is also a variant of <code>scan</code> to which you can pass a seed value to pass
+       to the accumulator function the first time it is called (for the first emission from the
+       source Observable) in place of the result from the missing prior call to the accumulator.
+       Note that if you use this version, <code>scan</code> will emit this seed value as its own
+       initial emission. Note also that passing a seed of <code>null</code> is <em>not</em> the
+       same as passing no seed at all. A <code>null</code> seed is a valid variety of seed.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#scan(R,%20rx.functions.Func2)"><code>scan(R,Func2)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS expand scan %}
+     <figure>
+      <img src="images/scan.png" style="width:100%;" alt="scan" />
+      <figcaption><p>
+       RxJS implements the <code>scan</code> operator.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(1, 3)
+    .scan(
+        function (acc, x) {
+            return acc + x;
+        });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 1
+Next: 3
+Next: 6
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/scanSeed.js.png" style="width:100%;" alt="scan" />
+      <figcaption><p>
+       You can optionally pass <code>scan</code> a seed value as an additional parameter.
+       <code>scan</code> will pass this seed value to the accumulator function the first time it is
+       called (for the first emission from the source Observable) in place of the result from the
+       missing prior call to the accumulator.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(1, 3)
+    .scan( function (acc, x) {
+            return acc * x;
+           }, 1 );
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 6
+Completed</pre></div></figcaption>
+     </figure>
+     <p><code>scan</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <figure>
+      <img src="images/expand.png" style="width:100%;" alt="expand" />
+      <figcaption><p>
+       RxJS also implements the <code>expand</code> operator, which is somewhat similar. Rather than applying
+       the function to the previous return value of the function combined with the next item emitted from the
+       source Observable, such that the number of items it emits is equal to the number emitted by the source
+       Observable, <code>expand</code> simply feeds the return value from the function back into the function
+       without regard to future emissions from the Observable, such that it will just continue to create new
+       values at its own pace.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.return(42)
+    .expand(function (x) { return Rx.Observable.return(42 + x); })
+    .take(5);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 42
+Next: 84
+Next: 126
+Next: 168
+Next: 210
+Completed</pre></div>
+      <p><code>expand</code> is found in each of the following distributions:</p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.experimental.js</code></li>
+      </ul>
+      <p><code>expand</code> requires one of the following distributions:</p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin scan %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Scan %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP scan %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>scan</code>.
+    </p>
+    <p>
+    Applies an accumulator function over an observable sequence and returns each intermediate result. The optional seed value is used as the initial accumulator value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/scan/scan.php
+
+//Without a seed
+$source = Rx\Observable::range(1, 3);
+
+$subscription = $source
+    ->scan(function ($acc, $x) {
+        return $acc + $x;
+    })
+    ->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 3
+Next value: 6
+Complete!
+    </pre>
+</div>
+
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/scan/scan-with-seed.php
+
+//With a seed
+$source = Rx\Observable::range(1, 3);
+
+$subscription = $source
+    ->scan(function ($acc, $x) {
+        return $acc * $x;
+    }, 1)
+    ->subscribe($createStdoutObserver());
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 6
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY scan %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb scan %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala scan %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift scan %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

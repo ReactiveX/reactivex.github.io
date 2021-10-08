@@ -1,0 +1,347 @@
+---
+layout: documentation
+title: ReactiveX - Sample operator
+id: sample
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">Sample</li>
+</ol>
+
+   <h1>Sample</h1>
+   <h3>emit the most recent items emitted by an Observable within periodic time intervals</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="sample"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Sample</span> operator periodically looks at an Observable and emits whichever
+     item it has most recently emitted since the previous sampling.
+    </p><p>
+     In some implementations, there is also a <span class="operator">ThrottleFirst</span> operator that is
+     similar, but emits not the most-recently emitted item in the sample period, but the <em>first</em> item
+     that was emitted during that period.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="backpressure.html">Backpressure-related Operators</a></li>
+    <li><a href="debounce.html"><span class="operator">Debounce</span></a></li>
+    <li><a href="window.html"><span class="operator">Window</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Sample"><cite>Introduction to Rx</cite>: Sample</a></li>
+    <li><a href="http://rxmarbles.com/#sample">RxMarbles: <code>sample</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc29"><cite>101 Rx Samples</cite>: Sample &mdash; Simple</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy sample throttleFirst throttleLast %}
+     <p>
+      RxGroovy implements this operator as <code>sample</code> and <code>throttleLast</code>.
+     </p><p>
+      Note that if the source Observable has emitted no items since the last time it was sampled, the
+      Observable that results from this operator will emit no item for that sampling period.
+     </p>
+     <figure>
+      <img src="images/sample.png" style="width:100%;" alt="sample" />
+      <figcaption><p>
+       One variant of <code>sample</code> (or its alias, <code>throttleLast</code>) samples at a periodic time
+       interval that you choose by passing in a <code>TimeUnit</code> and a quantity of such units as parameters
+       to <code>sample</code>.
+      </p><p>
+       The following code constructs an Observable that emits the numbers between one and a million, and then
+       samples that Observable every ten milliseconds to see what number it is emitting at that moment.
+      </p>
+     <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+def numbers = Observable.range( 1, 1000000 );
+
+numbers.sample(10, java.util.concurrent.TimeUnit.MILLISECONDS).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+339707
+547810
+891282
+Sequence complete</pre></div>
+      <p>
+       This variant of <code>sample</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(long,%20java.util.concurrent.TimeUnit)"><code>sample(long,TimeUnit)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleLast(long,%20java.util.concurrent.TimeUnit)"><code>throttleLast(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>sample(long,TimeUnit,Scheduler)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleLast(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>throttleLast(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/sample.o.png" style="width:100%;" alt="sample" />
+      <figcaption><p>
+       There ia also a variant of <code>sample</code> (that does not have a <code>throttleLast</code> alias)
+       that samples the source Observable each time a second Observable emits an item (or when it terminates).
+       You pass in that second Observable as the parameter to <code>sample</code>.
+      </p><p>
+       This variant of <code>sample</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(rx.Observable)"><code>sample(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/throttleFirst.png" style="width:100%;" alt="throttleFirst" />
+      <figcaption><p>
+       There is also a <code>throttleFirst</code> operator, which differs from
+       <code>throttleLast</code>/<code>sample</code> in that it emits the <em>first</em> item emitted by the
+       source Observable in each sampling period rather than the <em>most recently emitted</em> item.
+      </p>
+     <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+Scheduler s = new TestScheduler();
+PublishSubject&lt;Integer&gt; o = PublishSubject.create();
+o.throttleFirst(500, TimeUnit.MILLISECONDS, s).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);
+// send events with simulated time increments
+s.advanceTimeTo(0, TimeUnit.MILLISECONDS);
+o.onNext(1); // deliver
+o.onNext(2); // skip
+s.advanceTimeTo(501, TimeUnit.MILLISECONDS);
+o.onNext(3); // deliver
+s.advanceTimeTo(600, TimeUnit.MILLISECONDS);
+o.onNext(4); // skip
+s.advanceTimeTo(700, TimeUnit.MILLISECONDS);
+o.onNext(5); // skip
+o.onNext(6); // skip
+s.advanceTimeTo(1001, TimeUnit.MILLISECONDS);
+o.onNext(7); // deliver
+s.advanceTimeTo(1501, TimeUnit.MILLISECONDS);
+o.onCompleted();</pre></div>
+      <div class="output"><pre>
+1
+3
+7
+Sequence complete</pre></div>
+      <p>
+       <code>throttleFirst</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
+      </p>
+      <ul>
+       <li><a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleFirst(long,%20java.util.concurrent.TimeUnit)"><code>throttleFirst(long,TimeUnit)</code></a></li>
+       <li><a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleFirst(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>throttleFirst(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava sample throttleFirst throttleLast %}
+     <p>
+      RxJava implements this operator as <code>sample</code> and <code>throttleLast</code>.
+     </p><p>
+      Note that if the source Observable has emitted no items since the last time it was sampled, the
+      Observable that results from this operator will emit no item for that sampling period.
+     </p>
+     <figure>
+      <img src="images/sample.png" style="width:100%;" alt="sample" />
+      <figcaption><p>
+       One variant of <code>sample</code> (or its alias, <code>throttleLast</code>) samples at a periodic time
+       interval that you choose by passing in a <code>TimeUnit</code> and a quantity of such units as parameters
+       to <code>sample</code>.
+      </p><p>
+       This variant of <code>sample</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(long,%20java.util.concurrent.TimeUnit)"><code>sample(long,TimeUnit)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleLast(long,%20java.util.concurrent.TimeUnit)"><code>throttleLast(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>sample(long,TimeUnit,Scheduler)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleLast(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>throttleLast(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/sample.o.png" style="width:100%;" alt="sample" />
+      <figcaption><p>
+       There ia also a variant of <code>sample</code> (that does not have a <code>throttleLast</code> alias)
+       that samples the source Observable each time a second Observable emits an item (or when it terminates).
+       You pass in that second Observable as the parameter to <code>sample</code>.
+      </p><p>
+       This variant of <code>sample</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#sample(rx.Observable)"><code>sample(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/throttleFirst.png" style="width:100%;" alt="throttleFirst" />
+      <figcaption><p>
+       There is also a <code>throttleFirst</code> operator, which differs from
+       <code>throttleLast</code>/<code>sample</code> in that it emits the <em>first</em> item emitted by the
+       source Observable in each sampling period rather than the <em>most recently emitted</em> item.
+      </p><p>
+       <code>throttleFirst</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
+      </p>
+      <ul>
+       <li><a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleFirst(long,%20java.util.concurrent.TimeUnit)"><code>throttleFirst(long,TimeUnit)</code></a></li>
+       <li><a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleFirst(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>throttleFirst(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS sample throttleFirst %}
+     <p>
+      RxJS implements this operator with two variants of <code>sample</code>.
+     </p>
+     <figure>
+      <img src="images/sample.png" style="width:100%;" alt="sample" />
+      <figcaption><p>
+       The first variant accepts as its parameter a periodicity, defined as an integer number of milliseconds,
+       and it samples the source Observable periodically at that frequency.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.interval(1000)
+    .sample(5000)
+    .take(2);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 3
+Next: 8
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/sample.o.png" style="width:100%;" alt="sample" />
+      <figcaption><p>
+       The second variant accepts as its parameter an Observable, and it samples the source Observable whenever
+       this second Observable emits an item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.interval(1000)
+    .sample(Rx.Observable.interval(5000))
+    .take(2);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 3
+Next: 8
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/throttleFirst.png" style="width:100%;" alt="throttleFirst" />
+      <figcaption><p>
+       There is also a <code>throttleFirst</code> operator, which differs from <code>sample</code> in that it
+       emits the <em>first</em> item emitted by the source Observable in each sampling period rather than the
+       <em>most recently emitted</em> item.
+      </p><p>
+       It does not have the variant that uses the emissions from a second Observable to regulate the sampling
+       periodicity.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var times = [
+    { value: 0, time: 100 },
+    { value: 1, time: 600 },
+    { value: 2, time: 400 },
+    { value: 3, time: 900 },
+    { value: 4, time: 200 }
+];
+
+// Delay each item by time and project value;
+var source = Rx.Observable.from(times)
+  .flatMap(function (item) {
+    return Rx.Observable
+      .of(item.value)
+      .delay(item.time);
+  })
+  .throttleFirst(300 /* ms */);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 2
+Next: 3
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <p>
+      <code>sample</code> and <code>throttleFirst</code> operate by default on the <code>timeout</code>
+      <a href="../scheduler.html">Scheduler</a>. They are found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin sample throttleFirst throttleLast %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Sample %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY sample throttle_first throttle_last %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala sample throttleFirst throttleLast %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift sample sampleLatest %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

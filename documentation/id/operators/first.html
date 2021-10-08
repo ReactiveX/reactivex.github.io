@@ -1,0 +1,734 @@
+---
+layout: documentation
+title: ReactiveX - First operator
+id: first
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">First</li>
+</ol>
+
+   <h1>First</h1>
+   <h3>emit only the first item (or the first item that meets some condition) emitted by an Observable</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="first"></rx-marbles>
+    <figcaption><p>
+    If you are only interested in the first item emitted by an Observable, or the first item that meets some
+    criteria, you can filter the Observable with the <span class="operator">First</span> operator.
+    </p><p>
+    In some implementations, <code>First</code> is not implemented as a filtering operator that returns an
+    Observable, but as a blocking function that returns a particular item at such time as the source Observable
+    emits that item. In those implementations, if you instead want a filtering operator, you may have better
+    luck with <a href="take.html"><code>Take(1)</code></a> or <a href="elementat"><code>ElementAt(0)</code></a>.
+    </p><p>
+    In some implementations there is also a <span class="operator">Single</span> operator. It behaves similarly
+    to <span class="operator">First</span> except that it waits until the source Observable terminates in order
+    to guarantee that it only emits a single item (otherwise, rather than emitting that item, it terminates with
+    an error). You can use this to not only take the first item from the source Observable but to also
+    guarantee that there was only one item.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="elementat.html"><span class="operator">ElementAt</span></a></li>
+    <li><a href="last.html"><span class="operator">Last</span></a></li>
+    <li><a href="take.html"><span class="operator">Take</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#First"><cite>Introduction to Rx</cite>: First</a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Single"><cite>Introduction to Rx</cite>: Single</a></li>
+    <li><a href="http://blog.danlew.net/2015/06/22/loading-data-from-multiple-sources-with-rxjava/">Loading data from multiple sources with RxJava</a> by Dan Lew (example using Concat and First)</li>
+    <li><a href="http://rxmarbles.com/#find">RxMarbles: <code>find</code></a></li>
+    <li><a href="http://rxmarbles.com/#findIndex">RxMarbles: <code>findIndex</code></a></li>
+    <li><a href="http://rxmarbles.com/#first">RxMarbles: <code>first</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure first single %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp first %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy first firstOrDefault latest mostRecent next single singleOrDefault takeFirst %}
+     <p>
+      In RxGroovy, this filtering operator is implemented as <code>first</code>, <code>firstOrDefault</code>,
+      and <code>takeFirst</code>.
+     </p><p>
+      Somewhat confusingly, there are also <code>BlockingObservable</code> operators called <code>first</code>
+      and <code>firstOrDefault</code> that block and then return items, rather than immediately returning
+      Observables.
+     </p><p>
+      There are also several other operators that perform similar functions.
+     </p>
+     <h3>The Filtering Operators</h3>
+     <figure>
+      <img src="images/first.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       To filter an Observable so that only its first emission is emitted, use the
+       <code>first</code> operator with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#first()"><code>first()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/firstN.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       You can also pass a predicate function to <code>first</code>, in which case it will produce an
+       Observable that emits only the first item from the source Observable that the predicate evaluates as
+       <code>true</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#first(rx.functions.Func1)"><code>first(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/firstOrDefault.png" style="width:100%;" alt="firstOrDefault" />
+      <figcaption><p>
+       The <code>firstOrDefault</code> operator is similar to <code>first</code>, but you pass it a default item
+       that it can emit if the source Observable fails to emit any items
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#firstOrDefault(T)"><code>firstOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/firstOrDefaultN.png" style="width:100%;" alt="firstOrDefault" />
+      <figcaption><p>
+       <code>firstOrDefault</code> also has a variant to which you can pass a predicate function, so that its
+       Observable will emit the first item from the source Observable that the predicate evaluates as
+       <code>true</code>, or the default item if no items emitted by the source Observable pass the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#firstOrDefault(T)"><code>firstOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/first.takefirst.png" style="width:100%;" alt="takeFirst" />
+      <figcaption><p>
+       The <code>takeFirst</code> operator behaves similarly to <code>first</code>, with the exception of how
+       these operators behave wihen the source Observable emits no items that satisfy the predicate. In such a
+       case, <code>first</code> will throw a <code>NoSuchElementException</code> while <code>takeFirst</code>
+       will return an empty Observable (one that calls <code>onCompleted</code> but never calls
+       <code>onNext</code>).
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeFirst(rx.functions.Func1)"><code>takeFirst(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/single.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       The <code>single</code> operator is similar to <code>first</code>, but throws a
+       <code>NoSuchElementException</code> if the source Observable does not emit exactly one item before
+       successfully completing.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#single()"><code>single()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/single.p.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       <code>single</code> also has a version that accepts a predicate, and emits the sole item emitted by the
+       source Observable that matches that predicate, or notifies of an exception if exactly one such item does
+       not match.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#single(rx.functions.Func1)"><code>single(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/singleOrDefault.png" style="width:100%;" alt="singleOrDefault" />
+      <figcaption><p>
+       As with <code>firstOrDefault</code> there is also a <code>singleOrDefault</code> that emits a default
+       item if the source Observable is empty, although it will still notify of an error if the source
+       Observable emits more than one item.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#singleOrDefault(T)"><code>singleOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
+      <figcaption><p>
+       And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and emits
+       the sole item from the source Observable that matches that predicate, if any; the default item if no
+       such items match; and makes an error notification if multiple items match.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#singleOrDefault(rx.functions.Func1,%20T)"><code>singleOrDefault(Func1,T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>first</code>, <code>firstOrDefault</code>, <code>single</code>, <code>singleOrDefault</code>, and
+      <code>takeFirst</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <h3>The <code>BlockingObservable</code> Methods</h3>
+     <p>
+      The <code>BlockingObservable</code> methods do not transform an Observable into another, filtered
+      Observable, but rather they break out of the Observable cascade, blocking until the Observable emits
+      the desired item, and then return that item itself.
+     </p><p>
+      To turn an Observable into a <code>BlockingObservable</code> so that you can use these methods, you can
+      use either the <code>Observable.toBlocking</code> or <code>BlockingObservable.from</code> methods.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toBlocking()"><code>Observable.toBlocking()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
+     </ul>
+     <figure>
+      <img src="images/B.first.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       To retrieve the first emission from a <code>BlockingObservable</code>, use the
+       <code>first</code> method with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#first()"><code>BlockingObservable.first()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.first.p.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       You can also pass a predicate function to the <code>first</code> method to retrieve the first emission
+       from a <code>BlockingObservable</code> that satisfies the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#first(rx.functions.Func1)"><code>BlockingObservable.first(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.firstOrDefault.png" style="width:100%;" alt="firstOrDefault" />
+      <figcaption><p>
+       As with the filtering operators, the <code>first</code> method of <code>BlockingObservable</code> will
+       throw a <code>NoSuchElementException</code> if there is no first element in the source
+       <code>BlockingObservable</code>. To return a default item instead in such cases, use the
+       <code>firstOrDefault</code> method.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#firstOrDefault(T)"><code>BlockingObservable.firstOrDefault()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.firstOrDefault.p.png" style="width:100%;" alt="firstOrDefault" />
+      <figcaption><p>
+       And, as with <code>first</code>, there is a <code>firstOrDefault</code> variant that takes a predicate
+       function as an argument and returns the first item from the source <code>BlockingObservable</code>
+       that satisfies that predicate, or a default item instead if no satisfying item was emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#firstOrDefault(T,%20rx.functions.Func1)"><code>BlockingObservable.firstOrDefault(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.single.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       The <code>single</code> operator is similar to <code>first</code>, but throws a
+       <code>NoSuchElementException</code> if the source Observable does not emit exactly one item before
+       successfully completing.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#single()"><code>single()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.single.p.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       <code>single</code> also has a version that accepts a predicate, and returns the sole item emitted by the
+       source Observable that matches that predicate, or throws an exception if exactly one such item does
+       not match.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#single(rx.functions.Func1)"><code>single(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.singleOrDefault.png" style="width:100%;" alt="singleOrDefault" />
+      <figcaption><p>
+       As with <code>firstOrDefault</code> there is also a <code>singleOrDefault</code> that returns a default
+       item if the source Observable is empty, although it will still throw an error if the source
+       Observable emits more than one item.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#singleOrDefault(T)"><code>singleOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
+      <figcaption><p>
+       And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and returns
+       the sole item from the source Observable that matches that predicate, if any; the default item if no
+       such items match; and throws an error if multiple items match.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#singleOrDefault(rx.functions.Func1,%20T)"><code>singleOrDefault(Func1,T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.next.png" style="width:100%;" alt="next" />
+      <figcaption><p>
+       The <code>next</code> operator blocks until the <code>BlockingObservable</code> emits another item, and
+       then returns that item. You can call this function repeatedly to get successive items from the
+       <code>BlockingObservable</code>, effectively iterating over its emissions in a blocking fashion.
+      </p><p>
+       The <code>latest</code> operator is similar, but rather than blocking to wait for the next emitted item,
+       it immediately returns the most-recently-emitted item, and only blocks if the Observable has not yet
+       emitted anything.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#next()"><code>next()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#latest()"><code>latest()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.mostRecent.png" style="width:100%;" alt="mostRecent" />
+      <figcaption><p>
+       The <code>mostRecent</code> operator similarly allows you to iterate over the emissions of a
+       <code>BlockingObservable</code>, but its Iterable always immediately returns a value: either a default
+       item you provide (if the <code>BlockingObservable</code> has not yet emitted an item), or the latest
+       item the <code>BlockingObservable</code> has emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#mostRecent(T)"><code>mostRecent(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava first firstOrDefault latest mostRecent next single singleOrDefault takeFirst %}
+     <p>
+      In RxJava, this filtering operator is implemented as <code>first</code>, <code>firstOrDefault</code>,
+      and <code>takeFirst</code>.
+     </p><p>
+      Somewhat confusingly, there are also <code>BlockingObservable</code> operators called <code>first</code>
+      and <code>firstOrDefault</code> that block and then return items, rather than immediately returning
+      Observables.
+     </p><p>
+      There are also several other operators that perform similar functions.
+     </p>
+     <h3>The Filtering Operators</h3>
+     <figure>
+      <img src="images/first.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       To filter an Observable so that only its first emission is emitted, use the
+       <code>first</code> operator with no parameters. 
+      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3)
+          .first()
+          .subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Sequence complete.</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#first()"><code>first()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/firstN.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       You can also pass a predicate function to <code>first</code>, in which case it will produce an
+       Observable that emits only the first item from the source Observable that the predicate evaluates as
+       <code>true</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#first(rx.functions.Func1)"><code>first(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/firstOrDefault.png" style="width:100%;" alt="firstOrDefault" />
+      <figcaption><p>
+       The <code>firstOrDefault</code> operator is similar to <code>first</code>, but you pass it a default item
+       that it can emit if the source Observable fails to emit any items
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#firstOrDefault(T)"><code>firstOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/firstOrDefaultN.png" style="width:100%;" alt="firstOrDefault" />
+      <figcaption><p>
+       <code>firstOrDefault</code> also has a variant to which you can pass a predicate function, so that its
+       Observable will emit the first item from the source Observable that the predicate evaluates as
+       <code>true</code>, or the default item if no items emitted by the source Observable pass the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#firstOrDefault(T)"><code>firstOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/first.takefirst.png" style="width:100%;" alt="takeFirst" />
+      <figcaption><p>
+       The <code>takeFirst</code> operator behaves similarly to <code>first</code>, with the exception of how
+       these operators behave wihen the source Observable emits no items that satisfy the predicate. In such a
+       case, <code>first</code> will throw a <code>NoSuchElementException</code> while <code>takeFirst</code>
+       will return an empty Observable (one that calls <code>onCompleted</code> but never calls
+       <code>onNext</code>).
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeFirst(rx.functions.Func1)"><code>takeFirst(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/single.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       The <code>single</code> operator is similar to <code>first</code>, but throws a
+       <code>NoSuchElementException</code> if the source Observable does not emit exactly one item before
+       successfully completing.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#single()"><code>single()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/single.p.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       <code>single</code> also has a version that accepts a predicate, and emits the sole item emitted by the
+       source Observable that matches that predicate, or notifies of an exception if exactly one such item does
+       not match.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#single(rx.functions.Func1)"><code>single(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/singleOrDefault.png" style="width:100%;" alt="singleOrDefault" />
+      <figcaption><p>
+       As with <code>firstOrDefault</code> there is also a <code>singleOrDefault</code> that emits a default
+       item if the source Observable is empty, although it will still notify of an error if the source
+       Observable emits more than one item.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#singleOrDefault(T)"><code>singleOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
+      <figcaption><p>
+       And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and emits
+       the sole item from the source Observable that matches that predicate, if any; the default item if no
+       such items match; and makes an error notification if multiple items match.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#singleOrDefault(rx.functions.Func1,%20T)"><code>singleOrDefault(Func1,T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>first</code>, <code>firstOrDefault</code>, <code>single</code>, <code>singleOrDefault</code>, and
+      <code>takeFirst</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <h3>The <code>BlockingObservable</code> Methods</h3>
+     <p>
+      The <code>BlockingObservable</code> methods do not transform an Observable into another, filtered
+      Observable, but rather they break out of the Observable cascade, blocking until the Observable emits
+      the desired item, and then return that item itself.
+     </p><p>
+      To turn an Observable into a <code>BlockingObservable</code> so that you can use these methods, you can
+      use either the <code>Observable.toBlocking</code> or <code>BlockingObservable.from</code> methods.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toBlocking()"><code>Observable.toBlocking()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
+     </ul>
+     <figure>
+      <img src="images/B.first.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       To retrieve the first emission from a <code>BlockingObservable</code>, use the
+       <code>first</code> method with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#first()"><code>BlockingObservable.first()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.first.p.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       You can also pass a predicate function to the <code>first</code> method to retrieve the first emission
+       from a <code>BlockingObservable</code> that satisfies the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#first(rx.functions.Func1)"><code>BlockingObservable.first(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.firstOrDefault.png" style="width:100%;" alt="firstOrDefault" />
+      <figcaption><p>
+       As with the filtering operators, the <code>first</code> method of <code>BlockingObservable</code> will
+       throw a <code>NoSuchElementException</code> if there is no first element in the source
+       <code>BlockingObservable</code>. To return a default item instead in such cases, use the
+       <code>firstOrDefault</code> method.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#firstOrDefault(T)"><code>BlockingObservable.firstOrDefault()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.firstOrDefault.p.png" style="width:100%;" alt="firstOrDefault" />
+      <figcaption><p>
+       And, as with <code>first</code>, there is a <code>firstOrDefault</code> variant that takes a predicate
+       function as an argument and retrieves the first item from the source <code>BlockingObservable</code>
+       that satisfies that predicate, or a default item instead if no satisfying item was emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#firstOrDefault(T,%20rx.functions.Func1)"><code>BlockingObservable.firstOrDefault(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.single.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       The <code>single</code> operator is similar to <code>first</code>, but throws a
+       <code>NoSuchElementException</code> if the source Observable does not emit exactly one item before
+       successfully completing.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#single()"><code>single()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.single.p.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       <code>single</code> also has a version that accepts a predicate, and returns the sole item emitted by the
+       source Observable that matches that predicate, or throws an exception if exactly one such item does
+       not match.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#single(rx.functions.Func1)"><code>single(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.singleOrDefault.png" style="width:100%;" alt="singleOrDefault" />
+      <figcaption><p>
+       As with <code>firstOrDefault</code> there is also a <code>singleOrDefault</code> that returns a default
+       item if the source Observable is empty, although it will still throw an error if the source
+       Observable emits more than one item.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#singleOrDefault(T)"><code>singleOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.singleOrDefault.p.png" style="width:100%;" alt="singleOrDefault" />
+      <figcaption><p>
+       And there is also a verion of <code>singleOrDefault</code> that takes a predicate function and returns
+       the sole item from the source Observable that matches that predicate, if any; the default item if no
+       such items match; and throws an error if multiple items match.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#singleOrDefault(rx.functions.Func1,%20T)"><code>singleOrDefault(Func1,T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.next.png" style="width:100%;" alt="next" />
+      <figcaption><p>
+       The <code>next</code> operator blocks until the <code>BlockingObservable</code> emits another item, and
+       then returns that item. You can call this function repeatedly to get successive items from the
+       <code>BlockingObservable</code>, effectively iterating over its emissions in a blocking fashion.
+      </p><p>
+       The <code>latest</code> operator is similar, but rather than blocking to wait for the next emitted item,
+       it immediately returns the most-recently-emitted item, and only blocks if the Observable has not yet
+       emitted anything.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#next()"><code>next()</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#latest()"><code>latest()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.mostRecent.png" style="width:100%;" alt="mostRecent" />
+      <figcaption><p>
+       The <code>mostRecent</code> operator similarly allows you to iterate over the emissions of a
+       <code>BlockingObservable</code>, but its Iterable always immediately returns a value: either a default
+       item you provide (if the <code>BlockingObservable</code> has not yet emitted an item), or the latest
+       item the <code>BlockingObservable</code> has emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#mostRecent(T)"><code>mostRecent(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS find findIndex first single %}
+     <figure>
+      <img src="images/firstN.png" style="width:100%;" alt="first" />
+      <figcaption><p>
+       RxJS implements the <code>first</code> operator. It optionally takes a predicate function as a parameter,
+       in which case, rather than emitting the first item from the source Observable, the resulting Observable
+       will emit the first item from the source Observable that satisfies the predicate.
+      </p><p>
+       The predicate function itself takes three arguments:
+      </p>
+      <ol>
+       <li>the item from the source Observable to be, or not be, filtered</li>
+       <li>the zero-based index of this item in the source Observable&#8217;s sequence</li>
+       <li>the source Observable object</li>
+      </ol>
+      <p>
+       An optional third parameter (named <code>defaultValue</code>) allows you to choose an item
+       that <code>first</code> will emit if the source Observable does not emit any items (or if
+       it does not emit the <i>n</i><sup>th</sup> item that it expected.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 10)
+    .first(function (x, idx, obs) { return x % 2 === 1; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 1
+Completed</pre></div>
+      <p>
+       If the source Observable emits no items (or no items that match the predicate), <code>first</code>
+       will terminate with a &ldquo;<code>Sequence contains no elements.</code>&rdquo; <code>onError</code>
+       notification.
+      </p>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/single.p.png" style="width:100%;" alt="single" />
+      <figcaption><p>
+       The <code>single</code> operator is similar, except that it only emits its item once the source
+       Observable successfully completes after emitting one item (or one item that matches the predicate). If it
+       emits either no such items or more than one such item, <code>single</code> will terminate with an
+       <code>onError</code> notitifcation (&ldquo;<code>Sequence contains no elements.</code>&rdquo;).
+      </p>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/find.png" style="width:100%;" alt="find" />
+      <figcaption><p>
+       The <code>find</code> operator is much like <code>first</code> except that the predicate argument is
+       mandatory, and it behaves differently if no item from the source Observable matches the predicate.
+       While <code>first</code> will send an <code>onError</code> notification in such a case, <code>find</code>
+       will instead emit an <code>undefined</code> item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var array = [1,2,3,4];
+
+var source = Rx.Observable.fromArray(array)
+    .find(function (x, i, obs) {
+        return x === 5;
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: undefined
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/findIndex.png" style="width:100%;" alt="findIndex" />
+      <figcaption><p>
+      <p>
+       The <code>findIndex</code> operator is similar to <code>find</code>, except that instead of emitting
+       the item that matches the predicate (or <code>undefined</code>), it emits the zero-based index of that
+       item in the source Observable&#8217;s sequence (or <code>-1</code>).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var array = [1,2,3,4];
+
+var source = Rx.Observable.fromArray(array)
+    .findIndex(function (x, i, obs) {
+        return x === 5;
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: -1
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <p>
+      <code>find</code>, <code>findIndex</code>, and <code>first</code> are found
+      in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      They each require one of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin first firstOrDefault mostRecent single singleOrDefault takeFirst %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET First FirstOrDefault Latest Next Single SingleOrDefault %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY first first_or_default single single_or_default %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb first first_or_default single single_or_default %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala first firstOrElse head headOption headOrElse latest next single singleOption singleOrElse %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift single %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

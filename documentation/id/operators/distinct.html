@@ -1,0 +1,456 @@
+---
+layout: documentation
+title: ReactiveX - Distinct operator
+id: distinct
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">Distinct</li>
+</ol>
+
+   <h1>Distinct</h1>
+   <h3>suppress duplicate items emitted by an Observable</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="distinct"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Distinct</span> operator filters an Observable by only allowing items through
+     that have not already been emitted.
+    </p><p>
+     In some implementations there are variants that allow you to adjust the criteria by which two items are
+     considered &ldquo;distinct.&rdquo; In some, there is a variant of the operator that only compares an item
+     against its immediate predecessor for distinctness, thereby filtering only <em>consecutive</em> duplicate
+     items from the sequence.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="filter.html"><span class="operator">Filter</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#Distinct"><cite>Introduction to Rx</cite>: Distinct and DistinctUntilChanged</a></li>
+    <li><a href="http://rxmarbles.com/#distinct">RxMarbles: <code>distinct</code></a></li>
+    <li><a href="http://rxmarbles.com/#distinctUntilChanged">RxMarbles: <code>distinctUntilChanged</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure distinct %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp distinct_until_changed %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy distinct distinctUntilChanged %}
+     <figure>
+      <img src="images/distinct.png" style="width:100%;" alt="distinct" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>distinct</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#distinct()"><code>distinct()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/distinct.key.png" style="width:100%;" alt="distinct" />
+      <figcaption><p>
+       There is also a variant of this operator that takes a function as a parameter. This function
+       operates on items emitted by the source Observable to generate a &ldquo;key.&rdquo; It is
+       these keys, then, and not the items themselves, that <code>distinct</code> will compare to
+       determine whether or not two items are distinct.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#distinct(rx.functions.Func1)"><code>distinct(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/distinctUntilChanged.png" style="width:100%;" alt="distinctUntilChanged" />
+      <figcaption><p>
+       RxGroovy also implements the <code>distinctUntilChanged</code> operator. It only compares
+       emitted items from the source Observable against their immediate predecessors in order to
+       determine whether or not they are distinct.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#distinctUntilChanged()"><code>distinctUntilChanged()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/distinctUntilChanged.key.png" style="width:100%;" alt="distinctUntilChanged" />
+      <figcaption><p>
+       As with <code>distinct</code>, there is also a version of <code>distinctUntilChanged</code>
+       that accepts a key selector function and that uses the resulting key to determine whether or
+       not two adjacently-emitted items are distinct.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#distinctUntilChanged(rx.functions.Func1)"><code>distinctUntilChanged(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>distinct</code> and <code>distinctUntilChanged</code> do not by default operate on any
+      particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava distinct distinctUntilChanged %}
+     <figure>
+      <img src="images/distinct.png" style="width:100%;" alt="distinct" />
+      <figcaption><p>
+       RxJava implements this operator as <code>distinct</code>.
+      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 1, 1, 2, 3)
+          .distinct()
+          .subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Sequence complete.</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#distinct()"><code>distinct()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/distinct.key.png" style="width:100%;" alt="distinct" />
+      <figcaption><p>
+       There is also a variant of this operator that takes a function as a parameter. This function
+       operates on items emitted by the source Observable to generate a &ldquo;key.&rdquo; It is
+       these keys, then, and not the items themselves, that <code>distinct</code> will compare to
+       determine whether or not two items are distinct.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#distinct(rx.functions.Func1)"><code>distinct(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/distinctUntilChanged.png" style="width:100%;" alt="distinctUntilChanged" />
+      <figcaption><p>
+       RxJava also implements the <code>distinctUntilChanged</code> operator. It only compares
+       emitted items from the source Observable against their immediate predecessors in order to
+       determine whether or not they are distinct.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#distinctUntilChanged()"><code>distinctUntilChanged()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/distinctUntilChanged.key.png" style="width:100%;" alt="distinctUntilChanged" />
+      <figcaption><p>
+       As with <code>distinct</code>, there is also a version of <code>distinctUntilChanged</code>
+       that accepts a key selector function and that uses the resulting key to determine whether or
+       not two adjacently-emitted items are distinct.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#distinctUntilChanged(rx.functions.Func1)"><code>distinctUntilChanged(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>distinct</code> and <code>distinctUntilChanged</code> do not by default operate on any
+      particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS distinct distinctUntilChanged %}
+     <figure>
+      <img src="images/distinct.png" style="width:100%;" alt="distinct" />
+      <figcaption><p>
+       In RxJS, the <code>distinct</code> operator has two optional parameters:
+      </p>
+      <ol>
+       <li>a function that accepts an item emitted by the source Observable and returns a <i>key</i> which will be used instead of the item itself when comparing two items for distinctness</li>
+       <li>a function that accepts two items (or two keys) and compares them for distinctness, returning <code>false</code> if they are distinct (an equality function is the default if you do not supply your own function here)</li>
+      </ol>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Without key selector */
+var source = Rx.Observable.fromArray([
+        42, 24, 42, 24
+    ])
+    .distinct();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 42
+Next: 24
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* With key selector */
+var source = Rx.Observable.fromArray([
+        {value: 42}, {value: 24}, {value: 42}, {value: 24}
+    ])
+    .distinct(function (x) { return x.value; });
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x.toString());
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+      <div class="output"><pre>
+Next: { value: 42 }
+Next: { value: 24 }
+Completed</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/distinctUntilChanged.png" style="width:100%;" alt="distinctUntilChanged" />
+      <figcaption><p>
+       RxJS also has a <code>distinctUntilChanged</code> operator. It only compares emitted items
+       from the source Observable against their immediate predecessors in order to determine whether
+       or not they are distinct. It takes the same two optional parameters as the
+       <code>distinct</code> operator.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Without key selector */
+var source = Rx.Observable.fromArray([
+        24, 42, 24, 24
+    ])
+    .distinctUntilChanged();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 24
+Next: 42
+Next: 24
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* With key selector */
+var source = Rx.Observable.fromArray([
+        {value: 24}, {value: 42}, {value: 42}, {value: 24}
+    ])
+    .distinctUntilChanged(function (x) { return x.value; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: { value: 24 }
+Next: { value: 42 }
+Next: { value: 24 }
+Completed</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>distinct</code> and <code>distinctUntilChanged</code> are found in each of the following
+      distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin distinct distinctUntilChanged %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Distinct DistinctUntilChanged %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP distinct distinctKey distinctUntilChanged distinctUntilKeyChanged %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>distinct</code>.
+    </p>
+    <p>
+    Returns an observable sequence that contains only distinct elements according to the keySelector and the comparer. Usage of this operator should be considered carefully due to the maintenance of an internal lookup structure which can grow large.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/distinct/distinct.php
+
+$source = \Rx\Observable::fromArray([
+    42, 24, 42, 24
+])->distinct();
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 24
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>distinctKey</code>.
+    </p>
+    <p>
+    Variant of distinct that takes a key selector
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/distinct/distinctKey.php
+
+$source = \Rx\Observable::fromArray([
+    ['id' => '42'],
+    ['id' => '24'],
+    ['id' => '42'],
+    ['id' => '24']
+])
+    ->distinctKey(function ($x) {
+        return $x['id'];
+    })
+    ->map(function ($x) {
+        return $x['id'];
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Next value: 24
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>distinctUntilChanged</code>.
+    </p>
+    <p>
+    A variant of distinct that only compares emitted items from the source Observable against their immediate predecessors in order to determine whether or not they are distinct.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/distinct/distinctUntilChanged.php
+
+$source = \Rx\Observable::fromArray([
+    24, 42, 24, 24
+])->distinctUntilChanged();
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 24
+Next value: 42
+Next value: 24
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>distinctUntilKeyChanged</code>.
+    </p>
+    <p>
+    Variant of distinctUntilChanged that takes a key selector and the comparer.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/distinct/distinctUntilKeyChanged.php
+
+$source = \Rx\Observable::fromArray([
+    ['id' => '24'],
+    ['id' => '42'],
+    ['id' => '24'],
+    ['id' => '24']
+])
+    ->distinctUntilKeyChanged(function ($x) {
+        return $x['id'];
+    })
+    ->map(function ($x) {
+        return $x['id'];
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 24
+Next value: 42
+Next value: 24
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY distinct distinct_until_changed %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb distinct distinct_until_changed %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala distinct distinctUntilChanged %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift distinctUntilChanged %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

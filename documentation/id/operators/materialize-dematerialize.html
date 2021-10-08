@@ -1,0 +1,244 @@
+---
+layout: documentation
+title: ReactiveX - Materialize &amp; Dematerialize operators
+id: materialize-dematerialize
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Materialize/Dematerialize</li>
+</ol>
+
+<h1>Materialize/Dematerialize</h1>
+<h3>represent both the items emitted and the notifications sent as emitted items, or reverse this process</h3>
+
+<figure>
+ <img src="images/materialize.c.png" style="width:100%;" alt="Materialize" />
+ <figcaption><p>
+ A well-formed, finite Observable will invoke its observer’s <code>onNext</code> method zero or more times, and
+ then will invoke either the <code>onCompleted</code> or <code>onError</code> method exactly once. The
+ <span class="operator">Materialize</span> operator converts this series of invocations &mdash; both the
+ original <code>onNext</code> notifications and the terminal <code>onCompleted</code> or <code>onError</code>
+ notification &mdash; into a series of <em>items</em> emitted by an Observable.
+ </p></figcaption>
+</figure>
+<figure>
+ <img src="images/dematerialize.c.png" style="width:100%;" alt="Dematerialize" />
+ <figcaption><p>
+ The <span class="operator">Dematerialize</span> operator reverses this process. It operates on an Observable
+ that has previously been transformed by <span class="operator">Materialize</span> and returns it to its
+ original form.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/08_Transformation.html#MaterializeAndDematerialize"><cite>Introduction to Rx</cite>: Materialize and Dematerialize</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy dematerialize materialize %}
+    <figure class="variant">
+     <img src="images/materialize.png" style="width:100%;" alt="materialize" />
+     <figcaption><p>
+      In RxGroovy, <code>materialize</code> transforms the notifications from the source Observable into
+      <code>Notification</code> objects and emits them as the emissions from the Observable it returns. For
+      example:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3]);
+
+numbers.materialize().subscribe(
+  { if(rx.Notification.Kind.OnNext == it.kind) { println("Next: " + it.value); }
+    else if(rx.Notification.Kind.OnCompleted == it.kind) { println("Completed"); }
+    else if(rx.Notification.Kind.OnError == it.kind) { println("Error: " + it.exception); } },
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Completed
+Sequence complete</pre></div>
+     <p>
+      <code>materialize</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#materialize()"><code>materialize()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/dematerialize.png" style="width:100%;" alt="dematerialize" />
+     <figcaption><p>
+      <code>dematerialize</code> reverses this process: converting the emitted <code>Notification</code>
+      objects from the source Observable into notifications from the resulting Observable.
+      The following example dematerializes the materialized Observable from the previous section:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3]);
+
+numbers.materialize().dematerialize().subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+1
+2
+3
+Sequence complete</pre></div>
+     <p>
+      <code>dematerialize</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#dematerialize()"><code>dematerialize()</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava dematerialize materialize %}
+    <figure class="variant">
+     <img src="images/materialize.png" style="width:100%;" alt="materialize" />
+     <figcaption><p>
+      In RxJava, <code>materialize</code> transforms the notifications from the source Observable into
+      <code>Notification</code> objects and emits them as the emissions from the Observable it returns.
+     </p>
+     <p>
+      <code>materialize</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#materialize()"><code>materialize()</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/dematerialize.png" style="width:100%;" alt="dematerialize" />
+     <figcaption><p>
+      <code>dematerialize</code> reverses this process: converting the emitted <code>Notification</code>
+      objects from the source Observable into notifications from the resulting Observable.
+     </p>
+     <p>
+      <code>dematerialize</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#dematerialize()"><code>dematerialize()</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS dematerialize %}
+    <figure class="variant">
+     <img src="images/dematerialize.png" style="width:100%;" alt="dematerialize" />
+     <figcaption><p>
+      RxJS only implements the <code>dematerialize</code> operator. If you want a &ldquo;materialized&rdquo;
+      Observable, you have to assemble it by hand by manually creating and emitting the
+      <code>Notification</code> objects that represent Observable notification calls.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable
+    .fromArray([
+        Rx.Notification.createOnNext(42),
+        Rx.Notification.createOnError(new Error('woops'))
+    ])
+    .dematerialize();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Error: Error: woops</pre></div>
+     <p>
+      <code>dematerialize</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin dematerialize materialize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET dematerialize materialize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP materialize dematerialize %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>materialize</code>.
+    </p>
+    <p>
+    Materializes the implicit notifications of an observable sequence as explicit notifications.
+    </p>
+
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>dematerialize</code>.
+    </p>
+    <p>
+    Dematerializes the explicit notification values of an observable sequence as implicit notifications.
+    </p>
+
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY dematerialize materialize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb dematerialize materialize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

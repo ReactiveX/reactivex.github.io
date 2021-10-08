@@ -1,0 +1,300 @@
+---
+layout: documentation
+title: ReactiveX - Empty, Never, and Throw operators
+id: empty-never-throw
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Empty/Never/Throw</li>
+</ol>
+
+<h1>Empty</h1>
+<h3>create an Observable that emits no items but terminates normally</h3>
+<figure>
+  <img src="images/empty.c.png" style="width:100%;" alt="Empty" />
+</figure>
+<h1>Never</h1>
+<h3>create an Observable that emits no items and does not terminate</h3>
+<figure>
+  <img src="images/never.c.png" style="width:100%;" alt="Never" />
+</figure>
+<h1>Throw</h1>
+<h3>create an Observable that emits no items and terminates with an error</h3>
+<figure>
+  <img src="images/throw.c.png" style="width:100%;" alt="Throw" />
+</figure>
+
+<p>
+ The <span class="operator">Empty</span>, <span class="operator">Never</span>, and
+ <span class="operator">Throw</span> operators generate Observables with very specific and limited
+ behavior. These are useful for testing purposes, and sometimes also for combining with other
+ Observables or as parameters to operators that expect other Observables as parameters.
+</p>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/04_CreatingObservableSequences.html#SimpleFactoryMethods"><cite>Introduction to Rx</cite>: Simple Factory Methods</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure empty never throw %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp empty never throw %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy empty never error %}
+     <p>
+      RxGroovy implements these operators as <code>empty</code>, <code>never</code>, and
+      <code>error</code>. The <code>error</code> operator takes as a parameter the
+      <code>Throwable</code> with which you want the Observable to terminate.
+     </p><p>
+      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>, but
+      <code>empty</code> and <code>error</code> optionally take a Scheduler as a parameter, and if
+      you pass them a Scheduler they will issue their termination notifications on that Scheduler.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+println("*** empty() ***");
+Observable.empty().subscribe(
+  { println("empty: " + it); },                      // onNext
+  { println("empty: error - " + it.getMessage()); }, // onError
+  { println("empty: Sequence complete"); }           // onCompleted
+);
+
+println("*** error() ***");
+Observable.error(new Throwable("badness")).subscribe(
+  { println("error: " + it); },                      // onNext
+  { println("error: error - " + it.getMessage()); }, // onError
+  { println("error: Sequence complete"); }           // onCompleted
+);
+
+println("*** never() ***");
+Observable.never().subscribe(
+  { println("never: " + it); },                      // onNext
+  { println("never: error - " + it.getMessage()); }, // onError
+  { println("never: Sequence complete"); }           // onCompleted
+);
+println("*** END ***");</pre></div>
+     <div class="output"><pre>
+*** empty() ***
+empty: Sequence complete
+*** error() ***
+error: error - badness
+*** never() ***
+*** END ***</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#empty()"><code>empty()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#never()"><code>never()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#error(java.lang.Throwable)"><code>error(throwable)</code></a></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava empty never error %}
+     <p>
+      RxJava implements these operators as <code>empty</code>, <code>never</code>, and
+      <code>error</code>. The <code>error</code> operator takes as a parameter the
+      <code>Throwable</code> with which you want the Observable to terminate.
+     </p><p>
+      These operators do not operate by default on any particular <a href="../scheduler.html">Scheduler</a>, but
+      <code>empty</code> and <code>error</code> optionally take a Scheduler as a parameter, and if
+      you pass them a Scheduler they will issue their termination notifications on that Scheduler.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#empty()"><code>empty()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#never()"><code>never()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#error(java.lang.Throwable)"><code>error(throwable)</code></a></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS empty never throw %}
+     <p>
+      RxJS implements these operators as <code>empty</code>, <code>never</code>, and
+      <code>throw</code>.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.empty();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Completed</pre></div>
+     <div class="code javascript"><pre>
+// This will never produce a value, hence never calling any of the callbacks
+var source = Rx.Observable.never();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+</pre></div>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.return(42)
+    .selectMany(Rx.Observable.throw(new Error('error!')));
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Error: Error: error!</pre></div>
+     <p>
+      <code>empty</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <p>
+      <code>never</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <p>
+      <code>throw</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin empty never error asObservable %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Empty Never Throw %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP emptyObservable never error %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>emptyObservable</code>.
+    </p>
+    <p>
+    Returns an empty observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/empty-observable/empty-observable.php
+
+$observable = \Rx\Observable::emptyObservable();
+$observable->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>never</code>.
+    </p>
+    <p>
+    Returns a non-terminating observable sequence, which can be used to denote an infinite duration.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/never/never.php
+
+$observable = \Rx\Observable::never();
+$observable->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>error</code>.
+    </p>
+    <p>
+    Returns an observable sequence that terminates with an exception.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/error-observable/error-observable.php
+
+$observable = Rx\Observable::error(new Exception('Oops!'));
+$observable->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Exception: Oops!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY empty never throw throw_exception %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb empty never raise_error %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala empty never error %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift empty never failWith %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

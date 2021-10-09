@@ -109,7 +109,7 @@ id: single
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.subscribeOn.png" width="100%" />
 <h2>timeout</h2>
 <p>
- Timeout akan menyebabkan sebuah Single untuk membatalkan dengan sebuah notifikasi error jika Single tersebut tidak memancarkan sebuah item dalam jangka waktu tertentu setelah di-subscribe. Salah satu versi mengizinkan anda untuk mengatur timeout menggunakan beberapa satuan waktu:
+ Timeout akan menyebabkan sebuah Single untuk membatalkan dengan sebuah notifikasi error jika Single tersebut tidak memancarkan sebuah item dalam jangka waktu tertentu setelah di-subscribe. Salah satu versi memungkinkan anda untuk mengatur timeout menggunakan beberapa satuan waktu:
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.1.png" width="100%" />
 <p>
@@ -117,7 +117,7 @@ id: single
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.1s.png" width="100%" />
 <p>
- Sebuah versi dari operator timeout yang mengizinkan anda untuk berubah menjadi sebuah Single cadangan daripada mengirimkan notifikasi error jika timout tersebut sudah melewati batas waktu yang ditentukan:
+ Sebuah versi dari operator timeout yang memungkinkan anda untuk berubah menjadi sebuah Single cadangan daripada mengirimkan notifikasi error jika timout tersebut sudah melewati batas waktu yang ditentukan:
 </p>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.timeout.2.png" width="100%" />
 <p>

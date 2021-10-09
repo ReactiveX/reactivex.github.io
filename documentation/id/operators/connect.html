@@ -1,0 +1,202 @@
+---
+layout: documentation
+title: ReactiveX - Connect operator
+id: connect
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#connectable">Connectable</a></li>
+  <li class="active">Connect</li>
+</ol>
+
+<h1>Connect</h1>
+<h3>instruct a connectable Observable to begin emitting items to its subscribers</h3>
+
+<figure>
+ <img src="images/publishConnect.c.png" style="width:100%;" alt="Connect" />
+ <figcaption><p>
+  A <dfn>connectable Observable</dfn> resembles an ordinary Observable, except that it does not begin
+  emitting items when it is subscribed to, but only when the <span class="operator">Connect</span>
+  operator is applied to it. In this way you can wait for all intended observers to subscribe to the
+  Observable before the Observable begins emitting items.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="publish.html"><span class="operator">Publish</span></a></li>
+ <li><a href="refcount.html"><span class="operator">RefCount</span></a></li>
+ <li><a href="replay.html"><span class="operator">Replay</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/14_HotAndColdObservables.html#PublishAndConnect"><cite>Introduction to Rx</cite>: Publish &amp; Connect</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp connect connect_forever %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy connect %}
+    <figure class="variant">
+     <img src="images/publishConnect.png" style="width:100%;" alt="connect" />
+     <figcaption><p>
+      In RxGroovy, the <code>connect</code> operator is a method of the
+      <code>ConnectableObservable</code> interface. You can use the <code>publish</code> operator to
+      convert an ordinary Observable into a <code>ConnectableObservable</code>.
+     </p><p>
+      Call a <code>ConnectableObservable</code>&#8217;s <code>connect</code> method to instruct it
+      to begin emitting the items from its underlying Observable to its Subscribers.
+     </p><p>
+      The <code>connect</code> method returns a <code>Subscription</code>. You can call that
+      <code>Subscription</code> object&#8217;s <code>unsubscribe</code> method to instruct the
+      Observable to stop emitting items to its Subscribers.
+     </p><p>
+      You can also use the <code>connect</code> method to instruct an Observable to begin emitting
+      items (or, to begin generating items that would be emitted) even before any Subscriber has
+      subscribed to it. In this way you can turn a cold Observable into a hot one.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/ConnectableObservable.html#connect()"><code>connect()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/ConnectableObservable.html#connect(rx.functions.Action1)"><code>connect(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava connect %}
+    <figure class="variant">
+     <img src="images/publishConnect.png" style="width:100%;" alt="connect" />
+     <figcaption><p>
+      In RxJava, the <code>connect</code> operator is a method of the
+      <code>ConnectableObservable</code> interface. You can use the <code>publish</code> operator to
+      convert an ordinary Observable into a <code>ConnectableObservable</code>.
+     </p><p>
+      Call a <code>ConnectableObservable</code>&#8217;s <code>connect</code> method to instruct it
+      to begin emitting the items from its underlying Observable to its Subscribers.
+     </p><p>
+      The <code>connect</code> method returns a <code>Subscription</code>. You can call that
+      <code>Subscription</code> object&#8217;s <code>unsubscribe</code> method to instruct the
+      Observable to stop emitting items to its Subscribers.
+     </p><p>
+      You can also use the <code>connect</code> method to instruct an Observable to begin emitting
+      items (or, to begin generating items that would be emitted) even before any Subscriber has
+      subscribed to it. In this way you can turn a cold Observable into a hot one.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/ConnectableObservable.html#connect()"><code>connect()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/ConnectableObservable.html#connect(rx.functions.Action1)"><code>connect(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS connect %}
+    <figure class="variant">
+     <img src="images/publishConnect.png" style="width:100%;" alt="connect" />
+     <figcaption><p>
+      In RxJS, the <code>connect</code> operator is a method of the
+      <code>ConnectableObservable</code> prototype. You can use the <code>publish</code> operator to
+      convert an ordinary Observable into a <code>ConnectableObservable</code>.
+     </p><p>
+      Call a <code>ConnectableObservable</code>&#8217;s <code>connect</code> method to instruct it
+      to begin emitting the items from its underlying Observable to its Subscribers.
+     </p><p>
+      The <code>connect</code> method returns a <code>Disposable</code>. You can call that
+      <code>Disposable</code> object&#8217;s <code>dispose</code> method to instruct the Observable
+      to stop emitting items to its Subscribers.
+     </p><p>
+      You can also use the <code>connect</code> method to instruct an Observable to begin emitting
+      items (or, to begin generating items that would be emitted) even before any Subscriber has
+      subscribed to it. In this way you can turn a cold Observable into a hot one.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var interval = Rx.Observable.interval(1000);
+
+var source = interval
+    .take(2)
+    .do(function (x) { console.log('Side effect'); });
+
+var published = source.publish();
+
+published.subscribe(createObserver('SourceA'));
+published.subscribe(createObserver('SourceB'));
+
+// Connect the source
+var connection = published.connect();
+
+function createObserver(tag) {
+    return Rx.Observer.create(
+        function (x) { console.log('Next: ' + tag + x); },
+        function (err) { console.log('Error: ' + err); },
+        function () { console.log('Completed'); });
+}</pre></div><div class="output"><pre>
+Side effect
+Next: SourceA0
+Next: SourceB0
+Side effect
+Next: SourceA1
+Next: SourceB1
+Completed
+Completed</pre></div>
+     <p>
+      <code>connect</code> is found in the following packages:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.all.binding.js</code></li>
+     </ul>
+     <p>
+      <code>connect</code> requires one of the following packages:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin connect %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Connect %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY connect %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala connect %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,0 +1,219 @@
+---
+layout: documentation
+title: ReactiveX - ElementAt operator
+id: elementAt
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">ElementAt</li>
+</ol>
+
+   <h1>ElementAt</h1>
+   <h3>emit only item <i>n</i> emitted by an Observable</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="elementAt"></rx-marbles>
+    <figcaption><p>
+     The <code>ElementAt</code> operator pulls an item located at a specified index location in the sequence
+     of items emitted by the source Observable and emits that item as its own sole emission.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="first.html"><span class="operator">First</span></a></li>
+    <li><a href="last.html"><span class="operator">Last</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#ElementAt"><cite>Introduction to Rx</cite>: ElementAt and ElementAtUntilChanged</a></li>
+    <li><a href="http://rxmarbles.com/#elementAt">RxMarbles: <code>elementAt</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure nth %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy elementAt elementAtOrDefault %}
+     <figure>
+      <img src="images/elementAt.png" style="width:100%;" alt="elementAt" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>elementAt</code>. Pass <code>elementAt</code> a zero-based
+       index value and it will emit the solitary item from the source Observable&#8217;s sequence that matches
+       that index value (for example, if you pass the index value 5, <code>elementAt</code> will emit the sixth
+       item emitted by the source Observable).
+      </p><p>
+       If you pass in a negative index value, or if the source Observable emits fewer than <code><i>index
+       value</i>&nbsp;+&nbsp;1</code> items, <code>elementAt</code> will throw an
+       <code>IndexOutOfBoundsException</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#elementAt(int)"><code>elementAt(int)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/elementAtOrDefault.png" style="width:100%;" alt="elementAtOrDefault" />
+      <figcaption><p>
+       RxGroovy also implements the <code>elementAtOrDefault</code> operator. It differs from
+       <code>elementAt</code> in that it will not throw an exception if the source Observable emits fewer than
+       <code><i>index value</i>&nbsp;+&nbsp;1</code> items. Instead, it will emit a &ldquo;default&rdquo; item
+       that you specify with an additional parameter to <code>elementAtOrDefault</code>.
+      </p><p>
+       If you pass in a negative index value, <code>elementAt</code> will throw an
+       <code>IndexOutOfBoundsException</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#elementAtOrDefault(int,%20T)"><code>elementAtOrDefault(int,T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>elementAt</code> and <code>elementAtOrDefault</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava elementAt elementAtOrDefault %}
+     <figure>
+      <img src="images/elementAt.png" style="width:100%;" alt="elementAt" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>elementAt</code>. Pass <code>elementAt</code> a zero-based
+       index value and it will emit the solitary item from the source Observable&#8217;s sequence that matches
+       that index value (for example, if you pass the index value 5, <code>elementAt</code> will emit the sixth
+       item emitted by the source Observable).
+      </p><p>
+       If you pass in a negative index value, or if the source Observable emits fewer than <code><i>index
+       value</i>&nbsp;+&nbsp;1</code> items, <code>elementAt</code> will throw an
+       <code>IndexOutOfBoundsException</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#elementAt(int)"><code>elementAt(int)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/elementAtOrDefault.png" style="width:100%;" alt="elementAtOrDefault" />
+      <figcaption><p>
+       RxGroovy also implements the <code>elementAtOrDefault</code> operator. It differs from
+       <code>elementAt</code> in that it will not throw an exception if the source Observable emits fewer than
+       <code><i>index value</i>&nbsp;+&nbsp;1</code> items. Instead, it will emit a &ldquo;default&rdquo; item
+       that you specify with an additional parameter to <code>elementAtOrDefault</code>.
+      </p><p>
+       If you pass in a negative index value, <code>elementAt</code> will throw an
+       <code>IndexOutOfBoundsException</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#elementAtOrDefault(int,%20T)"><code>elementAtOrDefault(int,T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>elementAt</code> and <code>elementAtOrDefault</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS elementAt %}
+     <figure>
+      <img src="images/elementAt.png" style="width:100%;" alt="elementAt" />
+      <figcaption><p>
+       RxJS implements this operator as <code>elementAt</code>. Pass <code>elementAt</code> a zero-based
+       index value and it will emit the solitary item from the source Observable&#8217;s sequence that matches
+       that index value (for example, if you pass the index value 5, <code>elementAt</code> will emit the sixth
+       item emitted by the source Observable).
+      </p><p>
+       If there is no element in the source sequence with the index value you specify, <code>elementAt</code>
+       will issue an <code>onError</code> notification: &ldquo;<code>Argument out of range</code>&rdquo;
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.fromArray([1,2,3,4])
+    .elementAt(1);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 2
+Completed</pre></div>
+       <p>
+        You may optionally pass in a default value that <code>elementAt</code> will emit if the
+        source Observable emits no values:
+       </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.fromArray([])
+    .element({defaultValue: 23});
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 23
+Completed</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>elementAt</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      They require one of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin elementAt elementAtOrDefault %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET ElementAt ElementAtOrDefault %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY element_at element_at_or_default %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb element_at element_at_or_default %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala elementAt elementAtOrDefault %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift elementAt %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

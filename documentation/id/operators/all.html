@@ -1,0 +1,245 @@
+---
+layout: documentation
+title: ReactiveX - All operator
+id: all
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">All</li>
+</ol>
+
+   <h1>All</h1>
+   <h3>determine whether all items emitted by an Observable meet some criteria</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="every"></rx-marbles>
+    <figcaption><p>
+    Pass a predicate function to the <span class="operator">All</span> operator that accepts an item
+    emitted by the source Observable and returns a boolean value based on an evaluation of that
+    item. <span class="operator">All</span> returns an Observable that emits a single boolean value:
+    <code>true</code> if and only if the source Observable terminates normally and every item
+    emitted by the source Observable evaluated as <code>true</code> according to this predicate;
+    <code>false</code> if any item emitted by the source Observable evaluates as <code>false</code>
+    according to this predicate.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#All"><cite>Introduction to Rx</cite>: All</a></li>
+    <li><a href="http://rxmarbles.com/#every">RxMarbles: <code>every</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure every %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy all %}
+     <figure>
+      <img src="images/all.png" style="width:100%;" alt="all" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>all</code>. It does not by default operate on any
+       particular <a href="../scheduler.html">Scheduler</a>. The following example shows how to use this
+       operator:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5]);
+
+println("all even?" )
+numbers.all({ 0 == (it % 2) }).subscribe({ println(it); });
+
+println("all positive?");
+numbers.all({ 0 &lt; it }).subscribe({ println(it); });</pre></div>
+      <div class="output"><pre>
+all even? 
+false
+all positive? 
+true</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#all(rx.functions.Func1)"><code>all(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava all %}
+     <figure>
+      <img src="images/all.png" style="width:100%;" alt="all" />
+      <figcaption><p>
+       RxJava implements this operator as <code>all</code>. It does not by default operate on any
+       particular <a href="../scheduler.html">Scheduler</a>.
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#all(rx.functions.Func1)"><code>all(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS every jortSort jortSortUntil %}
+     <figure>
+      <img src="images/every.png" style="width:100%;" alt="every" />
+      <figcaption><p>
+       RxJS implements this operator as <code>every</code>. The following example shows how to use
+       this operator:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.of(1,2,3,4,5)
+  .every(function (x) {
+    return x &lt; 6;
+  });
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: true
+Completed</pre></div>
+      <p>
+       <code>every</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.aggregates.js</code></li>
+      </ul>
+      <p>
+       It requires one of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <p>
+      There is also a <code>jortSort</code> operator that performs a test on the entire sequence of items
+      emitted by the source Observable. If those items are emitted in sorted order, upon the successful
+      completion of the source Observable, the Observable returned from <code>jortSort</code> will emit
+      <code>true</code> and then complete. If any of the items emitted by the source Observable is out of sort
+      order, upon the successful completion of the source Observable, the Observable returned from
+      <code>jortSort</code> will emit <code>false</code> and then complete.
+     </p><p>
+      There is also a <code>jortSortUntil</code> operator. It does not wait until the source Observable
+      completes to evaluate its sequence for sortedness, as <code>jortSort</code> does, but waits until a
+      second Observable emits an item to do so.
+     </p>
+     <h4>See also</h4>
+     <ul>
+      <li><a href="http://jort.technology">jort.technology</a></li>
+     </ul>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.of(1,2,3,4) // already sorted
+               .jortSort();
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (e) { console.log('Error: %s', e); },
+  function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: true
+Completed</pre></div>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.of(3,1,2,4) // not sorted
+               .jortSort();
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (e) { console.log('Error: %s', e); },
+  function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: false
+Completed</pre></div>
+     <div class="code javascript"><pre>
+var just = Rx.helpers.just;
+
+var source = Rx.Observable.of(1,2,3,4) // already sorted
+               .flatmap(function (x) {
+                 return Rx.Observable.timer(1000).map(just(x));
+               }).jortSortUntil(Rx.Observable.timer(3000);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (e) { console.log('Error: %s', e); },
+  function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: true
+Completed</pre></div>
+     <div class="code javascript"><pre>
+var just = Rx.helpers.just;
+
+var source = Rx.Observable.of(3,1,2,4) // not sorted
+               .flatmap(function (x) {
+                 return Rx.Observable.timer(1000).map(just(x));
+               }).jortSortUntil(Rx.Observable.timer(3000);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (e) { console.log('Error: %s', e); },
+  function ( ) { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: false
+Completed</pre></div>
+     <p>
+      <code>jortSort</code> and <code>jortSortUntil</code> are found in the following distribution:
+     </p>
+     <ul>
+      <li><code>rx.sorting.js</code></li>
+     </ul>
+     <p>
+      They require one of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin all %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET All %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY all every %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb all? %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala forall %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

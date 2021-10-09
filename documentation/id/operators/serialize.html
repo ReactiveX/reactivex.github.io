@@ -1,0 +1,106 @@
+---
+layout: documentation
+title: ReactiveX - Serialize operator
+id: serialize
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Serialize</li>
+</ol>
+
+<h1>Serialize</h1>
+<h3>force an Observable to make serialized calls and to be well-behaved</h3>
+
+<figure>
+ <img src="images/serialize.c.png" style="width:100%;" alt="Serialize" />
+ <figcaption><p>
+  It is possible for an Observable to invoke its observers&#8217; methods asynchronously, perhaps from
+  different threads. This could make such an Observable violate <a href="../contract.html">the Observable
+  contract</a>, in that it might try to send an <code>OnCompleted</code> or <code>OnError</code> notification
+  before one of its <code>OnNext</code> notifications, or it might make an <code>OnNext</code> notification
+  from two different threads concurrently. You can force such an Observable to be well-behaved and synchronous
+  by applying the <span class="operator">Serialize</span> operator to it.
+ </p></figcaption>
+</figure>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure serialize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy serialize %}
+    <figure class="variant">
+     <img src="images/synchronize.png" style="width:100%;" alt="serialize" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>serialize</code>. It does not by default operate on any
+      particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#serialize()"><code>serialize()</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava serialize %}
+    <figure class="variant">
+     <img src="images/synchronize.png" style="width:100%;" alt="serialize" />
+     <figcaption><p>
+      RxJava implements this operator as <code>serialize</code>. It does not by default operate on any
+      particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#serialize()"><code>serialize()</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin serialize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Synchronize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb sychronize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala serialize %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

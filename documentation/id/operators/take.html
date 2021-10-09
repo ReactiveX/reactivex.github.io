@@ -1,0 +1,356 @@
+---
+layout: documentation
+title: ReactiveX - Take operator
+id: take
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">Take</li>
+</ol>
+
+   <h1>Take</h1>
+   <h3>emit only the first <i>n</i> items emitted by an Observable</h3>
+
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="take"></rx-marbles>
+    <figcaption><p>
+     You can emit only the first <i>n</i> items emitted by an Observable and then complete while ignoring the
+     remainder, by modifying the Observable with the <span class="operator">Take</span> operator.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="first.html"><span class="operator">First</span></a></li>
+    <li><a href="skip.html"><span class="operator">Skip</span></a></li>
+    <li><a href="skiplast.html"><span class="operator">SkipLast</span></a></li>
+    <li><a href="skipuntil.html"><span class="operator">SkipUntil</span></a></li>
+    <li><a href="skipwhile.html"><span class="operator">SkipWhile</span></a></li>
+    <li><a href="takelast.html"><span class="operator">TakeLast</span></a></li>
+    <li><a href="takeuntil.html"><span class="operator">TakeUntil</span></a></li>
+    <li><a href="takewhile.html"><span class="operator">TakeWhile</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipAndTake"><cite>Introduction to Rx</cite>: Skip and Take</a></li>
+    <li><a href="http://rxmarbles.com/#take">RxMarbles: <code>take</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure take %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp take %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy limit take %}
+     <figure>
+      <img src="images/take.png" style="width:100%;" alt="take" />
+      <figcaption><p>
+       In RxGroovy, this operator is implemented as <code>take</code>.
+      </p><p>
+       If you use the <code>take(<i>n</i>)</code> operator (or its synonym, <code>limit(<i>n</i>)</code>) on an
+       Observable, and that Observable emits fewer than <i>n</i> items before completing, the new,
+       <code>take</code>-modified Observable will not throw an exception or invoke <code>onError</code>, but
+       will merely emit this same fewer number of items before it completes.
+      </p>
+     <h4>Sample Code</h4>
+      <div class="code groovy"><pre>
+numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8]);
+
+numbers.take(3).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+1
+2
+3
+Sequence complete</pre></div>
+      <p>
+       This variant of <code>take</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(int)"><code>take(int)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/take.t.png" style="width:100%;" alt="take" />
+      <figcaption><p>
+       There is also a variant of <code>take</code> that takes a temporal duration rather than a quantity of
+       items. It results in an Observable that emits only those items that are emitted during that initial
+       duration of the source Observable&#8217;s lifespan. You set this duration by passing in a length of time
+       and the time units this length is denominated in as parameters to <code>take</code>.
+      </p><p>
+       This variant of <code>take</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(long,%20java.util.concurrent.TimeUnit)"><code>take(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>take(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava limit take %}
+     <figure>
+      <img src="images/take.png" style="width:100%;" alt="take" />
+      <figcaption><p>
+       In RxJava, this operator is implemented as <code>take</code>.
+      </p><p>
+       If you use the <code>take(<i>n</i>)</code> operator (or its synonym, <code>limit(<i>n</i>)</code>) on an
+       Observable, and that Observable emits fewer than <i>n</i> items before completing, the new,
+       <code>take</code>-modified Observable will not throw an exception or invoke <code>onError</code>, but
+       will merely emit this same fewer number of items before it completes.
+      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3, 4, 5, 6, 7, 8)
+          .take(4)
+          .subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Sequence complete.</pre></div>
+      <p>
+       This variant of <code>take</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(int)"><code>take(int)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/take.t.png" style="width:100%;" alt="take" />
+      <figcaption><p>
+       There is also a variant of <code>take</code> that takes a temporal duration rather than a quantity of
+       items. It results in an Observable that emits only those items that are emitted during that initial
+       duration of the source Observable&#8217;s lifespan. You set this duration by passing in a length of time
+       and the time units this length is denominated in as parameters to <code>take</code>.
+      </p><p>
+       This variant of <code>take</code> by default operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you may also pass in a Scheduler of your choosing as an
+       optional third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(long,%20java.util.concurrent.TimeUnit)"><code>take(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#take(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>take(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS take takeUntilWithTime %}
+     <figure>
+      <img src="images/take.png" style="width:100%;" alt="take" />
+      <figcaption><p>
+       RxJS implements the <code>take</code> operator.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 5)
+    .take(3);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/take.0.png" style="width:100%;" alt="take" />
+      <figcaption><p>
+       For the special case of <code>take(0)</code> you can also pass as a second parameter a
+       <a href="../scheduler.html">Scheduler</a> that <code>take</code> will use to immediately schedule a call
+       to <code>onCompleted</code>.
+      </p>
+      </figcaption>
+     </figure>
+     <p>
+      <code>take</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <figure>
+      <img src="images/takeUntilWithTime.png" style="width:100%;" alt="takeUntilWithTime" />
+      <figcaption><p>
+       RxJS also implements a <code>takeUntilWithTime</code> operator, which is like <code>take</code>
+       except that rather than taking a particular quantity of items, it takes all of the items that are
+       emitted during an initial period of time. You establish this period of by passing in a parameter to
+       <code>takeUntilWithTime</code>, in either of these formats:
+      </p>
+      <dl>
+       <dt>a number</dt>
+        <dd>mirrors items from the source Observable until this many milliseconds have passed since the Observable was subscribed to</dd>
+       <dt>a <code>Date</code></dt>
+        <dd>mirrors items from the source Observable until this absolute time</dd>
+      </dl>
+      <p>
+       You may also, optionally, pass in a <a href="../scheduler.html">Scheduler</a> as a second parameter, and
+       the timer will operate on that Scheduler (<code>takeUntilWithTime</code> uses the <code>timeout</code>
+       Scheduler by default).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.timer(0, 1000)
+    .takeUntilWithTime(5000);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Completed</pre></div>
+      <p>
+       <code>takeUntilWithTime</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin take %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Take %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP take takeUntil %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>take</code>.
+    </p>
+    <p>
+    Returns a specified number of contiguous elements from the start of an observable sequence
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/take.php
+
+$observable = Rx\Observable::fromArray([21, 42, 63]);
+$observable
+    ->take(2)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 21
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>takeUntil</code>.
+    </p>
+    <p>
+    Returns the values from the source observable sequence until the other observable sequence produces a value.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/take.php
+
+$observable = Rx\Observable::fromArray([21, 42, 63]);
+$observable
+    ->take(2)
+    ->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 21
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY take take_with_time %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb take %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala take %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift take %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

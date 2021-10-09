@@ -1,0 +1,443 @@
+---
+layout: documentation
+title: ReactiveX - Delay operator
+id: delay
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Delay</li>
+</ol>
+
+   <h1>Delay</h1>
+   <h3>shift the emissions from an Observable forward in time by a particular amount</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="delay"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">Delay</span> operator modifies its source Observable by pausing for a particular
+     increment of time (that you specify) before emitting each of the source Observable&#8217;s items. This has
+     the effect of shifting the entire sequence of items emitted by the Observable forward in time by that
+     specified increment.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/13_TimeShiftedSequences.html#Delay"><cite>Introduction to Rx</cite>: Delay</a></li>
+    <li><a href="http://rxmarbles.com/#delay">RxMarbles: <code>delay</code></a></li>
+    <li><a href="http://rxmarbles.com/#delayWithSelector">RxMarbles: <code>delayWithSelector</code></a></li>
+    <li><a href="http://rxwiki.wikidot.com/101samples#toc27"><cite>101 Rx Samples</cite>: Delay &mdash; Simple</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy delay delaySubscription %}
+     <p>
+      RxGroovy implements this operator as variants of <code>delay</code> and <code>delaySubscription</code>.
+     </p>
+     <figure>
+      <img src="images/delay.png" style="width:100%;" alt="delay" />
+      <figcaption><p>
+       The first variant of <code>delay</code> accepts parameters that define a duration of time (a quantity of
+       time, and a <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable
+       emits an item, <code>delay</code> starts a timer, and when that timer reaches the given duration, the
+       Observable returned from <code>delay</code> emits the same item.
+      </p><p>
+       Note that <code>delay</code> will not time-shift an <code>onError</code> notification in this fashion but
+       it will forward such a notification immediately to its subscribers while dropping any pending
+       <code>onNext</code> notifications. It will however time shift an <code>onCompleted</code> notification.
+      </p><p>
+       By default this variant of <code>delay</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>delay</code>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit)"><code>delay(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>delay()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delay.o.png" style="width:100%;" alt="delay" />
+      <figcaption><p>
+       Another variant of <code>delay</code> does not use a constant delay duration, but sets its delay
+       duration on a per-item basis by passing each item from the source Observable into a function that returns
+       an Observable and then monitoring those Observables. When any such Observable emits a item or completes,
+       the Observable returned by <code>delay</code> emits the associated item.
+      </p><p>
+       This variant of <code>delay</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func1)"><code>delay(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delay.oo.png" style="width:100%;" alt="delay" />
+      <figcaption><p>
+       The variant of <code>delay</code> that uses a per-item Observable to set the delay has a variant
+       that allows you to pass in a function that returns an Observable that acts as a delay timer for the
+       subscription to the source Observable (in the absence of this, <code>delay</code> subscribes to the
+       source Observable as soon as an observer subscribes to the Observable returned by <code>delay</code>).
+      </p><p>
+       This variant of <code>delay</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func0,%20rx.functions.Func1)"><code>delay(Func0,Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.png" style="width:100%;" alt="delaySubscription" />
+      <figcaption><p>
+       There is also an operator with which you can delay the subscription to the source Observable:
+       <code>delaySubscription</code>. It accepts parameters that define the amount of time to delay (a quantity
+       of time, and a <code>TimeUnit</code> that this quantity is denominated in).
+      </p><p>
+       This variant of <code>delay</code> by default runs on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>delaySubscription</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit)"><code>delaySubscription(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>delaySubscription(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.o.png" style="width:100%;" alt="delaySubscription" />
+      <figcaption><p>
+       And there is a variant of <code>delaySubscription</code> that uses an Observable (returned by a function
+       you supply) rather than a fixed duration in order to set the subscription delay.
+      </p><p>
+       This variant of <code>delaySubscription</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(rx.functions.Func0)"><code>delaySubscription(Func0)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava delay delaySubscription %}
+     <p>
+      RxJava implements this operator as variants of <code>delay</code> and <code>delaySubscription</code>.
+     </p>
+     <figure>
+      <img src="images/delay.png" style="width:100%;" alt="delay" />
+      <figcaption><p>
+       The first variant of <code>delay</code> accepts parameters that define a duration of time (a quantity of
+       time, and a <code>TimeUnit</code> that this quantity is denominated in). Each time the source Observable
+       emits an item, <code>delay</code> starts a timer, and when that timer reaches the given duration, the
+       Observable returned from <code>delay</code> emits the same item.
+      </p><p>
+       Note that <code>delay</code> will not time-shift an <code>onError</code> notification in this fashion but
+       it will forward such a notification immediately to its subscribers while dropping any pending
+       <code>onNext</code> notifications. It will however time shift an <code>onCompleted</code> notification.
+      </p><p>
+       By default this variant of <code>delay</code> operates on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>delay</code>
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit)"><code>delay(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>delay()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delay.o.png" style="width:100%;" alt="delay" />
+      <figcaption><p>
+       Another variant of <code>delay</code> does not use a constant delay duration, but sets its delay
+       duration on a per-item basis by passing each item from the source Observable into a function that returns
+       an Observable and then monitoring those Observables. When any such Observable emits an item or completes,
+       the Observable returned by <code>delay</code> emits the associated item.
+      </p><p>
+       This variant of <code>delay</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func1)"><code>delay(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delay.oo.png" style="width:100%;" alt="delay" />
+      <figcaption><p>
+       The variant of <code>delay</code> that uses a per-item Observable to set the delay has a variant
+       that allows you to pass in a function that returns an Observable that acts as a delay timer for the
+       subscription to the source Observable (in the absence of this, <code>delay</code> subscribes to the
+       source Observable as soon as an observer subscribes to the Observable returned by <code>delay</code>).
+      </p><p>
+       This variant of <code>delay</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delay(rx.functions.Func0,%20rx.functions.Func1)"><code>delay(Func0,Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.png" style="width:100%;" alt="delaySubscription" />
+      <figcaption><p>
+       There is also an operator with which you can delay the subscription to the source Observable:
+       <code>delaySubscription</code>. It accepts parameters that define the amount of time to delay (a quantity
+       of time, and a <code>TimeUnit</code> that this quantity is denominated in).
+      </p><p>
+       This variant of <code>delay</code> by default runs on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can choose a different Scheduler by passing it in as
+       an optional third parameter to <code>delaySubscription</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit)"><code>delaySubscription(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>delaySubscription(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.o.png" style="width:100%;" alt="delaySubscription" />
+      <figcaption><p>
+       And there is a variant of <code>delaySubscription</code> that uses an Observable (returned by a function
+       you supply) rather than a fixed duration in order to set the subscription delay.
+      </p><p>
+       This variant of <code>delaySubscription</code> does not by default run on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#delaySubscription(rx.functions.Func0)"><code>delaySubscription(Func0)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS delay delaySubscription delayWithSelector %}
+     <figure>
+      <img src="images/delay.png" style="width:100%;" alt="delay" />
+      <figcaption><p>
+       In RxJS you can set the per-item delay in two ways: by passing a number of milliseconds into the
+       <code>delay</code> operator (which will delay each emission by that amount of time), or by passing in
+       a <code>Date</code> object (which will delay the beginning of the sequence of emissions until that
+       absolute point in time).
+      </p><p>
+       This operator operates by default on the <code>timeout</code> <a href="../scheduler.html">Scheduler</a>,
+       but you can override this by passing in another Scheduler as an optional second parameter.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+    .delay(new Date(Date.now() + 1000));
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); }); </pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+    .delay(1000);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x.toString()); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delaySubscription.png" style="width:100%;" alt="delaySubscription" />
+      <figcaption><p>
+       <code>delaySubscription</code> is similar to <code>delay</code> but rather than timeshifting the
+       emissions from the source Observable, it timeshifts the moment of subscription to that Observable.
+       You pass to this operator a time value (either a <code>Number</code>, in which case this sets the number
+       of milliseconds of delay, or a <code>Date</code>, in which case this sets an absolute future time at
+       which <code>delaySubscription</code> will trigger the subscription). You may optionally pass a
+       <a href="../scheduler.html">Scheduler</a> as a second parameter, which <code>delaySubscription</code>
+       will use to govern the delay period or trigger time.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var start = Date.now();
+var source = Rx.Observable.range(0, 3).delaySubscription(5000);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: %s, %s', x, Date.now() - start); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0, 5001
+Next: 1, 5002
+Next: 2, 5003
+Completed</pre></div>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/delayWithSelector.png" style="width:100%;" alt="delayWithSelector" />
+      <figcaption><p>
+       <code>delayWithSelector</code> is like <code>delay</code> but does not use a constant delay duration (or
+       absolute time), but sets its delay duration on a per-item basis by passing each item from the source
+       Observable into a function that returns an Observable and then monitoring those Observables. When any
+       such Observable completes, the Observable returned by <code>delay</code> emits the associated item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable
+    .range(0, 3)
+    .delayWithSelector(
+        function (x) {
+            return Rx.Observable.timer(x * 400);
+        })
+    .timeInterval()
+    .map(function (x) { return x.value + ':' + x.interval; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0:0
+Next: 1:400
+Next: 2:400
+Completed</pre></div></figcaption>
+     </figure>
+     <figure>
+      <img src="images/delayWithSelector.o.png" style="width:100%;" alt="delayWithSelector" />
+      <figcaption><p>
+       There is also a version of <code>delayWithSelector</code> that takes an additional (first) argument:
+       an Observable that sets a delay before <code>delayWithSelector</code> subscribes to the source
+       Observable after it itself is subscribed to.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable
+    .range(0, 3)
+    .delayWithSelector(
+        Rx.Observable.timer(300),
+        function (x) {
+            return Rx.Observable.timer(x * 400);
+        }
+    )
+    .timeInterval()
+    .map(function (x) { return x.value + ':' + x.interval; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0:300
+Next: 1:400
+Next: 2:400
+Completed</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>delay</code>, <code>delaySubscription</code>, and <code>delayWithSelector</code> require
+      <code>rx.lite.js</code> or <code>rx.lite.compat.js</code> and are found in each of the following
+      distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.time.js</code> (requires <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin delay delaySubscription %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Delay DelaySubscription %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP delay %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>delay</code>.
+    </p>
+    <p>
+    Time shifts the observable sequence by dueTime. The relative time intervals between the values are preserved.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/delay/delay.php
+
+$loop = new \React\EventLoop\StreamSelectLoop();
+
+$scheduler  = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+\Rx\Observable::interval(1000, $scheduler)
+    ->doOnNext(function ($x) {
+        echo "Side effect: " . $x . "\n";
+    })
+    ->delay(500)
+    ->take(5)
+    ->subscribe($createStdoutObserver(), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Side effect: 0
+Next value: 0
+Side effect: 1
+Next value: 1
+Side effect: 2
+Next value: 2
+Side effect: 3
+Next value: 3
+Side effect: 4
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY delay delay_subscription delay_with_selector %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala delay delaySubscription %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift delaySubscription %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,0 +1,502 @@
+---
+layout: documentation
+title: ReactiveX - GroupBy operator
+id: groupBy
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#transforming">Transforming</a></li>
+  <li class="active">GroupBy</li>
+</ol>
+
+<h1>GroupBy</h1>
+<h3>divide an Observable into a set of Observables that each emit a different subset of items from the original Observable</h3>
+
+<figure>
+ <img src="images/groupBy.c.png" style="width:100%;" alt="GroupBy" />
+ <figcaption><p>
+  The <span class="operator">GroupBy</span> operator divides an Observable that emits items into
+  an Observable that emits Observables, each one of which emits some subset of the items from the
+  original source Observable. Which items end up on which Observable is typically decided by a
+  discriminating function that evaluates each item and assigns it a key. All items with the same key
+  are emitted by the same Observable.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="window.html"><span class="operator">Window</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#GroupBy"><cite>Introduction to Rx</cite>: GroupBy</a></li>
+ <li><a href="http://blogs.microsoft.co.il/iblogger/2015/08/11/animations-of-rx-operators-groupby/">Animations of Rx operators: GroupBy</a> by Tamir Dresher</li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure group-by split-with %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator flat_map %}
+
+  {% lang_operator RxCpp group_by %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy groupBy %}
+    <figure class="variant">
+     <img src="images/groupBy.png" style="width:100%;" alt="groupBy" />
+     <figcaption><p>
+      RxGroovy implements the <code>groupBy</code> operator. The Observable it returns emits items
+      of a particular subclass of Observable &mdash; the <code>GroupedObservable</code>. Objects that
+      implement the <code>GroupedObservable</code> interface have an additional method &mdash;
+      <code>getkey</code> &mdash; by which you can retrieve the key by which items were designated
+      for this particular <code>GroupedObservable</code>.
+     </p><p>
+      The following sample code uses <code>groupBy</code> to transform a list of numbers into two
+      lists, grouped by whether or not the numbers are even:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+def numbers = Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+def groupFunc = { return(0 == (it % 2)); };
+
+numbers.groupBy(groupFunc).flatMap({ it.reduce([it.getKey()], {a, b -&gt; a &lt;&lt; b}) }).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+[false, 1, 3, 5, 7, 9]
+[true, 2, 4, 6, 8]
+Sequence complete</pre></div>
+     <p>
+      Another version of <code>groupBy</code> allows you to pass in a transformative function
+      that changes the elements before they are emitted by the resulting
+      <code>GroupedObservable</code>s.
+     </p><p>
+      Note that when <code>groupBy</code> splits up the source Observable into an Observable that
+      emits <code>GroupedObservable</code>s, each of these <code>GroupedObservable</code>s begins to
+      buffer the items that it will emit upon subscription. For this reason, if you ignore any of
+      these <code>GroupedObservable</code>s (you neither subscribe to it or apply an operator to
+      it that subscribes to it), this buffer will present a potential memory leak. For this reason,
+      rather than ignoring a <code>GroupedObservable</code> that you have no interest in observing,
+      you should instead apply an operator like <a href="take.html"><code>take(0)</code></a> to it
+      as a way of signalling to it that it may discard its buffer.
+     </p><p>
+      If you unsubscribe from one of the <code>GroupedObservable</code>s, or if an operator like
+      <code>take</code> that you apply to the <code>GroupedObservable</code> unsubscribes from it,
+      that <code>GroupedObservable</code> will be terminated. If the source Observable later emits an
+      item whose key matches the <code>GroupedObservable</code> that was terminated in this way,
+      <code>groupBy</code> will create and emit a <em>new</em> <code>GroupedObservable</code> to match
+      the key. In other words, unsubscribing from a <code>GroupedObservable</code> will <em>not</em>
+      cause <code>groupBy</code> to swallow items from its group.  For example, see the following code:
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+Observable.range(1,5)
+          .groupBy({ 0 })
+          .flatMap({ this.take(1) })
+          .subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+1
+2
+3
+4
+5
+</pre></div>
+     <p>
+      In the above code, the source Observable emits the sequence <code>{ 1 2 3 4 5 }</code>. When it emits
+      the first item in this sequence, the <code>groupBy</code> operator creates and emits a
+      <code>GroupedObservable</code> with the key of <code>0</code>. The <code>flatMap</code> operator
+      applies the <code>take(1)</code> operator to that <code>GroupedObservable</code>, which gives it the
+      item (<code>1</code>) that it emits and that also unsubscribes from the <code>GroupedObservable</code>,
+      which is terminated. When the source Observable emits the second item in its sequence, the
+      <code>groupBy</code> operator creates and emits a <em>second</em> <code>GroupedObservable</code> with
+      the same key (<code>0</code>) to replace the one that was terminated. <code>flatMap</code> again applies
+      <code>take(1)</code> to this new <code>GroupedObservable</code> to retrieve the new item to emit
+      (<code>2</code>) and to unsubscribe from and terminate the <code>GroupedObservable</code>, and this
+      process repeats for the remaining items in the source sequence.
+     </p><p>
+      <code>groupBy</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#groupBy(rx.functions.Func1)"><code>groupBy(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#groupBy(rx.functions.Func1,%20rx.functions.Func1)"><code>groupBy(Func1,Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava groupBy %}
+    <figure class="variant">
+     <img src="images/groupBy.png" style="width:100%;" alt="groupBy" />
+     <figcaption><p>
+      RxJava implements the <code>groupBy</code> operator. The Observable it returns emits items
+      of a particular subclass of Observable &mdash; the <code>GroupedObservable</code>. Objects
+      that implement the <code>GroupedObservable</code> interface have an additional method &mdash;
+      <code>getkey</code> &mdash; by which you can retrieve the key by which items were designated
+      for this particular <code>GroupedObservable</code>.
+     </p><p>
+      Another version of <code>groupBy</code> allows you to pass in a transformative function
+      that changes the elements before they are emitted by the resulting
+      <code>GroupedObservable</code>s.
+     </p><p>
+      Note that when <code>groupBy</code> splits up the source Observable into an Observable that
+      emits <code>GroupedObservable</code>s, each of these <code>GroupedObservable</code>s begins to
+      buffer the items that it will emit upon subscription. For this reason, if you ignore any of
+      these <code>GroupedObservable</code>s (you neither subscribe to it or apply an operator to
+      it that subscribes to it), this buffer will present a potential memory leak. For this reason,
+      rather than ignoring a <code>GroupedObservable</code> that you have no interest in observing,
+      you should instead apply an operator like <a href="take.html"><code>take(0)</code></a> to it
+      as a way of signalling to it that it may discard its buffer.
+     </p><p>
+      If you unsubscribe from one of the <code>GroupedObservable</code>s, that
+      <code>GroupedObservable</code> will be terminated. If the source Observable later emits an
+      item whose key matches the <code>GroupedObservable</code> that was terminated in this way,
+      <code>groupBy</code> will create and emit a new <code>GroupedObservable</code> to match the
+      key.
+     </p><p>
+      <code>groupBy</code> does not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#groupBy(rx.functions.Func1)"><code>groupBy(Func1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#groupBy(rx.functions.Func1,%20rx.functions.Func1)"><code>groupBy(Func1,Func1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS groupBy groupByUntil %}
+    <figure class="variant">
+     <img src="images/groupBy.png" style="width:100%;" alt="groupBy" />
+     <figcaption><p>
+      RxJS implements <code>groupBy</code>. It takes one to three parameters:
+     </p>
+     <ol>
+      <li>(required) a function that accepts an item from the source Observable and returns its key</li>
+      <li>a function that accepts an item from the source Observable and returns an item to be emitted in its place by one of the resulting Observables</li>
+      <li>a function used to compare two keys for identity (that is, whether items with two keys should be emitted on the same Observable)</li>
+     </ol>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var codes = [
+    { keyCode: 38}, // up
+    { keyCode: 38}, // up
+    { keyCode: 40}, // down
+    { keyCode: 40}, // down
+    { keyCode: 37}, // left
+    { keyCode: 39}, // right
+    { keyCode: 37}, // left
+    { keyCode: 39}, // right
+    { keyCode: 66}, // b
+    { keyCode: 65}  // a
+];
+
+var source = Rx.Observable.fromArray(codes)
+    .groupBy(
+        function (x) { return x.keyCode; },
+        function (x) { return x.keyCode; });
+
+var subscription = source.subscribe(
+    function (obs) {
+        // Print the count
+        obs.count().subscribe(function (x) {
+            console.log('Count: ' + x);
+        });
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div><div class="output"><pre>
+Count: 2
+Count: 2
+Count: 2
+Count: 2
+Count: 1
+Count: 1
+Completed</pre></div>
+     <p><code>groupBy</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.coincidence.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/groupByUntil.png" style="width:100%;" alt="groupByUntil" />
+     <figcaption><p>
+      RxJS also implements <code>groupByUntil</code>. It monitors an additional Observable, and
+      whenever that Observable emits an item, it closes any of the keyed Observables it has opened
+      (it will open new ones if additional items are emitted by the source Observable that match
+      the key). <code>groupByUntil</code> takes from two to four parameters:
+     </p>
+     <ol>
+      <li>(required) a function that accepts an item from the source Observable and returns its key</li>
+      <li>a function that accepts an item from the source Observable and returns an item to be emitted in its place by one of the resulting Observables</li>
+      <li>(required) a function that returns an Observable, the emissions from which trigger the termination of any open Observables</li>
+      <li>a function used to compare two keys for identity (that is, whether items with two keys should be emitted on the same Observable)</li>
+     </ol>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var codes = [
+    { keyCode: 38}, // up
+    { keyCode: 38}, // up
+    { keyCode: 40}, // down
+    { keyCode: 40}, // down
+    { keyCode: 37}, // left
+    { keyCode: 39}, // right
+    { keyCode: 37}, // left
+    { keyCode: 39}, // right
+    { keyCode: 66}, // b
+    { keyCode: 65}  // a
+];
+
+var source = Rx.Observable
+    .for(codes, function (x) { return Rx.Observable.return(x).delay(1000); })
+    .groupByUntil(
+        function (x) { return x.keyCode; },
+        function (x) { return x.keyCode; },
+        function (x) { return Rx.Observable.timer(2000); });
+
+var subscription = source.subscribe(
+    function (obs) {
+        // Print the count
+        obs.count().subscribe(function (x) { console.log('Count: ' + x); });
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div><div class="output"><pre>
+Count: 2
+Count: 2
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Completed</pre></div>
+     <p><code>groupByUntil</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.coincidence.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin groupBy %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET GroupBy GroupByUntil %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP groupBy groupByUntil partition %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>groupBy</code>.
+    </p>
+    <p>
+    Groups the elements of an observable sequence according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/groupBy/groupBy.php
+
+$observable = \Rx\Observable::fromArray([21, 42, 21, 42, 21, 42]);
+$observable
+    ->groupBy(
+        function ($elem) {
+            if ($elem === 42) {
+                return 0;
+            }
+
+            return 1;
+        },
+        null,
+        function ($key) {
+            return $key;
+        }
+    )
+    ->subscribeCallback(function ($groupedObserver) use ($createStdoutObserver) {
+        $groupedObserver->subscribe($createStdoutObserver($groupedObserver->getKey() . ": "));
+    });
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+1: Next value: 21
+0: Next value: 42
+1: Next value: 21
+0: Next value: 42
+1: Next value: 21
+0: Next value: 42
+1: Complete!
+0: Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>groupByUntil</code>.
+    </p>
+    <p>
+    Groups the elements of an observable sequence according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/groupBy/groupByUntil.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$codes = [
+    ['id' => 38],
+    ['id' => 38],
+    ['id' => 40],
+    ['id' => 40],
+    ['id' => 37],
+    ['id' => 39],
+    ['id' => 37],
+    ['id' => 39],
+    ['id' => 66],
+    ['id' => 65]
+];
+
+$source = Rx\Observable
+    ::fromArray($codes)
+    ->concatMap(function ($x) {
+        return \Rx\Observable::timer(100)->mapTo($x);
+    })
+    ->groupByUntil(
+        function ($x) {
+            return $x['id'];
+        },
+        function ($x) {
+            return $x['id'];
+        },
+        function ($x) {
+            return Rx\Observable::timer(200);
+        });
+
+$subscription = $source->subscribe(new CallbackObserver(
+    function (\Rx\Observable $obs) {
+        // Print the count
+        $obs->count()->subscribe(new CallbackObserver(
+            function ($x) {
+                echo 'Count: ', $x, PHP_EOL;
+            }));
+    },
+    function (Exception $err) {
+        echo 'Error', $err->getMessage(), PHP_EOL;
+    },
+    function () {
+        echo 'Completed', PHP_EOL;
+    }), $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Count: 2
+Count: 2
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Count: 1
+Completed
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>partition</code>.
+    </p>
+    <p>
+    Returns two observables which partition the observations of the source by the given function. The first will trigger observations for those values for which the predicate returns true. The second will trigger observations for those values where the predicate returns false. The predicate is executed once for each subscribed observer. Both also propagate all error observations arising from the source and each completes when the source completes.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/partition/partition.php
+
+list($evens, $odds) = \Rx\Observable::range(0, 10)
+    ->partition(function ($x) {
+        return $x % 2 === 0;
+    });
+
+$evens->subscribe($createStdoutObserver('Evens '));
+$odds->subscribe($createStdoutObserver('Odds '));
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Evens Next value: 0
+Evens Next value: 2
+Evens Next value: 4
+Evens Next value: 6
+Evens Next value: 8
+Evens Complete!
+Odds Next value: 1
+Odds Next value: 3
+Odds Next value: 5
+Odds Next value: 7
+Odds Next value: 9
+Odds Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY group_by group_by_until partition %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala groupBy %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

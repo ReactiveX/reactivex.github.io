@@ -1,0 +1,258 @@
+---
+layout: documentation
+title: ReactiveX - TakeWhile operator
+id: takeWhile
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">TakeWhile</li>
+</ol>
+
+   <h1>TakeWhile</h1>
+   <h3>mirror items emitted by an Observable until a specified condition becomes false</h3>
+
+   <figure>
+    <img src="images/takeWhile.c.png" style="width:100%;" alt="TakeWhile" />
+    <figcaption><p>
+     The <span class="operator">TakeWhile</span> mirrors the source Observable until such time as some condition
+     you specify becomes false, at which point <span class="operator">TakeWhile</span> stops mirroring the
+     source Observable and terminates its own Observable.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="skip.html"><span class="operator">Skip</span></a></li>
+    <li><a href="skiplast.html"><span class="operator">SkipLast</span></a></li>
+    <li><a href="skipuntil.html"><span class="operator">SkipUntil</span></a></li>
+    <li><a href="skipwhile.html"><span class="operator">SkipWhile</span></a></li>
+    <li><a href="take.html"><span class="operator">Take</span></a></li>
+    <li><a href="takelast.html"><span class="operator">TakeLast</span></a></li>
+    <li><a href="takeuntil.html"><span class="operator">TakeUntil</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/05_Filtering.html#SkipWhileTakeWhile"><cite>Introduction to Rx</cite>: SkipWhile and TakeWhile</a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure take-while %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy takeWhile %}
+     <figure>
+      <img src="images/takeWhile.png" style="width:100%;" alt="takeWhile" />
+      <figcaption><p>
+       The <code>takeWhile</code> operator returns an Observable that mirrors the behavior of the source
+       Observable until such time as a function, applied to an item emitted by that Observable, returns
+       <code>false</code>, whereupon the new Observable terminates with an <code>onCompleted</code>
+       notification.
+      </p>
+      <div class="code groovy"><pre>
+numbers = Observable.from( [1, 2, 3, 4, 5, 6, 7, 8, 9] );
+
+numbers.takeWhile({ ((it &lt; 6) || (0 == (it % 2))) }).subscribe(
+  { println(it); },                          // onNext
+  { println("Error: " + it.getMessage()); }, // onError
+  { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+      <div class="output"><pre>
+1
+2
+3
+4
+5
+6
+Sequence complete</pre></div>
+      <p>
+       <code>takeWhile</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeWhile(rx.functions.Func1)"><code>takeWhile(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava takeWhile %}
+     <figure>
+      <img src="images/takeWhile.png" style="width:100%;" alt="takeWhile" />
+      <figcaption><p>
+       The <code>takeWhile</code> operator returns an Observable that mirrors the behavior of the source
+       Observable until such time as a function, applied to an item emitted by that Observable, returns
+       <code>false</code>, whereupon the new Observable terminates with an <code>onCompleted</code>
+       notification.
+      </p><p>
+       <code>takeWhile</code> does not by default operate on any particular
+       <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#takeWhile(rx.functions.Func1)"><code>takeWhile(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS takeWhile %}
+     <figure>
+      <img src="images/takeWhile.png" style="width:100%;" alt="takeWhile" />
+      <figcaption><p>
+       RxJS implements the <code>takeWhile</code> operator. You pass it a function that governs the takeping
+       process. <code>takeWhile</code> calls that function for each item emitted by the source Observable
+       until such time as the function returns <code>false</code>, whereupon <code>takeWhile</code> stops
+       mirroring the source Observable (starting with that item) and issues an <code>onCompleted</code>
+       notification. The function takes three parameters:
+      </p>
+      <ol>
+       <li>the emitted item</li>
+       <li>the zero-based index of that item in the sequence of emissions</li>
+       <li>the source Observable</li>
+      </ol>
+      <p>
+       You may optionally pass a second parameter to <code>takeWhile</code>. If so, that item will also be
+       available to your predicate function as &ldquo;<code>this</code>&rdquo;.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(1, 5)
+    .takeWhile(function (x) { return x &lt; 3; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Completed</pre></div>
+      <p>
+       <code>takeWhile</code> is found in each of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin takeWhile %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET TakeWhile %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP takeWhile takeWhileWithIndex %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>takeWhile</code>.
+    </p>
+    <p>
+    Returns elements from an observable sequence as long as a specified condition is true.  It takes as a parameter a a callback to test each source element for a condition.  The callback predicate is called with the value of the element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/takeWhile.php
+
+
+$source = \Rx\Observable::range(1, 5)
+    ->takeWhile(function ($x) {
+        return $x < 3;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>takeWhileWithIndex</code>.
+    </p>
+    <p>
+    Returns elements from an observable sequence as long as a specified condition is true.  It takes as a parameter a a callback to test each source element for a condition.  The callback predicate is called with the index and the value of the element.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/take/takeWhileWithIndex.php
+
+
+$source = \Rx\Observable::range(1, 5)
+    ->takeWhileWithIndex(function ($i) {
+        return $i < 3;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 1
+Next value: 2
+Next value: 3
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY take_while %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb take_while take_while_with_index %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala takeWhile %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift takeWhile takeWhileWithIndex %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

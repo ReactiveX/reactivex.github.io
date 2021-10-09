@@ -1,0 +1,400 @@
+---
+layout: documentation
+title: ReactiveX - Last operator
+id: last
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">Last</li>
+</ol>
+
+   <h1>Last</h1>
+   <h3>emit only the last item (or the last item that meets some condition) emitted by an Observable</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="last"></rx-marbles>
+    <figcaption><p>
+     If you are only interested in the last item emitted by an Observable, or the last item that meets some
+     criteria, you can filter the Observable with the <span class="operator">Last</span> operator.
+    </p><p>
+     In some implementations, <code>Last</code> is not implemented as a filtering operator that returns an
+     Observable, but as a blocking function that returns a particular item when the source Observable
+     terminates. In those implementations, if you instead want a filtering operator, you may have better luck
+     with <a href="take.html"><code>TakeLast(1)</code></a>.
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="elementat.html"><span class="operator">ElementAt</span></a></li>
+    <li><a href="first.html"><span class="operator">First</span></a></li>
+    <li><a href="take.html"><span class="operator">Take</span></a></li>
+    <li><a href="takeLast.html"><span class="operator">TakeLast</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/07_Aggregation.html#Last"><cite>Introduction to Rx</cite>: Last</a></li>
+    <li><a href="http://rxmarbles.com/#last">RxMarbles: <code>last</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure last %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp last %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy last lastOrDefault %}
+     <p>
+      In RxGroovy, this filtering operator is implemented as <code>last</code> and <code>lastOrDefault</code>.
+     </p><p>
+      Somewhat confusingly, there are also <code>BlockingObservable</code> operators called <code>last</code>
+      and <code>lastOrDefault</code> that block and then return items, rather than immediately returning
+      Observables.
+     </p>
+     <h3>The Filtering Operators</h3>
+     <figure>
+      <img src="images/last.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       To filter an Observable so that only its last emission is emitted, use the
+       <code>last</code> operator with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#last()"><code>last()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       You can also pass a predicate function to <code>last</code>, in which case it will produce an
+       Observable that emits only the last item from the source Observable that the predicate evaluates as
+       <code>true</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#last(rx.functions.Func1)"><code>last(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       The <code>lastOrDefault</code> operator is similar to <code>last</code>, but you pass it a default item
+       that it can emit if the source Observable fails to emit any items.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       <code>lastOrDefault</code> also has a variant to which you can pass a predicate function, so that its
+       Observable will emit the last item from the source Observable that the predicate evaluates as
+       <code>true</code>, or the default item if no items emitted by the source Observable pass the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>last</code> and <code>lastOrDefault</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <h3>The <code>BlockingObservable</code> Methods</h3>
+     <p>
+      The <code>BlockingObservable</code> methods do not transform an Observable into another, filtered
+      Observable, but rather they break out of the Observable cascade, blocking until the Observable emits
+      the desired item, and then return that item itself.
+     </p><p>
+      To turn an Observable into a <code>BlockingObservable</code> so that you can use these methods, you can
+      use either the <code>Observable.toBlocking</code> or <code>BlockingObservable.from</code> methods.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toBlocking()"><code>Observable.toBlocking()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
+     </ul>
+     <figure>
+      <img src="images/B.last.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       To retrieve the last emission from a <code>BlockingObservable</code>, use the <code>last</code> method
+       with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#last()"><code>BlockingObservable.last()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       You can also pass a predicate function to the <code>last</code> method to retrieve the last emission
+       from a <code>BlockingObservable</code> that satisfies the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#last(rx.functions.Func1)"><code>BlockingObservable.last(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       As with the filtering operators, the <code>last</code> method of <code>BlockingObservable</code> will
+       throw a <code>NoSuchElementException</code> if there is no last element in the source
+       <code>BlockingObservable</code>. To return a default item instead in such cases, use the
+       <code>lastOrDefault</code> method.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#lastOrDefault(T)"><code>BlockingObservable.lastOrDefault()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       And, as with <code>last</code>, there is a <code>lastOrDefault</code> variant that takes a predicate
+       function as an argument and retrieves the last item from the source <code>BlockingObservable</code>
+       that satisfies that predicate, or a default item instead if no satisfying item was emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#lastOrDefault(T,%20rx.functions.Func1)"><code>BlockingObservable.lastOrDefault(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava last lastOrDefault %}
+     <p>
+      In RxJava, this filtering operator is implemented as <code>last</code> and <code>lastOrDefault</code>.
+     </p><p>
+      Somewhat confusingly, there are also <code>BlockingObservable</code> operators called <code>last</code>
+      and <code>lastOrDefault</code> that block and then return items, rather than immediately returning
+      Observables.
+     </p>
+     <h3>The Filtering Operators</h3>
+     <figure>
+      <img src="images/last.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       To filter an Observable so that only its last emission is emitted, use the
+       <code>last</code> operator with no parameters. 
+      </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3)
+          .last()
+          .subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 3
+Sequence complete.</pre></div>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#last()"><code>last()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       You can also pass a predicate function to <code>last</code>, in which case it will produce an
+       Observable that emits only the last item from the source Observable that the predicate evaluates as
+       <code>true</code>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#last(rx.functions.Func1)"><code>last(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       The <code>lastOrDefault</code> operator is similar to <code>last</code>, but you pass it a default item
+       that it can emit if the source Observable fails to emit any items.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       <code>lastOrDefault</code> also has a variant to which you can pass a predicate function, so that its
+       Observable will emit the last item from the source Observable that the predicate evaluates as
+       <code>true</code>, or the default item if no items emitted by the source Observable pass the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#lastOrDefault(T)"><code>lastOrDefault(T)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <p>
+      <code>last</code> and <code>lastOrDefault</code> do not by default operate on any particular
+      <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <h3>The <code>BlockingObservable</code> Methods</h3>
+     <p>
+      The <code>BlockingObservable</code> methods do not transform an Observable into another, filtered
+      Observable, but rather they break out of the Observable cascade, blocking until the Observable emits
+      the desired item, and then return that item itself.
+     </p><p>
+      To turn an Observable into a <code>BlockingObservable</code> so that you can use these methods, you can
+      use either the <code>Observable.toBlocking</code> or <code>BlockingObservable.from</code> methods.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#toBlocking()"><code>Observable.toBlocking()</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#from(rx.Observable)"><code>BlockingObservable.from(Observable)</code></a></li>
+     </ul>
+     <figure>
+      <img src="images/B.last.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       To retrieve the last emission from a <code>BlockingObservable</code>, use the <code>last</code> method
+       with no parameters. 
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#last()"><code>BlockingObservable.last()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       You can also pass a predicate function to the <code>last</code> method to retrieve the last emission
+       from a <code>BlockingObservable</code> that satisfies the predicate.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#last(rx.functions.Func1)"><code>BlockingObservable.last(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.lastOrDefault.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       As with the filtering operators, the <code>last</code> method of <code>BlockingObservable</code> will
+       throw a <code>NoSuchElementException</code> if there is no last element in the source
+       <code>BlockingObservable</code>. To return a default item instead in such cases, use the
+       <code>lastOrDefault</code> method.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#lastOrDefault(T)"><code>BlockingObservable.lastOrDefault()</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/B.lastOrDefault.p.png" style="width:100%;" alt="lastOrDefault" />
+      <figcaption><p>
+       And, as with <code>last</code>, there is a <code>lastOrDefault</code> variant that takes a predicate
+       function as an argument and retrieves the last item from the source <code>BlockingObservable</code>
+       that satisfies that predicate, or a default item instead if no satisfying item was emitted.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/observables/BlockingObservable.html#lastOrDefault(T,%20rx.functions.Func1)"><code>BlockingObservable.lastOrDefault(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS last %}
+     <figure>
+      <img src="images/last.p.png" style="width:100%;" alt="last" />
+      <figcaption><p>
+       RxJS implements the <code>last</code> operator. It optionally takes a predicate function as a parameter,
+       in which case, rather than emitting the last item from the source Observable, the resulting Observable
+       will emit the last item from the source Observable that satisfies the predicate.
+      </p><p>
+       The predicate function itself takes three arguments:
+      </p>
+      <ol>
+       <li>the item from the source Observable to be, or not be, filtered</li>
+       <li>the zero-based index of this item in the source Observable&#8217;s sequence</li>
+       <li>the source Observable object</li>
+      </ol>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 10)
+    .last(function (x, idx, obs) { return x % 2 === 1; });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 8
+Completed</pre></div>
+      <p>
+       If the source Observable emits no items (or no items that match the predicate), <code>last</code>
+       will terminate with a &ldquo;<code>Sequence contains no elements.</code>&rdquo; <code>onError</code>
+       notification.
+      </p><p>
+       If instead you want the Observable to emit a default value in such a case, you can pass a
+       second parameter (named <code>defaultValue</code>) to <code>last</code>:
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 10)
+    .last(function (x, idx, obs) { return x > 42; }, 88 );
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 88
+Completed
+</pre></div></figcaption>
+     </figure>
+     <p>
+      <code>last</code> is found in each of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.aggregates.js</code></li>
+     </ul>
+     <p>
+      It requires one of the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin last lastOrDefault takeLast %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Last LastOrDefault %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY last last_or_default %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb last last_or_default %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala last lastOrElse head headOption headOrElse %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

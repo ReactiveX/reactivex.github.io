@@ -1,0 +1,670 @@
+---
+layout: documentation
+title: ReactiveX - Do operator
+id: do
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#utility">Utility</a></li>
+  <li class="active">Do</li>
+</ol>
+
+<h1>Do</h1>
+<h3>register an action to take upon a variety of Observable lifecycle events</h3>
+
+<figure>
+ <img src="images/do.c.png" style="width:100%;" alt="Do" />
+ <figcaption><p>
+  You can register callbacks that ReactiveX will call when certain events take place on an Observable, where
+  those callbacks will be called independently from the normal set of notifications associated with an
+  Observable cascade. There are a variety of operators that various ReactiveX implementations have designed to
+  allow for this.
+ </p></figcaption>
+</figure>
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="subscribe.html"><span class="operator">Subscribe</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/09_SideEffects.html#Do"><cite>Introduction to Rx</cite>: Do</a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/11_AdvancedErrorHandling.html#Finally"><cite>Introduction to Rx</cite>: Finally</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure do finally %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp finally %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy doOnCompleted doOnEach doOnError doOnNext doOnRequest doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+    <p>
+     RxGroovy has several <span class="operator">Do</span> variants.
+    </p>
+    <figure class="variant">
+     <img src="images/doOnEach.png" style="width:100%;" alt="doOnEach" />
+     <figcaption><p>
+      The <code>doOnEach</code> operator allows you to establish a callback that the resulting Observable will
+      call each time it emits an item. You can pass this callback either in the form of an <code>Action</code>
+      that takes an <code>onNext</code> variety of <code>Notification</code> as its sole parameter, or you can
+      pass in an Observer whose <code>onNext</code> method will be called as if it had subscribed to the
+      Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.functions.Action1)"><code>doOnEach(Action1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.Observer)"><code>doOnEach(Observer)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnNext.png" style="width:100%;" alt="doOnNext" />
+     <figcaption><p>
+      The <code>doOnNext</code> operator is much like <code>doOnEach(Action1)</code> except that the
+      <code>Action</code> that you pass it as a parameter does not accept a <code>Notification</code> but
+      instead simply accepts the emitted item.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnNext(rx.functions.Action1)"><code>doOnNext(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <figcaption><p>
+      The <code>doOnRequest</code> operator (new in RxGroovy 1.1) registers an <code>Action</code> which will be
+      called whenever an observer requests additional items from the resulting Observable. That
+      <code>Action</code> receives as its parameter the number of items that the observer is requesting.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnRequest(rx.functions.Action1)"><code>doOnRequest(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnSubscribe.png" style="width:100%;" alt="doOnSubscribe" />
+     <figcaption><p>
+      The <code>doOnSubscribe</code> operator registers an <code>Action</code> which will be called whenever
+      an observer subscribes to the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnSubscribe(rx.functions.Action0)"><code>doOnSubscribe(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnUnsubscribe.png" style="width:100%;" alt="doOnUnsubscribe" />
+     <figcaption><p>
+      The <code>doOnUnsubscribe</code> operator registers an <code>Action</code> which will be called whenever
+      an observer unsubscribes from the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnUnsubscribe(rx.functions.Action0)"><code>doOnUnsubscribe(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnCompleted.png" style="width:100%;" alt="doOnCompleted" />
+     <figcaption><p>
+      The <code>doOnCompleted</code> operator registers an <code>Action</code> which will be called if the
+      resulting Observable terminates normally, calling <code>onCompleted</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnCompleted(rx.functions.Action0)"><code>doOnCompleted(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnError.png" style="width:100%;" alt="doOnError" />
+     <figcaption><p>
+      The <code>doOnError</code> operator registers an <code>Action</code> which will be called if the
+      resulting Observable terminates abnormally, calling <code>onError</code>. This <code>Action</code> will
+      be passed the <code>Throwable</code> representing the error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnError(rx.functions.Action1)"><code>doOnError(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnTerminate.png" style="width:100%;" alt="doOnTerminate" />
+     <figcaption><p>
+      The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
+      <em>before</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnTerminate(rx.functions.Action0)"><code>doOnTerminate(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/finallyDo.png" style="width:100%;" alt="finallyDo" />
+     <figcaption><p>
+      The <code>finallyDo</code> operator registers an <code>Action</code> which will be called just
+      <em>after</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code groovy"><pre>
+def numbers = Observable.from([1, 2, 3, 4, 5]);
+
+numbers.finallyDo({ println('Finally'); }).subscribe(
+   { println(it); },                          // onNext
+   { println("Error: " + it.getMessage()); }, // onError
+   { println("Sequence complete"); }          // onCompleted
+);</pre></div>
+     <div class="output"><pre>
+1
+2
+3
+4
+5
+Sequence complete
+Finally</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#finallyDo(rx.functions.Action0)"><code>finallyDo(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava doOnCompleted doOnEach doOnError doOnNext doOnRequest doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo doAfterTerminate %}
+    <p>
+     RxJava has several <span class="operator">Do</span> variants.
+    </p>
+    <figure class="variant">
+     <img src="images/doOnEach.png" style="width:100%;" alt="doOnEach" />
+     <figcaption><p>
+      The <code>doOnEach</code> operator allows you to establish a callback that the resulting Observable will
+      call each time it emits an item. You can pass this callback either in the form of an <code>Action</code>
+      that takes an <code>onNext</code> variety of <code>Notification</code> as its sole parameter, or you can
+      pass in an Observer whose <code>onNext</code> method will be called as if it had subscribed to the
+      Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.functions.Action1)"><code>doOnEach(Action1)</code></a></li>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnEach(rx.Observer)"><code>doOnEach(Observer)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnNext.png" style="width:100%;" alt="doOnNext" />
+     <figcaption><p>
+      The <code>doOnNext</code> operator is much like <code>doOnEach(Action1)</code> except that the
+      <code>Action</code> that you pass it as a parameter does not accept a <code>Notification</code> but
+      instead simply accepts the emitted item.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code java"><pre>
+Observable.just(1, 2, 3)
+          .doOnNext(new Action1&lt;Integer&gt;() {
+          @Override
+          public void call(Integer item) {
+            if( item > 1 ) {
+              throw new RuntimeException( "Item exceeds maximum value" );
+            }
+          }
+        }).subscribe(new Subscriber&lt;Integer&gt;() {
+        @Override
+        public void onNext(Integer item) {
+            System.out.println("Next: " + item);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            System.err.println("Error: " + error.getMessage());
+        }
+
+        @Override
+        public void onCompleted() {
+            System.out.println("Sequence complete.");
+        }
+    });</pre></div>
+     <div class="output"><pre>
+Next: 1
+Error: Item exceeds maximum value</pre></div>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnNext(rx.functions.Action1)"><code>doOnNext(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <figcaption><p>
+      The <code>doOnRequest</code> operator (new in RxJava 1.1) registers an <code>Action</code> which will be
+      called whenever an observer requests additional items from the resulting Observable. That
+      <code>Action</code> receives as its parameter the number of items that the observer is requesting.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnRequest(rx.functions.Action1)"><code>doOnRequest(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnSubscribe.png" style="width:100%;" alt="doOnSubscribe" />
+     <figcaption><p>
+      The <code>doOnSubscribe</code> operator registers an <code>Action</code> which will be called whenever
+      an observer subscribes to the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnSubscribe(rx.functions.Action0)"><code>doOnSubscribe(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnUnsubscribe.png" style="width:100%;" alt="doOnUnsubscribe" />
+     <figcaption><p>
+      The <code>doOnUnsubscribe</code> operator registers an <code>Action</code> which will be called whenever
+      an observer unsubscribes from the resulting Observable.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnUnsubscribe(rx.functions.Action0)"><code>doOnUnsubscribe(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnCompleted.png" style="width:100%;" alt="doOnCompleted" />
+     <figcaption><p>
+      The <code>doOnCompleted</code> operator registers an <code>Action</code> which will be called if the
+      resulting Observable terminates normally, calling <code>onCompleted</code>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnCompleted(rx.functions.Action0)"><code>doOnCompleted(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnError.png" style="width:100%;" alt="doOnError" />
+     <figcaption><p>
+      The <code>doOnError</code> operator registers an <code>Action</code> which will be called if the
+      resulting Observable terminates abnormally, calling <code>onError</code>. This <code>Action</code> will
+      be passed the <code>Throwable</code> representing the error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnError(rx.functions.Action1)"><code>doOnError(Action1)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnTerminate.png" style="width:100%;" alt="doOnTerminate" />
+     <figcaption><p>
+      The <code>doOnTerminate</code> operator registers an <code>Action</code> which will be called just
+      <em>before</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doOnTerminate(rx.functions.Action0)"><code>doOnTerminate(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/finallyDo.png" style="width:100%;" alt="finallyDo" />
+     <figcaption><p>
+      <code>finallyDo</code></a> is deprecated since RxJava 1.1.1, in favor of 
+      <code>doAfterTerminate</code> with the same behavior.
+      </p><p>
+      The <code>finallyDo</code> operator registers an <code>Action</code> which will be called just
+      <em>after</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#finallyDo(rx.functions.Action0)"><code>finallyDo(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doAfterTerminate.png" style="width:100%;" alt="doAfterTerminate" />
+     <figcaption><p>
+      The <code>doAfterTerminate</code> operator registers an <code>Action</code> which will be called just
+      <em>after</em> the resulting Observable terminates, whether normally or with an error.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#doAfterTerminate(rx.functions.Action0)"><code>doAfterTerminate(Action0)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS do doOnCompleted doOnError doOnNext finally tap tapOnCompleted tapOnError tapOnNext %}
+    <figure class="variant">
+     <img src="images/do.png" style="width:100%;" alt="do" />
+     <figcaption><p>
+      RxJS implements the basic <span class="operator">Do</span> operator as <code>do</code> or <code>tap</code>
+      (two names for the same operator). You have two choices for how to use this operator:
+     </p>
+     <ol>
+      <li>You can pass it an Observer, in which case <code>do</code>/<code>tap</code> will call that
+          Observer&#8217;s methods as though that Observer had subscribed to the resulting Observable.</li>
+      <li>You can pass in a set of 1&ndash;3 individual functions (<code>onNext</code>, <code>onError</code>,
+          and <code>onCompleted</code>) that <code>do</code>/<code>tap</code> will call along with the
+          similarly-named functions of any of its observers.</li>
+     </ol>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+/* Using an observer */
+var observer = Rx.Observer.create(
+  function (x) { console.log('Do Next: %s', x); },
+  function (err) { console.log('Do Error: %s', err); },
+  function () { console.log('Do Completed'); }
+);
+
+var source = Rx.Observable.range(0, 3)
+    .do(observer);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Do Next: 0
+Next: 0
+Do Next: 1
+Next: 1
+Do Next: 2
+Next: 2
+Do Completed
+Completed</pre></div>
+     <div class="code javascript"><pre>
+/* Using a function */
+var source = Rx.Observable.range(0, 3)
+  .do(
+    function (x)   { console.log('Do Next:', x); },
+    function (err) { console.log('Do Error:', err); },
+    function ()    { console.log('Do Completed'); }
+  );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Do Next: 0
+Next: 0
+Do Next: 1
+Next: 1
+Do Next: 2
+Next: 2
+Do Completed
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnNext.png" style="width:100%;" alt="doOnNext" />
+     <figcaption><p>
+      RxJS also implements <code>doOnNext</code> or <code>tapOnNext</code> (two names for the same operator).
+      It is a specialized form of <span class="operator">Do</span> that responds only to the
+      <code>onNext</code> case, by calling a callback function you provide as a parameter. You may also
+      optionally pass a second parameter that will be the &ldquo;<code>this</code>&rdquo; object from the
+      point of view of your callback function when it executes.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+  .doOnNext(
+    function () { this.log('Do Next: %s', x); },
+    console
+  );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Do Next: 0
+Next: 0
+Do Next: 1
+Next: 1
+Do Next: 2
+Next: 2
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnError.png" style="width:100%;" alt="doOnError" />
+     <figcaption><p>
+      RxJS also implements <code>doOnError</code> or <code>tapOnError</code> (two names for the same operator).
+      It is a specialized form of <span class="operator">Do</span> that responds only to the
+      <code>onError</code> case, by calling a callback function you provide as a parameter. You may also
+      optionally pass a second parameter that will be the &ldquo;<code>this</code>&rdquo; object from the
+      point of view of your callback function when it executes.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.throw(new Error());
+  .doOnError(
+    function (err) { this.log('Do Error: %s', err); },
+    console
+  );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Do Error: Error
+Error: Error</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/doOnCompleted.png" style="width:100%;" alt="doOnCompleted" />
+     <figcaption><p>
+      RxJS also implements <code>doOnCompleted</code> or <code>tapOnCompleted</code> (two names for the same
+      operator). It is a specialized form of <span class="operator">Do</span> that responds only to the
+      <code>onCompleted</code> case, by calling a callback function you provide as a parameter. You may also
+      optionally pass a second parameter that will be the &ldquo;<code>this</code>&rdquo; object from the
+      point of view of your callback function when it executes.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+  .doOnCompleted(
+    function () { this.log('Do Completed'); },
+    console
+  );
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Do Completed
+Completed</pre></div>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/finally.png" style="width:100%;" alt="finally" />
+     <figcaption><p>
+      RxJS also implements a <code>finally</code> operator. It takes a function that will be called after the
+      resulting Observable terminates, whether normally (<code>onCompleted</code>) or abnormally
+      (<code>onError</code>).
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.throw(new Error())
+    .finally(function () {
+        console.log('Finally');
+    });
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: ' + x); },
+  function (err) { console.log('Error: ' + err); },
+  function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Error: Error
+Finally</pre></div>
+     </figcaption>
+    </figure>
+    <p>
+     <code>do</code>/<code>tap</code>, <code>doOnNext</code>/<code>tapOnNext</code>,
+     <code>doOnError</code>/<code>tapOnError</code>, <code>doOnCompleted</code>/<code>tapOnCompleted</code>, and
+     <code>finally</code> are found in each of the following distributions:
+    </p>
+    <ul>
+     <li><code>rx.js</code></li>
+     <li><code>rx.all.js</code></li>
+     <li><code>rx.all.compat.js</code></li>
+     <li><code>rx.compat.js</code></li>
+     <li><code>rx.lite.js</code></li>
+     <li><code>rx.lite.compat.js</code></li>
+    </ul>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin doOnCompleted doOnEach doOnError doOnNext doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Do Finally %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP doOnEach doOnNext doOnError doOnCompleted %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>doOnEach</code>.
+    </p>
+    <p>
+    Invokes an action for each element in the observable sequence and invokes an action upon graceful or exceptional termination of the observable sequence. This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnEach.php
+
+$source = \Rx\Observable::range(0, 3)
+    ->doOnEach(new \Rx\Observer\CallbackObserver(
+        function ($x) {
+            echo 'Do Next:', $x, PHP_EOL;
+        },
+        function (Exception $err) {
+            echo 'Do Error:', $err->getMessage(), PHP_EOL;
+        },
+        function () {
+            echo 'Do Completed', PHP_EOL;
+        }
+    ));
+
+$subscription = $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Do Next:0
+Next value: 0
+Do Next:1
+Next value: 1
+Do Next:2
+Next value: 2
+Do Completed
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>doOnNext</code>.
+    </p>
+    <p>
+    
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnNext.php
+
+$source = \Rx\Observable::range(0, 3)
+    ->doOnNext(function ($x) {
+        echo 'Do Next:', $x, PHP_EOL;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Do Next:0
+Next value: 0
+Do Next:1
+Next value: 1
+Do Next:2
+Next value: 2
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>doOnError</code>.
+    </p>
+    <p>
+    
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnError.php
+
+$source = \Rx\Observable::error(new Exception('Oops'))
+    ->doOnError(function (Exception $err) {
+        echo 'Do Error:', $err->getMessage(), PHP_EOL;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Do Error:Oops
+Exception: Oops
+    </pre>
+</div>
+    </figcaption>
+</figure><figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP also has an operator <code>doOnCompleted</code>.
+    </p>
+    <p>
+    
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/do/doOnCompleted.php
+
+$source = \Rx\Observable::emptyObservable()
+    ->doOnCompleted(function () {
+        echo 'Do Completed', PHP_EOL;
+    });
+
+$subscription = $source->subscribe($stdoutObserver);
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Do Completed
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY do_action finally_action tap %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb ensures tap %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala doOnCompleted doOnEach doOnError doOnNext doOnRequest doOnSubscribe doOnTerminate doOnUnsubscribe finallyDo %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift doOn %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

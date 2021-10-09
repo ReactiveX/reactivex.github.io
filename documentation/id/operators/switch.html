@@ -1,0 +1,194 @@
+---
+layout: documentation
+title: ReactiveX - Switch operator
+id: switch
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#combining">Combining</a></li>
+  <li class="active">Switch</li>
+</ol>
+
+<h1>Switch</h1>
+<h3>convert an Observable that emits Observables into a single Observable that emits the items emitted by the most-recently-emitted of those Observables</h3>
+
+<figure>
+ <img src="images/switch.c.png" style="width:100%;" alt="Switch" />
+ <figcaption><p>
+  <span class="operator">Switch</span> subscribes to an Observable that emits Observables. Each time it observes
+  one of these emitted Observables, the Observable returned by <span class="operator">Switch</span> unsubscribes
+  from the previously-emitted Observable begins emitting items from the latest Observable. Note that it will
+  unsubscribe from the previously-emitted Observable when a new Observable is emitted from the source
+  Observable, not when the new Observable emits an item. This means that items emitted by the previous
+  Observable between the time the subsequent Observable is emitted and the time that subsequent Observable
+  itself begins emitting items will be dropped (as with the yellow circle in the diagram above).
+ </p></figcaption>
+</figure>
+
+
+<h4>See Also</h4>
+<ul>
+ <li><a href="amb.html"><span class="operator">Amb</span></a></li>
+ <li><a href="concat.html"><span class="operator">Concat</span></a></li>
+ <li><a href="flatmap.html"><span class="operator">FlatMap</span></a></li>
+ <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/12_CombiningSequences.html#Switch"><cite>Introduction to Rx</cite>: Switch</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp switch_on_next %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy switchOnNext %}
+    <figure class="variant">
+     <img src="images/switchDo.png" style="width:100%;" alt="switch" />
+     <figcaption><p>
+      RxGroovy implements this operator as <code>switchOnNext</code>. It does not by default operate on any
+      particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchOnNext(rx.Observable)"><code>switchOnNext(Observable)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava switchOnNext %}
+    <figure class="variant">
+     <img src="images/switchDo.png" style="width:100%;" alt="switch" />
+     <figcaption><p>
+      RxJava implements this operator as <code>switchOnNext</code>. It does not by default operate on any
+      particular <a href="../scheduler.html">Scheduler</a>.
+     </p>
+     <ul>
+      <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchOnNext(rx.Observable)"><code>switchOnNext(Observable)</code></a></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS switch %}
+    <figure class="variant">
+     <img src="images/switch.png" style="width:100%;" alt="switch" />
+     <figcaption><p>
+      RxJS implements this operator as <code>switch</code>
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.range(0, 3)
+    .select(function (x) { return Rx.Observable.range(x, 3); })
+    .switch();
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+     <div class="output"><pre>
+Next: 0
+Next: 1
+Next: 2
+Next: 3
+Next: 4
+Completed</pre></div>
+     <p><code>switch</code> is found in each of the following distributions:</p>
+     <ul>
+      <li><code>rx.js</code></li>
+      <li><code>rx.all.js</code></li>
+      <li><code>rx.all.compat.js</code></li>
+      <li><code>rx.compat.js</code></li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul></figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin switchOnNext %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Switch %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP switchLatest %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>switchLatest</code>.
+    </p>
+    <p>
+    Transforms an observable sequence of observable sequences into an observable sequence producing values only from the most recent observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/switch/switchLatest.php
+
+$loop      = \React\EventLoop\Factory::create();
+$scheduler = new \Rx\Scheduler\EventLoopScheduler($loop);
+
+$source = Rx\Observable::range(0, 3)
+    ->map(function ($x) {
+        return \Rx\Observable::range($x, 3);
+    })
+    ->switchLatest();
+
+$subscription = $source->subscribe($stdoutObserver, $scheduler);
+
+$loop->run();
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 0
+Next value: 1
+Next value: 2
+Next value: 3
+Next value: 4
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY exclusive select_switch switch_latest %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb latest %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala switch %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift switchLatest %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,0 +1,158 @@
+---
+layout: documentation
+title: ReactiveX - Amb operator
+id: amb
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">Amb</li>
+</ol>
+
+   <h1>Amb</h1>
+   <h3>given two or more source Observables, emit all of the items from only the first of these Observables to emit an item or notification</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="amb"></rx-marbles>
+    <figcaption><p>
+     When you pass a number of source Observables to <span class="operator">Amb</span>, it will pass through the
+     emissions and notifications of exactly one of these Observables: the first one that sends a notification to
+     <span class="operator">Amb</span>, either by emitting an item or sending an <code>onError</code> or
+     <code>onCompleted</code> notification. <span class="operator">Amb</span> will ignore and discard the
+     emissions and notifications of all of the other source Observables.
+    </p></figcaption>
+   </figure>
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="http://rxmarbles.com/#amb">RxMarbles: <code>amb</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp amb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy amb ambWith %}
+     <figure>
+      <img src="images/amb.png" style="width:100%;" alt="amb" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>amb</code>. It takes up to nine Observables
+       as individual parameters, or a single Iterable of Observables. There is also an instance
+       version of the operator, <code>ambWith</code>, so that, for example, instead of writing
+       <code>Observable.amb(o1,o2)</code> you could also write <code>o1.ambWith(o2)</code> for the
+       same effect.
+      </p><p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(java.lang.Iterable)"><code>amb(Iterable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable,%20rx.Observable)"><code>amb(Observable,Observable)</code></a> (there are also versions that take up to nine Observable parameters)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ambWith(rx.Observable)"><code>ambWith(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava amb ambWith %}
+     <figure>
+      <img src="images/amb.png" style="width:100%;" alt="amb" />
+      <figcaption><p>
+       RxJava implements this operator as <code>amb</code>. It takes up to nine Observables as
+       individual parameters, or a single Iterable of Observables. There is also an instance
+       version of the operator, <code>ambWith</code>, so that, for example, instead of writing
+       <code>Observable.amb(o1,o2)</code> you could also write <code>o1.ambWith(o2)</code> for the
+       same effect.
+      </p><p>
+       This operator does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p><ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(java.lang.Iterable)"><code>amb(Iterable)</code></a></li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#amb(rx.Observable,%20rx.Observable)"><code>amb(Observable,Observable)</code></a> (there are also versions that take up to nine Observable parameters)</li>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#ambWith(rx.Observable)"><code>ambWith(Observable)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS amb %}
+     <figure>
+      <img src="images/amb.png" style="width:100%;" alt="amb" />
+      <figcaption><p>
+       RxJS implements this operator as <code>amb</code>. It takes a variable number of parameters,
+       which may be either Observables or Promises (or combinations of the two).
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Using Observable sequences */
+var source = Rx.Observable.amb(
+    Rx.Observable.timer(500).select(function () { return 'foo'; }),
+    Rx.Observable.timer(200).select(function () { return 'bar'; })
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: bar
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* Using Promises and Observables */
+var source = Rx.Observable.amb(
+    RSVP.Promise.resolve('foo')
+    Rx.Observable.timer(200).select(function () { return 'bar'; })
+);
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: foo
+Completed</pre></div></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin amb ambWith %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Amb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY amb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb amb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala amb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxSwift amb %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

@@ -1,0 +1,456 @@
+---
+layout: documentation
+title: ReactiveX - Start operator
+id: start
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#creating">Creating</a></li>
+  <li class="active">Start</li>
+</ol>
+
+<h1>Start</h1>
+<h3>create an Observable that emits the return value of a function-like directive</h3>
+
+<figure>
+ <img src="images/start.c.png" style="width:100%;" alt="Start" />
+ <figcaption><p>
+  There are a number of ways that programming languages have for obtaining values as the result of
+  calculations, with names like functions, futures, actions, callables, runnables, and so forth.
+  The operators grouped here under the <span class="operator">Start</span> operator category
+  make these things behave like Observables so that they can be chained with other Observables in
+  an Observable cascade
+ </p></figcaption>
+</figure>
+
+<h2>See Also</h2>
+<ul>
+ <li><a href="from.html"><span class="operator">From</span></a></li>
+ <li><a href="just.html"><span class="operator">Just</span></a></li>
+ <li><a href="http://rxwiki.wikidot.com/101samples#toc1"><cite>101 Rx Samples</cite>: Start &mdash; Run Code Asynchronously</a></li>
+</ul>
+
+<h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxClojure %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy asyncAction asyncFunc deferFuture forEachFuture fromAction fromCallable fromFunc0 fromRunnable start startFuture toAsync %}
+    <p>
+     The various RxGroovy implementations of <span class="operator">Start</span> are found in the
+     optional <code>rxjava-async</code> module.
+    </p>
+    <figure class="variant">
+     <img src="images/start.png" style="width:100%;" alt="start" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module includes the <code>start</code> operator, which accepts
+      a function as its parameter, calls that function to retrieve a value, and then returns an
+      Observable that will emit that value to each subsequent observer.
+     </p><p>
+      Note that the function will only be executed once, even if more than one observer subscribes
+      to the resulting Observable.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toAsync.png" style="width:100%;" alt="toAsync" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>toAsync</code>,
+      <code>asyncAction</code>, and <code>asyncFunc</code> operators. These accept a function or
+      an Action as their parameter. In the case of a function, this variant of the operator calls
+      that function to retrieve a value, and then returns an Observable that will emit that value
+      to each subsequent observer (just as the <code>start</code> operator does).
+     </p><p>
+      In the case of Action, the process is similar, but there is no return value. In this case,
+      the Observable created by this operator will emit a <code>null</code> before terminating.
+     </p><p>
+      Note that the function or Action will only be executed once, even if more than one observer
+      subscribes to the resulting Observable.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/startFuture.png" style="width:100%;" alt="startFuture" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>startFuture</code> operator.
+      You pass it a function that returns a <code>Future</code>. <code>startFuture</code> calls this
+      function immediately to obtain the <code>Future</code>, and calls the
+      <code>Future</code>&#8217;s <code>get</code> method to try to obtain its value. It returns an
+      Observable to which it will emit this value to any subsequent observers.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/deferFuture.png" style="width:100%;" alt="deferFuture" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>deferFuture</code> operator.
+      You pass it a function that returns a <code>Future</code> that returns an Observable.
+      <code>deferFuture</code> returns an Observable, but does not call the function you provide
+      until such time as an observer subscribes to the Observable it returns. When it does so, it
+      immediately calls <code>get</code> on the resulting <code>Future</code>, and then mirrors the
+      emissions from the Observable returned by the <code>Future</code> as its own emissions.
+     </p><p>
+      In this way you can include a <code>Future</code> that returns an Observable in a cascade of
+      Observables as a peer to other Observables.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/fromAction.png" style="width:100%;" alt="fromAction" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>fromAction</code> operator.
+      It accepts an <code>Action</code> as its parameter, and returns an Observable that emits the
+      item you pass to <code>fromAction</code> upon termination of the <code>Action</code>
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/fromCallable.png" style="width:100%;" alt="fromCallable" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>fromCallable</code> operator.
+      It accepts a <code>Callable</code> as its parameter, and returns an Observable that emits the
+      result of this callable as its sole emission.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/fromRunnable.png" style="width:100%;" alt="fromRunnable" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>fromRunnable</code> operator.
+      It accepts a <code>Runnable</code> as its parameter, and returns an Observable that emits the
+      item you pass to <code>fromRunnable</code> upon termination of the <code>Runnable</code>
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/forEachFuture.png" style="width:100%;" alt="forEachFuture" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>forEachFuture</code> operator.
+      It is not really a variant of the <span class="operator">Start</span> operator, but something
+      all its own. You pass <code>forEachFuture</code> some subset of the typical observer methods
+      (<code>onNext</code>, <code>onError</code>, and <code>onCompleted</code>) and the Observable
+      will call these methods in the usual way. But <code>forEachFuture</code> itself returns a
+      <code>Future</code> that blocks on <code>get</code> until the source Observable completes,
+      then returns either the completion or error, depending on how the Observable completed.
+     </p><p>
+      You can use this if you need a function that blocks until the completion of an Observable.
+     </p></figcaption>
+    </figure>
+    <p>
+     The <code>rxjava-async</code> module also includes the <code>runAsync</code> operator. It is
+     peculiar in that it creates a specialization of an Observable called a
+     <code>StoppableObservable</code>.
+    </p><p>
+     Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will
+     return a <code>StoppableObservable</code> that uses the specified <code>Action</code> to
+     generate items that it emits. The <code>Action</code> accepts an <code>Observer</code> and a
+     <code>Subscription</code>. It uses the <code>Subscription</code> to check for the
+     <code>unsubscribed</code> condition, upon which it will stop emitting items. You can also
+     manually stop a <code>StoppableObservable</code> at any time by calling its
+     <code>unsubscribe</code> method (which will also unsubscribe the <code>Subscription</code> you
+     have associated with the <code>StoppableObservable</code>).
+    </p><p>
+     Because <code>runAsync</code> immediately invokes the <code>Action</code> and begins emitting
+     the items (that is, it produces a <em>hot</em> Observable), it is possible that some items may
+     be lost in the interval between when you establish the <code>StoppableObservable</code> with
+     this operator and when your <code>Observer</code> is ready to receive items. If this is a
+     problem, you can use the variant of <code>runAsync</code> that also accepts a
+     <code>Subject</code> and pass a <code>ReplaySubject</code> with which you can retrieve the
+     otherwise-missing items.
+    </p><p>
+     In RxGroovy there is also a version of the
+     <a href="from.html"><span class="operator">From</span></a> operator that converts a
+     <code>Future</code> into an Observable, and in this way resembles the
+     <span class="operator">Start</span> operator.
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava asyncAction asyncFunc deferFuture forEachFuture fromAction fromCallable fromFunc0 fromRunnable start startFuture toAsync %}
+    <p>
+     The various RxJava implementations of <span class="operator">Start</span> are found in the
+     optional <code>rxjava-async</code> module.
+    </p>
+    <figure class="variant">
+     <img src="images/start.png" style="width:100%;" alt="start" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module includes the <code>start</code> operator, which accepts
+      a function as its parameter, calls that function to retrieve a value, and then returns an
+      Observable that will emit that value to each subsequent observer.
+     </p><p>
+      Note that the function will only be executed once, even if more than one observer subscribes
+      to the resulting Observable.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/toAsync.png" style="width:100%;" alt="toAsync" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>toAsync</code>,
+      <code>asyncAction</code>, and <code>asyncFunc</code> operators. These accept a function or
+      an Action as their parameter. In the case of a function, this variant of the operator calls
+      that function to retrieve a value, and then returns an Observable that will emit that value
+      to each subsequent observer (just as the <code>start</code> operator does).
+     </p><p>
+      In the case of Action, the process is similar, but there is no return value. In this case,
+      the Observable created by this operator will emit a <code>null</code> before terminating.
+     </p><p>
+      Note that the function or Action will only be executed once, even if more than one observer
+      subscribes to the resulting Observable.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/startFuture.png" style="width:100%;" alt="startFuture" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>startFuture</code> operator.
+      You pass it a function that returns a <code>Future</code>. <code>startFuture</code> calls this
+      function immediately to obtain the <code>Future</code>, and calls the
+      <code>Future</code>&#8217;s <code>get</code> method to try to obtain its value. It returns an
+      Observable to which it will emit this value to any subsequent observers.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/deferFuture.png" style="width:100%;" alt="deferFuture" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>deferFuture</code> operator.
+      You pass it a function that returns a <code>Future</code> that returns an Observable.
+      <code>deferFuture</code> returns an Observable, but does not call the function you provide
+      until such time as an observer subscribes to the Observable it returns. When it does so, it
+      immediately calls <code>get</code> on the resulting <code>Future</code>, and then mirrors the
+      emissions from the Observable returned by the <code>Future</code> as its own emissions.
+     </p><p>
+      In this way you can include a <code>Future</code> that returns an Observable in a cascade of
+      Observables as a peer to other Observables.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/fromAction.png" style="width:100%;" alt="fromAction" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>fromAction</code> operator.
+      It accepts an <code>Action</code> as its parameter, and returns an Observable that emits the
+      item you pass to <code>fromAction</code> upon termination of the <code>Action</code>
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/fromCallable.png" style="width:100%;" alt="fromCallable" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>fromCallable</code> operator.
+      It accepts a <code>Callable</code> as its parameter, and returns an Observable that emits the
+      result of this callable as its sole emission.
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/fromRunnable.png" style="width:100%;" alt="fromRunnable" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>fromRunnable</code> operator.
+      It accepts a <code>Runnable</code> as its parameter, and returns an Observable that emits the
+      item you pass to <code>fromRunnable</code> upon termination of the <code>Runnable</code>
+     </p></figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/forEachFuture.png" style="width:100%;" alt="forEachFuture" />
+     <figcaption><p>
+      The <code>rxjava-async</code> module also includes the <code>forEachFuture</code> operator.
+      It is not really a variant of the <span class="operator">Start</span> operator, but something
+      all its own. You pass <code>forEachFuture</code> some subset of the typical observer methods
+      (<code>onNext</code>, <code>onError</code>, and <code>onCompleted</code>) and the Observable
+      will call these methods in the usual way. But <code>forEachFuture</code> itself returns a
+      <code>Future</code> that blocks on <code>get</code> until the source Observable completes,
+      then returns either the completion or error, depending on how the Observable completed.
+     </p><p>
+      You can use this if you need a function that blocks until the completion of an Observable.
+     </p></figcaption>
+    </figure>
+    <p>
+     The <code>rxjava-async</code> module also includes the <code>runAsync</code> operator. It is
+     peculiar in that it creates a specialization of an Observable called a
+     <code>StoppableObservable</code>.
+    </p><p>
+     Pass <code>runAsync</code> an <code>Action</code> and a
+     <a href="../scheduler.html"><code>Scheduler</code></a>, and it will
+     return a <code>StoppableObservable</code> that uses the specified <code>Action</code> to
+     generate items that it emits. The <code>Action</code> accepts an <code>Observer</code> and a
+     <code>Subscription</code>. It uses the <code>Subscription</code> to check for the
+     <code>unsubscribed</code> condition, upon which it will stop emitting items. You can also
+     manually stop a <code>StoppableObservable</code> at any time by calling its
+     <code>unsubscribe</code> method (which will also unsubscribe the <code>Subscription</code> you
+     have associated with the <code>StoppableObservable</code>).
+    </p><p>
+     Because <code>runAsync</code> immediately invokes the <code>Action</code> and begins emitting
+     the items (that is, it produces a <em>hot</em> Observable), it is possible that some items may
+     be lost in the interval between when you establish the <code>StoppableObservable</code> with
+     this operator and when your <code>Observer</code> is ready to receive items. If this is a
+     problem, you can use the variant of <code>runAsync</code> that also accepts a
+     <code>Subject</code> and pass a <code>ReplaySubject</code> with which you can retrieve the
+     otherwise-missing items.
+    </p><p>
+     In RxJava there is also a version of the
+     <a href="from.html"><span class="operator">From</span></a> operator that converts a
+     <code>Future</code> into an Observable, and in this way resembles the
+     <span class="operator">Start</span> operator.
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS start startAsync toAsync %}
+    <figure class="variant">
+     <img src="images/start.png" style="width:100%;" alt="start" />
+     <figcaption><p>
+      RxJS implements the <code>start</code> operator. It takes as its parameters a function whose
+      return value will be the emission from the resulting Observable, and, optionally, any
+      additional parameter to that function and a <a href="../scheduler.html">Scheduler</a> on which to run the
+      function.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var context = { value: 42 };
+
+var source = Rx.Observable.start(
+    function () {
+        return this.value;
+    },
+    context,
+    Rx.Scheduler.timeout
+);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>start</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.async.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.async.compat.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     </figcaption>
+    </figure>
+    <figure class="variant">
+     <img src="images/startAsync.png" style="width:100%;" alt="start" />
+     <figcaption><p>
+      RxJS also implements the <code>startAsync</code> operator. It takes as its parameters an
+      asynchronous function whose return value will be the emission from the resulting Observable.
+     </p><p>
+      You can convert a function into an asynchronous function with the <code>toAsync</code>
+      method. It takes a function, function parameter, and <a href="../scheduler.html">Scheduler</a> as
+      parameters, and returns an asynchronous function that will be invoked on the specified Scheduler. The
+      last two parameters are optional; if you do not specify a Scheduler, the <code>timeout</code> Scheduler
+      will be used by default.
+     </p>
+     <h4>Sample Code</h4>
+     <div class="code javascript"><pre>
+var source = Rx.Observable.startAsync(function () {
+    return RSVP.Promise.resolve(42);
+});
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next: ' + x);
+    },
+    function (err) {
+        console.log('Error: ' + err);
+    },
+    function () {
+        console.log('Completed');
+    });</pre></div>
+     <div class="output"><pre>
+Next: 42
+Completed</pre></div>
+     <p>
+      <code>startAsync</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.async.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.async.compat.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.lite.js</code></li>
+      <li><code>rx.lite.compat.js</code></li>
+     </ul>
+     <p>
+      <code>toAsync</code> is found in the following distributions:
+     </p>
+     <ul>
+      <li><code>rx.async.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+      <li><code>rx.async.compat.js</code> (requires <code>rx.binding.js</code> and either <code>rx.js</code> or <code>rx.compat.js</code>)</li>
+     </ul>
+     </figcaption>
+    </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin asyncAction asyncFunc deferFuture forEachFuture fromAction fromCallable fromFunc0 fromRunnable start startFuture toAsync %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Start ToAsync %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPHP start %}
+<figure class="variant">
+    <figcaption>
+    <p>
+    RxPHP implements this operator as <code>start</code>.
+    </p>
+    <p>
+    Invokes the specified function asynchronously on the specified scheduler, surfacing the result through an observable sequence.
+    </p>
+<h4>Sample Code</h4>
+<div class="code php">
+    <pre>
+//from https://github.com/ReactiveX/RxPHP/blob/master/demo/start/start.php
+
+$source = Rx\Observable::start(function () {
+    return 42;
+});
+
+$source->subscribe($stdoutObserver);
+
+   </pre>
+</div>
+<div class="output">
+    <pre>
+Next value: 42
+Complete!
+    </pre>
+</div>
+    </figcaption>
+</figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY start start_async to_async %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala %}
+    <p>
+     <span style="color:#f00">TBD</span>
+    </p>
+  {% endlang_operator %}
+
+</div>

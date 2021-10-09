@@ -1,0 +1,393 @@
+---
+layout: documentation
+title: ReactiveX - Contains operator
+id: contains
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#conditional">Conditional and Boolean</a></li>
+  <li class="active">Contains</li>
+</ol>
+
+   <h1>Contains</h1>
+   <h3>determine whether an Observable emits a particular item or not</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="contains"></rx-marbles>
+    <figcaption><p>
+     Pass the <span class="operator">Contains</span> operator a particular item, and the Observable it returns
+     will emit <code>true</code> if that item is emitted by the source Observable, or <code>false</code> if the
+     source Observable terminates without emitting that item.
+    </p></figcaption>
+   </figure>
+   <p>
+    A related operator, <span class="operator">IsEmpty</span> returns an Observable that emits <code>true</code>
+    if and only if the source Observable completes without emitting any items. It emits <code>false</code> if
+    the source Observable emits an item.
+   </p>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="all.html"><span class="operator">All</span></a></li>
+    <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/06_Inspection.html#Contains"><cite>Introduction to Rx</cite>: Contains</a></li>
+    <li><a href="http://rxmarbles.com/#contains">RxMarbles: <code>contains</code></a></li>
+    <li><a href="http://rxmarbles.com/#some">RxMarbles: <code>some</code></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+  {% lang_operator RxClojure some %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxCpp %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxGroovy contains exists isEmpty %}
+     <figure>
+      <img src="images/contains.png" style="width:100%;" alt="contains" />
+      <figcaption><p>
+       RxGroovy implements this operator as <code>contains</code>. It does not by default operate on any
+       particular <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#contains(java.lang.Object)"><code>contains(Object)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/exists.png" style="width:100%;" alt="exists" />
+      <figcaption><p>
+       RxGroovy also implements the <code>exists</code> operator. It is similar to <code>contains</code> but
+       tests items emitted by the source Observable against a predicate function you supply, rather than testing
+       them for identity with a particular object. The Observable returned from <code>exists</code> will return
+       <code>true</code> if the source Observable emits an item that satisfies your predicate function, and
+       <code>false</code> if it completes without emitting such an item.
+      </p><p>
+       It does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#exists(rx.functions.Func1)"><code>exists(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
+      <figcaption><p>
+       RxGroovy also implements the <code>isEmpty</code> operator. The Observable returned from
+       <code>isEmpty</code> will return <code>false</code> if the source Observable emits an item, and
+       <code>true</code> if it completes without emitting an item.
+      </p><p>
+       It does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#isEmpty()"><code>isEmpty()</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJava contains exists isEmpty %}
+     <figure>
+      <img src="images/contains.png" style="width:100%;" alt="contains" />
+      <figcaption><p>
+       RxJava implements this operator as <code>contains</code>. It does not by default operate on any
+       particular <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#contains(java.lang.Object)"><code>contains(Object)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/exists.png" style="width:100%;" alt="exists" />
+      <figcaption><p>
+       RxJava also implements the <code>exists</code> operator. It is similar to <code>contains</code> but
+       tests items emitted by the source Observable against a predicate function you supply, rather than testing
+       them for identity with a particular object. The Observable returned from <code>exists</code> will return
+       <code>true</code> if the source Observable emits an item that satisfies your predicate function, and
+       <code>false</code> if it completes without emitting such an item.
+      </p><p>
+       It does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#exists(rx.functions.Func1)"><code>exists(Func1)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
+      <figcaption><p>
+       RxJava also implements the <code>isEmpty</code> operator. The Observable returned from
+       <code>isEmpty</code> will return <code>false</code> if the source Observable emits an item, and
+       <code>true</code> if it completes without emitting an item.
+      </p><p>
+       It does not by default operate on any particular <a href="../scheduler.html">Scheduler</a>.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#isEmpty()"><code>isEmpty()</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxJS contains findIndex indexOf isEmpty %}
+     <figure>
+      <img src="images/contains.png" style="width:100%;" alt="contains" />
+      <figcaption><p>
+       The <code>contains</code> operator in RxJS takes an optional second parameter: a zero-based index
+       into the source Observable&#8217;s sequence at which to start searching for the item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Without an index */
+var source = Rx.Observable.of(42)
+  .contains(42);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: true
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* With an index */
+var source = Rx.Observable.of(1,2,3)
+  .contains(2, 1);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: true
+Completed</pre></div>
+      <p>
+       <code>contains</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.aggregates.js</code></li>
+      </ul>
+      <p>
+       It requires one of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/indexOf.png" style="width:100%;" alt="indexOf" />
+      <figcaption><p>
+       The <code>indexOf</code> operator in RxJS is similar to <code>contains</code> but rather than
+       returning an Observable that emits <code>true</code> or <code>false</code> it returns an Observable
+       that emits the index of the item in the source Observable sequence, or <code>&minus;1</code> if no such
+       item was emitted.
+      </p><p>
+       The <code>indexOf</code> operator takes an optional second parameter: a zero-based index into the source
+       Observable&#8217;s sequence at which to start searching for the item. The index value that the resulting
+       Observable emits will be relative to this start point, not to the beginning of the sequence.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Without an index */
+var source = Rx.Observable.of(42)
+  .indexOf(42);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0 
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* With an index */
+var source = Rx.Observable.of(1,2,3)
+  .indexOf(2, 1);
+
+var subscription = source.subscribe(
+  function (x) { console.log('Next: %s', x); },
+  function (err) { console.log('Error: %s', err); },
+  function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0 
+Completed</pre></div>
+      <p>
+       <code>indexOf</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.aggregates.js</code></li>
+      </ul>
+      <p>
+       It requires one of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/findIndex.png" style="width:100%;" alt="findIndex" />
+      <figcaption><p>
+       The <code>findIndex</code> operator in RxJS takes as its parameter a predicate function. It returns
+       an Observable that emits either a single number &mdash; the zero-based index of the first item in the
+       source Observable sequence that matches the predicate &mdash; or <code>&minus;1</code> if no such item
+       matches.
+      </p><p>
+       The predicate function takes three parameters:
+      </p><ul>
+       <li>the item emitted by the source Observable</li>
+       <li>the zero-based index of that item</li>
+       <li>the source Observable itself</li>
+      </ul><p>
+       You can also pass an object to <code>findIndex</code> as an optional second parameter, and that object
+       will be available to the predicate function as &ldquo;<code>this</code>&rdquo;.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Found an element */
+var array = [1,2,3,4];
+
+var source = Rx.Observable.fromArray(array)
+    .findIndex(function (x, i, obs) {
+        return x === 1;
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: 0
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* Not found */
+var array = [1,2,3,4];
+
+var source = Rx.Observable.fromArray(array)
+    .findIndex(function (x, i, obs) {
+        return x === 5;
+    });
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: -1
+Completed</pre></div>
+      <p>
+       <code>findIndex</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.aggregates.js</code></li>
+      </ul>
+      <p>
+       It requires one of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+     <figure>
+      <img src="images/isEmpty.png" style="width:100%;" alt="isEmpty" />
+      <figcaption><p>
+       RxJS also implements the <code>isEmpty</code> operator. The Observable returned from <code>isEmpty</code>
+       will return <code>false</code> if the source Observable emits an item, and <code>true</code> if it
+       completes without emitting an item.
+      </p>
+      <h4>Sample Code</h4>
+      <div class="code javascript"><pre>
+/* Not empty */
+var source = Rx.Observable.range(0, 5)
+    .isEmpty()
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: false
+Completed</pre></div>
+      <div class="code javascript"><pre>
+/* Empty */
+var source = Rx.Observable.empty()
+    .isEmpty()
+
+var subscription = source.subscribe(
+    function (x) { console.log('Next: ' + x); },
+    function (err) { console.log('Error: ' + err); },
+    function () { console.log('Completed'); });</pre></div>
+      <div class="output"><pre>
+Next: true
+Completed</pre></div>
+      <p>
+       <code>isEmpty</code> is found in the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.all.js</code></li>
+       <li><code>rx.all.compat.js</code></li>
+       <li><code>rx.aggregates.js</code></li>
+      </ul>
+      <p>
+       It requires one of the following distributions:
+      </p>
+      <ul>
+       <li><code>rx.js</code></li>
+       <li><code>rx.compat.js</code></li>
+       <li><code>rx.lite.js</code></li>
+       <li><code>rx.lite.compat.js</code></li>
+      </ul>
+      </figcaption>
+     </figure>
+  {% endlang_operator %}
+
+  {% lang_operator RxKotlin contains exists %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.NET Any Contains %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxPY contains find find_index is_empty some %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator Rx.rb any? contains? none? %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+  {% lang_operator RxScala contains exists isEmpty %}
+     <p>
+      <span style="color:#ff0000">TBD</span>
+     </p>
+  {% endlang_operator %}
+
+</div>

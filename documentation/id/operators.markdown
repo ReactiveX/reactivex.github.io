@@ -5,161 +5,159 @@ lang: id
 id: operators
 ---
 
-<h1>연산자 소개</h1>
+<h1>Pengenalan</h1>
 
-ReactiveX를 지원하는 언어 별 구현체들은 다양한 연산자들을 제공하는데, 이 중에는 공통적으로 제공되는 연산자도 있지만 반대로 특정 구현체에서만 제공하는 연산자들도 존재한다.
-또한, 언어별 구현체들은 이미 언어에서 제공하는 메서드의 이름과 유사한 형태로 연산자의 네이밍 컨벤션을 유지하고 있다.
+Setiap implementasi yang spesifik dengan bahasa tertentu dari ReactiveX menerapkan sebuah set dari operator-operator. Meskipun terdapat kemungkinan tumpang tindih diantara implementasi-implementasinya, ada juga beberapa operator yang hanya diterapkan pada implementasi tertentu. Dan juga, tiap implementasi cenderung untuk menamai operatornya sendiri agar mirip dengan beberapa method yang sudah diterapkan di konteks lainnya pada bahasa tersebut.
 
-<h2>연산자 체인</h2>
+<h2>Menggabungkan Operator</h2>
+<p>
+ Kebanyakan operator beroperasi pada sebuah Observable dan mengembalikan sebuah Observable. Ini memungkinkan anda untuk mengaplikasikan operator-operator tersebut satu demi satu, seperti sebuah rantai. Masing-masing operator pada rantai tersebut mengubah Observable yang merupakan hasil dari operasi yang dilakukan operator sebelumnya.
+</p><p>
+ Ada beberapa pattern yang lain, seperti Builder Pattern, yang dimana beberapa method dari sebuah class tertentu beroperasi pada sebuah item pada class yang sama dengan cara mengubah obyeknya melalui operasi method tersebut. Pattern seperti itu juga memungkinkan anda untuk menggabungkan method-method dengan cara yang hampir sama. Tetapi di Builder Pattern, urutan dari method apa yang dipakai di rantai pemanggilan method biasanya tidak berpengaruh, sedangkan pada operator Observable, <em>urutan berpengaruh</em>.
+</p><p>
+ Sebuah rantai operator Observable tidak beroperasi secara indenpenden terhadap Observable asalnya yang memulai rantai tersebut, tetapi beroperasi secara <em>bergantian</em>, masing-masing beroperasi pada Observable yang dibentuk oleh operator sebelumnya dalam rantai tersebut.
+</p>
 
-거의 모든 연산자들은 Observable 상에서 동작하고 Observable을 리턴한다. 이 접근 방법은 연산자들을 연달아 호출 할 수 있는 연산자 체인을 제공한다. 
-연산자 체인에서 각각의 연산자는 이전 연산자가 리턴한 Observable을 기반으로 동작하며 동작에 따라 Observable을 변경한다.
+<h2>Operator-operator dari ReactiveX</h2>
 
-특정 클래스가 제공하는 여러 메서드들을 호출하여 클래스의 항목들을 변경하는 빌더 패턴과 같은 것도 존재한다. 빌더 패턴 역시 연산자 체인과 유사하게 메서드 체인을 제공한다.
-하지만, 빌더 패턴의 메서드 체인과는 달리 Observable의 연산자 체인은 <em>호출 순서</em>에 따라 실행 결과가 달라지는 차이점이 있다.
+Halaman ini mempunyai daftar yang bisa dianggap sebagai operator &ldquo;inti&rdquo; di ReactiveX, dan memiliki tautan dengan halaman-halaman yang memiliki informasi yang lebih lengkap bagaimana operator tersebut bekerja dan bagaimana versi dari bahasa-bahasa yang menerapkan operator-operator tersebut.
 
-따라서, Observable의 연산자 체인은 원본 Observable과 독립적으로 실행될 수 없고 <em>순서대로</em> 실행되어야 한다. 왜냐하면, 이미 이해하고 있듯이 연산자 체인에서 먼저 실행된 연산자가 리턴한 Observable을 기반으로 다음 연산자가 동작하기 때문이다.
+Kemudian ada sebuah &ldquo;decision tree&rdquo; yang mungkin bisa membantu anda menentukan operator apa yang paling cook anda gunakan sesuai kebutuhan anda.
 
-<h2>ReactiveX의 연산자</h2>
+Dan akhirnya, ada sebuah daftar yang disusun menurut abjad tentang hampir setiap operator yang dapat dipakai di bahasa-bahasa yang menerapkan ReactiveX. Daftar tersebut akan memiliki tautan ke halaman yang berisi operator inti yang paling miirp dengan operator masing-masing bahasa tersebut (contohnya, Rx.NET & operator &ldquo;SelectMany&rdquo; terhubung ke dokumentasi Operator ReactiveX <span class="operator">FlatMap</span>, yang dimana 
+&ldquo;SelectMany&rdquo; adalah implementasi dari Rx.NET).
 
-이 페이지에서는 먼저 ReactiveX의 &ldquo;핵심&rdquo; 연산자들을 나열하고, 각 연산자별로 제공된 링크를 통해 연산자들이 어떻게 동작하고 ReactiveX의 여러 언어별 구현체에서 연산자자가 어떻게 구현했는지 자세히 설명한다.
+Jika anda ingin mengimplementasi operator anda sendiri, lihat <a href="implement-operator.html">Menerapkan Operator Anda Sendiri</a>.
 
-그 후에는 &ldquo;결정 트리&rdquo;를 통해 여러분에게 필요한 적절한 연산자를 선택할 수 있는 유용한 가이드를 제공한다.
-
-마지막으로, ReactiveX의 다양한 언어 별 구현체에서 제공하는 모든 연산자들을 알파벳 순으로 소개한다. 뿐만 아니라, 각각의 연산자 역시 링크를 통해 언어 별 구현체가 제공하는 연산자와 가장 유사한 핵심 연산자에 관한 자세한 설명을 제공한다.
-(예를 들어, Rx.NET의 &ldquo;SelectMany&rdquo; 연산자가 제공하는 링크는 Rx.NET의 SelectMany 연산자가 구현하는 ReactiveX의 <span class="operator">FlatMap</span> 연산자에 대한 구체적으로 설명한다)
-
-만약 직접 연산자를 구현하고 싶다면 <a href="implement-operator.html">연산자 구현하기</a>를 참고하기 바란다.
-
-<h4>소개 순서</h4> 
+<h4>Konten</h4> 
 <ol>
- <li><a href="#categorized">카테고리 별 연산자</a></li>
- <li><a href="#tree">Observable 연산자의 결정 트리</a></li>
- <li><a href="#alphabetical">Observable 연산자 리스트(알파벳순)</a></li>
+ <li><a href="#categorized">Operators berdasarkan Kategori</a></li>
+ <li><a href="#tree">Sebuah Decision Tree dari Operator Observable</a></li>
+ <li><a href="#alphabetical">Sebuah Daftar Operator Observable yang Disusun Menurut Abjad</a></li>
 </ol>
 
-<h1 id="categorized">카테고리 별 연산자</h1>
+<h1 id="categorized">Operators berdasarkan Kategori</h1>
 
-<h2 id="creating">Observable 생성</h2>
+<h2 id="creating">Membuat Observable</h2>
 
-새로운 Observable을 만드는 연산자들
+Operator yang membuat Observable baru.
 
-* [**`Create`**]({{ site.url }}/documentation/operators/create.html) — 직접적인 코드 구현을 통해 옵저버 메서드를 호출하여 Observable을 생성한다
-* [**`Defer`**]({{ site.url }}/documentation/operators/defer.html) — 옵저버가 구독하기 전까지는 Observable 생성을 지연하고  구독이 시작되면 옵저버 별로 새로운 Observable을 생성한다
-* [**`Empty`/`Never`/`Throw`**]({{ site.url }}/documentation/operators/empty-never-throw.html) — 아주 정확하고 제한된 행동을 하는 Observable을 생성한다
-* [**`From`**]({{ site.url }}/documentation/operators/from.html) — 다른 객체나 자료 구조를 Observable로 변환한다
-* [**`Interval`**]({{ site.url }}/documentation/operators/interval.html) — 특정 시간별로 연속된 정수형을 배출하는 Observable을 생성한다
-* [**`Just`**]({{ site.url }}/documentation/operators/just.html) — 객체 하나 또는 객채집합을 Observable로 변환한다. 변환된 Observable은 원본 객체들을 발행한다
-* [**`Range`**]({{ site.url }}/documentation/operators/range.html) — 연속된 범위(Range)의 정수를 발행하는 Observable을 생성한다
-* [**`Repeat`**]({{ site.url }}/documentation/operators/repeat.html) — 특정 항목이나 연속된 항목들을 반복적으로 배출하는 Observable을 생성한다
-* [**`Start`**]({{ site.url }}/documentation/operators/start.html) — 함수의 실행 결과를 배출하는 Observable을 생성한다
-* [**`Timer`**]({{ site.url }}/documentation/operators/timer.html) — 지정된 시간이 지나고 난 후 항목을 하나 배출하는 Observable을 생성한다
+* [**`Create`**]({{ site.url }}/documentation/operators/create.html) — membuat sebuah Observable dari awal dengan memanggil method observer secara terprogram
+* [**`Defer`**]({{ site.url }}/documentation/operators/defer.html) — jangan membuat Observable sampai observer melakukan subscribe, dan membuat sebuah Observable baru untuk tiap observer
+* [**`Empty`/`Never`/`Throw`**]({{ site.url }}/documentation/operators/empty-never-throw.html) — membuat Observable yang memiliki perilaku yang tepat dan terbatas
+* [**`From`**]({{ site.url }}/documentation/operators/from.html) — mengubah beberapa obyek atau struktur data menjadi sebuah Observable
+* [**`Interval`**]({{ site.url }}/documentation/operators/interval.html) — membuat sebuah Observable yang memancarkan sebuah deret yang terjeda oleh suatu satuan waktu tertentu
+* [**`Just`**]({{ site.url }}/documentation/operators/just.html) — mengubah sebuah obyek atau sebuah set dari obyek menjadi sebuah Observable yang memancarkan obyek tersebut.
+* [**`Range`**]({{ site.url }}/documentation/operators/range.html) — membuat sebuah Observable yang memancarkan sebuah deret bilangan dalam batasan tertentu
+* [**`Repeat`**]({{ site.url }}/documentation/operators/repeat.html) — membuat sebuah Observable yang memancarkan item atau deret tertentu secara berulang-ulang
+* [**`Start`**]({{ site.url }}/documentation/operators/start.html) — membuat sebuah Observable yang memancarkan hasil dari sebuah fungsi
+* [**`Timer`**]({{ site.url }}/documentation/operators/timer.html) — membuat sebuah Observable yang memancarkan tepat satu item setelah jangka waktu tertentu
 
-<h2 id="transforming">Observable 변환</h2>
+<h2 id="transforming">Mengubah Observable</h2>
 
-Observable이 배출한 항목들을 변환하는 연산자들
+Operator yang mengubah item yang dipancarkan oleh suatu Observable.
 
-* [**`Buffer`**]({{ site.url }}/documentation/operators/buffer.html) — Observable로부터 정기적으로 항목들을 수집하고 묶음으로 만든 후에 묶음 안에 있는 항목들을 한번에 하나씩 배출하지 않고 수집된 묶음 단위로 배출한다
-* [**`FlatMap`**]({{ site.url }}/documentation/operators/flatmap.html) — 하나의 Observable이 발행하는 항목들을 여러개의 Observable로 변환하고, 항목들의 배출을 차례차례 줄 세워 하나의 Observable로 전달한다
-* [**`GroupBy`**]({{ site.url }}/documentation/operators/groupby.html) — 원본 Observable이 배출하는 항목들을 키(Key) 별로 묶은 후 Observable에 담는다. 이렇게 키 별로 만들어진 Observable들은 자기가 담고 있는 묶음의 항목들을 배출한다
-* [**`Map`**]({{ site.url }}/documentation/operators/map.html) — Observable이 배출한 항목에 함수를 적용한다
-* [**`Scan`**]({{ site.url }}/documentation/operators/scan.html) — Observable이 배출한 항목에 연속적으로 함수를 적용하고 실행한 후 성공적으로 실행된 함수의 리턴 값을 발행한다
-* [**`Window`**]({{ site.url }}/documentation/operators/window.html) — 정기적으로 Observable의 항목들을 더 작은 단위의 Observable 윈도우로 나눈 후에, 한번에 하나씩 항목들을 발행하는 대신 작게 나눠진 윈도우 단위로 항목들을 배출한다
+* [**`Buffer`**]({{ site.url }}/documentation/operators/buffer.html) — mengumpulkan item dari sebuah Observable secara berkala menjadi sebuah kumpulan/ bundel dan memancarkan bundel tersebut daripada memancarkan item satu per satu
+* [**`FlatMap`**]({{ site.url }}/documentation/operators/flatmap.html) — mengubah item yang diemit oleh sebuah Observable menjadi beberapa Observable, kemudian meratakan emisi-emisi tersebut menjadi sebuah Observable
+* [**`GroupBy`**]({{ site.url }}/documentation/operators/groupby.html) — membagi sebuah Observable menjadi beberapa set Observable yang dimana masing masing memancarkan grup item yang berbeda dari Observable asalnya, diatur dengan sebuah key
+* [**`Map`**]({{ site.url }}/documentation/operators/map.html) — mengubah item-item yang dipancarkan oleh sebuah Observable dengan menerapkan sebuah fungsi ke masing-masing item
+* [**`Scan`**]({{ site.url }}/documentation/operators/scan.html) — menerapkan sebuah fungsi kepada masing-masing item yang dipancarkan oleh sebuah Observable, secara berurutan, dan memancarkan nilainya
+* [**`Window`**]({{ site.url }}/documentation/operators/window.html) — secara berkala membagi item dari sebuah Observable menjadi jendela Obervable dan memancarkan jendela tersebut daripada item satu per satuows and emit these windows rather than emitting the items one at a time
 
-<h2 id="filtering">Observable 필터링</h2>
+<h2 id="filtering">Menyaring Observable</h2>
 
-소스 Observable에서 선택적으로 항목을 배출하는 연산자들
+Operator yang secara selektif memancarkam item dari sumber Observable.
 
-* [**`Debounce`**]({{ site.url }}/documentation/operators/debounce.html) — Observable의 시간 흐름이 지속되는 상태에서 다른 항목들은 배출하지 않고 특정 시간 마다 그 시점에 존재하는 항목 하나를 Observable로부터 배출한다
-* [**`Distinct`**]({{ site.url }}/documentation/operators/distinct.html) — Observable이 배출하는 항목들 중 중복을 제거한 항목들을 배출한다
-* [**`ElementAt`**]({{ site.url }}/documentation/operators/elementat.html) — Obserable에서 <i>n</i>번째 항목만 배출한다
-* [**`Filter`**]({{ site.url }}/documentation/operators/filter.html) — 테스트 조건을 만족하는 항목들만 배출한다
-* [**`First`**]({{ site.url }}/documentation/operators/first.html) — 맨 첫 번째 항목 또는 조건을 만족하는 첫 번째 항목만 배출한다
-* [**`IgnoreElements`**]({{ site.url }}/documentation/operators/ignoreelements.html) — 항목들을 배출하지는 않고 종료 알림은 보낸다
-* [**`Last`**]({{ site.url }}/documentation/operators/last.html) — Observable의 마지막 항목만 배출한다
-* [**`Sample`**]({{ site.url }}/documentation/operators/sample.html) — 특정 시간 간격으로 최근에 Observable이 배출한 항목들을 배출한다
-* [**`Skip`**]({{ site.url }}/documentation/operators/skip.html) — Observable이 배출한 처음 <i>n</i>개의 항목들을 숨긴다
-* [**`SkipLast`**]({{ site.url }}/documentation/operators/skiplast.html) — Observable이 배출한 마지막 <i>n</i>개의 항목들을 숨긴다
-* [**`Take`**]({{ site.url }}/documentation/operators/take.html) — Observable이 배츨한 처음 <i>n</i>개의 항목들만 배출한다
-* [**`TakeLast`**]({{ site.url }}/documentation/operators/takelast.html) — Observable이 배출한 마지막 <i>n</i>개의 항목들만 배출한다
+* [**`Debounce`**]({{ site.url }}/documentation/operators/debounce.html) — hanya memancakan sebuah item dari sebuah Observable jika sudah melewati jangka waktu tertentu tanpa memancarkan item lainnya
+* [**`Distinct`**]({{ site.url }}/documentation/operators/distinct.html) — menahan item duplikat yang dipancarkan oleh sebuah Observable
+* [**`ElementAt`**]({{ site.url }}/documentation/operators/elementat.html) — hanya memancarkan item <i>n</i> yang dipancarkan oleh sebuah Observable
+* [**`Filter`**]({{ site.url }}/documentation/operators/filter.html) — hanya memancarkan item yang sudah melewati uji predikat
+* [**`First`**]({{ site.url }}/documentation/operators/first.html) — hanya memancarkan item pertama, atau item pertama yang memenuhi kondisi tertentu, dari sebuah Observable
+* [**`IgnoreElements`**]({{ site.url }}/documentation/operators/ignoreelements.html) — tidak memancarkan item apapun dari sebuah Observable tetapi hanya mengikutinya memancarkan notifikasi berhenti
+* [**`Last`**]({{ site.url }}/documentation/operators/last.html) — memancarkan hanya item terakhir yang dipancarkan oleh Observable
+* [**`Sample`**]({{ site.url }}/documentation/operators/sample.html) — memancarkan item terbaru yang dipancarkan oleh sebuah Observable dalam jangka waktu tertentu
+* [**`Skip`**]({{ site.url }}/documentation/operators/skip.html) — menahan <i>n</i> item pertama yang dipancarkan oleh sebuah Observable
+* [**`SkipLast`**]({{ site.url }}/documentation/operators/skiplast.html) — menahant<i>n</i> item terakhir yang dipancarkan oleh sebuah Observable
+* [**`Take`**]({{ site.url }}/documentation/operators/take.html) — memancarkan hanya <i>n</i> items pertama yang dipancarkan oleh sebuah Observable
+* [**`TakeLast`**]({{ site.url }}/documentation/operators/takelast.html) — memancarkan hanya <i>n</i> items terakhir yang dipancarkan oleh sebuah Observable
 
-<h2 id="combining">Observables 결합</h2>
+<h2 id="combining">Menggabungkan Observables</h2>
 
-여러 개의 소스 Observable들을 하나의 Observable로 만드는 연산자들
+Operator yang bekerja dengan lebih dari sumber Observable untuk membuat satu Observable
 
-* [**`And`/`Then`/`When`**]({{ site.url }}/documentation/operators/and-then-when.html) — 두 개 이상의 Observable들이 배출한 항목들을 'Pattern'과 'Plan' 중계자를 이용해서 결합한다
-* [**`CombineLatest`**]({{ site.url }}/documentation/operators/combinelatest.html) — 두 개의 Observable 중 하나가 항목을 배출할 때 배출된 마지막 항목과 다른 한 Observable이 배출한 항목을 결합한 후 함수를 적용하여 실행 후 실행된 결과를 배출한다
-* [**`Join`**]({{ site.url }}/documentation/operators/join.html) — A Observable과 B Observable이 배출한 항목들을 결합하는데, 이때 B Observable은 배출한 항목이 타임 윈도우를 가지고 있고 이 타임 윈도우가 열린 동안 A Observable은 항목의 배출을 계속한다. Join 연산자는 B Observable의 항목을 배출하고 배출된 항목은 타임 윈도우를 시작시킨다. 타임 윈도우가 열려 있는 동안 A Observable은 자신의 항목들을 계속 배출하여 이 두 항목들을 결합한다
-* [**`Merge`**]({{ site.url }}/documentation/operators/merge.html) — 복수 개의 Observable들이 배출하는 항목들을 머지시켜 하나의 Observable로 만든다
-* [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html) — 소스 Observable이 항목을 배출하기 전에 다른 항목들을 앞에 추가한 후 배출한다
-* [**`Switch`**]({{ site.url }}/documentation/operators/switch.html) — Observable들을 배출하는 Observable을 싱글 Observable로 변환하다. 변환된 싱글 Observable은 변환 전 소스 Observable들이 배출한 항목들을 배출한다
-* [**`Zip`**]({{ site.url }}/documentation/operators/zip.html) — 명시한 함수를 통해 여러 Observable들이 배출한 항목들을 결합하고 함수의 실행 결과를 배출한다
+* [**`And`/`Then`/`When`**]({{ site.url }}/documentation/operators/and-then-when.html) — menggabungkan set dari item yang dipancarkan oleh dua atau lebih Observable melalui suatu `Pola` atau `Rencana`
+* [**`CombineLatest`**]({{ site.url }}/documentation/operators/combinelatest.html) — ketika sebuah item dipancarkan oleh salah satu dari dua Observable, menggabungkan item paling terbaru yang dipancarkan oleh masing-masing Observable melalui sebuah fungsi yang sudah didefinisikan berdasarkan hasil dari fungsi ini
+* [**`Join`**]({{ site.url }}/documentation/operators/join.html) — menggabungkan item yang dipancarkan oleh dua Observable kapanpun sebuah item dari satu Observable dipancarkan selama sebuah jangka waktu yang ditentukan tergantung dari item yang dipancarkan Observable yang lainnya
+* [**`Merge`**]({{ site.url }}/documentation/operators/merge.html) — menggabungkan beberapa Observable menjadi satu dengan cara menggabungkan emisi mereka
+* [**`StartWith`**]({{ site.url }}/documentation/operators/startwith.html) — memancarkan sebuah deret yang sudah ditentukan sebelum mulai untuk memancarkan item dari Observable sumber
+* [**`Switch`**]({{ site.url }}/documentation/operators/switch.html) — mengubah sebuah Observable yang memancarkan Observable menjadi sebuah Observable yang memancarkan item dari Observable terbaru yang memancarkan item
+* [**`Zip`**]({{ site.url }}/documentation/operators/zip.html) — menggabungkan emisi-emisi dari lebih dari satu Observable bersama-sama melalui sebuah fungsi yang sudah ditentukan dan memancarkan satu item untuk setiap kombinasi berdasarkan hasil dari fungsi ini
 
-<h2 id="error">오류 처리 연산자</h2>
+<h2 id="error">Operator Penanganan Error</h2>
 
-Observable이 던진 오류를 복구할 수 있도록 도와주는 연산자들
+Operator yang membantu untuk pulih dari notifikasi error dari sebuah Observable
 
-* [**`Catch`**]({{ site.url }}/documentation/operators/catch.html) — 오류를 무시하고 배출되는 항목들을 계속 진행시켜 'onError'로부터 전달된 오류를 복구한다
-* [**`Retry`**]({{ site.url }}/documentation/operators/retry.html) — 만약 소스 Observable이 'onError' 알림을 보낼 경우, 오류 없이 실행이 완료되기를 기대하며 재구독을 시도한다
+* [**`Catch`**]({{ site.url }}/documentation/operators/catch.html) — pulih dari sebuah notifikasi `onError` dengan melanjutkan deret tanpa error
+* [**`Retry`**]({{ site.url }}/documentation/operators/retry.html) — jika sebuah Observable sumber mengirim sebuah notifikasi `onError`, akan dilakukan proses subscribe ulang dengan harapan itu akan berhasil dan selesai tanpa ada error
 
-<h2 id="utility">Observable 유틸리티 연산자</h2>
+<h2 id="utility">Operator Observable Utilitas</h2>
 
-Obserable과 함께 동작하는 유용한 도우미 연산자들
+Sekumpulan Operator yang berguna ketika bekerja dengan Observables
 
-* [**`Delay`**]({{ site.url }}/documentation/operators/delay.html) — Observable의 배출을 특정 시간동안 미룬다
-* [**`Do`**]({{ site.url }}/documentation/operators/do.html) — Observable의 생명주기 동안 발생하는 여러 이벤트에서 실행 될 액션을 등록한다
-* [**`Materialize`/`Dematerialize`**]({{ site.url }}/documentation/operators/materialize-dematerialize.html) — 배출된 항목이 어떤 알림을 통해 옵저버에게 전달 됐는지를 표현하며, 그 반대 과정을 수행할 수 있다
-* [**`ObserveOn`**]({{ site.url }}/documentation/operators/observeon.html) — 옵저버가 어느 스케줄러 상에서 Observable을 관찰할지 명시한다
-* [**`Serialize`**]({{ site.url }}/documentation/operators/serialize.html) — Observable이 직렬화된 호출을 생성하고 제대로 동작하도록 강제한다
-* [**`Subscribe`**]({{ site.url }}/documentation/operators/subscribe.html) — Observable이 배출하는 항목과 알림을 기반으로 동작한다
-* [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html) — Observable을 구독할 때 사용할 스케줄러를 명시한다
-* [**`TimeInterval`**]({{ site.url }}/documentation/operators/timeinterval.html) — 항목들을 배출하는 Observable을, 항목을 배출하는데 걸린 시간이 얼마인지를 가리키는 Observable로 변환한다
-* [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — 소스 Obvservable을 그대로 전달하지만, 대신 특정 시간 동안 배출된 항목이 없으면 오류 알림을 보낸다
-* [**`Timestamp`**]({{ site.url }}/documentation/operators/timestamp.html) — Observable이 배출한 항목에 타임 스탬프를 추가한다
-* [**`Using`**]({{ site.url }}/documentation/operators/using.html) — 소스 Observable과 동일한 생명주기를 갖는 Observable을 생성하는데, 이 Observable은 생명주기가 완료되면 리소스를 종료하고 반환한다
+* [**`Delay`**]({{ site.url }}/documentation/operators/delay.html) — menggeser emisi ke beberapa saat di waktu yang akan datang
+* [**`Do`**]({{ site.url }}/documentation/operators/do.html) — mendaftarkan sebuah aksi untuk dieksekusi dalam beberapa kejadian sepanjang masa hidupnya
+* [**`Materialize`/`Dematerialize`**]({{ site.url }}/documentation/operators/materialize-dematerialize.html) — merepresentasikan baik item yang dipancarkan dan notifikasi yang dikirimkan sebagai item yang dipancarkan, atau membalikkan proses ini
+* [**`ObserveOn`**]({{ site.url }}/documentation/operators/observeon.html) — menentukan scheduler tempat dimana observer akan mengamati Observable ini
+* [**`Serialize`**]({{ site.url }}/documentation/operators/serialize.html) — memaksa sebuah Observable untuk membuat beberapa panggilan secara serial dan untuk menormalkan Observable tersebut
+* [**`Subscribe`**]({{ site.url }}/documentation/operators/subscribe.html) — beroperasi terhadap emisi-emisi dan notifikasi-notifikasi dari sebuah Observable
+* [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html) — menentukan scheduler tempat yang akan digunakan sebuah Observable ketika dilakukan subscribe kepadanya
+* [**`TimeInterval`**]({{ site.url }}/documentation/operators/timeinterval.html) — mengubah sebuah Observable yang memancarkan item menjadi Observable yang memancarkan indikasi waktu yang telah berlalu diantara emisi-emisi tersebut
+* [**`Timeout`**]({{ site.url }}/documentation/operators/timeout.html) — mencerminkan Observable sumber, tetapi membuat sebuah notifikasi error jika sudah melewati jangka waktu tertentu tanpa memancarkan item apapun
+* [**`Timestamp`**]({{ site.url }}/documentation/operators/timestamp.html) — melampirkan sebuah stempel waktu kepada masing-masing item yang dipancarkan oleh sebuah Observabke
+* [**`Using`**]({{ site.url }}/documentation/operators/using.html) — membuat sebuah sumber daya yang dapat dibuang yang memiliki masa hidup sama seperti sebuah Observable
 
-<h2 id="conditional">조건과 불린 연산자(Boolean)</h2>
+<h2 id="conditional">Operator Conditional dan Boolean</h2>
 
-하나 이상의 Observable 또는 Observable이 배출한 항목을 평가하는 연산자들
+Operator yang mengevaluasi satu atau lebih Observable atau item yang dipancarkan oleh beberapa Observable
 
-* [**`All`**]({{ site.url }}/documentation/operators/all.html) — Observable이 배출한 전체 항목들이 어떤 조건을 만족시키는지 판단한다
-* [**`Amb`**]({{ site.url }}/documentation/operators/amb.html) — 두 개 이상의 소스 Observable이 주어 질때, 그 중 첫 번째로 항목을 배출한 Observable이 배출하는 항목들을 전달한다
-* [**`Contains`**]({{ site.url }}/documentation/operators/contains.html) — Observable이 특정 항목을 배출하는지 아닌지를 판단한다
-* [**`DefaultIfEmpty`**]({{ site.url }}/documentation/operators/defaultifempty.html) — 소스 Observable이 배출하는 항목을 전달한다. 만약 배출되는 항목이 없으면 기본 항목을 배출한다
-* [**`SequenceEqual`**]({{ site.url }}/documentation/operators/sequenceequal.html) — 두 개의 Observable이 항목을 같은 순서로 배출하는지 판단한다
-* [**`SkipUntil`**]({{ site.url }}/documentation/operators/skipuntil.html) — 두 번째 Observable이 항목을 배출하기 전까지 배출된 항목들을 버린다
-* [**`SkipWhile`**]({{ site.url }}/documentation/operators/skipwhile.html) — 특정 조건이 false를 리턴하기 전까지 Observable이 배출한 항목들을 버린다
-* [**`TakeUntil`**]({{ site.url }}/documentation/operators/takeuntil.html) — 두 번째 Observable이 항목을 발행하기 시작햤거나 두 번째 Observable이 종료되면 그 때부터 발행되는 항목들은 버린다
-* [**`TakeWhile`**]({{ site.url }}/documentation/operators/takewhile.html) — 특정 조건이 false를 리턴하기 시작하면 그 이후에 배출되는 항목들을 버린다
+* [**`All`**]({{ site.url }}/documentation/operators/all.html) — menentukan apakah semua item yang dipancarkan oleh sebuah Observable memenuhi kriteria tertentu
+* [**`Amb`**]({{ site.url }}/documentation/operators/amb.html) — diberikan dua atau lebih Observable sumber, pancarkan semua item dari Observable yang paling dulu memancarkan item diantara  Observable-observable tersebut
+* [**`Contains`**]({{ site.url }}/documentation/operators/contains.html) — menentukan apakah sebuah Observable memancarkan item tertentu atau tidak
+* [**`DefaultIfEmpty`**]({{ site.url }}/documentation/operators/defaultifempty.html) — memancarkan item dari Observable sumber, atau sebuah nilai tertentu jika Observable tersebut tidak memancarkan apapun
+* [**`SequenceEqual`**]({{ site.url }}/documentation/operators/sequenceequal.html) — menentukan apakah dua observable memancarkan deretan item yang sama
+* [**`SkipUntil`**]({{ site.url }}/documentation/operators/skipuntil.html) — membuang item yang dipancarkan oleh sebuah Observable sampai sebuah Observable kedua memancarkan sebuah item
+* [**`SkipWhile`**]({{ site.url }}/documentation/operators/skipwhile.html) — membuang item yang dipancarkan oleh sebuah Observable sampai sebuah kondisi yang ditentukan menjadi false
+* [**`TakeUntil`**]({{ site.url }}/documentation/operators/takeuntil.html) — mengambil item yang dipancarkan oleh sebuah Observable sampai sebuah Observable kedua memancarkan sebuah item atau berhenti
+* [**`TakeWhile`**]({{ site.url }}/documentation/operators/takewhile.html) — mengambil item yang dipancarkan oleh sebuah Observable sebelum kondisi yang ditentukan menjadi false
 
-<h2 id="mathematical">수학과 집계 연산자</h2>
+<h2 id="mathematical">Operator Matematika and Agregat</h2>
 
-Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자들
+Operator yang beroperasi pada pada seluruh deret item yang dipancarkan Observable
 
-* [**`Average`**]({{ site.url }}/documentation/operators/average.html) — Observable이 발행한 항목의 평균 값을 발행한다
-* [**`Concat`**]({{ site.url }}/documentation/operators/concat.html) — 두 개 이상의 Observable들이 항목을 발행할 때 Observable 순서대로 배출하는 항목들을 하나의 Observable 배출로 연이어 배출한다
-* [**`Count`**]({{ site.url }}/documentation/operators/count.html) — 소스 Observable이 발행한 항목의 개수를 배출한다
-* [**`Max`**]({{ site.url }}/documentation/operators/max.html) — Observable이 발행한 항목 중 값이 가장 큰 항목을 배출한다
-* [**`Min`**]({{ site.url }}/documentation/operators/min.html) — Observable이 발행한 항목 중 값이 가장 작은 항목을 배출한다
-* [**`Reduce`**]({{ site.url }}/documentation/operators/reduce.html) — Observable이 배출한 항목에 함수를 순서대로 적용하고 함수를 연산한 후 최종 결과를 발행한다
-* [**`Sum`**]({{ site.url }}/documentation/operators/sum.html) — Observable이 배출한 항목의 합계를 배출한다
+* [**`Average`**]({{ site.url }}/documentation/operators/average.html) — menghitung rata-rata dari angka yang dipancarkan oleh sebuah Observable dan memancarkan hasilnya
+* [**`Concat`**]({{ site.url }}/documentation/operators/concat.html) — memancarkan emisi dari dua atau lebih Observable tanpa menyisipkan mereka
+* [**`Count`**]({{ site.url }}/documentation/operators/count.html) — menghitung jumlah angka yang dipancarkan oleh Observable sumber lalu memancarkan hasilnya
+* [**`Max`**]({{ site.url }}/documentation/operators/max.html) — menentukan, dan memancarkan, nilai maksimal dari item yang dipancarkan Observable
+* [**`Min`**]({{ site.url }}/documentation/operators/min.html) — menentukan, dan memancarkan, nilai minimal dari item yang dipancarkan Observable
+* [**`Reduce`**]({{ site.url }}/documentation/operators/reduce.html) — menerapkan sebuah fungsi ke tiap item yang dipancarkan oleh sebuah Observable secara berurutan dan memancarkan nilai akhirnya
+* [**`Sum`**]({{ site.url }}/documentation/operators/sum.html) — menghitung jumlah dari angka-angka yang dipancarkan oleh sebuah Observable dan memancarkan hasilnya
 
-<h2 id="backpressure">역압(Backpressure) 연산자</h2>
+<h2 id="backpressure">Operator Backpressure</h2>
 
-* [**backpressure operators**]({{ site.url }}/documentation/operators/backpressure.html) — 옵저버가 소비하는 것보다 더 빠르게 항목들을 생산하는 Observable을 복재하는 전략
+* [**operator backpressure**]({{ site.url }}/documentation/operators/backpressure.html) — strategi yang digunakan untuk mengatasi Observable yang menghasilkan item jauh lebih cepat dari yang dikonsumsi observer
 
-<h2 id="connectable">연결 가능한 Observable 연산자</h2>
+<h2 id="connectable">Operator Observable Connectable</h2>
 
-좀 더 정확히 제어되는 구독 역학을 가진 전문 Observable들
+Observable khusus yang memiliki dinamika subscription yang lebih terkontrol dengan tepat
 
-* [**`Connect`**]({{ site.url }}/documentation/operators/connect.html) — 구독자가 항목 배출을 시작할 수 있도록 연결 가능한 Observable에게 명령을 내린다
-* [**`Publish`**]({{ site.url }}/documentation/operators/publish.html) — 일반 Observable을 연결 가능한 Observable로 변환한다
-* [**`RefCount`**]({{ site.url }}/documentation/operators/refcount.html) — 일반 Observable처럼 동작하는 연결 가능한 Observable을 만든다
-* [**`Replay`**]({{ site.url }}/documentation/operators/replay.html) — 비록 옵저버가 Observable이 항목 배출을 시작한 후에 구독을 했다 하더라도 배출된 모든 항목들을 볼 수 있도록 한다
+* [**`Connect`**]({{ site.url }}/documentation/operators/connect.html) — menginstruksikan sebuah Observable connectable untuk mulai memancarkan item kepada subscriber-nya
+* [**`Publish`**]({{ site.url }}/documentation/operators/publish.html) — mengubah sebuah Observable biasa menjadi sebuah Observable connectable
+* [**`RefCount`**]({{ site.url }}/documentation/operators/refcount.html) — membuat sebuah Observable connectable berperilaku seperti sebuah Observable biasa
+* [**`Replay`**]({{ site.url }}/documentation/operators/replay.html) — memastikan semua observer melihat deret yang sama dari item yang dipancarkan, bahkan jika mereka baru melakukan subscribe setelah Observable tersebut sudah mulai memancarkan item
 
-<h2 id="conversion">Observable 변환 연산자</h2>
+<h2 id="conversion">Operators untuk Mengubah Observables</h2>
 
-* [**`To`**]({{ site.url }}/documentation/operators/to.html) — Observable을 다른 객체나 자료 구조로 변환한다
+* [**`To`**]({{ site.url }}/documentation/operators/to.html) — mengubah sebuah Observable menjadi obyek atau struktur data yang lain
 
 <div id="tree">
 <style>
@@ -185,276 +183,278 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
    div#tree dd.sub { float: none;
                      margin-left: 0; }
 </style>
-  <h1>Observable 연산자 결정 트리</h1>
+  <h1>Sebuah Decision Tree dari Operator Observable</h1>
   <p>
-   이 트리는 여러분이 원하는 ReactiveX의 Observable 연산자를 찾는데 도움을 줄 것이다.
+   Tree ini dapat mmbantu anda menemukan operator yang sedang anda cari.
   </p>
 <dl id="outer">
- <dt>나는 새로운 Observable을 생성하고 싶은데 그 Observable이</dt>
+ <dt>Saya ingin membuat sebuah Observable yang baru</dt>
   <dd class="sub"><dl>
-   <dt>특정 항목을 생성해야 한다면:</dt>
+   <dt>yang memancarkan hanya sebuah item</dt>
     <dd><a href="operators/just.html">Just</a></dd>
     <dd class="sub"><dl>
-     <dt>구독 시점에 호출된 함수를 통해 생성된 항목을 리턴해야 한다면:</dt>
+     <dt>yang dikembalikan dari sebuah fungsi yang dipanggil saat sedang disubscribe</dt>
       <dd><a href="operators/start.html">Start</a></dd>
-     <dt>구독 시점에 호출된 <code>Action</code>, <code>Callable</code>, <code>Runnable</code> 또는 그와 유사한 함수 등을 통해 생성된 항목을 리턴해야 한다면:</dt>
+     <dt>yang dikembalikan dari sebuah <code>Action</code>, <code>Callable</code>, <code>Runnable</code>, atau sejenisnya, yang dipanggil saat sedang disubscribe</dt>
       <dd><a href="operators/from.html">From</a></dd>
-     <dt>지정된 시간 이후에 항목을 배출해야 한다면:</dt>
+     <dt>setelah jeda waktu tertentu</dt>
       <dd><a href="operators/timer.html">Timer</a></dd>
      </dl></dd>
-   <dt>특정 <code>Array</code>, <code>Iterable</code> 또는 유사한 형태의 소스로부터 항목들을 배출해야 한다면:</dt>
+   <dt>yang menarik emisinya dari sebuah <code>Array</code>, <code>Iterable</code>, atau sejenisnya</dt>
     <dd><a href="operators/from.html">From</a></dd>
-   <dt>퓨처(Future)에서 항목을 조회해서 배출해야 한다면:</dt>
+   <dt>dengan mengambilnya dari sebuah Future</dt>
     <dd><a href="operators/start.html">Start</a></dd>
-   <dt>퓨처에서 연속된 항목을 가져와야 한다면:</dt>
+   <dt>yang mendapatkan deretnya dari sebuah Future</dt>
     <dd><a href="operators/from.html">From</a></dd>
-   <dt>반복적으로 연속된 항목을 배출해야 한다면:</dt>
+   <dt>yang memancarkan deret item secara berulang-ulang</dt>
     <dd><a href="operators/repeat.html">Repeat</a></dd>
-   <dt>사용자가 정의한 로직을 통해 생성되어야 한다면:</dt>
+   <dt>yang dibuat dari awal, dengan logika tertentu</dt>
     <dd><a href="operators/create.html">Create</a></dd>
-   <dt>각각의 옵저버가 Observable을 구독한 후에 생성되어야 한다면:</dt>
+   <dt>untuk setiap observer yang melakukan subscribe</dt>
     <dd><a href="operators/defer.html">Defer</a></dd>
-   <dt>연속된 정수를 배출해야 한다면:</dt>
+   <dt>yang memancarkan sederet angka</dt>
     <dd><a href="operators/range.html">Range</a></dd>
     <dd class="sub"><dl>
-     <dt>특정 시간 간격별로 항목을 배출해야 한다면:</dt>
+     <dt>pada interval tertentu</dt>
       <dd><a href="operators/interval.html">Interval</a></dd>
       <dd class="sub"><dl>
-       <dt>특정 시간 후에 항목을 배출해야 한다면:</dt>
+       <dt>setelah jeda waktu tertentu</dt>
        <dd><a href="operators/timer.html">Timer</a></dd>
       </dl></dd>
     </dl></dd>
-   <dt>항목 배출 없이 실행을 완료해야 한다면:</dt>
+   <dt>yang langsung selesai tanpa memancarkan apapun</dt>
     <dd><a href="operators/empty-never-throw.html">Empty</a></dd>
-   <dt>아무일도 하지 않아야 한다면:</dt>
+   <dt>yang tidak melakukan apapun</dt>
     <dd><a href="operators/empty-never-throw.html">Never</a></dd>
   </dl></dd>
 
- <dt>다른 Observable을 결합시켜 새로운 Observable을 생성해야 한다</dt>
+ <dt>Saya ingin membuat sebuah Observable dengan cara menggabungkannya dengan Observable lainnya</dt>
   <dd class="sub"><dl>
-   <dt>그리고 순서와 상관없이 전달 된 모든 Observable이 가진 항목 전체를 배출해야 한다면:</dt>
+   <dt>dan memancarkan semua item dari semua Observable tidak peduli urutan kapan mereka diterima</dt>
     <dd><a href="operators/merge.html">Merge</a></dd>
-   <dt>그리고 전달 된 Observable의 순서대로 Observable이 가진 모든 항목들을 배출해야 한다면:</dt>
+   <dt>dan memancarkan semua item dari semua Observable, satu per satu</dt>
     <dd><a href="operators/concat.html">Concat</a></dd>
-   <dt>생성하고 싶은 Observable은, 두 개 이상의 Observable이 가진 항목들을 순서대로 결합시켜 새로운 항목을 배출해야 하는데:</dt>
+   <dt>dengan mengombinasikan item dari dua atau lebih Observable secara berurutan untuk menghasilkan item baru untuk dipancarkan</dt>
     <dd class="sub"><dl>
-     <dt><em>각각</em>의 Observable이 항목을 배출 할 때마다 그 항목들을 결합시켜 배출해야 한다면:</dt>
+     <dt>kapanpun <em>setiap</em> Observable telah memancarkan sebuah item baru</dt>
       <dd><a href="operators/zip.html">Zip</a></dd>
-     <dt>Observable 중 <em>하나</em>라도 항목을 배출할 경우에 마지막으로 배출된 항목들을 결합시켜 배출해야 한다면:</dt>
+     <dt>kapanpun <em>salah satu dari</em> Observables telah memancarkan item baru</dt>
       <dd><a href="operators/combinelatest.html">CombineLatest</a></dd>
-     <dt>하나의 Observable이 배출한 항목의 타임 윈도우가 열려있는 시간 동안 다른 Observable이 항목을 배출할 때마다 새로운 항목을 배출해야 한다면:</dt>
+     <dt>kapanpun sebuah item dipancarkan oleh satu Observable dalam jangka waktu yang sudah ditentukan oleh sebuah item yang dipancarkan oleh Observable yang lain</dt>
       <dd><a href="operators/join.html">Join</a></dd>
-     <dt><code>Pattern</code>과 <code>Plan</code> 중계자를 이용해서 항목을 배출해야 한다면:</dt>
+     <dt>melalui  <code>Pola</code> dan <code>Rencana</code></dt>
       <dd><a href="operators/and-then-when.html">And/Then/When</a></dd>
     </dl></dd>
-   <dt>그리고 가장 최근에 항목을 배출한 Observable을 통해서만 항목을 배출해야 한다면:</dt>
+   <dt>dan memancarkan item hanya dari Observable terbaru yang memancarkan item</dt>
     <dd><a href="operators/switch.html">Switch</a></dd>
   </dl></dd>
 
- <dt>Observable이 배출한 항목들을 변환한 후에 다시 배출해야 하는데</dt>
+ <dt>Saya ingin memancarkan item dari sebuah Observable setelah mengubah mereka</dt>
   <dd class="sub"><dl>
-   <dt>함수와 함께 항목을 한번에 하나씩 변환 후 배출해야 한다면:</dt>
+   <dt>satu per satu menggunakan sebuah fungsi</dt>
     <dd><a href="operators/map.html">Map</a></dd>
-   <dt>해당 Observable이 배출한 모든 항목들을 하나의 Observable이 배출하는 형태로 배출해야 한다면:</dt>
+   <dt>dengan memancarkan semua item yang dipancarkan Observable yang bersangkutan</dt>
     <dd><a href="operators/flatmap.html">FlatMap</a></dd>
     <dd class="sub"><dl>
-     <dt>순서대로 Observable이 배출한 항목들을 연결지어 배출해야 한다면:</dt>
+     <dt>satu per satu Observable, dengan urutan kapan mereka dipancarkan</dt>
       <dd><a href="operators/flatmap.html">ConcatMap</a></dd>
     </dl></dd>
-   <dt>앞에서 실행 된 결과를 기반으로 항목을 변환한 후 배출해야 한다면:</dt>
+   <dt>berdasarkan semua item yang mendahului mereka</dt>
     <dd><a href="operators/scan.html">Scan</a></dd>
-   <dt>타임 스탬프를 추가하여 변환한 후 배출해야 한다면:</dt>
+   <dt>dengan menyertakan sebuah stempel waktu kepada mereka</dt>
     <dd><a href="operators/timestamp.html">Timestamp</a></dd>
-   <dt>항목 배출 전까지 경과한 시간을 가리키는 객체로 변환한 후에 배출해야 한다면:</dt>
+   <dt>menjadi sebuah indikasi dari waktu yang telah berlalu sebelum pancaran item tersebut</dt>
     <dd><a href="operators/timeinterval.html">TimeInterval</a></dd>
   </dl></dd>
 
- <dt>Observable이 항목을 배출하기 전에 항목의 배출 시간을 지연시켜야 한다면:</dt>
+ <dt>Saya ingin menunda pancaran yang dilakukan oleh sebuah Observable untuk beberapa saat sebelum memulai memancarkannya kembali</dt>
   <dd><a href="operators/delay.html">Delay</a></dd>
 
- <dt>Observable이 배출하는 항목들<em>과</em> 알림들을 다시 항목들로 변환 후 배출해야 하는데</dt>
+ <dt>Saya ingin mengubah item <em>dan</em> notifikasi dari sebuah Observable menjadi item baru dan kemudian memancarkan mereka kembali</dt>
   <dd class="sub"><dl>
-   <dt>이때 배출하는 항목들을 <code>알림</code> 객체로 감싸서(wrapping) 배출해야 한다면:</dt>
+   <dt>dengan membungkus mereka dalam obyek <code>Notifikasi</code></dt>
     <dd><a href="operators/materialize-dematerialize.html">Materialize</a></dd>
     <dd class="sub"><dl>
-     <dt>이 알림 객체가 다시 풀릴 수(unwrapping) 있다면:</dt>
+     <dt>yang dimana bisa dibuka kembali</dt>
       <dd><a href="operators/materialize-dematerialize.html">Dematerialize</a></dd>
     </dl></dd>
   </dl></dd>
 
- <dt>Observable이 배출하는 모든 객체를 무시하고 completed/error 알림만 전달해야 한다면:</dt>
+ <dt>Saya ingin mengabaikan semua item yang dipancarkan oleh sebuah Observable dan hanya mengirimkan notifikasi completed/error-nya</dt>
   <dd><a href="operators/ignoreelements.html">IgnoreElements</a></dd>
 
- <dt>Observable이 가진 항목을 그대로를 배출하지만 배출 전에 다른 항목들을 먼저 배출될 수 있도록 추가해야 한다면:</dt>
+ <dt>Saya ingin mencerminkan sebuah Observable tetapi ingin menambahkan beberapa item sebelum pancarannya</dt>
   <dd><a href="operators/startwith.html">StartWith</a></dd>
   <dd class="sub"><dl>
-   <dt>만약 소스 Observable이 비어있을 경우 기본 항목을 추가해야 한다면:</dt>
+   <dt>hanya jika pancaran tersebut merupakan pancaran kosong</dt>
     <dd><a href="operators/defaultifempty.html">DefaultIfEmpty</a></dd>
   </dl></dd>
 
- <dt>Observable이 배출하는 항목들을 모아둔 후 버퍼로 다시 배출해야 한다면:</dt>
+ <dt>Saya ingin mengumpulkan item dari sebuah Observable dan memancarkan mereka kembali buffer dari item-item</dt>
   <dd><a href="operators/buffer.html">Buffer</a></dd>
   <dd class="sub"><dl>
-   <dt>그 중 마지막에 배출된 항목이 추가된 버퍼만 배출해야 한다면:</dt>
+   <dt>yang hanya mengandung item terakhir yang dipancarkan</dt>
     <dd><a href="operators/takelast.html">TakeLastBuffer</a></dd>
   </dl></dd>
 
- <dt>하나의 Observable을 여러 Observable로 나눠야 한다:</dt>
+ <dt>Saya ingin memisahkan satu Observable menjadi beberapa Observable</dt>
   <dd><a href="operators/window.html">Window</a></dd>
   <dd class="sub"><dl>
-   <dt>그 중 유사한 항목들을 같은 Observable에 모아 두어야 한다면:</dt>
+   <dt>hingga beberapa item yang mirip akan tergabung menjadi Observable yang sama</dt>
     <dd><a href="operators/groupby.html">GroupBy</a></dd>
   </dl></dd>
 
- <dt>Observable이 배출한 특정 항목을 조회해야 하는데</dt>
+ <dt>Saya hanya ingin mengambil item tertentu yang dipancarkan oleh sebuah Observable:</dt>
   <dd class="sub"><dl>
-   <dt>Observable이 완료되기 전에 마지막으로 배출한 항목을 조회해야 한다면:</dt>
+   <dt>item terakhir yang dipancarkan sebelum Observable tersebut menyelesaikan pancarannya</dt>
     <dd><a href="operators/last.html">Last</a></dd>
-   <dt>배출된 항목이 단지 하나이고 이것을 조회해야 한다면:</dt>
+   <dt>satu-satunya item yang dipancarkan</dt>
     <dd><a href="operators/first.html">Single</a></dd>
-   <dt>배출한 첫 번째 항목을 조회해야 한다면:</dt>
+   <dt>item pertama yang dipancarkan</dt>
     <dd><a href="operators/first.html">First</a></dd>
   </dl></dd>
 
- <dt>Observable의 특정 항목만 재배출 해야 하는데</dt>
+ <dt>Saya ingin memancarkan kembali beberapa item tertentu dari sebuah Observable</dt>
   <dd class="sub"><dl>
-   <dt>어떤 조건을 만족시키지 않는 항목들을 필터링해서 재배출 해야 한다면:</dt>
+   <dt>dengan menyaring item yang tidak sesuai dengan predikat tertentu</dt>
     <dd><a href="operators/filter.html">Filter</a></dd>
-   <dt>첫 번째 항목만 재배출 해야 한다면:</dt>
+   <dt>yang merupakan item paling pertama</dt>
     <dd><a href="operators/first.html">First</a></dd>
-   <dt>처음 몇 개의 항목<em>들</em>만 재배출 해야 한다면:</dt>
+   <dt>yang merupakan <em>beberapa</em> item pertama</dt>
     <dd><a href="operators/take.html">Take</a></dd>
-   <dt>마지막 항목만 재배출 해야 한다면:</dt>
+   <dt>yang merupakan item terakhir</dt>
     <dd><a href="operators/last.html">Last</a></dd>
-   <dt><i>몇 번째</i> 위치한 항목만 재배출 해야 한다면:</dt>
+   <dt>yang merupakan item <i>n</i></dt>
     <dd><a href="operators/elementat.html">ElementAt</a></dd>
-   <dt>재배출할 항목들이 처음 몇개 이후의 것들일 경우</dt>
+   <dt>yang merupakan item setelah beberapa item pertama</dt>
     <dd class="sub"><dl>
-     <dt>처음 <i>몇 개</i>의 항목들 이후의 것들 이라면:</dt>
+     <dt>setelah <i>n</i> item</dt>
       <dd><a href="operators/skip.html">Skip</a></dd>
-     <dt>특정 조건을 만족시킨 이후의 것들 이라면:</dt>
+     <dt>sampai satu atau lebih item cocok dengan predikat</dt>
       <dd><a href="operators/skipwhile.html">SkipWhile</a></dd>
-     <dt>초기 특정 시간 이후에 배출된 항목들 이라면:</dt>
+     <dt>setelah jeda waktu tertentu</dt>
       <dd><a href="operators/skip.html">Skip</a></dd>
-     <dt>두 번째 Observable이 항목을 배출한 이후의 것들 이라면:</dt>
+     <dt>setelah Observable kedua memancarkan sebuah item</dt>
       <dd><a href="operators/skipuntil.html">SkipUntil</a></dd>
     </dl></dd>
-   <dt>마지막 항목 몇개를 제외한 경우</dt>
+   <dt>yang merupakan semua item kecuali beberapa item terakhir</dt>
     <dd class="sub"><dl>
-     <dt>마지막 <i>몇 개</i> 항목을 제외한 것들 이라면:</dt>
+     <dt>kecuali <i>n</i> item terakhir</dt>
       <dd><a href="operators/skiplast.html">SkipLast</a></dd>
-     <dt>특정 조건을 만족할때 까지의 것들 이라면:</dt>
+     <dt>sampai satu atau lebih item cocok dengan predikat</dt>
       <dd><a href="operators/takewhile.html">TakeWhile</a></dd>
-     <dt>소스 Observable이 완료되기 이전 특정 시간 동안 배출한 것들을 제외한 것이라면:</dt>
+     <dt>kecuali item yang dipancarkan selama jeda waktu tertentu sebelum sumbernya menyelesaikan pancarannya</dt>
       <dd><a href="operators/skiplast.html">SkipLast</a></dd>
-     <dt>두 번째 Observable이 항목을 배출한 이후에 배출된 것들을 제외한 것이라면:</dt>
+     <dt>kecuali item yang dipancarkan setelah sebuah Observable kedua mulai memancarkan item</dt>
       <dd><a href="operators/takeuntil.html">TakeUntil</a></dd>
     </dl></dd>
-   <dt>주기적으로 Observable을 샘플링해서 재배출해야 한다면:</dt>
+   <dt>dengan mencontoh Observable secara berkala</dt>
     <dd><a href="operators/sample.html">Sample</a></dd>
-   <dt>특정 시간이 지나고 나서 배출된 항목들만 재배출 해야 한다면:</dt>
+   <dt>dengan hanya memancarkan item yang tidak diikuti oleh item lainnya dalam jangka waktu tertentu</dt>
     <dd><a href="operators/debounce.html">Debounce</a></dd>
-   <dt>이미 배출된 항목과 동일한 것들을 제외시켜 재배출 해야 한다면:</dt>
+   <dt>dengan menahan item yang merupakan duplikasi dari item yang sudah dipancarkan</dt>
     <dd><a href="operators/distinct.html">Distinct</a></dd>
     <dd class="sub"><dl>
-     <dt>만약 중복된 항목이 바로 연이어 배출된다면:</dt>
+     <dt>jika kemudian mereka diikuti langsung oleh item yang merupakan duplikatnya</dt>
       <dd><a href="operators/distinct.html">DistinctUntilChanged</a></dd>
     </dl></dd>
-   <dt>항목 배출이 시작된 이후에 얼마 동안 구독을 지연시켜야 한다면:</dt>
+   <dt>dengan menahan subscription untuk jangka waktu tertentu setelah dia mulai memancarkan item</dt>
     <dd><a href="operators/delay.html">DelaySubscription</a></dd>
   </dl></dd>
 
- <dt>항목들을 배출하는 Observable 컬랙션 중에 첫 번째로 항목을 배출하는 Observable의 항목만 배출해야 한다면:</dt>
+ <dt>Saya ingin memancarkan kembali item dari sebuah Observable jika dan hanya jika itu merupakan Observable pertama dari sekumpulan Observable yang memancarkan item</dt>
   <dd><a href="operators/amb.html">Amb</a></dd>
 
- <dt>Observable이 배출한 연속된 항목 전체를 평가해야 한다</dt>
+ <dt>Saya ingin mengevaluasi seluruh deret item yang dipancarkan oleh sebuah Observable</dt>
   <dd class="sub"><dl>
-   <dt>그리고 항목 <em>전체</em>가 테스트를 통과했는지를 가리키는 boolean 타입 항목 하나를 배출해야 한다면:</dt>
+   <dt>dan memancarkan sebuah boolean jika <em>semua</em> item telah melewati suatu proses uji tertentu</dt>
     <dd><a href="operators/all.html">All</a></dd>
-   <dt>그리고 항목 전체 중 <em>하나라도</em> 테스트를 통과했는지를 가리키는 boolean 타입 항목 하나를 배출해야 한다면:</dt>
+   <dt>dan memancarkan sebuah boolean yang menandakan bahwa Observable telah memancarkan item <em>apapun</em> (yang telah melewati suatu proses uji tertentu)</dt>
     <dd><a href="operators/contains.html">Contains</a></dd>
-   <dt>그리고 Observable이 항목을 배출하지 못했는지를 가리키는 boolean 타입 항목 하나를 배출해야 한다면:</dt>
+   <dt>dan memancarkan sebuah boolean yang menandakan bahwa Observable tersebut <em>tidak</em> memancarkan item apapun</dt>
     <dd><a href="operators/contains.html">IsEmpty</a></dd>
-   <dt>그리고 두 Observable이 같은 순서대로 항목들을 배출했는지를 가리키는 boolean 타입 하나를 배출해야 한다면:</dt>
+   <dt>dan memancarkan sebuah boolean yang menandakan deret tersebut sama dengan yang dipancarkan oleh sebuah Observable kedua</dt>
     <dd><a href="operators/sequenceequal.html">SequenceEqual</a></dd>
-   <dt>그리고 전체 배출된 항목의 평균 값을 항목을 배출해야 한다면:</dt>
+   <dt>dan memancarkan rata-rata dari semua nilai mereka</dt>
     <dd><a href="operators/average.html">Average</a></dd>
-   <dt>그리고 전체 배출된 항목의 합계를 배출해야 한다면:</dt>
+   <dt>dan memancarkan jumlah dari semua nilai mereka</dt>
     <dd><a href="operators/sum.html">Sum</a></dd>
-   <dt>그리고 얼마나 많은 항목들이 배출됐는지를 배출해야 한다면:</dt>
+   <dt>dan memancarkan sebuah angka yang menyimbolkan jumlah item dalam deret tersebut</dt>
     <dd><a href="operators/count.html">Count</a></dd>
-   <dt>그리고 가장 큰 값을 가진 항목을 배출해야 한다면:</dt>
+   <dt>dan memancarkan sebuah item dengan nilai paling maksimal</dt>
     <dd><a href="operators/max.html">Max</a></dd>
-   <dt>그리고 가장 작은 값을 가진 항목을 배출해야 한다면:</dt>
+   <dt>dan memancarkan sebuah item dengan nilai paling minimal</dt>
     <dd><a href="operators/min.html">Min</a></dd>
-   <dt>배출되는 항목 순서대로 각각에 집계 함수를 적용해서 결과를 배출해야 한다면:</dt>
+   <dt>dengan menerapkan sebuah fungsi agregasi kepada masing-masing item lalu kemudian memancarkan hasilnya</dt>
     <dd><a href="operators/scan.html">Scan</a></dd>
   </dl></dd>
 
- <dt>Observable이 배출한 전체 항목들을 특정 자료구조로 배출하고 싶다면</dt>
+ <dt>Saya ingin mengubah seluruh bagian dari deret item yang dipancarkan oleh sebuah Observable menjadi struktur data yang lain</dt>
   <dd><a href="operators/to.html">To</a></dd>
 
- <dt>연산자가 특정 <a href="../scheduler.html">스케줄러</a> 상에서 동작해야 한다면:</dt>
+ <dt>Saya ingin sebuah operator yang bisa digunakan untuk beroperasi pada <a href="../scheduler.html">Scheduler</a> tertentu</dt>
   <dd><a href="operators/subscribeon.html">SubscribeOn</a></dd>
   <dd class="sub"><dl>
-   <dt>연산자가 옵저버한테 알림을 줄 때 동작할 스케줄러를 지정해야 한다면:</dt>
+   <dt>ketika memberi notifikasi kepada observer</dt>
     <dd><a href="operators/observeon.html">ObserveOn</a></dd>
   </dl></dd>
 
- <dt>특정 이벤트가 발생 할 때 Observable 상에서 어떤 동작을 실행시켜야 한다면:</dt>
+ <dt>Saya ingin sebuah Observable yang bisa melakukan suatu aksi jika event tertentu terjadi</dt>
   <dd><a href="operators/do.html">Do</a></dd>
 
- <dt>오류가 발생했을 때 Observable이 옵저버에게 오류를 알려야 하다면:</dt>
+ <dt>Saya ingin sebuah Observable yang akan memberitahu observer jika terjadi suatu error</dt>
   <dd><a href="operators/empty-never-throw.html">Throw</a></dd>
   <dd class="sub"><dl>
-   <dt>만약 항목이 배출되지 않은 상태에서 특정 시간이 경과했다면</dt>
+   <dt>jika sudah melewati jangka waktu tertentu dengan tidak memancarkan item apapun</dt>
     <dd><a href="operators/timeout.html">Timeout</a></dd>
   </dl></dd>
 
- <dt>자연스럽게 Observable을 복구해야 하는데</dt>
+ <dt>Saya ingin Observable yang bisa pulih dengan lancar</dt>
   <dd class="sub"><dl>
-   <dt>타임 아웃이 발생한 경우 백업 Observable로 전환시켜 복구해야 한다면:</dt>
+   <dt>dari sebuah timeout dengan menggantinya dengan sebuah Observable cadangan</dt>
     <dd><a href="operators/timeout.html">Timeout</a></dd>
-   <dt>앞에서 발생한 오류 알림으로부터 복구해야 한다면:</dt>
+   <dt>dari sebuah notifikasi error yang akan datang</dt>
     <dd><a href="operators/catch.html">Catch</a></dd>
     <dd class="sub"><dl>
-     <dt>이전 Observable에 재구독을 시도해야 한다면:</dt>
+     <dt>dengan mencoba untuk melakukan subscribe ulang ke Observable</dt>
       <dd><a href="operators/retry.html">Retry</a></dd>
     </dl></dd>
   </dl></dd>
 
- <dt>동일한 생명주기를 가진 리소스를 Observable로 생성해야 한다면:</dt>
+ <dt>Saya ingin membuat suatu sumber yang memiliki masa hidup yang sama dengan Observable-nya</dt>
   <dd><a href="operators/using.html">Using</a></dd>
 
- <dt>Observable을 구독하고 Observable이 완료될 때까지 블로킹 상태에 있는 <code>퓨처(Future)</code>를 전달 받고 싶다면:</dt>
+ <dt>Saya ingin untuk melakukan subscribe kepada sebuah Observable dan menerima sebuah <code>Future</code> yang melakukan blok sampai Observable tersebut selesai</dt>
   <dd><a href="operators/start.html">Start</a></dd>
 
- <dt>구독자의 요청 전까지 Observable이 항목을 구독자에게 배포하지 말아야 한다면:</dt>
+ <dt>Saya ingin sebuah Obervable yang tidak akan mulai memancarkan item ke subscriber sampai diminta oleh subscribernya</dt>
   <dd><a href="operators/publish.html">Publish</a></dd>
   <dd class="sub"><dl>
-   <dt>그리고 맨 마지막 항목만을 배출해야 한다면:</dt>
+   <dt>dan kemudian memancarkan item terakhir di deret itemnya</dt>
     <dd><a href="operators/publish.html">PublishLast</a></dd>
-   <dt>그리고 배출 이후에 구독자가 구독을 시작했다 하더라고 동일하게 배출 순서를 전달해야 한다면:</dt>
+   <dt>dan kemudian memancarkan deret tersebut secara lengkap, bahkan kepada subscriber yang baru melakukan subscribe ketika observer sudah memancarkan item-item sebelumnya</dt>
     <dd><a href="operators/replay.html">Replay</a></dd>
-   <dt>하지만 모든 구독자가 한번에 구독을 해지할 수 있어야 한다면:</dt>
+   <dt>tetapi saya ingin item-item tersebut untuk ditiadakan ketika semua subscriber nya melakukan unsubscribe</dt>
     <dd><a href="operators/refcount.html">RefCount</a></dd>
-   <dt>그리고 배출을 시작하도록 Observable에게 요청해야 한다면:</dt>
+   <dt>kemudian saya ingin memintanya untuk mulai</dt>
     <dd><a href="operators/connect.html">Connect</a></dd>
   </dl></dd>
 </dl>
 </div>
-<h4 style="clear:both;">참고</h4>
+<h4 style="clear:both;">Lihat Juga</h4>
 <ul>
- <li><a href="http://xgrommx.github.io/rx-book/content/which_operator_do_i_use/index.html">Which Operator do I use?</a> by Dennis Stoyanov (a similar decision tree, specific to RxJS operators)</li>
+ <li><a href="http://xgrommx.github.io/rx-book/content/which_operator_do_i_use/index.html">Which Operator do I use?</a> oleh Dennis Stoyanov (mirip seperti decision tree, tetapi terbatas pada operator RxJS)</li>
 </ul>
 
-<h1 id="alphabetical" style="clear: left;">Observable 연산자 리스트(알파벳순)</h1>
+<h1 id="alphabetical" style="clear: left;">Sebuah Daftar Operator Observable yang Disusun Menurut Abjad</h1>
 
-표준 연산자나 핵심 연산자의 이름은 **boldface**로 표시했다. 그 외 연산자들은 언어 별로 구현된 다양한 연산자들을 포함하거나 ReactiveX의 주요 연산자 이외의 특별한 연산자들을 포함한다.
+Secara resmi, operator inti ditandai dengan **cetakan tebal**. Sisanya merepresentasikan jenis operator yang diimplementasi oleh bahasa-bahasa tersendiri atau operator khusus diluar dari operator-operator utama dari ReactiveX.
 
 * [`Aggregate`]({{ site.url }}/documentation/operators/reduce.html)
 * [**`All`**]({{ site.url }}/documentation/operators/all.html)
 * [**`Amb`**]({{ site.url }}/documentation/operators/amb.html)
+* [`ambArray`]({{ site.url }}/documentation/operators/amb.html)
+* [`ambWith`]({{ site.url }}/documentation/operators/amb.html)
 * [`and_`]({{ site.url }}/documentation/operators/and-then-when.html)
 * [**`And`**]({{ site.url }}/documentation/operators/and-then-when.html)
 * [`Any`]({{ site.url }}/documentation/operators/contains.html)
@@ -470,27 +470,48 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`averageInteger`]({{ site.url }}/documentation/operators/average.html)
 * [`averageLong`]({{ site.url }}/documentation/operators/average.html)
 * [`blocking`]({{ site.url }}/documentation/operators/to.html)
+* [`blockingFirst`]({{ site.url }}/documentation/operators/first.html)
+* [`blockingForEach`]({{ site.url }}/documentation/operators/subscribe.html)
+* [`blockingIterable`]({{ site.url }}/documentation/operators/to.html)
+* [`blockingLast`]({{ site.url }}/documentation/operators/last.html)
+* [`blockingLatest`]({{ site.url }}/documentation/operators/to.html)
+* [`blockingMostRecent`]({{ site.url }}/documentation/operators/to.html)
+* [`blockingNext`]({{ site.url }}/documentation/operators/to.html)
+* [`blockingSingle`]({{ site.url }}/documentation/operators/first.html)
+* [`blockingSubscribe`]({{ site.url }}/documentation/operators/subscribe.html)
 * [**`Buffer`**]({{ site.url }}/documentation/operators/buffer.html)
 * [`bufferWithCount`]({{ site.url }}/documentation/operators/buffer.html)
 * [`bufferWithTime`]({{ site.url }}/documentation/operators/buffer.html)
 * [`bufferWithTimeOrCount`]({{ site.url }}/documentation/operators/buffer.html)
 * [`byLine`]({{ site.url }}/documentation/operators/map.html)
 * [`cache`]({{ site.url }}/documentation/operators/replay.html)
+* [`cacheWithInitialCapacity`]({{ site.url }}/documentation/operators/replay.html)
 * [`case`]({{ site.url }}/documentation/operators/defer.html)
 * [`Cast`]({{ site.url }}/documentation/operators/map.html)
 * [**`Catch`**]({{ site.url }}/documentation/operators/catch.html)
 * [`catchError`]({{ site.url }}/documentation/operators/catch.html)
 * [`catchException`]({{ site.url }}/documentation/operators/catch.html)
 * [`collect`]({{ site.url }}/documentation/operators/reduce.html)
-* [`collect`]({{ site.url }}/documentation/operators/filter.html) (RxScala version of **`Filter`**)
+* [`collect`]({{ site.url }}/documentation/operators/filter.html) (versi RxScala dari **`Filter`**)
+* [`collectInto`]({{ site.url }}/documentation/operators/reduce.html)
 * [**`CombineLatest`**]({{ site.url }}/documentation/operators/combinelatest.html)
+* [`combineLatestDelayError`]({{ site.url }}/documentation/operators/combinelatest.html)
 * [`combineLatestWith`]({{ site.url }}/documentation/operators/combinelatest.html)
 * [**`Concat`**]({{ site.url }}/documentation/operators/concat.html)
 * [`concat_all`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`concatAll`]({{ site.url }}/documentation/operators/concat.html)
+* [`concatArray`]({{ site.url }}/documentation/operators/concat.html)
+* [`concatArrayDelayError`]({{ site.url }}/documentation/operators/concat.html)
+* [`concatArrayEager`]({{ site.url }}/documentation/operators/concat.html)
+* [`concatDelayError`]({{ site.url }}/documentation/operators/concat.html)
+* [`concatEager`]({{ site.url }}/documentation/operators/concat.html)
 * [`concatMap`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`concatMapDelayError`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`concatMapEager`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`concatMapEagerDelayError`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`concatMapIterable`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`concatMapObserver`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`concatMapTo`]({{ site.url }}/documentation/operators/flatmap.html)
-* [`concatAll`]({{ site.url }}/documentation/operators/concat.html)
 * [`concatWith`]({{ site.url }}/documentation/operators/concat.html)
 * [**`Connect`**]({{ site.url }}/documentation/operators/connect.html)
 * [`connect_forever`]({{ site.url }}/documentation/operators/connect.html)
@@ -517,9 +538,13 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [**`Do`**]({{ site.url }}/documentation/operators/do.html)
 * [`doAction`]({{ site.url }}/documentation/operators/do.html)
 * [`doAfterTerminate`]({{ site.url }}/documentation/operators/do.html)
+* [`doOnComplete`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnCompleted`]({{ site.url }}/documentation/operators/do.html)
+* [`doOnDispose`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnEach`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnError`]({{ site.url }}/documentation/operators/do.html)
+* [`doOnLifecycle`]({{ site.url }}/documentation/operators/do.html)
+* [`doOnNext`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnRequest`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnSubscribe`]({{ site.url }}/documentation/operators/do.html)
 * [`doOnTerminate`]({{ site.url }}/documentation/operators/do.html)
@@ -551,6 +576,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`find`]({{ site.url }}/documentation/operators/contains.html)
 * [`findIndex`]({{ site.url }}/documentation/operators/contains.html)
 * [**`First`**]({{ site.url }}/documentation/operators/first.html)
+* [`firstElement`]({{ site.url }}/documentation/operators/first.html)
 * [`FirstOrDefault`]({{ site.url }}/documentation/operators/first.html)
 * [`firstOrElse`]({{ site.url }}/documentation/operators/first.html)
 * [**`FlatMap`**]({{ site.url }}/documentation/operators/flatmap.html)
@@ -570,6 +596,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`forall`]({{ site.url }}/documentation/operators/all.html)
 * [`ForEach`]({{ site.url }}/documentation/operators/subscribe.html)
 * [`forEachFuture`]({{ site.url }}/documentation/operators/start.html)
+* [`forEachWhile`]({{ site.url }}/documentation/operators/subscribe.html)
 * [`forIn`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`forkJoin`]({{ site.url }}/documentation/operators/zip.html)
 * [**`From`**]({{ site.url }}/documentation/operators/from.html)
@@ -581,12 +608,13 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`FromEvent`]({{ site.url }}/documentation/operators/from.html)
 * [`FromEventPattern`]({{ site.url }}/documentation/operators/from.html)
 * [`fromFunc0`]({{ site.url }}/documentation/operators/from.html)
-* [`from_future`]({{ site.url }}/documentation/operators/from.html)
-* [`from_iterable`]({{ site.url }}/documentation/operators/from.html)
+* [`fromFuture`]({{ site.url }}/documentation/operators/from.html)
+* [`fromIterable`]({{ site.url }}/documentation/operators/from.html)
 * [`fromIterator`]({{ site.url }}/documentation/operators/from.html)
 * [`from_list`]({{ site.url }}/documentation/operators/from.html)
 * [`fromNodeCallback`]({{ site.url }}/documentation/operators/from.html)
 * [`fromPromise`]({{ site.url }}/documentation/operators/from.html)
+* [`fromPublisher`]({{ site.url }}/documentation/operators/from.html)
 * [`fromRunnable`]({{ site.url }}/documentation/operators/from.html)
 * [`Generate`]({{ site.url }}/documentation/operators/create.html)
 * [`generateWithAbsoluteTime`]({{ site.url }}/documentation/operators/create.html)
@@ -607,6 +635,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`interleave`]({{ site.url }}/documentation/operators/merge.html)
 * [`interpose`]({{ site.url }}/documentation/operators/to.html)
 * [**`Interval`**]({{ site.url }}/documentation/operators/interval.html)
+* [`intervalRange`]({{ site.url }}/documentation/operators/range.html)
 * [`into`]({{ site.url }}/documentation/operators/reduce.html)
 * [`isEmpty`]({{ site.url }}/documentation/operators/contains.html)
 * [`items`]({{ site.url }}/documentation/operators/just.html)
@@ -618,21 +647,23 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`keep`]({{ site.url }}/documentation/operators/map.html)
 * [`keep-indexed`]({{ site.url }}/documentation/operators/map.html)
 * [**`Last`**]({{ site.url }}/documentation/operators/last.html)
+* [`lastElement`]({{ site.url }}/documentation/operators/last.html)
 * [`lastOption`]({{ site.url }}/documentation/operators/last.html)
 * [`LastOrDefault`]({{ site.url }}/documentation/operators/last.html)
 * [`lastOrElse`]({{ site.url }}/documentation/operators/last.html)
 * [`Latest`]({{ site.url }}/documentation/operators/first.html)
-* [`latest`]({{ site.url }}/documentation/operators/switch.html) (Rx.rb version of **`Switch`**)
+* [`latest`]({{ site.url }}/documentation/operators/switch.html) (versi Rx.rb dari **`Switch`**)
 * [`length`]({{ site.url }}/documentation/operators/count.html)
 * [`let`]({{ site.url }}/documentation/operators/publish.html)
 * [`letBind`]({{ site.url }}/documentation/operators/publish.html)
+* [`lift`]({{ site.url }}/documentation/implement-operator.html)
 * [`limit`]({{ site.url }}/documentation/operators/take.html)
 * [`LongCount`]({{ site.url }}/documentation/operators/count.html)
 * [`ManySelect`]({{ site.url }}/documentation/operators/flatmap.html)
 * [**`Map`**]({{ site.url }}/documentation/operators/map.html)
-* [`map`]({{ site.url }}/documentation/operators/zip.html) (RxClojure version of **`Zip`**)
+* [`map`]({{ site.url }}/documentation/operators/zip.html) (versi RxClojure dari **`Zip`**)
 * [`MapCat`]({{ site.url }}/documentation/operators/flatmap.html)
-* [`mapCat`]({{ site.url }}/documentation/operators/zip.html) (RxClojure version of **`Zip`**)
+* [`mapCat`]({{ site.url }}/documentation/operators/zip.html) (versi RxClojure dari **`Zip`**)
 * [`map-indexed`]({{ site.url }}/documentation/operators/map.html)
 * [`mapTo`]({{ site.url }}/documentation/operators/map.html)
 * [`mapWithIndex`]({{ site.url }}/documentation/operators/map.html)
@@ -641,6 +672,8 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`MaxBy`]({{ site.url }}/documentation/operators/max.html)
 * [**`Merge`**]({{ site.url }}/documentation/operators/merge.html)
 * [`mergeAll`]({{ site.url }}/documentation/operators/merge.html)
+* [`mergeArray`]({{ site.url }}/documentation/operators/merge.html)
+* [`mergeArrayDelayError`]({{ site.url }}/documentation/operators/merge.html)
 * [`merge_concurrent`]({{ site.url }}/documentation/operators/merge.html)
 * [`mergeDelayError`]({{ site.url }}/documentation/operators/merge.html)
 * [`mergeObservable`]({{ site.url }}/documentation/operators/merge.html)
@@ -653,7 +686,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`nest`]({{ site.url }}/documentation/operators/to.html)
 * [**`Never`**]({{ site.url }}/documentation/operators/empty-never-throw.html)
 * [`Next`]({{ site.url }}/documentation/operators/takelast.html)
-* [`Next`]({{ site.url }}/documentation/operators/first.html) (BlockingObservable version)
+* [`Next`]({{ site.url }}/documentation/operators/first.html) (versi BlockingObservable)
 * [`none`]({{ site.url }}/documentation/operators/contains.html)
 * [`nonEmpty`]({{ site.url }}/documentation/operators/contains.html)
 * [`nth`]({{ site.url }}/documentation/operators/elementat.html)
@@ -673,7 +706,9 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`onBackpressureDrop`]({{ site.url }}/documentation/operators/backpressure.html)
 * [`OnErrorResumeNext`]({{ site.url }}/documentation/operators/catch.html)
 * [`onErrorReturn`]({{ site.url }}/documentation/operators/catch.html)
+* [`onErrorReturnItem`]({{ site.url }}/documentation/operators/catch.html)
 * [`onExceptionResumeNext`]({{ site.url }}/documentation/operators/catch.html)
+* [`onTerminateDetach`]({{ site.url }}/documentation/operators/do.html)
 * [`orElse`]({{ site.url }}/documentation/operators/defaultifempty.html)
 * [`pairs`]({{ site.url }}/documentation/operators/from.html)
 * [`pairwise`]({{ site.url }}/documentation/operators/buffer.html)
@@ -690,26 +725,31 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`raise_error`]({{ site.url }}/documentation/operators/empty-never-throw.html)
 * [**`Range`**]({{ site.url }}/documentation/operators/range.html)
 * [**`Reduce`**]({{ site.url }}/documentation/operators/reduce.html)
+* [`reduceWith`]({{ site.url }}/documentation/operators/reduce.html)
 * [`reductions`]({{ site.url }}/documentation/operators/scan.html)
 * [**`RefCount`**]({{ site.url }}/documentation/operators/refcount.html)
 * [**`Repeat`**]({{ site.url }}/documentation/operators/repeat.html)
 * [`repeat_infinitely`]({{ site.url }}/documentation/operators/repeat.html)
+* [`repeatUntil`]({{ site.url }}/documentation/operators/repeat.html)
 * [`repeatWhen`]({{ site.url }}/documentation/operators/repeat.html)
 * [**`Replay`**]({{ site.url }}/documentation/operators/replay.html)
 * [`rescue_error`]({{ site.url }}/documentation/operators/catch.html)
 * [`rest`]({{ site.url }}/documentation/operators/first.html)
 * [**`Retry`**]({{ site.url }}/documentation/operators/retry.html)
 * [`retry_infinitely`]({{ site.url }}/documentation/operators/retry.html)
+* [`retryUntil`]({{ site.url }}/documentation/operators/retry.html)
 * [`retryWhen`]({{ site.url }}/documentation/operators/retry.html)
 * [`Return`]({{ site.url }}/documentation/operators/just.html)
 * [`returnElement`]({{ site.url }}/documentation/operators/just.html)
 * [`returnValue`]({{ site.url }}/documentation/operators/just.html)
 * [`runAsync`]({{ site.url }}/documentation/operators/from.html)
+* [`safeSubscribe`]({{ site.url }}/documentation/operators/subscribe.html)
 * [**`Sample`**]({{ site.url }}/documentation/operators/sample.html)
 * [**`Scan`**]({{ site.url }}/documentation/operators/scan.html)
+* [`scanWith`]({{ site.url }}/documentation/operators/scan.html)
 * [`scope`]({{ site.url }}/documentation/operators/using.html)
-* [`Select`]({{ site.url }}/documentation/operators/map.html) (alternate name of **`Map`**)
-* [`select`]({{ site.url }}/documentation/operators/filter.html) (alternate name of **`Filter`**)
+* [`Select`]({{ site.url }}/documentation/operators/map.html) (nama lain dari **`Map`**)
+* [`select`]({{ site.url }}/documentation/operators/filter.html) (nama lain dari **`Filter`**)
 * [`selectConcat`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`selectConcatObserver`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`SelectMany`]({{ site.url }}/documentation/operators/flatmap.html)
@@ -728,6 +768,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`shareReplay`]({{ site.url }}/documentation/operators/replay.html)
 * [`shareValue`]({{ site.url }}/documentation/operators/refcount.html)
 * [`Single`]({{ site.url }}/documentation/operators/first.html)
+* [`singleElement`]({{ site.url }}/documentation/operators/first.html)
 * [`SingleOrDefault`]({{ site.url }}/documentation/operators/first.html)
 * [`singleOption`]({{ site.url }}/documentation/operators/first.html)
 * [`singleOrElse`]({{ site.url }}/documentation/operators/first.html)
@@ -745,6 +786,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`slidingBuffer`]({{ site.url }}/documentation/operators/buffer.html)
 * [`some`]({{ site.url }}/documentation/operators/contains.html)
 * [`sort`]({{ site.url }}/documentation/operators/to.html)
+* [`sorted`]({{ site.url }}/documentation/operators/to.html)
 * [`sort-by`]({{ site.url }}/documentation/operators/to.html)
 * [`sorted-list-by`]({{ site.url }}/documentation/operators/to.html)
 * [`split`]({{ site.url }}/documentation/operators/flatmap.html)
@@ -757,11 +799,13 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`stringConcat`]({{ site.url }}/documentation/operators/sum.html)
 * [`stopAndWait`]({{ site.url }}/documentation/operators/backpressure.html)
 * [`subscribe`]({{ site.url }}/documentation/operators/subscribe.html)
+* [`subscribeActual`]({{ site.url }}/documentation/operators/subscribe.html)
 * [**`SubscribeOn`**]({{ site.url }}/documentation/operators/subscribeon.html)
 * [`SubscribeOnDispatcher`]({{ site.url }}/documentation/operators/subscribeon.html)
 * [`subscribeOnCompleted`]({{ site.url }}/documentation/operators/subscribe.html)
 * [`subscribeOnError`]({{ site.url }}/documentation/operators/subscribe.html)
 * [`subscribeOnNext`]({{ site.url }}/documentation/operators/subscribe.html)
+* [`subscribeWith`]({{ site.url }}/documentation/operators/subscribe.html)
 * [**`Sum`**]({{ site.url }}/documentation/operators/sum.html)
 * [`sumDouble`]({{ site.url }}/documentation/operators/sum.html)
 * [`sumFloat`]({{ site.url }}/documentation/operators/sum.html)
@@ -772,7 +816,9 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`switchIfEmpty`]({{ site.url }}/documentation/operators/defaultifempty.html)
 * [`switchLatest`]({{ site.url }}/documentation/operators/switch.html)
 * [`switchMap`]({{ site.url }}/documentation/operators/flatmap.html)
+* [`switchMapDelayError`]({{ site.url }}/documentation/operators/flatmap.html)
 * [`switchOnNext`]({{ site.url }}/documentation/operators/switch.html)
+* [`switchOnNextDelayError`]({{ site.url }}/documentation/operators/switch.html)
 * [`Synchronize`]({{ site.url }}/documentation/operators/serialize.html)
 * [**`Take`**]({{ site.url }}/documentation/operators/take.html)
 * [`take_with_time`]({{ site.url }}/documentation/operators/take.html)
@@ -817,6 +863,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`ToEnumerable`]({{ site.url }}/documentation/operators/to.html)
 * [`ToEvent`]({{ site.url }}/documentation/operators/to.html)
 * [`ToEventPattern`]({{ site.url }}/documentation/operators/to.html)
+* [`ToFlowable`]({{ site.url }}/documentation/operators/to.html)
 * [`ToFuture`]({{ site.url }}/documentation/operators/to.html)
 * [`to_h`]({{ site.url }}/documentation/operators/to.html)
 * [`toIndexedSeq`]({{ site.url }}/documentation/operators/to.html)
@@ -835,6 +882,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`toVector`]({{ site.url }}/documentation/operators/to.html)
 * [`tumbling`]({{ site.url }}/documentation/operators/window.html)
 * [`tumblingBuffer`]({{ site.url }}/documentation/operators/buffer.html)
+* [`unsafeCreate`]({{ site.url }}/documentation/operators/create.html)
 * [`unsubscribeOn`]({{ site.url }}/documentation/operators/subscribeon.html)
 * [**`Using`**]({{ site.url }}/documentation/operators/using.html)
 * [**`When`**]({{ site.url }}/documentation/operators/and-then-when.html)
@@ -850,6 +898,7 @@ Observable이 배출하는 항목 전체를 대상으로 동작하는 연산자�
 * [`withLatestFrom`]({{ site.url }}/documentation/operators/combinelatest.html)
 * [**`Zip`**]({{ site.url }}/documentation/operators/zip.html)
 * [`zipArray`]({{ site.url }}/documentation/operators/zip.html)
+* [`zipIterable`]({{ site.url }}/documentation/operators/zip.html)
 * [`zipWith`]({{ site.url }}/documentation/operators/zip.html)
 * [`zipWithIndex`]({{ site.url }}/documentation/operators/zip.html)
 * [`++`]({{ site.url }}/documentation/operators/concat.html)

@@ -22,9 +22,10 @@ layout: default
     </div>
     <div class="col-sm-4">
       <ul class="side-menu">
-        <li><a href="{{ site.url }}/documentation/cn{{ page.url | replace_first:'/documentation','' | replace_first:'/ko','' | replace_first:'/cn','' }}">简体中文</a></li>
-        <li><a href="{{ site.url }}/documentation/ko{{ page.url | replace_first:'/documentation','' | replace_first:'/ko','' | replace_first:'/cn','' }}">한국어</a></li>
-        <li><a href="{{ site.url }}/documentation{{ page.url | replace_first:'/documentation','' | replace_first:'/ko','' | replace_first:'/cn','' }}">English</a></li>
+        {% assign page_html = page.url | split: "/" | last %}
+        <li><a href="{{ site.url }}/documentation/cn/{{ page_html }}">简体中文</a></li>
+        <li><a href="{{ site.url }}/documentation/ko/{{ page_html }}">한국어</a></li>
+        <li><a href="{{ site.url }}/documentation/{{ page_html }}">English</a></li>
       </ul>
 
       <ul class="side-menu">

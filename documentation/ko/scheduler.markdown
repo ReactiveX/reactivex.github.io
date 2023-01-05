@@ -30,7 +30,7 @@ id: scheduler
 <h4>참고</h4>
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html"><cite>Introduction to Rx</cite>: Scheduling and Threading</a></li>
- <li><a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers"><cite>Rx Workshop</cite>: Schedulers</a></li>
+ <li><a href="https://learn.microsoft.com/en-us/shows/rx-workshop/schedulers"><cite>Rx Workshop</cite>: Schedulers</a></li>
  <li><a href="http://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/scheduling_and_concurrency.html">Using Schedulers</a> by Dennis Stoyanov</li>
 </ul>
 

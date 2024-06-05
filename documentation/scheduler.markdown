@@ -109,7 +109,7 @@ id: scheduler
       <tr><td><a href="operators/sample.html"><code>throttleFirst</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/sample.html"><code>throttleLast</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/debounce.html"><code>throttleWithTimeout</code></a></td><td><code>computation</code></td></tr>
-      <tr><td><a href="operators/timeinterval.html"><code>timeInterval</code></a></td><td><code>immediate</code></td></tr>
+      <tr><td><a href="operators/timeinterval.html"><code>timeInterval</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/timeout.html"><code>timeout(timeoutSelector)</code></a></td><td><code>immediate</code></td></tr>
       <tr><td><a href="operators/timeout.html"><code>timeout(firstTimeoutSelector,&#8239;timeoutSelector)</code></a></td><td><code>immediate</code></td></tr>
       <tr><td><a href="operators/timeout.html"><code>timeout(timeoutSelector,&#8239;other)</code></a></td><td><code>immediate</code></td></tr>
@@ -117,7 +117,7 @@ id: scheduler
       <tr><td><a href="operators/timeout.html"><code>timeout(firstTimeoutSelector,&#8239;timeoutSelector,&#8239;other)</code></a></td><td><code>immediate</code></td></tr>
       <tr><td><a href="operators/timeout.html"><code>timeout(timeout,&#8239;timeUnit,&#8239;other)</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/timer.html"><code>timer</code></a></td><td><code>computation</code></td></tr>
-      <tr><td><a href="operators/timestamp.html"><code>timestamp</code></a></td><td><code>immediate</code></td></tr>
+      <tr><td><a href="operators/timestamp.html"><code>timestamp</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/window.html"><code>window(timespan)</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/window.html"><code>window(timespan,&#8239;count)</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/window.html"><code>window(timespan,&#8239;timeshift)</code></a></td><td><code>computation</code></td></tr>
@@ -203,7 +203,7 @@ id: scheduler
       <tr><td><a href="operators/sample.html"><code>throttleFirst</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/sample.html"><code>throttleLast</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/debounce.html"><code>throttleWithTimeout</code></a></td><td><code>computation</code></td></tr>
-      <tr><td><a href="operators/timeinterval.html"><code>timeInterval</code></a></td><td><code>immediate</code></td></tr>
+      <tr><td><a href="operators/timeinterval.html"><code>timeInterval</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/timeout.html"><code>timeout(timeoutSelector)</code></a></td><td><code>immediate</code></td></tr>
       <tr><td><a href="operators/timeout.html"><code>timeout(firstTimeoutSelector,&#8239;timeoutSelector)</code></a></td><td><code>immediate</code></td></tr>
       <tr><td><a href="operators/timeout.html"><code>timeout(timeoutSelector,&#8239;other)</code></a></td><td><code>immediate</code></td></tr>
@@ -211,7 +211,7 @@ id: scheduler
       <tr><td><a href="operators/timeout.html"><code>timeout(firstTimeoutSelector,&#8239;timeoutSelector,&#8239;other)</code></a></td><td><code>immediate</code></td></tr>
       <tr><td><a href="operators/timeout.html"><code>timeout(timeout,&#8239;timeUnit,&#8239;other)</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/timer.html"><code>timer</code></a></td><td><code>computation</code></td></tr>
-      <tr><td><a href="operators/timestamp.html"><code>timestamp</code></a></td><td><code>immediate</code></td></tr>
+      <tr><td><a href="operators/timestamp.html"><code>timestamp</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/window.html"><code>window(timespan)</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/window.html"><code>window(timespan,&#8239;count)</code></a></td><td><code>computation</code></td></tr>
       <tr><td><a href="operators/window.html"><code>window(timespan,&#8239;timeshift)</code></a></td><td><code>computation</code></td></tr>

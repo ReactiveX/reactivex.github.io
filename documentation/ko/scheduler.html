@@ -38,22 +38,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="http://0.0.0.0:4000/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/intro.html">Introduction</a></li>
+            <li><a href="http://0.0.0.0:4000/intro.html">Introduction</a></li>
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/observable.html">Observable</a></li>
-<li><a href="/documentation/operators.html">Operators</a></li>
-<li><a href="/documentation/single.html">Single</a></li>
-<li><a href="/documentation/subject.html">Subject</a></li>
-<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+                <li><a href="http://0.0.0.0:4000/documentation/observable.html">Observable</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/operators.html">Operators</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/single.html">Single</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/subject.html">Subject</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/scheduler.html">Scheduler</a></li>
 
               </ul>
             </li>
@@ -66,10 +66,10 @@
                 <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
-<li><a href="/rxscala">RxScala</a></li>
+<li><a href="http://0.0.0.0:4000/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
-<li><a href="/languages.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/languages.html">Others</a></li>
 
               </ul>
             </li>
@@ -79,9 +79,9 @@
                 Resources <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/tutorials.html">Tutorials</a></li>
+                <li><a href="http://0.0.0.0:4000/tutorials.html">Tutorials</a></li>
 <!-- Uncomment only when ready
-<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="http://0.0.0.0:4000/releases.html">Releases and Binaries</a></li>
 <li><a href="#">Code samples</a></li>
 <li><a href="#">Presentations</a></li>
 <li><a href="#">Related Projects</a></li>
@@ -98,7 +98,7 @@
               <ul class="dropdown-menu">
                 <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
 <li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
-<li><a href="/community.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/community.html">Others</a></li>
 
               </ul>
             </li>
@@ -128,15 +128,12 @@
   <div class="row">
     <div class="col-sm-8">
       <h1>스케줄러</h1>
-
 <p>
  Observable 연산자 체인에 멀티스레딩을 적용하고 싶다면, 특정 <dfn>스케줄러</dfn>를 사용해서 연산자(또는 특정 Observable)를 실행하면 된다.
 </p>
-
 <p>
  ReactiveX의 일부 Observable 연산자는 사용할 스케줄러를 파라미터로 전달 받기도 하는데, 이 연산자들은 자신이 처리할 연산의 일부 또는 전체를 전달된 스케줄러 내에서 실행한다.
 </p>
-
 <figure>
  <figcaption>
  <p>
@@ -153,15 +150,13 @@
 </figure>
 
 <h4>참고</h4>
-
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html"><cite>Introduction to Rx</cite>: Scheduling and Threading</a></li>
- <li><a href="http://channel9.msdn.com/Series/Rx-Workshop/Rx-Workshop-Schedulers"><cite>Rx Workshop</cite>: Schedulers</a></li>
+ <li><a href="https://learn.microsoft.com/en-us/shows/rx-workshop/schedulers"><cite>Rx Workshop</cite>: Schedulers</a></li>
  <li><a href="http://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/scheduling_and_concurrency.html">Using Schedulers</a> by Dennis Stoyanov</li>
 </ul>
 
 <h2>언어별 명세:</h2>
-
 <div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
 
   
@@ -238,13 +233,13 @@
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#immediate()"><code>Schedulers.immediate(&#8239;)</code></a></td>
       <td>현재 스레드에서 즉시 실행할 작업을 스케줄링 한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#io()"><code>Schedulers.io(&#8239;)</code></a></td>
-      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리한다. 이 스케줄러는 필요한 만큼 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&#8239)는 <code>CachedThreadScheduler</code>이며, <code>CachedThreadScheduler</code>는 스레드 캐싱을 사용하는 새로운 스레드 스케줄러라고 생각하면 된다</td></tr>
+      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리한다. 이 스케줄러는 필요한 만큼 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&amp;#8239)는 <code>CachedThreadScheduler</code>이며, <code>CachedThreadScheduler</code>는 스레드 캐싱을 사용하는 새로운 스레드 스케줄러라고 생각하면 된다&lt;/td&gt;&lt;/tr&gt;
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#newThread()"><code>Schedulers.newThread(&#8239;)</code></a></td>
       <td>각각의 단위 작업을 위한 새로운 스레드를 생성한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td>
       <td>대기 중인 큐를 처리한 후에 현재 스레드에서 실행 할 작업 큐를 만든다</td></tr>
-     </tbody>
-    </table>
+     &lt;/tbody&gt;
+    &lt;/table&gt;
     <h2>RxGroovy Observable 연산자를 위한 기본 스케줄러</h2>
     <p>
      RxGroovy의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정할 수 있는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 기본 스케줄러는 아래와 같다:
@@ -312,9 +307,9 @@
      <li>Advanced RxJava: Schedulers (<a href="http://akarnokd.blogspot.hu/2015/05/schedulers-part-1.html">part 1</a>) (<a href="http://akarnokd.blogspot.hu/2015/06/schedulers-part-2.html">part 2</a>) (<a href="http://akarnokd.blogspot.hu/2015/06/schedulers-part-3.html">part 3</a>) (<a href="http://akarnokd.blogspot.hu/2015/06/schedulers-part-4-final.html">part 4</a>) by Dávid Karnok</li>
     </ul>
   
-          </div>
-        </div>
-      </div>
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
       
 
   
@@ -347,13 +342,13 @@
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#immediate()"><code>Schedulers.immediate(&#8239;)</code></a></td>
       <td>현재 스레드에서 즉시 실행할 작업을 스케줄링 한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#io()"><code>Schedulers.io(&#8239;)</code></a></td>
-      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리한다. 이 스케줄러는 필요한 만큼 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&#8239)이며 <code>CachedThreadScheduler</code>로, <code>CachedThreadScheduler</code>는 스레드 캐싱을 사용하는 새로운 스레드 스케줄러라고 생각하면 된다</td></tr>
+      <td>블러킹 I/O의 비동기 연산 같은 I/O 바운드 작업을 처리한다. 이 스케줄러는 필요한 만큼 증가하는 스레드-풀을 통해 실행된다; 일반적인 연산이 필요한 작업은 <code>Schedulers.computation(&#8239;)</code>를 사용하면 된다; 기본적으로 <code>Schedulers.io(&amp;#8239)이며 <code>CachedThreadScheduler</code>로, <code>CachedThreadScheduler</code>는 스레드 캐싱을 사용하는 새로운 스레드 스케줄러라고 생각하면 된다&lt;/td&gt;&lt;/tr&gt;
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#newThread()"><code>Schedulers.newThread(&#8239;)</code></a></td>
       <td>각각의 단위 작업을 위한 새로운 스레드를 생성한다</td></tr>
       <tr><td><a href="http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html#trampoline()"><code>Schedulers.trampoline(&#8239;)</code></a></td>
       <td>대기 중인 큐를 처리한 후에 현재 스레드에서 실행 될 작업 큐를 만든다</td></tr>
-     </tbody>
-    </table>
+     &lt;/tbody&gt;
+    &lt;/table&gt;
     <h2>RxJava Observable 연산자를 위한 기본 스케줄러</h2>
     <p>
      RxJava의 일부 Observable 연산자들은 자신이 처리할 연산(또는 최소한 연산의 일부)을 위해 사용할 스케줄러를 지정하는 기능을 제공한다. 그 외에는 특정 스케줄러 상에서 동작할 수 없거나 또는 특정 기본 스케줄러 상에서만 동작한다. 여기서 설명하는 기본 스케줄러는 아래와 같다:
@@ -487,9 +482,9 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
      <li>Advanced RxJava: Schedulers (<a href="http://akarnokd.blogspot.hu/2015/05/schedulers-part-1.html">part 1</a>) (<a href="http://akarnokd.blogspot.hu/2015/06/schedulers-part-2.html">part 2</a>) (<a href="http://akarnokd.blogspot.hu/2015/06/schedulers-part-3.html">part 3</a>) (<a href="http://akarnokd.blogspot.hu/2015/06/schedulers-part-4-final.html">part 4</a>) by Dávid Karnok</li>
     </ul>
   
-          </div>
-        </div>
-      </div>
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
       
 
   
@@ -527,7 +522,7 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
     <h4>참고</h4>
     <ul>
      <li><a href="http://stackoverflow.com/questions/28145890/what-is-a-scheduler-in-rxjs"><cite>StackOverflow</cite>: What is a &ldquo;Scheduler&rdquo; in RxJS</a></li>
-     <li><a href="http://xgrommx.github.io/rx-book/content/schedulers/index.html">Schedulers</a> by Dennis Stoyanov</a></li>
+     <li><a href="http://xgrommx.github.io/rx-book/content/schedulers/index.html">Schedulers</a> by Dennis Stoyanov&lt;/a&gt;</li>
      <li><a href="http://www.grahamlea.com/2014/07/rxjava-threading-examples/">RxJava Threading Examlpes</a> by Graham Lea</li>
     </ul>
   
@@ -641,22 +636,24 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
       </div>
       
 
-</div>
+&lt;/div&gt;
+</a></p></p></code></td></tr></tbody></table></div></div></div></code></td></tr></tbody></table></div></div></div></div>
 
     </div>
     <div class="col-sm-4">
       <ul class="side-menu">
-        <li><a href="/documentation/ko/scheduler.html">한국어</a></li>
-        <li><a href="/documentation/ko/scheduler.html">English</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/cn/scheduler.html">简体中文</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/scheduler.html">한국어</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/scheduler.html">English</a></li>
       </ul>
 
       <ul class="side-menu">
       
-        <li><a href="/documentation/ko/observable.html">Observable</a></li>
-        <li><a href="/documentation/ko/operators.html">Operators</a></li>
-        <li><a href="/documentation/ko/single.html">Single</a></li>
-        <li><a href="/documentation/ko/subject.html">Subject</a></li>
-        <li><a href="/documentation/ko/scheduler.html">Scheduler</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/observable.html">Observable</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/operators.html">Operators</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/single.html">Single</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/subject.html">Subject</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/scheduler.html">Scheduler</a></li>
         
       </ul>
     </div>
@@ -672,11 +669,11 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation/observable.html">Observable</a></li>
-<li><a href="/documentation/operators.html">Operators</a></li>
-<li><a href="/documentation/single.html">Single</a></li>
-<li><a href="/documentation/subject.html">Subject</a></li>
-<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+              <li><a href="http://0.0.0.0:4000/documentation/observable.html">Observable</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/operators.html">Operators</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/single.html">Single</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/subject.html">Subject</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/scheduler.html">Scheduler</a></li>
 
             </ul>
           </div>
@@ -687,10 +684,10 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
               <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
-<li><a href="/rxscala">RxScala</a></li>
+<li><a href="http://0.0.0.0:4000/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
-<li><a href="/languages.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/languages.html">Others</a></li>
 
             </ul>
           </div>
@@ -698,9 +695,9 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Resources</h4></li>
-              <li><a href="/tutorials.html">Tutorials</a></li>
+              <li><a href="http://0.0.0.0:4000/tutorials.html">Tutorials</a></li>
 <!-- Uncomment only when ready
-<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="http://0.0.0.0:4000/releases.html">Releases and Binaries</a></li>
 <li><a href="#">Code samples</a></li>
 <li><a href="#">Presentations</a></li>
 <li><a href="#">Related Projects</a></li>
@@ -715,7 +712,7 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
               <li><h4>Community</h4></li>
               <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
 <li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
-<li><a href="/community.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/community.html">Others</a></li>
 
             </ul>
           </div>
@@ -723,8 +720,8 @@ someScheduler.schedulePeriodically(someAction, 500, 250, TimeUnit.MILLISECONDS);
 
         <div class="row">
           <div class="col-sm-12 disclaimer">
-            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
-            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            <img class="footer-logo" src="http://0.0.0.0:4000/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="http://0.0.0.0:4000">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
             page is licensed under Creative Commons Attribution 3.0 License, and
             code samples are licensed under the BSD License.
           </div>

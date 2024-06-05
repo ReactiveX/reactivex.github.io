@@ -38,22 +38,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="http://0.0.0.0:4000/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/intro.html">Introduction</a></li>
+            <li><a href="http://0.0.0.0:4000/intro.html">Introduction</a></li>
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/observable.html">Observable</a></li>
-<li><a href="/documentation/operators.html">Operators</a></li>
-<li><a href="/documentation/single.html">Single</a></li>
-<li><a href="/documentation/subject.html">Subject</a></li>
-<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+                <li><a href="http://0.0.0.0:4000/documentation/observable.html">Observable</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/operators.html">Operators</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/single.html">Single</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/subject.html">Subject</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/scheduler.html">Scheduler</a></li>
 
               </ul>
             </li>
@@ -66,10 +66,10 @@
                 <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
-<li><a href="/rxscala">RxScala</a></li>
+<li><a href="http://0.0.0.0:4000/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
-<li><a href="/languages.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/languages.html">Others</a></li>
 
               </ul>
             </li>
@@ -79,9 +79,9 @@
                 Resources <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/tutorials.html">Tutorials</a></li>
+                <li><a href="http://0.0.0.0:4000/tutorials.html">Tutorials</a></li>
 <!-- Uncomment only when ready
-<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="http://0.0.0.0:4000/releases.html">Releases and Binaries</a></li>
 <li><a href="#">Code samples</a></li>
 <li><a href="#">Presentations</a></li>
 <li><a href="#">Related Projects</a></li>
@@ -98,7 +98,7 @@
               <ul class="dropdown-menu">
                 <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
 <li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
-<li><a href="/community.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/community.html">Others</a></li>
 
               </ul>
             </li>
@@ -127,7 +127,7 @@
 <div class="full-page-container">
   <div class="row">
     <div class="col-sm-8">
-      <h1 id="implementing-your-own-operators">Implementing Your Own Operators</h1>
+      <p>#Implementing Your Own Operators</p>
 
 <p>You can implement your own Observable operators. This page shows you how.</p>
 
@@ -136,94 +136,97 @@
 <h1 id="chaining-your-custom-operators-with-standard-rxjava-operators">Chaining Your Custom Operators with Standard RxJava Operators</h1>
 
 <p>The following example shows how you can chain a custom operator (in this example: <code>myOperator</code>) along with standard RxJava operators by using the <code>lift( )</code> operator:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">Observable</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">barObservable</span><span class="o">.</span><span class="na">ofType</span><span class="o">(</span><span class="n">Integer</span><span class="o">).</span><span class="na">map</span><span class="o">({</span><span class="n">it</span><span class="o">*</span><span class="mi">2</span><span class="o">}).</span><span class="na">lift</span><span class="o">(</span><span class="k">new</span> <span class="n">myOperator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;()).</span><span class="na">map</span><span class="o">({</span><span class="s2">&quot;transformed by myOperator: &quot;</span> <span class="o">+</span> <span class="n">it</span><span class="o">});</span>
-</code></pre></div>
+
+<pre><code class="language-groovy">Observable foo = barObservable.ofType(Integer).map({it*2}).lift(new myOperator&lt;T&gt;()).map({"transformed by myOperator: " + it});
+</code></pre>
 <p>The following section will show how to form the scaffolding of your operator so that it will work correctly with <code>lift( )</code>.</p>
 
 <h1 id="implementing-your-operator">Implementing Your Operator</h1>
 
 <p>Define your operator as a public class that implements the <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.Operator.html"><code>Operator</code></a> interface, like so:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">myOperator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Operator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="nf">myOperator</span><span class="o">(</span> <span class="cm">/* any necessary params here */</span> <span class="o">)</span> <span class="o">{</span>
-    <span class="cm">/* any necessary initialization here */</span>
-  <span class="o">}</span>
 
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="nf">call</span><span class="o">(</span><span class="kd">final</span> <span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">Subscriber</span><span class="o">&lt;</span><span class="n">t</span><span class="o">&gt;(</span><span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-      <span class="nd">@Override</span>
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCompleted</span><span class="o">()</span> <span class="o">{</span>
-        <span class="cm">/* add your own onCompleted behavior here, or just pass the completed notification through: */</span>
-        <span class="k">if</span><span class="o">(!</span><span class="n">s</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
-          <span class="n">s</span><span class="o">.</span><span class="na">onCompleted</span><span class="o">();</span>
-        <span class="o">}</span>
-      <span class="o">}</span>
+<pre><code class="language-java">public class myOperator&lt;T&gt; implements Operator&lt;T&gt; {
+  public myOperator( /* any necessary params here */ ) {
+    /* any necessary initialization here */
+  }
 
-      <span class="nd">@Override</span>
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
-        <span class="cm">/* add your own onError behavior here, or just pass the error notification through: */</span>
-        <span class="k">if</span><span class="o">(!</span><span class="n">s</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
-          <span class="n">s</span><span class="o">.</span><span class="na">onError</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
-        <span class="o">}</span>
-      <span class="o">}</span>
+  @Override
+  public Subscriber&lt;? super T&gt; call(final Subscriber&lt;? super T&gt; s) {
+    return new Subscriber&lt;t&gt;(s) {
+      @Override
+      public void onCompleted() {
+        /* add your own onCompleted behavior here, or just pass the completed notification through: */
+        if(!s.isUnsubscribed()) {
+          s.onCompleted();
+        }
+      }
 
-      <span class="nd">@Override</span>
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNext</span><span class="o">(</span><span class="n">T</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
-        <span class="cm">/* this example performs some sort of simple transformation on each incoming item and then passes it along */</span>
-        <span class="k">if</span><span class="o">(!</span><span class="n">s</span><span class="o">.</span><span class="na">isUnsubscribed</span><span class="o">())</span> <span class="o">{</span>
-          <span class="n">transformedItem</span> <span class="o">=</span> <span class="n">myOperatorTransformOperation</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
-          <span class="n">s</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="n">transformedItem</span><span class="o">);</span>
-        <span class="o">}</span>
-      <span class="o">}</span>
-    <span class="o">};</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
+      @Override
+      public void onError(Throwable t) {
+        /* add your own onError behavior here, or just pass the error notification through: */
+        if(!s.isUnsubscribed()) {
+          s.onError(t);
+        }
+      }
+
+      @Override
+      public void onNext(T item) {
+        /* this example performs some sort of simple transformation on each incoming item and then passes it along */
+        if(!s.isUnsubscribed()) {
+          transformedItem = myOperatorTransformOperation(item);
+          s.onNext(transformedItem);
+        }
+      }
+    };
+  }
+}
+</code></pre>
+
 <h1 id="other-considerations">Other Considerations</h1>
 
 <ul>
-<li>Your operator should check <a href="Observable#unsubscribing">its Subscriber&#39;s <code>isUnsubscribed( )</code> status</a> before it emits any item to (or sends any notification to) the Subscriber. Do not waste time generating items that no Subscriber is interested in seeing.</li>
-<li>Your operator should obey the core tenets of the Observable contract:
-
-<ul>
-<li>It may call a Subscriber&#39;s <a href="Observable#onnext-oncompleted-and-onerror"><code>onNext( )</code></a> method any number of times, but these calls must be non-overlapping.</li>
-<li>It may call either a Subscriber&#39;s <a href="Observable#onnext-oncompleted-and-onerror"><code>onCompleted( )</code></a> or <a href="Observable#onnext-oncompleted-and-onerror"><code>onError( )</code></a> method, but not both, exactly once, and it may not subsequently call a Subscriber&#39;s <a href="Observable#onnext-oncompleted-and-onerror"><code>onNext( )</code></a> method.</li>
-<li>If you are unable to guarantee that your operator conforms to the above two tenets, you can add the <a href="Observable-Utility-Operators#serialize"><code>serialize( )</code></a> operator to it to force the correct behavior.</li>
-</ul></li>
-<li>Do not block within your operator.</li>
-<li>It is usually best that you compose new operators by combining existing ones, to the extent that this is possible, rather than reinventing the wheel. RxJava itself does this with some of its standard operators, for example:
-
-<ul>
-<li><a href="Filtering-Observables#wiki-first-and-takefirst"><code>first( )</code></a> is defined as <a href="Filtering-Observables#wiki-take"><code>take(1)</code></a><code>.</code><a href="Observable-Utility-Operators#wiki-single-and-singleordefault"><code>single( )</code></a></li>
-<li><a href="Filtering-Observables#wiki-ignoreelements"><code>ignoreElements( )</code></a> is defined as <a href="Filtering-Observables#wiki-filter"><code>filter(alwaysFalse( ))</code></a></li>
-<li><a href="Mathematical-and-Aggregate-Operators#wiki-reduce"><code>reduce(a)</code></a> is defined as <a href="Transforming-Observables#wiki-scan"><code>scan(a)</code></a><code>.</code><a href="Filtering-Observables#wiki-last"><code>last( )</code></a></li>
-</ul></li>
-<li>If your operator uses functions or lambdas that are passed in as parameters (predicates, for instance), note that these may be sources of exceptions, and be prepared to catch these and notify subscribers via <code>onError( )</code> calls.</li>
-<li>In general, notify subscribers of error conditions immediately, rather than making an effort to emit more items first.</li>
-<li>In some ReactiveX implementations, your operator may need to be sensitive to that implementation&#8217;s &ldquo;backpressure&rdquo; strategies. (See, for example: <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">Pitfalls of Operator Implementations (part 2)</a> by D&aacute;vid Karnok.)</li>
+  <li>Your operator should check <a href="Observable#unsubscribing">its Subscriber’s <code>isUnsubscribed( )</code> status</a> before it emits any item to (or sends any notification to) the Subscriber. Do not waste time generating items that no Subscriber is interested in seeing.</li>
+  <li>Your operator should obey the core tenets of the Observable contract:
+    <ul>
+      <li>It may call a Subscriber’s <a href="Observable#onnext-oncompleted-and-onerror"><code>onNext( )</code></a> method any number of times, but these calls must be non-overlapping.</li>
+      <li>It may call either a Subscriber’s <a href="Observable#onnext-oncompleted-and-onerror"><code>onCompleted( )</code></a> or <a href="Observable#onnext-oncompleted-and-onerror"><code>onError( )</code></a> method, but not both, exactly once, and it may not subsequently call a Subscriber’s <a href="Observable#onnext-oncompleted-and-onerror"><code>onNext( )</code></a> method.</li>
+      <li>If you are unable to guarantee that your operator conforms to the above two tenets, you can add the <a href="Observable-Utility-Operators#serialize"><code>serialize( )</code></a> operator to it to force the correct behavior.</li>
+    </ul>
+  </li>
+  <li>Do not block within your operator.</li>
+  <li>It is usually best that you compose new operators by combining existing ones, to the extent that this is possible, rather than reinventing the wheel. RxJava itself does this with some of its standard operators, for example:
+    <ul>
+      <li><a href="Filtering-Observables#wiki-first-and-takefirst"><code>first( )</code></a> is defined as <a href="Filtering-Observables#wiki-take"><code>take(1)</code></a><code>.</code><a href="Observable-Utility-Operators#wiki-single-and-singleordefault"><code>single( )</code></a></li>
+      <li><a href="Filtering-Observables#wiki-ignoreelements"><code>ignoreElements( )</code></a> is defined as <a href="Filtering-Observables#wiki-filter"><code>filter(alwaysFalse( ))</code></a></li>
+      <li><a href="Mathematical-and-Aggregate-Operators#wiki-reduce"><code>reduce(a)</code></a> is defined as <a href="Transforming-Observables#wiki-scan"><code>scan(a)</code></a><code>.</code><a href="Filtering-Observables#wiki-last"><code>last( )</code></a></li>
+    </ul>
+  </li>
+  <li>If your operator uses functions or lambdas that are passed in as parameters (predicates, for instance), note that these may be sources of exceptions, and be prepared to catch these and notify subscribers via <code>onError( )</code> calls.</li>
+  <li>In general, notify subscribers of error conditions immediately, rather than making an effort to emit more items first.</li>
+  <li>In some ReactiveX implementations, your operator may need to be sensitive to that implementation’s “backpressure” strategies. (See, for example: <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">Pitfalls of Operator Implementations (part 2)</a> by Dávid Karnok.)</li>
 </ul>
 
 <h1 id="see-also">See Also</h1>
-
 <ul>
-<li><a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations.html">Pitfalls of Operator Implementations (part 1)</a> and <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">(part 2)</a> by D&aacute;vid Karnok.</li>
-<li><a href="http://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/implementing_your_own_operators.html">Implementing Your Own Observable Operators</a> (in RxJS) by Dennis Stoyanov</li>
+  <li><a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations.html">Pitfalls of Operator Implementations (part 1)</a> and <a href="http://akarnokd.blogspot.hu/2015/05/pitfalls-of-operator-implementations_14.html">(part 2)</a> by Dávid Karnok.</li>
+  <li><a href="http://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/implementing_your_own_operators.html">Implementing Your Own Observable Operators</a> (in RxJS) by Dennis Stoyanov</li>
 </ul>
 
     </div>
     <div class="col-sm-4">
       <ul class="side-menu">
-        <li><a href="/documentation/ko/implement-operator.html">한국어</a></li>
-        <li><a href="/documentation/implement-operator.html">English</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/cn/implement-operator.html">简体中文</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/implement-operator.html">한국어</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/implement-operator.html">English</a></li>
       </ul>
 
       <ul class="side-menu">
         
-        <li><a href="/documentation/observable.html">Observable</a></li>
-        <li><a href="/documentation/operators.html">Operators</a></li>
-        <li><a href="/documentation/single.html">Single</a></li>
-        <li><a href="/documentation/subject.html">Subject</a></li>
-        <li><a href="/documentation/scheduler.html">Scheduler</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/observable.html">Observable</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/operators.html">Operators</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/single.html">Single</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/subject.html">Subject</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/scheduler.html">Scheduler</a></li>
         
       </ul>
     </div>
@@ -239,11 +242,11 @@
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation/observable.html">Observable</a></li>
-<li><a href="/documentation/operators.html">Operators</a></li>
-<li><a href="/documentation/single.html">Single</a></li>
-<li><a href="/documentation/subject.html">Subject</a></li>
-<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+              <li><a href="http://0.0.0.0:4000/documentation/observable.html">Observable</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/operators.html">Operators</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/single.html">Single</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/subject.html">Subject</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/scheduler.html">Scheduler</a></li>
 
             </ul>
           </div>
@@ -254,10 +257,10 @@
               <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
-<li><a href="/rxscala">RxScala</a></li>
+<li><a href="http://0.0.0.0:4000/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
-<li><a href="/languages.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/languages.html">Others</a></li>
 
             </ul>
           </div>
@@ -265,9 +268,9 @@
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Resources</h4></li>
-              <li><a href="/tutorials.html">Tutorials</a></li>
+              <li><a href="http://0.0.0.0:4000/tutorials.html">Tutorials</a></li>
 <!-- Uncomment only when ready
-<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="http://0.0.0.0:4000/releases.html">Releases and Binaries</a></li>
 <li><a href="#">Code samples</a></li>
 <li><a href="#">Presentations</a></li>
 <li><a href="#">Related Projects</a></li>
@@ -282,7 +285,7 @@
               <li><h4>Community</h4></li>
               <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
 <li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
-<li><a href="/community.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/community.html">Others</a></li>
 
             </ul>
           </div>
@@ -290,8 +293,8 @@
 
         <div class="row">
           <div class="col-sm-12 disclaimer">
-            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
-            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            <img class="footer-logo" src="http://0.0.0.0:4000/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="http://0.0.0.0:4000">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
             page is licensed under Creative Commons Attribution 3.0 License, and
             code samples are licensed under the BSD License.
           </div>

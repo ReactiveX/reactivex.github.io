@@ -38,22 +38,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
+          <a class="navbar-brand" href="/"><img src="http://0.0.0.0:4000/assets/Rx_Icon.png" style="height:90%;" alt="" /> ReactiveX</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/intro.html">Introduction</a></li>
+            <li><a href="http://0.0.0.0:4000/intro.html">Introduction</a></li>
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Docs <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/observable.html">Observable</a></li>
-<li><a href="/documentation/operators.html">Operators</a></li>
-<li><a href="/documentation/single.html">Single</a></li>
-<li><a href="/documentation/subject.html">Subject</a></li>
-<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+                <li><a href="http://0.0.0.0:4000/documentation/observable.html">Observable</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/operators.html">Operators</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/single.html">Single</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/subject.html">Subject</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/scheduler.html">Scheduler</a></li>
 
               </ul>
             </li>
@@ -66,10 +66,10 @@
                 <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
-<li><a href="/rxscala">RxScala</a></li>
+<li><a href="http://0.0.0.0:4000/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
-<li><a href="/languages.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/languages.html">Others</a></li>
 
               </ul>
             </li>
@@ -79,9 +79,9 @@
                 Resources <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/tutorials.html">Tutorials</a></li>
+                <li><a href="http://0.0.0.0:4000/tutorials.html">Tutorials</a></li>
 <!-- Uncomment only when ready
-<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="http://0.0.0.0:4000/releases.html">Releases and Binaries</a></li>
 <li><a href="#">Code samples</a></li>
 <li><a href="#">Presentations</a></li>
 <li><a href="#">Related Projects</a></li>
@@ -98,7 +98,7 @@
               <ul class="dropdown-menu">
                 <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
 <li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
-<li><a href="/community.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/community.html">Others</a></li>
 
               </ul>
             </li>
@@ -128,37 +128,30 @@
   <div class="row">
     <div class="col-sm-8">
       <h1>Single</h1>
-
 <p>
  RxJava(그리고 RxGroovy나 RxScala 같은 reactivex의 구현체들)는 <a href="observable.html">Observable</a>과 유사한 &ldquo;Single&rdquo;을 제공한다.
 </p>
-
 <p>
  Single은 Obvservable의 한 형태이지만, Observable처럼 존재하지 않는 곳에서부터 무한대까지의 임이의 연속된 값들을 배출하는 것과는 달리, 항상 한 가지 값 또는 오류 알림 둘 중 하나만 배출한다.
 </p>
-
 <p>
  이런 이유 때문에, Single을 구독할 때는 Observable을 구독할 때 사용하는 세 개의 메서드(<tt>onNext</tt>, <tt>onError</tt>, 그리고 <tt>onCompleted</tt>) 대신 다음의 두 메서드만 사용할 수 있다:
 </p>
-
 <dl>
  <dt>onSuccess</dt>
   <dd>Single은 자신이 배출하는 하나의 값을 이 메서드를 통해 전달한다</dd>
  <dt>onError</dt>
   <dd>Single은 항목을 배출할 수 없을 때 이 메서드를 통해 Throwable 객체를 전달한다</dd>
 </dl>
-
 <p>
  Single은 이 메서드 중 하나만 그리고, 한 번만 호출한다. 메서드가 호출되면 Single의 생명주기는 끝나고 구독도 종료된다.
 </p>
 
 <h1>Single 연산자를 통한 구성</h1>
-
 <p>
  Observable과 마찬가지로, Single도 다양한 연산자들을 제공한다. 이 중 어떤 연산자들은 Observable과 Single을 섞어서 사용할 수 있도록 Observable의 영역과 Single의 영역을 연결하는 인터페이스 역할을 수행한다:
 </p>
-
-<table>
+<table class="table table-striped">
  <thead>
   <tr><th>연산자</th><th>리턴 타입</th><th>설명</th></tr>
  </thead>
@@ -186,39 +179,37 @@
   <tr><td><tt>zip</tt> 그리고 <tt>zipWith</tt></td><td><tt>Single</tt></td><td>두 개 이상의 Single들이 배출한 항목에 적용된 함수의 결과를 담은 항목을 하나 배출하는 Single을 리턴한다</td></tr>
  </tbody>
 </table>
-
 <p>
  지금부터는 마블 다이어그램을 통해 이 연산자들에 대해 설명한다. 이 다이어그램은 마블 다이어그램을 통해 어떻게 Single이 표현되는지 보여준다:
 </p>
-
-<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.legend.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.legend.png" width="100%" /></p>
 <h2>compose</h2>
 <h2>concat 그리고 concatWith</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.concat.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.concat.png" width="100%" /></p>
 <p>
  이 연산자의 인스턴스 버전도 존재한다:
 </p>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.concatWith.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.concatWith.png" width="100%" /></p>
 <h2>create</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.create.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.create.png" width="100%" /></p>
 <h2>delay</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.delay.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.delay.png" width="100%" /></p>
 <p>
  다른 버전의 연산자로 특정 <a href="scheduler.html">스케줄러</a> 상에서 Single의 배출을 지연시킨다:
 </p>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.delay.s.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.delay.s.png" width="100%" /></p>
 <h2>doOnError</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.doOnError.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.doOnError.png" width="100%" /></p>
 <h2>doOnSuccess</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.doOnSuccess.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.doOnSuccess.png" width="100%" /></p>
 <h2>error</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.error.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.error.png" width="100%" /></p>
 <h2>flatMap</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.flatMap.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.flatMap.png" width="100%" /></p>
 <h2>flatMapObservable</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.flatMapObservable.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.flatMapObservable.png" width="100%" /></p>
 <h2>from</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.from.Future.png" width="100%" />
+<p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.from.Future.png" width="100%" /></p>
 <p><a href="scheduler.html">스케줄러</a>를 파라미터로 받는 다른 버전 역시 존재한다:
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.from.Future.s.png" width="100%" />
 <h2>just</h2>
@@ -260,22 +251,24 @@
 <h2>toObservable</h2>
 <img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.toObservable.png" width="100%" />
 <h2>zip zipWith</h2>
-<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.zip.png" width="100%" /></p>
+<img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/Single.zip.png" width="100%" />
+</p>
 
     </div>
     <div class="col-sm-4">
       <ul class="side-menu">
-        <li><a href="/documentation/ko/single.html">한국어</a></li>
-        <li><a href="/documentation/ko/single.html">English</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/cn/single.html">简体中文</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/single.html">한국어</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/single.html">English</a></li>
       </ul>
 
       <ul class="side-menu">
       
-        <li><a href="/documentation/ko/observable.html">Observable</a></li>
-        <li><a href="/documentation/ko/operators.html">Operators</a></li>
-        <li><a href="/documentation/ko/single.html">Single</a></li>
-        <li><a href="/documentation/ko/subject.html">Subject</a></li>
-        <li><a href="/documentation/ko/scheduler.html">Scheduler</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/observable.html">Observable</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/operators.html">Operators</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/single.html">Single</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/subject.html">Subject</a></li>
+        <li><a href="http://0.0.0.0:4000/documentation/ko/scheduler.html">Scheduler</a></li>
         
       </ul>
     </div>
@@ -291,11 +284,11 @@
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Documentation</h4></li>
-              <li><a href="/documentation/observable.html">Observable</a></li>
-<li><a href="/documentation/operators.html">Operators</a></li>
-<li><a href="/documentation/single.html">Single</a></li>
-<li><a href="/documentation/subject.html">Subject</a></li>
-<li><a href="/documentation/scheduler.html">Scheduler</a></li>
+              <li><a href="http://0.0.0.0:4000/documentation/observable.html">Observable</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/operators.html">Operators</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/single.html">Single</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/subject.html">Subject</a></li>
+<li><a href="http://0.0.0.0:4000/documentation/scheduler.html">Scheduler</a></li>
 
             </ul>
           </div>
@@ -306,10 +299,10 @@
               <li><a href="https://github.com/ReactiveX/RxJava">RxJava<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/rxjs">RxJS<span class="external-link"></span></a></li>
 <li><a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET<span class="external-link"></span></a></li>
-<li><a href="/rxscala">RxScala</a></li>
+<li><a href="http://0.0.0.0:4000/rxscala">RxScala</a></li>
 <li><a href="https://github.com/ReactiveX/RxClojure">RxClojure<span class="external-link"></span></a></li>
 <li><a href="https://github.com/ReactiveX/RxSwift">RxSwift<span class="external-link"></span></a></li>
-<li><a href="/languages.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/languages.html">Others</a></li>
 
             </ul>
           </div>
@@ -317,9 +310,9 @@
           <div class="col-sm-3">
             <ul class="footer-section">
               <li><h4>Resources</h4></li>
-              <li><a href="/tutorials.html">Tutorials</a></li>
+              <li><a href="http://0.0.0.0:4000/tutorials.html">Tutorials</a></li>
 <!-- Uncomment only when ready
-<li><a href="/releases.html">Releases and Binaries</a></li>
+<li><a href="http://0.0.0.0:4000/releases.html">Releases and Binaries</a></li>
 <li><a href="#">Code samples</a></li>
 <li><a href="#">Presentations</a></li>
 <li><a href="#">Related Projects</a></li>
@@ -334,7 +327,7 @@
               <li><h4>Community</h4></li>
               <li><a href="https://github.com/ReactiveX">GitHub<span class="external-link"></span></a></li>
 <li><a href="https://twitter.com/ReactiveX">Twitter<span class="external-link"></span></a></li>
-<li><a href="/community.html">Others</a></li>
+<li><a href="http://0.0.0.0:4000/community.html">Others</a></li>
 
             </ul>
           </div>
@@ -342,8 +335,8 @@
 
         <div class="row">
           <div class="col-sm-12 disclaimer">
-            <img class="footer-logo" src="/assets/Rx_Logo_BW_S.png" alt="" />
-            <a href="">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
+            <img class="footer-logo" src="http://0.0.0.0:4000/assets/Rx_Logo_BW_S.png" alt="" />
+            <a href="http://0.0.0.0:4000">ReactiveX<span class="external-link"></span></a> is a collection of open source projects. The content of this
             page is licensed under Creative Commons Attribution 3.0 License, and
             code samples are licensed under the BSD License.
           </div>

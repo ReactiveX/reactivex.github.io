@@ -859,6 +859,7 @@ operators.
 * [`Throttle`]({{ site.url }}/documentation/operators/debounce.html)
 * [`throttleFirst`]({{ site.url }}/documentation/operators/sample.html)
 * [`throttleLast`]({{ site.url }}/documentation/operators/sample.html)
+* [`throttleLatest`]({{ site.url }}/documentation/operators/throttlelatest.html)
 * [`throttleWithSelector`]({{ site.url }}/documentation/operators/debounce.html)
 * [`throttleWithTimeout`]({{ site.url }}/documentation/operators/debounce.html)
 * [**`Throw`**]({{ site.url }}/documentation/operators/empty-never-throw.html)

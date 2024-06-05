@@ -1,0 +1,76 @@
+---
+layout: documentation
+title: ReactiveX - ThrottleLatest operator
+id: throttlelatest
+---
+
+<ol class="breadcrumb">
+  <li><a href="{{ site.url }}/documentation/operators.html">Operators</a></li>
+  <li><a href="{{ site.url }}/documentation/operators.html#filtering">Filtering</a></li>
+  <li class="active">Sample</li>
+</ol>
+
+   <h1>ThrottleLatest</h1>
+   <h3>throttles items from the current Observable by first emitting the next item from upstream, then periodically emitting the latest item (if any) when the specified timeout elapses between them</h3>
+   <figure class="rxmarbles-figure">
+    <rx-marbles key="throttlelatest"></rx-marbles>
+    <figcaption><p>
+     The <span class="operator">ThrottleLatest</span> throttles items from the current Observable by first emitting the next item from upstream, then periodically emitting the latest item (if any) when the specified timeout elapses between them.
+    </p><p>
+     Also known as <span class="operator">conflate</span>: it is a combination of <span class="operator">throttleFirst</span> and <span class="operator">sample</span> whereby frequent items are sampled but the first item outside the sampling window will be emitted immediately    
+    </p></figcaption>
+   </figure>
+
+   <h4>See Also</h4>
+   <ul>
+    <li><a href="backpressure.html">Backpressure-related Operators</a></li>
+    <li><a href="sample.html"><span class="operator">Sampe</span></a></li>
+    <li><a href="sample.html"><span class="operator">ThrottleFirst</span></a></li>
+   </ul>
+
+   <h2>Language-Specific Information:</h2>
+
+<div class="panel-group operators-by-language" id="accordion" role="tablist" aria-multiselectable="true">
+
+  {% lang_operator RxJava&nbsp;3․x throttleLatest %}
+     <p>
+      If no items were emitted from the upstream during this timeout phase, the next upstream item is emitted immediately and the timeout window starts from then.
+     </p>
+     <p>
+      Multiple overloads are available which allows specifying if the very last item (if any) should be emitted upon termination, which scheduler to use and to
+      have a callback for the items dropped.
+     </p>
+     <figure>
+      <img src="images/throttlelatest.png" style="width:100%;" alt="sample" />
+      <figcaption><p>
+       One variant of <code>throttleLatest</code> that operates at a periodic time
+       interval that you choose by passing in a <code>TimeUnit</code> and a quantity of such units as parameters
+       to <code>throttleLatest</code>.
+      </p><p>
+       This variant of <code>throttleLatest</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/core/Observable.html#throttleLatest-long-java.util.concurrent.TimeUnit-"><code>throttleLatest(long,TimeUnit)</code></a></li>
+       <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/core/Observable.html#throttleLatest-long-java.util.concurrent.TimeUnit-io.reactivex.rxjava3.core.Scheduler-"><code>throttleLatest(long,TimeUnit,Scheduler)</code></a> and <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#throttleLast(long,%20java.util.concurrent.TimeUnit,%20rx.Scheduler)"><code>throttleLast(long,TimeUnit,Scheduler)</code></a></li>
+      </ul></figcaption>
+     </figure>
+     <figure>
+      <img src="images/throttlelatest.e.png" style="width:100%;" alt="sample" />
+      <figcaption><p>
+       This variant can optionally emit the very last item (if any) when the source terminates.
+      </p><p>
+       This variant of <code>throttleLatest</code> operates by default on the <code>computation</code>
+       <a href="../scheduler.html">Scheduler</a>, but you can optionally pass in a Scheduler of your choosing as
+       a third parameter.
+      </p>
+      <ul>
+       <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/core/Observable.html#throttleLatest-long-java.util.concurrent.TimeUnit-boolean-"><code>throttleLatest(long,TimeUnit,bool)</code></a></li>
+       <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/core/Observable.html#throttleLatest-long-java.util.concurrent.TimeUnit-io.reactivex.rxjava3.core.Scheduler-boolean-"><code>throttleLatest(long,TimeUnit,Scheduler,bool)</code></a></li>
+       <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/core/Observable.html#throttleLatest-long-java.util.concurrent.TimeUnit-io.reactivex.rxjava3.core.Scheduler-boolean-io.reactivex.rxjava3.functions.Consumer-"><code>throttleLatest(long,TimeUnit,Scheduler,bool,Consumer)</code></a></li>
+      </ul></figcaption>
+     </figure>
+  {% endlang_operator %}
+
+</div>

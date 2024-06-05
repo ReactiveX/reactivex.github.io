@@ -219,7 +219,7 @@
         <div class="panel-heading" role="tab" id="headingRxGroovy">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxGroovy" aria-expanded="true" aria-controls="collapseRxGroovy">
-              RxGroovy <code>concatMap flatMap flatMapIterable StringObservable.split switchMap</code>
+              RxGroovy <code>concatMap flatMap flatMapIterable switchMap</code>
             </a>
           </h4>
         </div>
@@ -256,7 +256,7 @@ Sequence complete</pre></div>
       by <code>flatMap</code> aborts by invoking <code>onError</code>, the Observable produced by
       <code>flatMap</code> will itself immediately abort and invoke <code>onError</code>.
      </p><p>
-      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      A version of this variant of the operator takes an additional
       <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
       that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
       Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
@@ -273,7 +273,7 @@ Sequence complete</pre></div>
       Another version of <code>flatMap</code> creates (and flattens) a new Observable for each item
       <em>and notification</em> from the source Observable.
      </p><p>
-      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      A version of this variant of the operator takes an additional
       <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
       that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
       Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
@@ -290,7 +290,7 @@ Sequence complete</pre></div>
       Another version combines items from the source Observable with the Observable triggered by
       those source items, and emits these combinations.
      </p><p>
-      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      A version of this variant of the operator takes an additional
       <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
       that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
       Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
@@ -336,20 +336,6 @@ Sequence complete</pre></div>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchMap(rx.functions.Func1)"><code>switchMap(Func1)</code></a></li>
      </ul></figcaption>
     </figure>
-    <figure class="variant">
-     <img src="images/St.split.png" style="width:100%;" alt="split" />
-     <figcaption><p>
-      In the distinct <code>StringObservable</code> class (not part of RxGroovy by default) there is also a
-      <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
-      treats the source sequence as a stream and splits it on a specified regex boundary, then merges the
-      results of this split.
-     </p>
-     <h4>See Also</h4>
-     <ul>
-      <li><a href="http://www.nurkiewicz.com/2014/12/accessing-meetups-streaming-api-with.html">Aligning packets with JSON documents</a> with the <code>split</code> operator</li>
-     </ul>
-     </figcaption>
-    </figure>
   
           </div>
         </div>
@@ -361,7 +347,7 @@ Sequence complete</pre></div>
         <div class="panel-heading" role="tab" id="headingRxJava&nbsp;1․x">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;1․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;1․x">
-              RxJava&nbsp;1․x <code>concatMap flatMap flatMapIterable StringObervable.split switchMap</code>
+              RxJava&nbsp;1․x <code>concatMap flatMap flatMapIterable switchMap</code>
             </a>
           </h4>
         </div>
@@ -377,7 +363,7 @@ Sequence complete</pre></div>
       by <code>flatMap</code> aborts by invoking <code>onError</code>, the Observable produced by
       <code>flatMap</code> will itself immediately abort and invoke <code>onError</code>.
      </p><p>
-      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      A version of this variant of the operator takes an additional
       <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
       that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
       Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
@@ -394,7 +380,7 @@ Sequence complete</pre></div>
       Another version of <code>flatMap</code> creates (and flattens) a new Observable for each item
       <em>and notification</em> from the source Observable.
      </p><p>
-      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      A version of this variant of the operator takes an additional
       <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
       that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
       Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
@@ -411,7 +397,7 @@ Sequence complete</pre></div>
       Another version combines items from the source Observable with the Observable triggered by
       those source items, and emits these combinations.
      </p><p>
-      A version of this variant of the operator (still in Beta as of this writing) takes an additional
+      A version of this variant of the operator takes an additional
       <code>int</code> parameter. This parameter sets the maximum number of concurrent subscriptions
       that <code>flatMap</code> will attempt to have to the Observables that the items emitted by the source
       Observable map to. When it reaches this maximum number, it will wait for one of those Observables to
@@ -456,15 +442,6 @@ Sequence complete</pre></div>
      <ul>
       <li>Javadoc: <a href="http://reactivex.io/RxJava/javadoc/rx/Observable.html#switchMap(rx.functions.Func1)"><code>switchMap(Func1)</code></a></li>
      </ul></figcaption>
-    </figure>
-    <figure class="variant">
-     <img src="images/St.split.png" style="width:100%;" alt="split" />
-     <figcaption><p>
-      In the distinct <code>StringObservable</code> class (not part of RxJava by default) there is also a
-      <code>split</code> operator that converts an Observable of Strings into an Observable of Strings that
-      treats the source sequence as a stream and splits it on a specified regex boundary, then merges the
-      results of this split.
-     </p></figcaption>
     </figure>
   
           </div>

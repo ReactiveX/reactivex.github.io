@@ -147,6 +147,17 @@
  <li><a href="http://akarnokd.blogspot.hu/2015/06/subjects-part-1.html">Advanced RxJava: Subject</a> by Dávid Karnok</li>
  <li><a href="http://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/subjects.html">Using Subjects</a> by Dennis Stoyanov</li>
 </ul>
+<h2>Concurrent usage</h2>
+<p>
+  In most ReactiveX implementations, especially those that can run in a multi-threaded environment, subjects on their observer side are <em>not</em> considered thread safe.
+  However, the observable side, i.e., <code>Subscribe()</code> is always thread safe.
+</p>
+<p>
+  This means that calling <code>OnNext</code>, <code>OnError</code> or <code>OnCompleted</code> from multiple threads can result in an undefined state.
+</p>
+<p>
+  Most ReactiveX implementations therefore offer a special operator that makes the observer side thread safe as well. Look for the <code>ToSerialized</code> operator.
+</p>
 <h2>Varieties of Subject</h2>
 <p>
  There are four varieties of <code>Subject</code> that are designed for particular use cases. Not all of these
@@ -237,6 +248,88 @@
 <h4>See Also</h4>
 <ul>
  <li><a href="http://www.introtorx.com/Content/v1.0.10621.0/02_KeyTypes.html#ReplaySubject"><cite>Introduction to Rx</cite>: ReplaySubject</a></li>
+</ul>
+<h2>Other subject types</h2>
+<p>
+  In certain ReactiveX flavors and versions, such as <em>RxJava 3.x</em>, there are a couple of more subject types available, fulfilling some extra common roles.
+</p>
+<h3>UnicastSubject</h3>
+<figure>
+ <img src="/documentation/operators/images/UnicastSubject.png" style="width:100%;" />
+ <figcaption><p>
+   A Subject that queues up events until a single Observer subscribes to it, replays those events to it until the Observer catches up 
+   and then switches to relaying events live to this single Observer until this UnicastSubject terminates or the Observer disposes.
+ </p></figcaption>
+</figure>
+<h4>See Also</h4>
+<ul>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/UnicastSubject.html"><cite>RxJava 3.x</cite>: UnicastSubject</a></li>
+</ul>
+<h3>SingleSubject</h3>
+<figure>
+ <img src="/documentation/operators/images/SingleSubject.png" style="width:100%;" />
+ <figcaption><p>
+   Represents a hot Single-like source and consumer of events similar to Subjects. Since a Single can only ever emit an item or error, a SingleSubject is
+   implicitly a replay-like subject.
+ </p></figcaption>
+</figure>
+<h4>See Also</h4>
+<ul>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/SingleSubject.html"><cite>RxJava 3.x</cite>: SingleSubject</a></li>
+</ul>
+<h3>MaybeSubject</h3>
+<figure>
+ <img src="/documentation/operators/images/MaybeSubject.png" style="width:100%;" />
+ <figcaption><p>
+   Represents a hot Maybe-like source and consumer of events similar to Subjects. Since a Maybe can only ever emit an item, an error or become completed, a MaybeSubject is
+   implicitly a replay-like subject.
+ </p></figcaption>
+</figure>
+<h4>See Also</h4>
+<ul>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/MaybeSubject.html"><cite>RxJava 3.x</cite>: MaybeSubject</a></li>
+</ul>
+<h3>CompletableSubject</h3>
+<figure>
+ <img src="/documentation/operators/images/CompletableSubject.png" style="width:100%;" />
+ <figcaption><p>
+   Represents a hot Completable-like source and consumer of events similar to Subjects. Since a Completable can only ever complete or hold an error, a CompletableSubject is
+   implicitly a replay-like subject.
+ </p></figcaption>
+</figure>
+<h4>See Also</h4>
+<ul>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/CompletableSubject.html"><cite>RxJava 3.x</cite>: CompletableSubject</a></li>
+</ul>
+<h3>Processors</h3>
+<figure>
+ <img src="/documentation/operators/images/MulticastProcessor.png" style="width:100%;" />
+ <figcaption><p>
+   <em>RxJava 2.x</em> and <em>RxJava 3.x</em> defines backpressure-aware subjects as <em>Processor</em>s with very similar naming to the other Subjects above.
+   These behave pretty much the same with the exception that they will not overflow their subscribers if they don't request more items. In general, these subjects
+   don't coordinate between their subscribers and may fail them individually if they can not keep up.
+ </p>
+   <p>
+     A special processor, <code>MulticastProcessor</code> pictured above, does coordinate between its subscribers with respect to backpressure.
+   </p>
+   <p>
+     The <code>SingleSubject</code>, <code>MaybeSubject</code> and <code>CompletableSubject</code> subject types do not have processor variants because these do not need to support backpressure and
+     can always hold at most one element.
+   </p>
+   <p>
+     Processors also implement the Reactive Streams <a href="https://github.com/reactive-streams/reactive-streams-jvm#4processor-code">Processor</a> interface and thus
+     they are compatible across the Reactive Streams ecosystem in Java.
+   </p>
+ </figcaption>
+</figure>
+<h4>See Also</h4>
+<ul>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/processors/AsyncProcessor.html"><cite>RxJava 3.x</cite>: AsyncProcessor</a></li>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/processors/BehaviorProcessor.html"><cite>RxJava 3.x</cite>: BehaviorProcessor</a></li>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/processors/PublishProcessor.html"><cite>RxJava 3.x</cite>: PublishProcessor</a></li>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/processors/ReplayProcessor.html"><cite>RxJava 3.x</cite>: ReplayProcessor</a></li>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/processors/MulticastProcessor.html"><cite>RxJava 3.x</cite>: MulticastProcessor</a></li>
+ <li><a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/processors/UnicastProcessor.html"><cite>RxJava 3.x</cite>: UnicastProcessor</a></li>
 </ul>
 
 <h2>Language-Specific Information:</h2>
@@ -345,6 +438,40 @@
       </div>
       
 
+  
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingRxJava&nbsp;3․x">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRxJava&nbsp;3․x" aria-expanded="true" aria-controls="collapseRxJava&nbsp;3․x">
+              RxJava&nbsp;3․x <code></code>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseRxJava&nbsp;3․x" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRxJava&nbsp;3․x">
+          <div class="panel-body">
+            
+   <p>
+    If you have a <code>Subject</code> and you want to pass it along to some other agent without exposing its
+    <code>Observer</code> interface, you can mask it by calling its <code>hide</code> method, which
+    will return the Subject as a pure <code>Observable</code>.
+   </p>
+   <h4>See Also</h4>
+   <ul>
+    <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/AsyncSubject.html"><code>AsyncSubject</code></a></li>
+    <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/BehaviorSubject.html"><code>BehaviorSubject</code></a></li>
+    <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/PublishSubject.html"><code>PublishSubject</code></a></li>
+    <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/ReplaySubject.html"><code>ReplaySubject</code></a></li>
+    <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/UnicastSubject.html"><code>UnicastSubject</code></a></li>
+    <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/CompletableSubject.html"><code>CompletableSubject</code></a></li>
+    <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/MaybeSubject.html"><code>MaybeSubject</code></a></li>
+    <li>Javadoc: <a href="https://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/subjects/SingleSubject.html"><code>SingleSubject</code></a></li>
+   </ul>
+  
+          </div>
+        </div>
+      </div>
+      
+  
   
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingRxJS">

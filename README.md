@@ -10,45 +10,6 @@ Use Docker to Build & Run (Optional)
 If you have Docker installed, you can use the Dockerfile in this repository to build and run the ReactiveX website. This one-liner will perform the build and run:
 `docker build -t reactivex.io - < Dockerfile && docker run -p 4000:4000 -it --rm -v $PWD:/app -t reactivex.io`
 
-### Windows
-
-Requires docker desktop.
-
-```
-docker build -t reactivex.io - < Dockerfile
-
-docker run -p 4000:4000 -e JEKYLL_ENV=production -it --rm -v $PWD:/app -t reactivex.io
-```
-
-*Note the `-e JEKYLL_ENV=production`. It is required otherwise jekyll will riddle the page links with `https:/0.0.0.0`.*
-
-Replace `$PWD` with the absolute path of the git repo, i.e., `c:\users\akarnokd\git\reactivex.github.io`
-
-When run finishes, the updated site should be in `_site`. The contents of this directory has to go into the `master` branch.
-
-```
-cd c:\temp
-
-git clone https://github.com/ReactiveX/reactivex.github.io.git
-
-cd reactivex.github.io
-
-git checkout master
-
-git checkout -b master_next
-
-rem Copy contents of _site into the current dir at this point
-
-git add .
-
-git commit -m "Deploying changes"
-
-git push --set-upstream origin master_next
-
-rem Review the PR
-```
-
-
 Install tools
 --------------
 

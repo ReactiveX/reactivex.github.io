@@ -70,7 +70,7 @@ id: intro
   <tr><td>retrieve data</td><td><code>T next()</code></td><td><code>onNext(T)</code></td></tr>
   <tr><td>discover error</td><td>throws <code>Exception</code></td><td><code>onError(Exception)</code></td></tr>
   <tr><td>complete</td><td><code>!hasNext()</code></td><td><code>onCompleted()</code></td></tr>
- <tbody>
+ </tbody>
 </table>
 <h2>Observables Are Less Opinionated</h2>
 <p>

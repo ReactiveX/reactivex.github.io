@@ -92,6 +92,7 @@ id: tutorials
 * [Async and Streaming in JavaScript: We&#8217;re All Doing it Wrong!](https://vimeo.com/131196784) - video/slide presentation by Matthew Podwysocki
 * [Step-by-step: Building an RSS reader with RxJS](https://github.com/channikhabra/yarr) - by Charanjit Singh
 * [Angular Air #29: Reactive Programming](https://www.youtube.com/watch?v=fV5G9lXRBvA) a video featuring Matt Podwysocki
+* [switchMap vs mergeMap vs concatMap vs exhaustMap](https://frontendatlas.com/angular/trivia/rxjs-switchmap-mergemap-exhaustmap-concatmap-angular-when-to-use) — a guide to choosing the right flattening operator, with interactive examples, by FrontendAtlas
 
 ## RxKotlin
 * [Experimentation with RxJava](http://blog.joanzapata.com/experimentation-with-rx/) by Joan Zapata
